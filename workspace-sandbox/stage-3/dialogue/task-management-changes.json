@@ -1,0 +1,14 @@
+[
+  {
+    "group":"task-management", "name":"conflicting-supplement", "round_group":"changes", "input":"补充一条：运行中的任务也要能从列表批量删除，但不能停止仿真。", "records":["evidence/task-management/change-003"], "asked_refs":["REQ-2026-003/Q-4"], "control_questions":[],
+    "assistant_message":"REQ-2026-003｜运行任务的列表批量删除\n已记录新增要求：运行中的任务也能从列表批量删除，但不能停止仿真。删除权限不变。它与之前‘运行中不能删除’的操作关系需要明确，我保留旧规则及来源，不直接把列表移除解释成永久删除；相关流程、边界和验收已列为待重评。\n\n问题1（REQ-2026-003/Q-4，因新信息重开）：运行任务的‘从列表删除’具体指什么？\nA.只是从正常列表隐藏，后台任务记录与仿真继续保留，并有明确的后续查看入口。\nB.不可恢复地移除用户可见的任务记录，但后台仿真继续；结果访问规则另行明确。\nC.其他。\nD.暂不确定。\n推荐A作为讨论起点，避免失去仍在运行任务和结果的追踪；这不是已确认的隐藏规则，也不表示现有系统已有后续入口。\n\n本轮实际只问以上两题（另见同轮correction记录）。删除和导出仍为not_ready；请先回答这两题，我停在这里等待后续输入。"
+  },
+  {
+    "group":"task-management", "name":"correction", "round_group":"changes", "input":"导出上限改成 5000 条。", "records":["evidence/task-management/change-005"], "asked_refs":["REQ-2026-005/Q-1"], "control_questions":[],
+    "assistant_message":"REQ-2026-005｜导出上限更正\n已确认上限改为5000条，原‘全部导出、不截断’的暂定假设不再生效。旧1000条原文与假设均保留，不当成当前规则。数量边界和验收需按5000重评；这次更正没有自动决定超限如何处理。\n\n问题2（REQ-2026-005/Q-1，因更正重开）：结果超过5000条时，应怎样处理这次导出？\nA.本次不生成文件，明确告知用户先缩小或选择导出范围。\nB.由用户明确选择不超过5000条后再导出，不自动截取。\nC.按业务明确指定的取数及排序规则导出5000条，并明确提示未包含部分。\nD.其他。\nE.暂不确定。\n推荐A作为讨论起点，尊重上限且避免静默漏行；在你确认前，不把它写成超限处理规则。"
+  },
+  {
+    "group":"task-management", "name":"withdrawal", "round_group":"changes", "input":"通知先不做了，本期去掉。", "records":["evidence/task-management/change-006"], "asked_refs":[], "asked_questions":[], "control_questions":[],
+    "assistant_message":"REQ-2026-006｜本期撤销通知\n已记录任务结束通知本期不做，不再追问通知对象、渠道或触发条件。原条目与分析保留，原问题因本期功能撤销而不再成立，相关验收待重评，并单独记录本期排除决定。此决定不影响任务状态修复，也不表示永久取消通知或删除已有系统功能。"
+  }
+]

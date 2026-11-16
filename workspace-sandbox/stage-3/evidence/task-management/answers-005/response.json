@@ -1,0 +1,22 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "REQ-2026-005",
+  "revision": 2,
+  "id_map": {
+    "$quantity_assumption": "ASM-1",
+    "$quantity_rule": "BR-3"
+  },
+  "affected_ids": [
+    "BR-3",
+    "AC-1",
+    "FLOW-1",
+    "BND-3",
+    "CNF-1",
+    "Q-1",
+    "Q-5",
+    "Q-6",
+    "ASM-1"
+  ],
+  "written": true
+}

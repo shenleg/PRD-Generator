@@ -1,0 +1,81 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "REQ-2026-003",
+  "base_revision": 4,
+  "change_type": "new_source_version",
+  "actor": "user",
+  "user_statement": "这是新版需求文档，请对照更新。",
+  "summary": "逐项对照初版与第二版：第2条仅把‘所有用户都可以操作’改为‘创建者和管理员可以操作’，批量删除动作、第5条和第6条未变。先标记旧权限表述及其原文冲突记录待重评，重开Q-1并保留旧回答。已有BR-2的工程创建者/管理员授权、新增运行任务列表操作及非运行任务不可恢复规则均不因新版未重述而撤回；不完成本轮重评。",
+  "operations": [
+    {
+      "op": "add_source",
+      "ref": "$new_source",
+      "value": {
+        "name": "仿真任务管理优化（第二版）",
+        "path": "/root/orca/projects/test-skill/tests/fixtures/sample-02-task-management-v2.md",
+        "type": "input_document",
+        "credibility": "用户提供的新版原文；已与初版逐项对照。第2条权限措辞改变，第5、6条未变；不能将新版未重述的既有用户回答视为撤销。",
+        "last_updated": null,
+        "revision": 2
+      }
+    },
+    {
+      "op": "update",
+      "target": "BR-1",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "第二版第2条将旧的‘所有用户都可以操作’改为‘创建者和管理员可以操作’。保留本条旧正文和SRC-1以追溯被修改的原文，先待重评；本条本就不是当前有效授权，不能把原文修改理解为撤销BR-2的用户确认。",
+        "sources": [
+          {"type": "input_document", "source_id": "SRC-1", "location": "需求第2条：‘所有用户都可以操作’"},
+          {"type": "input_document", "source_id": "$new_source", "location": "第9行，需求第2条权限子句：‘创建者和管理员可以操作’；用于定位旧表述的变化，不表示旧正文仍在新版中成立"}
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "target": "CNF-1",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "原冲突依据之一（第2条所有用户）已修改，第5条未变；需要重评该原文冲突记录，不能继续把它当作新版仍有相同原文冲突，也不在stale阶段提前关闭记录。此前用户以第5条为准的回答保留。",
+        "sources": [
+          {"type": "input_document", "source_id": "SRC-1", "location": "需求第2条；需求第5条"},
+          {"type": "user_answer", "location": "第1轮用户回答（本次测试的模拟输入）/删除权限：‘以第 5 条为准，创建者和管理员可以删除，其他人只能看。’"},
+          {"type": "input_document", "source_id": "$new_source", "location": "第9行需求第2条与第12行需求第5条；原文权限对照依据变化"}
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-1",
+      "changes": {
+        "status": "open",
+        "answer": "以第 5 条为准，创建者和管理员可以删除，其他人只能看。",
+        "reason": "新版第2条已将‘所有用户’改为‘创建者和管理员’，与原问题关联的BR-1/CNF-1依据发生变化，按新版首轮协议重开并保留原answer，等待重评原冲突及措辞适用范围。这不是把旧回答判无效，也不重复向用户询问已经确认的删除授权；作业/任务及创建者指代仍由既有Q-3承接。"
+      }
+    }
+  ],
+  "set": {
+    "meta.analysis_status": "stale",
+    "meta.readiness": "not_ready",
+    "context.source_ids": ["SRC-1", "$new_source"],
+    "impact_analysis.affected_requirements": ["REQ-2026-003/BR-1", "REQ-2026-003/CNF-1", "REQ-2026-003/Q-1"],
+    "impact_analysis.proposed_changes": [
+      "仅重评新版第2条权限措辞及旧原文冲突依据；Q-1重开保留原answer，本轮不重复追问已确认授权。",
+      "BR-2授权及运行任务从列表删除但不能停止仿真的既有补充继续保留，Q-4维持当前open，不重复执行历史重开。",
+      "非运行任务删除后用户不可恢复及现有其他缺口保持原状；未运行更新器，当前补丁不代表正式结果已保存。"
+    ]
+  },
+  "completion_checks": [
+    {"item": 1, "satisfied": true, "question_refs": ["Q-8"], "reason": "批量管理目标及既有运行任务列表操作诉求未变，本轮没有撤销这些确认。"},
+    {"item": 2, "satisfied": true, "question_refs": ["Q-3"], "reason": "既有授权用户和场景仍可表达，作业/任务术语关系的既有缺口保持。"},
+    {"item": 3, "satisfied": false, "question_refs": ["Q-2", "Q-4", "Q-5", "Q-6"], "reason": "既有列表操作、结果访问、选择集合和批量失败流程仍未明确；新版未提供答案。"},
+    {"item": 4, "satisfied": false, "question_refs": ["Q-1", "Q-2", "Q-3", "Q-4", "Q-5"], "reason": "新增原文权限措辞尚待重评，旧授权回答保留；既有删除语义和结果去留缺口仍在。"},
+    {"item": 5, "satisfied": false, "question_refs": ["Q-1", "Q-4"], "reason": "CNF-1因原文依据变化待重评且Q-1重开；既有CNF-2/Q-4仍未解决，不在本轮提前裁决。"},
+    {"item": 6, "satisfied": false, "question_refs": ["Q-2", "Q-4", "Q-5", "Q-6"], "reason": "运行任务后续跟踪、关联结果、混合批次与部分失败的既有缺口未获补充。"},
+    {"item": 7, "satisfied": false, "question_refs": ["Q-1", "Q-2", "Q-3", "Q-4", "Q-5", "Q-6"], "reason": "受影响权限依据尚未重评，既有完整删除流程也不可判定；不以局部断言冒充完整验收。"},
+    {"item": 8, "satisfied": true, "question_refs": [], "reason": "仅对用户指定的新旧原文及当前JSON做增量对照，未开展其他历史检索或基线对照。"},
+    {"item": 9, "satisfied": true, "question_refs": ["Q-9"], "reason": "保留已有研发确认项；本轮无技术可行性结论。"},
+    {"item": 10, "satisfied": true, "question_refs": ["Q-10"], "reason": "已有界面依赖判断及相关页面资料缺失登记不变。"},
+    {"item": 11, "satisfied": true, "question_refs": ["Q-1", "Q-2", "Q-3", "Q-4", "Q-5", "Q-6"], "reason": "旧授权回答、运行任务新增诉求、原文措辞变化与已有未决风险分别保留，可形成标明过期及缺口的草稿，不能作为已重评结果使用。"}
+  ]
+}

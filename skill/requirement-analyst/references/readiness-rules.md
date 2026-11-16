@@ -44,16 +44,16 @@
 - clarifying：已有值得等待用户回答的问题。
 - paused：用户明确暂停。
 - completed：本轮已收敛或用户要求结束；可以同时是 not_ready。
-- stale：已有资料变化，结果待重评；不在本阶段实现新版文档自动更新。
+- stale：已有资料变化，结果待重评；新版文档先保存过期状态，完成受影响项重评后再更新。
 
 状态、就绪度和修订号仅以 analysis-result.json 的 meta 为权威，报告展示读取值，不独立维护另一份状态。
 
 ## 保存前校验
 
-1. 用 schemas 的结构填写整份候选结果和 source-manifest.json，条目均带稳定编号、标签、来源和状态。
-2. 调用 scripts/validate_analysis.py，检查结构及规格 9.6 的 11 条关系规则。
-3. 诊断 fail 时按条目与原因修正，最多 3 次；正式结果不得使用失败数据，仍失败则说明问题，不宣称分析已完成。
-4. pass 后才保存正式 analysis-result.json 并据此整理报告；warning 要显式提示并保留过期使用限制。
+1. 按 incremental-update.md 产出补丁，每轮填写十一项 completion_checks；已有对象引用正式编号，新对象使用临时别名，标签和来源沿用 schemas。
+2. 调用 scripts/update_analysis.py；它对应用后的候选调用唯一的 validate_analysis.py，检查结构、完成清单及规格 9.6 的关系规则。
+3. 诊断 fail 时按条目与原因修正补丁，最多 3 次；正式结果保持上次合法值，仍失败则说明问题，不宣称本轮已完成。
+4. 从脚本实际保存的 analysis-result.json 整理报告；warning 要显式提示并保留过期使用限制，dry-run 不算保存成功。
 5. 校验器不检查自然语言业务充分性，不能用它代替前面的完成清单与行为核对。
 
 ## 下游限制

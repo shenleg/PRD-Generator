@@ -1,0 +1,5 @@
+{
+  "group":"high-low-voltage", "name":"injected-failure", "input":"测试驱动器故意提升候选readiness；无新业务输入", "records":["evidence/high-low-voltage/injected-failure"], "asked_refs":[], "asked_questions":[], "control_questions":[],
+  "execution_mode":"driver_injection_not_model_response",
+  "assistant_message":"此项是驱动器注入记录，不是模型自然出错或对用户的回复。真实脚本返回fail，rule4指出Q-1至Q-5仍open P0，且清单3、4、6、7未满足，不能提升readiness。no-write-proof.json证明工作区业务文件原始哈希完全不变；正式revision仍3。实际JSON诊断随后交给原被测模型修复。"
+}

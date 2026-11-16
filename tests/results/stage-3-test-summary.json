@@ -1,0 +1,9 @@
+{
+  "description": "完整确定性回归及已保存真实模型证据检查；不重新调用模型。",
+  "tests_run": 100,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "status": "pass",
+  "log": "tests/results/stage-3-test-run.txt"
+}

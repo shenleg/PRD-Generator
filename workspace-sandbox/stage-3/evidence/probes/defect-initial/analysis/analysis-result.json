@@ -1,0 +1,338 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "PROBE-DEFECT",
+  "meta": {
+    "analysis_revision": 1,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "existing_document",
+    "analysis_status": "completed",
+    "readiness": "ready_for_document"
+  },
+  "context": {
+    "project_id": "probes",
+    "source_ids": [
+      "SRC-1"
+    ],
+    "domain_terms": [
+      "任务列表",
+      "状态服务",
+      "succeeded",
+      "running",
+      "失败任务",
+      "取消任务"
+    ]
+  },
+  "requirements": {
+    "goals": [
+      {
+        "content": "修复任务状态显示不准的问题，不增加新功能。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第5行"
+          }
+        ],
+        "status": "active",
+        "id": "GOAL-1"
+      }
+    ],
+    "scenarios": [
+      {
+        "content": "任务已成功完成且状态服务返回 succeeded，重新打开任务列表后，该行实际仍显示 running。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第6行，合成复现条件及实际行为"
+          }
+        ],
+        "status": "active",
+        "id": "SCN-1"
+      }
+    ],
+    "functional_requirements": [
+      {
+        "content": "对状态服务返回 succeeded 的已完成任务，重新打开任务列表后，该行应显示 succeeded。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第6至8行"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "GOAL-1",
+          "SCN-1"
+        ],
+        "id": "FR-1"
+      }
+    ],
+    "business_rules": [
+      {
+        "content": "失败和取消任务的显示规则保持不变，不能因本次修复被改成 succeeded。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第7至8行"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "FR-1"
+        ],
+        "id": "BR-1"
+      }
+    ],
+    "constraints": [],
+    "non_functional_requirements": [],
+    "acceptance_criteria": [
+      {
+        "content": "使用状态服务返回 succeeded 的已完成任务重新打开列表，该任务行显示 succeeded，不再显示 running。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第6至8行"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "FR-1"
+        ],
+        "id": "AC-1"
+      },
+      {
+        "content": "对已有失败和取消任务检查列表状态，保持既有显示规则，不被本次修复改成 succeeded。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第7至8行"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "BR-1"
+        ],
+        "id": "AC-2"
+      }
+    ],
+    "scope": {
+      "in_scope": [
+        {
+          "content": "影响范围仅为任务列表的状态展示，修复已成功任务重新打开列表后仍显示 running 的问题。",
+          "tag": "confirmed",
+          "sources": [
+            {
+              "type": "input_document",
+              "source_id": "SRC-1",
+              "location": "第5至8行"
+            }
+          ],
+          "status": "active",
+          "related_ids": [
+            "FR-1"
+          ],
+          "id": "FR-2"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "content": "不增加新功能，不调整状态刷新机制或页面布局，不改变失败和取消任务既有显示规则。",
+          "tag": "confirmed",
+          "sources": [
+            {
+              "type": "input_document",
+              "source_id": "SRC-1",
+              "location": "第5、第7行"
+            }
+          ],
+          "status": "active",
+          "related_ids": [
+            "BR-1"
+          ],
+          "id": "CON-1"
+        }
+      ]
+    }
+  },
+  "business_assessment": {
+    "flows": [
+      {
+        "content": "准备已完成且服务状态为 succeeded 的任务，重新打开任务列表，核对对应行显示 succeeded；再以失败、取消任务检查不被误改。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第6至8行"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "FR-1",
+          "BR-1"
+        ],
+        "id": "FLOW-1"
+      }
+    ],
+    "states": [],
+    "boundaries": [
+      {
+        "content": "本次判定时点为重新打开任务列表后；失败、取消是明确回归边界。原文未要求实时刷新，不新增刷新延迟指标或状态刷新方案。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第7至8行"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "FR-1",
+          "BR-1"
+        ],
+        "id": "BND-1"
+      }
+    ],
+    "exceptions": [
+      {
+        "content": "合成缺陷表现为服务 succeeded 而列表仍 running，需恢复为预期 succeeded；这是实际与预期的差异，不是业务规则相互矛盾。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第6至7行"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "SCN-1",
+          "FR-1"
+        ],
+        "id": "EXC-1"
+      }
+    ],
+    "gaps": [],
+    "conflicts": []
+  },
+  "ux_assessment": {
+    "ui_dependent": true,
+    "design_pending_items": [],
+    "interaction_flows": [
+      "重新打开任务列表，检查对应任务行状态。"
+    ]
+  },
+  "questions": [
+    {
+      "question": "研发在真实系统中核实该复现条件，排查服务 succeeded 但列表仍 running 的原因，并确认修复仅影响任务列表状态展示。",
+      "priority": "P1",
+      "resolution": "ask_dev",
+      "reason": "原文明示原因和实现由研发排查，合成案例本身不是实际技术证据。",
+      "impact": "影响修复方式及回归检查，不改变已明确的业务预期。",
+      "options": [],
+      "recommendation": "围绕给定复现路径排查并验证成功、失败、取消三类任务，不提前认定缓存、映射或刷新机制为根因。",
+      "status": "open",
+      "related_ids": [
+        "SCN-1",
+        "FR-1",
+        "BR-1"
+      ],
+      "id": "Q-1"
+    }
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "value_assessment": {
+    "problem": "合成缺陷中，状态服务已返回 succeeded，重新打开列表仍显示 running。",
+    "expected_benefits": [
+      "任务列表正确显示已成功任务状态，并避免破坏失败和取消状态"
+    ],
+    "business_value": "unknown",
+    "necessity": "necessary"
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "明确修复状态显示错误，不新增功能；缺陷无需追加收益论证。"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "核心使用者是重新打开任务列表查看状态的人；不需要额外角色权限决策即可复现该展示缺陷。"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "已完成任务、服务 succeeded、重新打开列表、检查对应行的流程可还原。"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "成功任务显示 succeeded，失败取消保持原规则，且不调整刷新机制和布局。"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "实际 running 与预期 succeeded 是缺陷对照而非规则矛盾，无未处理重大矛盾。"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "明确检查重新打开列表这一触发时点和失败、取消回归边界，不扩展无关新异常功能。"
+    },
+    {
+      "item": 7,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "原文提供可执行复现和可判定成功、回归预期，无需再询问已明确事项。"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本阶段未开展历史检索或基线对照；不声称已核实真实历史显示规则。"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "已登记研发核实与根因排查，未作实现或可行性结论。"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "修复对象明确为任务列表界面状态，ui_dependent=true；不改布局，未要求额外视觉稿。"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "剩余事项为研发核实和排查，无待产品回答的核心业务问题或已采用假设，不阻碍形成需求草稿。"
+    }
+  ]
+}

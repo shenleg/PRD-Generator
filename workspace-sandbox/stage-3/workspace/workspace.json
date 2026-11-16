@@ -1,0 +1,16 @@
+{
+  "projects": [
+    {
+      "project_id": "high-low-voltage"
+    },
+    {
+      "project_id": "probes"
+    },
+    {
+      "project_id": "task-management"
+    }
+  ],
+  "requirement_counters": {
+    "2026": 6
+  }
+}

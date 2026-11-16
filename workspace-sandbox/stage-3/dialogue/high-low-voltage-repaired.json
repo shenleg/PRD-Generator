@@ -1,0 +1,4 @@
+{
+  "group":"high-low-voltage", "name":"repaired", "input":"实际rule4诊断；内部校验修复，无新业务输入", "records":["evidence/high-low-voltage/repaired"], "asked_refs":[], "asked_questions":[], "control_questions":[],
+  "assistant_message":"本次内部候选校验失败的原因已明确：Q-1～Q-5仍是未回答的P0，且完成清单第3、4、6、7项未满足，不能标为ready_for_document。\n\n已生成修复补丁，将候选就绪度恢复为not_ready，分析状态仍为completed，不改变任何问题或假设。失败候选未写入，正式结果仍为revision 3。本修复尚待重新校验，不宣称已通过，也不重开追问。"
+}

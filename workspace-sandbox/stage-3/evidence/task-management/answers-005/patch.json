@@ -1,0 +1,40 @@
+{
+  "patch_version":"1.0",
+  "requirement_id":"REQ-2026-005",
+  "base_revision":1,
+  "change_type":"supplement",
+  "actor":"user",
+  "user_statement":"不确定。",
+  "summary":"吸收第1轮导出数量问题的实际模拟回复‘不确定。’，按Skill暂采用上轮推荐B建立active ASM，Q-1转provisional而非answered，不写成真实产品决定。暂定全部有权范围内结果、不因1000截断；对象、权限、生命周期、时点及实现机制仍未知。第2轮实际提出Q-5和Q-6，与REQ-2026-003/Q-2合计全组3题。仅生成补丁，等待调用方应用；不为未变需求写空补丁。",
+  "operations":[
+    {"op":"add","collection":"assumptions","ref":"$quantity_assumption","value":{"content":"暂按上一轮推荐B推进：导出本次业务范围内全部有权限的结果，不因超过1000条而截断。对象范围、具体导出权限和结果时点须分别确认；不假定1000就是分文件单位，也不承诺无限规模的单文件导出。","tag":"assumption","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条首行及续行：1000条与全部结果的冲突"},{"type":"user_answer","location":"第1轮用户回答（本次测试的模拟输入）/导出上限：‘不确定。’"}],"status":"active","basis":"Q-1第1轮已推荐B以保持不丢数据；用户本轮明确回复不确定，不是未回答。按当前Skill将上轮推荐作为暂定假设推进，而非将不确定解释为确认B或接受所有风险。","verification":"由用户（本次测试的模拟回答方）在正式需求定稿前复核数量规则，明确是保留1000硬上限还是全部导出；研发在业务对象、权限及时点确认后，用超过1000条的代表性结果集验证完整性及规模能力。若需分批或存在技术限制，须反馈业务重新确认，不能静默截断。","related_question":"Q-1","related_ids":["BR-1","BR-2","CNF-1","BND-3","Q-2","Q-5","Q-7","Q-11"]}},
+    {"op":"add","collection":"requirements.business_rules","ref":"$quantity_rule","value":{"content":"暂定数量规则：对于已确认属于本次范围且用户有权导出的结果，全部纳入导出，不因超过1000而截断。当前这只是采用推荐B形成的假设，不是用户已确认的最终数量政策；分批、文件及等待方式另待确认。","tag":"assumption","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条及续行"},{"type":"user_answer","location":"第1轮用户回答（本次测试的模拟输入）/导出上限：‘不确定。’"}],"status":"active","related_ids":["$quantity_assumption","Q-1","Q-2","Q-5","Q-7","Q-10","Q-11"]}},
+    {"op":"update","target":"Q-1","changes":{"status":"provisional","answer":"不确定。","reason":"第1轮已实际提出，第2轮不重复询问。用户本轮明确不确定，按Skill暂采用上一轮推荐B并关联active ASM；不是answered，也不是risk_accepted。数量规则待用户验证，原文两种陈述仍保留。","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条首行及续行"},{"type":"user_answer","location":"第1轮用户回答（本次测试的模拟输入）/导出上限：‘不确定。’"}],"related_ids":["CNF-1","BR-1","BR-2","BND-3","AC-1","$quantity_assumption","$quantity_rule"]}},
+    {"op":"update","target":"CNF-1","changes":{"content":"原文1000条硬上限与大量数据全部导出的冲突保留。第1轮回答为不确定，当前通过关联的active ASM暂按推荐B不截断推进，因此工作草稿已有临时数量规则；这不是最终裁决，也不能覆盖BR-1、BR-2的原文证据。若假设被否定或撤销，需重评数量与验收。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条首行及续行"},{"type":"user_answer","location":"第1轮用户回答（本次测试的模拟输入）/导出上限：‘不确定。’"}],"related_ids":["BR-1","BR-2","Q-1","$quantity_assumption","$quantity_rule"]}},
+    {"op":"update","target":"BND-3","changes":{"content":"候选数量边界仍包括空结果、恰好1000条及超过1000条。超过1000条目前仅依据active ASM暂按不截断处理；大量生成与下载的等待、超时、分批能力和空结果反馈仍待定。不能将临时不截断规则解释为已核实的无上限技术能力。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条首行及续行"},{"type":"user_answer","location":"第1轮用户回答（本次测试的模拟输入）/导出上限：‘不确定。’"}],"related_ids":["Q-1","$quantity_assumption","$quantity_rule","Q-9","Q-10","Q-11"]}},
+    {"op":"update","target":"FLOW-1","changes":{"content":"候选流程为选定获授权的结果范围、发起导出、等待并取得表格；数量暂按active ASM全部导出、不因1000截断。对象、授权、生命周期、结果时点及内容仍未确定，完整流程尚不能还原，不能将全部解释为所有用户所有结果。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条"},{"type":"user_answer","location":"第1轮用户回答（本次测试的模拟输入）/导出上限：‘不确定。’"}],"status":"to_reassess","related_ids":["Q-2","Q-5","Q-6","Q-3","Q-7","$quantity_assumption","$quantity_rule"]}},
+    {"op":"update","target":"AC-1","changes":{"content":"验收草案暂以active ASM的不截断规则核对超过1000条的完整集合，但数量政策仍须用户复核。对象、权限、生命周期、结果时点、字段和旧报告格式确认后，逐项核对正确行列并覆盖空结果、大量等待、部分失败与数据变化；不能用临时数量假设把整个导出需求判为可验收。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条及续行；备注第2条"},{"type":"user_answer","location":"第1轮用户回答（本次测试的模拟输入）/导出上限：‘不确定。’"}],"status":"to_reassess","related_ids":["FR-1","CNF-1","GAP-1","BND-1","BND-2","BND-3","EXC-1","EXC-2","$quantity_assumption","$quantity_rule","Q-2","Q-3","Q-4","Q-5","Q-6","Q-7","Q-8"]}},
+    {"op":"update","target":"Q-5","changes":{"reason":"第2轮实际提出，第2题。数量虽暂按全部推进，但导出内容的授权范围仍未知，可能泄露他人结果。删除需求已明确以第5条授权，不代表导出也必须采用相同角色；本题只解决导出内容授权范围，不要求产品作实现承诺。"}},
+    {"op":"update","target":"Q-6","changes":{"reason":"第2轮实际提出，第3题。用户未回答任务未完成或失败时是否可导出；允许导出部分进度还是只导出完整最终结果，会改变‘全部且不丢数据’的正确含义。未确定数量和未确定生命周期是不同决策，不把‘不确定’传播到其他未回答问题的状态。"}}
+  ],
+  "set":{
+    "meta.analysis_status":"clarifying",
+    "meta.readiness":"not_ready",
+    "context.project_id":"task-management",
+    "impact_analysis.affected_requirements":["REQ-2026-005"],
+    "impact_analysis.proposed_changes":["数量问题登记provisional及有效暂定假设，不覆盖原文、不冒充用户确认；重评数量相关边界和验收，继续澄清导出授权与生命周期"]
+  },
+  "completion_checks":[
+    {"item":1,"satisfied":true,"question_refs":[],"reason":"改善导出不方便并避免丢数据的目标不变。"},
+    {"item":2,"satisfied":false,"question_refs":["Q-2","Q-6"],"reason":"单任务或多任务、未完成或失败结果可否导出仍未明确，核心场景不能确定。"},
+    {"item":3,"satisfied":false,"question_refs":["Q-2","Q-5","Q-6","Q-7"],"reason":"已有暂定数量规则，但导出前提、合法集合与结果时点未知，流程仍不完整。"},
+    {"item":4,"satisfied":false,"question_refs":["Q-3","Q-4","Q-5","Q-6","Q-7"],"reason":"字段、格式、授权、生命周期和时点仍缺；数量假设不能代替这些核心规则。"},
+    {"item":5,"satisfied":true,"question_refs":["Q-1"],"reason":"数量冲突已通过active ASM形成可表达的临时处理，Q-1为provisional，不是最终确认；保留原文冲突和验证责任，不将未明确的其他规则伪装成已解决。"},
+    {"item":6,"satisfied":false,"question_refs":["Q-5","Q-6","Q-7","Q-8","Q-9","Q-10"],"reason":"生命周期、访问权限、数据变化、部分失败以及空结果和大量等待的处理仍缺，已有边界识别不等于规则已确定。"},
+    {"item":7,"satisfied":false,"question_refs":["Q-2","Q-3","Q-4","Q-5","Q-6","Q-7","Q-8"],"reason":"仅能暂按不截断设计数量用例，完整正确行集、必需字段、格式及成功语义仍不可验证。"},
+    {"item":8,"satisfied":true,"question_refs":[],"reason":"未开展历史检索或基线对照，旧报告仍作为缺失资料登记。"},
+    {"item":9,"satisfied":true,"question_refs":["Q-11"],"reason":"原研发确认项仍适用，暂定全部导出不等于已有规模能力或快照机制。"},
+    {"item":10,"satisfied":true,"question_refs":["Q-12"],"reason":"界面依赖及必要页面资料缺失判断未变。"},
+    {"item":11,"satisfied":true,"question_refs":["Q-1","Q-5","Q-6","Q-7","Q-8"],"reason":"数量假设有实际不确定回答、明确basis和由用户/研发执行的verification，其余风险保留；可以形成显式标注假设与缺口的草稿，仍为not_ready。"}
+  ]
+}

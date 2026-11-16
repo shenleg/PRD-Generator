@@ -1,0 +1,28 @@
+{
+  "patch_version":"1.0",
+  "requirement_id":"REQ-2026-002",
+  "base_revision":1,
+  "change_type":"supplement",
+  "actor":"user",
+  "user_statement":"先这样吧，直接出结果。",
+  "summary":"用户明确结束本轮分析，立即停止追问，不新增业务问题、不增加业务追问轮数。仅将分析状态改为completed，保留not_ready、全部未回答问题及原完成清单；结束不代表回答、采用假设或接受风险。本轮仅生成结束补丁，不作更正、撤销或新版处理，等待调用方应用。",
+  "operations":[],
+  "set":{
+    "meta.analysis_status":"completed",
+    "meta.readiness":"not_ready",
+    "context.project_id":"task-management"
+  },
+  "completion_checks":[
+    {"item":1,"satisfied":true,"question_refs":[],"reason":"背景明确任务过多难以查找的核心问题。"},
+    {"item":2,"satisfied":true,"question_refs":[],"reason":"核心用户为使用任务列表查找任务的人，核心场景明确；未擅自补角色权限。"},
+    {"item":3,"satisfied":false,"question_refs":["Q-1","Q-2"],"reason":"只能形成候选流程，输入和返回任务集合不能确定。"},
+    {"item":4,"satisfied":false,"question_refs":["Q-1","Q-2"],"reason":"常用条件及组合匹配规则尚未确定。"},
+    {"item":5,"satisfied":true,"question_refs":[],"reason":"本需求输入内未发现相互冲突陈述；含糊项按缺口处理。"},
+    {"item":6,"satisfied":false,"question_refs":["Q-2"],"reason":"已推演空条件、组合条件及无匹配，但结果规则仍待定，识别不等于处理。"},
+    {"item":7,"satisfied":false,"question_refs":["Q-1","Q-2","Q-3"],"reason":"缺少结果判定及‘快’的可验证预期，验收仅有草案。"},
+    {"item":8,"satisfied":true,"question_refs":[],"reason":"明确记录本阶段未开展历史检索或基线对照。"},
+    {"item":9,"satisfied":true,"question_refs":["Q-5"],"reason":"已登记现有能力、性能与引擎影响的研发确认项，没有技术结论。"},
+    {"item":10,"satisfied":true,"question_refs":["Q-6"],"reason":"已判断依赖列表界面，登记现有页面资料缺失。"},
+    {"item":11,"satisfied":true,"question_refs":["Q-1","Q-2","Q-3","Q-4"],"reason":"剩余风险和责任方已登记；没有用户采用的假设，推荐均未生效；可以形成明确标缺口的初步草稿，但不能交付为已就绪需求。"}
+  ]
+}

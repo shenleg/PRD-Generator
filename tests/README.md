@@ -12,8 +12,12 @@ uv run --no-project --python /usr/bin/python3 --with-requirements tests/requirem
 ```
 
 - `test_schemas.py`、`test_validate_analysis.py`、`test_report_template.py`：阶段 1 格式与校验器回归。
-- `test_skill_contract.py`：阶段 2 的入口、引用和测试材料检查，不能代替实际模型行为。
+- `test_skill_contract.py`：当前阶段的入口、引用和测试材料检查，不能代替实际模型行为。
 - `test_stage_2_runs.py`：读取已保存的真实模型输出，检查正式样例的校验、拆分、状态、提问与结束；另从只读响应日志核对探针的轻量价值分析。所声明执行方式对应的证据缺失必须失败，不静默跳过。
+
+- `test_update_analysis.py`：补丁协议、编号、confirmed 保护、撤销方向、显式更正、新版重开、来源、只读预检、并发及中断恢复，均在临时目录运行。
+- `test_stage_3_support.py`：新版输入只含已审核变化，报告能读取新标准完成清单。
+- `test_stage_3_runs.py`：读取阶段 3 真实补丁、逐轮响应和快照；另在临时工作区按原顺序重放全部补丁，核对当前写入器无内容漂移。
 
 ## 行为试跑的依据和输入
 
@@ -22,7 +26,11 @@ uv run --no-project --python /usr/bin/python3 --with-requirements tests/requirem
 - 只有 `fixtures/` 中的需求原文或合成探针可以交给被测模型，不能交给它参考答案、黄金结果或预设的后续回答。
 - 合成探针只验证提问策略，不代表用户真实系统或产品决定。测试中的模拟 user_answer 不作为正式需求确认。
 
-## 本阶段如何执行模型
+## 阶段 2 的历史证据
+
+以下阶段 2 记录保留原执行范围，并绑定 `stage-2-complete` 标签源码，不用于冒充当前补丁机制已回归。
+
+### 当时如何执行模型
 
 本阶段使用当前执行环境中的独立模型会话，显式读取 Skill 源码及其按需引用；调用方只指定测试编号、项目、输出目录和轮次配置。没有新增 API 客户端、API Key 或自动批量收费脚本。
 
@@ -41,6 +49,21 @@ uv run --no-project --python /usr/bin/python3 --with-requirements tests/requirem
 上一级的 `run-manifest.json` 记录 Skill、校验器及输入的 SHA-256。相关文件变化后，旧产物不能继续证明新版本行为已通过，需要重新试跑，而不是只重写哈希。
 
 本阶段最后一次修改仅新增导出专用检查段落，已对受影响的 REQ-2026-005 实际执行内部重评并保存 turn-04。`scoped_rechecks` 保留精确新增文字、修改前后哈希、适用范围和真实响应/校验路径；测试核对移除该唯一段落即可还原原版。这个记录只证明对应范围已重评，不代表所有非导出输入重新盲跑。超出该精确范围的后续变更仍必须重新运行相关行为场景。
+
+## 阶段 3 的实际补丁运行
+
+当前模型显式读取 Skill 和按需参考，只接收原文及实际发生的逐轮模拟输入，生成补丁；主会话原样接收后调用真实 update_analysis.py。模型不读取参考要点、后续预设回答或旧黄金结果。工具不调用额外模型 API，不是安装后的自动触发验证。
+
+证据位于 `workspace-sandbox/stage-3/`：
+
+- `workspace/`：按正式规格的 projects/<project>/requirements/<id>/ 布局，由更新脚本维护 common、结果、来源和事件；报告另由主会话整理。
+- `evidence/<project>/<record>/`：原始 patch、真实脚本 response、来源指纹及当时 analysis 快照。故意失败也保留，不覆盖旧尝试。
+- `dialogue/` 与 `turns.json`：实际响应、输入、实际提问引用及控制确认；对话的 Markdown 排版和引号可规范化，业务文字与选项保留。driver 注入记录明确不是模型自然错误或用户回复。
+- `unapplied-candidates/`：质量修正前未提交的候选，不当正式结果读取。
+- `source-snapshots/`：规则修正前源码；版本清单明确“冲突候选有效状态”定点重评范围，不宣称所有无关输入再次盲跑。
+- `run-manifest.json`：最终源码和输入指纹、补丁实际顺序及固定回放时刻。脚本实施期间的写入保护修复用当前脚本完整重放所有真实补丁验证；不重调用模型、不改其补丁或已保存业务快照。
+
+`stage_3_trial_support.py` 只作原样收集和应用一次补丁的测试辅助，不是业务分析引擎，不随 Skill 安装。锁、恢复日志和临时替换文件由 .gitignore 排除；结果、事件、失败及对话证据仍保留。
 
 ## 分轮与计分
 

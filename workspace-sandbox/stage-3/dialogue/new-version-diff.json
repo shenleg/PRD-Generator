@@ -1,0 +1,163 @@
+{
+  "items": [
+    {
+      "old_location": "sample-02-task-management.md:L1，文档标题",
+      "new_location": "sample-02-task-management-v2.md:L1，文档标题；仅版本标题变化，不整体改写五项需求",
+      "change": "modified",
+      "before": "# 仿真任务管理优化（初版）",
+      "after": "# 仿真任务管理优化（第二版）",
+      "impact_refs": []
+    },
+    {
+      "old_location": "sample-02-task-management.md:L3，背景标题",
+      "new_location": "sample-02-task-management-v2.md:L3，背景标题",
+      "change": "unchanged",
+      "before": "## 背景",
+      "after": "## 背景",
+      "impact_refs": []
+    },
+    {
+      "old_location": "sample-02-task-management.md:L4-L5，完整背景与上线诉求",
+      "new_location": "sample-02-task-management-v2.md:L4-L5，完整背景与上线诉求未变",
+      "change": "unchanged",
+      "before": "最近用户反馈仿真任务这块不太好用，列表里东西多了找不到，状态也不准，\n导出也不方便。这次一起优化一下，尽快上线。",
+      "after": "最近用户反馈仿真任务这块不太好用，列表里东西多了找不到，状态也不准，\n导出也不方便。这次一起优化一下，尽快上线。",
+      "impact_refs": ["REQ-2026-002/GOAL-1", "REQ-2026-004/GOAL-1", "REQ-2026-005/GOAL-1"]
+    },
+    {
+      "old_location": "sample-02-task-management.md:L7，需求标题",
+      "new_location": "sample-02-task-management-v2.md:L7，需求标题",
+      "change": "unchanged",
+      "before": "## 需求",
+      "after": "## 需求",
+      "impact_refs": []
+    },
+    {
+      "old_location": "sample-02-task-management.md:L8，需求第1条",
+      "new_location": "sample-02-task-management-v2.md:L8，需求第1条；筛选条件及速度诉求未变",
+      "change": "unchanged",
+      "before": "1. 任务列表要能筛选，常用的条件都放上去，筛选要快。",
+      "after": "1. 任务列表要能筛选，常用的条件都放上去，筛选要快。",
+      "impact_refs": ["REQ-2026-002/FR-1", "REQ-2026-002/NFR-1", "REQ-2026-002/Q-1", "REQ-2026-002/Q-2", "REQ-2026-002/Q-3"]
+    },
+    {
+      "old_location": "sample-02-task-management.md:L9，需求第2条前半句",
+      "new_location": "sample-02-task-management-v2.md:L9，需求第2条前半句；批量删除动作未变，不撤回当前JSON的运行任务列表操作补充",
+      "change": "unchanged",
+      "before": "2. 作业支持批量删除，选中之后点删除就行，",
+      "after": "2. 作业支持批量删除，选中之后点删除就行，",
+      "impact_refs": ["REQ-2026-003/FR-1", "REQ-2026-003/FR-3", "REQ-2026-003/BR-5", "REQ-2026-003/BR-6", "REQ-2026-003/Q-4"]
+    },
+    {
+      "old_location": "sample-02-task-management.md:L9，需求第2条权限子句",
+      "new_location": "sample-02-task-management-v2.md:L9，需求第2条权限子句；旧BR-1/CNF-1在内部重评中退役，当前授权语义不变；BR-2/AC-2/BND-2/Q-3须重连仍有效依赖，故不再列为逐字段不变项",
+      "change": "modified",
+      "before": "所有用户都可以操作。",
+      "after": "创建者和管理员可以操作。",
+      "impact_refs": ["REQ-2026-003/BR-1", "REQ-2026-003/CNF-1", "REQ-2026-003/Q-1", "REQ-2026-003/BR-2", "REQ-2026-003/AC-2", "REQ-2026-003/BND-2", "REQ-2026-003/Q-3"]
+    },
+    {
+      "old_location": "sample-02-task-management.md:L10，需求第3条",
+      "new_location": "sample-02-task-management-v2.md:L10，需求第3条；状态准确性与实时诉求未变",
+      "change": "unchanged",
+      "before": "3. 任务状态要实时，之前有时候显示不对，修一下。",
+      "after": "3. 任务状态要实时，之前有时候显示不对，修一下。",
+      "impact_refs": ["REQ-2026-004/FR-1", "REQ-2026-004/NFR-1", "REQ-2026-004/Q-1", "REQ-2026-004/Q-2", "REQ-2026-004/Q-3"]
+    },
+    {
+      "old_location": "sample-02-task-management.md:L11，需求第4条表格与字段子句",
+      "new_location": "sample-02-task-management-v2.md:L11，需求第4条表格与字段子句；原字段/格式缺口不变",
+      "change": "unchanged",
+      "before": "4. 仿真结果可以导出成表格，导出常用字段，",
+      "after": "4. 仿真结果可以导出成表格，导出常用字段，",
+      "impact_refs": ["REQ-2026-005/FR-1", "REQ-2026-005/GAP-1", "REQ-2026-005/Q-2", "REQ-2026-005/Q-3", "REQ-2026-005/Q-4"]
+    },
+    {
+      "old_location": "sample-02-task-management.md:L11，需求第4条数量子句",
+      "new_location": "sample-02-task-management-v2.md:L11，需求第4条数量子句；当前BR-4/BND-3早已采用5000，数值和正文均不改；内部重评需将二者重连到独立超限问题，故不再列为逐字段不变项",
+      "change": "modified",
+      "before": "最多导出 1000 条。",
+      "after": "最多导出 5000 条。",
+      "impact_refs": ["REQ-2026-005/BR-1", "REQ-2026-005/BR-3", "REQ-2026-005/ASM-1", "REQ-2026-005/CNF-1", "REQ-2026-005/Q-1", "REQ-2026-005/AC-1", "REQ-2026-005/FLOW-1", "REQ-2026-005/BR-4", "REQ-2026-005/BND-3"]
+    },
+    {
+      "old_location": "sample-02-task-management.md:L12，需求第4条续行整句（全量与不丢数据两个子句一同删除）",
+      "new_location": null,
+      "change": "deleted",
+      "before": "如果数据量大的话就导出全部结果，不要丢数据。",
+      "after": null,
+      "impact_refs": ["REQ-2026-005/BR-2", "REQ-2026-005/BR-3", "REQ-2026-005/ASM-1", "REQ-2026-005/CNF-1", "REQ-2026-005/FR-2", "REQ-2026-005/FLOW-1", "REQ-2026-005/AC-1", "REQ-2026-005/EXC-1", "REQ-2026-005/EXC-2", "REQ-2026-005/Q-1", "REQ-2026-005/Q-7", "REQ-2026-005/Q-8", "REQ-2026-005/Q-10"]
+    },
+    {
+      "old_location": "sample-02-task-management.md:L13，需求第5条",
+      "new_location": "sample-02-task-management-v2.md:L12，需求第5条；仅行号移动，既有用户以此条为准的授权回答未撤销",
+      "change": "unchanged",
+      "before": "5. 工程创建者和管理员可以删除任务，其他人只能看。",
+      "after": "5. 工程创建者和管理员可以删除任务，其他人只能看。",
+      "impact_refs": ["REQ-2026-003/BR-2", "REQ-2026-003/AC-2", "REQ-2026-003/AC-3"]
+    },
+    {
+      "old_location": "sample-02-task-management.md:L14，需求第6条",
+      "new_location": "sample-02-task-management-v2.md:L13，需求第6条；仅行号移动，不把既有运行任务补充及非运行任务不可恢复回答当成撤回",
+      "change": "unchanged",
+      "before": "6. 删除要按之前的逻辑处理。",
+      "after": "6. 删除要按之前的逻辑处理。",
+      "impact_refs": ["REQ-2026-003/BR-3", "REQ-2026-003/BR-4", "REQ-2026-003/BR-5", "REQ-2026-003/BR-6", "REQ-2026-003/CNF-2", "REQ-2026-003/Q-2", "REQ-2026-003/Q-4", "REQ-2026-003/Q-7"]
+    },
+    {
+      "old_location": "sample-02-task-management.md:L15，需求第7条",
+      "new_location": "sample-02-task-management-v2.md:L14，需求第7条；仅原文未变，不能恢复当前JSON已撤销的本期通知；DEC-1/FR-3及Q-9的excluded状态不变",
+      "change": "unchanged",
+      "before": "7. 任务跑完之后给用户发个通知。",
+      "after": "7. 任务跑完之后给用户发个通知。",
+      "impact_refs": ["REQ-2026-006/FR-1", "REQ-2026-006/FR-3", "REQ-2026-006/DEC-1", "REQ-2026-006/Q-9"]
+    },
+    {
+      "old_location": null,
+      "new_location": "sample-02-task-management-v2.md:L15，新增需求第8条；stale补丁已落库为FR-3/GAP-2/Q-13/Q-14，本次内部重评不重问日志两题",
+      "change": "added",
+      "before": null,
+      "after": "8. 导出操作需要记录操作日志。",
+      "impact_refs": ["REQ-2026-005/FR-2", "REQ-2026-005/FLOW-1", "REQ-2026-005/AC-1", "REQ-2026-005/Q-11", "REQ-2026-005/FR-3", "REQ-2026-005/GAP-2", "REQ-2026-005/Q-13", "REQ-2026-005/Q-14"]
+    },
+    {
+      "old_location": "sample-02-task-management.md:L17，备注标题",
+      "new_location": "sample-02-task-management-v2.md:L17，备注标题",
+      "change": "unchanged",
+      "before": "## 备注",
+      "after": "## 备注",
+      "impact_refs": []
+    },
+    {
+      "old_location": "sample-02-task-management.md:L18，备注第1条",
+      "new_location": "sample-02-task-management-v2.md:L18，备注第1条；现有页面引用及资料缺失不变",
+      "change": "unchanged",
+      "before": "- 页面样式参考现有的任务页，细节后面再定。",
+      "after": "- 页面样式参考现有的任务页，细节后面再定。",
+      "impact_refs": ["REQ-2026-002/Q-6", "REQ-2026-003/Q-10", "REQ-2026-004/Q-6", "REQ-2026-005/Q-12"]
+    },
+    {
+      "old_location": "sample-02-task-management.md:L19，备注第2条",
+      "new_location": "sample-02-task-management-v2.md:L19，备注第2条；旧报告格式约束及缺资料状态不变",
+      "change": "unchanged",
+      "before": "- 导出的格式和之前的报告保持一致。",
+      "after": "- 导出的格式和之前的报告保持一致。",
+      "impact_refs": ["REQ-2026-005/CON-1", "REQ-2026-005/Q-3", "REQ-2026-005/Q-4"]
+    },
+    {
+      "old_location": "sample-02-task-management.md:L20，备注第3条",
+      "new_location": "sample-02-task-management-v2.md:L20，备注第3条；尽量不影响引擎的定性约束未变",
+      "change": "unchanged",
+      "before": "- 本期尽量不影响仿真引擎。",
+      "after": "- 本期尽量不影响仿真引擎。",
+      "impact_refs": ["REQ-2026-002/CON-1", "REQ-2026-003/CON-1", "REQ-2026-004/CON-1", "REQ-2026-005/CON-2", "REQ-2026-006/CON-1"]
+    }
+  ],
+  "unchanged_item_refs": [
+    "REQ-2026-002/GOAL-1", "REQ-2026-002/SCN-1", "REQ-2026-002/FR-1", "REQ-2026-002/CON-1", "REQ-2026-002/NFR-1", "REQ-2026-002/AC-1", "REQ-2026-002/FR-2", "REQ-2026-002/FLOW-1", "REQ-2026-002/BND-1", "REQ-2026-002/EXC-1", "REQ-2026-002/GAP-1", "REQ-2026-002/GAP-2", "REQ-2026-002/Q-1", "REQ-2026-002/Q-2", "REQ-2026-002/Q-3", "REQ-2026-002/Q-4", "REQ-2026-002/Q-5", "REQ-2026-002/Q-6",
+    "REQ-2026-003/GOAL-1", "REQ-2026-003/SCN-1", "REQ-2026-003/FR-1", "REQ-2026-003/FR-3", "REQ-2026-003/BR-3", "REQ-2026-003/BR-4", "REQ-2026-003/BR-5", "REQ-2026-003/BR-6", "REQ-2026-003/CON-1", "REQ-2026-003/AC-1", "REQ-2026-003/AC-3", "REQ-2026-003/FR-2", "REQ-2026-003/FLOW-1", "REQ-2026-003/BND-1", "REQ-2026-003/BND-3", "REQ-2026-003/EXC-1", "REQ-2026-003/GAP-1", "REQ-2026-003/GAP-2", "REQ-2026-003/CNF-2", "REQ-2026-003/Q-2", "REQ-2026-003/Q-4", "REQ-2026-003/Q-5", "REQ-2026-003/Q-6", "REQ-2026-003/Q-7", "REQ-2026-003/Q-8", "REQ-2026-003/Q-9", "REQ-2026-003/Q-10",
+    "REQ-2026-004/GOAL-1", "REQ-2026-004/SCN-1", "REQ-2026-004/FR-1", "REQ-2026-004/CON-1", "REQ-2026-004/NFR-1", "REQ-2026-004/AC-1", "REQ-2026-004/FR-2", "REQ-2026-004/FLOW-1", "REQ-2026-004/BND-1", "REQ-2026-004/EXC-1", "REQ-2026-004/GAP-1", "REQ-2026-004/GAP-2", "REQ-2026-004/Q-1", "REQ-2026-004/Q-2", "REQ-2026-004/Q-3", "REQ-2026-004/Q-4", "REQ-2026-004/Q-5", "REQ-2026-004/Q-6",
+    "REQ-2026-005/GOAL-1", "REQ-2026-005/SCN-1", "REQ-2026-005/FR-1", "REQ-2026-005/CON-1", "REQ-2026-005/CON-2", "REQ-2026-005/BND-1", "REQ-2026-005/BND-2", "REQ-2026-005/GAP-1", "REQ-2026-005/Q-2", "REQ-2026-005/Q-3", "REQ-2026-005/Q-4", "REQ-2026-005/Q-5", "REQ-2026-005/Q-6", "REQ-2026-005/Q-9", "REQ-2026-005/Q-12",
+    "REQ-2026-006/GOAL-1", "REQ-2026-006/SCN-1", "REQ-2026-006/FR-1", "REQ-2026-006/CON-1", "REQ-2026-006/AC-1", "REQ-2026-006/FR-2", "REQ-2026-006/FR-3", "REQ-2026-006/FLOW-1", "REQ-2026-006/BND-1", "REQ-2026-006/BND-2", "REQ-2026-006/EXC-1", "REQ-2026-006/GAP-1", "REQ-2026-006/GAP-2", "REQ-2026-006/Q-1", "REQ-2026-006/Q-2", "REQ-2026-006/Q-3", "REQ-2026-006/Q-4", "REQ-2026-006/Q-5", "REQ-2026-006/Q-6", "REQ-2026-006/Q-7", "REQ-2026-006/Q-8", "REQ-2026-006/Q-9", "REQ-2026-006/DEC-1"
+  ]
+}

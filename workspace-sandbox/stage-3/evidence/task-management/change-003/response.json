@@ -1,0 +1,39 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "REQ-2026-003",
+  "revision": 4,
+  "id_map": {
+    "$running_list_delete": "FR-3",
+    "$continue_simulation": "BR-5",
+    "$unchanged_nonrunning_rule": "BR-6",
+    "$running_conflict": "CNF-2",
+    "$continued_execution_boundary": "BND-3",
+    "$changed_gap": "GAP-2",
+    "$nonstopping_acceptance": "AC-3"
+  },
+  "affected_ids": [
+    "GOAL-1",
+    "SCN-1",
+    "FR-1",
+    "FR-3",
+    "BR-3",
+    "BR-4",
+    "BR-5",
+    "BR-6",
+    "AC-1",
+    "AC-2",
+    "AC-3",
+    "FLOW-1",
+    "BND-1",
+    "BND-3",
+    "EXC-1",
+    "GAP-1",
+    "GAP-2",
+    "CNF-2",
+    "Q-4",
+    "Q-9",
+    "FR-2"
+  ],
+  "written": true
+}

@@ -1,0 +1,471 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "REQ-2026-002",
+  "meta": {
+    "analysis_revision": 2,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "existing_document",
+    "analysis_status": "completed",
+    "readiness": "not_ready"
+  },
+  "context": {
+    "project_id": "task-management",
+    "domain": "仿真任务管理",
+    "source_ids": [
+      "SRC-1"
+    ],
+    "domain_terms": [
+      "任务列表",
+      "筛选",
+      "常用条件"
+    ]
+  },
+  "requirements": {
+    "goals": [
+      {
+        "content": "解决任务列表内容增多后用户难以找到任务的问题。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "背景：‘列表里东西多了找不到’"
+          }
+        ],
+        "status": "active",
+        "id": "GOAL-1"
+      }
+    ],
+    "scenarios": [
+      {
+        "content": "使用仿真任务列表的用户需要在较多任务中查找目标任务；原文未区分具体用户角色。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "背景及需求第1条"
+          }
+        ],
+        "status": "active",
+        "id": "SCN-1"
+      }
+    ],
+    "functional_requirements": [
+      {
+        "content": "任务列表支持筛选，并提供‘常用的条件’；哪些条件及其含义未列出。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第1条：‘任务列表要能筛选，常用的条件都放上去’"
+          }
+        ],
+        "status": "active",
+        "id": "FR-1"
+      }
+    ],
+    "business_rules": [],
+    "constraints": [
+      {
+        "content": "原文要求尽快上线、本期尽量不影响仿真引擎；这是定性诉求，不代表确定发布日期或绝对禁止引擎变更。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "背景末句；备注第3条"
+          }
+        ],
+        "status": "active",
+        "id": "CON-1"
+      }
+    ],
+    "non_functional_requirements": [
+      {
+        "content": "原文要求‘筛选要快’，但没有提供可判定的响应预期或适用数据规模。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第1条：‘筛选要快’"
+          }
+        ],
+        "status": "active",
+        "id": "NFR-1"
+      }
+    ],
+    "acceptance_criteria": [
+      {
+        "content": "待条件和匹配规则确认后，以已知任务样本设置单个及多个条件，验证结果集合；覆盖清空条件、无匹配及筛选失败，并在双方确认的负载下核验响应预期。此为待重评草案，不是完整验收标准。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "背景；需求第1条"
+          }
+        ],
+        "status": "to_reassess",
+        "related_ids": [
+          "FR-1",
+          "NFR-1",
+          "BND-1",
+          "EXC-1",
+          "Q-1",
+          "Q-2",
+          "Q-3",
+          "Q-4"
+        ],
+        "id": "AC-1"
+      }
+    ],
+    "scope": {
+      "in_scope": [
+        {
+          "content": "本需求分析任务列表的筛选条件、结果匹配规则和筛选响应；删除、状态、导出、通知分别独立分析。拆分是分析组织方式，不表示用户排除了其他条款。",
+          "tag": "inferred",
+          "sources": [
+            {
+              "type": "input_document",
+              "source_id": "SRC-1",
+              "location": "需求第1至7条"
+            }
+          ],
+          "status": "active",
+          "related_ids": [
+            "FR-1",
+            "NFR-1"
+          ],
+          "id": "FR-2"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  "business_assessment": {
+    "flows": [
+      {
+        "content": "候选主流程为进入任务列表、设置条件、发起或触发筛选、查看匹配任务；筛选触发方式、条件和匹配语义仍待定，不能据此声称已有完整可执行流程。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第1条"
+          }
+        ],
+        "status": "to_reassess",
+        "related_ids": [
+          "FR-1",
+          "Q-1",
+          "Q-2"
+        ],
+        "id": "FLOW-1"
+      }
+    ],
+    "states": [],
+    "boundaries": [
+      {
+        "content": "候选关键边界：未选条件、条件清空、多条件同时使用、没有匹配任务；必须明确各情形返回哪些可见任务，不能默认多条件一定取交集或空条件一定展示所有用户的任务。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第1条；背景‘列表里东西多了找不到’"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-2"
+        ],
+        "id": "BND-1"
+      }
+    ],
+    "exceptions": [
+      {
+        "content": "候选异常：筛选请求失败或耗时较长时，原结果是否仍有效、如何区分空结果与失败尚未确定；任务数量增长时也不能用现有‘快’字判断通过。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第1条：‘筛选要快’；背景"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-3",
+          "Q-4",
+          "Q-5"
+        ],
+        "id": "EXC-1"
+      }
+    ],
+    "gaps": [
+      {
+        "content": "‘常用条件’没有清单、值域、筛选对象范围和匹配定义，核心结果集合无法验收。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第1条"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-1",
+          "Q-2"
+        ],
+        "id": "GAP-1"
+      },
+      {
+        "content": "‘快’缺少可验收的业务响应预期；不能自行编造秒数、任务数上限，也不能只交给研发决定用户可接受程度。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第1条：‘筛选要快’"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-3"
+        ],
+        "id": "GAP-2"
+      }
+    ],
+    "conflicts": []
+  },
+  "ux_assessment": {
+    "ui_dependent": true,
+    "design_pending_items": [
+      "现有任务页未提供；筛选条件确定后再确认入口、触发方式、空结果和失败反馈，不展开完整视觉设计"
+    ]
+  },
+  "questions": [
+    {
+      "question": "本期‘常用筛选条件’的最小必需集合是什么？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "仅登记，本轮未问。条件清单决定核心筛选输入，不能由分析者代选。",
+      "impact": "无法确定功能范围、测试输入和筛选结果。",
+      "options": [
+        "A. 请列出本期必需条件及每项含义",
+        "B. 提供已有任务列表筛选规范，并标出本期沿用项",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "推荐A，先明确最小可验收集合，避免将‘常用’扩成任意条件。",
+      "status": "open",
+      "related_ids": [
+        "FR-1",
+        "GAP-1",
+        "AC-1"
+      ],
+      "id": "Q-1"
+    },
+    {
+      "question": "选定条件后，筛选结果应按什么规则匹配？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "仅登记，本轮未问。需对已选条件定义匹配，包括空条件、组合条件和无匹配结果。",
+      "impact": "同样输入可能返回不同任务，核心流程与边界不能验收。",
+      "options": [
+        "A. 多条件均满足才匹配，未选条件不限制原有可见范围，无匹配返回空集",
+        "B. 多条件任一满足即匹配，空条件保留原有可见范围，无匹配返回空集",
+        "C. 各条件分别规定匹配关系",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "以A作为讨论起点，易于预测；需先确认实际条件，不视为已采用规则。",
+      "status": "open",
+      "related_ids": [
+        "FR-1",
+        "FLOW-1",
+        "BND-1",
+        "GAP-1"
+      ],
+      "id": "Q-2"
+    },
+    {
+      "question": "在实际常用任务规模下，‘筛选要快’的可接受响应预期是什么？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "仅登记，本轮未问。原文明示性能诉求却无核心验收判定；业务等待预期不能被技术机制替代。",
+      "impact": "无法判定此次速度优化是否达标。",
+      "options": [
+        "A. 由用户给出代表性任务规模及最大可接受等待时间",
+        "B. 选择现有代表性慢场景，经演示确认可接受结果并记录测量口径",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "推荐B，在没有既定数字时用实际场景形成可验证预期，不编造阈值。",
+      "status": "open",
+      "related_ids": [
+        "NFR-1",
+        "GAP-2",
+        "AC-1"
+      ],
+      "id": "Q-3"
+    },
+    {
+      "question": "筛选失败时是否保留上一次成功结果？",
+      "priority": "P1",
+      "resolution": "ask_product",
+      "reason": "仅登记，本轮未问。失败不能被误认为无匹配结果。",
+      "impact": "影响错误恢复和结果可信度。",
+      "options": [
+        "A. 保留旧结果，明确标为未更新并允许重试",
+        "B. 不显示旧结果，明确提示失败并允许重试",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "推荐A，避免用户丢失当前浏览位置，但必须明确旧结果非此次筛选结果。",
+      "status": "open",
+      "related_ids": [
+        "EXC-1"
+      ],
+      "id": "Q-4"
+    },
+    {
+      "question": "请研发确认现有列表筛选能力、数据范围与规模、响应瓶颈及对仿真引擎的影响。",
+      "priority": "P1",
+      "resolution": "ask_dev",
+      "reason": "研发登记，不占本轮产品提问；未读取实现资料，不能给出可行性结论。",
+      "impact": "影响实现方式及响应预期的技术评估。",
+      "options": [],
+      "recommendation": "",
+      "status": "open",
+      "related_ids": [
+        "FR-1",
+        "NFR-1",
+        "CON-1",
+        "EXC-1"
+      ],
+      "id": "Q-5"
+    },
+    {
+      "question": "提供备注所指现有任务页资料，用于确定筛选入口与反馈的界面承载。",
+      "priority": "P1",
+      "resolution": "lookup",
+      "reason": "资料未提供；只登记缺失，不检索历史、不请求无关完整视觉稿。",
+      "impact": "业务规则可先澄清，具体界面交互与样式尚无依据。",
+      "options": [],
+      "recommendation": "",
+      "status": "open",
+      "related_ids": [
+        "FR-1",
+        "FLOW-1"
+      ],
+      "id": "Q-6"
+    }
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "value_assessment": {
+    "problem": "任务列表内容多时难以查找目标任务。",
+    "affected_users": [
+      "使用仿真任务列表的用户，具体角色未区分"
+    ],
+    "expected_benefits": [
+      "通过筛选改善任务查找；原文未提供量化收益"
+    ],
+    "business_value": "unknown"
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "背景明确任务过多难以查找的核心问题。"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "核心用户为使用任务列表查找任务的人，核心场景明确；未擅自补角色权限。"
+    },
+    {
+      "item": 3,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1",
+        "Q-2"
+      ],
+      "reason": "只能形成候选流程，输入和返回任务集合不能确定。"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1",
+        "Q-2"
+      ],
+      "reason": "常用条件及组合匹配规则尚未确定。"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本需求输入内未发现相互冲突陈述；含糊项按缺口处理。"
+    },
+    {
+      "item": 6,
+      "satisfied": false,
+      "question_refs": [
+        "Q-2"
+      ],
+      "reason": "已推演空条件、组合条件及无匹配，但结果规则仍待定，识别不等于处理。"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1",
+        "Q-2",
+        "Q-3"
+      ],
+      "reason": "缺少结果判定及‘快’的可验证预期，验收仅有草案。"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "明确记录本阶段未开展历史检索或基线对照。"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [
+        "Q-5"
+      ],
+      "reason": "已登记现有能力、性能与引擎影响的研发确认项，没有技术结论。"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [
+        "Q-6"
+      ],
+      "reason": "已判断依赖列表界面，登记现有页面资料缺失。"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [
+        "Q-1",
+        "Q-2",
+        "Q-3",
+        "Q-4"
+      ],
+      "reason": "剩余风险和责任方已登记；没有用户采用的假设，推荐均未生效；可以形成明确标缺口的初步草稿，但不能交付为已就绪需求。"
+    }
+  ]
+}

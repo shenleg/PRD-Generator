@@ -1,0 +1,73 @@
+{
+  "status": "fail",
+  "diagnostics": [
+    {
+      "rule": 4,
+      "level": "fail",
+      "item_id": "$",
+      "path": "/meta/readiness",
+      "message": "完成清单第 3 项未满足，不能使用当前就绪度。"
+    },
+    {
+      "rule": 4,
+      "level": "fail",
+      "item_id": "$",
+      "path": "/meta/readiness",
+      "message": "完成清单第 4 项未满足，不能使用当前就绪度。"
+    },
+    {
+      "rule": 4,
+      "level": "fail",
+      "item_id": "$",
+      "path": "/meta/readiness",
+      "message": "完成清单第 6 项未满足，不能使用当前就绪度。"
+    },
+    {
+      "rule": 4,
+      "level": "fail",
+      "item_id": "$",
+      "path": "/meta/readiness",
+      "message": "完成清单第 7 项未满足，不能使用当前就绪度。"
+    },
+    {
+      "rule": 4,
+      "level": "fail",
+      "item_id": "Q-1",
+      "path": "/meta/readiness",
+      "message": "存在待回答 P0 问题，就绪度必须为 not_ready。"
+    },
+    {
+      "rule": 4,
+      "level": "fail",
+      "item_id": "Q-2",
+      "path": "/meta/readiness",
+      "message": "存在待回答 P0 问题，就绪度必须为 not_ready。"
+    },
+    {
+      "rule": 4,
+      "level": "fail",
+      "item_id": "Q-3",
+      "path": "/meta/readiness",
+      "message": "存在待回答 P0 问题，就绪度必须为 not_ready。"
+    },
+    {
+      "rule": 4,
+      "level": "fail",
+      "item_id": "Q-4",
+      "path": "/meta/readiness",
+      "message": "存在待回答 P0 问题，就绪度必须为 not_ready。"
+    },
+    {
+      "rule": 4,
+      "level": "fail",
+      "item_id": "Q-5",
+      "path": "/meta/readiness",
+      "message": "存在待回答 P0 问题，就绪度必须为 not_ready。"
+    }
+  ],
+  "requirement_id": "REQ-2026-001",
+  "revision": 4,
+  "id_map": {},
+  "affected_ids": [],
+  "written": false
+}

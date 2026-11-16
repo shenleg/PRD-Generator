@@ -1,0 +1,113 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "REQ-2026-001",
+  "base_revision": 1,
+  "change_type": "supplement",
+  "actor": "user",
+  "user_statement": "这轮先不回答。",
+  "summary": "收到第1轮业务追问后的实际测试回复“这轮先不回答。”。这表示本轮未作答，不是选择“暂不确定”，也不是明确暂停、结束、继续授权或接受风险。业务追问已达配置上限1轮，本轮不追加或重复业务问题；Q-1至Q-5继续open，原已问轮次保持1。依达到上限时可合理推荐的产品P1处理规则，仅将Q-6的规模处理方向登记为可验证暂定假设，不宣称由用户选定，不改变组合语义、合法状态、跨压关系、表结构或空输入等P0。Q-7保持研发待确认。分析维持clarifying/not_ready。仅提出会话控制确认control:continue_or_finish，等待用户选择继续授权或结束，不计入业务追问轮次，不分配业务Q编号，不代选任何一项。原有业务来源及source_revision不因本轮答复而新增文档版本。本补丁尚未调用updater。",
+  "operations": [
+    {
+      "op": "add",
+      "collection": "assumptions",
+      "ref": "$assumption_scale_at_limit",
+      "value": {
+        "content": "若组合规模影响一次展示、选择或生成，暂以告知预计规模、由工程师确认继续或缩小选择范围作为待验证的业务处理方向，不静默截断结果。预计规模是否可取得以及继续生成的实际能力仍待研发确认；不设定具体数量或耗时，不承诺现有平台已支持此方向。",
+        "tag": "assumption",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第4—6行：高低压排列组合及勾选生成；原文仅触发规模增长边界，本处理方向不是原文规则"
+          }
+        ],
+        "status": "active",
+        "basis": "第1轮业务追问已经达到调用方配置的1轮上限。按question-strategy.md的达到上限规则，将可合理推荐的产品P1 Q-6暂按既有推荐登记，以明确结果完整性及规模反馈方向；这是分析流程采用的暂定假设，不是用户选择“暂不确定”，也不是用户已确认的产品决策。组合定义等P0不受此假设替代。",
+        "verification": "由产品负责人或用户在后续明确确认时，结合实际架构图及组合规模样例验证“告知规模、确认继续或缩小范围”的业务预期；研发通过现有数据与可复现实验核实规模估计及处理能力，并通过Q-7回填证据。未经这些验证，不把此假设视为已确认规则或技术能力。",
+        "related_question": "Q-6",
+        "related_ids": ["BND-2", "FR-2", "FR-3", "Q-7"]
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-6",
+      "changes": {
+        "status": "provisional",
+        "reason": "业务追问达到配置上限1轮，依上限处理规则采用此前可合理推荐的规模处理方向，已有active ASM记录依据和验证责任。此状态不是因为用户选择“暂不确定”；实际回复仅为“这轮先不回答。”，没有业务确认或风险接受。未向用户追加本题，原问题不计入已发出的业务追问。",
+        "related_ids": ["BND-2", "Q-7", "FR-2", "FR-3", "$assumption_scale_at_limit"]
+      }
+    }
+  ],
+  "set": {
+    "meta.analysis_status": "clarifying",
+    "meta.readiness": "not_ready"
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "目标仍明确：改善工程师手工整理开关动作逻辑设计表效率低、容易出错的问题，本轮没有更改。"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "核心用户仍为工程师，场景仍为架构仿真平台的架构图中按勾选组合生成逻辑设计表。"
+    },
+    {
+      "item": 3,
+      "satisfied": false,
+      "question_refs": ["Q-1", "Q-2", "Q-3"],
+      "reason": "用户未回答组合定义、跨压配合及输出契约，核心流程仍不能完整还原；未因本轮未作答而采纳P0推荐。"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": ["Q-1", "Q-4", "Q-2"],
+      "reason": "组合语义、合法状态和约束及高低压选中项关系仍未知，对应P0全部保持open。"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本轮只表达未作答，没有新增相互冲突的业务陈述；仍未开展历史对照。"
+    },
+    {
+      "item": 6,
+      "satisfied": false,
+      "question_refs": ["Q-5", "Q-4"],
+      "reason": "关键空输入与非法输入的处理仍未明确。规模处理的P1暂定方向不能替代这些P0边界规则。"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": ["Q-1", "Q-2", "Q-3", "Q-5", "Q-4"],
+      "reason": "没有新增可判定的设计表预期或关键边界答案；AC-2继续to_reassess，核心验收仍不完整。"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "继续明确记录本阶段未做历史检索或基线对照，不声称历史无冲突。"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": ["Q-7"],
+      "reason": "现有能力与规模处理技术证据继续由研发通过Q-7确认；本轮没有新增技术评估或可行结论。"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "原有ui_dependent=true和缺少现有页面资料的记录继续有效，本轮不展开视觉设计。"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": ["Q-1", "Q-2", "Q-3", "Q-4", "Q-5", "Q-6", "Q-7"],
+      "reason": "未回答P0、研发待确认及规模P1暂定假设均明确记录；新ASM说明上限采用依据、验证人和验证途径，没有把用户未作答解释为不确定或业务确认。足以形成醒目标注风险的初步草稿，但仍not_ready，不能作为正式就绪需求交接。"
+    }
+  ]
+}

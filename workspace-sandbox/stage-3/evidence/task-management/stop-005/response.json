@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "REQ-2026-005",
+  "revision": 3,
+  "id_map": {},
+  "affected_ids": [
+    "BR-1",
+    "BR-2"
+  ],
+  "written": true
+}

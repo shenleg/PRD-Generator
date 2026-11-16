@@ -1,0 +1,8 @@
+{
+  "common": {
+    "requirement_id": "PROBE-IDEA",
+    "project_id": "probes",
+    "title": "自动生成高低压开关逻辑设计表",
+    "created_at": "2026-11-16T04:29:12.194922+00:00"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "REQ-2026-005",
+  "revision": 6,
+  "id_map": {
+    "$over_limit": "Q-15"
+  },
+  "affected_ids": [
+    "BR-1",
+    "BR-2",
+    "BR-3",
+    "BR-4",
+    "AC-1",
+    "FLOW-1",
+    "BND-3",
+    "EXC-1",
+    "EXC-2",
+    "GAP-2",
+    "CNF-1",
+    "Q-1",
+    "Q-7",
+    "Q-8",
+    "Q-10",
+    "Q-11",
+    "Q-15",
+    "ASM-1",
+    "FR-2"
+  ],
+  "written": true
+}

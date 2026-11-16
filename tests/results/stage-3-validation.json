@@ -1,0 +1,222 @@
+{
+  "formal_results": [
+    {
+      "project": "high-low-voltage",
+      "requirement_id": "REQ-2026-001",
+      "analysis": "workspace-sandbox/stage-3/workspace/projects/high-low-voltage/requirements/REQ-2026-001/analysis/analysis-result.json",
+      "meta": {
+        "analysis_revision": 4,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "completed",
+        "readiness": "not_ready"
+      },
+      "validation": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "project": "probes",
+      "requirement_id": "PROBE-BACKEND",
+      "analysis": "workspace-sandbox/stage-3/workspace/projects/probes/requirements/PROBE-BACKEND/analysis/analysis-result.json",
+      "meta": {
+        "analysis_revision": 1,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "completed",
+        "readiness": "ready_for_document"
+      },
+      "validation": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "project": "probes",
+      "requirement_id": "PROBE-DEFECT",
+      "analysis": "workspace-sandbox/stage-3/workspace/projects/probes/requirements/PROBE-DEFECT/analysis/analysis-result.json",
+      "meta": {
+        "analysis_revision": 1,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "completed",
+        "readiness": "ready_for_document"
+      },
+      "validation": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "project": "probes",
+      "requirement_id": "PROBE-IDEA",
+      "analysis": "workspace-sandbox/stage-3/workspace/projects/probes/requirements/PROBE-IDEA/analysis/analysis-result.json",
+      "meta": {
+        "analysis_revision": 1,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "idea",
+        "analysis_status": "clarifying",
+        "readiness": "not_ready"
+      },
+      "validation": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "project": "probes",
+      "requirement_id": "PROBE-NOTIFICATION",
+      "analysis": "workspace-sandbox/stage-3/workspace/projects/probes/requirements/PROBE-NOTIFICATION/analysis/analysis-result.json",
+      "meta": {
+        "analysis_revision": 1,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "clarifying",
+        "readiness": "conditionally_ready"
+      },
+      "validation": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "project": "probes",
+      "requirement_id": "PROBE-NOTIFICATION-REASON",
+      "analysis": "workspace-sandbox/stage-3/workspace/projects/probes/requirements/PROBE-NOTIFICATION-REASON/analysis/analysis-result.json",
+      "meta": {
+        "analysis_revision": 1,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "completed",
+        "readiness": "ready_for_document"
+      },
+      "validation": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "project": "task-management",
+      "requirement_id": "REQ-2026-002",
+      "analysis": "workspace-sandbox/stage-3/workspace/projects/task-management/requirements/REQ-2026-002/analysis/analysis-result.json",
+      "meta": {
+        "analysis_revision": 2,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "completed",
+        "readiness": "not_ready"
+      },
+      "validation": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "project": "task-management",
+      "requirement_id": "REQ-2026-003",
+      "analysis": "workspace-sandbox/stage-3/workspace/projects/task-management/requirements/REQ-2026-003/analysis/analysis-result.json",
+      "meta": {
+        "analysis_revision": 6,
+        "source_revision": 2,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "clarifying",
+        "readiness": "not_ready"
+      },
+      "validation": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "project": "task-management",
+      "requirement_id": "REQ-2026-004",
+      "analysis": "workspace-sandbox/stage-3/workspace/projects/task-management/requirements/REQ-2026-004/analysis/analysis-result.json",
+      "meta": {
+        "analysis_revision": 2,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "completed",
+        "readiness": "not_ready"
+      },
+      "validation": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "project": "task-management",
+      "requirement_id": "REQ-2026-005",
+      "analysis": "workspace-sandbox/stage-3/workspace/projects/task-management/requirements/REQ-2026-005/analysis/analysis-result.json",
+      "meta": {
+        "analysis_revision": 6,
+        "source_revision": 2,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "clarifying",
+        "readiness": "not_ready"
+      },
+      "validation": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "project": "task-management",
+      "requirement_id": "REQ-2026-006",
+      "analysis": "workspace-sandbox/stage-3/workspace/projects/task-management/requirements/REQ-2026-006/analysis/analysis-result.json",
+      "meta": {
+        "analysis_revision": 3,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "completed",
+        "readiness": "ready_for_document"
+      },
+      "validation": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    }
+  ],
+  "formal_pass_count": 11,
+  "patch_application_counts": {
+    "pass": 26,
+    "fail": 1,
+    "warning": 2
+  },
+  "patch_application_total": 29,
+  "question_rounds": {
+    "high-low-voltage": {
+      "business": 1,
+      "control": 1,
+      "total": 2
+    },
+    "task-management": {
+      "business": 4,
+      "control": 0,
+      "total": 4,
+      "note": "initial/answers/changes/new-version；changes三份补丁同一对话轮，只计一次"
+    },
+    "probes": {
+      "idea": 1,
+      "backend": 0,
+      "defect": 0,
+      "notification": 1,
+      "notification-with-reason": 0
+    }
+  },
+  "ineffective_questions": {
+    "count": 0,
+    "method": "主会话按实际提问语义逐条核对；部分回答的剩余内容与新依据导致的重开不计重复"
+  }
+}

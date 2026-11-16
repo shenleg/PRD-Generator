@@ -1,0 +1,11 @@
+[
+  {
+    "name": "仿真任务管理优化（初版）",
+    "path": "/root/orca/projects/test-skill/tests/fixtures/sample-02-task-management.md",
+    "type": "input_document",
+    "credibility": "用户指定的需求原文，明确要求任务跑完后通知，但用户对象、渠道和跑完含义未定义。",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-1"
+  }
+]

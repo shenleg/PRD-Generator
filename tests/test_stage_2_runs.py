@@ -5,6 +5,7 @@ import importlib.util
 import json
 from pathlib import Path
 import re
+import subprocess
 import unittest
 
 
@@ -48,15 +49,18 @@ def asked_questions(directory: Path, turn: int = 1) -> list[dict]:
 class SavedModelRunTests(unittest.TestCase):
     """对真实保存的模型输出执行结构、引用、状态和可观测行为检查。"""
 
-    def test_saved_runs_match_current_skill_and_inputs(self) -> None:
-        """源变化必须有对应试跑；精确限定的导出新增段落可用已发生的定点重评证明。"""
+    def test_saved_runs_match_stage_two_tag_and_inputs(self) -> None:
+        """历史证据绑定 stage-2-complete；当前补丁机制另由阶段 3 实跑回归验证。"""
         manifest = load(RUN_BASE / "run-manifest.json")
         self.assertEqual(manifest["stage"], 2)
         self.assertGreaterEqual(len(manifest["files"]), 18)
         rechecks = {entry["file"]: entry for entry in manifest.get("scoped_rechecks", [])}
         for relative, expected_hash in manifest["files"].items():
             with self.subTest(file=relative):
-                current = (ROOT / relative).read_bytes()
+                current = subprocess.run(
+                    ["git", "show", f"stage-2-complete:{relative}"], cwd=ROOT,
+                    check=True, capture_output=True,
+                ).stdout
                 actual_hash = hashlib.sha256(current).hexdigest()
                 if actual_hash == expected_hash:
                     continue

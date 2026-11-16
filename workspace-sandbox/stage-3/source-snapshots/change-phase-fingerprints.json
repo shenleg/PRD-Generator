@@ -1,0 +1,19 @@
+{
+  "description": "变更场景生成时当前源码指纹；不是阶段完成声明",
+  "files": {
+    "skill/requirement-analyst/SKILL.md": "e3c4ae9f7defad7135b53aebf389d5c12da3f35886c1d5e1bf337d2ae5f4722b",
+    "skill/requirement-analyst/references/analysis-framework.md": "cf1afc300d52e4e7d165252e9c8a5da2eb3d30f2db9780224d78576c6234c9e9",
+    "skill/requirement-analyst/references/incremental-update.md": "b6a106987182569484047bd7aad5ac82669234de1afa953f921c55b61d406c61",
+    "skill/requirement-analyst/references/question-strategy.md": "08b7b691979d164b23f9971f4926dfd6483958e3e7268e08ea1354963bdcaa46",
+    "skill/requirement-analyst/references/readiness-rules.md": "01fd85787a901475e4389adc1291d2d099ffd80f3143005b4fabf6c12acb0d05",
+    "skill/requirement-analyst/schemas/analysis-result.schema.json": "4588455d65b64fa54b14e8aa84b9c3d495cebb8ec754d427adcc1bd80e4cbd02",
+    "skill/requirement-analyst/schemas/question.schema.json": "f4090632b60c2638a4dc5e37fa3ae0122fd1ba507f692b055b68a40f14fad677",
+    "skill/requirement-analyst/schemas/requirement-item.schema.json": "63f145dd6c75a4384caf0f5df11564c7f07133cdf0ede3bbbba838e2d52ba0d6",
+    "skill/requirement-analyst/schemas/source.schema.json": "a25962076f4bb26a310b108fffe85648f9d5876af631bf8c78d56629b7093e52",
+    "skill/requirement-analyst/scripts/README.md": "b05f5066ad53f710043a05a2a09ef49380d8d1c56dc29a8ad147bb43744a13c9",
+    "skill/requirement-analyst/scripts/requirements.txt": "856ef1365f90bcd46a30193bd45c49642e6efc4cff86b5146d4a9a0ef61e0412",
+    "skill/requirement-analyst/scripts/update_analysis.py": "3fff81baf251bd901b6c7d7018c5daaedbcc48179ad3aa82c64ae7fbfb0a20ef",
+    "skill/requirement-analyst/scripts/validate_analysis.py": "208ea729cb275060f14d6508354ff625be972bec2cf0ba2e06a61408c39dbb12",
+    "skill/requirement-analyst/templates/analysis-report.md": "6a56777f4db9e3ca34c35c455732bf3533959c5bc673d09ef7acc02f53636657"
+  }
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "name": "notification.md",
+    "path": "/root/orca/projects/test-skill/tests/fixtures/stage-2-probes/notification.md",
+    "type": "input_document",
+    "credibility": "用户指定的合成业务输入，不代表真实业务需求或技术能力。",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-1"
+  }
+]

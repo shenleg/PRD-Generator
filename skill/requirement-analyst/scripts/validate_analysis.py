@@ -197,6 +197,35 @@ def _check_questions(analysis: dict, diagnostics: list[dict]) -> None:
             diagnostics.append(_issue(4, conflict["id"], "/meta/readiness", "存在未处理的矛盾，就绪度必须为 not_ready。"))
 
 
+def _check_completion(analysis: dict, diagnostics: list[dict]) -> None:
+    """核对显式完成清单；问题已关闭并不能代替核心缺口真正满足。"""
+    checks = analysis.get("completion_checks")
+    if checks is None:
+        return
+    if {check["item"] for check in checks} != set(range(1, 12)):
+        diagnostics.append(_issue(1, "$", "/completion_checks", "完成清单必须包含唯一的 1 至 11 项。"))
+    questions = {q["id"]: q for q in analysis["questions"]}
+    readiness = analysis["meta"]["readiness"]
+    for index, check in enumerate(checks):
+        path = _pointer(("completion_checks", index))
+        linked = []
+        for reference in check["question_refs"]:
+            question = questions.get(reference)
+            if question is None:
+                diagnostics.append(_issue(2, reference, path + "/question_refs", "清单引用的问题不存在。"))
+            elif question["status"] == "dropped" and not check["satisfied"]:
+                diagnostics.append(_issue(4, reference, path + "/question_refs", "未满足项不能由已废弃问题支撑。"))
+            else:
+                linked.append(question)
+        if check["satisfied"]:
+            continue
+        required = ("P0",) if check["item"] <= 7 else ("P0", "P1")
+        if not any(q["priority"] in required for q in linked):
+            diagnostics.append(_issue(4, "$", path + "/question_refs", "未满足项须关联相应优先级的问题：" + "/".join(required) + "。"))
+        if (check["item"] <= 7 and readiness != "not_ready") or readiness == "ready_for_document":
+            diagnostics.append(_issue(4, "$", "/meta/readiness", f"完成清单第 {check['item']} 项未满足，不能使用当前就绪度。"))
+
+
 def _check_technical(analysis: dict, diagnostics: list[dict]) -> None:
     """检查技术判断所需证据的结构完整性，不替代研发对结论真实性的确认。"""
     technical = analysis.get("technical_feasibility")
@@ -245,6 +274,7 @@ def validate_analysis(
     _check_references(analysis, registry, diagnostics)
     _check_sources(analysis, source_manifest, diagnostics)
     _check_questions(analysis, diagnostics)
+    _check_completion(analysis, diagnostics)
     _check_technical(analysis, diagnostics)
     if analysis["meta"]["analysis_status"] == "stale":
         diagnostics.append(_issue(11, "$", "/meta/analysis_status", "分析已过期；下游须提示重新评估。", "warning"))

@@ -1,0 +1,28 @@
+{
+  "patch_version":"1.0",
+  "requirement_id":"REQ-2026-005",
+  "base_revision":2,
+  "change_type":"supplement",
+  "actor":"user",
+  "user_statement":"先这样吧，直接出结果。",
+  "summary":"用户明确结束，立即停止追问。Q-1继续为provisional，ASM-1/BR-3继续为active assumption，不将‘先这样吧’解释为正式确认全部导出；导出权限、未完成任务等未回答核心问题保持open。仅改分析状态为completed，保留not_ready及当前十一项清单，不增加追问轮数，不作更正、撤销或新版处理。补丁等待调用方应用。",
+  "operations":[],
+  "set":{
+    "meta.analysis_status":"completed",
+    "meta.readiness":"not_ready",
+    "context.project_id":"task-management"
+  },
+  "completion_checks":[
+    {"item":1,"satisfied":true,"question_refs":[],"reason":"改善导出不方便并避免丢数据的目标不变。"},
+    {"item":2,"satisfied":false,"question_refs":["Q-2","Q-6"],"reason":"单任务或多任务、未完成或失败结果可否导出仍未明确，核心场景不能确定。"},
+    {"item":3,"satisfied":false,"question_refs":["Q-2","Q-5","Q-6","Q-7"],"reason":"已有暂定数量规则，但导出前提、合法集合与结果时点未知，流程仍不完整。"},
+    {"item":4,"satisfied":false,"question_refs":["Q-3","Q-4","Q-5","Q-6","Q-7"],"reason":"字段、格式、授权、生命周期和时点仍缺；数量假设不能代替这些核心规则。"},
+    {"item":5,"satisfied":true,"question_refs":["Q-1"],"reason":"数量冲突已通过active ASM形成可表达的临时处理，Q-1为provisional，不是最终确认；保留原文冲突和验证责任，不将未明确的其他规则伪装成已解决。"},
+    {"item":6,"satisfied":false,"question_refs":["Q-5","Q-6","Q-7","Q-8","Q-9","Q-10"],"reason":"生命周期、访问权限、数据变化、部分失败以及空结果和大量等待的处理仍缺，已有边界识别不等于规则已确定。"},
+    {"item":7,"satisfied":false,"question_refs":["Q-2","Q-3","Q-4","Q-5","Q-6","Q-7","Q-8"],"reason":"仅能暂按不截断设计数量用例，完整正确行集、必需字段、格式及成功语义仍不可验证。"},
+    {"item":8,"satisfied":true,"question_refs":[],"reason":"未开展历史检索或基线对照，旧报告仍作为缺失资料登记。"},
+    {"item":9,"satisfied":true,"question_refs":["Q-11"],"reason":"原研发确认项仍适用，暂定全部导出不等于已有规模能力或快照机制。"},
+    {"item":10,"satisfied":true,"question_refs":["Q-12"],"reason":"界面依赖及必要页面资料缺失判断未变。"},
+    {"item":11,"satisfied":true,"question_refs":["Q-1","Q-5","Q-6","Q-7","Q-8"],"reason":"数量假设有实际不确定回答、明确basis和由用户/研发执行的verification，其余风险保留；可以形成显式标注假设与缺口的草稿，仍为not_ready。"}
+  ]
+}

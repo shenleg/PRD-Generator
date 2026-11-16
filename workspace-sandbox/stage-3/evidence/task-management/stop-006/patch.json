@@ -1,0 +1,28 @@
+{
+  "patch_version":"1.0",
+  "requirement_id":"REQ-2026-006",
+  "base_revision":1,
+  "change_type":"supplement",
+  "actor":"user",
+  "user_statement":"先这样吧，直接出结果。",
+  "summary":"用户明确结束，立即停止全部新问题。通知触发、对象、渠道和内容等未回答问题保持open，不批量转假设或接受风险。仅改分析状态为completed，保留not_ready及现有十一项清单，不增加追问轮数，不作更正、撤销或新版处理。仅产出补丁，等待调用方应用。",
+  "operations":[],
+  "set":{
+    "meta.analysis_status":"completed",
+    "meta.readiness":"not_ready",
+    "context.project_id":"task-management"
+  },
+  "completion_checks":[
+    {"item":1,"satisfied":true,"question_refs":["Q-7"],"reason":"核心目标为任务结束后通知用户，已可表达；新增原因缺失以P1登记，不虚构收益。"},
+    {"item":2,"satisfied":false,"question_refs":["Q-2","Q-1"],"reason":"谁接收以及什么结束场景应通知均未明确。"},
+    {"item":3,"satisfied":false,"question_refs":["Q-1","Q-2","Q-3"],"reason":"触发到指定用户从指定渠道收到通知的关键流程无法还原。"},
+    {"item":4,"satisfied":false,"question_refs":["Q-1","Q-2","Q-3","Q-4","Q-5"],"reason":"触发、对象、渠道、有效内容及重复事件语义都未确认。"},
+    {"item":5,"satisfied":true,"question_refs":[],"reason":"原文对通知没有相互冲突陈述；状态规则缺失属于关联缺口，不虚构为已发现冲突。"},
+    {"item":6,"satisfied":false,"question_refs":["Q-1","Q-5","Q-2","Q-4","Q-6"],"reason":"已推演非成功结束、重复、接收权限变化和发送失败，但关键业务处理尚未确定。"},
+    {"item":7,"satisfied":false,"question_refs":["Q-1","Q-2","Q-3","Q-4","Q-5"],"reason":"无法判定何时、谁、在哪里应收到什么通知，草案不构成完整核心验收。"},
+    {"item":8,"satisfied":true,"question_refs":[],"reason":"未开展历史检索或基线对照，未假定既有通知规则。"},
+    {"item":9,"satisfied":true,"question_refs":["Q-8"],"reason":"已登记事件、渠道能力、权限与失败处理的研发确认项，没有技术结论。"},
+    {"item":10,"satisfied":true,"question_refs":["Q-3"],"reason":"已判断通知有用户可见交互依赖，具体载体待渠道确认；未提前设计站内页面或索取无关视觉稿。"},
+    {"item":11,"satisfied":true,"question_refs":["Q-1","Q-2","Q-3","Q-4","Q-5","Q-6"],"reason":"剩余风险与责任方已清楚登记，未采用任何推荐假设；可形成标注待定项的通知草稿，不表示已经可实施。"}
+  ]
+}

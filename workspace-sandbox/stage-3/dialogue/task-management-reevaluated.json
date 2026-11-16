@@ -1,0 +1,5 @@
+{
+  "group":"task-management", "name":"reevaluated", "input":"依据同一新版原文作内部重评；无新用户答案", "records":["evidence/task-management/reevaluated-003","evidence/task-management/reevaluated-005"], "asked_refs":[], "asked_questions":[], "control_questions":[],
+  "assistant_message":"已完成新版变化的内部重评，本轮没有新答案，也不重复提问。补丁中已明确撤回被替换或删除的旧原文及失效分支，历史答案保留；当前删除授权、5000上限、运行任务列表操作不能停止仿真的规则，以及通知本期不做的决定均保留。超限处理、导出内容与日志细则等核心缺口仍待澄清，因此目标状态为clarifying/not_ready。两份最终补丁尚未应用到正式结果。",
+  "diff_reassessment":"原107个不变引用中，6项因撤销旧依据而必须重连依赖，已如实移入影响清单；其余101项不改。初始差异清单保存在new-version-diff-stale.json，最终更正清单为new-version-diff.json。"
+}

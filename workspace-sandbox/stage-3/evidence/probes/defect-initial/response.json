@@ -1,0 +1,37 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "PROBE-DEFECT",
+  "revision": 1,
+  "id_map": {
+    "$source": "SRC-1",
+    "$goal": "GOAL-1",
+    "$scenario": "SCN-1",
+    "$fix": "FR-1",
+    "$regression_rule": "BR-1",
+    "$in_scope": "FR-2",
+    "$out_scope": "CON-1",
+    "$flow": "FLOW-1",
+    "$boundary": "BND-1",
+    "$exception": "EXC-1",
+    "$ac_success": "AC-1",
+    "$ac_regression": "AC-2",
+    "$q_dev": "Q-1"
+  },
+  "affected_ids": [
+    "GOAL-1",
+    "SCN-1",
+    "FR-1",
+    "BR-1",
+    "AC-1",
+    "AC-2",
+    "FLOW-1",
+    "BND-1",
+    "EXC-1",
+    "Q-1",
+    "FR-2",
+    "CON-1",
+    "SRC-1"
+  ],
+  "written": true
+}

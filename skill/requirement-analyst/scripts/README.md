@@ -1,6 +1,6 @@
-# 分析结果校验器
+# 分析校验与补丁写入
 
-本目录提供只读校验器，供分析过程和下游共同使用；不会改写分析文件、分配编号或更新工作区。规则依据为需求规格 9.6。
+本目录提供唯一只读校验器 validate_analysis.py，以及负责正式写入、编号、事件和并发保护的 update_analysis.py。校验规则依据规格 9.6，补丁协议及恢复边界见 ../references/incremental-update.md。校验器始终只读，只有更新器写入工作区。
 
 ## 安装与运行
 
@@ -34,6 +34,23 @@ python -I skill/requirement-analyst/scripts/validate_analysis.py analysis-result
 | `fail` | 2 | 不得使用，按诊断修正后重验 |
 
 `not_ready` 不等于校验失败；它可以是如实保留 P0 缺口的合法结果。技术评估省略不等于已评估为无风险。多个问题同时存在时保留全部诊断，失败优先于警告。脚本不替用户回答问题，也不判断自然语言业务内容是否充分。
+
+## 应用补丁
+
+更新器使用标准库 fcntl 和目录 fsync，当前支持 Linux/Unix 本地工作区；未验证 Windows 或网络文件系统的锁与持久化语义。运行锁、恢复记录和中断残留留在本地，不作为业务产物交付。
+
+```bash
+uv run --no-project --python /usr/bin/python3 \
+  --with-requirements skill/requirement-analyst/scripts/requirements.txt \
+  python -I -B skill/requirement-analyst/scripts/update_analysis.py \
+  --workspace workspace-sandbox/my-workspace --project demo --patch patch.json
+```
+
+可先加 `--dry-run` 预检；`--related-analysis PATH` 可重复指定关联分析。补丁使用 `patch_version: "1.0"`、读取时的 `base_revision` 和临时别名；详见补丁协议，不接受整份 analysis-result 替换。正式结果、来源、事件由脚本维护；报告由分析者根据保存后的 JSON 整理。
+
+输出仍为 pass/warning/fail，额外含 requirement_id、revision、id_map、affected_ids、written。warning 可保存 stale，但必须向用户提示；fail 不写候选业务文件，revision 冲突须重新读取。首次分配需求目录并写 common；后续保留 requirement.json、inputs/ 和 prd/。工作区独占锁及写前记录用于恢复中断，不等于面向任意读取者的跨文件原子快照。
+
+API `update_analysis(workspace, project_id, patch, *, related_analyses=(), dry_run=False)` 返回同一响应对象。输入补丁及关联资料不被修改；用户协议/文件错误给结构化 fail，内部 Schema 安装错误直接抛出。
 
 ## 自动回归
 

@@ -244,6 +244,26 @@
         }
       }
     },
+    "completion_checks": {
+      "description": "阶段 3 新补丁保存的十一项完成清单；对旧结果选填，填写时须完整且与问题和就绪度自洽。",
+      "type": "array",
+      "minItems": 11,
+      "maxItems": 11,
+      "items": {
+        "type": "object",
+        "required": ["item", "satisfied", "question_refs", "reason"],
+        "properties": {
+          "item": {"type": "integer", "minimum": 1, "maximum": 11},
+          "satisfied": {"type": "boolean"},
+          "question_refs": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {"$ref": "requirement-item.schema.json#/$defs/question_reference"}
+          },
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    },
     "impact_analysis": {
       "type": "object",
       "properties": {

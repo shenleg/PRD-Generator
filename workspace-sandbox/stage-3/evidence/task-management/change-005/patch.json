@@ -1,0 +1,42 @@
+{
+  "patch_version":"1.0",
+  "requirement_id":"REQ-2026-005",
+  "base_revision":3,
+  "change_type":"correction",
+  "actor":"user",
+  "user_statement":"导出上限改成 5000 条。",
+  "summary":"用户明确更正数量上限为5000，新增confirmed规则，保留原1000条候选与全量候选及其来源。旧全量假设ASM-1和BR-3改to_reassess，不再支撑provisional。Q-1因依据改变重开并保留旧answer，本轮只问超过5000时如何处理，不虚构截断、排序、拒绝、分批或单文件单位。直接影响数量边界、冲突、流程、验收与研发规模确认；字段、权限、生命周期等原问题未变不批量改写。累计第3轮业务追问，第2题，与删除Q-4合计全组2题。仅生成补丁，等待应用。",
+  "operations":[
+    {"op":"add","collection":"requirements.business_rules","ref":"$limit_5000","value":{"content":"导出上限改为5000条。此更正没有同时定义超过5000条的拒绝、截取、选择、分批或排序规则，也没有说明5000是每文件或每次操作单位，不擅自扩充这些结论。","tag":"confirmed","sources":[{"type":"user_answer","location":"变更试跑本轮用户更正（模拟输入）：‘导出上限改成 5000 条。’"}],"status":"active","related_ids":["Q-1","CNF-1","BND-3","AC-1","Q-11"]}},
+    {"op":"update","target":"ASM-1","changes":{"status":"to_reassess"}},
+    {"op":"update","target":"BR-3","changes":{"status":"to_reassess"}},
+    {"op":"update","target":"Q-1","changes":{"question":"结果超过5000条时，应怎样处理这次导出？","status":"open","reason":"原Q-1由不确定回答转为provisional；本轮用户明确更正5000上限，原全量假设失效待重评，故重开并保留旧answer作为历史，当前更正原话单独记录在answer_update和user_answer。累计第3轮实际提出，第2题；不重复询问已明确的5000数字，只澄清超限处理。","impact":"不明确可能擅自丢行或违反上限，且不知道应输出哪部分或是否应生成文件，核心边界不能验收。","options":["A. 超过5000条则本次不生成文件，明确告知用户先缩小或选择导出范围","B. 由用户明确选择不超过5000条的结果后再导出，不自动替用户截取","C. 按业务明确指定的取数及排序规则导出5000条，并明确提示未包含部分","其他","暂不确定"],"recommendation":"推荐A作为讨论起点，既尊重已更正的上限，又避免默认截取造成静默不完整；它尚未成为产品规则。","answer_update":"导出上限改成 5000 条。","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条首行及续行"},{"type":"user_answer","location":"第1轮用户回答（模拟输入）/导出上限：‘不确定。’"},{"type":"user_answer","location":"变更试跑本轮用户更正（模拟输入）：‘导出上限改成 5000 条。’"}],"related_ids":["CNF-1","BR-1","BR-2","BR-3","ASM-1","$limit_5000","BND-3","AC-1"]}},
+    {"op":"update","target":"CNF-1","changes":{"content":"本轮明确将导出上限更正为5000条，旧1000规则和全量不截断假设不再是当前有效数量规则。原文仍有‘大量导出全部、不要丢数据’，超过5000时如何在上限与完整性之间处理尚未回答，不能从数字更正自动推断截取或分批；该剩余数量冲突由重开的Q-1处理。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条首行及续行"},{"type":"user_answer","location":"第1轮用户回答（模拟输入）/导出上限：‘不确定。’"},{"type":"user_answer","location":"变更试跑本轮用户更正（模拟输入）：‘导出上限改成 5000 条。’"}],"related_ids":["BR-1","BR-2","BR-3","ASM-1","$limit_5000","Q-1"]}},
+    {"op":"update","target":"BND-3","changes":{"content":"数量边界重评为合法空结果、低于5000、恰好5000及超过5000。5000上限已确认，超过时的处理仍未知；不得继续按原全量假设越限输出，也不能直接截取前5000或假设5000是分文件单位。大量等待、超时及失败处理仍沿既有问题登记。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条"},{"type":"user_answer","location":"变更试跑本轮用户更正（模拟输入）：‘导出上限改成 5000 条。’"}],"related_ids":["$limit_5000","Q-1","Q-9","Q-10","Q-11"]}},
+    {"op":"update","target":"FLOW-1","changes":{"content":"候选流程仍为确定合法导出集合、生成并取得表格；数量前提改为用户确认的5000上限。原active ASM全量不截断前提已失效；结果超过5000时流程会如何分支需Q-1确认，不自行增加拒绝、截断、分批或排序步骤。对象、授权、生命周期和结果时点等既有缺口继续保留。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条"},{"type":"user_answer","location":"变更试跑本轮用户更正（模拟输入）：‘导出上限改成 5000 条。’"}],"status":"to_reassess","related_ids":["$limit_5000","Q-1","Q-2","Q-3","Q-5","Q-6","Q-7"]}},
+    {"op":"update","target":"AC-1","changes":{"content":"数量验收草案应依据5000上限覆盖低于、恰好及超过5000的集合，不能继续要求按旧假设全量不截断。超过5000时是否出文件、包含哪些记录待Q-1确认；对象、授权、字段、旧报告格式、生命周期及时点等仍需确认后才能核对完整正确输出，当前草案继续待重评。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条；备注第2条"},{"type":"user_answer","location":"变更试跑本轮用户更正（模拟输入）：‘导出上限改成 5000 条。’"}],"status":"to_reassess","related_ids":["FR-1","CNF-1","GAP-1","BND-1","BND-2","BND-3","EXC-1","EXC-2","$limit_5000","Q-1","Q-2","Q-3","Q-4","Q-5","Q-6","Q-7","Q-8"]}},
+    {"op":"update","target":"FR-2","changes":{"related_ids":["FR-1","BR-1","BR-2","$limit_5000","CON-1"]}},
+    {"op":"update","target":"Q-11","changes":{"question":"请研发核实已更正5000条上限场景的结果取数、权限控制与生成下载能力、旧报告兼容、时点一致性和中断恢复；超限业务处理由Q-1另行确认。","reason":"研发登记，原全量假设不再是实现前提；既不能承诺无限导出，也不能由研发自行决定超限截取或分批。没有技术可行性结论。","related_ids":["FR-1","CON-2","BND-2","BND-3","EXC-1","EXC-2","$limit_5000","Q-1"]}}
+  ],
+  "set":{
+    "meta.analysis_status":"clarifying",
+    "meta.readiness":"not_ready",
+    "context.project_id":"task-management",
+    "context.domain_terms":["仿真结果","常用字段","5000条（本轮更正的上限）","全部结果（范围及时点待定，旧全量假设已待重评）","之前的报告"],
+    "impact_analysis.affected_requirements":["REQ-2026-005"],
+    "impact_analysis.proposed_changes":["新增confirmed的5000上限，旧全量ASM/规则待重评，重开Q-1保留旧answer并仅询问超限处理；重评数量边界、流程及验收，不改无关业务结论"]
+  },
+  "completion_checks":[
+    {"item":1,"satisfied":true,"question_refs":[],"reason":"改善结果导出的目标未变，数字更正不改变业务目标。"},
+    {"item":2,"satisfied":false,"question_refs":["Q-2","Q-6"],"reason":"对象范围及未完成或失败时能否导出仍未明确。"},
+    {"item":3,"satisfied":false,"question_refs":["Q-1","Q-2","Q-5","Q-6","Q-7"],"reason":"超5000时的业务分支未定，合法集合、授权与时点也未定。"},
+    {"item":4,"satisfied":false,"question_refs":["Q-1","Q-3","Q-4","Q-5","Q-6","Q-7"],"reason":"5000数字已确认，但超限处理及既有核心规则仍缺，不因明确数字冒充完整规则。"},
+    {"item":5,"satisfied":false,"question_refs":["Q-1"],"reason":"旧全量假设不再有效，5000上限与原全部不丢数据诉求的超限处理仍需裁决，CNF关联Q-1重开。"},
+    {"item":6,"satisfied":false,"question_refs":["Q-1","Q-5","Q-6","Q-7","Q-8","Q-9","Q-10"],"reason":"已重评5000阈值边界，但不能凭数字推断超限策略；权限、生命周期、一致性及异常规则仍缺。"},
+    {"item":7,"satisfied":false,"question_refs":["Q-1","Q-2","Q-3","Q-4","Q-5","Q-6","Q-7","Q-8"],"reason":"不能判定超限时是否输出和正确行集；字段、格式与完整成功语义仍不可验收。"},
+    {"item":8,"satisfied":true,"question_refs":[],"reason":"未进行历史检索或基线对照，仅依据实际保存结果和本轮更正识别影响。"},
+    {"item":9,"satisfied":true,"question_refs":["Q-11"],"reason":"已更新5000上限对应的研发确认项，无技术可行性结论。"},
+    {"item":10,"satisfied":true,"question_refs":["Q-12"],"reason":"界面依赖与必要页面资料缺失未变，未开展完整视觉设计。"},
+    {"item":11,"satisfied":true,"question_refs":["Q-1","Q-5","Q-6","Q-7","Q-8"],"reason":"旧假设与原文证据保留为to_reassess，当前5000明确但无擅自采用的超限策略；可形成标注缺口的更正草稿。"}
+  ]
+}

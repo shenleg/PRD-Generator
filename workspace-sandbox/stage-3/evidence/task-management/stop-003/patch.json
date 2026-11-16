@@ -1,0 +1,30 @@
+{
+  "patch_version":"1.0",
+  "requirement_id":"REQ-2026-003",
+  "base_revision":2,
+  "change_type":"supplement",
+  "actor":"user",
+  "user_statement":"先这样吧，直接出结果。",
+  "summary":"用户明确结束，立即停止追问，仅将分析状态改为completed并保留not_ready。主会话保存前质量核对发现：此前答疑已根据第1轮‘以第 5 条为准，创建者和管理员可以删除，其他人只能看。’解决权限冲突，却遗漏旧候选BR-1的有效状态。依同一已保存回答及当前协议将BR-1标to_reassess，正文、tag和来源原样保留，当前授权仍为active/confirmed的BR-2。这是主会话发现后的状态质量修复，不是新用户答案、更正或撤销；不用withdraw，不改变answered问题。其他未回答核心问题保持open，不增加追问轮数，不提高就绪度。此文件替代未应用的stop-003.json候选，不能先后都应用；旧候选保留，仅待调用方应用本修正版。",
+  "operations":[
+    {"op":"update","target":"BR-1","changes":{"status":"to_reassess"}}
+  ],
+  "set":{
+    "meta.analysis_status":"completed",
+    "meta.readiness":"not_ready",
+    "context.project_id":"task-management"
+  },
+  "completion_checks":[
+    {"item":1,"satisfied":true,"question_refs":["Q-8"],"reason":"批量删除目标明确，新增原因仍以原P1登记，不重复问。"},
+    {"item":2,"satisfied":true,"question_refs":["Q-3"],"reason":"选中后删除的用户场景明确，授权角色已按第5条确认；对象关系仍作为范围规则缺口。"},
+    {"item":3,"satisfied":false,"question_refs":["Q-2","Q-3","Q-5","Q-6"],"reason":"部分删除流程已知，但关联结果、对象关系、选择集合及批量处理未定，无法还原完整流程。"},
+    {"item":4,"satisfied":false,"question_refs":["Q-2","Q-3","Q-5","Q-7"],"reason":"权限、运行中限制和不可恢复已确认；仍缺结果去留、对象定义及批量处理规则，不能过度解释‘直接删’。"},
+    {"item":5,"satisfied":true,"question_refs":["Q-1"],"reason":"沿用第1轮回答以第5条为准；质量修复将被否定的旧候选BR-1标为to_reassess，正文来源保留，当前BR-2仍active/confirmed，Q-1保持answered，不让互斥授权同时有效。"},
+    {"item":6,"satisfied":false,"question_refs":["Q-2","Q-5","Q-6"],"reason":"运行中禁止删除已有规则，但关联结果、混合批次、选择范围和执行失败的处理仍不完整。"},
+    {"item":7,"satisfied":false,"question_refs":["Q-2","Q-3","Q-5","Q-6"],"reason":"已有局部验收断言，完整删除集合与结果处置仍不可判定，不能因两问已回答抬高就绪度。"},
+    {"item":8,"satisfied":true,"question_refs":[],"reason":"没有开展历史检索或基线对照；旧逻辑缺失如实登记，用户实际补充部分已吸收。"},
+    {"item":9,"satisfied":true,"question_refs":["Q-9"],"reason":"更新研发确认项，明确业务不可恢复与物理存储实现不同，不提供技术结论。"},
+    {"item":10,"satisfied":true,"question_refs":["Q-10"],"reason":"界面依赖判断不变，现有任务页缺失仍登记。"},
+    {"item":11,"satisfied":true,"question_refs":["Q-2","Q-3","Q-5","Q-6","Q-7"],"reason":"回答原话、已确认边界与剩余数据风险分别记录，无擅自采用的删除假设；可形成带缺口初稿，仍不适合直接实施。"}
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "status": "warning",
+  "diagnostics": [
+    {
+      "rule": 11,
+      "level": "warning",
+      "item_id": "$",
+      "path": "/meta/analysis_status",
+      "message": "分析已过期；下游须提示重新评估。"
+    }
+  ],
+  "requirement_id": "REQ-2026-005",
+  "revision": 5,
+  "id_map": {
+    "$new_source": "SRC-2",
+    "$export_log": "FR-3",
+    "$log_gap": "GAP-2",
+    "$log_coverage": "Q-13",
+    "$log_failure": "Q-14"
+  },
+  "affected_ids": [
+    "FR-3",
+    "BR-1",
+    "BR-2",
+    "BR-3",
+    "AC-1",
+    "FLOW-1",
+    "EXC-1",
+    "EXC-2",
+    "GAP-2",
+    "CNF-1",
+    "Q-1",
+    "Q-7",
+    "Q-8",
+    "Q-10",
+    "Q-11",
+    "Q-13",
+    "Q-14",
+    "ASM-1",
+    "FR-2",
+    "SRC-2"
+  ],
+  "written": true
+}

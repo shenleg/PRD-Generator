@@ -1,0 +1,20 @@
+[
+  {
+    "name": "仿真任务管理优化（初版）",
+    "path": "/root/orca/projects/test-skill/tests/fixtures/sample-02-task-management.md",
+    "type": "input_document",
+    "credibility": "用户指定的原始需求，数量规则存在冲突，旧报告未提供；不得自行选择数量或推断报告内容。",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-1"
+  },
+  {
+    "name": "仿真任务管理优化（第二版）",
+    "path": "/root/orca/projects/test-skill/tests/fixtures/sample-02-task-management-v2.md",
+    "type": "input_document",
+    "credibility": "用户提供的新版原文；已逐项对照初版：1000改5000、删除全量续句、增加操作日志。当前5000已另有用户确认，不能以新版未重述为由撤销历史有效回答。",
+    "last_updated": null,
+    "revision": 2,
+    "source_id": "SRC-2"
+  }
+]

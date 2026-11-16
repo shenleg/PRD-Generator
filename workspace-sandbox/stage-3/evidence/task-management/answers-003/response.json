@@ -1,0 +1,32 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "REQ-2026-003",
+  "revision": 2,
+  "id_map": {
+    "$irreversible_rule": "BR-4",
+    "$known_acceptance": "AC-2"
+  },
+  "affected_ids": [
+    "GOAL-1",
+    "SCN-1",
+    "FR-1",
+    "BR-2",
+    "BR-3",
+    "BR-4",
+    "AC-1",
+    "AC-2",
+    "FLOW-1",
+    "BND-1",
+    "EXC-1",
+    "GAP-1",
+    "CNF-1",
+    "Q-1",
+    "Q-2",
+    "Q-4",
+    "Q-7",
+    "Q-9",
+    "FR-2"
+  ],
+  "written": true
+}

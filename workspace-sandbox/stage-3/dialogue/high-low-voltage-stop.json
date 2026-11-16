@@ -1,0 +1,4 @@
+{
+  "group":"high-low-voltage", "name":"stop", "input":"结束", "records":["evidence/high-low-voltage/stop"], "asked_refs":[], "asked_questions":[], "control_questions":[],
+  "assistant_message":"好的，本次分析到此结束，不再追问。\n\n分析结束不等于需求已就绪：当前仍为not_ready。以下核心问题仍未回答，保持open：\nQ-1：开关组合的业务含义。\nQ-2：高低压选中组合如何配合。\nQ-3：逻辑设计表的输出结构。\nQ-4：合法状态、动作及组合约束。\nQ-5：无开关、单类开关和未勾选等边界的处理。\n\n规模处理方向保留为待验证假设ASM-1，Q-7继续待研发确认。你的‘结束’只表示停止本次分析，不代表接受上述风险或确认假设。\n\n当前内容只能用于醒目标注风险的初步草稿，不能作为已就绪需求交接。本阶段未开展历史对照、技术可行性评估或完整视觉分析。"
+}

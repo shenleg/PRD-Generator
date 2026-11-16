@@ -1,0 +1,34 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "REQ-2026-006",
+  "revision": 3,
+  "id_map": {
+    "$scope_exclusion": "Q-9",
+    "$exclusion_decision": "DEC-1",
+    "$out_of_scope": "FR-3"
+  },
+  "affected_ids": [
+    "GOAL-1",
+    "SCN-1",
+    "FR-1",
+    "BND-1",
+    "BND-2",
+    "EXC-1",
+    "GAP-1",
+    "GAP-2",
+    "Q-1",
+    "Q-2",
+    "Q-3",
+    "Q-4",
+    "Q-5",
+    "Q-6",
+    "Q-7",
+    "Q-8",
+    "Q-9",
+    "DEC-1",
+    "FR-2",
+    "FR-3"
+  ],
+  "written": true
+}

@@ -1,4 +1,4 @@
-"""检查阶段 2 Skill 的文件契约与测试材料；不把静态检查当作模型行为测试。"""
+"""检查阶段 3 Skill 的入口及测试材料；不把静态契约当作模型行为验证。"""
 
 from pathlib import Path
 import re
@@ -7,8 +7,8 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skill/requirement-analyst"
-SCENARIOS = [*(f"RA-{number:02d}" for number in range(1, 9)), "RA-12", "RA-13"]
-REFERENCES = ("analysis-framework.md", "question-strategy.md", "readiness-rules.md")
+SCENARIOS = [*(f"RA-{number:02d}" for number in range(1, 14)), "RA-30", "RA-31"]
+REFERENCES = ("analysis-framework.md", "question-strategy.md", "readiness-rules.md", "incremental-update.md")
 
 
 def read_skill() -> str:
@@ -40,7 +40,7 @@ class SkillContractTests(unittest.TestCase):
         self.assertEqual(len(re.findall(r"^\d+\. ", rules, re.MULTILINE)), 10)
 
     def test_core_reference_pointers_resolve(self) -> None:
-        """三个核心参考文件存在，入口说明何时加载。"""
+        """三个核心参考及增量协议均存在，入口说明各自加载时机。"""
         content = read_skill()
         for name in REFERENCES:
             with self.subTest(reference=name):
@@ -48,8 +48,9 @@ class SkillContractTests(unittest.TestCase):
                 self.assertTrue((SKILL / "references" / name).is_file())
 
     def test_stage_boundaries(self) -> None:
-        """本阶段不提前实现更新、检索或消费者脚本。"""
-        for filename in ("update_analysis.py", "index_sources.py", "search_project.py", "compare_baseline.py"):
+        """阶段 3 接入更新脚本，但不提前实现检索或基线比对。"""
+        self.assertTrue((SKILL / "scripts/update_analysis.py").is_file())
+        for filename in ("index_sources.py", "search_project.py", "compare_baseline.py"):
             self.assertFalse((SKILL / "scripts" / filename).exists())
         content = read_skill()
         self.assertIn("validate_analysis.py", content)
@@ -57,7 +58,7 @@ class SkillContractTests(unittest.TestCase):
         self.assertIn("analysis-report.md", content)
 
     def test_all_required_scenarios_have_scripts(self) -> None:
-        """十个场景均先有输入、预设回答和核对清单，不能只列验收编号。"""
+        """阶段 2 和阶段 3 场景均有输入、预设回答及核对清单，不能只列编号。"""
         for scenario in SCENARIOS:
             with self.subTest(scenario=scenario):
                 content = (ROOT / "tests/scenarios" / f"{scenario}.md").read_text(encoding="utf-8")

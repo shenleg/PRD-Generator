@@ -12,6 +12,7 @@ description: 用于理解需求、分析需求、检查完整性、识别矛盾�
 - 首次分析、存量文档或新增业务内容：读 `references/analysis-framework.md`，选择分析维度、抽取来源并拆分需求。
 - 排问题、组织本轮提问或收到回答/结束要求：读 `references/question-strategy.md`，决定问什么、如何更新问题状态与何时停止。
 - 每轮准备保存或交接：读 `references/readiness-rules.md`，核对完成清单、关联问题和就绪度。
+- 首次保存、答疑补充、更正、撤销或收到新版文档：读 `references/incremental-update.md`，按补丁协议识别影响并由脚本保存。
 - 写结果时读 `schemas/analysis-result.schema.json` 及其引用；写报告时使用 `templates/analysis-report.md`。
 
 ## 每轮流程
@@ -22,7 +23,7 @@ description: 用于理解需求、分析需求、检查完整性、识别矛盾�
 4. 按类型检查价值、规则、流程、边界、异常和验收，区分原文事实、推断与假设。
 5. 逐项核对完成清单，登记缺口对应问题；按 P0 优先、前置决策优先排序，不机械穷举所有维度。
 6. 仅提出值得回答的 1 至 3 个问题，给选项和推荐理由；用户结束时立即停止追问。
-7. 更新条目、问题和就绪度，校验候选结果，通过后保存正式结果与报告；告知遗留事项和下游限制。
+7. 将本轮变化产出补丁，交给更新脚本校验并保存；读取实际保存结果整理报告，告知遗留事项和下游限制。
 
 ## 硬规则
 
@@ -39,12 +40,12 @@ description: 用于理解需求、分析需求、检查完整性、识别矛盾�
 
 ## 产物与校验
 
-- 使用调用方提供的稳定需求编号；试跑的新编号由执行者明确指定，不宣称已实现正式工作区编号分配。
-- 每个独立需求写 `analysis/analysis-result.json`、`analysis/analysis-report.md` 和 `analysis/source-manifest.json`；来源清单可引用同一份输入文档。
-- 当前直接维护整份结果，不使用尚未实现的补丁或更新脚本；保存前核对旧的确认内容，避免整份重写时丢失。
-- 先写同目录候选 JSON，调用本 Skill 的 `scripts/validate_analysis.py`；失败最多修正 3 次，仍失败则保持 not_ready、报告原因，不交付下游。
-- 校验 pass 表示数据合法，不表示业务就绪；warning 必须提示，fail 不得使用。正式结果只写入已通过校验的数据，报告从 JSON 整理，不另行补事实。
+- 明确工作区和项目；用户提供需求编号则沿用，否则由脚本分配。新增条目用 `$别名`，后续引用脚本返回的正式编号。
+- 每个独立需求产出补丁；用 `scripts/update_analysis.py --workspace WORKSPACE --project PROJECT --patch PATCH.json` 保存，不直接改正式 JSON、来源清单或事件。跨需求资料用 `--related-analysis PATH` 显式提供。
+- 补丁携带读取时的 base_revision、变更类型、影响内容及十一项 completion_checks；更正/撤销附用户实际原话，新版文档先逐项比对、保存 stale，再重评变化部分。
+- 更新脚本调用唯一 `scripts/validate_analysis.py`；fail 最多修正 3 次，仍失败则停止、报告原因，保留旧合法结果、不交付失败候选。revision 冲突须重新读取分析，不能盲改数字。
+- pass 表示数据合法，不表示业务就绪；warning 必须提示。脚本保存 `analysis-result.json`、`source-manifest.json`、追加 `analysis-events.jsonl`；再从实际保存 JSON 整理 `analysis-report.md`，不另补事实。
 
 ## 当前边界
 
-不做历史检索、基线对照、技术可行性结论或完整视觉分析；界面仅判断 ui_dependent 并记录缺资料。正式 PRD、发布、更正/撤销/新版文档的增量机制与编号脚本不在当前实现内。
+不做历史检索、基线对照、技术可行性结论或完整视觉分析；界面仅判断 ui_dependent 并记录缺资料。不写 compare_baseline.py；正式 PRD、消费者交接验证及发布留待后续阶段。

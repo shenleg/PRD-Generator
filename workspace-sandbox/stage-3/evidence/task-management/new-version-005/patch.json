@@ -1,0 +1,232 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "REQ-2026-005",
+  "base_revision": 4,
+  "change_type": "new_source_version",
+  "actor": "user",
+  "user_statement": "这是新版需求文档，请对照更新。",
+  "summary": "逐项对照初版与第二版：第4条1000改为5000，旧第4条续行‘如果数据量大的话就导出全部结果，不要丢数据’删除，新增第8条导出操作日志。当前revision4已由用户确认5000上限，BR-4和数量边界BND-3不因文件追上既有回答而重改；旧全量假设仍不可恢复有效。按本轮仅stale及普通旧项to_reassess的要求，先登记删除原文的失效依据及依赖待重评，不执行会级联废弃未决问题的withdraw，不提前裁定删除该句后的完整性与超限政策。",
+  "operations": [
+    {
+      "op": "add_source",
+      "ref": "$new_source",
+      "value": {
+        "name": "仿真任务管理优化（第二版）",
+        "path": "/root/orca/projects/test-skill/tests/fixtures/sample-02-task-management-v2.md",
+        "type": "input_document",
+        "credibility": "用户提供的新版原文；已逐项对照初版：1000改5000、删除全量续句、增加操作日志。当前5000已另有用户确认，不能以新版未重述为由撤销历史有效回答。",
+        "last_updated": null,
+        "revision": 2
+      }
+    },
+    {
+      "op": "update",
+      "target": "BR-1",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "新版第4条将原文1000改为5000，保留旧1000正文和SRC-1作为被修改的原文证据，待重评。当前有效5000规则已有BR-4，本轮不重复改写它，也不把旧1000重新激活。",
+        "sources": [
+          {"type": "input_document", "source_id": "SRC-1", "location": "需求第4条首行：‘最多导出1000条’"},
+          {"type": "input_document", "source_id": "$new_source", "location": "第11行，需求第4条：‘最多导出5000条’；旧数值已被原文修改"}
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "target": "BR-2",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "逐项比对确认旧第12行整句在新版删除，并非改写到其他位置。本轮仅登记原文删除及待重评状态，保留旧正文/SRC-1；后续须显式处理此条的撤回及依赖，不能继续把它当新版有效规则，也不能由此自动撤销其他用户回答或替用户决定超限及失败语义。",
+        "sources": [
+          {"type": "input_document", "source_id": "SRC-1", "location": "需求第4条续行"},
+          {"type": "input_document", "source_id": "$new_source", "location": "第11至12行：第4条结束后直接进入第5条，原全量且不丢数据续句已删除"}
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "target": "BR-3",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "旧全量假设原先已因5000上限更正而待重评；新版进一步删除支撑它的全量续句。继续保留旧假设和证据待重评，不因新版没有全量句而恢复或自动采用任何截断/分批政策。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "ASM-1",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "旧answer‘不确定。’形成的暂定假设已经失效待重评，新版又删除其原文全量依据。保留basis、verification及来源以追溯，不重新置为active，不把原用户回答改成确认任何新方案。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "CNF-1",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "新版为5000且删除原文全量续句，当前记录中‘原文仍有全部且不丢数据’的依据已变。先标待重评，不在本轮裁定冲突已解决或继续成立。Q-1在当前revision4已open，应保持未决并保留answer及answer_update，不伪称本轮再次从provisional重开。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "FR-2",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "新版新增导出操作日志，现有范围条目未覆盖该明示功能，且原文全量句删除影响既有完整性边界的依据。仅标范围记录待重评，不在本轮完成范围重写。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "FLOW-1",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "新增操作日志会影响导出流程及结果判定，原文全量依据也已删除。保持既有5000及超限未决事实，流程待重评；不自行增加异步生成、分批、截断或日志失败处理结论。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "AC-1",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "新增日志需要可判定的验收预期；原文全量/不丢数据依据已删除，原数量冲突描述也待重评。5000数值已有确认，但超限、导出内容和日志语义仍未获答案，不能提前交付完成的验收。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "EXC-1",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "本条以原文‘不要丢数据’为直接依据，该子句在新版删除，须重评依据与异常预期。并不等于用户已经接受静默漏行或将部分文件标成完整成功，Q-8继续未决。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "EXC-2",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "本条以原文‘全部’时点为依据，新版删除该续句，需要重评一致性边界和用词。不自动取消导出时点、权限变化等仍可能影响正确输出的问题，Q-7保持open。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-1",
+      "changes": {
+        "status": "open",
+        "reason": "当前JSON已在更正轮重开，本轮不是再重开。新版5000与既有answer_update一致，但删除了原全量续句，原数量冲突依据要重评；保留旧answer‘不确定。’及answer_update‘导出上限改成 5000 条。’。文档仍没有说明超过5000如何处理，不能自动关闭本问题或重新采用全量假设；本轮不重复询问5000数字。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-7",
+      "changes": {
+        "status": "open",
+        "reason": "新版删除原文‘全部结果’续句，当前问题的该用词及依据需要随EXC-2重评；当前JSON未有本问题答案，不把该删除解释成用户已经选择结果时点或接受混合时点。本轮仅登记，不列入本轮实际提问。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-8",
+      "changes": {
+        "status": "open",
+        "reason": "新版删除原文‘不要丢数据’，本问题及EXC-1的直接依据发生变化，需要重评；没有收到允许静默漏行或部分成功的新答案。保留当前未决状态，本轮不自动dropped，也不列入实际提问。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-10",
+      "changes": {
+        "status": "open",
+        "reason": "新版删除全量续句，旧recommendation以全部导出为前提，必须连同其依据重评，不能按旧推荐默认新增后台生成能力。等待/超时问题本身未获答案，本轮仅登记，不据此采用新方案。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-11",
+      "changes": {
+        "status": "open",
+        "question": "请研发核实已确认5000上限场景的取数、权限、生成下载、旧报告兼容、时点一致性与中断恢复，以及新增操作日志的现有能力和失败影响；超限及日志覆盖/失败业务政策分别待产品确认。",
+        "reason": "新增操作日志影响研发确认范围；原5000已确认、旧全量假设仍不可作为技术前提。仅登记研发确认项，不让研发替产品决定日志失败后是否允许导出，未作技术可行性结论。"
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.functional_requirements",
+      "ref": "$export_log",
+      "value": {
+        "content": "导出操作需要记录操作日志。原文未说明记录哪些导出尝试、最低日志内容或日志失败后的导出结果政策；本轮只抽取新增原文，不补成已确认细则。",
+        "tag": "confirmed",
+        "sources": [{"type": "input_document", "source_id": "$new_source", "location": "第15行，需求第8条：‘导出操作需要记录操作日志。’"}],
+        "status": "active",
+        "related_ids": ["$log_coverage", "$log_failure", "Q-11"]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "business_assessment.gaps",
+      "ref": "$log_gap",
+      "value": {
+        "content": "新增操作日志缺少记录覆盖范围、最低记录内容和日志写入失败后的业务处理，现阶段只能确认需要记录日志，不能判定日志功能完整成功。",
+        "tag": "inferred",
+        "sources": [{"type": "input_document", "source_id": "$new_source", "location": "第15行，需求第8条；仅给出需记录操作日志，未提供细则"}],
+        "status": "to_reassess",
+        "related_ids": ["$export_log", "$log_coverage", "$log_failure", "Q-11"]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "questions",
+      "ref": "$log_coverage",
+      "value": {
+        "question": "新增操作日志应覆盖哪些导出操作？",
+        "priority": "P0",
+        "resolution": "ask_product",
+        "reason": "本轮实际提出第1题，针对新版新增日志的独立覆盖范围决策；原文没有定义失败、拒绝或取消是否也须留痕。最低记录内容仍登记于日志缺口，后续澄清，不在本题捆绑索要字段答案。",
+        "impact": "决定应记录的事件集合，范围不明就无法验收是否漏记关键操作。",
+        "options": ["A. 所有导出尝试及其最终结果，包括被拒绝、失败和取消", "B. 仅成功导出", "其他", "暂不确定"],
+        "recommendation": "推荐A，便于追踪失败和拒绝操作；这是待选建议，不是已经确定的审计策略。",
+        "status": "open",
+        "related_ids": ["$export_log", "$log_gap", "AC-1", "Q-11"]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "questions",
+      "ref": "$log_failure",
+      "value": {
+        "question": "操作日志记录失败时，是否仍允许完成本次导出？",
+        "priority": "P0",
+        "resolution": "ask_product",
+        "reason": "本轮实际提出第2题，新增日志要求引入了独立的失败结果政策，原文未说明，不能由分析者或研发默认决定。",
+        "impact": "决定未留痕的导出是否允许成为成功结果，影响核心流程与验收；具体重试或持久化机制由研发另行确认。",
+        "options": ["A. 不允许无日志的导出成功，明确提示未完成，后续重试", "B. 允许导出完成，但必须明确记录待补日志的异常并追踪补齐", "其他", "暂不确定"],
+        "recommendation": "推荐A作为讨论起点，直接满足每次操作须有日志的要求；若业务更重可用性可选B，补记能力需研发核实，当前不承诺现有能力。",
+        "status": "open",
+        "related_ids": ["$export_log", "$log_gap", "FLOW-1", "AC-1", "Q-11"]
+      }
+    }
+  ],
+  "set": {
+    "meta.analysis_status": "stale",
+    "meta.readiness": "not_ready",
+    "context.source_ids": ["SRC-1", "$new_source"],
+    "impact_analysis.affected_requirements": ["REQ-2026-005/BR-1", "REQ-2026-005/BR-2", "REQ-2026-005/BR-3", "REQ-2026-005/ASM-1", "REQ-2026-005/CNF-1", "REQ-2026-005/FR-2", "REQ-2026-005/FLOW-1", "REQ-2026-005/AC-1", "REQ-2026-005/EXC-1", "REQ-2026-005/EXC-2", "REQ-2026-005/Q-1", "REQ-2026-005/Q-7", "REQ-2026-005/Q-8", "REQ-2026-005/Q-10", "REQ-2026-005/Q-11"],
+    "impact_analysis.proposed_changes": [
+      "保留SRC-1并新增第二版来源。1000→5000是文档差异，但当前JSON早已确认5000；BR-4/BND-3不随整份来源升级而更新。",
+      "旧全量续句确实删除，先按本轮stale范围保留旧条目及依赖待重评；不恢复旧ASM，不提前撤销其他既有回答，不把删除解释成已确认截断、分批或允许静默漏行。",
+      "新增导出日志原文与缺口，登记覆盖范围及日志失败政策两个实际问题，研发项补充日志能力核实；本轮未完成重评也未运行更新器。"
+    ]
+  },
+  "completion_checks": [
+    {"item": 1, "satisfied": true, "question_refs": [], "reason": "改善仿真结果导出的目标未变，新增日志不需要重复询问原导出动因。"},
+    {"item": 2, "satisfied": false, "question_refs": ["Q-2", "Q-6"], "reason": "原导出对象范围及生命周期场景仍未获答案，新版没有补充。"},
+    {"item": 3, "satisfied": false, "question_refs": ["Q-1", "Q-2", "Q-5", "Q-6", "Q-7", "$log_coverage", "$log_failure"], "reason": "既有导出流程缺口仍在，新增日志覆盖及失败分支尚未明确；本轮仅标待重评。"},
+    {"item": 4, "satisfied": false, "question_refs": ["Q-1", "Q-3", "Q-4", "Q-5", "Q-6", "Q-7", "$log_coverage", "$log_failure"], "reason": "5000早已确认并保留；删除全量续句后的数量/完整性规则尚待重评，新增日志规则和原内容规则仍不完整。"},
+    {"item": 5, "satisfied": false, "question_refs": ["Q-1"], "reason": "CNF-1所依据的原文全量句已经删除，需要重评，不在stale首轮提前宣布矛盾已处理；Q-1原本open且继续保留。"},
+    {"item": 6, "satisfied": false, "question_refs": ["Q-1", "Q-5", "Q-6", "Q-7", "Q-8", "Q-9", "Q-10", "$log_failure"], "reason": "原权限、时点及异常边界仍缺结论，部分原文依据被删；新增日志失败政策也未明确。"},
+    {"item": 7, "satisfied": false, "question_refs": ["Q-1", "Q-2", "Q-3", "Q-4", "Q-5", "Q-6", "Q-7", "Q-8", "$log_coverage", "$log_failure"], "reason": "导出正确集合及内容仍不可判定，日志事件覆盖及失败时结果也未定义，不能把新增一句原文当作完整验收。"},
+    {"item": 8, "satisfied": true, "question_refs": [], "reason": "仅对用户提供的新旧文档和当前JSON做增量对照，没有开展其他历史检索或基线对照。"},
+    {"item": 9, "satisfied": true, "question_refs": ["Q-11"], "reason": "已有研发确认项补充日志现有能力与失败影响核实，无技术可行性结论。"},
+    {"item": 10, "satisfied": true, "question_refs": ["Q-12"], "reason": "保留已有界面依赖判断与页面资料缺失登记；原文未提出新的日志查询界面，不自行增加页面功能。"},
+    {"item": 11, "satisfied": true, "question_refs": ["Q-1", "Q-5", "Q-6", "Q-7", "Q-8", "$log_coverage", "$log_failure"], "reason": "既有有效5000、旧失效假设、原文删除及新增日志缺口分别记录；可写标明stale和缺口的草稿，不可当作重评完成或直接交付的结果。"}
+  ]
+}

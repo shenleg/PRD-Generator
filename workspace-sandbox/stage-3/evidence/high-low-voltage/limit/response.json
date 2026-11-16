@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "REQ-2026-001",
+  "revision": 2,
+  "id_map": {
+    "$assumption_scale_at_limit": "ASM-1"
+  },
+  "affected_ids": [
+    "Q-6",
+    "ASM-1"
+  ],
+  "written": true
+}

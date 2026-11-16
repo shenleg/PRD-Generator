@@ -1,0 +1,82 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "REQ-2026-001",
+  "base_revision": 2,
+  "change_type": "supplement",
+  "actor": "user",
+  "user_statement": "结束",
+  "summary": "用户明确回复“结束”，完成会话控制确认control:continue_or_finish的结束选择，立即停止所有新业务和控制提问。仅将analysis_status由clarifying改为completed，就绪度仍为not_ready；结束不是业务问题的回答、风险接受、范围排除或假设确认。Q-1至Q-5保持open，Q-6保持provisional并保留active ASM-1及验证责任，Q-7保持open研发待确认。核心流程、规则、边界和验收缺口继续保留；业务追问总计仍为1轮，不新增业务轮次。未开展历史检索或基线对照、技术可行性评估及完整视觉分析。仅产出补丁，不修改正式文件、不调用updater、不生成报告。",
+  "operations": [],
+  "set": {
+    "meta.analysis_status": "completed",
+    "meta.readiness": "not_ready"
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "核心目标明确：改善工程师手工整理开关动作逻辑设计表效率低、容易出错的问题；用户结束未改变业务目标。"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "核心用户为工程师，核心场景为架构仿真平台的架构图中根据勾选的高低压组合生成逻辑设计表，原文依据未变。"
+    },
+    {
+      "item": 3,
+      "satisfied": false,
+      "question_refs": ["Q-1", "Q-2", "Q-3"],
+      "reason": "组合定义、跨压配合与输出契约仍未回答，核心流程不能完整还原；结束仅停止追问，不补全规则。"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": ["Q-1", "Q-4", "Q-2"],
+      "reason": "组合语义、合法状态和约束及高低压选中项关系仍未知，对应P0保持open；未把结束视为采用推荐。"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "当前会话与唯一业务原文没有发现未处理重大矛盾；本轮结束指令没有新增业务冲突。本结论不包含历史对照。"
+    },
+    {
+      "item": 6,
+      "satisfied": false,
+      "question_refs": ["Q-5", "Q-4"],
+      "reason": "无开关、单类开关、未勾选及不合法组合等关键边界和异常的处理仍未明确；ASM-1仅覆盖规模P1的暂定方向，不能代替这些P0。"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": ["Q-1", "Q-2", "Q-3", "Q-5", "Q-4"],
+      "reason": "核心输出及边界仍没有可判定预期，AC-2继续to_reassess，不能形成完整可验证的核心验收。"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "明确记录本阶段未开展历史检索或基线对照，不将没有对照解释为与历史兼容。"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": ["Q-7"],
+      "reason": "保留现有平台数据、分类与状态能力及规模处理限制的ask_dev事项；未开展技术可行性评估，不给出确定技术结论。"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "ui_dependent=true及缺少现有页面资料的记录继续有效；本轮没有开展完整视觉分析。"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": ["Q-1", "Q-2", "Q-3", "Q-4", "Q-5", "Q-6", "Q-7"],
+      "reason": "未答核心问题、研发确认项和ASM-1的依据及验证责任均明确保留。用户只决定结束，没有接受风险或确认假设；当前内容只能支撑醒目标注风险的初步草稿，不支持就绪交接。"
+    }
+  ]
+}

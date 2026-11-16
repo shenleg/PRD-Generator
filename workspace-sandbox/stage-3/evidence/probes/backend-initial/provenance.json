@@ -1,0 +1,5 @@
+{
+  "patch_sha256": "7a77d80fa4e7ba5c76a3ca7bef1d3fbe7e7a677b9b75a4c826cf1e36199174a9",
+  "origin": "/root/orca/projects/test-skill/.claude/worktrees/agent-ab890609f8af25d2a/workspace-sandbox/stage-3/probes/patches/backend-initial.json",
+  "mode": "actual_patch_application"
+}

@@ -1,0 +1,5 @@
+{
+  "patch_sha256": "777cc3757044a4bbe4e35166c7d69bc80f774d08e9665e9dad275f6bb3b68800",
+  "origin": "/root/orca/projects/test-skill/.claude/worktrees/agent-ab890609f8af25d2a/workspace-sandbox/stage-3/probes/patches/defect-initial.json",
+  "mode": "actual_patch_application"
+}

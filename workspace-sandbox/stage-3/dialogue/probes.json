@@ -1,0 +1,22 @@
+[
+  {
+    "group": "probes", "name": "idea", "input": "tests/fixtures/stage-2-probes/idea.md", "record": "evidence/probes/idea-initial", "asked_aliases": ["$q_scenario", "$q_table", "$q_reason"], "control_questions": [],
+    "assistant_message": "当前理解：你希望系统自动生成高低压开关的逻辑设计表。现在只有这项生成诉求，还没有说明使用者、表的具体含义或生成规则。我不会先把它解释成开关状态全排列，也不会假定存在操作页面。\n\n先确认三个问题：\n1. 这张表主要由谁、在什么工作场景下使用？\nA. 设计人员编制开关逻辑方案\nB. 审核人员校核已有方案\nC. 其他，请说明实际用户和场景\nD. 暂不确定\n建议先围绕一个真实使用场景说明；若目标是编制方案，可从 A 开始讨论，但目前不视为已选择。这个答案会决定生成前后的主流程。\n\n2. 你说的‘逻辑设计表’具体是哪一种业务结果？\nA. 记录开关状态与相应动作关系的表\nB. 记录开关间联锁或控制条件的表\nC. 其他，可用一个实际表格或小例子说明\nD. 暂不确定\n推荐 C，用一个实际结果或小例子确定含义，避免仅凭名称误解；A、B 只是可能解释，不是已确认范围。\n\n3. 希望自动生成这张表，主要是为了解决什么问题？\nA. 减少人工编制工作\nB. 减少漏项或逻辑错误\nC. 其他，请简述\nD. 暂不确定\n推荐选择最贴近实际的主要痛点并简述，不预设 A 或 B 已成立，也不需要提供收益数字。\n\n生成输入、业务规则及缺失或冲突输入的处理仍待后续澄清，本轮不继续展开。现有系统能力登记研发确认。目前只能形成标注缺口的初步草稿；未开展历史对照、技术评估或视觉分析。"
+  },
+  {
+    "group": "probes", "name": "backend", "input": "tests/fixtures/stage-2-probes/backend.md", "record": "evidence/probes/backend-initial", "asked_aliases": [], "control_questions": [],
+    "assistant_message": "当前理解：新增供内部服务调用的后端查询接口，以一个非空 task_id 读取既有仿真结果。存在且有权限时返回该任务的 result_id 和 status；不存在返回 not_found；无权访问返回 forbidden。使用既有服务身份，不变更认证机制，不增加过滤或分页，不改变结果计算，也不涉及页面交互。\n\n目标、调用场景、输入输出和三类验收样本已经明确，本轮没有需要补问的产品问题。空 task_id 不符合原文声明的调用前提，不另造错误码。现有接口、权限判断、结果字段和接口协议支持情况留给研发核对，不能据合成输入认定已有能力。\n\n可形成需求草稿；未开展历史对照、技术可行性评估或视觉分析。"
+  },
+  {
+    "group": "probes", "name": "defect", "input": "tests/fixtures/stage-2-probes/defect.md", "record": "evidence/probes/defect-initial", "asked_aliases": [], "control_questions": [],
+    "assistant_message": "当前理解：这是任务列表状态展示的缺陷修复，不增加新功能。已成功完成且状态服务返回 succeeded 的任务，重新打开列表后仍显示 running；修复后应显示 succeeded。失败和取消任务保持既有显示规则，不能被误改为 succeeded；不调整刷新机制或页面布局。\n\n复现条件、预期行为、影响范围和回归边界已经明确，本轮不重复询问，也不追问缺陷修复的收益。实际 running 与预期 succeeded 是缺陷对照，不是两条相互矛盾的业务规则。\n\n原因和实现交研发排查，不预判缓存、映射或刷新机制为根因。该需求依赖任务列表界面，但不需要额外视觉设计稿。可形成需求草稿；未开展历史对照、技术评估或完整视觉分析。"
+  },
+  {
+    "group": "probes", "name": "notification", "input": "tests/fixtures/stage-2-probes/notification.md", "record": "evidence/probes/notification-initial", "asked_aliases": ["$q_reason"], "control_questions": [],
+    "assistant_message": "当前理解：任务仅在 succeeded 时，向创建者已登记邮箱发送一封完成通知，内容仅含 task_id、完成状态和既有结果链接。失败、取消和重复完成事件不新增邮件。缺少邮箱或发送失败时记录失败原因，任务状态不变；本期不增加订阅、界面或重试。\n\n通知对象、渠道、触发和验收都已明确，不需要再问。只补充一句业务背景：\n\n新增成功完成邮件通知，主要是为了解决什么问题？\nA. 让创建者及时得知完成，减少主动查询\nB. 避免创建者遗漏完成结果\nC. 其他，请简述实际原因\nD. 暂不确定\n\n建议从最贴近实际的 A 或 B 选一个作为主要原因；若均不符选 C。具体原因需要由你确认，目前不采用任何选项，也不需要频率、成本或 ROI 数字。\n\n现有邮件发送能力、去重和失败留痕支持登记研发确认。当前可形成列明遗留原因问题和研发确认项的草稿；未开展历史对照、技术评估或视觉分析。"
+  },
+  {
+    "group": "probes", "name": "notification-with-reason", "input": "tests/fixtures/stage-2-probes/notification-with-reason.md", "record": "evidence/probes/notification-with-reason-initial", "asked_aliases": [], "control_questions": [],
+    "assistant_message": "当前理解：工程师不希望守着任务页等待，因此需要在任务成功完成后通过邮件获知结果。通知接收人为任务创建者，使用已登记邮箱，仅 succeeded 时触发，邮件仅含 task_id、完成状态和既有结果链接。失败、取消和重复完成事件不新增邮件；邮箱缺失或发送失败留失败原因，任务状态不变。本期不增加订阅、界面或重试。\n\n业务原因、用户场景、核心规则和验收已经明确，本轮没有需要补问的产品问题，不重复询问原因，也不索要使用频率或收益数字。背景提到任务页，不等于本次需要改造界面。\n\n现有发送能力、去重及失败留痕实现登记研发确认，不将合成输入当作实际能力证据。可形成需求草稿；未开展历史对照、技术评估或完整视觉分析。"
+  }
+]

@@ -1,0 +1,110 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "REQ-2026-003",
+  "base_revision": 5,
+  "change_type": "supplement",
+  "actor": "user",
+  "user_statement": "这是新版需求文档，请对照更新。",
+  "summary": "对已保存revision5/SRC-2进行内部重评，没有新用户答案，也没有再次提问。新版第2条不再包含所有用户可删除的授权，显式撤回旧BR-1及不再成立的旧原文权限冲突CNF-1；Q-1保留原answer并dropped。当前BR-2授权语义不变，补充新版来源并与仍成立的对象关系问题重连；重连AC-2/BND-2/Q-3以隔离历史撤销传播。运行任务列表操作、非运行任务不可恢复规则和原有未决问题不撤回。新版影响已完成重评，状态改为clarifying，既有核心缺口仍not_ready。原diff中的四个实际间接依赖不再声称完全不改。",
+  "operations": [
+    {
+      "op": "update",
+      "target": "BR-1",
+      "changes": {
+        "related_ids": ["CNF-1", "Q-1"],
+        "reason": "SRC-2第2条已经用创建者和管理员替换所有用户，本旧原文候选授权不再成立；仅保留历史冲突/问题关联，当前对象关系问题Q-3改由BR-2承接，避免源条款撤回废弃仍成立的问题。旧正文与来源不删除。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "CNF-1",
+      "changes": {
+        "related_ids": ["BR-1", "Q-1"],
+        "reason": "已完成SRC-2第2条与第5条对照：旧所有用户与角色限制的原文对立不再存在，既有用户以第5条为准的回答也未撤销。历史冲突退役，当前规则与对象关系不再依赖本历史节点；作业/任务是否同对象仍由Q-3澄清。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-1",
+      "changes": {
+        "status": "dropped",
+        "answer": "以第 5 条为准，创建者和管理员可以删除，其他人只能看。",
+        "related_ids": ["BR-1", "CNF-1"],
+        "reason": "内部重评确认SRC-2已移除造成原授权冲突的所有用户表述，旧权限裁决问题不再成立；保留原answer作为历史，不伪造新答案，不再次询问相同授权。当前授权继续由BR-2表达，术语适用范围继续由Q-3表达，不随本历史问题废弃。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "BR-2",
+      "changes": {
+        "status": "active",
+        "related_ids": ["Q-3"],
+        "reason": "授权正文和已确认角色不变。SRC-2第5条与原文相同，第2条现为创建者和管理员；新增来源支持现行规则。移除已退役CNF-1/Q-1的有效依赖，只保留尚未明确的作业/任务适用关系，不自动确认两个术语同义。",
+        "sources": [
+          {"type": "input_document", "source_id": "SRC-1", "location": "需求第5条"},
+          {"type": "user_answer", "location": "第1轮用户回答（本次测试的模拟输入）/删除权限：‘以第 5 条为准，创建者和管理员可以删除，其他人只能看。’"},
+          {"type": "input_document", "source_id": "SRC-2", "location": "第9行需求第2条及第12行需求第5条；第5条工程创建者/管理员授权未变"}
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "target": "AC-2",
+      "changes": {
+        "related_ids": ["BR-2", "BR-4", "BND-1", "Q-4"],
+        "reason": "本轮仅将已知授权断言重连到现行BR-2，移除历史权限问题Q-1，不改正文。运行中禁止删除的旧断言原本因另一次运行任务列表操作补充而待重评，仍保留to_reassess及Q-4，不在本轮擅自解决该旧语义冲突。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "BND-2",
+      "changes": {
+        "related_ids": ["Q-6", "BR-2", "Q-5"],
+        "reason": "候选选择/无权限边界正文不变；授权依据直接重连到BR-2，不再经已退役Q-1传递。实际选中集合和部分失败问题Q-6/Q-5仍未回答，不受历史原文授权撤回影响。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-3",
+      "changes": {
+        "status": "open",
+        "related_ids": ["FR-1", "BR-2"],
+        "reason": "新版仍分别使用作业与任务，没有确认对象是否相同。该问题仍成立，移除旧所有用户原文BR-1和已退役CNF-1的依赖，直接关联当前批量删除FR-1与授权BR-2。仅内部重连，本轮没有新增答案或再次实际提问。"
+      }
+    },
+    {
+      "op": "withdraw",
+      "target": "BR-1",
+      "reason": "实际用户提供的新版SRC-2第2条已经替换所有用户可操作这一旧原文授权。显式撤回该旧候选陈述，保留正文和SRC-1，不改变BR-2及任何运行/非运行任务规则。"
+    },
+    {
+      "op": "withdraw",
+      "target": "CNF-1",
+      "reason": "SRC-2已经消除该旧原文权限对立；内部重评确认本历史冲突不再成立，显式退役并保留历史及原answer所在Q-1。"
+    }
+  ],
+  "set": {
+    "meta.analysis_status": "clarifying",
+    "meta.readiness": "not_ready",
+    "impact_analysis.affected_requirements": ["REQ-2026-003/BR-1", "REQ-2026-003/CNF-1", "REQ-2026-003/Q-1", "REQ-2026-003/BR-2", "REQ-2026-003/AC-2", "REQ-2026-003/BND-2", "REQ-2026-003/Q-3"],
+    "impact_analysis.proposed_changes": [
+      "完成新版权限影响重评；BR-1/CNF-1显式withdraw，Q-1保留旧answer后dropped，不再向用户重复询问相同授权。",
+      "BR-2授权正文不变；BR-2/AC-2/BND-2/Q-3是撤销传播下的真实间接依赖，需从原diff的unchanged_item_refs移除并补充到权限差异的impact_refs，不能继续声称这四条逐字段不变。",
+      "运行任务的FR-3/BR-5及非运行任务BR-6、Q-4等保持原值；旧运行语义冲突和结果去留/选择/批量失败问题仍未解决，clarifying/not_ready不代表业务已就绪。",
+      "没有新用户答案、没有新来源或再次提问；本补丁待更新器实际应用，本轮未运行更新器。"
+    ]
+  },
+  "completion_checks": [
+    {"item": 1, "satisfied": true, "question_refs": ["Q-8"], "reason": "批量管理目标及既有运行任务列表操作诉求未变。"},
+    {"item": 2, "satisfied": true, "question_refs": ["Q-3"], "reason": "既有授权用户和场景可表达；作业/任务对象关系仍作为独立范围缺口保留，未擅自认定同义。"},
+    {"item": 3, "satisfied": false, "question_refs": ["Q-2", "Q-4", "Q-5", "Q-6"], "reason": "既有列表操作与记录删除关系、结果访问、选择集合和批量失败流程仍未明确。"},
+    {"item": 4, "satisfied": false, "question_refs": ["Q-2", "Q-3", "Q-4", "Q-5"], "reason": "权限原文影响已经重评且采用现行BR-2；其他删除语义、对象适用范围和结果处理仍无新答案。"},
+    {"item": 5, "satisfied": false, "question_refs": ["Q-4"], "reason": "旧权限冲突CNF-1已因新版原文变化退役，不再阻塞；既有运行任务列表操作与旧删除限制的CNF-2仍待Q-4澄清。"},
+    {"item": 6, "satisfied": false, "question_refs": ["Q-2", "Q-4", "Q-5", "Q-6"], "reason": "运行任务后续跟踪、关联结果、混合批次和部分失败的既有缺口仍在。"},
+    {"item": 7, "satisfied": false, "question_refs": ["Q-2", "Q-3", "Q-4", "Q-5", "Q-6"], "reason": "授权可判定但整体删除流程及结果仍不可完整验收，AC-2的旧运行断言仍待原问题处理。"},
+    {"item": 8, "satisfied": true, "question_refs": [], "reason": "仅对用户提供的两版原文及当前JSON进行增量重评，没有其他历史检索或基线对照。"},
+    {"item": 9, "satisfied": true, "question_refs": ["Q-9"], "reason": "已有研发确认项保留，本轮没有技术可行性结论。"},
+    {"item": 10, "satisfied": true, "question_refs": ["Q-10"], "reason": "界面依赖判断与页面资料缺失登记不变。"},
+    {"item": 11, "satisfied": true, "question_refs": ["Q-2", "Q-3", "Q-4", "Q-5", "Q-6"], "reason": "新版权限差异已处理，历史记录和当前规则隔离，剩余未决风险仍有明确问题，可形成标注风险的草稿但不是就绪需求。"}
+  ]
+}

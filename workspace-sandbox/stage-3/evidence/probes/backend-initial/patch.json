@@ -1,0 +1,53 @@
+{
+  "patch_version":"1.0",
+  "requirement_id":"PROBE-BACKEND",
+  "title":"内部服务按任务编号查询既有仿真结果",
+  "base_revision":0,
+  "change_type":"initial_analysis",
+  "actor":"analyst",
+  "summary":"仅依据 backend.md 首次分析。核心调用场景、输入输出、失败分支、范围及验收均已给出，不新增产品问题，本轮实际提问列表为空。技术能力留给研发确认；未开展历史对照、技术评估和视觉分析。",
+  "operations":[
+    {"op":"add_source","ref":"$source","value":{"name":"backend.md","path":"/root/orca/projects/test-skill/tests/fixtures/stage-2-probes/backend.md","type":"input_document","credibility":"用户指定的合成业务输入，不代表真实系统能力。","last_updated":null,"revision":1}},
+    {"op":"add","collection":"requirements.goals","ref":"$goal","value":{"content":"让内部服务按任务编号读取既有仿真结果。","tag":"confirmed","sources":[{"type":"input_document","source_id":"$source","location":"第5行"}],"status":"active"}},
+    {"op":"add","collection":"requirements.scenarios","ref":"$scenario","value":{"content":"内部服务使用既有服务身份，调用后端查询接口读取某任务的既有仿真结果，不涉及页面和用户交互。","tag":"confirmed","sources":[{"type":"input_document","source_id":"$source","location":"第5至6行"}],"status":"active"}},
+    {"op":"add","collection":"requirements.functional_requirements","ref":"$query","value":{"content":"新增后端查询接口，输入一个非空 task_id，成功返回该任务的 result_id 和 status。","tag":"confirmed","sources":[{"type":"input_document","source_id":"$source","location":"第5至6行"}],"status":"active","related_ids":["$goal","$scenario"]}},
+    {"op":"add","collection":"requirements.business_rules","ref":"$not_found","value":{"content":"任务不存在时返回 not_found。","tag":"confirmed","sources":[{"type":"input_document","source_id":"$source","location":"第6行"}],"status":"active","related_ids":["$query"]}},
+    {"op":"add","collection":"requirements.business_rules","ref":"$forbidden","value":{"content":"无权访问任务时返回 forbidden；调用方使用既有服务身份，本期不变更认证机制。","tag":"confirmed","sources":[{"type":"input_document","source_id":"$source","location":"第6行"}],"status":"active","related_ids":["$query"]}},
+    {"op":"add","collection":"requirements.scope.in_scope","prefix":"FR","ref":"$in_scope","value":{"content":"本期新增供内部服务调用的按单个 task_id 读取既有仿真结果的后端查询接口。","tag":"confirmed","sources":[{"type":"input_document","source_id":"$source","location":"第5至7行"}],"status":"active","related_ids":["$query"]}},
+    {"op":"add","collection":"requirements.scope.out_of_scope","prefix":"CON","ref":"$out_scope","value":{"content":"不涉及页面和用户交互，不增加其他过滤条件，不分页，不改变结果计算，不变更认证机制。","tag":"confirmed","sources":[{"type":"input_document","source_id":"$source","location":"第5至7行"}],"status":"active"}},
+    {"op":"add","collection":"business_assessment.flows","ref":"$flow","value":{"content":"内部服务以既有身份提交非空 task_id；存在且有权限则读取该任务 result_id、status；不存在返回 not_found；无权访问返回 forbidden。此为业务分支，不规定底层检查执行顺序。","tag":"confirmed","sources":[{"type":"input_document","source_id":"$source","location":"第5至7行"}],"status":"active","related_ids":["$query","$not_found","$forbidden"]}},
+    {"op":"add","collection":"business_assessment.boundaries","ref":"$input_boundary","value":{"content":"输入限定为一个非空 task_id，空值不符合声明的调用前提；不擅自增加过滤条件、批量或分页。非法格式的接口协议细节交研发结合既有契约确认，不新造业务错误码。","tag":"inferred","sources":[{"type":"input_document","source_id":"$source","location":"第6至7行"}],"status":"active","related_ids":["$query","$q_dev"]}},
+    {"op":"add","collection":"business_assessment.exceptions","ref":"$exceptions","value":{"content":"原文明示的业务异常为任务不存在和无权访问，分别使用 not_found、forbidden；查询既有结果不改变结果计算。","tag":"confirmed","sources":[{"type":"input_document","source_id":"$source","location":"第6至7行"}],"status":"active","related_ids":["$not_found","$forbidden"]}},
+    {"op":"add","collection":"requirements.acceptance_criteria","ref":"$ac_success","value":{"content":"提供存在且当前服务身份有权限的任务，以其非空 task_id 调用，返回内容包含该任务的 result_id 和 status。","tag":"confirmed","sources":[{"type":"input_document","source_id":"$source","location":"第6至7行"}],"status":"active","related_ids":["$query"]}},
+    {"op":"add","collection":"requirements.acceptance_criteria","ref":"$ac_not_found","value":{"content":"提供不存在的任务，以其非空 task_id 调用，返回 not_found。","tag":"confirmed","sources":[{"type":"input_document","source_id":"$source","location":"第6至7行"}],"status":"active","related_ids":["$not_found"]}},
+    {"op":"add","collection":"requirements.acceptance_criteria","ref":"$ac_forbidden","value":{"content":"提供当前服务身份无权限的任务，以其非空 task_id 调用，返回 forbidden。","tag":"confirmed","sources":[{"type":"input_document","source_id":"$source","location":"第6至7行"}],"status":"active","related_ids":["$forbidden"]}},
+    {"op":"add","collection":"questions","ref":"$q_dev","value":{"question":"研发确认现有接口、既有服务身份权限判断和既有结果字段能否支持上述查询契约，并核对字段格式及非法输入沿用的接口协议。","priority":"P1","resolution":"ask_dev","reason":"原文明示技术支持情况由研发确认，合成输入不能作为真实能力证据。","impact":"影响接口实现和联调，不改变已明确的三类业务返回预期。","options":[],"recommendation":"由研发对照现有接口及上述三组验收样本确认，不向产品索要实现承诺。","status":"open","related_ids":["$query","$forbidden","$input_boundary"]}}
+  ],
+  "set":{
+    "meta.input_type":"existing_document",
+    "meta.analysis_status":"completed",
+    "meta.readiness":"ready_for_document",
+    "context.project_id":"probes",
+    "context.source_ids":["$source"],
+    "context.domain_terms":["task_id","result_id","status","not_found","forbidden","既有服务身份"],
+    "value_assessment.problem":"调用方需要按任务编号读取既有仿真结果。",
+    "value_assessment.affected_users":["内部服务调用方"],
+    "value_assessment.expected_benefits":["可按任务编号读取既有仿真结果"],
+    "value_assessment.business_value":"unknown",
+    "value_assessment.necessity":"necessary",
+    "ux_assessment.ui_dependent":false
+  },
+  "completion_checks":[
+    {"item":1,"satisfied":true,"question_refs":[],"reason":"目标和原因均明确：供调用方按任务编号读取既有仿真结果。"},
+    {"item":2,"satisfied":true,"question_refs":[],"reason":"核心调用方为内部服务，以既有服务身份查询单任务结果，无页面交互。"},
+    {"item":3,"satisfied":true,"question_refs":[],"reason":"非空 task_id 调用以及成功、不存在、无权限分支可还原，无需追加页面流程。"},
+    {"item":4,"satisfied":true,"question_refs":[],"reason":"成功字段、两类业务失败返回、身份与认证边界均已明确，不自行设计实现细节。"},
+    {"item":5,"satisfied":true,"question_refs":[],"reason":"本份输入内部无相互冲突的业务陈述。"},
+    {"item":6,"satisfied":true,"question_refs":["$q_dev"],"reason":"当前声明的非空单编号调用边界、不存在和无权访问均已分析；空输入不属于合约前提，协议细节交研发核对，不扩展为新的核心业务场景。"},
+    {"item":7,"satisfied":true,"question_refs":[],"reason":"原文给出三组可构造样本及可判定的返回预期，逐项形成验收条件。"},
+    {"item":8,"satisfied":true,"question_refs":[],"reason":"本阶段未开展历史检索或基线对照，已明确声明。"},
+    {"item":9,"satisfied":true,"question_refs":["$q_dev"],"reason":"技术能力未评估；按原文登记研发确认，不把合成输入当作现有支持证据。"},
+    {"item":10,"satisfied":true,"question_refs":[],"reason":"原文明确不涉及页面和用户交互，ui_dependent=false。"},
+    {"item":11,"satisfied":true,"question_refs":["$q_dev"],"reason":"仅保留研发能力和协议核对事项，无未确认的产品核心规则或已采用假设；可形成需求草稿，不等于研发已确认。"}
+  ]
+}

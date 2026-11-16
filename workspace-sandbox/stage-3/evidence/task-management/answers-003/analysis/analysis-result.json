@@ -1,0 +1,792 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "REQ-2026-003",
+  "meta": {
+    "analysis_revision": 2,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "existing_document",
+    "analysis_status": "clarifying",
+    "readiness": "not_ready"
+  },
+  "context": {
+    "project_id": "task-management",
+    "domain": "仿真任务管理",
+    "source_ids": [
+      "SRC-1"
+    ],
+    "domain_terms": [
+      "作业（与任务关系未确认）",
+      "任务",
+      "工程创建者",
+      "管理员",
+      "之前的删除逻辑"
+    ]
+  },
+  "requirements": {
+    "goals": [
+      {
+        "content": "为选中的作业提供批量删除能力。删除授权已明确按第5条，运行中的任务不可删，其他任务删除后用户不可恢复；关联结果及批量处理细节仍待定，新增价值原因仍未提供。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第2条"
+          },
+          {
+            "type": "user_answer",
+            "location": "第1轮用户回答（本次测试的模拟输入）/删除权限及删除规则，两段原话见本补丁user_statement"
+          }
+        ],
+        "status": "active",
+        "id": "GOAL-1"
+      }
+    ],
+    "scenarios": [
+      {
+        "content": "用户选中作业后点击删除。当前删除授权按第5条确定为工程创建者和管理员，其他人只读；运行中的任务不能删除。作业与任务的对象关系仍未确认。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第2条及第5条"
+          },
+          {
+            "type": "user_answer",
+            "location": "第1轮用户回答（本次测试的模拟输入）/删除权限及删除规则，两段原话见本补丁user_statement"
+          }
+        ],
+        "status": "active",
+        "id": "SCN-1"
+      }
+    ],
+    "functional_requirements": [
+      {
+        "content": "作业支持选中后批量删除。任务删除授权按第5条，运行中不可删、其他任务删除后用户不可恢复；对象关系、跨页选择、关联结果去留和批量部分失败规则仍未确定。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第2、5、6条"
+          },
+          {
+            "type": "user_answer",
+            "location": "第1轮用户回答（本次测试的模拟输入）/删除权限及删除规则，两段原话见本补丁user_statement"
+          }
+        ],
+        "status": "active",
+        "id": "FR-1",
+        "related_ids": [
+          "BR-2",
+          "BR-4",
+          "Q-2",
+          "Q-3",
+          "Q-5",
+          "Q-6"
+        ]
+      }
+    ],
+    "business_rules": [
+      {
+        "content": "原文陈述：‘所有用户都可以操作’作业批量删除。此处仅保留原文，不视为最终授权规则。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第2条：‘所有用户都可以操作’"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "CNF-1",
+          "Q-1",
+          "Q-3"
+        ],
+        "id": "BR-1"
+      },
+      {
+        "content": "本需求删除授权以原文第5条为准：工程创建者和管理员可以删除，其他人只能看。回答中的‘创建者’按其明确引用的第5条理解为工程创建者，不推广为所有功能的权限。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第5条"
+          },
+          {
+            "type": "user_answer",
+            "location": "第1轮用户回答（本次测试的模拟输入）/删除权限：‘以第 5 条为准，创建者和管理员可以删除，其他人只能看。’"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "CNF-1",
+          "Q-1",
+          "Q-3"
+        ],
+        "id": "BR-2"
+      },
+      {
+        "content": "删除按之前逻辑处理；本轮回答补充了运行中不可删除、其他任务删除后用户不可恢复。旧逻辑材料仍未提供，关联结果如何处理、批量失败与并发状态变化规则仍不能臆造。不可恢复不等于物理擦除。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第6条"
+          },
+          {
+            "type": "user_answer",
+            "location": "第1轮用户回答（本次测试的模拟输入）/删除规则：‘运行中的任务不能删除，其他的直接删，删了就找不回来了。’"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-2",
+          "Q-7",
+          "Q-4",
+          "Q-5",
+          "BR-4"
+        ],
+        "id": "BR-3"
+      },
+      {
+        "content": "运行中的任务不能删除；其他任务可以执行删除，删除后用户不可恢复。这是用户侧业务语义，不代表已确认数据库物理删除、备份清除或关联仿真结果一并删除。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "第1轮用户回答（本次测试的模拟输入）/删除规则：‘运行中的任务不能删除，其他的直接删，删了就找不回来了。’"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-2",
+          "Q-4",
+          "BND-1",
+          "Q-9"
+        ],
+        "id": "BR-4"
+      }
+    ],
+    "constraints": [
+      {
+        "content": "本期尽量不影响仿真引擎，且要求尽快上线；未给定硬期限，也未声明绝对不得修改引擎。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "背景末句；备注第3条"
+          }
+        ],
+        "status": "active",
+        "id": "CON-1"
+      }
+    ],
+    "non_functional_requirements": [],
+    "acceptance_criteria": [
+      {
+        "content": "权限、运行中禁止删除和用户不可恢复已有可验证断言，见新增验收项；完整批量验收仍需确认对象关系、实际选中集合、关联结果去留以及混合不可删除项与部分失败的结果。不能将已有局部断言视为完整验收，不以物理擦除替代用户侧不可恢复语义。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第2、5、6条；备注第3条"
+          },
+          {
+            "type": "user_answer",
+            "location": "第1轮用户回答（本次测试的模拟输入）/删除权限及删除规则，两段原话见本补丁user_statement"
+          }
+        ],
+        "status": "to_reassess",
+        "related_ids": [
+          "FR-1",
+          "BR-2",
+          "BR-4",
+          "AC-2",
+          "GAP-1",
+          "BND-1",
+          "BND-2",
+          "EXC-1",
+          "Q-2",
+          "Q-3",
+          "Q-5",
+          "Q-6"
+        ],
+        "id": "AC-1"
+      },
+      {
+        "content": "已确认部分的验收：工程创建者和管理员按规则获准删除，其他用户不能执行删除；运行中的任务不能删除；其他任务成功删除后用户不可恢复。该业务断言不要求证明物理擦除或关联结果删除，后两者不是本轮已确认结论。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第5条"
+          },
+          {
+            "type": "user_answer",
+            "location": "第1轮用户回答（本次测试的模拟输入）/删除权限及删除规则，两段原话见本补丁user_statement"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "BR-2",
+          "BR-4",
+          "BND-1",
+          "Q-1",
+          "Q-4"
+        ],
+        "id": "AC-2"
+      }
+    ],
+    "scope": {
+      "in_scope": [
+        {
+          "content": "本需求合并分析批量删除、删除授权和删除处理规则；当前运行中任务不允许删除，其他任务的删除不可恢复。‘作业’与‘任务’是否同对象仍待确认，不因权限回答自动合并领域概念，也不扩展到原文以外的删除操作。",
+          "tag": "inferred",
+          "sources": [
+            {
+              "type": "input_document",
+              "source_id": "SRC-1",
+              "location": "需求第2、5、6条"
+            },
+            {
+              "type": "user_answer",
+              "location": "第1轮用户回答（本次测试的模拟输入）/删除权限及删除规则，两段原话见本补丁user_statement"
+            }
+          ],
+          "status": "active",
+          "related_ids": [
+            "FR-1",
+            "BR-1",
+            "BR-2",
+            "BR-3",
+            "BR-4",
+            "Q-3"
+          ],
+          "id": "FR-2"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  "business_assessment": {
+    "flows": [
+      {
+        "content": "已知部分为选中后执行删除，仅工程创建者和管理员获准，运行中任务不能删除，其他任务删除后用户不可恢复。候选后续流程仍需根据对象关系、选择范围、关联结果与逐项执行结果形成完整闭环，不能把这些待定项当成默认规则。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第2、5、6条"
+          },
+          {
+            "type": "user_answer",
+            "location": "第1轮用户回答（本次测试的模拟输入）/删除权限及删除规则，两段原话见本补丁user_statement"
+          }
+        ],
+        "status": "to_reassess",
+        "related_ids": [
+          "BR-2",
+          "BR-4",
+          "Q-2",
+          "Q-3",
+          "Q-5",
+          "Q-6"
+        ],
+        "id": "FLOW-1"
+      }
+    ],
+    "states": [],
+    "boundaries": [
+      {
+        "content": "运行中的任务不能删除。选中集合同时包含运行中与非运行中任务时的整批处理仍由Q-5确定；不能从禁止删除运行中任务推断整批必定失败或允许自动停止仿真。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第2、6条；备注第3条"
+          },
+          {
+            "type": "user_answer",
+            "location": "第1轮用户回答（本次测试的模拟输入）/删除规则：‘运行中的任务不能删除，其他的直接删，删了就找不回来了。’"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-4",
+          "Q-5",
+          "BR-4",
+          "Q-9"
+        ],
+        "id": "BND-1"
+      },
+      {
+        "content": "候选边界：未选对象、跨页或筛选变化后选择是否保留、选择中混有无权限或已被他人删除的对象。必须界定实际删除集合，避免误删未选择对象。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第2条：‘选中之后点删除’；需求第5条"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-6",
+          "Q-1",
+          "Q-5"
+        ],
+        "id": "BND-2"
+      }
+    ],
+    "exceptions": [
+      {
+        "content": "已知运行中的任务不可删除，故混合运行中与非运行中对象的批次必有不可删除项；但整批拒绝还是仅处理合法项仍待定。执行时权限或状态变化、部分失败及重复点击仍需明确结果，不能以成功提示掩盖未执行项。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第2、5、6条"
+          },
+          {
+            "type": "user_answer",
+            "location": "第1轮用户回答（本次测试的模拟输入）/删除规则：‘运行中的任务不能删除，其他的直接删，删了就找不回来了。’"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-5",
+          "Q-9",
+          "BR-4"
+        ],
+        "id": "EXC-1"
+      }
+    ],
+    "gaps": [
+      {
+        "content": "已明确运行中不可删除、其他任务删除后用户不可恢复。仍缺关联结果去留及访问方式、作业/任务对象关系、选择范围、批量部分失败与执行时状态变化处理；旧规则材料未提供，不能宣称全部旧逻辑已确认。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第2、5、6条"
+          },
+          {
+            "type": "user_answer",
+            "location": "第1轮用户回答（本次测试的模拟输入）/删除权限及删除规则，两段原话见本补丁user_statement"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-2",
+          "Q-3",
+          "Q-5",
+          "Q-6",
+          "Q-7",
+          "BR-4"
+        ],
+        "id": "GAP-1"
+      }
+    ],
+    "conflicts": [
+      {
+        "content": "原文第2条所有用户可操作与第5条角色限制的权限冲突已在本次测试回答中处理：用户明确以第5条为准。保留两处原文和BR-1的原文陈述作为历史证据，当前删除授权采用BR-2，不再将‘所有用户’作为有效授权结论。作业与任务的对象关系仍由Q-3单独澄清。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "需求第2条；需求第5条"
+          },
+          {
+            "type": "user_answer",
+            "location": "第1轮用户回答（本次测试的模拟输入）/删除权限：‘以第 5 条为准，创建者和管理员可以删除，其他人只能看。’"
+          }
+        ],
+        "status": "active",
+        "related_question": "Q-1",
+        "related_ids": [
+          "BR-1",
+          "BR-2",
+          "Q-1",
+          "Q-3"
+        ],
+        "id": "CNF-1"
+      }
+    ]
+  },
+  "ux_assessment": {
+    "ui_dependent": true,
+    "design_pending_items": [
+      "现有任务页未提供；业务规则确认后确定选择、范围提示和删除结果反馈，不以界面设计替代删除语义"
+    ]
+  },
+  "questions": [
+    {
+      "question": "针对‘选中后点击删除’这个操作，最终应允许哪些用户执行？若作业与任务权限不同，请分别指出。",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "第1轮实际提出的权限问题已由本轮模拟用户回答明确以第5条为准；第2轮不重复询问。该回答不自动确认作业与任务同义，也不决定其他功能权限。",
+      "impact": "决定删除授权边界，未解决前不能确认安全流程或验收。",
+      "options": [
+        "A. 仅工程创建者和管理员，其他用户只读",
+        "B. 所有用户均可删除",
+        "C. 普通用户仅可删除自己创建的对象，工程创建者和管理员可删除工程内对象",
+        "其他（若作业与任务不同，请分别说明）",
+        "暂不确定"
+      ],
+      "recommendation": "推荐A，优先采用原文已有的较收敛授权边界，避免误授权；仅为建议，尚未生效。",
+      "status": "answered",
+      "related_ids": [
+        "CNF-1",
+        "BR-1",
+        "BR-2",
+        "FR-1"
+      ],
+      "id": "Q-1",
+      "answer": "以第 5 条为准，创建者和管理员可以删除，其他人只能看。",
+      "sources": [
+        {
+          "type": "user_answer",
+          "location": "第1轮用户回答（本次测试的模拟输入）/删除权限：‘以第 5 条为准，创建者和管理员可以删除，其他人只能看。’"
+        }
+      ]
+    },
+    {
+      "question": "删除任务后，关联的仿真结果应如何处理？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "第1轮删除效果问题已得到部分回答：运行中不可删，其他任务删除后用户不可恢复；但没有说明关联结果。第2轮实际提出，第1题，仅追问尚未回答且可能造成数据丢失的结果去留，不重新询问已明确的恢复性，不把该回答误记为原选项B。",
+      "impact": "若擅自联删可能丢失仿真数据；若保留但无访问方式则结果可能实际不可用，完整删除效果仍无法验收。",
+      "options": [
+        "A. 保留关联结果，明确删除任务后仍可访问的授权入口",
+        "B. 关联结果也随任务删除，用户不可恢复",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "推荐A作为讨论起点，避免把未确认的数据一并删除；是否保留及保留后的访问方式须由用户明确，不能据此承诺已有独立结果入口。",
+      "status": "open",
+      "related_ids": [
+        "BR-3",
+        "BR-4",
+        "GAP-1",
+        "AC-1",
+        "Q-9"
+      ],
+      "id": "Q-2",
+      "answer": "运行中的任务不能删除，其他的直接删，删了就找不回来了。",
+      "sources": [
+        {
+          "type": "input_document",
+          "source_id": "SRC-1",
+          "location": "需求第6条"
+        },
+        {
+          "type": "user_answer",
+          "location": "第1轮用户回答（本次测试的模拟输入）/删除规则：‘运行中的任务不能删除，其他的直接删，删了就找不回来了。’"
+        }
+      ]
+    },
+    {
+      "question": "本文‘作业’与‘任务’是什么关系？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "仅登记，本轮未问。保留两种原词，当前先让用户对同一删除操作说明权限和效果。",
+      "impact": "关系不明会改变删除对象、权限适用范围及批量处理范围。",
+      "options": [
+        "A. 同一业务对象的不同称呼",
+        "B. 不同对象，请说明隶属关系及各自删除入口",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "请依实际领域定义确认；没有依据推荐两者必须同义。优先明确是否同对象，再统一用词。",
+      "status": "open",
+      "related_ids": [
+        "FR-1",
+        "BR-1",
+        "BR-2",
+        "CNF-1"
+      ],
+      "id": "Q-3"
+    },
+    {
+      "question": "仍在运行的任务应允许执行删除吗？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "原问题首轮仅登记，但本轮删除规则回答已明确运行中不可删除，属于实际回答的附带信息；不再单独追问，也不额外计为已发出问题。",
+      "impact": "可能中断仿真、留下孤立结果或违反不影响引擎的诉求。",
+      "options": [
+        "A. 运行中不允许删除，结束后才允许",
+        "B. 允许移出列表但继续运行，保留结束后的结果访问途径",
+        "C. 明确停止成功后才允许删除",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "推荐A作为较保守的讨论起点，先避免隐含停止仿真；须核对用户实际旧规则。",
+      "status": "answered",
+      "related_ids": [
+        "BND-1",
+        "BR-3",
+        "CON-1"
+      ],
+      "id": "Q-4",
+      "answer": "运行中的任务不能删除，其他的直接删，删了就找不回来了。",
+      "sources": [
+        {
+          "type": "user_answer",
+          "location": "第1轮用户回答（本次测试的模拟输入）/删除规则：‘运行中的任务不能删除，其他的直接删，删了就找不回来了。’"
+        }
+      ]
+    },
+    {
+      "question": "一批选中对象中有不能删除或删除失败的对象时，整批结果应如何判定？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "仅登记，本轮未问。批量操作的部分成功策略影响核心正确性，不能仅由实现决定。",
+      "impact": "决定哪些对象会改变、用户是否能识别未删除对象及如何安全重试。",
+      "options": [
+        "A. 预检发现不允许项则整批不执行，并指出原因；执行期失败单独如实报告",
+        "B. 对允许项逐项执行，明确报告成功、失败与未执行项",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "推荐B作为批量操作的讨论方案，避免单项问题阻断所有合法项，但必须逐项报告，不视为事务保证。",
+      "status": "open",
+      "related_ids": [
+        "EXC-1",
+        "BND-2",
+        "AC-1"
+      ],
+      "id": "Q-5"
+    },
+    {
+      "question": "批量删除的‘选中’集合如何限定？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "仅登记，本轮未问。范围不明可能删除当前页面以外并非用户意图中的对象。",
+      "impact": "影响可删除对象集合和误删边界。",
+      "options": [
+        "A. 只作用于明确勾选项，跨页或筛选变化时清空选择",
+        "B. 保留跨页明确勾选项，并展示完整待删除集合",
+        "C. 支持全量筛选结果选择，执行前明确展示范围",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "推荐A作为最小范围起点，减少隐含选中导致的误删；是否跨页由用户确认。",
+      "status": "open",
+      "related_ids": [
+        "FR-1",
+        "BND-2",
+        "FLOW-1"
+      ],
+      "id": "Q-6"
+    },
+    {
+      "question": "提供之前删除逻辑中尚未确认的对象、关联结果、批量失败及执行时状态变化处理条款。",
+      "priority": "P0",
+      "resolution": "lookup",
+      "reason": "旧规则未提供，本轮已由回答确认权限、运行中限制及用户不可恢复，不再将这些当成未知；关联结果和批量处理仍缺依据。仅登记，本轮不作为另一道实际问题。",
+      "impact": "无法声称完整沿用旧逻辑；已明确的业务规则不因缺少旧文档退回未知。",
+      "options": [],
+      "recommendation": "",
+      "status": "open",
+      "related_ids": [
+        "BR-3",
+        "GAP-1",
+        "Q-2",
+        "Q-3",
+        "Q-5",
+        "Q-6"
+      ],
+      "id": "Q-7"
+    },
+    {
+      "question": "新增批量删除主要希望解决什么问题？",
+      "priority": "P1",
+      "resolution": "ask_product",
+      "reason": "仅登记，本轮未问。背景未说明批量删除原因，只保留一次轻量价值问题，不追问ROI或频率数字。",
+      "impact": "帮助决定批量能力的必要范围，不否定明确提出的功能。",
+      "options": [
+        "A. 清理不再需要的任务以减少列表干扰",
+        "B. 满足任务及结果的数据清理要求",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "请选实际动因；没有依据将任一原因当成事实，无须编造量化收益。",
+      "status": "open",
+      "related_ids": [
+        "GOAL-1",
+        "FR-1"
+      ],
+      "id": "Q-8"
+    },
+    {
+      "question": "请研发核实既有删除与权限机制是否支持已确认的运行中禁止删除、其他任务用户不可恢复，并核实结果依赖、并发保护及引擎影响。",
+      "priority": "P1",
+      "resolution": "ask_dev",
+      "reason": "研发登记，业务不可恢复不代表数据库必须物理删除或清理备份；存储实现待研发判断。不得把当前技术能力当成已核实。",
+      "impact": "业务规则确认后才可评估实现及数据一致性风险。",
+      "options": [],
+      "recommendation": "",
+      "status": "open",
+      "related_ids": [
+        "FR-1",
+        "BR-2",
+        "BR-3",
+        "BR-4",
+        "CON-1",
+        "EXC-1",
+        "BND-1"
+      ],
+      "id": "Q-9"
+    },
+    {
+      "question": "提供现有任务页中选择与删除的相关页面资料。",
+      "priority": "P1",
+      "resolution": "lookup",
+      "reason": "备注引用的现有页面缺失；只登记与当前操作相关资料，不展开完整视觉分析。",
+      "impact": "待业务确认后确定入口、选择范围提示与操作结果反馈。",
+      "options": [],
+      "recommendation": "",
+      "status": "open",
+      "related_ids": [
+        "FLOW-1",
+        "BND-2"
+      ],
+      "id": "Q-10"
+    }
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "value_assessment": {
+    "problem": "要求新增选中后批量删除，具体新增动因未给出。",
+    "affected_users": [
+      "工程创建者和管理员可执行删除；其他用户在本删除场景只读"
+    ],
+    "business_value": "unknown",
+    "necessity": "unknown"
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [
+        "Q-8"
+      ],
+      "reason": "批量删除目标明确，新增原因仍以原P1登记，不重复问。"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [
+        "Q-3"
+      ],
+      "reason": "选中后删除的用户场景明确，授权角色已按第5条确认；对象关系仍作为范围规则缺口。"
+    },
+    {
+      "item": 3,
+      "satisfied": false,
+      "question_refs": [
+        "Q-2",
+        "Q-3",
+        "Q-5",
+        "Q-6"
+      ],
+      "reason": "部分删除流程已知，但关联结果、对象关系、选择集合及批量处理未定，无法还原完整流程。"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": [
+        "Q-2",
+        "Q-3",
+        "Q-5",
+        "Q-7"
+      ],
+      "reason": "权限、运行中限制和不可恢复已确认；仍缺结果去留、对象定义及批量处理规则，不能过度解释‘直接删’。"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "用户明确以第5条为准，权限冲突已处理；原文两种陈述作为证据保留，不再同时作为当前授权规则。"
+    },
+    {
+      "item": 6,
+      "satisfied": false,
+      "question_refs": [
+        "Q-2",
+        "Q-5",
+        "Q-6"
+      ],
+      "reason": "运行中禁止删除已有规则，但关联结果、混合批次、选择范围和执行失败的处理仍不完整。"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "Q-2",
+        "Q-3",
+        "Q-5",
+        "Q-6"
+      ],
+      "reason": "已有局部验收断言，完整删除集合与结果处置仍不可判定，不能因两问已回答抬高就绪度。"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "没有开展历史检索或基线对照；旧逻辑缺失如实登记，用户实际补充部分已吸收。"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [
+        "Q-9"
+      ],
+      "reason": "更新研发确认项，明确业务不可恢复与物理存储实现不同，不提供技术结论。"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [
+        "Q-10"
+      ],
+      "reason": "界面依赖判断不变，现有任务页缺失仍登记。"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [
+        "Q-2",
+        "Q-3",
+        "Q-5",
+        "Q-6",
+        "Q-7"
+      ],
+      "reason": "回答原话、已确认边界与剩余数据风险分别记录，无擅自采用的删除假设；可形成带缺口初稿，仍不适合直接实施。"
+    }
+  ],
+  "impact_analysis": {
+    "affected_requirements": [
+      "REQ-2026-003"
+    ],
+    "proposed_changes": [
+      "确认删除授权与运行中禁止删除，确认用户侧不可恢复；保留关联结果和批量处理缺口，不推断底层物理删除"
+    ]
+  }
+}

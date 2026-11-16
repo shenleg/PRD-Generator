@@ -1,0 +1,35 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "PROBE-IDEA",
+  "revision": 1,
+  "id_map": {
+    "$source": "SRC-1",
+    "$goal": "GOAL-1",
+    "$generate": "FR-1",
+    "$scope": "FR-2",
+    "$gap_scenario": "GAP-1",
+    "$gap_table": "GAP-2",
+    "$boundary": "BND-1",
+    "$q_scenario": "Q-1",
+    "$q_table": "Q-2",
+    "$q_reason": "Q-3",
+    "$q_rules": "Q-4",
+    "$q_dev": "Q-5"
+  },
+  "affected_ids": [
+    "GOAL-1",
+    "FR-1",
+    "BND-1",
+    "GAP-1",
+    "GAP-2",
+    "Q-1",
+    "Q-2",
+    "Q-3",
+    "Q-4",
+    "Q-5",
+    "FR-2",
+    "SRC-1"
+  ],
+  "written": true
+}

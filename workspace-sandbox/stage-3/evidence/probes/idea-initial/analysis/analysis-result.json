@@ -1,0 +1,335 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "PROBE-IDEA",
+  "meta": {
+    "analysis_revision": 1,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "idea",
+    "analysis_status": "clarifying",
+    "readiness": "not_ready"
+  },
+  "context": {
+    "project_id": "probes",
+    "source_ids": [
+      "SRC-1"
+    ],
+    "domain_terms": [
+      "高低压开关",
+      "逻辑设计表（含义待澄清）"
+    ]
+  },
+  "requirements": {
+    "goals": [
+      {
+        "content": "希望系统自动生成高低压开关的逻辑设计表。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第1行"
+          }
+        ],
+        "status": "active",
+        "id": "GOAL-1"
+      }
+    ],
+    "scenarios": [],
+    "functional_requirements": [
+      {
+        "content": "系统自动生成高低压开关的逻辑设计表；输入、生成规则及输出含义尚未提供。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第1行"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "GOAL-1"
+        ],
+        "id": "FR-1"
+      }
+    ],
+    "business_rules": [],
+    "constraints": [],
+    "non_functional_requirements": [],
+    "acceptance_criteria": [],
+    "scope": {
+      "in_scope": [
+        {
+          "content": "本轮分析范围为高低压开关逻辑设计表的自动生成诉求。未提及内容不视为明确排除。",
+          "tag": "confirmed",
+          "sources": [
+            {
+              "type": "input_document",
+              "source_id": "SRC-1",
+              "location": "第1行"
+            }
+          ],
+          "status": "active",
+          "related_ids": [
+            "FR-1"
+          ],
+          "id": "FR-2"
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  "business_assessment": {
+    "flows": [],
+    "states": [],
+    "boundaries": [
+      {
+        "content": "候选边界：若生成需要开关资料或逻辑规则，资料缺失、非法或相互冲突时应有可判定处理；该生成方式及边界规则均待确认，并非已承诺功能。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第1行，自动生成诉求"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-4"
+        ],
+        "id": "BND-1"
+      }
+    ],
+    "exceptions": [],
+    "gaps": [
+      {
+        "content": "未说明由谁在何种工作场景使用生成结果，无法还原核心使用流程。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第1行，仅描述生成诉求"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-1"
+        ],
+        "id": "GAP-1"
+      },
+      {
+        "content": "逻辑设计表的业务含义、生成依据与正确结果均未知，不能擅自解释为二态全排列、控制逻辑或具体表格结构。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第1行，逻辑设计表未定义"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-2",
+          "Q-4"
+        ],
+        "id": "GAP-2"
+      }
+    ],
+    "conflicts": []
+  },
+  "ux_assessment": {
+    "ui_dependent": false,
+    "design_pending_items": [
+      "原文未提出界面操作，不以界面作为当前需求前提；逻辑设计表是输出物，不据此推定存在页面。后续若确认在线操作，再重判界面依赖。"
+    ]
+  },
+  "questions": [
+    {
+      "question": "这张表主要由谁、在什么工作场景下使用？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "尚无核心用户及使用场景，无法确定生成前后的主流程。",
+      "impact": "可能生成了表，却不符合实际设计或审核任务。",
+      "options": [
+        "A. 设计人员编制开关逻辑方案",
+        "B. 审核人员校核已有方案",
+        "C. 其他，请说明实际用户和场景",
+        "D. 暂不确定"
+      ],
+      "recommendation": "建议先围绕一个真实使用场景说明；若目标是编制方案，可从 A 开始讨论，但目前不视为已选择。",
+      "status": "open",
+      "related_ids": [
+        "GOAL-1",
+        "GAP-1"
+      ],
+      "id": "Q-1"
+    },
+    {
+      "question": "你说的“逻辑设计表”具体是哪一种业务结果？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "输出对象未定义，这是确定输入和规则之前的前置决策。",
+      "impact": "无法判断自动生成的结果是否正确。",
+      "options": [
+        "A. 记录开关状态与相应动作关系的表",
+        "B. 记录开关间联锁或控制条件的表",
+        "C. 其他，可用一个实际表格或小例子说明",
+        "D. 暂不确定"
+      ],
+      "recommendation": "推荐 C，用一个实际结果或小例子确定含义，避免仅凭名称误解；A、B 只是可能解释，不是已确认范围。",
+      "status": "open",
+      "related_ids": [
+        "FR-1",
+        "GAP-2"
+      ],
+      "id": "Q-2"
+    },
+    {
+      "question": "希望自动生成这张表，主要是为了解决什么问题？",
+      "priority": "P1",
+      "resolution": "ask_product",
+      "reason": "新增功能未提供原因，只需一句定性说明，不索要收益数字。",
+      "impact": "尚不能判断应优先解决的工作痛点。",
+      "options": [
+        "A. 减少人工编制工作",
+        "B. 减少漏项或逻辑错误",
+        "C. 其他，请简述",
+        "D. 暂不确定"
+      ],
+      "recommendation": "推荐选择最贴近实际的主要痛点并简述，不预设 A 或 B 已成立。",
+      "status": "open",
+      "related_ids": [
+        "GOAL-1"
+      ],
+      "id": "Q-3"
+    },
+    {
+      "question": "明确表的含义后，依据哪些业务输入和生成规则判断正确结果，以及缺失或冲突输入的处理？",
+      "priority": "P0",
+      "resolution": "ask_business",
+      "reason": "待输出定义明确后再分步澄清生成规则及相应边界，本轮不向用户提出。",
+      "impact": "核心生成流程、边界和验收尚不可执行。",
+      "options": [],
+      "recommendation": "先确定输出含义，再围绕一个实际样例逐项确认规则；不提前采用通用电气规则。",
+      "status": "open",
+      "related_ids": [
+        "FR-1",
+        "GAP-2",
+        "BND-1"
+      ],
+      "id": "Q-4"
+    },
+    {
+      "question": "待业务表义明确后，研发确认现有系统能否取得必要开关资料并生成对应结果，以及依赖和限制。",
+      "priority": "P1",
+      "resolution": "ask_dev",
+      "reason": "未提供系统能力资料；这里只登记研发确认，不要求产品承诺实现机制。",
+      "impact": "技术支持情况未知，不能据此作可行性结论。",
+      "options": [],
+      "recommendation": "由研发结合已确认的业务样例核对现有能力。",
+      "status": "open",
+      "related_ids": [
+        "FR-1"
+      ],
+      "id": "Q-5"
+    }
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "value_assessment": {
+    "problem": "希望自动生成表；现有工作痛点尚未说明。",
+    "business_value": "unknown",
+    "necessity": "unknown"
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "核心诉求已明确为自动生成高低压开关逻辑设计表；原因缺失另记 P1，不将原因等同核心目标。"
+    },
+    {
+      "item": 2,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "核心用户和工作场景未提供。"
+    },
+    {
+      "item": 3,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1",
+        "Q-2",
+        "Q-4"
+      ],
+      "reason": "生成前置输入、触发及结果用途不足以还原核心流程。"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": [
+        "Q-2",
+        "Q-4"
+      ],
+      "reason": "表义和业务生成规则均未确定。"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "唯一一句输入未出现相互冲突的主张；缺信息不等于矛盾。"
+    },
+    {
+      "item": 6,
+      "satisfied": false,
+      "question_refs": [
+        "Q-4"
+      ],
+      "reason": "已识别条件性的资料缺失、非法和冲突输入边界，但处理规则未定。"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "Q-2",
+        "Q-4"
+      ],
+      "reason": "无法判定一张生成表是否业务正确，不以泛化验收草案冒充已完成。"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本阶段未开展历史检索或基线对照，已明确声明。"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [
+        "Q-5"
+      ],
+      "reason": "未评估技术可行性，已登记与生成能力直接相关的研发确认。"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "当前未提出界面需求；不因输出为表格就推定界面依赖。"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [
+        "Q-1",
+        "Q-2",
+        "Q-3",
+        "Q-4"
+      ],
+      "reason": "缺口及未知价值均已显式登记，可形成标风险的初步草稿；没有采用推荐项或暂定假设，不代表核心业务就绪。"
+    }
+  ]
+}
