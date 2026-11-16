@@ -124,6 +124,8 @@ def _render(analysis, record, validation, missing):
             lines += [f"映射：{analysis['requirement_id']}/{item['id']} | tag={item['tag']} | status={item['status']} | {label}", "", _quote(item["content"]), ""]
             detail = {k: v for k, v in item.items() if k not in {"id", "content", "tag", "status"}}
             lines += [_quote(json.dumps(detail, ensure_ascii=False, indent=2)), ""]
+    if "technical_feasibility" in analysis:
+        lines += ["## 技术评估与限制", "", "保留原结论、证据和待验证条件；技术判断不等于研发验收、业务就绪或发布批准。", "", _quote(json.dumps(analysis["technical_feasibility"], ensure_ascii=False, indent=2)), ""]
     lines += ["## 遗留事项与问题记录", "", "open/provisional/risk_accepted 及 ask_dev 项保持原状态；推荐选项不是已确认答案。", ""]
     for question in analysis["questions"]:
         if question["status"] == "dropped":

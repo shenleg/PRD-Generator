@@ -1,0 +1,441 @@
+{
+  "stage": 6,
+  "mode": "actual_read_only_model_assessment_mechanically_mapped_to_cli_patches",
+  "not_real_technical_system": true,
+  "model_evidence": "workspace-sandbox/stage-6/model-attempt-02/verification.json",
+  "model_evidence_sha256": "9cc675c9941ffc7b7088bc6c116fc862532a42c28724a1020f9e6af65ac6977a",
+  "results": [
+    {
+      "id": "TECH-READ",
+      "conclusion": "supported",
+      "readiness": "ready_for_document",
+      "before_consumer": {
+        "source-manifest.json": "318562ec428a9a0cf0ff786108c56a1dc5ca707da4787179ba925f5e38ab8681",
+        "analysis-events.jsonl": "69cdf634bbabe9d7a43e0a7355f4b9d917f273d3723d7b93e6d38d159db5ebb6",
+        "analysis-report.md": "e11f2a1ac3187898a3742215054d95846ba1c14b3676cc6755ac791b04f69ee0",
+        "analysis-result.json": "32ee5f18e8f9d382fcbb1981f8dde1311dbaab42fcee0f517b2040bf93cb512d"
+      },
+      "draft": "prd/handoff-draft-v1.md"
+    },
+    {
+      "id": "TECH-CSV",
+      "conclusion": "conditionally_feasible",
+      "readiness": "ready_for_document",
+      "before_consumer": {
+        "source-manifest.json": "318562ec428a9a0cf0ff786108c56a1dc5ca707da4787179ba925f5e38ab8681",
+        "analysis-events.jsonl": "710f3134817400de471b5ccf4dccb790288e0b724d38ace4eb9493a933d2416f",
+        "analysis-report.md": "1026984696217e35512ca157c0ecd383ed26baae0d668862d5d5697634737150",
+        "analysis-result.json": "1422bee3d70b71ee90553aab36005f871bd58b61aeef905c76db848856b25c95"
+      },
+      "draft": "prd/handoff-draft-v1.md"
+    },
+    {
+      "id": "TECH-LOAD",
+      "conclusion": "risky",
+      "readiness": "not_ready",
+      "before_consumer": {
+        "source-manifest.json": "318562ec428a9a0cf0ff786108c56a1dc5ca707da4787179ba925f5e38ab8681",
+        "analysis-events.jsonl": "b755edc4ccc726b0e82da098cb56c17996cdbe39d8cef77abaad68cda1df56a8",
+        "analysis-report.md": "23074cc1512bacff63cde5227a07f340bd93eab592d46e2ca164eccbb1208d0a",
+        "analysis-result.json": "7820e09ba5eebd09b0ee4ec3915d31d7642b49e9f2b2d32aa03f49827ac3dd7f"
+      },
+      "draft": "prd/handoff-draft-v1.md"
+    },
+    {
+      "id": "TECH-NETWORK",
+      "conclusion": "conflicting",
+      "readiness": "not_ready",
+      "before_consumer": {
+        "source-manifest.json": "318562ec428a9a0cf0ff786108c56a1dc5ca707da4787179ba925f5e38ab8681",
+        "analysis-events.jsonl": "4cc00fae7d88056c6f2d2caa873923af93361fe4cb76407503cf25bbd0223665",
+        "analysis-report.md": "4e69c47b20aabfff1551225ff61ec89f9f515a99db9b05aa2518f88810ad8efe",
+        "analysis-result.json": "3ea2f952a329beecf5787e862bfacb48d433c4dacb7c870a18647c91c343dc9f"
+      },
+      "draft": "prd/handoff-draft-v1.md"
+    },
+    {
+      "id": "TECH-NO-DOC",
+      "conclusion": "unknown",
+      "readiness": "ready_for_document",
+      "before_consumer": {
+        "source-manifest.json": "862a0bfd9e65cdf3d3860aac6278c3dc63b748cc0c56525e146001b3a2789080",
+        "analysis-events.jsonl": "3078d1cb50020f67eca1eb2cbc5800e9d4355a7f5bb9ad97116c54c499569fc3",
+        "analysis-report.md": "fd7b859725bb7248b222cf09c1b4aff669335a137f86409a49b1b7a8894c4960",
+        "analysis-result.json": "c363ebaca786ff37e1eb74718ae9a5a38820a620abf5adc661971c1e1ded1358"
+      },
+      "draft": "prd/handoff-draft-v1.md"
+    },
+    {
+      "id": "TECH-OLD",
+      "conclusion": "unknown",
+      "readiness": "ready_for_document",
+      "before_consumer": {
+        "source-manifest.json": "e5df6588cadb6106be8511beb189392a2e24b0a38d78a7627e3c75d129be451e",
+        "analysis-events.jsonl": "2a7253ba86c5ea039ccf7823062823bd610678480834a7e6147cbe466571eb44",
+        "analysis-report.md": "0cd458a98fe61460b90448922ca078381573b66db0e13c9063cde547dfb6cfb1",
+        "analysis-result.json": "6b522b605c42fc7ab48ec262f4aeed461f6e6c210cd63c5c72d539ebc6a82f4a"
+      },
+      "draft": "prd/handoff-draft-v1.md"
+    },
+    {
+      "id": "TECH-PARTIAL",
+      "conclusion": "unknown",
+      "readiness": "conditionally_ready",
+      "before_consumer": {
+        "source-manifest.json": "992fec6f9b567db087ccc9bc9a730cab03036c7df543d4f950cccec26fbab220",
+        "analysis-events.jsonl": "3c84e4978cf64219ec397f4c697a75d6d515671250537bb6d6192a768ee10b9c",
+        "analysis-report.md": "b0ed6073481e475040b8da34ab7b050aafc1d2a65f63227a14c85ad530c4d9ae",
+        "analysis-result.json": "680102dd46c5fa3e35e51decbc66594e94ffd6e471a1c581e94d0f75a67e3ca8"
+      },
+      "draft": "prd/handoff-draft-v1.md"
+    },
+    {
+      "id": "TECH-PRODUCT",
+      "conclusion": "unknown",
+      "readiness": "not_ready",
+      "before_consumer": {
+        "source-manifest.json": "992fec6f9b567db087ccc9bc9a730cab03036c7df543d4f950cccec26fbab220",
+        "analysis-events.jsonl": "9147b4b35e7f19b67aee5b5d7a57ce02c1e0cce1eef04b517ffd32f972eb40e8",
+        "analysis-report.md": "4b61b1fbe7f6e8885bec5d3e6c5d1168030a3181741d9b774641ce6d80d589cb",
+        "analysis-result.json": "e4e3f02bb1543e5ebc18bde12d3b3994808affd0dc6c3c05d6048bbc748eee82"
+      },
+      "draft": "prd/handoff-draft-v1.md"
+    }
+  ],
+  "records": [
+    {
+      "record": "TECH-READ-save",
+      "status": "pass",
+      "script": "update_analysis.py"
+    },
+    {
+      "record": "TECH-READ-validate",
+      "status": "pass",
+      "script": "validate_analysis.py"
+    },
+    {
+      "record": "TECH-READ-consume",
+      "status": "pass",
+      "script": "minimal_prd_consumer.py"
+    },
+    {
+      "record": "TECH-CSV-save",
+      "status": "pass",
+      "script": "update_analysis.py"
+    },
+    {
+      "record": "TECH-CSV-validate",
+      "status": "pass",
+      "script": "validate_analysis.py"
+    },
+    {
+      "record": "TECH-CSV-consume",
+      "status": "pass",
+      "script": "minimal_prd_consumer.py"
+    },
+    {
+      "record": "TECH-LOAD-save",
+      "status": "pass",
+      "script": "update_analysis.py"
+    },
+    {
+      "record": "TECH-LOAD-validate",
+      "status": "pass",
+      "script": "validate_analysis.py"
+    },
+    {
+      "record": "TECH-LOAD-consume",
+      "status": "warning",
+      "script": "minimal_prd_consumer.py"
+    },
+    {
+      "record": "TECH-NETWORK-save",
+      "status": "pass",
+      "script": "update_analysis.py"
+    },
+    {
+      "record": "TECH-NETWORK-validate",
+      "status": "pass",
+      "script": "validate_analysis.py"
+    },
+    {
+      "record": "TECH-NETWORK-consume",
+      "status": "warning",
+      "script": "minimal_prd_consumer.py"
+    },
+    {
+      "record": "TECH-NO-DOC-save",
+      "status": "pass",
+      "script": "update_analysis.py"
+    },
+    {
+      "record": "TECH-NO-DOC-validate",
+      "status": "pass",
+      "script": "validate_analysis.py"
+    },
+    {
+      "record": "TECH-NO-DOC-consume",
+      "status": "pass",
+      "script": "minimal_prd_consumer.py"
+    },
+    {
+      "record": "TECH-OLD-save",
+      "status": "pass",
+      "script": "update_analysis.py"
+    },
+    {
+      "record": "TECH-OLD-validate",
+      "status": "pass",
+      "script": "validate_analysis.py"
+    },
+    {
+      "record": "TECH-OLD-consume",
+      "status": "pass",
+      "script": "minimal_prd_consumer.py"
+    },
+    {
+      "record": "TECH-PARTIAL-save",
+      "status": "pass",
+      "script": "update_analysis.py"
+    },
+    {
+      "record": "TECH-PARTIAL-validate",
+      "status": "pass",
+      "script": "validate_analysis.py"
+    },
+    {
+      "record": "TECH-PARTIAL-consume",
+      "status": "warning",
+      "script": "minimal_prd_consumer.py"
+    },
+    {
+      "record": "TECH-PRODUCT-save",
+      "status": "pass",
+      "script": "update_analysis.py"
+    },
+    {
+      "record": "TECH-PRODUCT-validate",
+      "status": "pass",
+      "script": "validate_analysis.py"
+    },
+    {
+      "record": "TECH-PRODUCT-consume",
+      "status": "warning",
+      "script": "minimal_prd_consumer.py"
+    }
+  ],
+  "files": {
+    "skill/requirement-analyst/SKILL.md": "f5e3a72ed81bfd8ae99fe666b54c7f253d53e5e3429b617bcc4f001fed3fa4ce",
+    "skill/requirement-analyst/templates/analysis-report.md": "6a56777f4db9e3ca34c35c455732bf3533959c5bc673d09ef7acc02f53636657",
+    "skill/requirement-analyst/references/question-strategy.md": "08b7b691979d164b23f9971f4926dfd6483958e3e7268e08ea1354963bdcaa46",
+    "skill/requirement-analyst/references/feasibility-assessment.md": "d4b5faf3d215fcf91391fe39545609b1c7f11dfe3d848feeb0b84353077bc51f",
+    "skill/requirement-analyst/references/historical-retrieval.md": "3fe053590cbc837c6f7f7117afe86447943d926949ade49b035aefa915fc469c",
+    "skill/requirement-analyst/references/readiness-rules.md": "e47a75cc60d5e345e1b0eb84a7086245bcf2fc584ceefd1302e9458b79801340",
+    "skill/requirement-analyst/references/incremental-update.md": "0a8cbea155209fba6d3a5e37fd4acc5e8d8ac2e1e665870df2c9f0591a0fb3ce",
+    "skill/requirement-analyst/references/analysis-framework.md": "6ae35fb42b7217688a0471421df1186d949f80429d8cabea4cf141a07403150a",
+    "skill/requirement-analyst/scripts/README.md": "e82c2d02db24c41985b83cdae0a34de712a9138ad8c3e7bfabaf9128d7e7bef6",
+    "skill/requirement-analyst/scripts/update_analysis.py": "4c86691d93e69d6f3eccb25c87ac7181e12a552f201d8c56198fd3d693c62485",
+    "skill/requirement-analyst/scripts/index_sources.py": "abc14cbc874b6652bc211fd51b685dcbd26d8822490f6f5c4990f8a794535714",
+    "skill/requirement-analyst/scripts/compare_baseline.py": "d204774a13c0b3b6644a86ed8b7623678613f4b32589f9a6132efe55d580af8b",
+    "skill/requirement-analyst/scripts/search_project.py": "58c435c540bbfdc1f83b19fa8c2ee9d85da6cf66c3bf526fbed890010dd62e1d",
+    "skill/requirement-analyst/scripts/project_sources.py": "1c497637a51ba4ae5a7a48f4aa28979d94d4ea9371ddbcc0bb1b00df0dc005a4",
+    "skill/requirement-analyst/scripts/validate_analysis.py": "58acb7ba88e9cdd0a01f4bbffc3bb4ed51bbfba07165342f25ce648c27180e15",
+    "skill/requirement-analyst/schemas/analysis-result.schema.json": "5e437cba8f8703858aa90cc758ca3a1c77701afd40b6a548460e5aeb35af9cd5",
+    "skill/requirement-analyst/schemas/requirement-item.schema.json": "63f145dd6c75a4384caf0f5df11564c7f07133cdf0ede3bbbba838e2d52ba0d6",
+    "skill/requirement-analyst/schemas/question.schema.json": "f4090632b60c2638a4dc5e37fa3ae0122fd1ba507f692b055b68a40f14fad677",
+    "skill/requirement-analyst/schemas/source.schema.json": "0a72b71a2826f06756851fb156e301ef510ccff949363e6dd925552704be60c9",
+    "tools/minimal_prd_consumer.py": "53e659be11f134df6989e9279511a5fd0770151fcc1a38412b8cc0600fc36adf",
+    "tests/render_trial_reports.py": "68758e9777f1d9d3ff6ee1b3f85209061df49b43ecce02571162f1b2d0790ef5",
+    "tests/run_stage_6_trial.py": "8941f34da7a9d9d898d98a3f0679f9816f05233755da7314dd0f1eaa9dd9d8a3"
+  },
+  "artifacts": {
+    "evidence/TECH-CSV-consume/process.json": "060d7603242d09b58033ff13f216c0cf5dec248d03e62528842f86e35730f51f",
+    "evidence/TECH-CSV-consume/response.json": "3acedad44a1153cf74c6c13ebd24dfe91ff2b568ebba70e459592254b9ab14be",
+    "evidence/TECH-CSV-consume/stdout.txt": "3acedad44a1153cf74c6c13ebd24dfe91ff2b568ebba70e459592254b9ab14be",
+    "evidence/TECH-CSV-save/process.json": "5b51ac1d47ea48758e1e3a7855a1bb2a71818568f15a86bfd360d971c35bf227",
+    "evidence/TECH-CSV-save/requirement/analysis/analysis-events.jsonl": "710f3134817400de471b5ccf4dccb790288e0b724d38ace4eb9493a933d2416f",
+    "evidence/TECH-CSV-save/requirement/analysis/analysis-report.md": "1026984696217e35512ca157c0ecd383ed26baae0d668862d5d5697634737150",
+    "evidence/TECH-CSV-save/requirement/analysis/analysis-result.json": "1422bee3d70b71ee90553aab36005f871bd58b61aeef905c76db848856b25c95",
+    "evidence/TECH-CSV-save/requirement/analysis/source-manifest.json": "318562ec428a9a0cf0ff786108c56a1dc5ca707da4787179ba925f5e38ab8681",
+    "evidence/TECH-CSV-save/requirement/prd/handoff-draft-v1.md": "5d8ea8defec81f44293f9490db971634f9e45da2d9f708a01be6601515ce0ff1",
+    "evidence/TECH-CSV-save/requirement/requirement.json": "bbc271e163e3b726d4523edfbeb8969b5603022f803e618d1a20374dc7cf0ab9",
+    "evidence/TECH-CSV-save/response.json": "ac376bc658a740eeb3472d6af2ba2775e601ff456747f1b2045fe7d7ad7bc7ec",
+    "evidence/TECH-CSV-save/stdout.txt": "ac376bc658a740eeb3472d6af2ba2775e601ff456747f1b2045fe7d7ad7bc7ec",
+    "evidence/TECH-CSV-validate/process.json": "681e168f503ae7c25f1aec6fc065a2b58f6b7cb3056be88859fd3ad78cadd2b8",
+    "evidence/TECH-CSV-validate/response.json": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-CSV-validate/stdout.txt": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-LOAD-consume/process.json": "663d73c6498b617d7ecd0db3ab828a6a6b8226dbdc3b8c45a0db338b7bd0c4e9",
+    "evidence/TECH-LOAD-consume/response.json": "1ff1bf11bdbe3a636349b1f7da8d234afdbc5d6ef7c88bf25b40a341800d27f5",
+    "evidence/TECH-LOAD-consume/stdout.txt": "1ff1bf11bdbe3a636349b1f7da8d234afdbc5d6ef7c88bf25b40a341800d27f5",
+    "evidence/TECH-LOAD-save/process.json": "8b069506276b34b4bcad6449508539cf2a1cf3cb6abaa314d46ffc152dbffb33",
+    "evidence/TECH-LOAD-save/requirement/analysis/analysis-events.jsonl": "b755edc4ccc726b0e82da098cb56c17996cdbe39d8cef77abaad68cda1df56a8",
+    "evidence/TECH-LOAD-save/requirement/analysis/analysis-report.md": "23074cc1512bacff63cde5227a07f340bd93eab592d46e2ca164eccbb1208d0a",
+    "evidence/TECH-LOAD-save/requirement/analysis/analysis-result.json": "7820e09ba5eebd09b0ee4ec3915d31d7642b49e9f2b2d32aa03f49827ac3dd7f",
+    "evidence/TECH-LOAD-save/requirement/analysis/source-manifest.json": "318562ec428a9a0cf0ff786108c56a1dc5ca707da4787179ba925f5e38ab8681",
+    "evidence/TECH-LOAD-save/requirement/prd/handoff-draft-v1.md": "efbdf1852b68777eed710cd55e9b5064a2d68d9ab773f11946250021950cf0a1",
+    "evidence/TECH-LOAD-save/requirement/requirement.json": "2bcccbf3337a8d245550c2833683de838b210a80cb6b2882fccc9ec7bd130ae4",
+    "evidence/TECH-LOAD-save/response.json": "767551fbac593a8fa0f30c4569575cc6091857229615c330336be777b9c0aa2d",
+    "evidence/TECH-LOAD-save/stdout.txt": "767551fbac593a8fa0f30c4569575cc6091857229615c330336be777b9c0aa2d",
+    "evidence/TECH-LOAD-validate/process.json": "2a63ba648ba6de80ef050c639631643d131ee1517f6c8d85b5e39f9747163261",
+    "evidence/TECH-LOAD-validate/response.json": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-LOAD-validate/stdout.txt": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-NETWORK-consume/process.json": "b007fd394f359e887d65f7656c03be0ab980d4cf6275fda2184f7dcaf9aad453",
+    "evidence/TECH-NETWORK-consume/response.json": "2790d62963dbe2438a30f75d2e5e35b1d02079b8f6ab68efe449360ada54653b",
+    "evidence/TECH-NETWORK-consume/stdout.txt": "2790d62963dbe2438a30f75d2e5e35b1d02079b8f6ab68efe449360ada54653b",
+    "evidence/TECH-NETWORK-save/process.json": "54c0b11a3987237b973d54f0ae4ae0adbac15300c4e617e1578ed7309390169e",
+    "evidence/TECH-NETWORK-save/requirement/analysis/analysis-events.jsonl": "4cc00fae7d88056c6f2d2caa873923af93361fe4cb76407503cf25bbd0223665",
+    "evidence/TECH-NETWORK-save/requirement/analysis/analysis-report.md": "4e69c47b20aabfff1551225ff61ec89f9f515a99db9b05aa2518f88810ad8efe",
+    "evidence/TECH-NETWORK-save/requirement/analysis/analysis-result.json": "3ea2f952a329beecf5787e862bfacb48d433c4dacb7c870a18647c91c343dc9f",
+    "evidence/TECH-NETWORK-save/requirement/analysis/source-manifest.json": "318562ec428a9a0cf0ff786108c56a1dc5ca707da4787179ba925f5e38ab8681",
+    "evidence/TECH-NETWORK-save/requirement/prd/handoff-draft-v1.md": "8322b2d0dc2f4a04ade803720d8179f4bafb3a85dedc2617b70741d010a3ed22",
+    "evidence/TECH-NETWORK-save/requirement/requirement.json": "71d00398db954746df9e94a2696d7b30a41e277f4ce4fac277eb8e0a5fb4b9cc",
+    "evidence/TECH-NETWORK-save/response.json": "f441528110e2b8186811e142ce54c28ba8b62c762c7933533ad0e589a6899e81",
+    "evidence/TECH-NETWORK-save/stdout.txt": "f441528110e2b8186811e142ce54c28ba8b62c762c7933533ad0e589a6899e81",
+    "evidence/TECH-NETWORK-validate/process.json": "425765aad432ae6ae0b7eb22d4d55a5e93024400c3840698af54e0bd040e5bdc",
+    "evidence/TECH-NETWORK-validate/response.json": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-NETWORK-validate/stdout.txt": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-NO-DOC-consume/process.json": "c6be46ba117901a089c83499bea3659e28460f81afd669a775b8bf3cf88a3164",
+    "evidence/TECH-NO-DOC-consume/response.json": "256625ed781aed0533ffe29c3d4b8e6ec79ad0880d58f7cff11b0f6369bbe7c5",
+    "evidence/TECH-NO-DOC-consume/stdout.txt": "256625ed781aed0533ffe29c3d4b8e6ec79ad0880d58f7cff11b0f6369bbe7c5",
+    "evidence/TECH-NO-DOC-save/process.json": "1374dbb140263531b8ef997cf1a22307152677bdb23e448f11de0c8b5b537b1c",
+    "evidence/TECH-NO-DOC-save/requirement/analysis/analysis-events.jsonl": "3078d1cb50020f67eca1eb2cbc5800e9d4355a7f5bb9ad97116c54c499569fc3",
+    "evidence/TECH-NO-DOC-save/requirement/analysis/analysis-report.md": "fd7b859725bb7248b222cf09c1b4aff669335a137f86409a49b1b7a8894c4960",
+    "evidence/TECH-NO-DOC-save/requirement/analysis/analysis-result.json": "c363ebaca786ff37e1eb74718ae9a5a38820a620abf5adc661971c1e1ded1358",
+    "evidence/TECH-NO-DOC-save/requirement/analysis/source-manifest.json": "862a0bfd9e65cdf3d3860aac6278c3dc63b748cc0c56525e146001b3a2789080",
+    "evidence/TECH-NO-DOC-save/requirement/prd/handoff-draft-v1.md": "1b08b4d7aabbf02593d382d15333085a1335b5e4a2f04d3971b751ce667697b8",
+    "evidence/TECH-NO-DOC-save/requirement/requirement.json": "4e6f7d45f3fc744855687e90d860b13d691b8cf278ab58d520846f2817497f52",
+    "evidence/TECH-NO-DOC-save/response.json": "2853bf466484c3467afee37e71edf5f75817cb107562cf1740593aa8fe4e247b",
+    "evidence/TECH-NO-DOC-save/stdout.txt": "2853bf466484c3467afee37e71edf5f75817cb107562cf1740593aa8fe4e247b",
+    "evidence/TECH-NO-DOC-validate/process.json": "69ec453491b1798c787a8800867a749e6821a316fa2eef304fea4af709ef1dd3",
+    "evidence/TECH-NO-DOC-validate/response.json": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-NO-DOC-validate/stdout.txt": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-OLD-consume/process.json": "dea144c4da6362e4415dcda8de673053a9a07ff631198d039e88c7d5463422fe",
+    "evidence/TECH-OLD-consume/response.json": "9b3c795c78ea400048002c762a872c70ea15c0a52c1e497a11d055b9927103ec",
+    "evidence/TECH-OLD-consume/stdout.txt": "9b3c795c78ea400048002c762a872c70ea15c0a52c1e497a11d055b9927103ec",
+    "evidence/TECH-OLD-save/process.json": "5befc063793d0f5355f3166604d5d2bfee620c0a567bc16acab8c0011d515fe9",
+    "evidence/TECH-OLD-save/requirement/analysis/analysis-events.jsonl": "2a7253ba86c5ea039ccf7823062823bd610678480834a7e6147cbe466571eb44",
+    "evidence/TECH-OLD-save/requirement/analysis/analysis-report.md": "0cd458a98fe61460b90448922ca078381573b66db0e13c9063cde547dfb6cfb1",
+    "evidence/TECH-OLD-save/requirement/analysis/analysis-result.json": "6b522b605c42fc7ab48ec262f4aeed461f6e6c210cd63c5c72d539ebc6a82f4a",
+    "evidence/TECH-OLD-save/requirement/analysis/source-manifest.json": "e5df6588cadb6106be8511beb189392a2e24b0a38d78a7627e3c75d129be451e",
+    "evidence/TECH-OLD-save/requirement/prd/handoff-draft-v1.md": "6a77b76ed9972c1cea884640f478470efcb4a67b487c7e8d6a73ceb3ed47ad6d",
+    "evidence/TECH-OLD-save/requirement/requirement.json": "abfaf08f272297d88b3374936209470aa127610083431b22f2abd9840a7ed1a9",
+    "evidence/TECH-OLD-save/response.json": "7c8f5da0b888380dfe0d548d4d42e8570715aedb9082e84988a5c41743867729",
+    "evidence/TECH-OLD-save/stdout.txt": "7c8f5da0b888380dfe0d548d4d42e8570715aedb9082e84988a5c41743867729",
+    "evidence/TECH-OLD-validate/process.json": "f0d78faae2d29a1b3ea76449dc077ffe507df97bd1edab8ea0cad89e7ebcdb52",
+    "evidence/TECH-OLD-validate/response.json": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-OLD-validate/stdout.txt": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-PARTIAL-consume/process.json": "18829398fc6506dceb5a375ad4a61bfe6e122b84637596298512f518ab99b968",
+    "evidence/TECH-PARTIAL-consume/response.json": "8dcb33989ff414b18838cd761fbe273a440e5f37df9d35eb6fab24277b8d4227",
+    "evidence/TECH-PARTIAL-consume/stdout.txt": "8dcb33989ff414b18838cd761fbe273a440e5f37df9d35eb6fab24277b8d4227",
+    "evidence/TECH-PARTIAL-save/process.json": "d32c33bfda5d9ffb714660b19fa6675a0ab02f44927a4e378af0b3b95f345b7c",
+    "evidence/TECH-PARTIAL-save/requirement/analysis/analysis-events.jsonl": "3c84e4978cf64219ec397f4c697a75d6d515671250537bb6d6192a768ee10b9c",
+    "evidence/TECH-PARTIAL-save/requirement/analysis/analysis-report.md": "b0ed6073481e475040b8da34ab7b050aafc1d2a65f63227a14c85ad530c4d9ae",
+    "evidence/TECH-PARTIAL-save/requirement/analysis/analysis-result.json": "680102dd46c5fa3e35e51decbc66594e94ffd6e471a1c581e94d0f75a67e3ca8",
+    "evidence/TECH-PARTIAL-save/requirement/analysis/source-manifest.json": "992fec6f9b567db087ccc9bc9a730cab03036c7df543d4f950cccec26fbab220",
+    "evidence/TECH-PARTIAL-save/requirement/prd/handoff-draft-v1.md": "18b8707227b65012b1a07d429fe16454394fe0463e9f5ae4b64673449794fd77",
+    "evidence/TECH-PARTIAL-save/requirement/requirement.json": "d0936fda7904b4f811a3b0c3e3df01dbee8f3a21c7e9d0470126bea47a871d52",
+    "evidence/TECH-PARTIAL-save/response.json": "c25a323bf3985d03ab78dad5d7fb46402d6a737263f196e6454378792ce335cf",
+    "evidence/TECH-PARTIAL-save/stdout.txt": "c25a323bf3985d03ab78dad5d7fb46402d6a737263f196e6454378792ce335cf",
+    "evidence/TECH-PARTIAL-validate/process.json": "24a4516fc4ce31c8c9e0beefa33ea68d1763e225548ea503708df771bb19b132",
+    "evidence/TECH-PARTIAL-validate/response.json": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-PARTIAL-validate/stdout.txt": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-PRODUCT-consume/process.json": "9d250a0499e27812bb2ab35fd8294195c7dcd30cc084c08866829a39d983d59f",
+    "evidence/TECH-PRODUCT-consume/response.json": "6e9161a4e2fc78bd4a1234ce18fe154cc6f8387d357930f104db4fc64ca7de86",
+    "evidence/TECH-PRODUCT-consume/stdout.txt": "6e9161a4e2fc78bd4a1234ce18fe154cc6f8387d357930f104db4fc64ca7de86",
+    "evidence/TECH-PRODUCT-save/process.json": "a0bf500d9f916a224d95ffe514222d144a039d2fa216d71bc9a460f6c55fa21c",
+    "evidence/TECH-PRODUCT-save/requirement/analysis/analysis-events.jsonl": "9147b4b35e7f19b67aee5b5d7a57ce02c1e0cce1eef04b517ffd32f972eb40e8",
+    "evidence/TECH-PRODUCT-save/requirement/analysis/analysis-report.md": "4b61b1fbe7f6e8885bec5d3e6c5d1168030a3181741d9b774641ce6d80d589cb",
+    "evidence/TECH-PRODUCT-save/requirement/analysis/analysis-result.json": "e4e3f02bb1543e5ebc18bde12d3b3994808affd0dc6c3c05d6048bbc748eee82",
+    "evidence/TECH-PRODUCT-save/requirement/analysis/source-manifest.json": "992fec6f9b567db087ccc9bc9a730cab03036c7df543d4f950cccec26fbab220",
+    "evidence/TECH-PRODUCT-save/requirement/prd/handoff-draft-v1.md": "a5af67e01d3837d3e2ba9bf72f0542a0f5d72fdce60760026c58d54b47a9fc61",
+    "evidence/TECH-PRODUCT-save/requirement/requirement.json": "fb341c5eb78c9e10a8e25b4c6411de8f5fb6cff2bb901c6b3241c4a1a8d904b0",
+    "evidence/TECH-PRODUCT-save/response.json": "2f8614bf5b608763751c4146c124c79725c262e0ead32c37ad888f6e3ee56b90",
+    "evidence/TECH-PRODUCT-save/stdout.txt": "2f8614bf5b608763751c4146c124c79725c262e0ead32c37ad888f6e3ee56b90",
+    "evidence/TECH-PRODUCT-validate/process.json": "7c117a5aea40cdb6161a0e648ed2b9d921ee258065a690309465e7d313410e06",
+    "evidence/TECH-PRODUCT-validate/response.json": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-PRODUCT-validate/stdout.txt": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-READ-consume/process.json": "3eb75dec46aec5b7e54e1e3fcf9f23fc13579b77a38bc97881cb8848adbb6740",
+    "evidence/TECH-READ-consume/response.json": "0602719b22ed737c0f82c189ce46a7a598a52519a89c5f0110bff9d3cafc9223",
+    "evidence/TECH-READ-consume/stdout.txt": "0602719b22ed737c0f82c189ce46a7a598a52519a89c5f0110bff9d3cafc9223",
+    "evidence/TECH-READ-save/process.json": "c2ce931a48b572ca32c26f33745870b1482bf9b6b7cbe8dc4c2d724098de7662",
+    "evidence/TECH-READ-save/requirement/analysis/analysis-events.jsonl": "69cdf634bbabe9d7a43e0a7355f4b9d917f273d3723d7b93e6d38d159db5ebb6",
+    "evidence/TECH-READ-save/requirement/analysis/analysis-report.md": "e11f2a1ac3187898a3742215054d95846ba1c14b3676cc6755ac791b04f69ee0",
+    "evidence/TECH-READ-save/requirement/analysis/analysis-result.json": "32ee5f18e8f9d382fcbb1981f8dde1311dbaab42fcee0f517b2040bf93cb512d",
+    "evidence/TECH-READ-save/requirement/analysis/source-manifest.json": "318562ec428a9a0cf0ff786108c56a1dc5ca707da4787179ba925f5e38ab8681",
+    "evidence/TECH-READ-save/requirement/prd/handoff-draft-v1.md": "e540513752658969b22879dad27fef5c0ac8a0b1d5794e6f57504fac49c41cde",
+    "evidence/TECH-READ-save/requirement/requirement.json": "1cc33241363a37156c15ebaf1991882f39d7be013c23caa67dc26937f2430ca9",
+    "evidence/TECH-READ-save/response.json": "75a31503ce1e9429a65d4d66b24cdcf5f7ca3c1d59020799dfd104361dde228b",
+    "evidence/TECH-READ-save/stdout.txt": "75a31503ce1e9429a65d4d66b24cdcf5f7ca3c1d59020799dfd104361dde228b",
+    "evidence/TECH-READ-validate/process.json": "8507c9ad9c9efe6bbf5d2d6b448b13235e8774d8c09c1734b98d2102842a77c6",
+    "evidence/TECH-READ-validate/response.json": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/TECH-READ-validate/stdout.txt": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "patches/TECH-CSV.json": "0aef83586f7f0a8eb1b1a9d01038846fe38694f5fbe956acf7f761467928d7ab",
+    "patches/TECH-LOAD.json": "91c1ecb90a269055223ad6fd2c4c4d8565552c0ada14a8f86606b370a6fba09d",
+    "patches/TECH-NETWORK.json": "c58ece532f946dd0293f3f9c6babc78459a4fc930935747515d4ba2fcada3349",
+    "patches/TECH-NO-DOC.json": "bc217e5d14d110eddd7e675a426fa06e57f505371d423d1cf6cdc3d839c82fde",
+    "patches/TECH-OLD.json": "93fa6bede97d784bd5c85858bf589d2e9fd8d441c2c3917cb930e775d9bc82be",
+    "patches/TECH-PARTIAL.json": "67c14de3e7f99ed6f6c8c4482eb1766d76e2c88ed0f3846dd6562126eb9226eb",
+    "patches/TECH-PRODUCT.json": "ed96dca9a518bf3181a52d32ed56af2cbc1abf3385d9d503d06b2f8b1d9d7513",
+    "patches/TECH-READ.json": "2166913f19c22460facaa47f37ed13665ecc943aa3ef66b6aff6396880fe5f2b",
+    "workspace/projects/feasibility-demo/inputs/cases.json": "3edf6222e7a1dec0b91ffa17dc6957d67dd4819c8824eaa3c47d91d3b5949fff",
+    "workspace/projects/feasibility-demo/materials/current-platform.md": "1034123047309e24042d113d6e917f1c0fe4d7b848ab5acba6eb82d702caceb4",
+    "workspace/projects/feasibility-demo/materials/old-platform-draft.md": "e39abd6657996a07dcb2307da238073f3623d06bcbd8c1e87c0f30c5c7ea4a8f",
+    "workspace/projects/feasibility-demo/materials/partial-interface.md": "cf668804fe962406a4c9dfb585bd8bd64cdef9d22e232b7e289903d213a1a8be",
+    "workspace/projects/feasibility-demo/requirements/TECH-CSV/analysis/analysis-events.jsonl": "710f3134817400de471b5ccf4dccb790288e0b724d38ace4eb9493a933d2416f",
+    "workspace/projects/feasibility-demo/requirements/TECH-CSV/analysis/analysis-report.md": "1026984696217e35512ca157c0ecd383ed26baae0d668862d5d5697634737150",
+    "workspace/projects/feasibility-demo/requirements/TECH-CSV/analysis/analysis-result.json": "1422bee3d70b71ee90553aab36005f871bd58b61aeef905c76db848856b25c95",
+    "workspace/projects/feasibility-demo/requirements/TECH-CSV/analysis/source-manifest.json": "318562ec428a9a0cf0ff786108c56a1dc5ca707da4787179ba925f5e38ab8681",
+    "workspace/projects/feasibility-demo/requirements/TECH-CSV/prd/handoff-draft-v1.md": "5d8ea8defec81f44293f9490db971634f9e45da2d9f708a01be6601515ce0ff1",
+    "workspace/projects/feasibility-demo/requirements/TECH-CSV/requirement.json": "bbc271e163e3b726d4523edfbeb8969b5603022f803e618d1a20374dc7cf0ab9",
+    "workspace/projects/feasibility-demo/requirements/TECH-LOAD/analysis/analysis-events.jsonl": "b755edc4ccc726b0e82da098cb56c17996cdbe39d8cef77abaad68cda1df56a8",
+    "workspace/projects/feasibility-demo/requirements/TECH-LOAD/analysis/analysis-report.md": "23074cc1512bacff63cde5227a07f340bd93eab592d46e2ca164eccbb1208d0a",
+    "workspace/projects/feasibility-demo/requirements/TECH-LOAD/analysis/analysis-result.json": "7820e09ba5eebd09b0ee4ec3915d31d7642b49e9f2b2d32aa03f49827ac3dd7f",
+    "workspace/projects/feasibility-demo/requirements/TECH-LOAD/analysis/source-manifest.json": "318562ec428a9a0cf0ff786108c56a1dc5ca707da4787179ba925f5e38ab8681",
+    "workspace/projects/feasibility-demo/requirements/TECH-LOAD/prd/handoff-draft-v1.md": "efbdf1852b68777eed710cd55e9b5064a2d68d9ab773f11946250021950cf0a1",
+    "workspace/projects/feasibility-demo/requirements/TECH-LOAD/requirement.json": "2bcccbf3337a8d245550c2833683de838b210a80cb6b2882fccc9ec7bd130ae4",
+    "workspace/projects/feasibility-demo/requirements/TECH-NETWORK/analysis/analysis-events.jsonl": "4cc00fae7d88056c6f2d2caa873923af93361fe4cb76407503cf25bbd0223665",
+    "workspace/projects/feasibility-demo/requirements/TECH-NETWORK/analysis/analysis-report.md": "4e69c47b20aabfff1551225ff61ec89f9f515a99db9b05aa2518f88810ad8efe",
+    "workspace/projects/feasibility-demo/requirements/TECH-NETWORK/analysis/analysis-result.json": "3ea2f952a329beecf5787e862bfacb48d433c4dacb7c870a18647c91c343dc9f",
+    "workspace/projects/feasibility-demo/requirements/TECH-NETWORK/analysis/source-manifest.json": "318562ec428a9a0cf0ff786108c56a1dc5ca707da4787179ba925f5e38ab8681",
+    "workspace/projects/feasibility-demo/requirements/TECH-NETWORK/prd/handoff-draft-v1.md": "8322b2d0dc2f4a04ade803720d8179f4bafb3a85dedc2617b70741d010a3ed22",
+    "workspace/projects/feasibility-demo/requirements/TECH-NETWORK/requirement.json": "71d00398db954746df9e94a2696d7b30a41e277f4ce4fac277eb8e0a5fb4b9cc",
+    "workspace/projects/feasibility-demo/requirements/TECH-NO-DOC/analysis/analysis-events.jsonl": "3078d1cb50020f67eca1eb2cbc5800e9d4355a7f5bb9ad97116c54c499569fc3",
+    "workspace/projects/feasibility-demo/requirements/TECH-NO-DOC/analysis/analysis-report.md": "fd7b859725bb7248b222cf09c1b4aff669335a137f86409a49b1b7a8894c4960",
+    "workspace/projects/feasibility-demo/requirements/TECH-NO-DOC/analysis/analysis-result.json": "c363ebaca786ff37e1eb74718ae9a5a38820a620abf5adc661971c1e1ded1358",
+    "workspace/projects/feasibility-demo/requirements/TECH-NO-DOC/analysis/source-manifest.json": "862a0bfd9e65cdf3d3860aac6278c3dc63b748cc0c56525e146001b3a2789080",
+    "workspace/projects/feasibility-demo/requirements/TECH-NO-DOC/prd/handoff-draft-v1.md": "1b08b4d7aabbf02593d382d15333085a1335b5e4a2f04d3971b751ce667697b8",
+    "workspace/projects/feasibility-demo/requirements/TECH-NO-DOC/requirement.json": "4e6f7d45f3fc744855687e90d860b13d691b8cf278ab58d520846f2817497f52",
+    "workspace/projects/feasibility-demo/requirements/TECH-OLD/analysis/analysis-events.jsonl": "2a7253ba86c5ea039ccf7823062823bd610678480834a7e6147cbe466571eb44",
+    "workspace/projects/feasibility-demo/requirements/TECH-OLD/analysis/analysis-report.md": "0cd458a98fe61460b90448922ca078381573b66db0e13c9063cde547dfb6cfb1",
+    "workspace/projects/feasibility-demo/requirements/TECH-OLD/analysis/analysis-result.json": "6b522b605c42fc7ab48ec262f4aeed461f6e6c210cd63c5c72d539ebc6a82f4a",
+    "workspace/projects/feasibility-demo/requirements/TECH-OLD/analysis/source-manifest.json": "e5df6588cadb6106be8511beb189392a2e24b0a38d78a7627e3c75d129be451e",
+    "workspace/projects/feasibility-demo/requirements/TECH-OLD/prd/handoff-draft-v1.md": "6a77b76ed9972c1cea884640f478470efcb4a67b487c7e8d6a73ceb3ed47ad6d",
+    "workspace/projects/feasibility-demo/requirements/TECH-OLD/requirement.json": "abfaf08f272297d88b3374936209470aa127610083431b22f2abd9840a7ed1a9",
+    "workspace/projects/feasibility-demo/requirements/TECH-PARTIAL/analysis/analysis-events.jsonl": "3c84e4978cf64219ec397f4c697a75d6d515671250537bb6d6192a768ee10b9c",
+    "workspace/projects/feasibility-demo/requirements/TECH-PARTIAL/analysis/analysis-report.md": "b0ed6073481e475040b8da34ab7b050aafc1d2a65f63227a14c85ad530c4d9ae",
+    "workspace/projects/feasibility-demo/requirements/TECH-PARTIAL/analysis/analysis-result.json": "680102dd46c5fa3e35e51decbc66594e94ffd6e471a1c581e94d0f75a67e3ca8",
+    "workspace/projects/feasibility-demo/requirements/TECH-PARTIAL/analysis/source-manifest.json": "992fec6f9b567db087ccc9bc9a730cab03036c7df543d4f950cccec26fbab220",
+    "workspace/projects/feasibility-demo/requirements/TECH-PARTIAL/prd/handoff-draft-v1.md": "18b8707227b65012b1a07d429fe16454394fe0463e9f5ae4b64673449794fd77",
+    "workspace/projects/feasibility-demo/requirements/TECH-PARTIAL/requirement.json": "d0936fda7904b4f811a3b0c3e3df01dbee8f3a21c7e9d0470126bea47a871d52",
+    "workspace/projects/feasibility-demo/requirements/TECH-PRODUCT/analysis/analysis-events.jsonl": "9147b4b35e7f19b67aee5b5d7a57ce02c1e0cce1eef04b517ffd32f972eb40e8",
+    "workspace/projects/feasibility-demo/requirements/TECH-PRODUCT/analysis/analysis-report.md": "4b61b1fbe7f6e8885bec5d3e6c5d1168030a3181741d9b774641ce6d80d589cb",
+    "workspace/projects/feasibility-demo/requirements/TECH-PRODUCT/analysis/analysis-result.json": "e4e3f02bb1543e5ebc18bde12d3b3994808affd0dc6c3c05d6048bbc748eee82",
+    "workspace/projects/feasibility-demo/requirements/TECH-PRODUCT/analysis/source-manifest.json": "992fec6f9b567db087ccc9bc9a730cab03036c7df543d4f950cccec26fbab220",
+    "workspace/projects/feasibility-demo/requirements/TECH-PRODUCT/prd/handoff-draft-v1.md": "a5af67e01d3837d3e2ba9bf72f0542a0f5d72fdce60760026c58d54b47a9fc61",
+    "workspace/projects/feasibility-demo/requirements/TECH-PRODUCT/requirement.json": "fb341c5eb78c9e10a8e25b4c6411de8f5fb6cff2bb901c6b3241c4a1a8d904b0",
+    "workspace/projects/feasibility-demo/requirements/TECH-READ/analysis/analysis-events.jsonl": "69cdf634bbabe9d7a43e0a7355f4b9d917f273d3723d7b93e6d38d159db5ebb6",
+    "workspace/projects/feasibility-demo/requirements/TECH-READ/analysis/analysis-report.md": "e11f2a1ac3187898a3742215054d95846ba1c14b3676cc6755ac791b04f69ee0",
+    "workspace/projects/feasibility-demo/requirements/TECH-READ/analysis/analysis-result.json": "32ee5f18e8f9d382fcbb1981f8dde1311dbaab42fcee0f517b2040bf93cb512d",
+    "workspace/projects/feasibility-demo/requirements/TECH-READ/analysis/source-manifest.json": "318562ec428a9a0cf0ff786108c56a1dc5ca707da4787179ba925f5e38ab8681",
+    "workspace/projects/feasibility-demo/requirements/TECH-READ/prd/handoff-draft-v1.md": "e540513752658969b22879dad27fef5c0ac8a0b1d5794e6f57504fac49c41cde",
+    "workspace/projects/feasibility-demo/requirements/TECH-READ/requirement.json": "1cc33241363a37156c15ebaf1991882f39d7be013c23caa67dc26937f2430ca9",
+    "workspace/workspace.json": "55f4c20ab2d0310a5465126b763f3ac7dd9cd2087cff8b608858929ebcf6e517"
+  },
+  "limits": [
+    "八case共用一次独立CLI只读模型调用，不是八次隔离盲测",
+    "技术结论、证据正文及问题由模型实际生成；业务条目/清单/就绪度由驱动器机械提供，不是完整需求自主分析",
+    "资料及技术负责人有效性声明均为合成，不证明真实系统能力",
+    "规则9只校验声明结构，不验证证据语义，主会话另对原文核对",
+    "消费者草稿不是研发验证或产品批准发布"
+  ]
+}

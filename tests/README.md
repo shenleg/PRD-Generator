@@ -109,6 +109,24 @@ uv run --offline --no-project --python /usr/bin/python3 --with-requirements test
   python -I -B tests/run_stage_5_trial.py --output /tmp/new-stage5-trial
 ```
 
+## 阶段6技术可行性
+
+用户批准使用合成技术资料，未提供真实系统架构确认。`fixtures/stage-6/`含限定查询、可扩展作业、压测风险、部署禁令、缺资料、旧草稿、局部接口及权限未定共8个case。
+
+- `workspace-sandbox/stage-6/`保留3次真实只读CLI模型执行的最小脱敏输出。主体调用覆盖8例；首次错行号不作最终引用，第二次修正证据位置；TECH-PARTIAL核心业务问题误列P1后仅对该例实际重评。`selected-model-evidence.json`按case_origins选择7+1实际输出，旧原文和规则快照保留，不改模型结论或问题优先级，不声称全部重新盲跑。
+- `run_stage_6_trial.py`只重放保存评估，不调用模型：技术结论/证据正文/影响/问题原样映射为补丁别名，经实际更新器、校验器和消费者CLI落盘。业务骨架、完成清单和readiness由主会话合成驱动器提供，不代表完整业务需求分析。
+- `test_feasibility_cli.py`验证五种结论现有1.0字段、非unknown缺证据及产品问题误作技术引用被唯一规则9拒绝且旧文件不变。
+- `test_stage_6_runs.py`的8项独立核对涵盖实际来源、可核对定位、五种语义判断、unknown降级、产品P0、输出保真、草稿及24次CLI重放。报告及消费者另有真实遗漏的红绿回归。
+- 阶段5的旧行为/源码证据绑定已提交cbb2938；当前工具仍另用原有场景重放，不改旧哈希伪装新行为。
+
+最终验收见 `results/stage-6.md`。重放到**不存在的新目录**，不会重新调用模型：
+
+```bash
+uv run --offline --no-project --python /usr/bin/python3 --with-requirements tests/requirements.txt \
+  python -I -B tests/run_stage_6_trial.py --output /tmp/new-stage6-trial \
+  --model-evidence workspace-sandbox/stage-6/selected-model-evidence.json
+```
+
 ## 分轮与计分
 
 先保存并核对首轮，才按实际问到的语义提供剧本回答；用户的结束要求单独作为后续输入。未发生的回答不能提前混入结果。第一样例的上限控制确认和业务问题分别说明，但所有发生提问的轮次均计入记录。

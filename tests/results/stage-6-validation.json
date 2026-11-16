@@ -1,0 +1,36 @@
+{
+  "stage": 6,
+  "status": "pass_with_declared_simulated_technical_scope",
+  "user_selection": "合成技术资料 (Recommended)",
+  "scenarios": {
+    "RA-20": {"status": "pass", "verified": "实际模型按明确接口能力、可改造路径、压测信号和硬部署约束分别给五类结论，证据可定位；技术引用仅ask_dev，产品取舍另登记。"},
+    "RA-21": {"status": "pass", "verified": "无资料/旧草稿/局部接口/未定权限整体unknown，不偷借其他case证据；核心全部结果与权限问题保留产品P0，不以技术结论升级就绪度。"}
+  },
+  "case_judgments": {
+    "TECH-READ": "supported",
+    "TECH-CSV": "conditionally_feasible",
+    "TECH-LOAD": "risky",
+    "TECH-NETWORK": "conflicting",
+    "TECH-NO-DOC": "unknown",
+    "TECH-OLD": "unknown",
+    "TECH-PARTIAL": "unknown",
+    "TECH-PRODUCT": "unknown"
+  },
+  "mechanical_validation": "8份正式结果均由实际更新器CLI保存且独立调用唯一校验器通过；规则9原已启用，没有第二份技术校验逻辑。",
+  "handoff": "8份实际报告及消费者草稿保留技术结论、证据、前提、风险和研发引用；消费前后分析目录原字节一致。",
+  "observed_failures_and_fixes": [
+    "报告已有技术结论时仍写本阶段未开展，红阶段复现后按实际JSON展示。",
+    "消费者遗漏非条目技术节，红阶段复现后增加原样技术评估与限制。",
+    "第一次实际模型输出部分数字行号错误，保留后按稳定章节/原句重跑。",
+    "第二次模型将TECH-PARTIAL完整输出边界问题列P1，补充既有核心P0规则后只对该例实际重评；原输出、参考快照保留。"
+  ],
+  "evidence_selection": "workspace-sandbox/stage-6/run-manifest.json",
+  "limits": [
+    "技术资料及负责人现行性声明为用户批准的合成测试，不是真实系统技术核验。",
+    "主体八case共用一次只读模型上下文，后续一例定点重评；不是八次隔离盲测。",
+    "技术结论、证据和问题由真实模型生成；业务骨架与清单/readiness由主会话驱动器提供，不是完整需求自主分析。",
+    "结构校验pass不能证明证据语义真伪、性能达标或研发验收完成。",
+    "阶段4延期的真实下游Skill集成仍未验证；本次只用最小消费者。",
+    "没有上线、部署、安全策略修改或真实产品取舍批准。"
+  ]
+}

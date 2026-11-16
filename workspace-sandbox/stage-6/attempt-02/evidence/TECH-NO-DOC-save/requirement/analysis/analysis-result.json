@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "TECH-NO-DOC",
+  "meta": {
+    "analysis_revision": 1,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "existing_document",
+    "analysis_status": "completed",
+    "readiness": "ready_for_document"
+  },
+  "context": {
+    "project_id": "feasibility-demo",
+    "history_review": {
+      "status": "not_performed",
+      "reason": "该case没有技术资料，不借其他case补证据",
+      "source_ids": []
+    }
+  },
+  "requirements": {
+    "goals": [
+      {
+        "content": "合成业务目标：核对本需求技术路径及研发前提，不把技术评估当上线承诺",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "cases.json案例TECH-NO-DOC"
+          }
+        ],
+        "related_ids": [],
+        "id": "GOAL-1"
+      }
+    ],
+    "scenarios": [],
+    "functional_requirements": [
+      {
+        "content": "在未知现有系统中增加结果读取能力，业务希望按task_id返回已授权任务的结果。没有提供架构、接口、数据或当前代码资料。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "cases.json案例TECH-NO-DOC"
+          }
+        ],
+        "related_ids": [],
+        "id": "FR-1"
+      }
+    ],
+    "business_rules": [],
+    "constraints": [],
+    "non_functional_requirements": [],
+    "acceptance_criteria": [
+      {
+        "content": "合成评估验收：结论严格限定为原需求范围，逐项核对可用资料与待确认条件；业务遗留问题必须保留，不以技术结论替代产品决定",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "cases.json案例TECH-NO-DOC"
+          }
+        ],
+        "related_ids": [
+          "FR-1"
+        ],
+        "id": "AC-1"
+      }
+    ]
+  },
+  "business_assessment": {
+    "flows": [],
+    "states": [],
+    "boundaries": [],
+    "exceptions": [],
+    "gaps": [],
+    "conflicts": []
+  },
+  "ux_assessment": {
+    "ui_dependent": false
+  },
+  "questions": [
+    {
+      "question": "当前系统的架构、结果数据来源、按task_id读取接口及任务授权机制是什么？",
+      "priority": "P1",
+      "resolution": "ask_dev",
+      "reason": "核心能力及约束没有任何技术资料支持。",
+      "impact": "决定能否实现授权结果读取、复用范围及必要改造。",
+      "options": [],
+      "recommendation": "由研发依据当前系统资料或实测核实，不要求产品承诺技术实现",
+      "status": "open",
+      "related_ids": [
+        "FR-1"
+      ],
+      "id": "Q-1"
+    }
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "technical_feasibility": {
+    "conclusion": "unknown",
+    "evidence": [],
+    "credibility": "该case没有指定任何系统资料；未做架构、接口、数据或历史对照，无法据此认定已有能力或不存在能力。",
+    "potential_impact": [
+      "可能涉及结果数据读取接口与任务授权检查，实际模块及修改范围尚不明。"
+    ],
+    "related_questions": [
+      "Q-1"
+    ],
+    "risks": [
+      "结果数据是否存在、如何按task_id定位、权限如何校验均无依据。",
+      "没有资料不等于系统不支持，也不代表没有历史冲突。"
+    ]
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 7,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    }
+  ]
+}

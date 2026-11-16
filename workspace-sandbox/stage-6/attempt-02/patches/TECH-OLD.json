@@ -1,0 +1,228 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "TECH-OLD",
+  "title": "TECH-OLD（阶段6合成技术评估）",
+  "base_revision": 0,
+  "change_type": "initial_analysis",
+  "actor": "analyst",
+  "summary": "将实际只读模型的技术评估原样映射，编号/合法性/保存由更新器执行；业务骨架为合成驱动器提供",
+  "operations": [
+    {
+      "op": "add_source",
+      "ref": "$input",
+      "value": {
+        "name": "阶段6合成需求用例",
+        "path": "inputs/cases.json",
+        "type": "input_document",
+        "credibility": "用户批准的合成技术评估输入，非真实产品需求",
+        "last_updated": null,
+        "revision": 1
+      }
+    },
+    {
+      "op": "add_source",
+      "ref": "$material1",
+      "value": {
+        "name": "old-platform-draft.md（合成技术资料）",
+        "path": "materials/old-platform-draft.md",
+        "type": "project_material",
+        "credibility": "合成历史草稿，现行性未确认",
+        "last_updated": "2020-01-01",
+        "revision": 1,
+        "authority": "draft",
+        "adopted_sha256": "e39abd6657996a07dcb2307da238073f3623d06bcbd8c1e87c0f30c5c7ea4a8f"
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.goals",
+      "ref": "$goal",
+      "value": {
+        "content": "合成业务目标：核对本需求技术路径及研发前提，不把技术评估当上线承诺",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "$input",
+            "location": "cases.json案例TECH-OLD"
+          }
+        ],
+        "related_ids": []
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.functional_requirements",
+      "ref": "$function",
+      "value": {
+        "content": "根据唯一提供的旧平台草稿，判断当前系统是否已有可直接复用的分页结果明细接口，不能假设资料已经更新。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "$input",
+            "location": "cases.json案例TECH-OLD"
+          }
+        ],
+        "related_ids": []
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.acceptance_criteria",
+      "ref": "$acceptance",
+      "value": {
+        "content": "合成评估验收：结论严格限定为原需求范围，逐项核对可用资料与待确认条件；业务遗留问题必须保留，不以技术结论替代产品决定",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "$input",
+            "location": "cases.json案例TECH-OLD"
+          }
+        ],
+        "related_ids": [
+          "$function"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "questions",
+      "ref": "$ask_dev1",
+      "value": {
+        "question": "当前是否存在已实现且可复用的结果明细分页接口，其契约、字段和授权范围是什么？",
+        "priority": "P1",
+        "resolution": "ask_dev",
+        "reason": "旧草稿只有未来设想且未确认现行有效性。",
+        "impact": "决定接口复用或新增开发的范围。",
+        "options": [],
+        "recommendation": "由研发依据当前系统资料或实测核实，不要求产品承诺技术实现",
+        "status": "open",
+        "related_ids": [
+          "$function"
+        ]
+      }
+    }
+  ],
+  "set": {
+    "meta.input_type": "existing_document",
+    "meta.analysis_status": "completed",
+    "meta.readiness": "ready_for_document",
+    "ux_assessment.ui_dependent": false,
+    "context.history_review": {
+      "status": "reviewed",
+      "reason": "仅采用该case明确指定的合成技术资料，非项目全量历史业务对照",
+      "source_ids": [
+        "$material1"
+      ]
+    },
+    "technical_feasibility": {
+      "conclusion": "unknown",
+      "evidence": [
+        {
+          "content": "历史讨论过未来查询接口可能支持结果明细和分页，但只是讨论。",
+          "sources": [
+            {
+              "type": "project_material",
+              "source_id": "$material1",
+              "location": "历史讨论过未来查询接口可能支持结果明细和分页"
+            }
+          ]
+        },
+        {
+          "content": "该草稿不是接口契约，没有字段清单、实现记录、负责人核验或当前部署确认。",
+          "sources": [
+            {
+              "type": "project_material",
+              "source_id": "$material1",
+              "location": "这不是接口契约"
+            }
+          ]
+        }
+      ],
+      "credibility": "唯一资料为合成旧草稿，业务更新时间2020-01-01，参考日2026-11-16，现行有效性未确认；与分页明细有关，但只能作为历史线索，不能证明当前已实现或可复用。",
+      "potential_impact": [
+        "若当前确有分页明细接口可考虑复用；其存在、契约和访问范围均待核实。"
+      ],
+      "related_questions": [
+        "$ask_dev1"
+      ],
+      "risks": [
+        "将未来设想当成已实现契约会导致错误的复用和排期判断。",
+        "资料老旧不等于现有系统必然不支持分页明细。"
+      ]
+    }
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 7,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "本合成技术评估场景的固定输入与范围已声明；不是完整真实需求业务充分性验收"
+    }
+  ]
+}

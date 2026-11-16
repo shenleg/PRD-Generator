@@ -1,0 +1,14 @@
+{
+  "scope": "用户批准的阶段6合成需求与技术资料，不是真实系统能力声明",
+  "as_of": "2026-11-16",
+  "cases": [
+    {"id": "TECH-READ", "requirement": "内部服务按非空task_id复用既有查询接口读取该任务的result_id和status。保持现有服务身份、项目权限及not_found/forbidden结果，不新增结果明细、权限规则或容量承诺。", "materials": ["current-platform.md"], "source_sections": ["A"]},
+    {"id": "TECH-CSV", "requirement": "为内部调用方新增只含result_id、task_id、status的CSV作业输出，沿用现有访问范围，不读取其他明细。允许新增适配器与触发/下载接口，但不将尚未完成的改造当作已有能力；上线前须权限回归和数据量验证。", "materials": ["current-platform.md"], "source_sections": ["A", "B"]},
+    {"id": "TECH-LOAD", "requirement": "希望继续使用现有全量加载内存的同步导出原型，面向1000并发调用。不得在需求里默认流式处理、排队、恢复机制已经实现，需要说明已有压测信号与改造风险。", "materials": ["current-platform.md"], "source_sections": ["C"]},
+    {"id": "TECH-NETWORK", "requirement": "本期服务必须直接把结果上传到公网对象存储，同时必须保持本期部署规范不变，不新增代理、不放开出口策略。", "materials": ["current-platform.md"], "source_sections": ["D"]},
+    {"id": "TECH-NO-DOC", "requirement": "在未知现有系统中增加结果读取能力，业务希望按task_id返回已授权任务的结果。没有提供架构、接口、数据或当前代码资料。", "materials": [], "source_sections": []},
+    {"id": "TECH-OLD", "requirement": "根据唯一提供的旧平台草稿，判断当前系统是否已有可直接复用的分页结果明细接口，不能假设资料已经更新。", "materials": ["old-platform-draft.md"], "source_sections": []},
+    {"id": "TECH-PARTIAL", "requirement": "要求导出任务的全部结果明细及分页数据。只提供部分查询接口摘录，明细数据是否存在、可访问和可分页没有提供其他依据。", "materials": ["partial-interface.md"], "source_sections": []},
+    {"id": "TECH-PRODUCT", "requirement": "管理员希望读取其他项目的任务结果，但管理员最终允许看哪些项目还没有产品决定；现有接口能否支持调整也没有技术核验。不得把权限范围的产品取舍全部丢给研发，也不得因已有接口就认定能跨项目读。", "materials": ["partial-interface.md"], "source_sections": []}
+  ]
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "阶段6合成需求用例",
+    "path": "inputs/cases.json",
+    "type": "input_document",
+    "credibility": "用户批准的合成技术评估输入，非真实产品需求",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-1"
+  },
+  {
+    "name": "old-platform-draft.md（合成技术资料）",
+    "path": "materials/old-platform-draft.md",
+    "type": "project_material",
+    "credibility": "合成历史草稿，现行性未确认",
+    "last_updated": "2020-01-01",
+    "revision": 1,
+    "authority": "draft",
+    "adopted_sha256": "e39abd6657996a07dcb2307da238073f3623d06bcbd8c1e87c0f30c5c7ea4a8f",
+    "source_id": "SRC-2"
+  }
+]

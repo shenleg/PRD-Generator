@@ -86,9 +86,11 @@ def render_report(analysis: dict, validation: dict) -> str:
         sections.append("## 10. 历史需求关联\n\n下列为结果声明的实际采用范围，不代表已查全项目或所有冲突已解决。\n```json\n" + json.dumps(review, ensure_ascii=False, indent=2) + "\n```\n")
     if "impact_analysis" in analysis:
         sections.append("已登记的关联与影响：\n```json\n" + json.dumps(analysis["impact_analysis"], ensure_ascii=False, indent=2) + "\n```\n")
-    sections.append("## 11. 技术可行性及风险\n\n本阶段不开展技术可行性评估，现有能力由研发确认；缺省或 unknown 均不表示已有依据支持。\n")
-    if "technical_feasibility" in analysis:
-        sections.append("```json\n" + json.dumps(analysis["technical_feasibility"], ensure_ascii=False, indent=2) + "\n```\n")
+    technical = analysis.get("technical_feasibility")
+    if technical is None:
+        sections.append("## 11. 技术可行性及风险\n\n本结果未开展技术可行性评估；现有能力不得由缺省节推定为支持。\n")
+    else:
+        sections.append("## 11. 技术可行性及风险\n\n按保存结果展示判断依据、来源、可信程度、影响和研发确认项；unknown表示资料不足，非unknown也不是研发验收或上线承诺。\n```json\n" + json.dumps(technical, ensure_ascii=False, indent=2) + "\n```\n")
     sections.append("## 12. 用户体验和设计建议\n\n仅保留当前界面依赖判断及登记事项，不扩展完整视觉设计。\n\n```json\n" + json.dumps(analysis["ux_assessment"], ensure_ascii=False, indent=2) + "\n```\n")
     blockers = [q["id"] for q in analysis["questions"] if q["priority"] == "P0" and q["status"] == "open"]
     sections.append(f"## 13. 结论与就绪度\n\n- 分析修订号：`{meta['analysis_revision']}`；来源修订号：`{meta['source_revision']}`。\n- 分析状态：`{meta['analysis_status']}`。\n- 就绪度：`{meta['readiness']}`。\n- 实际校验：`{validation['status']}`。数据合法不代表业务已就绪。\n- **仍 open 的 P0：{'、'.join(blockers) or '无'}。**\n")
@@ -102,7 +104,8 @@ def render_report(analysis: dict, validation: dict) -> str:
     completion = analysis.get("completion_checks", analysis.get("completion_checklist"))
     sections.append("### 完成清单记录\n\n" + ("```json\n" + json.dumps(completion, ensure_ascii=False, indent=2) + "\n```\n" if completion is not None else "当前 JSON 未提供结构化完成清单；不能据此推断全部满足，需对照 readiness-rules.md 核对。\n"))
     history_note = "历史对照范围按第10节声明，未覆盖部分仍未知。" if review is not None else "未声明开展历史检索与基线对照。"
-    sections.append("### 未开展的分析\n\n" + history_note + "技术可行性结论和完整视觉分析未开展；报告没有把缺省解释为已评估无问题。\n")
+    technical_note = "技术评估范围及资料限制见第11节，未覆盖能力仍未知。" if technical is not None else "未声明技术可行性评估。"
+    sections.append("### 未开展的分析\n\n" + history_note + technical_note + "完整视觉分析未开展；报告没有把缺省解释为已评估无问题。\n")
     return "\n".join(sections)
 
 

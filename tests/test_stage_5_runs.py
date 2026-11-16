@@ -7,6 +7,7 @@ import tempfile
 import unittest
 
 from test_update_analysis import load_module, read_json
+from historical_sources import recorded_bytes
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,7 +39,7 @@ class SavedHistoryRuns(unittest.TestCase):
         for relative, expected in self.manifest["artifacts"].items():
             self.assertEqual(hashlib.sha256((self.runs / relative).read_bytes()).hexdigest(), expected, relative)
         for relative, expected in self.selection["files"].items():
-            self.assertEqual(hashlib.sha256((ROOT / relative).read_bytes()).hexdigest(), expected, relative)
+            self.assertEqual(hashlib.sha256(recorded_bytes(relative, 5)).hexdigest(), expected, relative)
         semantic = read_json(BASE / "semantic-execution.json")
         self.assertEqual(semantic["user_selection"], "主会话完成落盘 (Recommended)")
         self.assertFalse(semantic["independent_read"]["candidate_files_created"])
@@ -136,7 +137,7 @@ class SavedHistoryRuns(unittest.TestCase):
         self.assertRegex(evidence["answer"], r"未批准|未获批")
         self.assertRegex(evidence["answer"], r"未写入文件|没有写入或修改文件")
         for relative, expected in evidence["source_fingerprints"].items():
-            self.assertEqual(hashlib.sha256((ROOT / relative).read_bytes()).hexdigest(), expected, relative)
+            self.assertEqual(hashlib.sha256(recorded_bytes(relative, 5)).hexdigest(), expected, relative)
         self.assertNotIn(str(ROOT), json.dumps(evidence, ensure_ascii=False))
 
     def test_current_tools_replay_all_scenarios_and_preserve_existing_evidence(self) -> None:

@@ -1,0 +1,23 @@
+[
+  {
+    "name": "阶段6合成需求用例",
+    "path": "inputs/cases.json",
+    "type": "input_document",
+    "credibility": "用户批准的合成技术评估输入，非真实产品需求",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-1"
+  },
+  {
+    "name": "partial-interface.md（合成技术资料）",
+    "path": "materials/partial-interface.md",
+    "type": "project_material",
+    "credibility": "合成场景中的当前技术负责人声明；不是真实系统核验",
+    "last_updated": "2026-11-01",
+    "revision": 1,
+    "authority": "current_spec",
+    "adopted_sha256": "cf668804fe962406a4c9dfb585bd8bd64cdef9d22e232b7e289903d213a1a8be",
+    "publication_basis": "原合成资料声明于2026-11-01由技术负责人确认，相对参考日2026-11-16有效",
+    "source_id": "SRC-2"
+  }
+]

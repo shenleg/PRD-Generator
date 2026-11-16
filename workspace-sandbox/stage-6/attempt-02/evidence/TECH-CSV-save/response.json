@@ -1,0 +1,23 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "TECH-CSV",
+  "revision": 1,
+  "id_map": {
+    "$input": "SRC-1",
+    "$material1": "SRC-2",
+    "$goal": "GOAL-1",
+    "$function": "FR-1",
+    "$acceptance": "AC-1",
+    "$ask_dev1": "Q-1"
+  },
+  "affected_ids": [
+    "GOAL-1",
+    "FR-1",
+    "AC-1",
+    "Q-1",
+    "SRC-1",
+    "SRC-2"
+  ],
+  "written": true
+}

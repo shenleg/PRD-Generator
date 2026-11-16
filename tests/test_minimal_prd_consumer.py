@@ -76,6 +76,16 @@ class MinimalConsumerTests(unittest.TestCase):
         """读取 result 指向的实际草稿；路径或编码错误直接抛出。"""
         return (self.directory / result["draft_path"]).read_text(encoding="utf-8")
 
+    def test_technical_assessment_and_limits_survive_handoff(self) -> None:
+        """非条目技术评估也须进入草稿，不能只保留问题而丢失证据和条件。"""
+        patch = ready_patch()
+        patch["set"]["technical_feasibility"] = {"conclusion": "conditionally_feasible", "evidence": [{"content": "合成接口明确支持核心数据，尚需适配改造", "sources": [{"type": "user_answer", "location": "合成技术负责人资料确认"}]}], "credibility": "合成当前资料，非真实系统", "potential_impact": ["增加适配器后才可实现"], "related_questions": [], "risks": ["不能把未完成改造当作已有功能"]}
+        self.create(patch)
+        result = self.consume()
+        text = self.draft(result)
+        for phrase in ("conditionally_feasible", "增加适配器后才可实现", "合成技术负责人资料确认", "不能把未完成改造当作已有功能"):
+            self.assertIn(phrase, text)
+
     def test_ra24_missing_analysis_routes_without_creating_requirement(self) -> None:
         """RA-24：没有分析时不创建工作区或需求，只返回分析交接。"""
         result = self.consume()

@@ -1,0 +1,11 @@
+[
+  {
+    "name": "阶段6合成需求用例",
+    "path": "inputs/cases.json",
+    "type": "input_document",
+    "credibility": "用户批准的合成技术评估输入，非真实产品需求",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-1"
+  }
+]

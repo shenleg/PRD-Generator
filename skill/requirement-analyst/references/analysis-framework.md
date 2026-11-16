@@ -74,6 +74,6 @@
 
 ## 本阶段的分析范围
 
-历史检索与基线对照不开展，在报告说明。技术资料不足时只登记 ask_dev，不给确定结论；可省略 technical_feasibility，并说明没有开展评估。
+历史资料对照按 historical-retrieval.md 执行，无资料明确降级。技术可行性按 feasibility-assessment.md 执行：有效依据支持的范围才能给结论，资料不足保留unknown和ask_dev；未开展时可省略technical_feasibility但须说明，不把省略当可行。
 
 视觉只判断 ui_dependent；确实涉及界面但缺资料时登记待设计事项，不请求无关的完整视觉稿，也不自行设计页面。核心业务状态的可判定预期仍须澄清，不能因其会显示在页面上就归为视觉细节而跳过。

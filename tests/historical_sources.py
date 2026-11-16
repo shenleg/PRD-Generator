@@ -12,6 +12,7 @@ def recorded_bytes(relative: str, stage: int, *, installed: bool = False) -> byt
 
     阶段2/3使用已提交完成标签；阶段4默认使用收口前逐份核对原指纹后保存的快照。
     installed=True仅用于阶段4实际安装烟测，读取其已提交收口版本3ddb876，而非更早快照。
+    阶段5绑定已提交验收版本cbb2938；阶段6新评估行为另有实际证据，不能改旧哈希冒充重跑。
     路径须为仓库相对路径；未知阶段、越界路径或缺证据直接抛出，不回退当前源码。
     """
     path = Path(relative)
@@ -19,6 +20,8 @@ def recorded_bytes(relative: str, stage: int, *, installed: bool = False) -> byt
         raise ValueError("历史源码必须是仓库内相对路径")
     if stage in (2, 3):
         return subprocess.run(["git", "show", f"stage-{stage}-complete:{relative}"], cwd=ROOT, check=True, capture_output=True).stdout
+    if stage == 5:
+        return subprocess.run(["git", "show", f"cbb293833a0a0f53fd50c1dc11c82e0d2e493cd3:{relative}"], cwd=ROOT, check=True, capture_output=True).stdout
     if stage == 4 and installed:
         return subprocess.run(["git", "show", f"3ddb8760110953a84b03590e138aa960c1af10ef:{relative}"], cwd=ROOT, check=True, capture_output=True).stdout
     if stage == 4:

@@ -29,6 +29,18 @@ class TrialReportTests(unittest.TestCase):
         self.assertIn("to_reassess", report)
         self.assertIn("只可形成标注风险的初步草稿", report)
 
+    def test_assessed_technical_section_is_not_reported_as_unperformed(self) -> None:
+        """已有技术评估应按原结论展示，不能仍套旧阶段的“未开展”说明。"""
+        data = json.loads((ROOT / "tests/fixtures/high-low-voltage/analysis-result.json").read_text(encoding="utf-8"))
+        data["technical_feasibility"] = {"conclusion": "supported", "evidence": [{"content": "合成技术资料明确存在所需查询能力", "sources": [{"type": "project_material", "source_id": "SRC-1", "location": "合成接口契约A"}]}], "credibility": "合成有效资料，仅测试展示", "potential_impact": ["复用现有查询，不扩大权限"], "related_questions": [], "risks": []}
+        before = copy.deepcopy(data)
+        report = REPORTS.render_report(data, {"status": "pass", "diagnostics": []})
+        self.assertIn("supported", report)
+        self.assertIn("合成接口契约A", report)
+        self.assertNotIn("本阶段不开展技术可行性评估", report)
+        self.assertNotIn("技术可行性结论和完整视觉分析未开展", report)
+        self.assertEqual(data, before)
+
     def test_tables_escape_markdown_without_changing_data(self) -> None:
         """正文含表格分隔符时仅转义显示，既有标签和正文数据不被改写。"""
         data = json.loads((ROOT / "tests/fixtures/high-low-voltage/analysis-result.json").read_text(encoding="utf-8"))

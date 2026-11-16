@@ -1,0 +1,158 @@
+# 简化交接草稿（非完整 PRD）
+
+    TECH-PRODUCT（阶段6合成技术评估）
+
+需求：TECH-PRODUCT；基于分析修订：1
+analysis_status=clarifying；readiness=not_ready
+待产品负责人确认；本工具不分配正式 PRD 编号、不发布。
+
+> 风险：仅为初步草稿，存在未解决缺口，不能作为已就绪需求交付。
+
+## 分析条目摘录与映射
+
+以下编号仅用于分析追溯，不是正式 PRD 需求编号。
+
+### requirements.goals
+
+映射：TECH-PRODUCT/GOAL-1 | tag=confirmed | status=active | 当前条目
+
+    合成业务目标：核对本需求技术路径及研发前提，不把技术评估当上线承诺
+
+    {
+      "sources": [
+        {
+          "type": "input_document",
+          "source_id": "SRC-1",
+          "location": "cases.json案例TECH-PRODUCT"
+        }
+      ],
+      "related_ids": []
+    }
+
+### requirements.functional_requirements
+
+映射：TECH-PRODUCT/FR-1 | tag=confirmed | status=active | 当前条目
+
+    管理员希望读取其他项目的任务结果，但管理员最终允许看哪些项目还没有产品决定；现有接口能否支持调整也没有技术核验。不得把权限范围的产品取舍全部丢给研发，也不得因已有接口就认定能跨项目读。
+
+    {
+      "sources": [
+        {
+          "type": "input_document",
+          "source_id": "SRC-1",
+          "location": "cases.json案例TECH-PRODUCT"
+        }
+      ],
+      "related_ids": []
+    }
+
+### requirements.acceptance_criteria
+
+映射：TECH-PRODUCT/AC-1 | tag=inferred | status=active | 当前条目；推断，未经确认
+
+    合成评估验收：结论严格限定为原需求范围，逐项核对可用资料与待确认条件；业务遗留问题必须保留，不以技术结论替代产品决定
+
+    {
+      "sources": [
+        {
+          "type": "input_document",
+          "source_id": "SRC-1",
+          "location": "cases.json案例TECH-PRODUCT"
+        }
+      ],
+      "related_ids": [
+        "FR-1"
+      ]
+    }
+
+## 技术评估与限制
+
+保留原结论、证据和待验证条件；技术判断不等于研发验收、业务就绪或发布批准。
+
+    {
+      "conclusion": "unknown",
+      "evidence": [
+        {
+          "content": "现有内部查询接口使用既有服务身份及访问范围，按非空task_id返回result_id及status，无权限返回forbidden。",
+          "sources": [
+            {
+              "type": "project_material",
+              "source_id": "SRC-2",
+              "location": "现有内部查询接口可按一个非空task_id"
+            }
+          ]
+        },
+        {
+          "content": "摘录未证明结果明细或跨项目读取能力。",
+          "sources": [
+            {
+              "type": "project_material",
+              "source_id": "SRC-2",
+              "location": "这份摘录没有证明系统能读取结果明细"
+            }
+          ]
+        }
+      ],
+      "credibility": "相关合成当前接口摘录于2026-11-01确认，参考日2026-11-16；仅覆盖既有范围内标识和状态查询，不能证明管理员跨项目读取或权限调整已受支持。",
+      "potential_impact": [
+        "可能影响管理员授权策略、项目隔离及结果查询接口；具体改造取决于产品范围和研发核验。",
+        "产品核心权限范围未决定，不能作为已确认的跨项目访问规则。"
+      ],
+      "related_questions": [
+        "Q-1"
+      ],
+      "risks": [
+        "允许读取的项目范围未定，存在越权或权限不足风险。",
+        "现有接口是否支持跨项目调整、是否可读取所需结果内容均未知。"
+      ]
+    }
+
+## 遗留事项与问题记录
+
+open/provisional/risk_accepted 及 ask_dev 项保持原状态；推荐选项不是已确认答案。
+
+映射：TECH-PRODUCT/Q-1 | P1 | open | ask_dev
+
+    {
+      "question": "现有权限模型和查询接口能否按最终确定的管理员项目范围授权，涉及哪些隔离、审计与接口改造？",
+      "priority": "P1",
+      "resolution": "ask_dev",
+      "reason": "摘录未证明跨项目读取或调整能力。",
+      "impact": "决定实现路径及安全回归范围；须以产品决定的授权范围为输入。",
+      "options": [],
+      "recommendation": "由研发依据当前系统资料或实测核实，不要求产品承诺技术实现",
+      "status": "open",
+      "related_ids": [
+        "FR-1"
+      ],
+      "id": "Q-1"
+    }
+
+映射：TECH-PRODUCT/Q-2 | P0 | open | ask_product
+
+    {
+      "question": "管理员最终允许读取哪些项目的任务结果？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "跨项目可见范围是尚未决定的业务授权边界，不能交由研发自行决定。",
+      "impact": "决定权限模型、数据可见范围及验收口径。",
+      "options": [
+        "仅允许读取明确分配给管理员的项目",
+        "允许读取指定组织或租户内全部项目",
+        "允许读取所有项目",
+        "暂不开放跨项目读取"
+      ],
+      "recommendation": "建议先采用明确分配的项目范围，遵循最小授权；实际范围仍待产品决策。",
+      "status": "open",
+      "related_ids": [
+        "FR-1"
+      ],
+      "id": "Q-2"
+    }
+
+完成清单第 4 项未满足：
+    模型保留的产品取舍未答，不能由技术判断关闭
+
+完成清单第 7 项未满足：
+    模型保留的产品取舍未答，不能由技术判断关闭
+

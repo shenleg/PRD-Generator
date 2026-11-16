@@ -1,0 +1,13 @@
+{
+  "common": {
+    "requirement_id": "TECH-PRODUCT",
+    "project_id": "feasibility-demo",
+    "title": "TECH-PRODUCT（阶段6合成技术评估）",
+    "created_at": "2026-11-16T08:43:56.629479+00:00"
+  },
+  "prd": {
+    "based_on_analysis_revision": 1,
+    "status": "draft",
+    "version": 1
+  }
+}

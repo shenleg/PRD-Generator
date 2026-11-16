@@ -42,4 +42,8 @@ uv run --no-project --python /usr/bin/python3 \
 
 生产入口仍通过同一相对链接安装。历史能力接入后，另以自然语言的新旧删除规则对照提示运行真实CLI：实际自动调用requirement-analyst，按需读取historical-retrieval.md，并识别有未完成任务用户的删除提议与现行规则冲突，保留产品待决问题，不写基线。最小脱敏证据见 `workspace-sandbox/stage-5/installed-skill-verification-02.json`；原阶段4证据绑定原提交，未重写其哈希来冒充阶段5新行为。
 
-下游测试 Skill 尚未开发，仍按用户批准延期集成验证；它不是安装本分析 Skill 或完成阶段5的前提。
+## 阶段6的技术评估调用
+
+当前生产入口新增feasibility-assessment渐进引用。通过实际CLI只读评估合成技术需求，自动调用Skill并读取技术参考；资料充足时限定范围判断，缺资料/旧草稿/部分证明保持unknown，核心业务取舍仍登记产品问题。最小脱敏证据及明确的定点重评范围见 `workspace-sandbox/stage-6/run-manifest.json`，没有新API客户端或原始会话记录入库。
+
+下游测试 Skill 尚未开发，仍按用户批准延期集成验证；它不是安装本分析 Skill 或完成阶段5/6的前提。

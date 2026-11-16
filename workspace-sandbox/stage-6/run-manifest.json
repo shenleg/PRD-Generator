@@ -1,0 +1,26 @@
+{
+  "stage": 6,
+  "status": "completed_with_user_approved_simulated_technical_materials",
+  "tests_run": 184,
+  "test_summary": "tests/results/stage-6-test-summary.json",
+  "validation_report": "tests/results/stage-6-validation.json",
+  "git_committed": false,
+  "git_pushed": false,
+  "attempt": "attempt-02",
+  "model_evidence": "selected-model-evidence.json",
+  "scope": "用户批准合成技术资料；实际只读模型生成技术评估，机械映射为真实CLI补丁；不代表真实系统能力",
+  "user_selection": "合成技术资料 (Recommended)",
+  "previous_attempts": [
+    {"path": "model-attempt-01/verification.json", "scope": "实际八case评估，但部分数字行号错误，保留不作最终引用"},
+    {"path": "model-attempt-02/verification.json", "scope": "实际重跑八case修正稳定证据位置；TECH-PARTIAL核心业务问题仍误列P1，其他七例保留为最终来源"},
+    {"path": "model-attempt-03-scoped/verification.json", "scope": "仅TECH-PARTIAL按补充规则实际重评，核心输出与权限问题保持P0，其余七例未重新盲跑"},
+    {"path": "attempt-01", "scope": "按第二次模型输出实际保存和消费八case；保留错误P1的结果，最终attempt02采用实际定点修正版"}
+  ],
+  "limits": [
+    "五种技术结论与问题内容由实际模型生成，业务条目和完成清单为主会话合成驱动器提供，不声称完整业务需求自动分析。",
+    "主体八case共享一次只读调用，不是八个独立上下文盲测；每case证据严格限本case提供的资料。",
+    "当前资料有效性和技术负责人均为合成场景声明，不是现实系统核验。",
+    "不修改历史基线，不部署，不给工期/成本/容量承诺。",
+    "不提交、不合并、不推送、不打标签，不进入阶段7。"
+  ]
+}
