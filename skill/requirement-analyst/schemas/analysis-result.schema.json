@@ -1,0 +1,269 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Requirement Analyst 结构化分析结果",
+  "description": "定义下游唯一权威分析结果的结构、枚举与条目格式。可选分析节可省略；对象允许新增字段。跨条目一致性由 validate_analysis.py 检查。格式版本 1.0 已通过阶段 1 静态接口评审。",
+  "type": "object",
+  "required": [
+    "schema_version", "requirement_id", "meta", "requirements",
+    "business_assessment", "ux_assessment", "questions", "assumptions", "decisions"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "requirement_id": {"$ref": "requirement-item.schema.json#/$defs/requirement_id"},
+    "meta": {
+      "type": "object",
+      "required": [
+        "analysis_revision", "source_revision", "baseline_revision",
+        "input_type", "analysis_status", "readiness"
+      ],
+      "properties": {
+        "analysis_revision": {"type": "integer", "minimum": 1},
+        "source_revision": {"type": "integer", "minimum": 1},
+        "baseline_revision": {
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "description": "做过基线对照时填写修订号，否则填 null。"
+        },
+        "input_type": {"enum": ["idea", "existing_document", "attachment", "meeting_notes"]},
+        "analysis_status": {"enum": ["analyzing", "clarifying", "paused", "completed", "stale"]},
+        "readiness": {"enum": ["not_ready", "conditionally_ready", "ready_for_document"]}
+      }
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "project_id": {"type": "string"},
+        "domain": {"type": "string"},
+        "source_ids": {
+          "type": "array",
+          "items": {"$ref": "source.schema.json#/$defs/source_id"}
+        },
+        "domain_terms": {"$ref": "#/$defs/string_array"}
+      }
+    },
+    "value_assessment": {
+      "type": "object",
+      "properties": {
+        "problem": {"type": "string"},
+        "affected_users": {"$ref": "#/$defs/string_array"},
+        "expected_benefits": {"$ref": "#/$defs/string_array"},
+        "success_metrics": {"$ref": "#/$defs/string_array"},
+        "alternatives": {"$ref": "#/$defs/string_array"},
+        "business_value": {"enum": ["high", "medium", "low", "unknown"]},
+        "necessity": {"enum": ["necessary", "deferrable", "needs_justification", "unknown"]}
+      }
+    },
+    "requirements": {
+      "type": "object",
+      "required": ["goals", "scenarios", "functional_requirements", "business_rules", "acceptance_criteria"],
+      "properties": {
+        "goals": {
+          "type": "array",
+          "items": {
+            "$ref": "requirement-item.schema.json",
+            "properties": {"id": {"pattern": "^GOAL-[1-9][0-9]*$"}}
+          }
+        },
+        "scenarios": {
+          "type": "array",
+          "items": {
+            "$ref": "requirement-item.schema.json",
+            "properties": {"id": {"pattern": "^SCN-[1-9][0-9]*$"}}
+          }
+        },
+        "functional_requirements": {
+          "type": "array",
+          "items": {
+            "$ref": "requirement-item.schema.json",
+            "properties": {"id": {"pattern": "^FR-[1-9][0-9]*$"}}
+          }
+        },
+        "business_rules": {
+          "type": "array",
+          "items": {
+            "$ref": "requirement-item.schema.json",
+            "properties": {"id": {"pattern": "^BR-[1-9][0-9]*$"}}
+          }
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "$ref": "requirement-item.schema.json",
+            "properties": {"id": {"pattern": "^CON-[1-9][0-9]*$"}}
+          }
+        },
+        "non_functional_requirements": {
+          "type": "array",
+          "items": {
+            "$ref": "requirement-item.schema.json",
+            "properties": {"id": {"pattern": "^NFR-[1-9][0-9]*$"}}
+          }
+        },
+        "acceptance_criteria": {
+          "type": "array",
+          "items": {
+            "$ref": "requirement-item.schema.json",
+            "properties": {"id": {"pattern": "^AC-[1-9][0-9]*$"}}
+          }
+        },
+        "scope": {
+          "type": "object",
+          "required": ["in_scope", "out_of_scope"],
+          "properties": {
+            "in_scope": {"$ref": "#/$defs/item_array"},
+            "out_of_scope": {"$ref": "#/$defs/item_array"}
+          }
+        }
+      }
+    },
+    "business_assessment": {
+      "type": "object",
+      "required": ["boundaries", "exceptions", "gaps", "conflicts"],
+      "properties": {
+        "flows": {
+          "type": "array",
+          "items": {
+            "$ref": "requirement-item.schema.json",
+            "properties": {"id": {"pattern": "^FLOW-[1-9][0-9]*$"}}
+          }
+        },
+        "states": {
+          "type": "array",
+          "items": {
+            "$ref": "requirement-item.schema.json",
+            "properties": {"id": {"pattern": "^STATE-[1-9][0-9]*$"}}
+          }
+        },
+        "boundaries": {
+          "type": "array",
+          "items": {
+            "$ref": "requirement-item.schema.json",
+            "properties": {"id": {"pattern": "^BND-[1-9][0-9]*$"}}
+          }
+        },
+        "exceptions": {
+          "type": "array",
+          "items": {
+            "$ref": "requirement-item.schema.json",
+            "properties": {"id": {"pattern": "^EXC-[1-9][0-9]*$"}}
+          }
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "$ref": "requirement-item.schema.json",
+            "properties": {"id": {"pattern": "^GAP-[1-9][0-9]*$"}}
+          }
+        },
+        "conflicts": {
+          "type": "array",
+          "items": {
+            "$ref": "requirement-item.schema.json",
+            "required": ["related_question"],
+            "properties": {
+              "id": {"pattern": "^CNF-[1-9][0-9]*$"},
+              "related_question": {"$ref": "requirement-item.schema.json#/$defs/question_reference"}
+            }
+          }
+        }
+      }
+    },
+    "technical_feasibility": {
+      "type": "object",
+      "required": ["conclusion", "evidence", "credibility", "potential_impact", "related_questions", "risks"],
+      "properties": {
+        "conclusion": {"enum": ["supported", "conditionally_feasible", "risky", "unknown", "conflicting"]},
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["content", "sources"],
+            "properties": {
+              "content": {"type": "string", "minLength": 1},
+              "sources": {
+                "type": "array",
+                "items": {"$ref": "source.schema.json"}
+              }
+            }
+          }
+        },
+        "credibility": {"type": "string", "minLength": 1},
+        "potential_impact": {"$ref": "#/$defs/string_array"},
+        "related_questions": {
+          "type": "array",
+          "items": {"$ref": "requirement-item.schema.json#/$defs/question_reference"}
+        },
+        "risks": {"$ref": "#/$defs/string_array"}
+      }
+    },
+    "ux_assessment": {
+      "type": "object",
+      "required": ["ui_dependent"],
+      "properties": {
+        "ui_dependent": {"type": "boolean"},
+        "design_pending_items": {"$ref": "#/$defs/string_array"},
+        "visual_recommendations": {"$ref": "#/$defs/string_array"},
+        "interaction_flows": {"$ref": "#/$defs/string_array"}
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {"$ref": "question.schema.json"}
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "$ref": "requirement-item.schema.json",
+        "required": ["basis", "verification", "related_question"],
+        "properties": {
+          "id": {"pattern": "^ASM-[1-9][0-9]*$"},
+          "basis": {"type": "string", "minLength": 1},
+          "verification": {
+            "type": "string",
+            "minLength": 1,
+            "description": "必须说明验证人和验证途径；具体内容由分析过程确认。"
+          },
+          "related_question": {"$ref": "requirement-item.schema.json#/$defs/question_reference"}
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "requirement-item.schema.json",
+        "required": ["confirmed_by", "confirmed_at", "related_question"],
+        "properties": {
+          "id": {"pattern": "^DEC-[1-9][0-9]*$"},
+          "confirmed_by": {"type": "string", "minLength": 1},
+          "confirmed_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "带时区的 RFC 3339 时间；调用方必须启用 format 校验。"
+          },
+          "related_question": {"$ref": "requirement-item.schema.json#/$defs/question_reference"}
+        }
+      }
+    },
+    "impact_analysis": {
+      "type": "object",
+      "properties": {
+        "affected_requirements": {
+          "type": "array",
+          "items": {"$ref": "requirement-item.schema.json#/$defs/requirement_reference"}
+        },
+        "affected_modules": {"$ref": "#/$defs/string_array"},
+        "proposed_changes": {"$ref": "#/$defs/string_array"}
+      }
+    }
+  },
+  "$defs": {
+    "string_array": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "item_array": {
+      "type": "array",
+      "items": {"$ref": "requirement-item.schema.json"}
+    }
+  }
+}

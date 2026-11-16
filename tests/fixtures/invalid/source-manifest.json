@@ -1,0 +1,11 @@
+[
+  {
+    "source_id": "SRC-1",
+    "name": "架构图增加高低压开关组合逻辑设计表",
+    "path": "original-requirement.md",
+    "type": "input_document",
+    "credibility": "用户提供的需求原文；未定义的规则仍待确认",
+    "last_updated": null,
+    "revision": 1
+  }
+]

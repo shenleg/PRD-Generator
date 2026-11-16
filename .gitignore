@@ -1,0 +1,6 @@
+# 忽略 Python 运行缓存、虚拟环境与临时工作树，不忽略测试记录和业务样例。
+__pycache__/
+*.py[cod]
+.venv/
+.claude/worktrees/
+.DS_Store

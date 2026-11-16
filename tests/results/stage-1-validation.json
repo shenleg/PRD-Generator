@@ -1,0 +1,253 @@
+{
+  "description": "阶段 1 黄金样例与 11 条规则反例的实际校验结果",
+  "golden": {
+    "status": "pass",
+    "diagnostics": []
+  },
+  "counterexamples": [
+    {
+      "file": "rule-01-structure.json",
+      "rule": 1,
+      "status": "fail",
+      "reason": "删除必填 ux_assessment",
+      "matched": true,
+      "actual": {
+        "status": "fail",
+        "diagnostics": [
+          {
+            "rule": 1,
+            "level": "fail",
+            "item_id": "$",
+            "path": "",
+            "message": "格式错误：'ux_assessment' is a required property"
+          }
+        ]
+      }
+    },
+    {
+      "file": "rule-02-duplicate-id.json",
+      "rule": 2,
+      "status": "fail",
+      "reason": "重复 FR-1",
+      "matched": true,
+      "actual": {
+        "status": "fail",
+        "diagnostics": [
+          {
+            "rule": 2,
+            "level": "fail",
+            "item_id": "FR-1",
+            "path": "/requirements/functional_requirements/3",
+            "message": "需求 REQ-2026-001 中编号重复。"
+          }
+        ]
+      }
+    },
+    {
+      "file": "rule-03-enum.json",
+      "rule": 3,
+      "status": "fail",
+      "reason": "用 fact 代替合法 tag",
+      "matched": true,
+      "actual": {
+        "status": "fail",
+        "diagnostics": [
+          {
+            "rule": 3,
+            "level": "fail",
+            "item_id": "FR-1",
+            "path": "/requirements/functional_requirements/0/tag",
+            "message": "格式错误：'fact' is not one of ['confirmed', 'inferred', 'assumption']"
+          }
+        ]
+      }
+    },
+    {
+      "file": "rule-04-readiness.json",
+      "rule": 4,
+      "status": "fail",
+      "reason": "有 open P0 却声明 ready_for_document",
+      "matched": true,
+      "actual": {
+        "status": "fail",
+        "diagnostics": [
+          {
+            "rule": 4,
+            "level": "fail",
+            "item_id": "Q-1",
+            "path": "/meta/readiness",
+            "message": "存在待回答 P0 问题，就绪度必须为 not_ready。"
+          },
+          {
+            "rule": 4,
+            "level": "fail",
+            "item_id": "Q-2",
+            "path": "/meta/readiness",
+            "message": "存在待回答 P0 问题，就绪度必须为 not_ready。"
+          },
+          {
+            "rule": 4,
+            "level": "fail",
+            "item_id": "Q-3",
+            "path": "/meta/readiness",
+            "message": "存在待回答 P0 问题，就绪度必须为 not_ready。"
+          }
+        ]
+      }
+    },
+    {
+      "file": "rule-05-assumption.json",
+      "rule": 5,
+      "status": "fail",
+      "reason": "provisional 问题缺少 active 假设",
+      "matched": true,
+      "actual": {
+        "status": "fail",
+        "diagnostics": [
+          {
+            "rule": 5,
+            "level": "fail",
+            "item_id": "Q-1",
+            "path": "/questions/0/status",
+            "message": "暂定问题缺少关联的 active 假设。"
+          }
+        ]
+      }
+    },
+    {
+      "file": "rule-06-decision.json",
+      "rule": 6,
+      "status": "fail",
+      "reason": "excluded P0 缺少 active 决策",
+      "matched": true,
+      "actual": {
+        "status": "fail",
+        "diagnostics": [
+          {
+            "rule": 6,
+            "level": "fail",
+            "item_id": "Q-1",
+            "path": "/questions/0/status",
+            "message": "已排除的 P0 问题缺少关联的 active 决策。"
+          }
+        ]
+      }
+    },
+    {
+      "file": "rule-07-source.json",
+      "rule": 7,
+      "status": "fail",
+      "reason": "active 目标没有来源",
+      "matched": true,
+      "actual": {
+        "status": "fail",
+        "diagnostics": [
+          {
+            "rule": 7,
+            "level": "fail",
+            "item_id": "GOAL-1",
+            "path": "/requirements/goals/0/sources",
+            "message": "有效条目至少需要一个来源。"
+          }
+        ]
+      }
+    },
+    {
+      "file": "rule-08-withdrawn.json",
+      "rule": 8,
+      "status": "fail",
+      "reason": "active 条目引用 withdrawn 条目",
+      "matched": true,
+      "actual": {
+        "status": "fail",
+        "diagnostics": [
+          {
+            "rule": 8,
+            "level": "fail",
+            "item_id": "FR-1",
+            "path": "/requirements/functional_requirements/0/related_ids/0",
+            "message": "仍引用已撤销条目 FR-99；通用条目须待重评，相关问题须按撤销流程废弃。"
+          }
+        ]
+      }
+    },
+    {
+      "file": "rule-09-technical.json",
+      "rule": 9,
+      "status": "fail",
+      "reason": "supported 技术结论缺依据、可信程度和影响",
+      "matched": true,
+      "actual": {
+        "status": "fail",
+        "diagnostics": [
+          {
+            "rule": 9,
+            "level": "fail",
+            "item_id": "$",
+            "path": "/technical_feasibility/credibility",
+            "message": "非 unknown 技术结论必须说明可信程度。"
+          },
+          {
+            "rule": 9,
+            "level": "fail",
+            "item_id": "$",
+            "path": "/technical_feasibility/evidence",
+            "message": "非 unknown 技术结论必须有依据。"
+          },
+          {
+            "rule": 9,
+            "level": "fail",
+            "item_id": "$",
+            "path": "/technical_feasibility/potential_impact",
+            "message": "非 unknown 技术结论必须说明潜在影响。"
+          }
+        ]
+      }
+    },
+    {
+      "file": "rule-10-conflict.json",
+      "rule": 10,
+      "status": "fail",
+      "reason": "矛盾引用不存在的 Q-999",
+      "matched": true,
+      "actual": {
+        "status": "fail",
+        "diagnostics": [
+          {
+            "rule": 2,
+            "level": "fail",
+            "item_id": "CNF-1",
+            "path": "/business_assessment/conflicts/0/related_question",
+            "message": "引用编号不存在或未提供关联资料：Q-999。"
+          },
+          {
+            "rule": 10,
+            "level": "fail",
+            "item_id": "CNF-1",
+            "path": "/business_assessment/conflicts/0/related_question",
+            "message": "矛盾未关联本需求内存在的问题条目。"
+          }
+        ]
+      }
+    },
+    {
+      "file": "rule-11-stale.json",
+      "rule": 11,
+      "status": "warning",
+      "reason": "分析状态为 stale，应警告而非失败",
+      "matched": true,
+      "actual": {
+        "status": "warning",
+        "diagnostics": [
+          {
+            "rule": 11,
+            "level": "warning",
+            "item_id": "$",
+            "path": "/meta/analysis_status",
+            "message": "分析已过期；下游须提示重新评估。"
+          }
+        ]
+      }
+    }
+  ]
+}

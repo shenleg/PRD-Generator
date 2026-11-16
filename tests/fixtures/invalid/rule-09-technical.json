@@ -1,0 +1,434 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "REQ-2026-001",
+  "meta": {
+    "analysis_revision": 1,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "existing_document",
+    "analysis_status": "clarifying",
+    "readiness": "not_ready"
+  },
+  "context": {
+    "project_id": "architecture-simulation",
+    "domain": "架构仿真与开关组合",
+    "source_ids": [
+      "SRC-1"
+    ],
+    "domain_terms": [
+      "高压开关",
+      "低压开关",
+      "逻辑设计表"
+    ]
+  },
+  "value_assessment": {
+    "problem": "工程师手工整理开关动作的逻辑设计表，效率低且容易出错。",
+    "affected_users": [
+      "工程师"
+    ],
+    "expected_benefits": [
+      "减少手工整理开关动作逻辑设计表的工作"
+    ],
+    "success_metrics": [],
+    "alternatives": [],
+    "business_value": "unknown",
+    "necessity": "unknown"
+  },
+  "requirements": {
+    "goals": [
+      {
+        "id": "GOAL-1",
+        "content": "在架构图中增加高低压开关组合逻辑设计表能力，改善手工整理效率低、容易出错的问题。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 1 至 2 行：需求名称与背景"
+          }
+        ],
+        "status": "active"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "SCN-1",
+        "content": "工程师根据架构图中的开关及勾选的高低压组合生成逻辑设计表。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 2、4 至 6 行"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "GOAL-1"
+        ]
+      }
+    ],
+    "functional_requirements": [
+      {
+        "id": "FR-1",
+        "content": "读取架构图中的开关，并区分高压与低压。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 4 行"
+          }
+        ],
+        "status": "active"
+      },
+      {
+        "id": "FR-2",
+        "content": "高压排列组合与低压排列组合分别使用对应的 tab。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 5 行"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "FR-1"
+        ]
+      },
+      {
+        "id": "FR-3",
+        "content": "根据勾选的高低压组合生成逻辑设计表。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 6 行"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "FR-2"
+        ]
+      }
+    ],
+    "business_rules": [
+      {
+        "id": "BR-1",
+        "content": "生成逻辑设计表时使用用户勾选的高低压组合；具体配对和计算规则尚未明确。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 6 行"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "FR-3"
+        ]
+      }
+    ],
+    "acceptance_criteria": [
+      {
+        "id": "AC-1",
+        "content": "验收草案：给定已确认开关分类的架构图，核对读取结果中的高压、低压分类；识别条件仍需研发确认。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 4 行：由读取与分类要求推导"
+          }
+        ],
+        "status": "to_reassess",
+        "related_ids": [
+          "FR-1",
+          "Q-4"
+        ]
+      },
+      {
+        "id": "AC-2",
+        "content": "验收草案：按确认后的组合规则得到的高压与低压组合分别出现在对应 tab；组合规则待 Q-1 澄清。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 5 行：由 tab 要求推导"
+          }
+        ],
+        "status": "to_reassess",
+        "related_ids": [
+          "FR-2",
+          "Q-1"
+        ]
+      },
+      {
+        "id": "AC-3",
+        "content": "验收草案：以勾选的组合为输入，核对生成表的行列、字段和结果；预期输出须在 Q-2、Q-3 澄清后补齐，当前不能作为完整验收标准。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 6 行：由表生成要求推导"
+          }
+        ],
+        "status": "to_reassess",
+        "related_ids": [
+          "FR-3",
+          "Q-2",
+          "Q-3"
+        ]
+      }
+    ],
+    "scope": {
+      "in_scope": [
+        {
+          "id": "CON-1",
+          "content": "当前分析范围包括开关读取与分类、高低压组合 tab，以及依据勾选组合生成逻辑设计表。",
+          "tag": "confirmed",
+          "sources": [
+            {
+              "type": "input_document",
+              "source_id": "SRC-1",
+              "location": "第 4 至 6 行"
+            }
+          ],
+          "status": "active",
+          "related_ids": [
+            "FR-1",
+            "FR-2",
+            "FR-3"
+          ]
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  "business_assessment": {
+    "boundaries": [
+      {
+        "id": "BND-1",
+        "content": "待分析边界：图中无开关，或只有高压、只有低压开关时如何处理。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 4 行：从分类输入推导"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "FR-1"
+        ]
+      },
+      {
+        "id": "BND-2",
+        "content": "待分析边界：没有勾选组合或只勾选一类组合时的生成行为，不能自行指定结果。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 6 行：从选择输入推导"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "FR-3",
+          "Q-2"
+        ]
+      },
+      {
+        "id": "BND-3",
+        "content": "待分析边界：开关数量增长可能扩大组合空间；尚无数量上限、截断或超时规则。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 4 至 6 行：从组合生成推导"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "FR-2",
+          "Q-1"
+        ]
+      }
+    ],
+    "exceptions": [
+      {
+        "id": "EXC-1",
+        "content": "待分析异常：无法读取开关或缺少高低压分类属性时的处理；不预设现有接口已经支持。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 4 行：从读取过程推导"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "FR-1",
+          "Q-4"
+        ]
+      }
+    ],
+    "gaps": [
+      {
+        "id": "GAP-1",
+        "content": "组合含义、生成规则及非法组合尚未定义。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 4 至 5 行：未说明组合定义"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-1"
+        ]
+      },
+      {
+        "id": "GAP-2",
+        "content": "所选高低压组合之间的配对或筛选关系尚未定义，原文没有规定联动约束。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 6 行：未说明所选组合的关系"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-2"
+        ]
+      },
+      {
+        "id": "GAP-3",
+        "content": "逻辑设计表的行列、字段和预期结果尚未定义。",
+        "tag": "inferred",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "第 6 行：未提供输出结构及示例"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "Q-3"
+        ]
+      }
+    ],
+    "conflicts": []
+  },
+  "ux_assessment": {
+    "ui_dependent": true,
+    "design_pending_items": [
+      "需求包含 tab、勾选和表展示；尚无视觉资料，不假设页面布局和完整交互。"
+    ]
+  },
+  "questions": [
+    {
+      "id": "Q-1",
+      "question": "一个组合表示什么，哪些组合应生成、哪些不合法？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "原文未定义排列组合的业务含义。",
+      "impact": "无法确定组合生成规则和验收预期。",
+      "options": [
+        "开关状态组合",
+        "选中的开关集合",
+        "开关动作顺序",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "开关状态组合：可作为讨论起点，但原文不足以确认，需提供最小示例；当前不采用为假设。",
+      "status": "open",
+      "related_ids": [
+        "FR-2",
+        "GAP-1"
+      ]
+    },
+    {
+      "id": "Q-2",
+      "question": "勾选的高压与低压组合如何共同参与生成？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "原文未规定分别列出、交叉配对还是按指定关系配对。",
+      "impact": "决定表的记录数量及输入关系。",
+      "options": [
+        "分别列出",
+        "交叉配对",
+        "按指定关系配对或筛选",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "按指定关系配对或筛选：先用手工表确认实际关系，不默认已有联动约束；当前不采用为假设。",
+      "status": "open",
+      "related_ids": [
+        "FR-3",
+        "GAP-2"
+      ]
+    },
+    {
+      "id": "Q-3",
+      "question": "逻辑设计表应有哪些行列、字段和可判定结果？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "未提供当前手工表或输出定义。",
+      "impact": "无法形成核心输出的完整验收标准。",
+      "options": [
+        "提供现有手工表和最小输入输出示例",
+        "先定义字段、行列和取值规则",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "提供现有手工表和最小输入输出示例：直接复用工程师的实际工作成果，避免臆造规则。",
+      "status": "open",
+      "related_ids": [
+        "FR-3",
+        "GAP-3",
+        "AC-3"
+      ]
+    },
+    {
+      "id": "Q-4",
+      "question": "现有元件模型是否提供可读取的开关及高低压分类属性？",
+      "priority": "P1",
+      "resolution": "ask_dev",
+      "reason": "没有系统技术资料，不能确认读取能力。",
+      "impact": "影响读取与分类的实现和异常处理。",
+      "options": [],
+      "recommendation": "由研发对照现有模型或接口验证；不要求产品判断技术能力。",
+      "status": "open",
+      "related_ids": [
+        "FR-1",
+        "EXC-1"
+      ]
+    }
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "technical_feasibility": {
+    "conclusion": "supported",
+    "evidence": [],
+    "credibility": "unknown",
+    "potential_impact": [],
+    "related_questions": [],
+    "risks": []
+  }
+}

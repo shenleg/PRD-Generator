@@ -1,0 +1,68 @@
+[
+  {
+    "file": "rule-01-structure.json",
+    "rule": 1,
+    "status": "fail",
+    "reason": "删除必填 ux_assessment"
+  },
+  {
+    "file": "rule-02-duplicate-id.json",
+    "rule": 2,
+    "status": "fail",
+    "reason": "重复 FR-1"
+  },
+  {
+    "file": "rule-03-enum.json",
+    "rule": 3,
+    "status": "fail",
+    "reason": "用 fact 代替合法 tag"
+  },
+  {
+    "file": "rule-04-readiness.json",
+    "rule": 4,
+    "status": "fail",
+    "reason": "有 open P0 却声明 ready_for_document"
+  },
+  {
+    "file": "rule-05-assumption.json",
+    "rule": 5,
+    "status": "fail",
+    "reason": "provisional 问题缺少 active 假设"
+  },
+  {
+    "file": "rule-06-decision.json",
+    "rule": 6,
+    "status": "fail",
+    "reason": "excluded P0 缺少 active 决策"
+  },
+  {
+    "file": "rule-07-source.json",
+    "rule": 7,
+    "status": "fail",
+    "reason": "active 目标没有来源"
+  },
+  {
+    "file": "rule-08-withdrawn.json",
+    "rule": 8,
+    "status": "fail",
+    "reason": "active 条目引用 withdrawn 条目"
+  },
+  {
+    "file": "rule-09-technical.json",
+    "rule": 9,
+    "status": "fail",
+    "reason": "supported 技术结论缺依据、可信程度和影响"
+  },
+  {
+    "file": "rule-10-conflict.json",
+    "rule": 10,
+    "status": "fail",
+    "reason": "矛盾引用不存在的 Q-999"
+  },
+  {
+    "file": "rule-11-stale.json",
+    "rule": 11,
+    "status": "warning",
+    "reason": "分析状态为 stale，应警告而非失败"
+  }
+]
