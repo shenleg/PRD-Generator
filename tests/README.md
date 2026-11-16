@@ -1,6 +1,6 @@
 # 测试与模型试跑
 
-当前阶段4已按用户批准完成本次范围收口，下游真实Skill集成延期补验。139项完整回归通过，最终收口记录见 `results/stage-4-closure.md`。项目安装和真实自动调用见 `../INSTALL.md`、`test_skill_installation.py` 及 `results/stage-4-acceptance.md`。下文保留分阶段的执行范围与历史日志；旧模型源码指纹由 `historical_sources.py` 读取历史标签或收口前快照，不用改旧哈希冒充当前行为。当前脚本的功能仍另作完整回归和补丁重放。
+阶段1～8已按用户批准的范围完成；整体收口及最新测试结果见`results/final-acceptance.md`和`results/final-acceptance-test-summary.json`。阶段8提交为`be0f8ba`，当时212项回归通过；最终验收另新增4项链路检查。真实下游Skill集成继续延期，八项量化评价指标的统一基线/阈值尚未收口，不扩大为全规格量化达标声明。项目安装和既有真实自动调用见`../INSTALL.md`、`test_skill_installation.py`。下文保留各阶段历史次数、执行范围与日志；旧模型源码指纹由`historical_sources.py`读取历史提交或快照，不改旧哈希冒充当前行为。当前脚本仍另作完整回归和补丁重放。
 
 本目录区分格式测试、Skill 静态契约检查、已保存的模型行为试跑及确定性交接测试。Python 测试不调用模型或产生额外 API 费用；写入类测试只使用独立临时工作区，保留已保存的历史证据。
 
@@ -9,6 +9,15 @@
 用户选择本会话逐项批准、合成案例及公开CLI集成测试，后续实际选择“批准 DK-001”。`test_domain_knowledge.py`的13项测试在临时项目执行知识写入CLI和既有索引/检索CLI，覆盖批准指纹、事实资格、来源变化、路径、不覆盖及事务门禁；其中合成批准只是测试输入，不是实际入库授权。`test_stage_8_runs.py`另以4项检查核对真实用户批准、准确正文/范围、5步CLI证据及产物指纹。流程和协议见生产`references/domain-knowledge.md`，最终验收见`results/stage-8.md`，启动记录见`results/stage-8-start.md`。本次仅隔离合成项目的受控入库，不声称独立模型盲测或安装自动调用重测。
 
 阶段7历史模型/源码指纹改为读取已提交`6325078`，产物仍保留原字节；旧CLI场景继续用当前工具实际重放，不改旧指纹冒充模型重跑。
+
+## 最终贯穿案例
+
+`run_final_acceptance.py --output NEW_DIRECTORY`以当前公开CLI重放阶段4已有采购模拟案例的五轮补丁，仅将首轮资料路径重定位到新工作区，业务内容、回答和完成清单不变。16次调用覆盖缺分析回交、逐轮保存/校验、报告视图、草稿版本同步、旧修订/旧补丁拒绝及风险草稿。`test_final_acceptance.py`另核对证据指纹并在临时新目录重放；已存在输出目录必须拒绝。重放不是新模型分析、真实用户答疑或真实下游Skill集成。
+
+```bash
+uv run --offline --no-project --python /usr/bin/python3 --with-requirements tests/requirements.txt \
+  python -I -B tests/run_final_acceptance.py --output /path/to/new-final-acceptance
+```
 
 ## 自动检查
 

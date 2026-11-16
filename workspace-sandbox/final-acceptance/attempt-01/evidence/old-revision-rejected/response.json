@@ -1,0 +1,6 @@
+{
+  "status": "fail",
+  "action": "reject",
+  "message": "分析 revision 冲突；重新读取并确认后再生成。",
+  "written": false
+}

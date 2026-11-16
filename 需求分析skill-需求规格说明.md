@@ -1045,12 +1045,16 @@ requirement-analyst/
     ├── update_analysis.py
     ├── index_sources.py
     ├── search_project.py
-    └── compare_baseline.py
+    ├── compare_baseline.py
+    ├── save_knowledge.py
+    ├── project_sources.py           资料工具共用模块，需随安装保留
+    ├── requirements.txt
+    └── README.md
 ```
 
 参考文件、格式定义和脚本按能力划分，可以按实际启用的能力取舍。
 
-本 Skill 与 PRD Generator 并列安装，各自独立；本 Skill 的 `validate_analysis.py` 和 `update_analysis.py` 会被 PRD Generator 调用，两个 Skill 必须一同安装。
+本 Skill 可独立安装使用；与 PRD Generator 配套时并列安装，各自独立，下游读取/更新分析须调用本 Skill 同一份 `validate_analysis.py` 和 `update_analysis.py`，不能另写一套。目前真实下游 Skill 尚未开发，其实际集成经用户批准延期，不阻塞本 Skill 安装和当前范围验收。
 
 ## 11.2 配置要点
 
@@ -1065,6 +1069,7 @@ requirement-analyst/
 - **`validate_analysis.py`**：执行 9.6 的全部检查，输出 `pass`、`warning`、`fail` 三种结果。本 Skill 维护这一份，PRD Generator 在读取分析结果前调用同一份，不各写一套。
 - **`update_analysis.py`**：接收模型产出的条目增删改补丁，先对应用补丁后的结果做校验，校验失败则不写入，原结果保持不变；校验通过后写入 `analysis-result.json`，修订号加 1，追加 `analysis-events.jsonl`，分配新编号，创建需求目录和 `requirement.json`。模型只产出补丁，不每轮重写整份结果文件，避免内容漂移和多余消耗。
 - **`index_sources.py`、`search_project.py`、`compare_baseline.py`**：对应 8.2 的检索流程和基线比对。
+- **`save_knowledge.py`**：对应8.5具体批准后的知识新建；建议/批准协议统一见`references/domain-knowledge.md`，不覆盖已有知识，不写原分析，不代替身份认证。`project_sources.py`为共用模块，无独立CLI。
 
 ---
 
@@ -1107,6 +1112,8 @@ requirement-analyst/
 | RA-31 | 完成清单有不满足的项 | 登记对应问题，就绪度不为 `ready_for_document` | 追问与收敛、就绪判定 |
 
 ## 12.2 评价指标
+
+**最终收口说明（2026-11-16）**：阶段1～8已按各自退出条件和用户批准范围完成，证据汇总见`tests/results/final-acceptance.md`。下列八项指标尚无统一样本基线/分母及最终阈值，不将场景回归通过扩大为全部量化达标，也不在收口时自行拍数。后续由负责人依据样本评审确定阈值。真实下游Skill集成仍按用户批准延期。
 
 1. P0 关键缺口的发现率。
 2. 无效问题占比。

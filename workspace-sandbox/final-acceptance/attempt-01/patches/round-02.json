@@ -1,0 +1,320 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "SIM-PROCUREMENT-001",
+  "base_revision": 1,
+  "change_type": "supplement",
+  "actor": "user",
+  "user_statement": "以这次明确的口径为准：待审批，以及审批通过但还没下单，这两类允许撤回。已经下单、执行采购、收货完成或已取消的都不允许。成功后原申请回到草稿，保留原申请编号和历史审批记录，可以修改后重新提交。\n本期只有申请创建人能撤回自己的申请。采购管理员也不能代撤，其他角色和代办权限这期不做；批量入口不扩大现有可见范围。\n按每条申请真正执行时的最新状态和权限判定，不以打开页面时的快照为准。审批通过但未下单仍允许撤回；下单先成功则撤回失败并提示状态已变化，未撤回；撤回先成功则后续旧状态下单或审批不得再成功。具体怎么实现交研发确认。",
+  "summary": "仅吸收模拟业务方第1轮状态、权限、并发回答，撤回去向是该回答主动补充；不提前使用其他答案。",
+  "operations": [
+    {
+      "op": "update",
+      "target": "Q-1",
+      "changes": {
+        "status": "answered",
+        "answer": "以这次明确的口径为准：待审批，以及审批通过但还没下单，这两类允许撤回。已经下单、执行采购、收货完成或已取消的都不允许。成功后原申请回到草稿，保留原申请编号和历史审批记录，可以修改后重新提交。",
+        "reason": "模拟业务方第1轮明确回答；保留原始问题与实际模拟答案。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-2",
+      "changes": {
+        "status": "answered",
+        "answer": "本期只有申请创建人能撤回自己的申请。采购管理员也不能代撤，其他角色和代办权限这期不做；批量入口不扩大现有可见范围。",
+        "reason": "模拟业务方第1轮明确回答；保留原始问题与实际模拟答案。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-3",
+      "changes": {
+        "status": "answered",
+        "answer": "按每条申请真正执行时的最新状态和权限判定，不以打开页面时的快照为准。审批通过但未下单仍允许撤回；下单先成功则撤回失败并提示状态已变化，未撤回；撤回先成功则后续旧状态下单或审批不得再成功。具体怎么实现交研发确认。",
+        "reason": "模拟业务方第1轮明确回答；保留原始问题与实际模拟答案。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-4",
+      "changes": {
+        "status": "answered",
+        "answer": "以这次明确的口径为准：待审批，以及审批通过但还没下单，这两类允许撤回。已经下单、执行采购、收货完成或已取消的都不允许。成功后原申请回到草稿，保留原申请编号和历史审批记录，可以修改后重新提交。",
+        "reason": "模拟业务方第1轮已明确；Q-4为状态回答中主动补充的撤回去向及编号，不重复追问。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "BR-1",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "该原文候选口径已被第1轮模拟裁决否定或限定，保留原文来源，不再视为现行规则。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "BR-2",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "该原文候选口径已被第1轮模拟裁决否定或限定，保留原文来源，不再视为现行规则。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "CNF-1",
+      "changes": {
+        "status": "to_reassess",
+        "reason": "Q-1已裁决；保留初始冲突证据，当前口径由新规则单独表达。"
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.business_rules",
+      "ref": "$allowed",
+      "value": {
+        "content": "仅待审批，以及审批通过但尚未下单的申请允许撤回；已下单、执行采购、收货完成、已取消均不允许。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "Q-1"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.business_rules",
+      "ref": "$permission",
+      "value": {
+        "content": "本期只有申请创建人能撤回自己的申请；采购管理员不能代撤，不新增其他角色或代办权限，批量入口不扩大既有可见范围。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "Q-2",
+          "BR-4"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.business_rules",
+      "ref": "$race",
+      "value": {
+        "content": "按每条申请真正执行时的最新状态和权限判定。下单先成功则撤回失败并提示状态已变化、未撤回；撤回先成功则后续基于旧状态的下单或审批不得再成功；审批通过但未下单仍可撤回。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "Q-3"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.business_rules",
+      "ref": "$destination",
+      "value": {
+        "content": "撤回成功后原申请回到草稿，保留原申请编号与各次已存在的审批历史，允许修改后重新提交；旧待办及重提轮次尚待Q-8确认。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "Q-4",
+          "BR-5"
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "target": "BND-1",
+      "changes": {
+        "content": "并发业务预期已明确：逐条按执行时最新状态和权限判断，下单与撤回只能按有效先后结果生效；具体实现机制仍待研发核查。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "$race",
+          "Q-11"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.acceptance_criteria",
+      "ref": "$aceligible",
+      "value": {
+        "content": "创建人对自己待审批或通过未下单的申请成功撤回后，原申请回草稿、编号不变、原审批历史仍可查。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "$allowed",
+          "$permission",
+          "$destination"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.acceptance_criteria",
+      "ref": "$acinvalid",
+      "value": {
+        "content": "非创建人、无权访问或执行时处于已下单/执行采购/收货完成/已取消状态的申请不能被撤回，不因批量入口扩大可见范围或改变该申请。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "$allowed",
+          "$permission"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.acceptance_criteria",
+      "ref": "$acrace",
+      "value": {
+        "content": "分别让下单和撤回先成功：前者后续撤回失败并显示状态变化，后者后续旧状态下单/审批不再成功；审批先通过但未下单仍满足可撤范围。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "$race"
+        ]
+      }
+    }
+  ],
+  "set": {
+    "meta.analysis_status": "clarifying",
+    "meta.readiness": "not_ready"
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "依据原文及第1轮已给出的模拟回答满足；历史对照未做、技术能力待研发、界面依赖已登记。"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "依据原文及第1轮已给出的模拟回答满足；历史对照未做、技术能力待研发、界面依赖已登记。"
+    },
+    {
+      "item": 3,
+      "satisfied": false,
+      "question_refs": [
+        "Q-8"
+      ],
+      "reason": "仍需澄清审批衔接、混选输入或重复操作，核心验收未完整。"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": [
+        "Q-5",
+        "Q-6",
+        "Q-7"
+      ],
+      "reason": "仍需澄清审批衔接、混选输入或重复操作，核心验收未完整。"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "依据原文及第1轮已给出的模拟回答满足；历史对照未做、技术能力待研发、界面依赖已登记。"
+    },
+    {
+      "item": 6,
+      "satisfied": false,
+      "question_refs": [
+        "Q-5",
+        "Q-6",
+        "Q-7"
+      ],
+      "reason": "仍需澄清审批衔接、混选输入或重复操作，核心验收未完整。"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "Q-5",
+        "Q-6",
+        "Q-7",
+        "Q-8"
+      ],
+      "reason": "仍需澄清审批衔接、混选输入或重复操作，核心验收未完整。"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "依据原文及第1轮已给出的模拟回答满足；历史对照未做、技术能力待研发、界面依赖已登记。"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "依据原文及第1轮已给出的模拟回答满足；历史对照未做、技术能力待研发、界面依赖已登记。"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "依据原文及第1轮已给出的模拟回答满足；历史对照未做、技术能力待研发、界面依赖已登记。"
+    },
+    {
+      "item": 11,
+      "satisfied": false,
+      "question_refs": [
+        "Q-9"
+      ],
+      "reason": "逐条日志业务预期待确认。"
+    }
+  ]
+}

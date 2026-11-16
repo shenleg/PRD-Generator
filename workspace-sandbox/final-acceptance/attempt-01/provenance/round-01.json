@@ -1,0 +1,12 @@
+{
+  "origin": "workspace-sandbox/stage-4/simulated-trial-01/evidence/round-01/patch.json",
+  "origin_sha256": "cfc235ba00b0fc32c89ab8a247c322f7a20d73888bb54574a6356b8333e844df",
+  "applied_sha256": "5f29e732de15dcdadb2be0202906f118613636340771e996fa8962a78747fe1d",
+  "relocations_only": [
+    {
+      "from": "stage-4-procurement-withdrawal.md",
+      "to": "inputs/original-requirement.md"
+    }
+  ],
+  "business_content_and_simulated_answers_unchanged": true
+}

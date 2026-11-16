@@ -1,6 +1,6 @@
 # 分析校验与补丁写入
 
-本目录提供唯一只读校验器 validate_analysis.py，以及负责正式写入、编号、事件和并发保护的 update_analysis.py。校验规则依据规格 9.6，补丁协议及恢复边界见 ../references/incremental-update.md。校验器始终只读，只有更新器写分析业务文件；阶段5索引器仅维护项目index/，其余资料工具只读业务数据。
+本目录提供唯一只读校验器 validate_analysis.py，以及负责正式写入、编号、事件和并发保护的 update_analysis.py。校验规则依据规格 9.6，补丁协议及恢复边界见 ../references/incremental-update.md。校验器始终只读，只有更新器写分析业务文件；索引器仅维护项目index/，save_knowledge.py仅在具体批准后新建knowledge/文件，其余资料工具只读业务数据。
 
 ## 安装与运行
 
@@ -70,6 +70,10 @@ catalog为来源清单数组：source_id/name/path/type/credibility/last_updated
 检索默认5条/摘要共2000字符，最多20条/20000字符；单次读取最多64文件/2MiB、单文件1MiB，任何截断会提示。使用--requirement/--module/--tag/--term缩小范围；--as-of与--max-age-days控制业务年龄复核，默认365天。没有资料/没有命中不是无冲突。非空分析事务阻止操作；已完成null日志允许，路径符号链接被拒。只支持可信本地进程遵锁的工作区，不保证恶意并发中间目录换链安全。
 
 历史采用、旧版本归档、显式基线登记与语义分析规则见 `../references/historical-retrieval.md`。1.0增加选填history_review和来源字段，旧结果继续合法，不迁移、不将旧草稿默认为发布基线。
+
+## 受控知识沉淀
+
+`save_knowledge.py --project-root PROJECT_ROOT --proposal PROPOSAL.json --approval APPROVAL.json`仅在用户或指定负责人批准准确条目后新建知识文件，不覆盖既有知识、不写analysis/、不自动索引。完整建议指纹、资格/来源核验、批准记录及失败保留现场规则统一见`../references/domain-knowledge.md`。它不验证确认者身份或代替业务事实核实；程序测试中的合成approve不构成实际批准。
 
 ## 自动回归
 

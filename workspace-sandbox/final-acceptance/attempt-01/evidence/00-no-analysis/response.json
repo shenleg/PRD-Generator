@@ -1,0 +1,6 @@
+{
+  "status": "warning",
+  "action": "analyze",
+  "message": "没有分析结果；先转入需求分析，不生成草稿。",
+  "written": false
+}

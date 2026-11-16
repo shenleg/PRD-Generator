@@ -1,0 +1,29 @@
+{
+  "status": "pass",
+  "mode": "installed_payload_contract_and_actual_validator_cli_from_other_cwd",
+  "new_model_auto_invocation_test": false,
+  "installed_path": ".claude/skills/requirement-analyst",
+  "symlink_target": "../../skill/requirement-analyst",
+  "entry_sha256": "e9c40215b93df68d8157057b28d8308f55205c63309ca4f62f4c6db1815e341e",
+  "source_entry_sha256": "e9c40215b93df68d8157057b28d8308f55205c63309ca4f62f4c6db1815e341e",
+  "reference_count": 8,
+  "production_scripts": [
+    "compare_baseline.py",
+    "index_sources.py",
+    "project_sources.py",
+    "save_knowledge.py",
+    "search_project.py",
+    "update_analysis.py",
+    "validate_analysis.py"
+  ],
+  "tests_not_in_payload": true,
+  "tools_not_in_payload": true,
+  "cwd": "/tmp",
+  "returncode": 0,
+  "response": {
+    "status": "pass",
+    "diagnostics": []
+  },
+  "stderr": "",
+  "scope": "安装目录的公开校验CLI实际从其他cwd运行；不是新模型自动触发、菜单显示或图像行为验证。"
+}

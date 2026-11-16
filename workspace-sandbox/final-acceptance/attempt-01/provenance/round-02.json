@@ -1,0 +1,7 @@
+{
+  "origin": "workspace-sandbox/stage-4/simulated-trial-01/evidence/round-02/patch.json",
+  "origin_sha256": "5e5a0e17d5a76768fc5065f2d8f3572693711f29032b8825fcfef0269e572024",
+  "applied_sha256": "5e5a0e17d5a76768fc5065f2d8f3572693711f29032b8825fcfef0269e572024",
+  "relocations_only": [],
+  "business_content_and_simulated_answers_unchanged": true
+}

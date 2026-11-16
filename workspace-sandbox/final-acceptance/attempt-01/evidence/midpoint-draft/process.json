@@ -1,0 +1,18 @@
+{
+  "command": [
+    "python",
+    "-I",
+    "-B",
+    "tools/minimal_prd_consumer.py",
+    "--workspace",
+    "workspace-sandbox/final-acceptance/attempt-01/workspace",
+    "--project",
+    "office-procurement",
+    "--requirement",
+    "SIM-PROCUREMENT-001",
+    "--expected-revision",
+    "3"
+  ],
+  "returncode": 1,
+  "stderr": ""
+}

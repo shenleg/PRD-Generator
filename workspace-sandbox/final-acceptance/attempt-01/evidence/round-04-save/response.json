@@ -1,0 +1,27 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "SIM-PROCUREMENT-001",
+  "revision": 4,
+  "id_map": {
+    "$repeat": "BR-14",
+    "$audit": "BR-15",
+    "$qaggregate": "Q-12",
+    "$aggregate": "GAP-2",
+    "$acretry": "AC-8",
+    "$acaudit": "AC-9"
+  },
+  "affected_ids": [
+    "BR-14",
+    "BR-15",
+    "AC-8",
+    "AC-9",
+    "EXC-1",
+    "GAP-1",
+    "GAP-2",
+    "Q-7",
+    "Q-9",
+    "Q-12"
+  ],
+  "written": true
+}

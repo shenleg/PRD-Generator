@@ -1,0 +1,13 @@
+{
+  "status": "warning",
+  "action": "inspect",
+  "message": "同步状态由当前分析修订号和草稿基于的修订号比较得出。",
+  "written": false,
+  "validation": {
+    "status": "pass",
+    "diagnostics": []
+  },
+  "requirement_id": "SIM-PROCUREMENT-001",
+  "revision": 5,
+  "sync_state": "pending"
+}

@@ -1,0 +1,32 @@
+{
+  "status": "pass",
+  "scope": "阶段1～8已批准范围、最终本地CLI生命周期及完整回归；非真实业务签核或八项量化指标全部达标声明",
+  "tests_run": 216,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "duration_seconds": 49.786,
+  "test_log": "tests/results/final-acceptance-test-run.txt",
+  "new_tests": 4,
+  "stage_8_commit": "be0f8ba4ba0699f1d4aa08d9e868331e9d846e25",
+  "stage_8_precommit_tests_run": 212,
+  "stage_8_precommit_log": "tests/results/stage-8-precommit-test-run.txt",
+  "lifecycle_cli_count": 16,
+  "lifecycle_status_counts": {
+    "pass": 10,
+    "warning": 4,
+    "expected_fail": 2
+  },
+  "installed_validator_cli_from_other_cwd": "pass",
+  "new_tested_skill_model_behavior_run": false,
+  "independent_read_only_spec_review": true,
+  "final_case_readiness": "not_ready",
+  "final_case_open_p0": ["Q-12"],
+  "historical_evidence_unchanged": true,
+  "approved_deferred_integration": "真实下游Skill集成，沿用阶段4用户批准",
+  "not_evaluated": "规格12.2八项评价指标的统一基线/分母/最终阈值尚未收口",
+  "acceptance_report": "tests/results/final-acceptance.md",
+  "run_manifest": "workspace-sandbox/final-acceptance/run-manifest.json",
+  "final_acceptance_changes_committed": false,
+  "git_pushed": false
+}

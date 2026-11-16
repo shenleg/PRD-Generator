@@ -1,0 +1,11 @@
+[
+  {
+    "name": "办公采购申请批量撤回（模拟原始记录）",
+    "path": "inputs/original-requirement.md",
+    "type": "input_document",
+    "credibility": "助手构造的模拟业务输入，非真实产品决定",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-1"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python",
+    "-I",
+    "-B",
+    "skill/requirement-analyst/scripts/validate_analysis.py",
+    "workspace-sandbox/final-acceptance/attempt-01/workspace/projects/office-procurement/requirements/SIM-PROCUREMENT-001/analysis/analysis-result.json"
+  ],
+  "returncode": 0,
+  "stderr": ""
+}

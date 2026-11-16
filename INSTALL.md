@@ -1,5 +1,7 @@
 # 安装与调用
 
+交付导航见根`README.md`，阶段1～8范围及最终验收见`tests/results/final-acceptance.md`。最终收口另核对完整安装载荷，并从其他cwd实际运行安装路径的校验CLI；这不等于重新执行模型自动调用测试。
+
 ## 当前仓库
 
 当前项目通过 `.claude/skills/requirement-analyst` 相对符号链接安装，唯一源码位于 `skill/requirement-analyst/`。POSIX 系统正常检出 Git 符号链接后即可发现，不复制第二份源码；`tests/`、`tools/` 和试用工作区不随 Skill 安装。
