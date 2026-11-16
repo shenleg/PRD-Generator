@@ -1,0 +1,15 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "HANDOFF-TEST",
+  "revision": 1,
+  "id_map": {
+    "$goal": "GOAL-1",
+    "$question": "Q-1"
+  },
+  "affected_ids": [
+    "GOAL-1",
+    "Q-1"
+  ],
+  "written": true
+}

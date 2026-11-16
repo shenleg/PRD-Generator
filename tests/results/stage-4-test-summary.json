@@ -1,0 +1,13 @@
+{
+  "description": "完整确定性回归、已保存模型证据检查及最小消费者交接重放；不重新调用模型。",
+  "tests_run": 127,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "status": "pass",
+  "previous_stage_tests": 100,
+  "new_consumer_tests": 20,
+  "new_saved_handoff_tests": 7,
+  "log": "tests/results/stage-4-test-run.txt",
+  "stage_status": "handoff_scenarios_passed_real_trial_pending"
+}

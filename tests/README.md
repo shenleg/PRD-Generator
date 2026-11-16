@@ -1,6 +1,8 @@
 # 测试与模型试跑
 
-本目录区分格式测试、Skill 静态契约检查和已保存的模型行为试跑。Python 测试只读产物，不调用模型或产生额外 API 费用。
+当前阶段4已按用户批准完成本次范围收口，下游真实Skill集成延期补验。139项完整回归通过，最终收口记录见 `results/stage-4-closure.md`。项目安装和真实自动调用见 `../INSTALL.md`、`test_skill_installation.py` 及 `results/stage-4-acceptance.md`。下文保留分阶段的执行范围与历史日志；旧模型源码指纹由 `historical_sources.py` 读取历史标签或收口前快照，不用改旧哈希冒充当前行为。当前脚本的功能仍另作完整回归和补丁重放。
+
+本目录区分格式测试、Skill 静态契约检查、已保存的模型行为试跑及确定性交接测试。Python 测试不调用模型或产生额外 API 费用；写入类测试只使用独立临时工作区，保留已保存的历史证据。
 
 ## 自动检查
 
@@ -64,6 +66,30 @@ uv run --no-project --python /usr/bin/python3 --with-requirements tests/requirem
 - `run-manifest.json`：最终源码和输入指纹、补丁实际顺序及固定回放时刻。脚本实施期间的写入保护修复用当前脚本完整重放所有真实补丁验证；不重调用模型、不改其补丁或已保存业务快照。
 
 `stage_3_trial_support.py` 只作原样收集和应用一次补丁的测试辅助，不是业务分析引擎，不随 Skill 安装。锁、恢复日志和临时替换文件由 .gitignore 排除；结果、事件、失败及对话证据仍保留。
+
+## 阶段 4 的最小消费者交接验证
+
+- `tools/minimal_prd_consumer.py`：仓库级消费者，不随分析 Skill 安装。复用唯一校验器，只读分析，写简化草稿和 `requirement.json/prd`，不做完整 PRD、发布或模型调用。接口、退出码和恢复边界见 `tools/README.md` 及规格 10.5。
+- `test_minimal_prd_consumer.py`：临时工作区验证 RA-24～RA-29、三种就绪度、fail/warning 优先级、文件归属、显式关联资料、并发版本互斥及写入失败现场。
+- `run_stage_4_handoff.py`：保存六个合成场景的实际脚本响应、补丁和快照，再复制三个阶段 3 已有结果进行消费。`test_stage_4_runs.py` 独立核对证据、来源指纹及回流事件。
+- `workspace-sandbox/stage-4/attempt-02/`：当前通过的证据；根清单选择 attempt=2，attempt-01 保留驱动器输入错误及真实拒绝响应。`run-manifest.json` 区分合成场景和旧样例消费，记录来源及产物 SHA-256；不是新的模型试跑或真实需求验收。
+
+重放至**不存在的新目录**，不覆盖旧证据：
+
+```bash
+uv run --offline --no-project --python /usr/bin/python3 --with-requirements tests/requirements.txt \
+  python -I -B tests/run_stage_4_handoff.py --output /tmp/stage-4-handoff-new-run
+```
+
+RA-29 中，消费者只返回缺口请求，场景的分析侧明确审阅并构造合成补丁，由真实更新器登记新问题。它证明接口和持久化链路可行，不证明模型自主回流。需求试用一项已按用户批准以模拟案例代验；下游 Skill 实际集成已另获批准延期，安装及自动调用已实际收口通过，入口不再提供独立斜杠命令。未额外创建用户未要求的阶段完成标签。
+
+## 阶段 4 的模拟业务试用
+
+用户另要求模拟一个贴近实际的需求试用，原文为 `fixtures/stage-4-procurement-withdrawal.md`。独立会话受隔离限制后，用户明确选择改由主会话直接试用，因此这是主会话分析并模拟业务回答，不是独立盲测或真实需求验收。
+
+证据在 `workspace-sandbox/stage-4/simulated-trial-01/`；`stage_4_simulated_trial_support.py` 原样调用真实更新器和消费者 CLI，拒绝覆盖旧证据。`test_stage_4_simulated_trial.py` 有6项保存证据核对，不重新调用模型。`results/stage-4-simulated-trial.md` 记录分轮、执行方式调整、当前方案和保留缺口。原始阶段4的127项记录保留，本次完整133项回归另存 `results/stage-4-simulated-trial-test-run.txt`。
+
+最终5次补丁保存均pass；业务汇总分类Q-12仍open P0，停止后保持completed/not_ready，消费者实际输出warning风险初稿。模拟试用链路完成不等于业务就绪。2026-11-16用户明确批准以该模拟案例满足本次阶段4需求试用退出条件；来源和业务就绪度不变，实际下游集成已批准延期，自动调用后续已实测通过。当前验收状态见 `results/stage-4-acceptance.md`；旧试跑清单与日志保留当时状态，不重写原证据。
 
 ## 分轮与计分
 

@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "/root/.cache/uv/builds-v0/.tmpe7hzne/bin/python",
+    "-I",
+    "-B",
+    "/root/orca/projects/test-skill/skill/requirement-analyst/scripts/update_analysis.py",
+    "--workspace",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-4/simulated-trial-01/workspace",
+    "--project",
+    "office-procurement",
+    "--patch",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-4/simulated-trial-01/evidence/round-05/patch.json"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": [],\n  \"requirement_id\": \"SIM-PROCUREMENT-001\",\n  \"revision\": 5,\n  \"id_map\": {},\n  \"affected_ids\": [],\n  \"written\": true\n}\n"
+}

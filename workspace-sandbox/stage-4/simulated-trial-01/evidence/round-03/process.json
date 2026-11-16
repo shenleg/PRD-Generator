@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "/root/.cache/uv/builds-v0/.tmpqDK2TG/bin/python",
+    "-I",
+    "-B",
+    "/root/orca/projects/test-skill/skill/requirement-analyst/scripts/update_analysis.py",
+    "--workspace",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-4/simulated-trial-01/workspace",
+    "--project",
+    "office-procurement",
+    "--patch",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-4/simulated-trial-01/evidence/round-03/patch.json"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": [],\n  \"requirement_id\": \"SIM-PROCUREMENT-001\",\n  \"revision\": 3,\n  \"id_map\": {\n    \"$batch\": \"BR-11\",\n    \"$approval\": \"BR-12\",\n    \"$selection\": \"BR-13\",\n    \"$acbatch\": \"AC-5\",\n    \"$acapproval\": \"AC-6\",\n    \"$acselection\": \"AC-7\"\n  },\n  \"affected_ids\": [\n    \"BR-11\",\n    \"BR-12\",\n    \"BR-13\",\n    \"AC-5\",\n    \"AC-6\",\n    \"AC-7\",\n    \"FLOW-1\",\n    \"BND-2\",\n    \"BND-3\",\n    \"GAP-1\",\n    \"Q-5\",\n    \"Q-6\",\n    \"Q-8\"\n  ],\n  \"written\": true\n}\n"
+}

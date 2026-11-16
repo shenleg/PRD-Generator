@@ -1,0 +1,8 @@
+{
+  "common": {
+    "requirement_id": "PROBE-NOTIFICATION",
+    "project_id": "probes",
+    "title": "任务成功完成后邮件通知创建者",
+    "created_at": "2026-11-16T04:29:12.442439+00:00"
+  }
+}

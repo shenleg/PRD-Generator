@@ -1,0 +1,5 @@
+{
+  "assistant_message": "已停止追问。当前方案已明确创建人权限、可撤状态、执行时并发判定、逐条部分失败、原编号草稿与新审批轮次、最多20条输入、重试不重复执行及最小日志信息。Q-12已撤回项的成功/失败汇总分类仍未回答，保持P0/open；Q-10/Q-11为研发能力待核查。完成清单第4、6、7项仍未满足，analysis_status=completed、readiness=not_ready，仅交接风险初稿。",
+  "asked_questions": [],
+  "control_questions": []
+}

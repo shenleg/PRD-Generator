@@ -1,0 +1,107 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "HANDOFF-TEST",
+  "base_revision": 1,
+  "change_type": "supplement",
+  "actor": "analyst",
+  "summary": "合成交接：分析侧登记消费者发现的验收缺口",
+  "operations": [
+    {
+      "op": "add",
+      "collection": "questions",
+      "ref": "$handoff_question",
+      "value": {
+        "question": "该合成查询功能的验收标准是什么？",
+        "priority": "P0",
+        "resolution": "ask_product",
+        "reason": "消费者要求验收章节，但当前无有效验收条目",
+        "impact": "无法设计验收用例",
+        "options": [
+          "补充验收标准",
+          "取消该功能",
+          "其他",
+          "暂不确定"
+        ],
+        "recommendation": "建议补充可观察的验收标准",
+        "status": "open",
+        "related_ids": [
+          "FR-1"
+        ]
+      }
+    }
+  ],
+  "set": {
+    "meta.analysis_status": "clarifying",
+    "meta.readiness": "not_ready"
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "$handoff_question"
+      ],
+      "reason": "验收缺口回流"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    }
+  ]
+}

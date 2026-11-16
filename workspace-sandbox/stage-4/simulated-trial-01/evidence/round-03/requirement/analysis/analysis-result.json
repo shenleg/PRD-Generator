@@ -1,0 +1,940 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "SIM-PROCUREMENT-001",
+  "meta": {
+    "analysis_revision": 3,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "existing_document",
+    "analysis_status": "clarifying",
+    "readiness": "not_ready"
+  },
+  "context": {
+    "project_id": "office-procurement",
+    "source_ids": [
+      "SRC-1"
+    ]
+  },
+  "requirements": {
+    "goals": [
+      {
+        "content": "减少申请填错或重复提交后，员工找采购同事退回的来回沟通；不编造节省时间或收益数字。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "模拟原文第1条"
+          }
+        ],
+        "related_ids": [],
+        "id": "GOAL-1"
+      }
+    ],
+    "scenarios": [
+      {
+        "content": "员工在现有采购申请网页列表中选择多条申请撤回，修正后重新提交；可操作角色与状态尚待澄清。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "模拟原文第1、3条"
+          }
+        ],
+        "related_ids": [
+          "GOAL-1"
+        ],
+        "id": "SCN-1"
+      }
+    ],
+    "functional_requirements": [
+      {
+        "content": "在现有采购申请列表增加批量撤回能力；保留申请与审批历史，使申请能够修改后重新提交。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "模拟原文第1、5条"
+          }
+        ],
+        "related_ids": [
+          "GOAL-1",
+          "SCN-1"
+        ],
+        "id": "FR-1"
+      }
+    ],
+    "business_rules": [
+      {
+        "content": "原文候选口径：提交过的申请都应该能撤回；不是已裁决的最终状态范围。",
+        "tag": "confirmed",
+        "status": "to_reassess",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "模拟原文第2条"
+          }
+        ],
+        "related_ids": [
+          "FR-1"
+        ],
+        "id": "BR-1",
+        "reason": "该原文候选口径已被第1轮模拟裁决否定或限定，保留原文来源，不再视为现行规则。"
+      },
+      {
+        "content": "原文候选口径：只有待审批的申请可以撤回；与同条其他说法冲突。",
+        "tag": "confirmed",
+        "status": "to_reassess",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "模拟原文第2条"
+          }
+        ],
+        "related_ids": [
+          "FR-1"
+        ],
+        "id": "BR-2",
+        "reason": "该原文候选口径已被第1轮模拟裁决否定或限定，保留原文来源，不再视为现行规则。"
+      },
+      {
+        "content": "原文候选口径：审批通过但还没下单的申请也应能撤回。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "模拟原文第2条"
+          }
+        ],
+        "related_ids": [
+          "FR-1"
+        ],
+        "id": "BR-3"
+      },
+      {
+        "content": "批量入口不能扩大既有数据可见范围；创建人与采购管理员的具体操作权限未定。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "模拟原文第3条"
+          }
+        ],
+        "related_ids": [
+          "FR-1"
+        ],
+        "id": "BR-4"
+      },
+      {
+        "content": "撤回不删除原申请，原审批记录必须保留。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "模拟原文第5条"
+          }
+        ],
+        "related_ids": [
+          "FR-1"
+        ],
+        "id": "BR-5"
+      },
+      {
+        "content": "一批中存在不能撤回的申请时，不应卡住其他申请；需要给出成功数、失败数及失败原因。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "模拟原文第4条"
+          }
+        ],
+        "related_ids": [
+          "FR-1"
+        ],
+        "id": "BR-6"
+      },
+      {
+        "content": "仅待审批，以及审批通过但尚未下单的申请允许撤回；已下单、执行采购、收货完成、已取消均不允许。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "Q-1"
+        ],
+        "id": "BR-7"
+      },
+      {
+        "content": "本期只有申请创建人能撤回自己的申请；采购管理员不能代撤，不新增其他角色或代办权限，批量入口不扩大既有可见范围。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "Q-2",
+          "BR-4"
+        ],
+        "id": "BR-8"
+      },
+      {
+        "content": "按每条申请真正执行时的最新状态和权限判定。下单先成功则撤回失败并提示状态已变化、未撤回；撤回先成功则后续基于旧状态的下单或审批不得再成功；审批通过但未下单仍可撤回。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "Q-3"
+        ],
+        "id": "BR-9"
+      },
+      {
+        "content": "撤回成功后原申请回到草稿，保留原申请编号与各次已存在的审批历史，允许修改后重新提交；旧待办及重提轮次尚待Q-8确认。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "Q-4",
+          "BR-5"
+        ],
+        "id": "BR-10"
+      },
+      {
+        "content": "逐条处理；不能撤的保持不变，不因一条失败回滚其他成功项。结果列成功数、失败数，每条失败给申请编号和原因；无权限不得泄漏申请详情。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第2轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "Q-5",
+          "BR-6"
+        ],
+        "id": "BR-11"
+      },
+      {
+        "content": "撤回成功后旧审批待办失效，审批人再操作明确提示申请已撤回且不再生效。原编号重提开启新审批轮次，不复用上次通过结果，各轮历史记录均保留。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第2轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "Q-8",
+          "BR-5",
+          "BR-10"
+        ],
+        "id": "BR-12"
+      },
+      {
+        "content": "只处理本次勾选的可见行，不是筛选全量；翻页不保留勾选。沿用模拟业务方明确的单页最多20条，一批最多20条；空选不发请求，超过20条的请求整体拒绝且不改变任何申请。服务端仍须校验实际权限与状态。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第2轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "Q-6",
+          "BR-8"
+        ],
+        "id": "BR-13"
+      }
+    ],
+    "constraints": [
+      {
+        "content": "沿用现有网页列表与操作日志，不另建采购系统。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "模拟原文第6条"
+          }
+        ],
+        "related_ids": [
+          "FR-1"
+        ],
+        "id": "CON-1"
+      },
+      {
+        "content": "本次不改变既有审批规则和采购下单规则。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "模拟原文第6条"
+          }
+        ],
+        "related_ids": [
+          "FR-1"
+        ],
+        "id": "CON-2"
+      }
+    ],
+    "non_functional_requirements": [],
+    "acceptance_criteria": [
+      {
+        "content": "验收草案：从现有列表选择合法申请撤回，保留申请及审批历史并显示逐条结果；合法状态、权限、并发和重试结果仍待确认，不能作为完整验收。",
+        "tag": "inferred",
+        "status": "to_reassess",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "模拟原文第1、3、4、5条"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "Q-1",
+          "Q-2",
+          "Q-3",
+          "Q-7"
+        ],
+        "id": "AC-1"
+      },
+      {
+        "content": "创建人对自己待审批或通过未下单的申请成功撤回后，原申请回草稿、编号不变、原审批历史仍可查。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "BR-7",
+          "BR-8",
+          "BR-10"
+        ],
+        "id": "AC-2"
+      },
+      {
+        "content": "非创建人、无权访问或执行时处于已下单/执行采购/收货完成/已取消状态的申请不能被撤回，不因批量入口扩大可见范围或改变该申请。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "BR-7",
+          "BR-8"
+        ],
+        "id": "AC-3"
+      },
+      {
+        "content": "分别让下单和撤回先成功：前者后续撤回失败并显示状态变化，后者后续旧状态下单/审批不再成功；审批先通过但未下单仍满足可撤范围。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "BR-9"
+        ],
+        "id": "AC-4"
+      },
+      {
+        "content": "一批混有合法与不合法申请时，合法项成功撤回，失败项不变，不整批回滚；反馈成功数、失败数和各失败项原因，权限失败不泄露详情。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第2轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "BR-11",
+          "BR-7",
+          "BR-8"
+        ],
+        "id": "AC-5"
+      },
+      {
+        "content": "撤回后用旧待办审批应提示已撤回且不生效；修改后以原编号重提应开启新一轮审批，不能直接沿用上次通过结果，旧轮记录仍可查。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第2轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "BR-12",
+          "BR-10"
+        ],
+        "id": "AC-6"
+      },
+      {
+        "content": "检查空选择不提交、翻页后不保留勾选；分别提交1、20和21条：合法边界批次逐条判断，21条整体拒绝且任一申请均未改变。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第2轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "BR-13"
+        ],
+        "id": "AC-7"
+      }
+    ],
+    "scope": {
+      "in_scope": [
+        {
+          "content": "现有网页列表上的批量撤回及其结果反馈、申请保留和重提衔接。",
+          "tag": "confirmed",
+          "status": "active",
+          "sources": [
+            {
+              "type": "input_document",
+              "source_id": "SRC-1",
+              "location": "模拟原文第1、4、5、6条"
+            }
+          ],
+          "related_ids": [
+            "FR-1"
+          ],
+          "id": "CON-3"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "content": "移动端与消息通知本期不做；不新建采购系统。",
+          "tag": "confirmed",
+          "status": "active",
+          "sources": [
+            {
+              "type": "input_document",
+              "source_id": "SRC-1",
+              "location": "模拟原文第6条"
+            }
+          ],
+          "related_ids": [],
+          "id": "CON-4"
+        }
+      ]
+    }
+  },
+  "business_assessment": {
+    "flows": [
+      {
+        "content": "创建人从当前页勾选申请（空选不提交，超过20条整体拒绝）→逐条以执行时状态与权限判定→成功回原编号草稿、旧审批待办失效，失败项不变→展示逐条与汇总结果→修改后以原编号发起新审批轮次，保留各轮历史。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1、2轮回答"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "BR-7",
+          "BR-8",
+          "BR-9",
+          "BR-10",
+          "BR-11",
+          "BR-12",
+          "BR-13"
+        ],
+        "id": "FLOW-1"
+      }
+    ],
+    "states": [],
+    "boundaries": [
+      {
+        "content": "并发业务预期已明确：逐条按执行时最新状态和权限判断，下单与撤回只能按有效先后结果生效；具体实现机制仍待研发核查。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第1轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "BR-9",
+          "Q-11"
+        ],
+        "id": "BND-1"
+      },
+      {
+        "content": "不同状态及执行时权限变化的混选批次按逐条执行结果处理，保留合法成功项，失败项不变且不给出无权访问的详情。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第2轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "BR-11",
+          "BR-7",
+          "BR-8",
+          "BR-9"
+        ],
+        "id": "BND-2"
+      },
+      {
+        "content": "本次输入只含当前页明确勾选的可见申请，翻页清空勾选；0条不发送、1至20条进入逐条判断、超过20条整体拒绝且全不变。20来自第2轮模拟回答，不是分析者推定的系统事实。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第2轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "BR-13"
+        ],
+        "id": "BND-3"
+      }
+    ],
+    "exceptions": [
+      {
+        "content": "候选异常：重复点击或网络重试可能重复撤回或写重复日志，业务预期尚未确定。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "模拟原文第1、5、6条"
+          }
+        ],
+        "related_ids": [
+          "FR-1"
+        ],
+        "id": "EXC-1"
+      }
+    ],
+    "gaps": [
+      {
+        "content": "初始状态、权限、并发、重提衔接和输入范围已明确；重复操作业务预期Q-7与最小日志口径Q-9仍待回答，研发能力Q-10/Q-11仍待核查。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第2轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "Q-7",
+          "Q-9",
+          "Q-10",
+          "Q-11"
+        ],
+        "id": "GAP-1"
+      }
+    ],
+    "conflicts": [
+      {
+        "content": "第2条同时出现全部已提交、仅待审批、通过但未下单也可撤回，当前无法视作同一状态规则。",
+        "tag": "inferred",
+        "status": "to_reassess",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "模拟原文第2条"
+          }
+        ],
+        "related_ids": [
+          "BR-1",
+          "BR-2",
+          "BR-3"
+        ],
+        "related_question": "Q-1",
+        "id": "CNF-1",
+        "reason": "Q-1已裁决；保留初始冲突证据，当前口径由新规则单独表达。"
+      }
+    ]
+  },
+  "ux_assessment": {
+    "ui_dependent": true,
+    "design_pending_items": [
+      "批量入口与逐条结果呈现待设计；无具体视觉稿，不代定样式。"
+    ]
+  },
+  "questions": [
+    {
+      "question": "最终允许撤回哪些状态的申请？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "模拟业务方第1轮明确回答；保留原始问题与实际模拟答案。",
+      "impact": "无法判定合法撤回状态。",
+      "options": [
+        "仅待审批",
+        "待审批和审批通过但未下单",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "建议待审批及通过未下单均可，能满足更正诉求，但必须由业务确认。",
+      "status": "answered",
+      "related_ids": [
+        "BR-1",
+        "BR-2",
+        "BR-3"
+      ],
+      "id": "Q-1",
+      "answer": "以这次明确的口径为准：待审批，以及审批通过但还没下单，这两类允许撤回。已经下单、执行采购、收货完成或已取消的都不允许。成功后原申请回到草稿，保留原申请编号和历史审批记录，可以修改后重新提交。"
+    },
+    {
+      "question": "本期谁能撤回哪些人的申请？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "模拟业务方第1轮明确回答；保留原始问题与实际模拟答案。",
+      "impact": "可能引入越权批量操作。",
+      "options": [
+        "仅创建人撤自己的",
+        "创建人加采购管理员代撤",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "建议仅创建人，先保持最小权限边界。",
+      "status": "answered",
+      "related_ids": [
+        "BR-4"
+      ],
+      "id": "Q-2",
+      "answer": "本期只有申请创建人能撤回自己的申请。采购管理员也不能代撤，其他角色和代办权限这期不做；批量入口不扩大现有可见范围。"
+    },
+    {
+      "question": "撤回与审批或下单同时发生时，以什么业务结果判定成功或失败？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "模拟业务方第1轮明确回答；保留原始问题与实际模拟答案。",
+      "impact": "可能出现撤回与下单均成功的矛盾。",
+      "options": [
+        "执行时最新状态与权限逐条判定，先成功者生效",
+        "以页面打开时状态为准",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "建议以执行时最新状态判定，并明确先后动作的业务结果；实现方式交研发。",
+      "status": "answered",
+      "related_ids": [
+        "BND-1",
+        "FR-1"
+      ],
+      "id": "Q-3",
+      "answer": "按每条申请真正执行时的最新状态和权限判定，不以打开页面时的快照为准。审批通过但未下单仍允许撤回；下单先成功则撤回失败并提示状态已变化，未撤回；撤回先成功则后续旧状态下单或审批不得再成功。具体怎么实现交研发确认。"
+    },
+    {
+      "question": "撤回成功后原申请变为什么状态，重新提交是否沿用申请编号？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "模拟业务方第1轮已明确；Q-4为状态回答中主动补充的撤回去向及编号，不重复追问。",
+      "impact": "核心状态流程不能还原。",
+      "options": [
+        "原申请回草稿并沿用编号",
+        "产生新的申请",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "建议回草稿保留原申请编号，避免历史断链。",
+      "status": "answered",
+      "related_ids": [
+        "FLOW-1",
+        "BR-5"
+      ],
+      "id": "Q-4",
+      "answer": "以这次明确的口径为准：待审批，以及审批通过但还没下单，这两类允许撤回。已经下单、执行采购、收货完成或已取消的都不允许。成功后原申请回到草稿，保留原申请编号和历史审批记录，可以修改后重新提交。"
+    },
+    {
+      "question": "同批部分失败时，已成功项是否保留，结果逐条需要显示什么？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "模拟业务方第2轮已明确回答，保留原问题与本轮实际输入。",
+      "impact": "无法验收混选批次。",
+      "options": [
+        "逐条处理，保留成功并给失败原因",
+        "任一失败则整批不变",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "建议逐条处理，与原文部分失败不阻塞意图一致。",
+      "status": "answered",
+      "related_ids": [
+        "BR-6",
+        "BND-2"
+      ],
+      "id": "Q-5",
+      "answer": "逐条处理，能撤的成功，不能撤的保持不变，不因为其中一条失败回滚其他成功项。结果要列成功数、失败数和每条失败的申请编号、原因；无权限不能泄露申请详情。"
+    },
+    {
+      "question": "一次提交对应哪些已选申请，空选择、最大数量及超限时如何处理？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "模拟业务方第2轮已明确回答，保留原问题与本轮实际输入。",
+      "impact": "输入范围和边界验收不明确。",
+      "options": [
+        "只处理当前明确勾选的申请，明确单批边界",
+        "处理筛选结果全量",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "建议仅明确勾选范围；上限须业务结合实际列表确认，不能凭空给数。",
+      "status": "answered",
+      "related_ids": [
+        "BND-3"
+      ],
+      "id": "Q-6",
+      "answer": "仅处理本次勾选的可见行，不是筛选结果全量；翻页不保留勾选，沿用列表单页最多20条，所以一批最多20条。提交时空选不发送请求；超过20条的请求整体拒绝且不改变任何申请。不能因页面上不展示就省略服务端的权限和状态判断。"
+    },
+    {
+      "question": "重复点击或重试遇到已撤回申请时，业务结果和成功日志如何处理？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "重复撤回可能改变结果或重复留痕。",
+      "impact": "同一撤回的业务含义及重试验收不明确。",
+      "options": [
+        "返回已撤回，不再次撤回或重复成功留痕",
+        "按新撤回再次处理",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "建议已撤回不再执行，用可识别结果防重复。",
+      "status": "open",
+      "related_ids": [
+        "EXC-1"
+      ],
+      "id": "Q-7"
+    },
+    {
+      "question": "撤回后旧审批待办如何失效，重提是否启动新审批轮次？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "模拟业务方第2轮已明确回答，保留原问题与本轮实际输入。",
+      "impact": "旧审批可能继续生效或错误沿用上次结果。",
+      "options": [
+        "旧待办失效，重提开启新审批轮次",
+        "沿用原审批待办与通过结果",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "建议保留历史但开启新轮次，避免旧决定套用修改后的申请。",
+      "status": "answered",
+      "related_ids": [
+        "BR-5",
+        "FLOW-1"
+      ],
+      "id": "Q-8",
+      "answer": "撤回成功后旧审批待办失效，审批人再操作要明确提示申请已撤回，不能继续生效。重提仍用原申请编号，但是新开一轮审批，不复用上次通过结果；历史各轮审批记录都保留。"
+    },
+    {
+      "question": "沿用日志时至少需要哪些可查询信息，本期是否需要新增查询页面？",
+      "priority": "P1",
+      "resolution": "ask_product",
+      "reason": "已有日志字段未提供，产品的最小追溯预期仍需说明。",
+      "impact": "影响操作追溯及范围。",
+      "options": [
+        "记录逐条操作与结果，沿用查询页面",
+        "只记录批次数量汇总",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "建议保留逐条结果以便追溯失败。",
+      "status": "open",
+      "related_ids": [
+        "CON-1"
+      ],
+      "id": "Q-9"
+    },
+    {
+      "question": "是否有可复用的批量接口，现有权限与状态校验能否覆盖本次操作？",
+      "priority": "P1",
+      "resolution": "ask_dev",
+      "reason": "原文第7条要求核查，未提供接口资料。",
+      "impact": "研发需确认复用范围，不能假设已有能力。",
+      "options": [
+        "已有且满足",
+        "需要新增或调整",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "由研发查接口及权限资料确认，不由产品保证实现。",
+      "status": "open",
+      "related_ids": [
+        "FR-1",
+        "CON-1"
+      ],
+      "id": "Q-10"
+    },
+    {
+      "question": "现有状态变更、并发控制和日志字段能否支撑确认后的业务预期？",
+      "priority": "P1",
+      "resolution": "ask_dev",
+      "reason": "尚无系统或技术资料。",
+      "impact": "影响实现与测试准备。",
+      "options": [
+        "现有能力满足",
+        "需要补充改造",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "研发核实能力与影响，不预设数据库锁或事务方案。",
+      "status": "open",
+      "related_ids": [
+        "BND-1",
+        "EXC-1",
+        "CON-1"
+      ],
+      "id": "Q-11"
+    }
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "value_assessment": {
+    "problem": "填错或重复申请后需找采购同事退回，沟通往返。",
+    "affected_users": [
+      "申请员工",
+      "采购人员"
+    ],
+    "expected_benefits": [
+      "减少修正申请的来回沟通"
+    ],
+    "success_metrics": []
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "原文及前两轮实际模拟输入已可表达；历史未对照、技术未核实和界面设计缺资料均明确登记。"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "原文及前两轮实际模拟输入已可表达；历史未对照、技术未核实和界面设计缺资料均明确登记。"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "原文及前两轮实际模拟输入已可表达；历史未对照、技术未核实和界面设计缺资料均明确登记。"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": [
+        "Q-7"
+      ],
+      "reason": "重复操作结果仍影响核心规则与验收。"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "原文及前两轮实际模拟输入已可表达；历史未对照、技术未核实和界面设计缺资料均明确登记。"
+    },
+    {
+      "item": 6,
+      "satisfied": false,
+      "question_refs": [
+        "Q-7"
+      ],
+      "reason": "重复操作结果仍影响核心规则与验收。"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "Q-7"
+      ],
+      "reason": "重复操作结果仍影响核心规则与验收。"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "原文及前两轮实际模拟输入已可表达；历史未对照、技术未核实和界面设计缺资料均明确登记。"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "原文及前两轮实际模拟输入已可表达；历史未对照、技术未核实和界面设计缺资料均明确登记。"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "原文及前两轮实际模拟输入已可表达；历史未对照、技术未核实和界面设计缺资料均明确登记。"
+    },
+    {
+      "item": 11,
+      "satisfied": false,
+      "question_refs": [
+        "Q-9"
+      ],
+      "reason": "逐条日志预期尚未确认。"
+    }
+  ]
+}

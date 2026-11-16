@@ -1,0 +1,6 @@
+{
+  "mode": "actual_cli_patch_application",
+  "patch_sha256": "049d08825b2a364aedf413b92d3f7831f1247c1cfbe0b0bc14bfeaacd101f7d7",
+  "origin": "/root/orca/projects/test-skill/workspace-sandbox/stage-4/simulated-trial-01/candidates/round-04.json",
+  "business_input": "simulated_not_real_user_decision"
+}

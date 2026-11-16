@@ -1,0 +1,20 @@
+{
+  "options": {
+    "inspect_only": true
+  },
+  "response": {
+    "status": "pass",
+    "action": "inspect",
+    "message": "同步状态由当前分析修订号和草稿基于的修订号比较得出。",
+    "written": false,
+    "validation": {
+      "status": "pass",
+      "diagnostics": []
+    },
+    "requirement_id": "HANDOFF-TEST",
+    "revision": 2,
+    "sync_state": "pending"
+  },
+  "analysis_unchanged": true,
+  "common_unchanged": true
+}

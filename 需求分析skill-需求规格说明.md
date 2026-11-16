@@ -974,6 +974,19 @@ PRD Generator 读取分析结果时必须遵守：
 - PRD 是否待同步，由比较两个修订号得出，不单独存放。
 - 多人或多个 Skill 同时写入时，沿用 9.7 的修订号校验。
 
+## 10.5 阶段 4 最小消费者的执行约定
+
+`tools/minimal_prd_consumer.py` 是开发仓库内的交接验证工具，不随 Requirement Analyst 安装，也不代表完整 PRD Generator。接口依据仍为 10.1 至 10.4；本次明确以下可执行细节：
+
+- **读取顺序**：严格读取分析 JSON 和用于唯一校验器的 `source-manifest.json`，先调用 `validate_analysis`；通过后才消费业务条目。`requirement.json/common` 仅用于身份、标题和块合并，不作为业务分析来源。不读 `analysis-report.md`；跨需求资料必须显式提供，不自动搜索工作区。校验 fail 优先于任何坚持生成开关。
+- **门禁与回交**：缺结果返回 `action=analyze`；fail 返回 `repair_analysis`；过期默认 `reevaluate`，只有实际用户明确坚持才可传 `--insist-stale`。这些 action 是调用方待执行的交接请求，不等于已自动调用分析 Skill。三种就绪度分别生成风险初稿、带遗留事项的条件草稿、待负责人确认的草稿，均不发布。
+- **草稿字段**：消费者只维护 `prd.status=draft`；`prd.version` 从正整数 1 递增，每次成功生成保留独立的 `prd/handoff-draft-vN.md`，仅作为最小验证的本地序号，不定义正式发布版本语义。`based_on_analysis_revision` 记录此次使用的分析修订号；检查时实时返回 `sync_state=absent/current/pending`，不写回待同步字段，也不复制当前分析状态和就绪度。既有元数据格式不受支持或基于修订号超前时拒绝覆盖。`common`、其他块及 `prd` 扩展字段原样保留。
+- **状态与映射**：草稿逐条摘录、记录 `需求编号/条目编号`，不分配正式 PRD 编号；保留 tag、来源和关联项。`withdrawn` 条目、`dropped` 问题不进入现行草稿；`to_reassess` 明示待重评、非确定内容；假设列出依据与验证信息，问题保留责任方、原状态和实际答案，推荐不视作答案。
+- **缺口回流边界**：模板可用 `--require-section` 指定所需的规范条目集合；没有 active 条目时返回 `register_questions`，包含需求编号、读取时的 `base_revision` 和 `missing_sections`，本次不生成草稿。空集合不自动等于业务遗漏，存在 active 条目也不证明自然语言已经完整。分析侧审阅请求、核查是否已有同义问题、决定优先级与完成清单，再用 `supplement` 补丁经 `update_analysis.py` 登记新问题；消费者不直接写 `analysis/`，也不自行产生业务答案。修订冲突必须重读并重新核对，不盲重放回流补丁。
+- **并发与写入边界**：Linux/Unix 本地工作区中，消费者沿用全工作区 `.analysis.lock`，锁内读取、校验、比较并生成；可携带 `--expected-revision` 检查用户看到的版本。发现非空 `.analysis-transaction.json` 时拒绝消费，请分析更新器先恢复。草稿以不覆盖方式先写入并同步，再原子替换 `requirement.json`；失败或中断可留下未提交草稿及临时文件，保留现场并拒绝覆盖，由人工检查，不承诺全自动跨文件恢复。响应 `written` 表示元数据替换已完成；保存失败仍返回 fail，并报告 `draft_created`，不能把未完成的保存当成功交付。
+
+本次不新增分析结果字段，`schema_version=1.0` 不变。最小消费者场景通过本身不等于全部集成已通过。本次用户已批准采购模拟案例满足需求试用条件，并将尚未开发的真实下游 Skill 集成延期；安装后自动调用和同会话承接已实际验证。阶段4记为“当前范围完成、下游集成延期”，来源及业务未就绪事实不变，后续补验入口见 `tests/results/stage-4-acceptance.md`。
+
 ---
 
 # 十一、Skill 文件结构与配置

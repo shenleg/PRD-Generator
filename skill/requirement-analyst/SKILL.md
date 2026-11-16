@@ -1,5 +1,6 @@
 ---
 name: requirement-analyst
+user-invocable: false
 description: 用于理解需求、分析需求、检查完整性、识别矛盾、追问澄清及判断需求变更的影响；先把需求想清楚，再向文档生成或测试分析交接。
 ---
 
@@ -48,4 +49,4 @@ description: 用于理解需求、分析需求、检查完整性、识别矛盾�
 
 ## 当前边界
 
-不做历史检索、基线对照、技术可行性结论或完整视觉分析；界面仅判断 ui_dependent 并记录缺资料。不写 compare_baseline.py；正式 PRD、消费者交接验证及发布留待后续阶段。
+不做历史检索、基线对照、技术可行性结论或完整视觉分析；界面仅判断 ui_dependent 并记录缺资料。不写 compare_baseline.py；正式 PRD 与发布不属于本 Skill。消费者交接工具仅在开发仓库验证，不随 Skill 安装。

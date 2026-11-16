@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-16",
+  "user_statement": "将阶段 4 下游集成验证登记为延期，完成本 Skill 的安装与自动调用收口，然后提交，然后开始阶段 5。",
+  "status": "scoped_complete_downstream_integration_deferred",
+  "trial_gate_status": "satisfied_by_user_approved_simulation",
+  "installation_status": "pass",
+  "installation_manifest": "installation/verification.json",
+  "transcript_commit_authorization": "用户明确选择仅脱敏证据 (Recommended)；原始CLI会话和诊断只留本地，不提交。",
+  "deferred": [
+    {
+      "item": "实际下游测试Skill集成",
+      "reason": "下游Skill尚未开发；用户批准延期，不阻塞本次范围收口和后续研发。",
+      "resume_when": "测试点分析或用例设计Skill具备后，实际读取分析结果并补验。",
+      "must_check": ["acceptance_criteria/boundaries/exceptions可用性", "来源、标签、状态与条目追溯保留", "未就绪或未答问题不被编造成确定预期"]
+    }
+  ],
+  "pending": [],
+  "does_not_claim": [
+    "不声称真实下游集成已经通过",
+    "不改变模拟案例来源、业务就绪度或Q-12状态",
+    "不重写历史试跑的来源指纹、补丁和事件"
+  ],
+  "next": "阶段4回归和变更摘要后提交；随后新建阶段5分支检查进入条件并细化步骤。",
+  "git": "只授权本次阶段4提交；不推送，不额外打未要求的完成标签；阶段5另行开发、不自动提交。"
+}

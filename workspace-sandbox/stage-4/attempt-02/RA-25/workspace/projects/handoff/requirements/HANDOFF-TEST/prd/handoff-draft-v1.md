@@ -1,0 +1,71 @@
+# 简化交接草稿（非完整 PRD）
+
+    合成测试，不是真实需求
+
+需求：HANDOFF-TEST；基于分析修订：1
+analysis_status=stale；readiness=not_ready
+待产品负责人确认；本工具不分配正式 PRD 编号、不发布。
+
+> 基于过期分析：建议先重新评估；本次仅因用户明确坚持生成草稿。
+
+> 风险：仅为初步草稿，存在未解决缺口，不能作为已就绪需求交付。
+
+校验提示：
+    分析已过期；下游须提示重新评估。
+
+## 分析条目摘录与映射
+
+以下编号仅用于分析追溯，不是正式 PRD 需求编号。
+
+### requirements.goals
+
+映射：HANDOFF-TEST/GOAL-1 | tag=confirmed | status=active | 当前条目
+
+    已确认目标
+
+    {
+      "sources": [
+        {
+          "type": "user_answer",
+          "location": "合成测试输入"
+        }
+      ]
+    }
+
+### requirements.functional_requirements
+
+映射：HANDOFF-TEST/FR-1 | tag=confirmed | status=active | 当前条目
+
+    合成查询功能
+
+    {
+      "sources": [
+        {
+          "type": "user_answer",
+          "location": "合成测试输入"
+        }
+      ]
+    }
+
+### requirements.acceptance_criteria
+
+映射：HANDOFF-TEST/AC-1 | tag=inferred | status=active | 当前条目；推断，未经确认
+
+    合成验收条件
+
+    {
+      "sources": [
+        {
+          "type": "user_answer",
+          "location": "合成测试输入"
+        }
+      ],
+      "related_ids": [
+        "FR-1"
+      ]
+    }
+
+## 遗留事项与问题记录
+
+open/provisional/risk_accepted 及 ask_dev 项保持原状态；推荐选项不是已确认答案。
+

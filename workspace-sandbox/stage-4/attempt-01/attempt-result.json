@@ -1,0 +1,8 @@
+{
+  "status": "failed_driver_setup",
+  "mode": "deterministic_scripts_no_model_calls",
+  "reason": "RA-25 的初始合成补丁误用 stale/ready_for_document；更新器按既有约束拒绝，warning 只允许保存 stale/not_ready。",
+  "actual_response": "RA-25/updates/initial-stale.json",
+  "preserved": true,
+  "fix": "只将场景驱动器的过期初始输入改为 stale/not_ready；不改更新器、校验器或旧失败补丁。后续在新 attempt 运行。"
+}

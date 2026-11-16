@@ -1,0 +1,29 @@
+{
+  "options": {
+    "insist_stale": true
+  },
+  "response": {
+    "validation": {
+      "status": "warning",
+      "diagnostics": [
+        {
+          "rule": 11,
+          "level": "warning",
+          "item_id": "$",
+          "path": "/meta/analysis_status",
+          "message": "分析已过期；下游须提示重新评估。"
+        }
+      ]
+    },
+    "requirement_id": "HANDOFF-TEST",
+    "revision": 1,
+    "sync_state": "current",
+    "status": "warning",
+    "action": "draft_created",
+    "message": "已生成简化草稿，待产品负责人确认。",
+    "written": true,
+    "draft_path": "prd/handoff-draft-v1.md"
+  },
+  "analysis_unchanged": true,
+  "common_unchanged": true
+}

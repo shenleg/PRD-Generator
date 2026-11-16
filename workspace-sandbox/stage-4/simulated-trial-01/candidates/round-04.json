@@ -1,0 +1,270 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "SIM-PROCUREMENT-001",
+  "base_revision": 3,
+  "change_type": "supplement",
+  "actor": "user",
+  "user_statement": "重复点击或网络重试时已经撤回的申请不再执行一次撤回，返回已撤回，不重复写成功撤回日志。操作日志至少能查操作人、时间、申请编号、原状态、新状态和逐条操作结果；失败原因也要能查，不要求这次新增日志页面。",
+  "summary": "第3轮模拟回答明确重试不重复执行与审计信息；发现已撤回项汇总分类的新业务缺口，不以推荐补答案。",
+  "operations": [
+    {
+      "op": "update",
+      "target": "Q-7",
+      "changes": {
+        "status": "answered",
+        "answer": "重复点击或网络重试时已经撤回的申请不再执行一次撤回，返回已撤回，不重复写成功撤回日志。操作日志至少能查操作人、时间、申请编号、原状态、新状态和逐条操作结果；失败原因也要能查，不要求这次新增日志页面。",
+        "reason": "模拟业务方第3轮已回答重复撤回行为及最小审计信息；没有提供已撤回项的批次汇总分类。"
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-9",
+      "changes": {
+        "status": "answered",
+        "answer": "重复点击或网络重试时已经撤回的申请不再执行一次撤回，返回已撤回，不重复写成功撤回日志。操作日志至少能查操作人、时间、申请编号、原状态、新状态和逐条操作结果；失败原因也要能查，不要求这次新增日志页面。",
+        "reason": "模拟业务方第3轮已回答重复撤回行为及最小审计信息；没有提供已撤回项的批次汇总分类。"
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.business_rules",
+      "ref": "$repeat",
+      "value": {
+        "content": "重复点击或网络重试时，已撤回申请不再执行撤回，返回已撤回，不重复写成功撤回日志。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第3轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "Q-7"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.business_rules",
+      "ref": "$audit",
+      "value": {
+        "content": "沿用现有日志查询，不新增日志页面；至少可查操作人、时间、申请编号、原状态、新状态及逐条操作结果，失败原因也应可查询。现有能力是否具备仍由研发确认。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第3轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "CON-1",
+          "Q-9",
+          "Q-11"
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "target": "EXC-1",
+      "changes": {
+        "content": "重复点击/网络重试遇到已撤回申请时，不再次执行，不重复成功撤回日志，返回已撤回；该项在成功/失败汇总中的分类尚待新问题确认。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第3轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "$repeat",
+          "$qaggregate"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "questions",
+      "ref": "$qaggregate",
+      "value": {
+        "question": "已撤回的重复项，应计入成功数、失败数，还是另列“未执行/已撤回”数量？",
+        "priority": "P0",
+        "resolution": "ask_product",
+        "reason": "Q-7已明确重复项不再次执行，Q-5此前要求成功/失败汇总；两条合在一起仍缺少重复项的汇总分类。这是新输出决策，不重复询问已明确的重试行为。",
+        "impact": "同一批次含重复已撤回项时，无法判定成功/失败汇总的正确数字。",
+        "options": [
+          "计入失败，原因已撤回",
+          "计入成功，但说明未再次执行",
+          "单列未执行/已撤回",
+          "其他",
+          "暂不确定"
+        ],
+        "recommendation": "建议单列未执行/已撤回，避免将未发生的撤回计为本次成功；需业务明确采用，当前仅是推荐。",
+        "status": "open",
+        "related_ids": [
+          "BR-11",
+          "$repeat"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "business_assessment.gaps",
+      "ref": "$aggregate",
+      "value": {
+        "content": "重复项不再次执行，但在成功/失败汇总中的归类未定；不能自行决定计成功、计失败或新增汇总分类。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第3轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "$qaggregate",
+          "BR-11",
+          "$repeat"
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "target": "GAP-1",
+      "changes": {
+        "status": "to_reassess",
+        "content": "初始问题已由前三轮模拟回答处理；当前业务阻塞转由独立的新汇总分类缺口记录，研发能力仍待Q-10/Q-11核查。本条保留初始缺口的追溯，不作为未回答的原问题重复追问。",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第3轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "$qaggregate",
+          "Q-10",
+          "Q-11"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.acceptance_criteria",
+      "ref": "$acretry",
+      "value": {
+        "content": "对已经成功撤回的申请重复提交时，应返回已撤回，不再次改变申请，不新增重复的成功撤回日志；该项汇总分类待Q-12，不把推荐选项当最终预期。",
+        "tag": "inferred",
+        "status": "to_reassess",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第3轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "$repeat",
+          "$qaggregate"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.acceptance_criteria",
+      "ref": "$acaudit",
+      "value": {
+        "content": "成功与失败的逐条操作都能按申请编号查询到业务要求的操作人、时间、原新状态、结果及失败原因；不新增查询页面。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "模拟业务方第3轮回答；助手构造，非真实用户产品决定"
+          }
+        ],
+        "related_ids": [
+          "$audit"
+        ]
+      }
+    }
+  ],
+  "set": {
+    "meta.analysis_status": "clarifying",
+    "meta.readiness": "not_ready"
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": [
+        "$qaggregate"
+      ],
+      "reason": "含重复已撤回项的批次汇总分类未定，核心输出验收仍缺可判定口径。"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    },
+    {
+      "item": 6,
+      "satisfied": false,
+      "question_refs": [
+        "$qaggregate"
+      ],
+      "reason": "含重复已撤回项的批次汇总分类未定，核心输出验收仍缺可判定口径。"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "$qaggregate"
+      ],
+      "reason": "含重复已撤回项的批次汇总分类未定，核心输出验收仍缺可判定口径。"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    }
+  ]
+}

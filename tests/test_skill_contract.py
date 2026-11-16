@@ -1,4 +1,4 @@
-"""检查阶段 3 Skill 的入口及测试材料；不把静态契约当作模型行为验证。"""
+"""检查阶段 4 收口后的 Skill 入口、项目安装及测试材料；静态契约不替代自动调用实测。"""
 
 from pathlib import Path
 import re
@@ -20,7 +20,7 @@ class SkillContractTests(unittest.TestCase):
     """验证入口、渐进引用及回归材料是否存在，不评判业务输出是否充分。"""
 
     def test_frontmatter_and_invocation(self) -> None:
-        """入口命名及触发描述正确，调试阶段保留直接调用且不隔离当前会话。"""
+        """收口后仅模型调用，触发描述保留，不禁用模型调用或隔离当前会话。"""
         content = read_skill()
         self.assertTrue(content.startswith("---\n"))
         frontmatter = content.split("---", 2)[1]
@@ -28,9 +28,18 @@ class SkillContractTests(unittest.TestCase):
         description = re.search(r"(?m)^description: (.+)$", frontmatter).group(1)
         for trigger in ("理解需求", "分析需求", "完整性", "矛盾", "追问", "变更"):
             self.assertIn(trigger, description)
-        self.assertNotIn("user-invocable: false", frontmatter)
+        self.assertRegex(frontmatter, r"(?m)^user-invocable: false$")
         self.assertNotIn("disable-model-invocation: true", frontmatter)
         self.assertNotIn("context: fork", frontmatter)
+
+    def test_project_installation_resolves_only_skill_payload(self) -> None:
+        """项目入口链接到唯一生产目录，测试与消费者不随Skill安装，也不复制第二份源码。"""
+        installed = ROOT / ".claude/skills/requirement-analyst"
+        self.assertTrue(installed.is_symlink())
+        self.assertEqual(installed.resolve(), SKILL.resolve())
+        self.assertEqual((installed / "SKILL.md").read_bytes(), (SKILL / "SKILL.md").read_bytes())
+        self.assertFalse((installed / "tests").exists())
+        self.assertFalse((installed / "tools").exists())
 
     def test_entry_stays_short_and_has_ten_principles(self) -> None:
         """入口不超过约定篇幅，十条硬规则集中呈现而不堆叠分析细则。"""

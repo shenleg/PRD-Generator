@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "HANDOFF-TEST",
+  "meta": {
+    "analysis_revision": 2,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "existing_document",
+    "analysis_status": "clarifying",
+    "readiness": "not_ready"
+  },
+  "context": {
+    "project_id": "handoff"
+  },
+  "requirements": {
+    "goals": [
+      {
+        "content": "已确认目标",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "合成测试输入"
+          }
+        ],
+        "id": "GOAL-1"
+      }
+    ],
+    "scenarios": [],
+    "functional_requirements": [
+      {
+        "content": "合成查询功能",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "合成测试输入"
+          }
+        ],
+        "id": "FR-1"
+      }
+    ],
+    "business_rules": [],
+    "constraints": [],
+    "non_functional_requirements": [],
+    "acceptance_criteria": []
+  },
+  "business_assessment": {
+    "flows": [],
+    "states": [],
+    "boundaries": [],
+    "exceptions": [],
+    "gaps": [],
+    "conflicts": []
+  },
+  "ux_assessment": {
+    "ui_dependent": false
+  },
+  "questions": [
+    {
+      "question": "该合成查询功能的验收标准是什么？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "消费者要求验收章节，但当前无有效验收条目",
+      "impact": "无法设计验收用例",
+      "options": [
+        "补充验收标准",
+        "取消该功能",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "建议补充可观察的验收标准",
+      "status": "open",
+      "related_ids": [
+        "FR-1"
+      ],
+      "id": "Q-1"
+    }
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "验收缺口回流"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成场景保持原判断"
+    }
+  ]
+}

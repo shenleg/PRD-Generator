@@ -1,0 +1,30 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "SIM-PROCUREMENT-001",
+  "revision": 3,
+  "id_map": {
+    "$batch": "BR-11",
+    "$approval": "BR-12",
+    "$selection": "BR-13",
+    "$acbatch": "AC-5",
+    "$acapproval": "AC-6",
+    "$acselection": "AC-7"
+  },
+  "affected_ids": [
+    "BR-11",
+    "BR-12",
+    "BR-13",
+    "AC-5",
+    "AC-6",
+    "AC-7",
+    "FLOW-1",
+    "BND-2",
+    "BND-3",
+    "GAP-1",
+    "Q-5",
+    "Q-6",
+    "Q-8"
+  ],
+  "written": true
+}

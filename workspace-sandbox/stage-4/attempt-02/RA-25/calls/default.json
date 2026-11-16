@@ -1,0 +1,26 @@
+{
+  "options": {},
+  "response": {
+    "status": "warning",
+    "action": "reevaluate",
+    "message": "分析已过期；先重新评估，用户明确坚持时才允许生成过期草稿。",
+    "written": false,
+    "validation": {
+      "status": "warning",
+      "diagnostics": [
+        {
+          "rule": 11,
+          "level": "warning",
+          "item_id": "$",
+          "path": "/meta/analysis_status",
+          "message": "分析已过期；下游须提示重新评估。"
+        }
+      ]
+    },
+    "requirement_id": "HANDOFF-TEST",
+    "revision": 1,
+    "sync_state": "absent"
+  },
+  "analysis_unchanged": true,
+  "common_unchanged": true
+}

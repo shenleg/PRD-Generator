@@ -1,0 +1,9 @@
+{
+  "initial_plan": "独立会话显式读取Skill并保存候选补丁",
+  "result": "独立会话报告受隔离限制，未能向主工作区保存补丁和对话；没有进入正式保存。",
+  "user_question": "这次模拟需求的独立分析会话无法向当前仓库写入候选补丁。你希望改用哪种方式继续试用？",
+  "user_selection": "主会话直接试用 (Recommended)",
+  "authorized_mode": "main_session_authored_simulation_then_actual_cli",
+  "limits": "由主会话负责分析与模拟回答，不是独立盲测；原始模拟性质不变，不当作真实产品决定。",
+  "failed_agent_report_only": true
+}

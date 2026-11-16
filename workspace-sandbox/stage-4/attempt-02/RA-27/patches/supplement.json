@@ -1,0 +1,78 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "HANDOFF-TEST",
+  "base_revision": 1,
+  "change_type": "supplement",
+  "actor": "analyst",
+  "summary": "合成修订同步测试",
+  "operations": [],
+  "set": {},
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 7,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "HANDOFF-TEST",
+  "revision": 1,
+  "id_map": {
+    "$goal": "GOAL-1",
+    "$function": "FR-1",
+    "$acceptance": "AC-1",
+    "$boundary": "BND-1",
+    "$withdrawn": "EXC-1",
+    "$pending": "Q-1",
+    "$assumption": "ASM-1"
+  },
+  "affected_ids": [
+    "GOAL-1",
+    "FR-1",
+    "AC-1",
+    "BND-1",
+    "EXC-1",
+    "Q-1",
+    "ASM-1"
+  ],
+  "written": true
+}

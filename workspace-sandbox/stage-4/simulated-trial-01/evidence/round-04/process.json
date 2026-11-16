@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "/root/.cache/uv/builds-v0/.tmpV7n2AT/bin/python",
+    "-I",
+    "-B",
+    "/root/orca/projects/test-skill/skill/requirement-analyst/scripts/update_analysis.py",
+    "--workspace",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-4/simulated-trial-01/workspace",
+    "--project",
+    "office-procurement",
+    "--patch",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-4/simulated-trial-01/evidence/round-04/patch.json"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": [],\n  \"requirement_id\": \"SIM-PROCUREMENT-001\",\n  \"revision\": 4,\n  \"id_map\": {\n    \"$repeat\": \"BR-14\",\n    \"$audit\": \"BR-15\",\n    \"$qaggregate\": \"Q-12\",\n    \"$aggregate\": \"GAP-2\",\n    \"$acretry\": \"AC-8\",\n    \"$acaudit\": \"AC-9\"\n  },\n  \"affected_ids\": [\n    \"BR-14\",\n    \"BR-15\",\n    \"AC-8\",\n    \"AC-9\",\n    \"EXC-1\",\n    \"GAP-1\",\n    \"GAP-2\",\n    \"Q-7\",\n    \"Q-9\",\n    \"Q-12\"\n  ],\n  \"written\": true\n}\n"
+}

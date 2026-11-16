@@ -1,0 +1,208 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "HANDOFF-TEST",
+  "meta": {
+    "analysis_revision": 1,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "existing_document",
+    "analysis_status": "completed",
+    "readiness": "conditionally_ready"
+  },
+  "context": {
+    "project_id": "handoff"
+  },
+  "requirements": {
+    "goals": [
+      {
+        "content": "已确认目标",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "合成测试输入"
+          }
+        ],
+        "id": "GOAL-1"
+      }
+    ],
+    "scenarios": [],
+    "functional_requirements": [
+      {
+        "content": "合成查询功能",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "合成测试输入"
+          }
+        ],
+        "id": "FR-1"
+      }
+    ],
+    "business_rules": [],
+    "constraints": [],
+    "non_functional_requirements": [],
+    "acceptance_criteria": [
+      {
+        "content": "合成验收条件",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "合成测试输入"
+          }
+        ],
+        "related_ids": [
+          "FR-1"
+        ],
+        "id": "AC-1"
+      }
+    ]
+  },
+  "business_assessment": {
+    "flows": [],
+    "states": [],
+    "boundaries": [
+      {
+        "content": "合成待重评边界",
+        "tag": "inferred",
+        "status": "to_reassess",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "合成测试输入"
+          }
+        ],
+        "id": "BND-1"
+      }
+    ],
+    "exceptions": [
+      {
+        "content": "撤销内容哨兵",
+        "tag": "inferred",
+        "status": "withdrawn",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "合成测试输入"
+          }
+        ],
+        "id": "EXC-1"
+      }
+    ],
+    "gaps": [],
+    "conflicts": []
+  },
+  "ux_assessment": {
+    "ui_dependent": false
+  },
+  "questions": [
+    {
+      "question": "合成范围如何验证？",
+      "priority": "P1",
+      "resolution": "ask_product",
+      "reason": "暂定",
+      "impact": "范围",
+      "options": [
+        "甲",
+        "乙"
+      ],
+      "recommendation": "暂用甲",
+      "status": "provisional",
+      "related_ids": [
+        "FR-1"
+      ],
+      "id": "Q-1"
+    }
+  ],
+  "assumptions": [
+    {
+      "content": "合成暂定范围",
+      "tag": "assumption",
+      "status": "active",
+      "sources": [
+        {
+          "type": "user_answer",
+          "location": "合成测试输入"
+        }
+      ],
+      "related_question": "Q-1",
+      "basis": "合成推荐依据",
+      "verification": "产品负责人后续核对合成输入",
+      "id": "ASM-1"
+    }
+  ],
+  "decisions": [],
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 7,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "仅用于消费者机械测试"
+    }
+  ]
+}

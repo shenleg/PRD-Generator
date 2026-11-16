@@ -1,0 +1,25 @@
+{
+  "status": "warning",
+  "diagnostics": [
+    {
+      "rule": 11,
+      "level": "warning",
+      "item_id": "$",
+      "path": "/meta/analysis_status",
+      "message": "分析已过期；下游须提示重新评估。"
+    }
+  ],
+  "requirement_id": "HANDOFF-TEST",
+  "revision": 1,
+  "id_map": {
+    "$goal": "GOAL-1",
+    "$function": "FR-1",
+    "$acceptance": "AC-1"
+  },
+  "affected_ids": [
+    "GOAL-1",
+    "FR-1",
+    "AC-1"
+  ],
+  "written": true
+}

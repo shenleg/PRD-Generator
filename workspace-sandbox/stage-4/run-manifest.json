@@ -1,0 +1,21 @@
+{
+  "stage": 4,
+  "attempt": 2,
+  "status": "scoped_complete_downstream_integration_deferred",
+  "closure_record": "closure-decision.json",
+  "installation_manifest": "installation/verification.json",
+  "deferred": ["实际下游测试Skill集成"],
+  "acceptance_record": "acceptance-decision.json",
+  "accepted_trial": "simulated-trial-01",
+  "trial_gate_status": "satisfied_by_user_approved_simulation",
+  "mode": "deterministic_scripts_no_model_calls",
+  "current_manifest": "attempt-02/run-manifest.json",
+  "previous_attempts": [
+    {
+      "attempt": 1,
+      "status": "failed_driver_setup",
+      "details": "attempt-01/attempt-result.json"
+    }
+  ],
+  "pending": []
+}

@@ -1,0 +1,45 @@
+{
+  "assistant_message": "当前理解：在现有采购网页列表提供批量撤回，减少误填或重复申请的沟通；保留申请和审批历史，不扩可见权限。原文撤回状态矛盾，权限和并发预期未定。首轮先确认可撤状态、谁可操作、与审批下单并发的业务结果；不先决定界面样式或技术方案。",
+  "asked_questions": [
+    {
+      "ref": "$qstatus",
+      "question": "最终允许撤回哪些状态的申请？",
+      "priority": "P0",
+      "options": [
+        "仅待审批",
+        "待审批和审批通过但未下单",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "建议待审批及通过未下单均可，能满足更正诉求，但必须由业务确认。",
+      "topic": "eligible_status_and_destination"
+    },
+    {
+      "ref": "$qpermission",
+      "question": "本期谁能撤回哪些人的申请？",
+      "priority": "P0",
+      "options": [
+        "仅创建人撤自己的",
+        "创建人加采购管理员代撤",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "建议仅创建人，先保持最小权限边界。",
+      "topic": "permission"
+    },
+    {
+      "ref": "$qrace",
+      "question": "撤回与审批或下单同时发生时，以什么业务结果判定成功或失败？",
+      "priority": "P0",
+      "options": [
+        "执行时最新状态与权限逐条判定，先成功者生效",
+        "以页面打开时状态为准",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "建议以执行时最新状态判定，并明确先后动作的业务结果；实现方式交研发。",
+      "topic": "concurrency"
+    }
+  ],
+  "control_questions": []
+}

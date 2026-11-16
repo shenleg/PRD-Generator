@@ -1,0 +1,88 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "SIM-PROCUREMENT-001",
+  "base_revision": 4,
+  "change_type": "supplement",
+  "actor": "user",
+  "user_statement": "先结束追问，按已经回答的内容出结果；没回答的就标出来，不要替我决定。",
+  "summary": "模拟业务方明确结束；只结束追问，不回答Q-12、不接受风险、不关闭研发事项。",
+  "operations": [],
+  "set": {
+    "meta.analysis_status": "completed",
+    "meta.readiness": "not_ready"
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": [
+        "Q-12"
+      ],
+      "reason": "含重复已撤回项的批次汇总分类未定，核心输出验收仍缺可判定口径。"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    },
+    {
+      "item": 6,
+      "satisfied": false,
+      "question_refs": [
+        "Q-12"
+      ],
+      "reason": "含重复已撤回项的批次汇总分类未定，核心输出验收仍缺可判定口径。"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "Q-12"
+      ],
+      "reason": "含重复已撤回项的批次汇总分类未定，核心输出验收仍缺可判定口径。"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "前三轮模拟输入和登记事项足以表达该项；研发能力未核实不等于业务规则未定。"
+    }
+  ]
+}

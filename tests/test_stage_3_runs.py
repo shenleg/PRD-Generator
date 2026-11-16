@@ -10,6 +10,8 @@ import tempfile
 import unittest
 from unittest import mock
 
+from historical_sources import recorded_bytes
+
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNS = ROOT / "workspace-sandbox/stage-3"
@@ -51,20 +53,20 @@ class StageThreeModelRuns(unittest.TestCase):
         self.assertEqual(len(matches), 1, (group, name))
         return matches[0]
 
-    def test_current_sources_match_actual_run(self) -> None:
-        """当前 Skill、脚本、Schema 和输入必须与本次实跑源指纹相符。"""
+    def test_stage_three_tag_sources_match_actual_run(self) -> None:
+        """历史模型试跑绑定stage-3-complete，当前写入器另由真实补丁重放验证。"""
         self.assertEqual(self.manifest["stage"], 3)
         self.assertGreaterEqual(len(self.manifest["files"]), 19)
         for relative, expected in self.manifest["files"].items():
             with self.subTest(file=relative):
                 self.assertNotIn("__pycache__", Path(relative).parts)
                 self.assertNotEqual(Path(relative).suffix, ".pyc")
-                self.assertEqual(hashlib.sha256((ROOT / relative).read_bytes()).hexdigest(), expected)
+                self.assertEqual(hashlib.sha256(recorded_bytes(relative, 3)).hexdigest(), expected)
 
     def test_rule_evolution_is_scoped_and_keeps_original_evidence(self) -> None:
         """新规则的定点重评保留旧源码与实际修复，不能只重写哈希伪装全量盲跑。"""
         for change in self.manifest["source_evolution"]:
-            current = (ROOT / change["file"]).read_text(encoding="utf-8")
+            current = recorded_bytes(change["file"], 3).decode("utf-8")
             snapshot = (RUNS / change["before_snapshot"]).read_text(encoding="utf-8")
             self.assertEqual(snapshot.count(change["old_text"]), 1)
             self.assertEqual(snapshot.replace(change["old_text"], change["new_text"], 1), current)

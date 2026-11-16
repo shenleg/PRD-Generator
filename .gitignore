@@ -9,3 +9,10 @@ __pycache__/
 .analysis.lock
 .analysis-transaction.json
 .analysis-write-*
+
+# 最小消费者原子提交 requirement.json 时留下的本地临时文件。
+.prd-write-*
+
+# 用户仅授权提交脱敏安装证据；原始CLI会话、初始化信息及诊断保留本地。
+/workspace-sandbox/stage-4/installation/*
+!/workspace-sandbox/stage-4/installation/verification.json

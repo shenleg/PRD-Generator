@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "/root/.cache/uv/builds-v0/.tmpbxZAqO/bin/python",
+    "-I",
+    "-B",
+    "/root/orca/projects/test-skill/skill/requirement-analyst/scripts/update_analysis.py",
+    "--workspace",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-4/simulated-trial-01/workspace",
+    "--project",
+    "office-procurement",
+    "--patch",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-4/simulated-trial-01/evidence/round-01/patch.json"
+  ],
+  "returncode": 0,
+  "stderr": "",
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": [],\n  \"requirement_id\": \"SIM-PROCUREMENT-001\",\n  \"revision\": 1,\n  \"id_map\": {\n    \"$source\": \"SRC-1\",\n    \"$goal\": \"GOAL-1\",\n    \"$scenario\": \"SCN-1\",\n    \"$function\": \"FR-1\",\n    \"$all\": \"BR-1\",\n    \"$pending\": \"BR-2\",\n    \"$approved\": \"BR-3\",\n    \"$visibility\": \"BR-4\",\n    \"$history\": \"BR-5\",\n    \"$partial\": \"BR-6\",\n    \"$reuse\": \"CON-1\",\n    \"$nochange\": \"CON-2\",\n    \"$scopein\": \"CON-3\",\n    \"$scopeout\": \"CON-4\",\n    \"$flow\": \"FLOW-1\",\n    \"$race\": \"BND-1\",\n    \"$mixed\": \"BND-2\",\n    \"$selection\": \"BND-3\",\n    \"$repeat\": \"EXC-1\",\n    \"$qstatus\": \"Q-1\",\n    \"$qpermission\": \"Q-2\",\n    \"$qrace\": \"Q-3\",\n    \"$qdestination\": \"Q-4\",\n    \"$qpartial\": \"Q-5\",\n    \"$qselection\": \"Q-6\",\n    \"$qrepeat\": \"Q-7\",\n    \"$qapproval\": \"Q-8\",\n    \"$qaudit\": \"Q-9\",\n    \"$qapi\": \"Q-10\",\n    \"$qtech\": \"Q-11\",\n    \"$conflict\": \"CNF-1\",\n    \"$gap\": \"GAP-1\",\n    \"$acdraft\": \"AC-1\"\n  },\n  \"affected_ids\": [\n    \"GOAL-1\",\n    \"SCN-1\",\n    \"FR-1\",\n    \"BR-1\",\n    \"BR-2\",\n    \"BR-3\",\n    \"BR-4\",\n    \"BR-5\",\n    \"BR-6\",\n    \"CON-1\",\n    \"CON-2\",\n    \"AC-1\",\n    \"FLOW-1\",\n    \"BND-1\",\n    \"BND-2\",\n    \"BND-3\",\n    \"EXC-1\",\n    \"GAP-1\",\n    \"CNF-1\",\n    \"Q-1\",\n    \"Q-2\",\n    \"Q-3\",\n    \"Q-4\",\n    \"Q-5\",\n    \"Q-6\",\n    \"Q-7\",\n    \"Q-8\",\n    \"Q-9\",\n    \"Q-10\",\n    \"Q-11\",\n    \"CON-3\",\n    \"CON-4\",\n    \"SRC-1\"\n  ],\n  \"written\": true\n}\n"
+}

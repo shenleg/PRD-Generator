@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "分析条目的来源引用",
+  "description": "定义原文和用户回答的定位方式；资料编号是否存在由 validate_analysis.py 对照 source-manifest.json 检查。",
+  "type": "object",
+  "required": ["type", "location"],
+  "properties": {
+    "type": {
+      "enum": ["input_document", "user_answer", "project_material"]
+    },
+    "source_id": {
+      "$ref": "#/$defs/source_id"
+    },
+    "location": {
+      "type": "string",
+      "minLength": 1,
+      "description": "原文的章节、页码，或第 N 轮用户回答。"
+    }
+  },
+  "if": {
+    "properties": {
+      "type": {"enum": ["input_document", "project_material"]}
+    },
+    "required": ["type"]
+  },
+  "then": {
+    "required": ["source_id"]
+  },
+  "$defs": {
+    "source_id": {
+      "type": "string",
+      "pattern": "^SRC-[1-9][0-9]*$"
+    },
+    "manifest": {
+      "type": "array",
+      "description": "输入文档和项目资料清单；未知的更新时间用 null，不编造日期。",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "name", "path", "type", "credibility", "last_updated", "revision"],
+        "properties": {
+          "source_id": {"$ref": "#/$defs/source_id"},
+          "name": {"type": "string", "minLength": 1},
+          "path": {"type": "string", "minLength": 1},
+          "type": {"enum": ["input_document", "project_material"]},
+          "credibility": {"type": "string", "minLength": 1},
+          "last_updated": {"type": ["string", "null"]},
+          "revision": {"type": "integer", "minimum": 1}
+        }
+      }
+    }
+  }
+}

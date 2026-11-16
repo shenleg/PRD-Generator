@@ -1,0 +1,25 @@
+{
+  "decision_date": "2026-11-16",
+  "user_statement": "把模拟案例当做真实需求验收吧",
+  "decision": "accept_simulated_case_for_real_requirement_trial_gate",
+  "accepted_trial": "simulated-trial-01",
+  "requirement_id": "SIM-PROCUREMENT-001",
+  "trial_gate_status": "satisfied_by_user_approved_simulation",
+  "not_real_user_requirement": true,
+  "scope": "本次以采购申请批量撤回模拟案例满足阶段4需求试用及不规范文档试用条件，不再等待真实项目材料作为该项退出前置。",
+  "provenance_unchanged": "原文和业务回答仍为助手模拟，执行仍为用户批准的主会话直接试用，不改写为真实项目来源或独立盲测。",
+  "business_readiness_unchanged": "not_ready",
+  "open_product_questions_unchanged": ["Q-12"],
+  "not_authorized_by_this_decision": [
+    "不代表回答Q-12或接受其业务风险",
+    "不代表产品批准发布草稿",
+    "不代表实际下游Skill集成已通过",
+    "不代表安装后自动调用已通过",
+    "不授权Git提交、推送或打阶段完成标签"
+  ],
+  "stage_status": "proxy_trial_accepted_integration_pending",
+  "remaining": [
+    "实际下游测试Skill集成",
+    "最终 user-invocable 配置收口及安装后自动调用验证"
+  ]
+}

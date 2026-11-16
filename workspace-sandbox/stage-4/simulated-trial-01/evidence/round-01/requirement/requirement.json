@@ -1,0 +1,8 @@
+{
+  "common": {
+    "requirement_id": "SIM-PROCUREMENT-001",
+    "project_id": "office-procurement",
+    "title": "办公采购申请批量撤回（模拟试用）",
+    "created_at": "2026-11-16T06:11:36.430809+00:00"
+  }
+}

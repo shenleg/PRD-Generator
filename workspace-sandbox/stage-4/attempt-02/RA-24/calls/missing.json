@@ -1,0 +1,11 @@
+{
+  "options": {},
+  "response": {
+    "status": "warning",
+    "action": "analyze",
+    "message": "没有工作区或分析结果；先转入需求分析。",
+    "written": false
+  },
+  "analysis_unchanged": true,
+  "common_unchanged": true
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "待澄清问题",
+  "description": "定义问题、责任方、选项和状态；暂定假设、排除决策以及就绪度的关联由 validate_analysis.py 检查。",
+  "type": "object",
+  "required": [
+    "id", "question", "priority", "resolution", "reason", "impact",
+    "options", "recommendation", "status", "related_ids"
+  ],
+  "properties": {
+    "id": {"$ref": "requirement-item.schema.json#/$defs/question_reference"},
+    "question": {"type": "string", "minLength": 1},
+    "priority": {"enum": ["P0", "P1", "P2", "P3"]},
+    "resolution": {
+      "enum": ["ask_product", "ask_business", "ask_dev", "ask_design", "lookup", "infer"]
+    },
+    "reason": {"type": "string", "minLength": 1},
+    "impact": {"type": "string", "minLength": 1},
+    "options": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "description": "对话选项按规格 6.4 组织；lookup、infer 等非对话问题可为空。"
+    },
+    "recommendation": {
+      "type": "string",
+      "description": "推荐选项和理由；非对话问题可以为空。"
+    },
+    "status": {
+      "enum": ["open", "answered", "provisional", "risk_accepted", "excluded", "dropped"]
+    },
+    "related_ids": {
+      "type": "array",
+      "items": {"$ref": "requirement-item.schema.json#/$defs/item_reference"}
+    },
+    "answer": {
+      "type": "string",
+      "description": "可选的回答正文，保留用户回答或资料检索结果。"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "description": "用户批准模拟案例代验后的完整回归；新增检查只改变试用验收状态，不改变模拟来源、业务P0和剩余集成项。",
+  "status": "pass",
+  "tests_run": 134,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "log": "tests/results/stage-4-acceptance-test-run.txt",
+  "acceptance_record": "workspace-sandbox/stage-4/acceptance-decision.json",
+  "trial_gate_status": "satisfied_by_user_approved_simulation",
+  "stage_status": "proxy_trial_accepted_integration_pending",
+  "business_readiness_unchanged": "not_ready",
+  "original_trial_evidence_unchanged": true
+}

@@ -1,0 +1,15 @@
+{
+  "description": "阶段4范围收口：历史证据、确定性写入、消费者、项目安装、已保存的真实自动调用和同会话承接；不重新调用模型。",
+  "status": "pass",
+  "tests_run": 139,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "log": "tests/results/stage-4-redacted-closure-test-run.txt",
+  "installation_evidence": "仅用户授权的脱敏验证证据；不依赖本地原始会话文件",
+  "stage_status": "scoped_complete_downstream_integration_deferred",
+  "installation": "pass",
+  "actual_auto_invocation": "pass",
+  "same_session_context": "pass",
+  "deferred": ["实际下游测试Skill集成"]
+}

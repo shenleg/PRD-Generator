@@ -1,0 +1,31 @@
+{
+  "options": {
+    "required_sections": [
+      "requirements.acceptance_criteria"
+    ]
+  },
+  "response": {
+    "status": "warning",
+    "action": "register_questions",
+    "message": "模板需要的章节无有效分析条目；不生成，先回交分析侧。",
+    "written": false,
+    "feedback": {
+      "requirement_id": "HANDOFF-TEST",
+      "base_revision": 1,
+      "change_type": "supplement",
+      "missing_sections": [
+        "requirements.acceptance_criteria"
+      ],
+      "instruction": "回交需求分析：审阅缺口，登记新问题，重新判定完成清单与就绪度，通过 update_analysis.py 保存；不得自行补成事实。"
+    },
+    "validation": {
+      "status": "pass",
+      "diagnostics": []
+    },
+    "requirement_id": "HANDOFF-TEST",
+    "revision": 1,
+    "sync_state": "current"
+  },
+  "analysis_unchanged": true,
+  "common_unchanged": true
+}

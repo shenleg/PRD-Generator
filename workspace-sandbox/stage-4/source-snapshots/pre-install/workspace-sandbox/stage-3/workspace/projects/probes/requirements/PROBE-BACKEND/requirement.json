@@ -1,0 +1,8 @@
+{
+  "common": {
+    "requirement_id": "PROBE-BACKEND",
+    "project_id": "probes",
+    "title": "内部服务按任务编号查询既有仿真结果",
+    "created_at": "2026-11-16T04:29:12.282286+00:00"
+  }
+}

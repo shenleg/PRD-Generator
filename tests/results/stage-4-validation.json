@@ -1,0 +1,37 @@
+{
+  "stage": 4,
+  "status": "handoff_scenarios_passed_real_trial_pending",
+  "mode": "deterministic_scripts_no_model_calls",
+  "current_evidence": "workspace-sandbox/stage-4/attempt-02/run-manifest.json",
+  "scenarios": {
+    "RA-24": "pass",
+    "RA-25": "pass",
+    "RA-26": "pass",
+    "RA-27": "pass",
+    "RA-28": "pass",
+    "RA-29": "pass"
+  },
+  "consumer_calls": 14,
+  "consumer_statuses": {"pass": 5, "warning": 9, "fail": 0},
+  "analysis_updates": 8,
+  "analysis_update_statuses": {"pass": 6, "warning": 1, "fail": 1},
+  "expected_failure": "RA-29 对已登记的旧回流补丁再次提交，真实更新器拒绝修订冲突；没有新增重复问题。",
+  "generated_drafts": 9,
+  "note_on_draft_count": "只计当前工作区的实际草稿；快照中另外保留了三份副本，不重复计生成次数。",
+  "saved_artifact_files": 114,
+  "unchanged_analyst_production_files": true,
+  "schema_version": "1.0",
+  "previous_attempt": {
+    "path": "workspace-sandbox/stage-4/attempt-01/attempt-result.json",
+    "status": "failed_driver_setup",
+    "cause": "合成过期初始状态错误，修正驱动输入后在新目录重跑；未改上游约束。"
+  },
+  "limits": [
+    "六场景使用合成数据；三份旧样例是已有模型结果的消费，不是新模型分析。",
+    "缺口由消费者返回结构化请求，场景分析侧审阅并实际提交补丁；未验证模型自主回流。",
+    "下游测试点分析、用例设计仅静态试读，未集成真实测试Skill。",
+    "真实需求和不规范真实文档尚未提供。",
+    "调试入口配置保留；未验证安装后的自动调用。",
+    "不宣告阶段4整体验收完成。"
+  ]
+}

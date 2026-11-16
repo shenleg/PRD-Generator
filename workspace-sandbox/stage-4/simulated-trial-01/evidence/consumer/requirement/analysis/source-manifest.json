@@ -1,0 +1,11 @@
+[
+  {
+    "name": "办公采购申请批量撤回（模拟原始记录）",
+    "path": "/root/orca/projects/test-skill/tests/fixtures/stage-4-procurement-withdrawal.md",
+    "type": "input_document",
+    "credibility": "助手构造的模拟业务输入，非真实产品决定",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-1"
+  }
+]

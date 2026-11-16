@@ -1,0 +1,19 @@
+{
+  "options": {},
+  "response": {
+    "validation": {
+      "status": "pass",
+      "diagnostics": []
+    },
+    "requirement_id": "HANDOFF-TEST",
+    "revision": 1,
+    "sync_state": "current",
+    "status": "pass",
+    "action": "draft_created",
+    "message": "已生成简化草稿，待产品负责人确认。",
+    "written": true,
+    "draft_path": "prd/handoff-draft-v1.md"
+  },
+  "analysis_unchanged": true,
+  "common_unchanged": true
+}

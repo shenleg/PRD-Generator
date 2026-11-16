@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "/root/.cache/uv/builds-v0/.tmpDqVopb/bin/python",
+    "-I",
+    "-B",
+    "/root/orca/projects/test-skill/tools/minimal_prd_consumer.py",
+    "--workspace",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-4/simulated-trial-01/workspace",
+    "--project",
+    "office-procurement",
+    "--requirement",
+    "SIM-PROCUREMENT-001",
+    "--expected-revision",
+    "5",
+    "--require-section",
+    "requirements.acceptance_criteria"
+  ],
+  "returncode": 1,
+  "stderr": "",
+  "stdout": "{\n  \"validation\": {\n    \"status\": \"pass\",\n    \"diagnostics\": []\n  },\n  \"requirement_id\": \"SIM-PROCUREMENT-001\",\n  \"revision\": 5,\n  \"sync_state\": \"current\",\n  \"status\": \"warning\",\n  \"action\": \"draft_created\",\n  \"message\": \"已生成简化草稿，待产品负责人确认。\",\n  \"written\": true,\n  \"draft_path\": \"prd/handoff-draft-v1.md\"\n}\n"
+}

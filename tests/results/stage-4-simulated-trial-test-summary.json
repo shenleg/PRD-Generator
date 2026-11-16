@@ -1,0 +1,20 @@
+{
+  "description": "采购撤回主会话模拟试用证据检查及完整历史回归；测试不调用模型。",
+  "status": "pass",
+  "tests_run": 133,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "previous_tests": 127,
+  "new_saved_simulation_tests": 6,
+  "log": "tests/results/stage-4-simulated-trial-test-run.txt",
+  "trial_status": "simulated_trial_completed_real_trial_pending",
+  "execution": "main_session_authored_simulation_then_actual_cli",
+  "not_real_user_requirement": true,
+  "final_analysis_revision": 5,
+  "final_analysis_status": "completed",
+  "final_readiness": "not_ready",
+  "validation": "pass",
+  "consumer_status": "warning",
+  "draft_generated": true
+}
