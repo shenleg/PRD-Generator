@@ -1,0 +1,23 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "HIST-USER-001",
+  "revision": 1,
+  "id_map": {
+    "$source": "SRC-1",
+    "$goal": "GOAL-1",
+    "$function": "FR-1",
+    "$rule": "BR-1",
+    "$acceptance": "AC-1",
+    "$oldquestion": "Q-1"
+  },
+  "affected_ids": [
+    "GOAL-1",
+    "FR-1",
+    "BR-1",
+    "AC-1",
+    "Q-1",
+    "SRC-1"
+  ],
+  "written": true
+}

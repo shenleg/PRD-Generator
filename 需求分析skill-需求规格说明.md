@@ -907,6 +907,18 @@ requirement-workspace/
 - 事件保留 9.5 的六个字段，并记录补丁、受影响项的旧值与新值及实际用户原话，旧事件字节保持前缀不变。补丁失败不写业务文件、不推进计数或修订号。
 - 写入在工作区独占锁下完成修订校验和预校验；使用写前事务记录及单文件原子替换恢复中断的多文件保存，下一次调用先恢复再检查修订号。不向不遵守锁的任意读取者承诺跨文件原子快照。脚本不写 `inputs/`、`prd/` 或报告；报告从实际保存结果整理。
 
+### 阶段 5 的历史采用与工具约定
+
+- 历史语义冲突/重复由分析侧判断并登记CNF/Q及取舍建议；三个资料脚本只做机械差异、显式影响候选、索引与有限检索，不自动修改基线或批准变更。
+- `context.history_review`是1.0的向后兼容选填字段：`status`为not_performed/reviewed/stale，`reason`说明范围，`source_ids`为本需求实际采用的SRC。reviewed必须有采用资料；not_performed不能伪造采用列表或基线；stale必须与meta的stale/not_ready一致。旧结果未填写时不补造已对照声明。
+- 来源清单选填`adopted_sha256`（实际采用时的64位小写SHA-256）、`authority`（current_published/current_spec/historical_published/draft/unconfirmed）、`publication_basis`和`archived_path`。采用条目必须有指纹；来源last_updated仍允许null，不用mtime推断业务更新时间。SRC只在各清单内有效，索引导入本需求时由更新器重新分号。
+- `history_review.baseline`选填requirement_id/analysis_revision/source_id/publication_basis，与meta.baseline_revision对应；本需求非空基线采用须有本需求、实际采用且authority=current_published的来源和明确发布依据。登记、改换或解除基线须actor=user及实际user_statement，不因检索命中自动确认。不同历史需求只能作关联，不能冒成本需求baseline_revision。旧1.0未声明history_review的结果继续兼容。
+- `compare_baseline.py`显式接收同需求的baseline/proposal结果，分别复用唯一校验器，输出条目变化及before/after、非条目节与来源变化、有向影响路径和需重验AC。显式related_ids只作为候选依赖，未建立的隐含关系由语义分析补充。missing不是删除授权；无baseline先校验proposal再warning降级，不自动搜索。
+- `compare_baseline.py --check-sources ANALYSIS --project-root ROOT`只读核验采用指纹，返回needs_reassessment候选，不自行写分析。资料原地升级前保留独立旧版本和archived_path；只有同路径较新版本已显式采用时才按归档核验旧版，避免归档掩盖尚未处理的内容变化。后续经new_source_version保存stale和重开问题，再经supplement实际重评规则/验收，不只清掉stale。
+- `index_sources.py`只在项目index/维护project-index.json/source-index.json，显式清单和来源正文只读；两索引同世代指纹，不一致时拒绝检索并要求重建。`search_project.py`只查索引范围，按关键词及需求号/模块/标签/术语筛选，保留路径、行位置、指纹、版本及权威。当前发布/正式规范须显式publication_basis，默认unconfirmed，不由文件名推断。
+- 索引单文件1MiB，单次检索最多64文件/2MiB；默认最多5命中、摘录共2000字符，显式上限20命中/20000字符。超限/截断与无命中明确提示，不推导无冲突。业务年龄阈值默认365天可配置，未知/未来日期提示复核，年龄提醒不同于指纹变化。内容变更或缺失的旧索引来源不返回正文，刷新后再采用。
+- 工具使用Linux/Unix本地普通UTF-8资料，遵守现有工作区锁；null事务日志为已完成，非空日志阻止读取/索引。没有PDF/图片解析、向量库或RAG服务，不保证不遵锁的外部进程或恶意并发换路径时的快照安全。最终发布仍不在本Skill范围。
+
 ## 9.7 多人协作
 
 多人共用同一份分析时：

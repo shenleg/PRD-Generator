@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "needs_reassessment": false,
+  "changed_sources": [],
+  "direct_source_items": [],
+  "validation": {
+    "status": "pass",
+    "diagnostics": []
+  },
+  "next_action": "采用指纹未变化；不代表已检索未采用资料或语义无冲突。",
+  "baseline_modified": false
+}

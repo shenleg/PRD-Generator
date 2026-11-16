@@ -1,0 +1,27 @@
+{
+  "stage": 5,
+  "status": "pass_with_declared_simulation_scope",
+  "user_authorizations": ["使用合成历史资料", "CLI公共接口集成测试", "独立会话写入被阻止后，主会话完成语义场景补丁落盘"],
+  "scenarios": [
+    {"id": "RA-14", "status": "pass", "evidence": "attempt-04/evidence/RA-14-conflict", "verified": "新批量删除提议与有未完成任务禁止删除的合成基线形成CNF/open P0，历史不变"},
+    {"id": "RA-15", "status": "pass", "evidence": "attempt-04/evidence/RA-15-duplicate", "verified": "已有状态/创建时间组合筛选与新诉求重合，复用/补差异/缺陷选项待决，不自动合并"},
+    {"id": "RA-16", "status": "pass", "evidence": "attempt-04/evidence/RA-16-impact", "verified": "FR-1变动→BR-1直接→AC-1及Q-1间接，保留路径、AC重验及原发布快照"},
+    {"id": "RA-17", "status": "pass", "evidence": "attempt-04/evidence/RA-17-stale及RA-17-reevaluated", "verified": "实际指纹变动、排除旧索引正文、刷新、新SRC、stale/not_ready、旧Q重开保留answer、BR/AC重评与最终一致"},
+    {"id": "RA-18", "status": "pass", "evidence": "attempt-04/evidence/RA-18-old-material", "verified": "2020业务时间、2026参考日及365日阈值产生老旧复核提醒，草稿不作现行技术事实"},
+    {"id": "RA-19", "status": "pass", "evidence": "attempt-04/evidence/RA-19-missing-index及RA-19-degraded", "verified": "独立空项目确实无历史和索引，not_performed、null基线、degraded及报告未做对照说明"}
+  ],
+  "formal_results": [
+    {"requirement_id": "HIST-USER-001", "revision": 4, "analysis_status": "completed", "readiness": "ready_for_document", "baseline_revision": 1},
+    {"requirement_id": "NEW-DELETE-001", "revision": 1, "analysis_status": "clarifying", "readiness": "not_ready", "baseline_revision": null},
+    {"requirement_id": "NEW-FILTER-001", "revision": 1, "analysis_status": "clarifying", "readiness": "not_ready", "baseline_revision": null},
+    {"requirement_id": "NEW-NO-HISTORY", "revision": 1, "analysis_status": "clarifying", "readiness": "not_ready", "baseline_revision": null}
+  ],
+  "limits": [
+    "当前发布声明仅为用户批准的合成场景，不代表真实项目发布。",
+    "独立会话完成只读语义分析，文件保存被权限保护拒绝；用户批准主会话补丁保存，未冒称独立盲测端到端。",
+    "当前Skill另有真实CLI只读自动调用烟测，不表示所有落盘场景均由独立模型自主生成。",
+    "文本关键词检索和显式关联图不能证明查全隐含关系或自然语言冲突。",
+    "Linux/Unix本地遵锁工作区；PDF/图片解析、向量服务、网络文件系统不在本阶段。",
+    "阶段4延期的真实下游Skill集成仍未验证，不因阶段5通过自动变为通过。"
+  ]
+}

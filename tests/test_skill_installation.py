@@ -8,6 +8,7 @@ import subprocess
 import unittest
 
 from test_update_analysis import read_json
+from historical_sources import recorded_bytes
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,12 +24,12 @@ class InstalledSkillTests(unittest.TestCase):
         cls.evidence = read_json(BASE / "verification.json")
 
     def test_installation_trace_and_source_hashes(self) -> None:
-        """安装入口指向唯一生产目录，实际执行时源码有指纹，脱敏不保留会话ID或本机路径。"""
+        """当前入口仍指唯一生产目录；历史自动调用证据绑定阶段4收口提交，不冒充阶段5新行为。"""
         evidence = self.evidence
         self.assertEqual(evidence["status"], "pass")
         self.assertEqual((ROOT / evidence["skill_installation"]).resolve(), ROOT / evidence["target"])
         for relative, expected in evidence["files"].items():
-            self.assertEqual(hashlib.sha256((ROOT / relative).read_bytes()).hexdigest(), expected, relative)
+            self.assertEqual(hashlib.sha256(recorded_bytes(relative, 4, installed=True)).hexdigest(), expected, relative)
         text = json.dumps(evidence, ensure_ascii=False)
         self.assertNotIn(str(ROOT), text)
         self.assertNotRegex(text, r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b")

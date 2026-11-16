@@ -1,4 +1,4 @@
-"""检查阶段 4 收口后的 Skill 入口、项目安装及测试材料；静态契约不替代自动调用实测。"""
+"""检查阶段5入口、项目安装、渐进参考与场景材料；静态契约不替代语义和CLI试跑。"""
 
 from pathlib import Path
 import re
@@ -7,8 +7,8 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skill/requirement-analyst"
-SCENARIOS = [*(f"RA-{number:02d}" for number in range(1, 14)), "RA-30", "RA-31"]
-REFERENCES = ("analysis-framework.md", "question-strategy.md", "readiness-rules.md", "incremental-update.md")
+SCENARIOS = [*(f"RA-{number:02d}" for number in range(1, 20)), "RA-30", "RA-31"]
+REFERENCES = ("analysis-framework.md", "question-strategy.md", "readiness-rules.md", "incremental-update.md", "historical-retrieval.md")
 
 
 def read_skill() -> str:
@@ -57,10 +57,9 @@ class SkillContractTests(unittest.TestCase):
                 self.assertTrue((SKILL / "references" / name).is_file())
 
     def test_stage_boundaries(self) -> None:
-        """阶段 3 接入更新脚本，但不提前实现检索或基线比对。"""
-        self.assertTrue((SKILL / "scripts/update_analysis.py").is_file())
-        for filename in ("index_sources.py", "search_project.py", "compare_baseline.py"):
-            self.assertFalse((SKILL / "scripts" / filename).exists())
+        """阶段5已启用三个资料工具，技术可行性与完整视觉仍不越界。"""
+        for filename in ("update_analysis.py", "compare_baseline.py", "index_sources.py", "search_project.py"):
+            self.assertTrue((SKILL / "scripts" / filename).is_file())
         content = read_skill()
         self.assertIn("validate_analysis.py", content)
         self.assertIn("analysis-result.json", content)

@@ -1,0 +1,8 @@
+{
+  "common": {
+    "requirement_id": "NEW-NO-HISTORY",
+    "project_id": "no-history",
+    "title": "无历史资料降级（合成）",
+    "created_at": "2026-11-16T07:51:52.315819+00:00"
+  }
+}

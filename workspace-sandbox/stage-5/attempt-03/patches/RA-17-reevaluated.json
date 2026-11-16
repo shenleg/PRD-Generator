@@ -1,0 +1,148 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "HIST-USER-001",
+  "base_revision": 3,
+  "change_type": "supplement",
+  "actor": "user",
+  "user_statement": "合成产品确认：单用户和批量入口均沿用未完成任务保护，审计冻结用户也一律拒绝且数据不变；该重评不重新发布历史分析。",
+  "summary": "完成冻结状态变更的直接与间接重评",
+  "operations": [
+    {
+      "op": "update",
+      "target": "BR-1",
+      "changes": {
+        "content": "有未完成任务或被审计冻结的用户均禁止删除，用户及任务数据不变",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "合成新资料重评确认"
+          },
+          {
+            "type": "project_material",
+            "source_id": "SRC-2",
+            "location": "第二版新增冻结规则"
+          }
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "target": "AC-1",
+      "changes": {
+        "content": "分别验证单用户/批量入口删除有未完成任务或审计冻结用户，均拒绝且用户和任务不变",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "合成新资料重评确认"
+          }
+        ]
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-1",
+      "changes": {
+        "status": "answered",
+        "answer_update": "第二版复核：未完成任务仍禁止，新增冻结状态同样禁止，覆盖两入口",
+        "reason": "新冻结限制及两入口业务条件已复核，保留原answer作历史依据"
+      }
+    },
+    {
+      "op": "update",
+      "target": "Q-2",
+      "changes": {
+        "status": "answered",
+        "answer": "两入口均按已明确业务状态复核；资料和验收已逐条重评",
+        "reason": "新增冻结限制及间接AC已实际更新，不是只清掉stale标记"
+      }
+    }
+  ],
+  "set": {
+    "context.history_review": {
+      "status": "reviewed",
+      "reason": "已逐项重评新增冻结限制及原未完成任务限制，旧发布分析修订1仍保留，当前采用新资料不等于重发分析基线",
+      "source_ids": [
+        "SRC-1",
+        "SRC-2"
+      ],
+      "baseline": {
+        "requirement_id": "HIST-USER-001",
+        "analysis_revision": 1,
+        "source_id": "SRC-1",
+        "publication_basis": "合成场景产品负责人确认：HIST-USER-001分析修订1为当前发布分析基线，未批准改变禁止删除规则。"
+      }
+    },
+    "meta.analysis_status": "completed",
+    "meta.readiness": "ready_for_document"
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 7,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    }
+  ]
+}

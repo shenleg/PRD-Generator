@@ -1,0 +1,112 @@
+{
+  "status": "pass",
+  "requirement_id": "HIST-USER-001",
+  "baseline_revision": 1,
+  "proposal_revision": 2,
+  "changes": {
+    "added": [],
+    "modified": [
+      "HIST-USER-001/FR-1"
+    ],
+    "missing": [],
+    "unchanged": [
+      "HIST-USER-001/AC-1",
+      "HIST-USER-001/BR-1",
+      "HIST-USER-001/GOAL-1",
+      "HIST-USER-001/Q-1"
+    ]
+  },
+  "details": [
+    {
+      "reference": "HIST-USER-001/FR-1",
+      "change": "modified",
+      "before": {
+        "collection": "requirements.functional_requirements",
+        "value": {
+          "content": "管理员通过现有单用户删除入口操作，服务端校验权限",
+          "tag": "confirmed",
+          "status": "active",
+          "sources": [
+            {
+              "type": "project_material",
+              "source_id": "SRC-1",
+              "location": "合成历史资料业务条款"
+            }
+          ],
+          "related_ids": [
+            "GOAL-1"
+          ],
+          "id": "FR-1"
+        }
+      },
+      "after": {
+        "collection": "requirements.functional_requirements",
+        "value": {
+          "content": "管理员通过单用户或拟增加的批量入口删除用户，服务端仍校验管理员权限",
+          "tag": "confirmed",
+          "status": "active",
+          "sources": [
+            {
+              "type": "user_answer",
+              "location": "合成场景明确变更提议"
+            }
+          ],
+          "related_ids": [
+            "GOAL-1"
+          ],
+          "id": "FR-1"
+        }
+      }
+    }
+  ],
+  "impact": {
+    "changed": [
+      "HIST-USER-001/FR-1"
+    ],
+    "direct": [
+      "HIST-USER-001/BR-1"
+    ],
+    "indirect": [
+      "HIST-USER-001/AC-1",
+      "HIST-USER-001/Q-1"
+    ],
+    "paths": {
+      "HIST-USER-001/AC-1": [
+        "HIST-USER-001/FR-1",
+        "HIST-USER-001/BR-1",
+        "HIST-USER-001/AC-1"
+      ],
+      "HIST-USER-001/BR-1": [
+        "HIST-USER-001/FR-1",
+        "HIST-USER-001/BR-1"
+      ],
+      "HIST-USER-001/Q-1": [
+        "HIST-USER-001/FR-1",
+        "HIST-USER-001/BR-1",
+        "HIST-USER-001/Q-1"
+      ]
+    },
+    "revalidate_acceptance": [
+      "HIST-USER-001/AC-1"
+    ],
+    "note": "只覆盖显式关联产生的有向影响候选；未建关联及正文隐含依赖仍须语义复核，图可达不等于已批准变更。"
+  },
+  "source_changes": [],
+  "source_changed_items": [],
+  "non_item_changes": [],
+  "meta_changes": [
+    "analysis_revision"
+  ],
+  "baseline_modified": false,
+  "limits": "仅显式分析版本的机械条目差异；不是删除授权，不证明资料已发布，不识别自然语言矛盾或重复，不代表变更已获批准。",
+  "validations": {
+    "proposal": {
+      "status": "pass",
+      "diagnostics": []
+    },
+    "baseline": {
+      "status": "pass",
+      "diagnostics": []
+    }
+  }
+}

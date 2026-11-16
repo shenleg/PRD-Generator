@@ -26,8 +26,8 @@ _COLLECTIONS = {
 }
 _SCOPE_PREFIXES = set(_COLLECTIONS.values()) - {None, "Q"}
 _SET_FIELDS = {
-    "meta": {"input_type", "analysis_status", "readiness"},
-    "context": {"project_id", "domain", "source_ids", "domain_terms"},
+    "meta": {"input_type", "analysis_status", "readiness", "baseline_revision"},
+    "context": {"project_id", "domain", "source_ids", "domain_terms", "history_review"},
     "value_assessment": {"problem", "affected_users", "expected_benefits", "success_metrics", "alternatives", "business_value", "necessity"},
     "ux_assessment": {"ui_dependent", "design_pending_items", "visual_recommendations", "interaction_flows"},
     "impact_analysis": {"affected_requirements", "affected_modules", "proposed_changes"},
@@ -256,6 +256,10 @@ def _protocol(patch):
     for field in patch["set"]:
         valid = field == "technical_feasibility" or any(field == section + "." + name for section, names in _SET_FIELDS.items() for name in names)
         _require(valid, f"set 不允许修改字段：{field}", "/set")
+    if "meta.baseline_revision" in patch["set"]:
+        baseline_revision = patch["set"]["meta.baseline_revision"]
+        _require(baseline_revision is None or (type(baseline_revision) is int and baseline_revision >= 1), "baseline_revision须为正整数或null。")
+        _require(patch["actor"] == "user", "登记或解除现行基线须用户明示，不能由检索自动确认。")
     aliases = set()
     shapes = {"add": ({"op", "collection", "ref", "value"}, {"prefix"}),
               "add_source": ({"op", "ref", "value"}, set()),
@@ -465,7 +469,7 @@ def _apply(analysis, manifest, patch, project):
                 sources = changes.get("sources", item.get("sources", []))
                 evidence = isinstance(sources, list) and any(isinstance(source, dict) and
                     ((source.get("type") == "user_answer" and source not in item.get("sources", [])) or
-                     (source.get("type") == "input_document" and source.get("source_id") in new_sources)) for source in sources)
+                     (source.get("type") in {"input_document", "project_material"} and source.get("source_id") in new_sources)) for source in sources)
                 _require(patch["actor"] == "user" and evidence, "修改 confirmed 正文须有用户明示及本轮 user_answer 或新文档来源。", "/operations", target)
         if target.startswith("Q-") and item.get("status") not in {"open", None} and changes.get("status") == "open":
             _require("answer" not in item or changes.get("answer", item["answer"]) == item["answer"], "重开问题必须保留旧 answer。", "/operations", target)
@@ -524,9 +528,22 @@ def _apply(analysis, manifest, patch, project):
             section, name = field.split(".")
             if field == "context.project_id":
                 _require(value == project, "context.project_id 必须与调用参数一致。", "/set")
+            if field == "context.history_review":
+                old_baseline = analysis.get("context", {}).get("history_review", {}).get("baseline")
+                if isinstance(value, dict) and value.get("baseline") != old_baseline:
+                    _require(patch["actor"] == "user", "变更历史基线采用声明须用户明确确认。", "/set/context.history_review")
+                value = copy.deepcopy(value)
+                if isinstance(value, dict):
+                    if isinstance(value.get("source_ids"), list):
+                        value["source_ids"] = [_resolve_reference(ref, id_map) for ref in value["source_ids"]]
+                    if isinstance(value.get("baseline"), dict) and "source_id" in value["baseline"]:
+                        value["baseline"]["source_id"] = _resolve_reference(value["baseline"]["source_id"], id_map)
             if field in {"context.source_ids", "impact_analysis.affected_requirements"} and isinstance(value, list):
                 value = [_resolve_reference(ref, id_map) for ref in value]
             analysis.setdefault(section, {})[name] = copy.deepcopy(value)
+    if patch["set"].get("meta.baseline_revision") is not None:
+        _require(isinstance(analysis.get("context", {}).get("history_review", {}).get("baseline"), dict),
+                 "非空基线修订必须伴随显式history_review.baseline发布依据。", "/set/meta.baseline_revision")
     analysis.setdefault("context", {})["project_id"] = project
     if patch["change_type"] == "new_source_version":
         _require(bool(new_sources), "新版文档补丁必须新增来源版本。", "/operations")

@@ -1,0 +1,139 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "NEW-NO-HISTORY",
+  "title": "无历史资料降级（合成）",
+  "base_revision": 0,
+  "change_type": "initial_analysis",
+  "actor": "analyst",
+  "summary": "合成历史对照场景，不是真实产品决定",
+  "operations": [
+    {
+      "op": "add",
+      "collection": "requirements.goals",
+      "ref": "$goal",
+      "value": {
+        "content": "合成用户仅提出一个新功能想法",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "合成无历史场景"
+          }
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "questions",
+      "ref": "$question",
+      "value": {
+        "question": "该想法的核心场景、规则和验收是什么？",
+        "priority": "P0",
+        "resolution": "ask_product",
+        "reason": "合成新提议与显式历史资料对照后存在待决事项",
+        "impact": "无法确认是否变更或重复建设及相应验收",
+        "options": [
+          "沿用当前规则",
+          "提出差异并确认变更",
+          "其他",
+          "暂不确定"
+        ],
+        "recommendation": "未明确批准前建议保留既有规则；推荐不表示产品已采用。",
+        "status": "open",
+        "related_ids": [
+          "$goal"
+        ]
+      }
+    }
+  ],
+  "set": {
+    "meta.input_type": "existing_document",
+    "meta.analysis_status": "clarifying",
+    "meta.readiness": "not_ready",
+    "ux_assessment.ui_dependent": false,
+    "context.history_review": {
+      "status": "not_performed",
+      "reason": "没有任何明确指定或可检索历史资料，未做历史对照，不表示无冲突",
+      "source_ids": []
+    }
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 2,
+      "satisfied": false,
+      "question_refs": [
+        "$question"
+      ],
+      "reason": "合成场景核心取舍未确定，保留问题"
+    },
+    {
+      "item": 3,
+      "satisfied": false,
+      "question_refs": [
+        "$question"
+      ],
+      "reason": "合成场景核心取舍未确定，保留问题"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": [
+        "$question"
+      ],
+      "reason": "合成场景核心取舍未确定，保留问题"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 6,
+      "satisfied": false,
+      "question_refs": [
+        "$question"
+      ],
+      "reason": "合成场景核心取舍未确定，保留问题"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "$question"
+      ],
+      "reason": "合成场景核心取舍未确定，保留问题"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    }
+  ]
+}

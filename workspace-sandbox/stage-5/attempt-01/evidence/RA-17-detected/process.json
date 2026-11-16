@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/root/.cache/uv/builds-v0/.tmpYBABR7/bin/python",
+    "-I",
+    "-B",
+    "/root/orca/projects/test-skill/skill/requirement-analyst/scripts/compare_baseline.py",
+    "--check-sources",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-5/attempt-01/workspace/projects/stage5-demo/requirements/HIST-USER-001/analysis/analysis-result.json",
+    "--project-root",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-5/attempt-01/workspace/projects/stage5-demo"
+  ],
+  "returncode": 1,
+  "stderr": ""
+}

@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "HIST-USER-001",
+  "revision": 4,
+  "id_map": {},
+  "affected_ids": [
+    "BR-1",
+    "AC-1",
+    "Q-1"
+  ],
+  "written": true
+}

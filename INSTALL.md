@@ -38,4 +38,8 @@ uv run --no-project --python /usr/bin/python3 \
 - https://code.claude.com/docs/en/skills
 - https://code.claude.com/docs/en/cli-reference
 
-下游测试 Skill 尚未开发，已按用户要求延期集成验证；它不是安装本分析 Skill 的前提。
+## 阶段5的当前安装验证
+
+生产入口仍通过同一相对链接安装。历史能力接入后，另以自然语言的新旧删除规则对照提示运行真实CLI：实际自动调用requirement-analyst，按需读取historical-retrieval.md，并识别有未完成任务用户的删除提议与现行规则冲突，保留产品待决问题，不写基线。最小脱敏证据见 `workspace-sandbox/stage-5/installed-skill-verification-02.json`；原阶段4证据绑定原提交，未重写其哈希来冒充阶段5新行为。
+
+下游测试 Skill 尚未开发，仍按用户批准延期集成验证；它不是安装本分析 Skill 或完成阶段5的前提。

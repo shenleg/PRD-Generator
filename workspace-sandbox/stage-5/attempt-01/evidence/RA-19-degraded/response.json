@@ -1,0 +1,12 @@
+{
+  "status": "warning",
+  "action": "degraded",
+  "message": "未指定历史基线，未做历史对照，不表示无冲突。",
+  "validations": {
+    "proposal": {
+      "status": "pass",
+      "diagnostics": []
+    }
+  },
+  "baseline_modified": false
+}

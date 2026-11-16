@@ -1,0 +1,24 @@
+{
+  "status": "warning",
+  "needs_reassessment": true,
+  "changed_sources": [
+    {
+      "source_id": "SRC-1",
+      "path": "history/current-user-deletion.md",
+      "reason": "content_changed",
+      "adopted_sha256": "d64673d87bfb84c5eba176057295451a953dc77e819b5ed25a5b4b32143ce64a",
+      "current_sha256": "3cdb38ad41dfd62f02538da1dd0039912d0e8a74cb24f896eb117505cc1335b5"
+    }
+  ],
+  "direct_source_items": [
+    "HIST-USER-001/AC-1",
+    "HIST-USER-001/BR-1",
+    "HIST-USER-001/GOAL-1"
+  ],
+  "validation": {
+    "status": "pass",
+    "diagnostics": []
+  },
+  "next_action": "由分析侧读取新资料、产出补丁保存stale/not_ready并重评；本检查不写入任何文件。",
+  "baseline_modified": false
+}

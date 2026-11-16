@@ -1,0 +1,11 @@
+{
+  "status": "warning",
+  "diagnostics": [
+    {
+      "level": "warning",
+      "message": "缺少索引，请先重新索引；未找到不代表无冲突。"
+    }
+  ],
+  "results": [],
+  "stale_sources": []
+}

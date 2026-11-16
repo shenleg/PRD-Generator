@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/root/.cache/uv/builds-v0/.tmpQUg9C2/bin/python",
+    "-I",
+    "-B",
+    "/root/orca/projects/test-skill/skill/requirement-analyst/scripts/compare_baseline.py",
+    "--proposal",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-5/attempt-02/empty-workspace/projects/no-history/requirements/NEW-NO-HISTORY/analysis/analysis-result.json"
+  ],
+  "returncode": 1,
+  "stderr": ""
+}

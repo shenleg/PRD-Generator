@@ -44,7 +44,11 @@
           "type": {"enum": ["input_document", "project_material"]},
           "credibility": {"type": "string", "minLength": 1},
           "last_updated": {"type": ["string", "null"]},
-          "revision": {"type": "integer", "minimum": 1}
+          "revision": {"type": "integer", "minimum": 1},
+          "adopted_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "archived_path": {"type": "string", "minLength": 1},
+          "authority": {"enum": ["current_published", "current_spec", "historical_published", "draft", "unconfirmed"]},
+          "publication_basis": {"type": "string", "minLength": 1}
         }
       }
     }

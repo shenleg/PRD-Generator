@@ -1,0 +1,238 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "NEW-DELETE-001",
+  "meta": {
+    "analysis_revision": 1,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "existing_document",
+    "analysis_status": "clarifying",
+    "readiness": "not_ready"
+  },
+  "context": {
+    "project_id": "stage5-demo",
+    "history_review": {
+      "status": "reviewed",
+      "reason": "仅对照明确指定的用户删除历史规则，当前提议存在业务冲突；未获改变基线批准",
+      "source_ids": [
+        "SRC-1"
+      ]
+    }
+  },
+  "requirements": {
+    "goals": [
+      {
+        "content": "减少管理员逐个删除测试用户的操作",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-2",
+            "location": "合成输入/历史资料业务条款"
+          }
+        ],
+        "related_ids": [],
+        "id": "GOAL-1"
+      }
+    ],
+    "scenarios": [],
+    "functional_requirements": [
+      {
+        "content": "提议管理员批量删除选中用户，即使其存在未完成任务，任务不得丢失；不是批准后的现行规则",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-2",
+            "location": "合成输入/历史资料业务条款"
+          }
+        ],
+        "related_ids": [
+          "GOAL-1"
+        ],
+        "id": "FR-1"
+      }
+    ],
+    "business_rules": [
+      {
+        "content": "指定合成当前发布规则：有未完成任务时禁止删除用户，用户和任务数据不变",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "project_material",
+            "source_id": "SRC-1",
+            "location": "合成输入/历史资料业务条款"
+          }
+        ],
+        "related_ids": [],
+        "id": "BR-1"
+      }
+    ],
+    "constraints": [],
+    "non_functional_requirements": [],
+    "acceptance_criteria": []
+  },
+  "business_assessment": {
+    "flows": [],
+    "states": [],
+    "boundaries": [],
+    "exceptions": [],
+    "gaps": [],
+    "conflicts": [
+      {
+        "content": "新提议允许删除有未完成任务用户，与当前发布规则的禁止删除及用户不变预期互斥；任务归属也未明确",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "project_material",
+            "source_id": "SRC-1",
+            "location": "合成输入/历史资料业务条款"
+          }
+        ],
+        "related_ids": [
+          "FR-1",
+          "BR-1"
+        ],
+        "related_question": "Q-1",
+        "id": "CNF-1"
+      }
+    ]
+  },
+  "ux_assessment": {
+    "ui_dependent": false
+  },
+  "questions": [
+    {
+      "question": "新提议与当前禁止删除规则冲突，本期是否变更该规则？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "合成新提议与显式历史资料对照后存在待决事项",
+      "impact": "无法确认是否变更或重复建设及相应验收",
+      "options": [
+        "沿用当前规则",
+        "提出差异并确认变更",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "未明确批准前建议保留既有规则；推荐不表示产品已采用。",
+      "status": "open",
+      "related_ids": [
+        "FR-1",
+        "BR-1"
+      ],
+      "id": "Q-1"
+    },
+    {
+      "question": "若确认允许删除，未完成任务之后归谁负责？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "合成新提议与显式历史资料对照后存在待决事项",
+      "impact": "无法确认是否变更或重复建设及相应验收",
+      "options": [
+        "沿用当前规则",
+        "提出差异并确认变更",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "未明确批准前建议保留既有规则；推荐不表示产品已采用。",
+      "status": "open",
+      "related_ids": [
+        "FR-1"
+      ],
+      "id": "Q-2"
+    }
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "impact_analysis": {
+    "affected_requirements": [
+      "HIST-USER-001/BR-1",
+      "HIST-USER-001/AC-1"
+    ],
+    "proposed_changes": [
+      "modify（待批准）：如产品批准放宽禁止规则，须重评单用户及批量删除与任务责任归属；当前只保留建议"
+    ]
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 3,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "合成场景核心取舍未确定，保留问题"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "合成场景核心取舍未确定，保留问题"
+    },
+    {
+      "item": 5,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "合成场景核心取舍未确定，保留问题"
+    },
+    {
+      "item": 6,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "合成场景核心取舍未确定，保留问题"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "合成场景核心取舍未确定，保留问题"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    }
+  ]
+}

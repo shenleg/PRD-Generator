@@ -1,0 +1,27 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "NEW-DELETE-001",
+  "revision": 1,
+  "id_map": {
+    "$history": "SRC-1",
+    "$input": "SRC-2",
+    "$goal": "GOAL-1",
+    "$function": "FR-1",
+    "$current": "BR-1",
+    "$question": "Q-1",
+    "$conflict": "CNF-1",
+    "$tasks": "Q-2"
+  },
+  "affected_ids": [
+    "GOAL-1",
+    "FR-1",
+    "BR-1",
+    "CNF-1",
+    "Q-1",
+    "Q-2",
+    "SRC-1",
+    "SRC-2"
+  ],
+  "written": true
+}

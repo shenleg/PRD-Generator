@@ -7,10 +7,11 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def recorded_bytes(relative: str, stage: int) -> bytes:
+def recorded_bytes(relative: str, stage: int, *, installed: bool = False) -> bytes:
     """返回 relative 在指定 stage 试跑时的原字节，不读取当前生产副本。
 
-    阶段2/3使用已提交完成标签；阶段4使用收口前逐份核对原指纹后保存的快照。
+    阶段2/3使用已提交完成标签；阶段4默认使用收口前逐份核对原指纹后保存的快照。
+    installed=True仅用于阶段4实际安装烟测，读取其已提交收口版本3ddb876，而非更早快照。
     路径须为仓库相对路径；未知阶段、越界路径或缺证据直接抛出，不回退当前源码。
     """
     path = Path(relative)
@@ -18,6 +19,8 @@ def recorded_bytes(relative: str, stage: int) -> bytes:
         raise ValueError("历史源码必须是仓库内相对路径")
     if stage in (2, 3):
         return subprocess.run(["git", "show", f"stage-{stage}-complete:{relative}"], cwd=ROOT, check=True, capture_output=True).stdout
+    if stage == 4 and installed:
+        return subprocess.run(["git", "show", f"3ddb8760110953a84b03590e138aa960c1af10ef:{relative}"], cwd=ROOT, check=True, capture_output=True).stdout
     if stage == 4:
         return (ROOT / "workspace-sandbox/stage-4/source-snapshots/pre-install" / path).read_bytes()
     raise ValueError(f"没有阶段{stage}的历史源码约定")

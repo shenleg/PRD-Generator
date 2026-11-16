@@ -91,6 +91,24 @@ RA-29 中，消费者只返回缺口请求，场景的分析侧明确审阅并�
 
 最终5次补丁保存均pass；业务汇总分类Q-12仍open P0，停止后保持completed/not_ready，消费者实际输出warning风险初稿。模拟试用链路完成不等于业务就绪。2026-11-16用户明确批准以该模拟案例满足本次阶段4需求试用退出条件；来源和业务就绪度不变，实际下游集成已批准延期，自动调用后续已实测通过。当前验收状态见 `results/stage-4-acceptance.md`；旧试跑清单与日志保留当时状态，不重写原证据。
 
+## 阶段5完整验证
+
+在阶段4提交 `3ddb876` 后建立独立分支。用户批准合成历史资料及CLI测试边界，不将夹具或draft冒充真实已发布基线。首个增量历史记录保留在 `results/stage-5-start.md`；当前完整验收见 `results/stage-5.md`。
+
+- `test_compare_baseline.py`：真实CLI比较同需求条目/非条目节及来源变化、有向影响与AC重验、输入只读、撤销/待重评、无资料降级、校验fail优先及坏JSON/身份/参数边界。
+- `test_history_contract.py`：显式发布依据和采用来源别名、基线登记权限、历史指纹变化、旧版本归档不掩盖新变化，全部经更新器/对照CLI验证。
+- `test_project_sources.py`：显式索引、有限检索及筛选、证据位置、源变化排除、索引世代不一致、过期/未知/未来时间、越界与符号链接、完成null/未完成事务。
+- `test_stage_5_runs.py`：独立核对六场景保存的真实结果、CNF/Q、取舍选项、影响路径、两阶段重评、旧问题重开/答案保留、不可变基线及独立空项目，并将19次CLI链路重放到临时目录。
+- 当前证据由 `workspace-sandbox/stage-5/run-manifest.json` 选择attempt-04；attempt-01/02/03保留各自验证范围，不混称全量盲跑。`semantic-execution.json`记录独立只读分析被阻止落盘后，用户授权主会话完成补丁保存的分工。
+- `installed-skill-verification-02.json`是最终代码实际CLI自然语言自动触发当前Skill、加载historical-retrieval并识别冲突的最小脱敏提取（首次提取单独保留）；没有原始会话、实际session编号、初始化元数据或本机路径。独立实际调用不等于全部合成补丁由模型端到端生成。
+
+全部Python测试不调用模型；历史模型来源仍绑定旧版本，当前语义烟测另有当前源码指纹。重放时指定**不存在的新目录**：
+
+```bash
+uv run --offline --no-project --python /usr/bin/python3 --with-requirements tests/requirements.txt \
+  python -I -B tests/run_stage_5_trial.py --output /tmp/new-stage5-trial
+```
+
 ## 分轮与计分
 
 先保存并核对首轮，才按实际问到的语义提供剧本回答；用户的结束要求单独作为后续输入。未发生的回答不能提前混入结果。第一样例的上限控制确认和业务问题分别说明，但所有发生提问的轮次均计入记录。

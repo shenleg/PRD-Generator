@@ -1,0 +1,55 @@
+[
+  {
+    "name": "current-user-deletion.md（合成资料）",
+    "path": "history/current-user-deletion.md",
+    "type": "project_material",
+    "credibility": "用户批准的合成场景声明，不是真实项目发布",
+    "last_updated": "2026-11-01",
+    "revision": 2,
+    "authority": "current_published",
+    "publication_basis": "合成场景产品负责人确认本版本为当前发布依据，原文件有明确声明",
+    "source_id": "SRC-1",
+    "module": "用户管理",
+    "tags": [
+      "删除"
+    ],
+    "terms": [
+      "用户"
+    ]
+  },
+  {
+    "name": "current-user-filter.md（合成资料）",
+    "path": "history/current-user-filter.md",
+    "type": "project_material",
+    "credibility": "用户批准的合成场景声明，不是真实项目发布",
+    "last_updated": "2026-11-01",
+    "revision": 1,
+    "authority": "current_published",
+    "publication_basis": "合成场景产品负责人确认本版本为当前发布依据，原文件有明确声明",
+    "source_id": "SRC-2",
+    "module": "用户管理",
+    "tags": [
+      "筛选"
+    ],
+    "terms": [
+      "用户"
+    ]
+  },
+  {
+    "name": "legacy-architecture.md（合成资料）",
+    "path": "history/legacy-architecture.md",
+    "type": "project_material",
+    "credibility": "用户批准的合成场景声明，不是真实项目发布",
+    "last_updated": "2020-01-01",
+    "revision": 1,
+    "authority": "draft",
+    "source_id": "SRC-3",
+    "module": "用户管理",
+    "tags": [
+      "筛选"
+    ],
+    "terms": [
+      "用户"
+    ]
+  }
+]

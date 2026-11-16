@@ -1,0 +1,23 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "NEW-FILTER-001",
+  "revision": 1,
+  "id_map": {
+    "$history": "SRC-1",
+    "$input": "SRC-2",
+    "$goal": "GOAL-1",
+    "$function": "FR-1",
+    "$gap": "GAP-1",
+    "$question": "Q-1"
+  },
+  "affected_ids": [
+    "GOAL-1",
+    "FR-1",
+    "GAP-1",
+    "Q-1",
+    "SRC-1",
+    "SRC-2"
+  ],
+  "written": true
+}

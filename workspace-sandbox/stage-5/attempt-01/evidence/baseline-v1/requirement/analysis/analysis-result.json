@@ -1,0 +1,185 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "HIST-USER-001",
+  "meta": {
+    "analysis_revision": 1,
+    "source_revision": 1,
+    "baseline_revision": 1,
+    "input_type": "existing_document",
+    "analysis_status": "completed",
+    "readiness": "ready_for_document"
+  },
+  "context": {
+    "project_id": "stage5-demo",
+    "history_review": {
+      "status": "reviewed",
+      "reason": "显式合成发布依据；并未检索整个项目",
+      "source_ids": [
+        "SRC-1"
+      ],
+      "baseline": {
+        "requirement_id": "HIST-USER-001",
+        "analysis_revision": 1,
+        "source_id": "SRC-1",
+        "publication_basis": "合成场景产品负责人确认：HIST-USER-001分析修订1为当前发布分析基线，未批准改变禁止删除规则。"
+      }
+    }
+  },
+  "requirements": {
+    "goals": [
+      {
+        "content": "管理员能安全删除合法的用户，不破坏未完成任务",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "project_material",
+            "source_id": "SRC-1",
+            "location": "合成历史资料业务条款"
+          }
+        ],
+        "related_ids": [],
+        "id": "GOAL-1"
+      }
+    ],
+    "scenarios": [],
+    "functional_requirements": [
+      {
+        "content": "管理员通过现有单用户删除入口操作，服务端校验权限",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "project_material",
+            "source_id": "SRC-1",
+            "location": "合成历史资料业务条款"
+          }
+        ],
+        "related_ids": [
+          "GOAL-1"
+        ],
+        "id": "FR-1"
+      }
+    ],
+    "business_rules": [
+      {
+        "content": "存在未完成任务时禁止删除用户，拒绝且用户与任务不变",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "project_material",
+            "source_id": "SRC-1",
+            "location": "合成历史资料业务条款"
+          }
+        ],
+        "related_ids": [
+          "FR-1"
+        ],
+        "id": "BR-1"
+      }
+    ],
+    "constraints": [],
+    "non_functional_requirements": [],
+    "acceptance_criteria": [
+      {
+        "content": "管理员删除有未完成任务用户，应拒绝且用户及任务数据不变",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "project_material",
+            "source_id": "SRC-1",
+            "location": "合成历史资料业务条款"
+          }
+        ],
+        "related_ids": [
+          "BR-1"
+        ],
+        "id": "AC-1"
+      }
+    ]
+  },
+  "business_assessment": {
+    "flows": [],
+    "states": [],
+    "boundaries": [],
+    "exceptions": [],
+    "gaps": [],
+    "conflicts": []
+  },
+  "ux_assessment": {
+    "ui_dependent": false
+  },
+  "questions": [],
+  "assumptions": [],
+  "decisions": [],
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 7,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "name": "current-user-deletion.md（合成资料）",
+    "path": "history/current-user-deletion.md",
+    "type": "project_material",
+    "credibility": "用户批准的合成场景声明，不是真实项目发布",
+    "last_updated": "2026-11-01",
+    "revision": 1,
+    "authority": "current_published",
+    "adopted_sha256": "d64673d87bfb84c5eba176057295451a953dc77e819b5ed25a5b4b32143ce64a",
+    "publication_basis": "合成场景产品负责人确认本版本为当前发布依据，原文件有明确声明",
+    "archived_path": "versions/user-deletion-v1.md",
+    "source_id": "SRC-1"
+  }
+]

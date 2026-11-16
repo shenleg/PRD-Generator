@@ -1,0 +1,25 @@
+{
+  "status": "warning",
+  "diagnostics": [
+    {
+      "rule": 11,
+      "level": "warning",
+      "item_id": "$",
+      "path": "/meta/analysis_status",
+      "message": "分析已过期；下游须提示重新评估。"
+    }
+  ],
+  "requirement_id": "HIST-USER-001",
+  "revision": 3,
+  "id_map": {
+    "$newsource": "SRC-2",
+    "$question": "Q-1"
+  },
+  "affected_ids": [
+    "BR-1",
+    "AC-1",
+    "Q-1",
+    "SRC-2"
+  ],
+  "written": true
+}

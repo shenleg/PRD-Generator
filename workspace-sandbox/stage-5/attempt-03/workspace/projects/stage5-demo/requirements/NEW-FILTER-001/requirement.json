@@ -1,0 +1,8 @@
+{
+  "common": {
+    "requirement_id": "NEW-FILTER-001",
+    "project_id": "stage5-demo",
+    "title": "用户筛选重复提议（合成）",
+    "created_at": "2026-11-16T07:45:27.620703+00:00"
+  }
+}

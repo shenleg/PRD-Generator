@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/root/.cache/uv/builds-v0/.tmpYBABR7/bin/python",
+    "-I",
+    "-B",
+    "/root/orca/projects/test-skill/skill/requirement-analyst/scripts/update_analysis.py",
+    "--workspace",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-5/attempt-01/workspace",
+    "--project",
+    "stage5-demo",
+    "--patch",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-5/attempt-01/patches/RA-17-stale.json"
+  ],
+  "returncode": 1,
+  "stderr": ""
+}

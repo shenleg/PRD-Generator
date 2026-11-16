@@ -79,7 +79,11 @@ def render_report(analysis: dict, validation: dict) -> str:
     sections.append("## 7. 研发确认项\n\n登记当前能力核查，不要求产品作技术实现承诺。\n\n" + _questions([q for q in analysis["questions"] if q["resolution"] == "ask_dev"]))
     sections.append("## 8. 边界与异常\n\ninferred 的候选场景不是已确认的处理规则。\n\n" + _table(business["boundaries"] + business["exceptions"]))
     sections.append("## 9. 验收条件\n\n待重评草案不能作为已完成的可执行验收。\n\n" + _table(analysis["requirements"]["acceptance_criteria"]))
-    sections.append("## 10. 历史需求关联\n\n本阶段未开展历史检索或基线对照，不能宣称与历史无冲突。\n")
+    review = analysis.get("context", {}).get("history_review")
+    if review is None:
+        sections.append("## 10. 历史需求关联\n\n本结果未声明历史对照；不能宣称与历史无冲突。\n")
+    else:
+        sections.append("## 10. 历史需求关联\n\n下列为结果声明的实际采用范围，不代表已查全项目或所有冲突已解决。\n```json\n" + json.dumps(review, ensure_ascii=False, indent=2) + "\n```\n")
     if "impact_analysis" in analysis:
         sections.append("已登记的关联与影响：\n```json\n" + json.dumps(analysis["impact_analysis"], ensure_ascii=False, indent=2) + "\n```\n")
     sections.append("## 11. 技术可行性及风险\n\n本阶段不开展技术可行性评估，现有能力由研发确认；缺省或 unknown 均不表示已有依据支持。\n")
@@ -97,7 +101,8 @@ def render_report(analysis: dict, validation: dict) -> str:
     sections.append("### 决策记录\n\n" + _table(analysis["decisions"]))
     completion = analysis.get("completion_checks", analysis.get("completion_checklist"))
     sections.append("### 完成清单记录\n\n" + ("```json\n" + json.dumps(completion, ensure_ascii=False, indent=2) + "\n```\n" if completion is not None else "当前 JSON 未提供结构化完成清单；不能据此推断全部满足，需对照 readiness-rules.md 核对。\n"))
-    sections.append("### 未开展的分析\n\n历史检索与基线对照、技术可行性结论和完整视觉分析不在本阶段范围；报告没有把这些缺省解释为已评估无问题。\n")
+    history_note = "历史对照范围按第10节声明，未覆盖部分仍未知。" if review is not None else "未声明开展历史检索与基线对照。"
+    sections.append("### 未开展的分析\n\n" + history_note + "技术可行性结论和完整视觉分析未开展；报告没有把缺省解释为已评估无问题。\n")
     return "\n".join(sections)
 
 

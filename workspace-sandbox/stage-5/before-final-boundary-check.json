@@ -1,0 +1,46 @@
+{
+  "stage": 5,
+  "status": "scenarios_verified_pending_final_regression",
+  "attempt": "attempt-03",
+  "previous_attempts": [
+    {
+      "attempt": "attempt-01",
+      "scope": "初次19项前的18次链路，未验证旧问题重开与独立无历史项目，保留不当最终证据"
+    },
+    {
+      "attempt": "attempt-02",
+      "scope": "19次链路并补旧问题重开及独立无资料项目，最终attempt03规范来源类型并生成报告"
+    }
+  ],
+  "history_authorization": "用户明确选择合成历史资料 (Recommended)",
+  "seam_authorization": "用户明确选择CLI 集成测试 (Recommended)",
+  "semantic_execution": "semantic-execution.json",
+  "files": {
+    "skill/requirement-analyst/SKILL.md": "00b455d2a76ef79cb2448feaa1004f4253e17d7acd2be0108ffa75e80f060c26",
+    "skill/requirement-analyst/references/analysis-framework.md": "cf1afc300d52e4e7d165252e9c8a5da2eb3d30f2db9780224d78576c6234c9e9",
+    "skill/requirement-analyst/references/historical-retrieval.md": "783ad53bbf425a977f903ed127e6b0401f213367046723c3899120c9db733a1c",
+    "skill/requirement-analyst/references/incremental-update.md": "0a8cbea155209fba6d3a5e37fd4acc5e8d8ac2e1e665870df2c9f0591a0fb3ce",
+    "skill/requirement-analyst/references/question-strategy.md": "08b7b691979d164b23f9971f4926dfd6483958e3e7268e08ea1354963bdcaa46",
+    "skill/requirement-analyst/references/readiness-rules.md": "e47a75cc60d5e345e1b0eb84a7086245bcf2fc584ceefd1302e9458b79801340",
+    "skill/requirement-analyst/schemas/analysis-result.schema.json": "5e437cba8f8703858aa90cc758ca3a1c77701afd40b6a548460e5aeb35af9cd5",
+    "skill/requirement-analyst/schemas/question.schema.json": "f4090632b60c2638a4dc5e37fa3ae0122fd1ba507f692b055b68a40f14fad677",
+    "skill/requirement-analyst/schemas/requirement-item.schema.json": "63f145dd6c75a4384caf0f5df11564c7f07133cdf0ede3bbbba838e2d52ba0d6",
+    "skill/requirement-analyst/schemas/source.schema.json": "0a72b71a2826f06756851fb156e301ef510ccff949363e6dd925552704be60c9",
+    "skill/requirement-analyst/scripts/README.md": "e82c2d02db24c41985b83cdae0a34de712a9138ad8c3e7bfabaf9128d7e7bef6",
+    "skill/requirement-analyst/scripts/compare_baseline.py": "d204774a13c0b3b6644a86ed8b7623678613f4b32589f9a6132efe55d580af8b",
+    "skill/requirement-analyst/scripts/index_sources.py": "b52e357fa25a5a12d05aa32e1de64ac29d000f2ba110d0f3d7cc25cf47ad954b",
+    "skill/requirement-analyst/scripts/project_sources.py": "1c497637a51ba4ae5a7a48f4aa28979d94d4ea9371ddbcc0bb1b00df0dc005a4",
+    "skill/requirement-analyst/scripts/requirements.txt": "856ef1365f90bcd46a30193bd45c49642e6efc4cff86b5146d4a9a0ef61e0412",
+    "skill/requirement-analyst/scripts/search_project.py": "58c435c540bbfdc1f83b19fa8c2ee9d85da6cf66c3bf526fbed890010dd62e1d",
+    "skill/requirement-analyst/scripts/update_analysis.py": "4c86691d93e69d6f3eccb25c87ac7181e12a552f201d8c56198fd3d693c62485",
+    "skill/requirement-analyst/scripts/validate_analysis.py": "58acb7ba88e9cdd0a01f4bbffc3bb4ed51bbfba07165342f25ce648c27180e15",
+    "skill/requirement-analyst/templates/analysis-report.md": "6a56777f4db9e3ca34c35c455732bf3533959c5bc673d09ef7acc02f53636657",
+    "tests/render_trial_reports.py": "11e797a71dad51ee31309bd17ae6f443936898eb7b1a10528a282cfa6856907a",
+    "tests/run_stage_5_trial.py": "491aa4a43c5ac891143ad5a67fdf88736970b15f1a823b12a2969869c20ae81c"
+  },
+  "limits": [
+    "合成发布来源不等于真实项目发布记录",
+    "独立语义会话为只读结果，落盘主会话授权执行",
+    "未提交、未推送，不涉及真实业务变更批准"
+  ]
+}

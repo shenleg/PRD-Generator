@@ -1,0 +1,23 @@
+[
+  {
+    "name": "current-user-filter.md（合成资料）",
+    "path": "history/current-user-filter.md",
+    "type": "project_material",
+    "credibility": "用户批准的合成场景声明，不是真实项目发布",
+    "last_updated": "2026-11-01",
+    "revision": 1,
+    "authority": "current_published",
+    "adopted_sha256": "09c0dfa85ec115ea9ffe13381a3343806a991e0021ef14d2aa309b149ea911b9",
+    "publication_basis": "合成场景产品负责人确认本版本为当前发布依据，原文件有明确声明",
+    "source_id": "SRC-1"
+  },
+  {
+    "name": "合成筛选提议",
+    "path": "inputs/new-user-filter.md",
+    "type": "input_document",
+    "credibility": "合成输入",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-2"
+  }
+]

@@ -1,0 +1,93 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "HIST-USER-001",
+  "base_revision": 1,
+  "change_type": "supplement",
+  "actor": "user",
+  "user_statement": "合成产品确认只研究新增批量入口，仍沿用未完成任务禁止删除规则；这不是更新发布基线。",
+  "summary": "合成同需求变更影响演示",
+  "operations": [
+    {
+      "op": "update",
+      "target": "FR-1",
+      "changes": {
+        "content": "管理员通过单用户或拟增加的批量入口删除用户，服务端仍校验管理员权限",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "合成场景明确变更提议"
+          }
+        ]
+      }
+    }
+  ],
+  "set": {},
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 7,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成资料足以表达该项；历史范围和技术未知另有声明"
+    }
+  ]
+}

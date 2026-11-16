@@ -1,0 +1,22 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "results": [
+    {
+      "source_id": "SRC-1",
+      "path": "history/current-user-deletion.md",
+      "requirement_id": null,
+      "authority": "current_published",
+      "credibility": "用户批准的合成场景声明，不是真实项目发布",
+      "revision": 2,
+      "sha256": "3cdb38ad41dfd62f02538da1dd0039912d0e8a74cb24f896eb117505cc1335b5",
+      "location": "line 7",
+      "excerpt": "- 新增明确业务状态：被审计冻结的用户同样禁止删除，返回“用户已冻结，无法删除”且数据不变。",
+      "fingerprint": "0c826516e4ce1cb901bd0e1a2939980ee027472cd50b4a406a37dbce56a72aab",
+      "score": 1
+    }
+  ],
+  "stale_sources": [],
+  "fingerprint": "0c826516e4ce1cb901bd0e1a2939980ee027472cd50b4a406a37dbce56a72aab",
+  "truncated": false
+}

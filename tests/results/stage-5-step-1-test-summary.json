@@ -1,0 +1,29 @@
+{
+  "stage": 5,
+  "step": "显式同需求分析版本的只读机械对照",
+  "status": "pass",
+  "tests_run": 145,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "previous_stage_tests": 139,
+  "new_cli_tests": 6,
+  "log": "tests/results/stage-5-step-1-test-run.txt",
+  "base_commit": "3ddb8760110953a84b03590e138aa960c1af10ef",
+  "branch": "feat/stage-5-history-baseline",
+  "user_authorization": {
+    "history_source": "合成历史资料 (Recommended)",
+    "test_seam": "CLI 集成测试 (Recommended)"
+  },
+  "scope": "同需求条目added/modified/missing/unchanged、before/after、输入只读、唯一校验器门禁与无历史降级",
+  "stage_complete": false,
+  "not_yet_verified": [
+    "RA-14至RA-19的完整行为验收",
+    "直接和间接影响传播",
+    "跨需求语义重复和冲突",
+    "资料索引与自动检索",
+    "资料更新及过期重评",
+    "真实已发布基线的业务适用性"
+  ],
+  "git": "阶段5本次改动未提交；阶段4已提交合并master，未推送、未额外打标签。"
+}

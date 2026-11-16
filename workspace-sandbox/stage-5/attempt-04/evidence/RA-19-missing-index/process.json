@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/root/.cache/uv/builds-v0/.tmp2yllGq/bin/python",
+    "-I",
+    "-B",
+    "/root/orca/projects/test-skill/skill/requirement-analyst/scripts/search_project.py",
+    "--project-root",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-5/attempt-04/empty-workspace/projects/no-history",
+    "--query",
+    "用户"
+  ],
+  "returncode": 1,
+  "stderr": ""
+}
