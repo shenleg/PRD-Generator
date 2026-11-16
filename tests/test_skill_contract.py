@@ -1,4 +1,4 @@
-"""检查阶段7入口、项目安装及按需体验参考；静态契约不替代实际看图和模型评估。"""
+"""检查当前入口、项目安装及按需参考；静态契约不替代实际模型分析或人工批准。"""
 
 from pathlib import Path
 import re
@@ -8,7 +8,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skill/requirement-analyst"
 SCENARIOS = [*(f"RA-{number:02d}" for number in range(1, 24)), "RA-30", "RA-31"]
-REFERENCES = ("analysis-framework.md", "question-strategy.md", "readiness-rules.md", "incremental-update.md", "historical-retrieval.md", "feasibility-assessment.md", "ux-visual-assessment.md")
+REFERENCES = ("analysis-framework.md", "question-strategy.md", "readiness-rules.md", "incremental-update.md", "historical-retrieval.md", "feasibility-assessment.md", "ux-visual-assessment.md", "domain-knowledge.md")
 
 
 def read_skill() -> str:

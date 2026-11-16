@@ -1,0 +1,32 @@
+{
+  "stage": 8,
+  "status": "pass",
+  "tests_run": 212,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "duration_seconds": 46.511,
+  "exit_code": 0,
+  "test_log": "tests/results/stage-8-test-run.txt",
+  "preapproval_tests_run": 208,
+  "new_tests": 17,
+  "new_test_files": [
+    "tests/test_domain_knowledge.py",
+    "tests/test_stage_8_runs.py"
+  ],
+  "trial_cli_steps": 5,
+  "trial_cli_status_counts": {
+    "pass": 2,
+    "warning": 1,
+    "expected_fail": 2
+  },
+  "actual_user_selection": "批准 DK-001",
+  "knowledge_entries_written": 1,
+  "source_unchanged": true,
+  "existing_knowledge_not_overwritten": true,
+  "scope": "实际用户批准隔离合成项目中的准确条目；主会话分析，不是独立模型盲测或真实业务规范确认。",
+  "report": "tests/results/stage-8.md",
+  "run_manifest": "workspace-sandbox/stage-8/run-manifest.json",
+  "git_committed": false,
+  "git_pushed": false
+}

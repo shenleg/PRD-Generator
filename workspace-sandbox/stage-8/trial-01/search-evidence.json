@@ -1,0 +1,53 @@
+{
+  "command": [
+    "uv",
+    "run",
+    "--offline",
+    "--no-project",
+    "--python",
+    "/usr/bin/python3",
+    "--with-requirements",
+    "tests/requirements.txt",
+    "python",
+    "-I",
+    "-B",
+    "skill/requirement-analyst/scripts/search_project.py",
+    "--project-root",
+    "workspace-sandbox/stage-8/trial-01/workspace/projects/knowledge-demo",
+    "--query",
+    "采购申请",
+    "--term",
+    "采购申请",
+    "--as-of",
+    "2026-11-16"
+  ],
+  "returncode": 1,
+  "stdout": {
+    "status": "warning",
+    "diagnostics": [
+      {
+        "level": "warning",
+        "message": "检索结果或读取预算已截断，请缩小筛选范围。"
+      }
+    ],
+    "results": [
+      {
+        "source_id": "SRC-1",
+        "path": "knowledge/domain/DK-001.json",
+        "requirement_id": null,
+        "authority": "draft",
+        "credibility": "medium",
+        "revision": 1,
+        "sha256": "2f3fbb125b1d0d0e8d5af7674eff75e9b066bb3cc867bcbd18512e0898de30f3",
+        "location": "line 1",
+        "excerpt": "\"合成资料的已确认术语章节声明本例业务角色已确认该定义，不是真实产品确认。\",\"status\":\"confirmed\"},\"category\":\"domain\",\"content\":\"【合成验收专用】采购申请：员工提交、用于表达采购意向的请求，不等同于已下达给供应商的采购订单。\",\"kind\":\"term\",\"knowledge_id\":\"DK-001\",\"project_id\":\"knowledge-demo\",\"proposal_version\":\"1.0\",\"scope\":\"仅限knowledge-demo合成采购项目的术语说明；不定义审批权限、状态流转、撤回时限或真实组织制度。\",\"simulation\":true,\"sources\":[{\"location\":\"已确认术语（合成角色声明）\",\"path\":\"inputs/material.md\",\"sha256\":\"64beb75",
+        "fingerprint": "7778eefc62078ceb5f5e2aa5a20dc6f08664f7144f37c276a31770f38923bf7b",
+        "score": 1
+      }
+    ],
+    "stale_sources": [],
+    "fingerprint": "7778eefc62078ceb5f5e2aa5a20dc6f08664f7144f37c276a31770f38923bf7b",
+    "truncated": true
+  },
+  "stderr": ""
+}

@@ -1,0 +1,24 @@
+{
+  "mode": "main_session_review_of_synthetic_materials",
+  "independent_model_call": false,
+  "blind_test": false,
+  "proposed": [
+    {
+      "knowledge_id": "DK-001",
+      "reason": "明确区分采购申请与采购订单，便于本合成项目后续需求复用。"
+    }
+  ],
+  "not_proposed": [
+    {
+      "content": "每秒处理1000条申请",
+      "classification": "inferred",
+      "reason": "无研发或测试依据，不能沉淀。"
+    },
+    {
+      "content": "提交后30分钟内可撤回",
+      "classification": "unconfirmed",
+      "reason": "业务尚未确认，不能沉淀。"
+    }
+  ],
+  "existing_knowledge": "该隔离项目尚无knowledge目录，无既有条目；未扫描真实项目。"
+}

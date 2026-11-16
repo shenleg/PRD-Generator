@@ -1,0 +1,25 @@
+{
+  "status": "pass",
+  "proposal_sha256": "0e1f65da916c91993e92ef35b283085a01c35f132a3535f6c31108ee4df36191",
+  "knowledge_path": "knowledge/domain/DK-001.json",
+  "source_sha256_before": "64beb754a4cd5fedfb9685cc3a24e0440f4addf78ba5dd260ba4f723d3086585",
+  "source_sha256_after": "64beb754a4cd5fedfb9685cc3a24e0440f4addf78ba5dd260ba4f723d3086585",
+  "entry_sha256": "2f3fbb125b1d0d0e8d5af7674eff75e9b066bb3cc867bcbd18512e0898de30f3",
+  "entry_matches_approved_proposal": true,
+  "approval_original_words_preserved": true,
+  "repeat_write_refused": true,
+  "source_unchanged": true,
+  "entry_unchanged_after_index_and_search": true,
+  "knowledge_entries": [
+    "knowledge/domain/DK-001.json"
+  ],
+  "cli_results": {
+    "missing-approval": "fail",
+    "save": "pass",
+    "repeat-save": "fail",
+    "index": "pass",
+    "search": "warning"
+  },
+  "search_warning_reason": "有限摘录截断；实际有命中。须读取完整知识文件核对范围与来源。",
+  "semantic_review": "主会话直接筛选合成材料，不是独立模型调用或盲测。"
+}

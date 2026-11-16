@@ -51,3 +51,9 @@ uv run --no-project --python /usr/bin/python3 \
 当前安装入口新增ux-visual-assessment按需引用。实际CLI调用Skill并读取1360×900合成PNG（图像载荷返回已核对），未读取HTML源码替代看图；六个case覆盖缺视觉稿、纯后端、已有列表、说法未被图支持、异步状态及数据口径未定。必要脱敏记录见 `workspace-sandbox/stage-7/run-manifest.json`；不存原始模型会话或图片base64，不将截图当真实系统或点击验证。
 
 下游测试 Skill 尚未开发，仍按用户批准延期集成验证；它不是安装本分析 Skill 或完成阶段5/6/7的前提。
+
+## 阶段8的受控知识沉淀
+
+生产入口按需读取`references/domain-knowledge.md`，`scripts/save_knowledge.py`随完整Skill目录安装，复用现有Python依赖和路径/锁工具。只有实际用户或指定负责人明确批准具体建议后才调用；脚本不做身份认证，不自动把分析结论写入长期知识。默认只新建，不覆盖，不自动更新索引。
+
+本次在独立分支开发，使用合成资料及主会话逐项人工批准机制。展示准确正文、范围和目标后，用户实际选择“批准 DK-001”，已执行写入、核验、不覆盖验证及显式索引检索。公开CLI测试不调用模型，未新做安装自动触发或独立盲测；实际证据见`workspace-sandbox/stage-8/run-manifest.json`，验收范围见`tests/results/stage-8.md`。

@@ -1,0 +1,22 @@
+{
+  "proposal_version": "1.0",
+  "project_id": "knowledge-demo",
+  "knowledge_id": "DK-001",
+  "category": "domain",
+  "kind": "term",
+  "content": "【合成验收专用】采购申请：员工提交、用于表达采购意向的请求，不等同于已下达给供应商的采购订单。",
+  "scope": "仅限knowledge-demo合成采购项目的术语说明；不定义审批权限、状态流转、撤回时限或真实组织制度。",
+  "simulation": true,
+  "basis": {
+    "status": "confirmed",
+    "confirmed_by": "合成案例中的业务角色，非真实用户或负责人",
+    "statement": "合成资料的已确认术语章节声明本例业务角色已确认该定义，不是真实产品确认。"
+  },
+  "sources": [
+    {
+      "path": "inputs/material.md",
+      "location": "已确认术语（合成角色声明）",
+      "sha256": "64beb754a4cd5fedfb9685cc3a24e0440f4addf78ba5dd260ba4f723d3086585"
+    }
+  ]
+}

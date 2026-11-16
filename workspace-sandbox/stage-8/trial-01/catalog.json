@@ -1,0 +1,19 @@
+[
+  {
+    "source_id": "SRC-1",
+    "name": "阶段8已批准合成术语DK-001（非真实规范）",
+    "path": "knowledge/domain/DK-001.json",
+    "type": "project_material",
+    "credibility": "medium",
+    "last_updated": "2026-11-16",
+    "revision": 1,
+    "authority": "draft",
+    "module": "合成采购",
+    "tags": [
+      "合成验收"
+    ],
+    "terms": [
+      "采购申请"
+    ]
+  }
+]

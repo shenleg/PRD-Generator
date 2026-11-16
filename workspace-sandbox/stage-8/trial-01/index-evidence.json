@@ -1,0 +1,28 @@
+{
+  "command": [
+    "uv",
+    "run",
+    "--offline",
+    "--no-project",
+    "--python",
+    "/usr/bin/python3",
+    "--with-requirements",
+    "tests/requirements.txt",
+    "python",
+    "-I",
+    "-B",
+    "skill/requirement-analyst/scripts/index_sources.py",
+    "--project-root",
+    "workspace-sandbox/stage-8/trial-01/workspace/projects/knowledge-demo",
+    "--catalog",
+    "workspace-sandbox/stage-8/trial-01/catalog.json"
+  ],
+  "returncode": 0,
+  "stdout": {
+    "status": "pass",
+    "diagnostics": [],
+    "fingerprint": "7778eefc62078ceb5f5e2aa5a20dc6f08664f7144f37c276a31770f38923bf7b",
+    "source_count": 1
+  },
+  "stderr": ""
+}

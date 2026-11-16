@@ -1,0 +1,8 @@
+{
+  "date": "2026-11-16",
+  "confirmation_mechanism": "你在本会话逐项确认 (Recommended)",
+  "trial_materials": "合成案例 (Recommended)",
+  "test_seams": "按上述接口验证 (Recommended)",
+  "scope": "实际用户批准机制和合成试用；不是对DK-001的具体批准。",
+  "specific_approval_received": false
+}

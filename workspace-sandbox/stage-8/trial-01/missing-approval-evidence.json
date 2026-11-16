@@ -1,0 +1,35 @@
+{
+  "command": [
+    "uv",
+    "run",
+    "--offline",
+    "--no-project",
+    "--python",
+    "/usr/bin/python3",
+    "--with-requirements",
+    "tests/requirements.txt",
+    "python",
+    "-I",
+    "-B",
+    "skill/requirement-analyst/scripts/save_knowledge.py",
+    "--project-root",
+    "workspace-sandbox/stage-8/trial-01/workspace/projects/knowledge-demo",
+    "--proposal",
+    "workspace-sandbox/stage-8/trial-01/proposal.json"
+  ],
+  "returncode": 2,
+  "stdout": {
+    "status": "fail",
+    "diagnostics": [
+      {
+        "level": "fail",
+        "message": "the following arguments are required: --approval"
+      }
+    ],
+    "written": false,
+    "file_created": false,
+    "path": null
+  },
+  "stderr": "",
+  "knowledge_directory_exists": false
+}

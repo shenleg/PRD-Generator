@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-16",
+  "source": "本会话AskUserQuestion的实际用户选择",
+  "question": "是否批准将 DK-001 写入隔离合成项目 knowledge-demo 的 knowledge/domain/DK-001.json？正文为“【合成验收专用】采购申请：员工提交、用于表达采购意向的请求，不等同于已下达给供应商的采购订单。”适用范围为“仅限knowledge-demo合成采购项目的术语说明；不定义审批权限、状态流转、撤回时限或真实组织制度。”来源为该项目 inputs/material.md 的“已确认术语（合成角色声明）”章节。本次批准仅用于合成流程验收，不批准真实业务规范。",
+  "user_selection": "批准 DK-001",
+  "proposal_sha256": "0e1f65da916c91993e92ef35b283085a01c35f132a3535f6c31108ee4df36191",
+  "actual_human_approval": true,
+  "simulation": true,
+  "scope": "仅该合成条目，不批准真实业务规范，不授权提交或推送。"
+}

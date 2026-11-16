@@ -8,6 +8,7 @@ import struct
 import tempfile
 import unittest
 
+from historical_sources import recorded_bytes
 from test_update_analysis import load_module, read_json
 
 
@@ -35,7 +36,7 @@ class SavedUxRuns(unittest.TestCase):
         return self.runs / "workspace/projects/ux-demo/requirements" / case / "analysis/analysis-result.json"
 
     def test_actual_image_read_and_source_fingerprints(self) -> None:
-        """实际模型得到PNG图像且未读HTML，来源与产物指纹匹配，不用文字假称看图。"""
+        """阶段7实际看图证据绑定已提交6325078源码，不把旧模型调用当成阶段8重跑。"""
         self.assertEqual(self.model["result_subtype"], "success")
         self.assertFalse(self.model["result_is_error"])
         self.assertNotIn("requirement-analyst", self.model["prompt"])
@@ -48,7 +49,8 @@ class SavedUxRuns(unittest.TestCase):
         self.assertFalse(any(c.get("project_relative_path", "").endswith("reference-list.html") for c in calls))
         for mapping, root in ((self.model["source_fingerprints"], ROOT), (self.manifest["files"], ROOT), (self.manifest["artifacts"], self.runs)):
             for relative, expected in mapping.items():
-                self.assertEqual(hashlib.sha256((root / relative).read_bytes()).hexdigest(), expected, relative)
+                raw = recorded_bytes(relative, 7) if root == ROOT else (root / relative).read_bytes()
+                self.assertEqual(hashlib.sha256(raw).hexdigest(), expected, relative)
         text = json.dumps(self.model, ensure_ascii=False)
         self.assertNotIn(str(ROOT), text)
         self.assertNotRegex(text, r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b")

@@ -1,0 +1,58 @@
+{
+  "stage": 8,
+  "status": "completed_with_actual_user_approval_in_simulated_project",
+  "attempt": "trial-01",
+  "proposal": "trial-01/proposal.json",
+  "proposal_sha256": "0e1f65da916c91993e92ef35b283085a01c35f132a3535f6c31108ee4df36191",
+  "target": "trial-01/workspace/projects/knowledge-demo/knowledge/domain/DK-001.json",
+  "tests_run": 212,
+  "test_log": "tests/results/stage-8-test-run.txt",
+  "source_fingerprints": {
+    "skill/requirement-analyst/SKILL.md": "e9c40215b93df68d8157057b28d8308f55205c63309ca4f62f4c6db1815e341e",
+    "skill/requirement-analyst/references/domain-knowledge.md": "8a51c9dbb328336e591d289cc1334acba0c04435dfa0d8ed695ffadb8f509485",
+    "skill/requirement-analyst/scripts/save_knowledge.py": "7b2deff684d0acb1aeb44106b3c50ef9e31c101adefe5314b0aba9c7f3f54de6",
+    "skill/requirement-analyst/scripts/project_sources.py": "1c497637a51ba4ae5a7a48f4aa28979d94d4ea9371ddbcc0bb1b00df0dc005a4",
+    "tests/test_domain_knowledge.py": "5b4836990f4f6fd9292d6888b0e18b7a6f69f696410d3cc8c50b9eeb8ce70aa3",
+    "tests/fixtures/stage-8/material.md": "64beb754a4cd5fedfb9685cc3a24e0440f4addf78ba5dd260ba4f723d3086585",
+    "tests/test_stage_8_runs.py": "632e5b90e03620fcba361d8b20124c572a3b2246aed0fe51f439b75b21d76bba"
+  },
+  "scope": "主会话筛选合成资料，实际用户明确批准DK-001后执行真实知识写入及显式索引检索；不是独立模型或真实业务规则验收。",
+  "knowledge_written": true,
+  "git_committed": false,
+  "git_pushed": false,
+  "approval_decision": "trial-01/approval-decision.json",
+  "verification": "trial-01/verification.json",
+  "preapproval_tests_run": 208,
+  "preapproval_test_log": "tests/results/stage-8-preapproval-test-run.txt",
+  "cli_count": 5,
+  "cli_status_counts": {
+    "pass": 2,
+    "warning": 1,
+    "expected_fail": 2
+  },
+  "limits": [
+    "实际用户批准仅该合成术语及范围，不是实际产品或研发事实确认。",
+    "主会话直接分析，不是独立模型或自动触发重测；测试不调用模型。",
+    "搜索摘录截断产生warning，已有有效命中，完整知识文件已读取核对。",
+    "未实现身份认证、旧知识替换或废止、多文件事务或向量检索。",
+    "写入失败保留现场，未经成功核验不得索引；不自动删除或覆盖。",
+    "未提交、未合并、未推送、未打标签，实际下游Skill集成仍延期。"
+  ],
+  "artifacts": {
+    "approval-decision.json": "acc7f08dc6eb2456ed4b9d0623a08f13729cd44fa5ded1ecc00feb9a728b4ad0",
+    "approval.json": "bd033652e26f3848a6394c10cdb0dc75e5eefe1d9a82c813b5a4986523958cc1",
+    "catalog.json": "4ce43ab116243493928b4ef1a825347902617fe15d938e19fdd2ac7d213ba8b6",
+    "index-evidence.json": "3b37dd786ca5a3a89d2c0ebb24cda06b78682bab61dcbcddca79327fe3115a18",
+    "missing-approval-evidence.json": "443b15f48ce6b30b3890f2b7840a6995ffb2042d62b67c85d99aa79eb6d5bbf3",
+    "proposal.json": "7337bc01637f9366260b1037b449d9f31672cb7f06fa8fba2df84c834b64e052",
+    "repeat-save-evidence.json": "c725cf53931c9fcc94c8c135d7d22edfd90e562d30e05347e4428cbbda907b15",
+    "save-evidence.json": "efef7cd3315d6d799837011bcd0a43da70489c80820f13922105a77193b9f816",
+    "search-evidence.json": "484ac0465b530916ac75fd1165dab74f119dd9699c89cd9da07644ab4d03fc91",
+    "suggestion-review.json": "246aadd698c71f405234a1537b38c351c179cd581b8c91446fd154a0dfafa49a",
+    "verification.json": "3613877db2d125d76dc8b8694119d6e32e0a95cbac80aff7d55c3b9829ccfdcf",
+    "workspace/projects/knowledge-demo/index/project-index.json": "feae6c1426b8099f6158695b512c0da02a0fac764deffe32d938a760bd376d77",
+    "workspace/projects/knowledge-demo/index/source-index.json": "23558aef8acc25fde4e4b6196b58f41b4fb98579a5eab89943a154c2cb25ee29",
+    "workspace/projects/knowledge-demo/inputs/material.md": "64beb754a4cd5fedfb9685cc3a24e0440f4addf78ba5dd260ba4f723d3086585",
+    "workspace/projects/knowledge-demo/knowledge/domain/DK-001.json": "2f3fbb125b1d0d0e8d5af7674eff75e9b066bb3cc867bcbd18512e0898de30f3"
+  }
+}
