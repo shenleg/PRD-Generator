@@ -1,0 +1,13 @@
+{
+  "common": {
+    "requirement_id": "UX-DATA",
+    "project_id": "ux-demo",
+    "title": "UX-DATA（合成体验分析）",
+    "created_at": "2026-11-16T09:26:09.151233+00:00"
+  },
+  "prd": {
+    "based_on_analysis_revision": 1,
+    "status": "draft",
+    "version": 1
+  }
+}

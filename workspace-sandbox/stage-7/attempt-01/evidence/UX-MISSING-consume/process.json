@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/root/.cache/uv/builds-v0/.tmpX6nV8y/bin/python",
+    "-I",
+    "-B",
+    "/root/orca/projects/test-skill/tools/minimal_prd_consumer.py",
+    "--workspace",
+    "/root/orca/projects/test-skill/workspace-sandbox/stage-7/attempt-01/workspace",
+    "--project",
+    "ux-demo",
+    "--requirement",
+    "UX-MISSING",
+    "--expected-revision",
+    "1"
+  ],
+  "returncode": 1,
+  "stderr": ""
+}

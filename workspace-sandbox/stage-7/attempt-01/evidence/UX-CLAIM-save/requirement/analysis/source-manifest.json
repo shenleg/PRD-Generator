@@ -1,0 +1,32 @@
+[
+  {
+    "name": "cases.json（阶段7合成资料）",
+    "path": "inputs/cases.json",
+    "type": "input_document",
+    "credibility": "用户批准的合成需求/静态低保真参考，非真实系统或实际点击验证",
+    "last_updated": null,
+    "revision": 1,
+    "adopted_sha256": "70966aa73ac796cfa57886a17889082ec20601892295d55c57b04229ef49219b",
+    "source_id": "SRC-1"
+  },
+  {
+    "name": "reference-list.png（阶段7合成资料）",
+    "path": "inputs/reference-list.png",
+    "type": "input_document",
+    "credibility": "用户批准的合成需求/静态低保真参考，非真实系统或实际点击验证",
+    "last_updated": null,
+    "revision": 1,
+    "adopted_sha256": "d4998e2199eaad0ed7fbb20b69ae3d57faee35f440feda6c881f13eb6b8dcfa4",
+    "source_id": "SRC-2"
+  },
+  {
+    "name": "reference-note.md（阶段7合成资料）",
+    "path": "inputs/reference-note.md",
+    "type": "input_document",
+    "credibility": "用户批准的合成需求/静态低保真参考，非真实系统或实际点击验证",
+    "last_updated": null,
+    "revision": 1,
+    "adopted_sha256": "761e196652f13ee994e2369a904b9db6f204aba424e51a63d7cfdd01823cb306",
+    "source_id": "SRC-3"
+  }
+]

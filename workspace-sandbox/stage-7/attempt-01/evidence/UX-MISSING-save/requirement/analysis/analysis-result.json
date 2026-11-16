@@ -1,0 +1,265 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "UX-MISSING",
+  "meta": {
+    "analysis_revision": 1,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "existing_document",
+    "analysis_status": "clarifying",
+    "readiness": "not_ready"
+  },
+  "context": {
+    "project_id": "ux-demo",
+    "source_ids": [
+      "SRC-1"
+    ]
+  },
+  "requirements": {
+    "goals": [
+      {
+        "content": "合成体验能力验证：按本例实际资料范围分析，不把设计建议当既有界面",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "cases.json：UX-MISSING"
+          }
+        ],
+        "related_ids": [],
+        "id": "GOAL-1"
+      }
+    ],
+    "scenarios": [
+      {
+        "content": "建议：多角色采购审批工作台作为待设计界面；入口、页面拆分和现有页面情况均未确认。",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "cases[0].requirement"
+          }
+        ],
+        "related_ids": [],
+        "id": "SCN-1"
+      }
+    ],
+    "functional_requirements": [
+      {
+        "content": "新增多角色采购审批工作台，支持审批人分配、驳回修改后重提和批量处理。没有视觉稿、现有页面截图、流程图或设计规范；角色范围、混合批次规则和重提状态也未定。先判断需要哪些类型的资料并登记待设计事项，不自行设计完整界面。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "cases.json：UX-MISSING"
+          }
+        ],
+        "related_ids": [],
+        "id": "FR-1"
+      }
+    ],
+    "business_rules": [],
+    "constraints": [],
+    "non_functional_requirements": [],
+    "acceptance_criteria": []
+  },
+  "business_assessment": {
+    "flows": [],
+    "states": [],
+    "boundaries": [],
+    "exceptions": [],
+    "gaps": [],
+    "conflicts": []
+  },
+  "ux_assessment": {
+    "ui_dependent": true,
+    "design_pending_items": [
+      "待补角色及职责资料、审批流程和状态转换说明；建议用角色泳道与状态图表达，不要求高保真。",
+      "待设计审批人分配、驳回修改后重提、批量处理以及各操作结果的界面与状态；业务规则确定前不细化完整界面。"
+    ],
+    "visual_recommendations": [
+      "建议提供现有页面截图或设计规范（如有），以及能表达关键流程和状态的低保真参考；当前无视觉资料，无法评价现有布局或交互。"
+    ],
+    "interaction_flows": [
+      "建议、待确认：角色进入工作台，分配审批人或处理申请；驳回后由相关角色修改并重提，批量处理按待定规则反馈逐项结果。角色交接与状态变化尚未确定。"
+    ]
+  },
+  "questions": [
+    {
+      "question": "哪些角色参与审批人分配、审批、驳回后的修改和重提，各自的权限与交接边界是什么？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "角色范围和职责未定。",
+      "impact": "无法确定授权操作或还原核心审批流程。",
+      "options": [
+        "由产品逐角色指定权限和交接",
+        "限定少量角色参与并明确职责",
+        "其他或暂不确定"
+      ],
+      "recommendation": "建议先按操作列出角色权限和交接，再设计页面；尚未确认。",
+      "status": "open",
+      "related_ids": [
+        "FR-1"
+      ],
+      "id": "Q-1"
+    },
+    {
+      "question": "批量中包含状态或权限不一致的申请时如何处理？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "混合批次规则未定。",
+      "impact": "影响实际处理对象、部分结果和验收。",
+      "options": [
+        "逐条判断并反馈结果",
+        "整批拒绝",
+        "其他或暂不确定"
+      ],
+      "recommendation": "建议评估逐条判断与逐项反馈，具体由产品确认。",
+      "status": "open",
+      "related_ids": [
+        "FR-1"
+      ],
+      "id": "Q-2"
+    },
+    {
+      "question": "驳回后修改和重提如何改变状态，以及重提后如何重新分配审批？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "重提状态及后续流转未定。",
+      "impact": "影响申请生命周期和审批责任。",
+      "options": [
+        "重提后回到待审批并按既定规则分配",
+        "重提后先重新分配审批人",
+        "其他或暂不确定"
+      ],
+      "recommendation": "建议先明确状态转换和审批责任，再制作对应交互。",
+      "status": "open",
+      "related_ids": [
+        "FR-1"
+      ],
+      "id": "Q-3"
+    },
+    {
+      "question": "业务规则确定后，工作台的关键状态和操作反馈如何呈现？",
+      "priority": "P1",
+      "resolution": "ask_design",
+      "reason": "未提供视觉稿或流程图。",
+      "impact": "影响操作可理解性和设计交接。",
+      "options": [
+        "提供流程图与低保真状态稿",
+        "先提供文字交互说明",
+        "其他或暂不确定"
+      ],
+      "recommendation": "建议先用流程与关键状态低保真说明，避免过早制作高保真。",
+      "status": "open",
+      "related_ids": [
+        "FR-1"
+      ],
+      "id": "Q-4"
+    },
+    {
+      "question": "现有系统是否具备审批分配、重提和逐项批处理所需的接口与状态能力？",
+      "priority": "P1",
+      "resolution": "ask_dev",
+      "reason": "没有现有架构或接口证据。",
+      "impact": "影响实现方案和工作量，当前技术可行性未知。",
+      "options": [
+        "核查现有能力并提供接口与状态说明",
+        "评估需要新增的能力",
+        "其他或暂不确定"
+      ],
+      "recommendation": "建议研发依据现有实现核实，不预设能力存在。",
+      "status": "open",
+      "related_ids": [
+        "FR-1"
+      ],
+      "id": "Q-5"
+    }
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1",
+        "Q-2",
+        "Q-3"
+      ],
+      "reason": "实际模型登记的核心规则/设计待决事项未答，保留缺口"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1",
+        "Q-2",
+        "Q-3"
+      ],
+      "reason": "实际模型登记的核心规则/设计待决事项未答，保留缺口"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 11,
+      "satisfied": false,
+      "question_refs": [
+        "Q-4"
+      ],
+      "reason": "实际模型登记的核心规则/设计待决事项未答，保留缺口"
+    }
+  ]
+}

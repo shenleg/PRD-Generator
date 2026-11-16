@@ -42,7 +42,7 @@ CLI 输出单个 JSON，退出码：pass=0、warning=1、fail=2。**warning 不�
 
 草稿保存在已有需求的 `prd/handoff-draft-vN.md`。`prd.version` 是正整数本地序号，`prd.status` 固定为 `draft`；不定义正式版本或发布流程。只替换自己维护的三字段，保留 common、其他块和 prd 扩展字段。其他格式的既有 prd 元数据拒绝覆盖。
 
-草稿逐条保留映射、tag、status、sources、related_ids；假设附依据和验证；遗留问题保留原答案、建议和责任方。存在technical_feasibility时，另原样列出结论、证据/来源、可信程度、影响、风险和研发确认引用；技术判断不等于研发验收或发布批准。撤销条目、dropped 问题不摘录。待重评、推断和假设均有显式标注，推荐选项不是事实。
+草稿逐条保留映射、tag、status、sources、related_ids；假设附依据和验证；遗留问题保留原答案、建议和责任方。ux_assessment原样列出界面依赖、待设计、视觉建议与候选流程，并注明建议不等于既有/已实现界面。存在technical_feasibility时，另原样列出结论、证据/来源、可信程度、影响、风险和研发确认引用；技术判断不等于研发验收或发布批准。撤销条目、dropped 问题不摘录。待重评、推断和假设均有显式标注，推荐选项不是事实。
 
 全程沿用分析工作区独占锁，非空分析事务日志阻止消费。先以排他方式写新草稿并同步，再原子提交 requirement.json。响应 `written` 表示元数据已替换，不表示每个文件均未发生写入：失败可能留下未提交草稿或 `.prd-write-*` 临时文件，返回 `inspect_write`、`draft_created` 和候选路径，保留现场、不自动删除、拒绝覆盖。即使元数据已替换，后续目录同步失败仍返回 fail，不能当成成功交付。恢复边界见规格 10.5。
 

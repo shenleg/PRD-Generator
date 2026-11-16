@@ -1,0 +1,23 @@
+{
+  "stage": 7,
+  "status": "completed_with_user_approved_simulated_visual_materials",
+  "tests_run": 195,
+  "test_summary": "tests/results/stage-7-test-summary.json",
+  "validation_report": "tests/results/stage-7-validation.json",
+  "git_committed": false,
+  "git_pushed": false,
+  "attempt": "attempt-01",
+  "model_evidence": "model-attempt-01/verification.json",
+  "user_selection": "合成页面资料 (Recommended)",
+  "browser_authorization": "授权本次本地截图",
+  "browser_capture": "browser-capture.json",
+  "scope": "合成静态低保真页面及真实截图；实际安装Skill读取PNG作只读体验分析，机械映射为真实CLI保存，不代表真实界面或用户体验研究",
+  "limits": [
+    "六个case共用一次实际模型调用，不是六次隔离盲测。",
+    "四个体验字段、截图观察和问题由模型实际生成；业务骨架、完成清单/readiness由合成驱动器提供。",
+    "参考仅列表常态，未验证点击、后台实现、权限或未展示画面。",
+    "MCP浏览器沙箱启动失败；备用截图曾被安全保护拒绝后停止，用户明确授权单次本地--no-sandbox截图才执行，不扩展到外网或其他操作。",
+    "本地HTTP服务已停止，不保留对外部署，不更改全局浏览器设置或既有账号。",
+    "未提交、未合并、未推送、未打标签，不进入阶段8；真实下游Skill集成仍按用户批准延期。"
+  ]
+}

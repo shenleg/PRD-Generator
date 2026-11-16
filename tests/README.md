@@ -127,6 +127,22 @@ uv run --offline --no-project --python /usr/bin/python3 --with-requirements test
   --model-evidence workspace-sandbox/stage-6/selected-model-evidence.json
 ```
 
+## 阶段7体验与视觉
+
+用户批准合成低保真页面资料，另明确授权浏览器沙箱失败后仅本次本地静态页截图。`fixtures/stage-7/`的PNG由HTML实际渲染，主会话实际看图；HTML仅截图生成用途，分析模型未读取它，模型Read图像载荷实际返回有记录。浏览器未使用既有账号，临时本地服务已停止。
+
+- `model-attempt-01/verification.json`：当前安装Skill实际只读评估六case，按需读取体验参考和图像；缺资料/纯后端无观察事实，有图只作限定呈现事实。没有原始会话、session编号、初始化元数据或图像base64。
+- `run_stage_7_trial.py`机械保留四个ux字段、观察、页面候选及问题原文；来源别名/现有条目标签转换后真实更新器保存、校验、报告和草稿交接。业务骨架/清单/readiness为驱动器提供，不声称完整业务自主分析。
+- `test_stage_7_runs.py`有9项实际图像/边界/来源/主张核查及18次CLI临时重放；消费者/报告另有遗漏红绿回归。旧阶段6源码证据绑定6fcf4bb，当前功能仍重放旧场景，不修改历史哈希。
+
+当前验收入口 `results/stage-7.md` 与 `workspace-sandbox/stage-7/run-manifest.json`。重放到不存在的新目录，不调用模型或浏览器：
+
+```bash
+uv run --offline --no-project --python /usr/bin/python3 --with-requirements tests/requirements.txt \
+  python -I -B tests/run_stage_7_trial.py --output /tmp/new-stage7-trial \
+  --model-evidence workspace-sandbox/stage-7/model-attempt-01/verification.json
+```
+
 ## 分轮与计分
 
 先保存并核对首轮，才按实际问到的语义提供剧本回答；用户的结束要求单独作为后续输入。未发生的回答不能提前混入结果。第一样例的上限控制确认和业务问题分别说明，但所有发生提问的轮次均计入记录。

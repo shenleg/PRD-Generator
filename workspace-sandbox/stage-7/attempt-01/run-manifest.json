@@ -1,0 +1,343 @@
+{
+  "stage": 7,
+  "mode": "actual_multimodal_model_output_mechanically_mapped_to_cli",
+  "model_evidence": "workspace-sandbox/stage-7/model-attempt-01/verification.json",
+  "model_evidence_sha256": "a49dd3edfc03d7e9689bf236dd4fa72456b4cb9f471ba9ef82f0e53f0df05f37",
+  "records": [
+    {
+      "record": "UX-MISSING-save",
+      "script": "update_analysis.py",
+      "status": "pass"
+    },
+    {
+      "record": "UX-MISSING-validate",
+      "script": "validate_analysis.py",
+      "status": "pass"
+    },
+    {
+      "record": "UX-MISSING-consume",
+      "script": "minimal_prd_consumer.py",
+      "status": "warning"
+    },
+    {
+      "record": "UX-BACKEND-save",
+      "script": "update_analysis.py",
+      "status": "pass"
+    },
+    {
+      "record": "UX-BACKEND-validate",
+      "script": "validate_analysis.py",
+      "status": "pass"
+    },
+    {
+      "record": "UX-BACKEND-consume",
+      "script": "minimal_prd_consumer.py",
+      "status": "warning"
+    },
+    {
+      "record": "UX-REFERENCE-save",
+      "script": "update_analysis.py",
+      "status": "pass"
+    },
+    {
+      "record": "UX-REFERENCE-validate",
+      "script": "validate_analysis.py",
+      "status": "pass"
+    },
+    {
+      "record": "UX-REFERENCE-consume",
+      "script": "minimal_prd_consumer.py",
+      "status": "warning"
+    },
+    {
+      "record": "UX-CLAIM-save",
+      "script": "update_analysis.py",
+      "status": "pass"
+    },
+    {
+      "record": "UX-CLAIM-validate",
+      "script": "validate_analysis.py",
+      "status": "pass"
+    },
+    {
+      "record": "UX-CLAIM-consume",
+      "script": "minimal_prd_consumer.py",
+      "status": "warning"
+    },
+    {
+      "record": "UX-STATES-save",
+      "script": "update_analysis.py",
+      "status": "pass"
+    },
+    {
+      "record": "UX-STATES-validate",
+      "script": "validate_analysis.py",
+      "status": "pass"
+    },
+    {
+      "record": "UX-STATES-consume",
+      "script": "minimal_prd_consumer.py",
+      "status": "warning"
+    },
+    {
+      "record": "UX-DATA-save",
+      "script": "update_analysis.py",
+      "status": "pass"
+    },
+    {
+      "record": "UX-DATA-validate",
+      "script": "validate_analysis.py",
+      "status": "pass"
+    },
+    {
+      "record": "UX-DATA-consume",
+      "script": "minimal_prd_consumer.py",
+      "status": "warning"
+    }
+  ],
+  "results": [
+    {
+      "id": "UX-MISSING",
+      "ui_dependent": true,
+      "readiness": "not_ready",
+      "draft": "prd/handoff-draft-v1.md",
+      "analysis_before_consumer": {
+        "source-manifest.json": "08177526be9e97a5ec86cd0b95defdd6ffcd96501c64fc1adf3c319061bcfe46",
+        "analysis-events.jsonl": "a5065ebe97cd4956635c920982347a0718f373d503021233d042ceaebd42e4ff",
+        "analysis-report.md": "7312b6f6725cea14e05141361a824d74c4f57e9cb8157c6a5f85db7d01e786b7",
+        "analysis-result.json": "5fd5bf54c7be7e63f81f66041047ffa21ab387c1d9a85c5c223db5a632b2c361"
+      }
+    },
+    {
+      "id": "UX-BACKEND",
+      "ui_dependent": false,
+      "readiness": "conditionally_ready",
+      "draft": "prd/handoff-draft-v1.md",
+      "analysis_before_consumer": {
+        "source-manifest.json": "08177526be9e97a5ec86cd0b95defdd6ffcd96501c64fc1adf3c319061bcfe46",
+        "analysis-events.jsonl": "caa3f4af192ea515f2750f1f29d93a53e642d65357646927cf7670d89e9aac64",
+        "analysis-report.md": "e762656e9909e2fa66325be53c0d217c2fc253da2fc54eb06f1c0c5f75c60919",
+        "analysis-result.json": "f41940ee2fc6e3c01bbc7aa6f6934ffad8de0f8fcd00e0f9447ecc91f28d8e2c"
+      }
+    },
+    {
+      "id": "UX-REFERENCE",
+      "ui_dependent": true,
+      "readiness": "not_ready",
+      "draft": "prd/handoff-draft-v1.md",
+      "analysis_before_consumer": {
+        "source-manifest.json": "13e1d6a070fff75c73c7786612a2711904939c9608df903a028b787758e66a07",
+        "analysis-events.jsonl": "e0028306c86c2f9a3d246f4be172bbeb68fd1b95f8eabb251207d56721a817e1",
+        "analysis-report.md": "fc042aab1fda82cae4e3c10edca65aa5aebaa678a897fe4f13233e6cfb18ceea",
+        "analysis-result.json": "b7da3f3e49f2b21602a9a2ce8f5526da45958426005cb2dc371e780cf303e1fa"
+      }
+    },
+    {
+      "id": "UX-CLAIM",
+      "ui_dependent": true,
+      "readiness": "not_ready",
+      "draft": "prd/handoff-draft-v1.md",
+      "analysis_before_consumer": {
+        "source-manifest.json": "13e1d6a070fff75c73c7786612a2711904939c9608df903a028b787758e66a07",
+        "analysis-events.jsonl": "909bcd35f8e6e3fef6d51164e24251d5a631a18dc94e858bdfccbd0b1208751d",
+        "analysis-report.md": "f548329d6bfc491c76164062b7c6051eccfd9b8ee6421a4584896a9c195baf85",
+        "analysis-result.json": "d4e0fca78ccaae1191e2960b68b93a5b1a7440d76737886ab569a2e8935507bc"
+      }
+    },
+    {
+      "id": "UX-STATES",
+      "ui_dependent": true,
+      "readiness": "not_ready",
+      "draft": "prd/handoff-draft-v1.md",
+      "analysis_before_consumer": {
+        "source-manifest.json": "13e1d6a070fff75c73c7786612a2711904939c9608df903a028b787758e66a07",
+        "analysis-events.jsonl": "5a6c84e6a478bfa68f2d5bbbb874427e366397bf236ff59689d9ff2d89f0040c",
+        "analysis-report.md": "042a61cf902891743978beff254fe1c9e3a4d0f7f0a5e7252c06c8f9f9c4246c",
+        "analysis-result.json": "88b108a672eb269cc276d7748e8b2f38a34e111d041d8dcc1fd339ca31f6063c"
+      }
+    },
+    {
+      "id": "UX-DATA",
+      "ui_dependent": true,
+      "readiness": "not_ready",
+      "draft": "prd/handoff-draft-v1.md",
+      "analysis_before_consumer": {
+        "source-manifest.json": "08177526be9e97a5ec86cd0b95defdd6ffcd96501c64fc1adf3c319061bcfe46",
+        "analysis-events.jsonl": "3f17584ec83978c15b5cececc35d51e5b61c7cfbfc541461a87226899d1b5616",
+        "analysis-report.md": "59424b29c2ff5bb76e6cb24728bdb918a68af40621bb0a2ba75a427bc00f479c",
+        "analysis-result.json": "9c39ba8415cdef108d807fb1546de664c23d16f0d2e69322ea0517319a9c5ce3"
+      }
+    }
+  ],
+  "files": {
+    "skill/requirement-analyst/SKILL.md": "b1e2716eb1faf55c0b0992d1689d6a9720f18cb511e79f52c55cbcba2b37206d",
+    "skill/requirement-analyst/templates/analysis-report.md": "6a56777f4db9e3ca34c35c455732bf3533959c5bc673d09ef7acc02f53636657",
+    "skill/requirement-analyst/schemas/analysis-result.schema.json": "5e437cba8f8703858aa90cc758ca3a1c77701afd40b6a548460e5aeb35af9cd5",
+    "skill/requirement-analyst/schemas/requirement-item.schema.json": "63f145dd6c75a4384caf0f5df11564c7f07133cdf0ede3bbbba838e2d52ba0d6",
+    "skill/requirement-analyst/schemas/question.schema.json": "f4090632b60c2638a4dc5e37fa3ae0122fd1ba507f692b055b68a40f14fad677",
+    "skill/requirement-analyst/schemas/source.schema.json": "0a72b71a2826f06756851fb156e301ef510ccff949363e6dd925552704be60c9",
+    "skill/requirement-analyst/references/question-strategy.md": "08b7b691979d164b23f9971f4926dfd6483958e3e7268e08ea1354963bdcaa46",
+    "skill/requirement-analyst/references/feasibility-assessment.md": "37a38bd4f4d7de2d6f6ac83ea39f4e871fde7d46fa63e1f9c4eed6e342bf191f",
+    "skill/requirement-analyst/references/ux-visual-assessment.md": "57352215d119d398d40b42c15f67c76432bc4a16c8966bd05bd47643fbcdba88",
+    "skill/requirement-analyst/references/historical-retrieval.md": "3fe053590cbc837c6f7f7117afe86447943d926949ade49b035aefa915fc469c",
+    "skill/requirement-analyst/references/readiness-rules.md": "e1358252f8a8c23eff91d3cbd68ede5582554c8525931d7037c228f57ab0ce8b",
+    "skill/requirement-analyst/references/incremental-update.md": "0a8cbea155209fba6d3a5e37fd4acc5e8d8ac2e1e665870df2c9f0591a0fb3ce",
+    "skill/requirement-analyst/references/analysis-framework.md": "2fe0a6f5be4f9b9bf6be41f58bfa570c96f1a6c30370e6f4c79a65d5a8d128fa",
+    "skill/requirement-analyst/scripts/update_analysis.py": "4c86691d93e69d6f3eccb25c87ac7181e12a552f201d8c56198fd3d693c62485",
+    "skill/requirement-analyst/scripts/index_sources.py": "abc14cbc874b6652bc211fd51b685dcbd26d8822490f6f5c4990f8a794535714",
+    "skill/requirement-analyst/scripts/compare_baseline.py": "d204774a13c0b3b6644a86ed8b7623678613f4b32589f9a6132efe55d580af8b",
+    "skill/requirement-analyst/scripts/search_project.py": "58c435c540bbfdc1f83b19fa8c2ee9d85da6cf66c3bf526fbed890010dd62e1d",
+    "skill/requirement-analyst/scripts/requirements.txt": "856ef1365f90bcd46a30193bd45c49642e6efc4cff86b5146d4a9a0ef61e0412",
+    "skill/requirement-analyst/scripts/project_sources.py": "1c497637a51ba4ae5a7a48f4aa28979d94d4ea9371ddbcc0bb1b00df0dc005a4",
+    "skill/requirement-analyst/scripts/validate_analysis.py": "58acb7ba88e9cdd0a01f4bbffc3bb4ed51bbfba07165342f25ce648c27180e15",
+    "skill/requirement-analyst/scripts/README.md": "e82c2d02db24c41985b83cdae0a34de712a9138ad8c3e7bfabaf9128d7e7bef6",
+    "tools/minimal_prd_consumer.py": "d7532635f007a18ad822f01f38857db6b34166f69ecd4ce42122ef3154dd8070",
+    "tests/render_trial_reports.py": "d66579843628d4950ce77b72ebf3981aa0288d4a78b75d80f8f63800f6cadb7b",
+    "tests/run_stage_7_trial.py": "7da6180b4bdc9fa4aa7a3042c4e964041584c296170a3c35f2669ed43c6fb310"
+  },
+  "artifacts": {
+    "evidence/UX-BACKEND-consume/process.json": "e986d244553ead1911db67eb78c69347c9f49e22520715b513b4bf50fb37cb73",
+    "evidence/UX-BACKEND-consume/response.json": "a3274f63985d226c74fc279fdf2292a9eb640d895d82b5026de335ddd1a8c26d",
+    "evidence/UX-BACKEND-consume/stdout.txt": "a3274f63985d226c74fc279fdf2292a9eb640d895d82b5026de335ddd1a8c26d",
+    "evidence/UX-BACKEND-save/process.json": "d34f791a6fb61d70e7adb471b3c5cbba4a284feaf2733f9be119895d75800aa3",
+    "evidence/UX-BACKEND-save/requirement/analysis/analysis-events.jsonl": "caa3f4af192ea515f2750f1f29d93a53e642d65357646927cf7670d89e9aac64",
+    "evidence/UX-BACKEND-save/requirement/analysis/analysis-report.md": "e762656e9909e2fa66325be53c0d217c2fc253da2fc54eb06f1c0c5f75c60919",
+    "evidence/UX-BACKEND-save/requirement/analysis/analysis-result.json": "f41940ee2fc6e3c01bbc7aa6f6934ffad8de0f8fcd00e0f9447ecc91f28d8e2c",
+    "evidence/UX-BACKEND-save/requirement/analysis/source-manifest.json": "08177526be9e97a5ec86cd0b95defdd6ffcd96501c64fc1adf3c319061bcfe46",
+    "evidence/UX-BACKEND-save/requirement/prd/handoff-draft-v1.md": "d35532e830cfaf5058ec9778d2c72f94a243fd081787166e643446a4e8d8e069",
+    "evidence/UX-BACKEND-save/requirement/requirement.json": "20df69fb1d0ea6d0199e6f28643f72d4020a4d7f704c80c7733b08e4b671fe81",
+    "evidence/UX-BACKEND-save/response.json": "559dda73583e91964d24c04fc1f7b1f1bdeec606a932db9235be30ded3074341",
+    "evidence/UX-BACKEND-save/stdout.txt": "559dda73583e91964d24c04fc1f7b1f1bdeec606a932db9235be30ded3074341",
+    "evidence/UX-BACKEND-validate/process.json": "f61abcb003a780d10cec6f26c9947e611139cab77df7c0ac642530b0a41f2293",
+    "evidence/UX-BACKEND-validate/response.json": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/UX-BACKEND-validate/stdout.txt": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/UX-CLAIM-consume/process.json": "5f9d8baeb4189f333be4953d7b49f44652e3cd64c991e7faecdbdfeca1768418",
+    "evidence/UX-CLAIM-consume/response.json": "2c04e49e84c915a41d290b01b2079efd19aae1daacd03733b1bdfa98da91bd56",
+    "evidence/UX-CLAIM-consume/stdout.txt": "2c04e49e84c915a41d290b01b2079efd19aae1daacd03733b1bdfa98da91bd56",
+    "evidence/UX-CLAIM-save/process.json": "a9e3113108503ed7de975b8ab249094662ebaff40f143f78c2b904c7187e0f91",
+    "evidence/UX-CLAIM-save/requirement/analysis/analysis-events.jsonl": "909bcd35f8e6e3fef6d51164e24251d5a631a18dc94e858bdfccbd0b1208751d",
+    "evidence/UX-CLAIM-save/requirement/analysis/analysis-report.md": "f548329d6bfc491c76164062b7c6051eccfd9b8ee6421a4584896a9c195baf85",
+    "evidence/UX-CLAIM-save/requirement/analysis/analysis-result.json": "d4e0fca78ccaae1191e2960b68b93a5b1a7440d76737886ab569a2e8935507bc",
+    "evidence/UX-CLAIM-save/requirement/analysis/source-manifest.json": "13e1d6a070fff75c73c7786612a2711904939c9608df903a028b787758e66a07",
+    "evidence/UX-CLAIM-save/requirement/prd/handoff-draft-v1.md": "87f20a7cc07264293ccb8d391ba6a0ac27f0312b9e9b0a7be0f61178e02ba8ce",
+    "evidence/UX-CLAIM-save/requirement/requirement.json": "3f67958e7fb72c830881bf58a405fa18a3afd7385e777912e63b1f3aff7c10fe",
+    "evidence/UX-CLAIM-save/response.json": "f35fd392d2c61149efdda1dcf00bfbffdfa032a14f2a05c34d0fbc8f6d796d03",
+    "evidence/UX-CLAIM-save/stdout.txt": "f35fd392d2c61149efdda1dcf00bfbffdfa032a14f2a05c34d0fbc8f6d796d03",
+    "evidence/UX-CLAIM-validate/process.json": "8a5abc304f2a4a9a323eaa357d880195b68345a59982c6fd1bc41d95e0bac995",
+    "evidence/UX-CLAIM-validate/response.json": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/UX-CLAIM-validate/stdout.txt": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/UX-DATA-consume/process.json": "0b7aa33811dcc08aeaba1587143df26a99785834d673dac9475ff6e56dad53f5",
+    "evidence/UX-DATA-consume/response.json": "376ff1ab4358292e6335376ad43f2fb0956934f13282f7890e7908aa904c4735",
+    "evidence/UX-DATA-consume/stdout.txt": "376ff1ab4358292e6335376ad43f2fb0956934f13282f7890e7908aa904c4735",
+    "evidence/UX-DATA-save/process.json": "74f8f5c1b784b4ac064798a0282719370e00fced6d3c1b44a76a9d474f7741fb",
+    "evidence/UX-DATA-save/requirement/analysis/analysis-events.jsonl": "3f17584ec83978c15b5cececc35d51e5b61c7cfbfc541461a87226899d1b5616",
+    "evidence/UX-DATA-save/requirement/analysis/analysis-report.md": "59424b29c2ff5bb76e6cb24728bdb918a68af40621bb0a2ba75a427bc00f479c",
+    "evidence/UX-DATA-save/requirement/analysis/analysis-result.json": "9c39ba8415cdef108d807fb1546de664c23d16f0d2e69322ea0517319a9c5ce3",
+    "evidence/UX-DATA-save/requirement/analysis/source-manifest.json": "08177526be9e97a5ec86cd0b95defdd6ffcd96501c64fc1adf3c319061bcfe46",
+    "evidence/UX-DATA-save/requirement/prd/handoff-draft-v1.md": "8222a29211632a6c8542dbe8ad58e3887b7631f26a1fb11ef90048d32289d439",
+    "evidence/UX-DATA-save/requirement/requirement.json": "34fcaac992ce2bed97b32722d5839459a1f4b326aa78ffe58673a3cf86eea42a",
+    "evidence/UX-DATA-save/response.json": "47e23aea8f46860d5a50bc3841f54867105309f136b5c5f22b513c038fd23527",
+    "evidence/UX-DATA-save/stdout.txt": "47e23aea8f46860d5a50bc3841f54867105309f136b5c5f22b513c038fd23527",
+    "evidence/UX-DATA-validate/process.json": "a3c57a238df385c20aeacdb256ec0b19c678c7a31e493f285f9a596b5c9065c9",
+    "evidence/UX-DATA-validate/response.json": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/UX-DATA-validate/stdout.txt": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/UX-MISSING-consume/process.json": "43312512c2a638460895ce58b4cc71b0851ea64b95e9533a7c3d5968e5e26e52",
+    "evidence/UX-MISSING-consume/response.json": "6eeda68b3630d7805a1ab79e16f0c6d915f3f58aa183980556a86a83458cc818",
+    "evidence/UX-MISSING-consume/stdout.txt": "6eeda68b3630d7805a1ab79e16f0c6d915f3f58aa183980556a86a83458cc818",
+    "evidence/UX-MISSING-save/process.json": "7d9391c23023d4f5c476d1c14fdbf37b2fae3aae232e52547723a9892f36b5c4",
+    "evidence/UX-MISSING-save/requirement/analysis/analysis-events.jsonl": "a5065ebe97cd4956635c920982347a0718f373d503021233d042ceaebd42e4ff",
+    "evidence/UX-MISSING-save/requirement/analysis/analysis-report.md": "7312b6f6725cea14e05141361a824d74c4f57e9cb8157c6a5f85db7d01e786b7",
+    "evidence/UX-MISSING-save/requirement/analysis/analysis-result.json": "5fd5bf54c7be7e63f81f66041047ffa21ab387c1d9a85c5c223db5a632b2c361",
+    "evidence/UX-MISSING-save/requirement/analysis/source-manifest.json": "08177526be9e97a5ec86cd0b95defdd6ffcd96501c64fc1adf3c319061bcfe46",
+    "evidence/UX-MISSING-save/requirement/prd/handoff-draft-v1.md": "9cd50ffdb921a3d458291e84febdb8753afd1350bce1e2613f90e00e2d18a7e3",
+    "evidence/UX-MISSING-save/requirement/requirement.json": "3ad4263acf0754915222a2b460d0951efa89408f1fdd165b33fae02905364168",
+    "evidence/UX-MISSING-save/response.json": "a5281ae706d7d889758a99dcabe10cee59d2bfed62640175d9469e8220700b22",
+    "evidence/UX-MISSING-save/stdout.txt": "a5281ae706d7d889758a99dcabe10cee59d2bfed62640175d9469e8220700b22",
+    "evidence/UX-MISSING-validate/process.json": "1355410b78b1689d8e372beb471ec501f71c5c42810b0ef7698221bfb72f0f53",
+    "evidence/UX-MISSING-validate/response.json": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/UX-MISSING-validate/stdout.txt": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/UX-REFERENCE-consume/process.json": "4f5b1e33dfe0cc3e2e2827ad56d4cd3946fa2faa53db172a816b61d1a47f0f90",
+    "evidence/UX-REFERENCE-consume/response.json": "45ab1b7f3890dce873764f9483443e2575a18630325905eafd4d661c0522f12c",
+    "evidence/UX-REFERENCE-consume/stdout.txt": "45ab1b7f3890dce873764f9483443e2575a18630325905eafd4d661c0522f12c",
+    "evidence/UX-REFERENCE-save/process.json": "17e53f382f89b877eded4da999b5fdaa6eb2187eb91b16f6ba566371d7fe63c5",
+    "evidence/UX-REFERENCE-save/requirement/analysis/analysis-events.jsonl": "e0028306c86c2f9a3d246f4be172bbeb68fd1b95f8eabb251207d56721a817e1",
+    "evidence/UX-REFERENCE-save/requirement/analysis/analysis-report.md": "fc042aab1fda82cae4e3c10edca65aa5aebaa678a897fe4f13233e6cfb18ceea",
+    "evidence/UX-REFERENCE-save/requirement/analysis/analysis-result.json": "b7da3f3e49f2b21602a9a2ce8f5526da45958426005cb2dc371e780cf303e1fa",
+    "evidence/UX-REFERENCE-save/requirement/analysis/source-manifest.json": "13e1d6a070fff75c73c7786612a2711904939c9608df903a028b787758e66a07",
+    "evidence/UX-REFERENCE-save/requirement/prd/handoff-draft-v1.md": "7f827a50e45ecbb33884b0f5547ff9e841764a0c2a9d86814d4f40955d2475bc",
+    "evidence/UX-REFERENCE-save/requirement/requirement.json": "f7e677683ffe99ecc1ab131a541517e04c708e2e5b1273ed99da1b4a6f2ffe96",
+    "evidence/UX-REFERENCE-save/response.json": "2e952d449df9f1eb45d2f527708ab98e09e97b169066b9ba678b61e2ad4743b5",
+    "evidence/UX-REFERENCE-save/stdout.txt": "2e952d449df9f1eb45d2f527708ab98e09e97b169066b9ba678b61e2ad4743b5",
+    "evidence/UX-REFERENCE-validate/process.json": "0d414b7df2e3272c9888790a2922cee33476b73946376701c71fd791d5996282",
+    "evidence/UX-REFERENCE-validate/response.json": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/UX-REFERENCE-validate/stdout.txt": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/UX-STATES-consume/process.json": "658ea169c0001527ccbb84081aaa7183ad52a4c14c425d0dbbd8f2cdc2c05e98",
+    "evidence/UX-STATES-consume/response.json": "c84641848df2dadef975edb4400fd67bbadcb24bfbb407529734f5e7a2882d50",
+    "evidence/UX-STATES-consume/stdout.txt": "c84641848df2dadef975edb4400fd67bbadcb24bfbb407529734f5e7a2882d50",
+    "evidence/UX-STATES-save/process.json": "71912c3a3083737df5d7ad4def73ecb9d18a155a41851f10dc8a3db4d7595ce0",
+    "evidence/UX-STATES-save/requirement/analysis/analysis-events.jsonl": "5a6c84e6a478bfa68f2d5bbbb874427e366397bf236ff59689d9ff2d89f0040c",
+    "evidence/UX-STATES-save/requirement/analysis/analysis-report.md": "042a61cf902891743978beff254fe1c9e3a4d0f7f0a5e7252c06c8f9f9c4246c",
+    "evidence/UX-STATES-save/requirement/analysis/analysis-result.json": "88b108a672eb269cc276d7748e8b2f38a34e111d041d8dcc1fd339ca31f6063c",
+    "evidence/UX-STATES-save/requirement/analysis/source-manifest.json": "13e1d6a070fff75c73c7786612a2711904939c9608df903a028b787758e66a07",
+    "evidence/UX-STATES-save/requirement/prd/handoff-draft-v1.md": "b5ca3945d2f3fbb1426a28b814584f6181d4be6dbd37ba4eef6a23e2b35b49df",
+    "evidence/UX-STATES-save/requirement/requirement.json": "5992c865024e4ba5189509083ba175a25ab3caaa1d848743c7648981f153fc1b",
+    "evidence/UX-STATES-save/response.json": "e486578292e78b61f6e3320c01225be56380f75b431d1b6fe7d9b55c0f29d8ee",
+    "evidence/UX-STATES-save/stdout.txt": "e486578292e78b61f6e3320c01225be56380f75b431d1b6fe7d9b55c0f29d8ee",
+    "evidence/UX-STATES-validate/process.json": "395591f133f442222eb0f0ba4d469e65538928833961264c17d95075233129fd",
+    "evidence/UX-STATES-validate/response.json": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "evidence/UX-STATES-validate/stdout.txt": "2c0c0e32fa0f72dccf3dd9c95020445ea81172cfef866264cbb758421144ae82",
+    "patches/UX-BACKEND.json": "4e55f774a9ff0b924363b4abb4ee947ba8d64fadc187d5ff7a65363ce603971e",
+    "patches/UX-CLAIM.json": "f56f3f8e5fbfc9cb5970becafcf267d4f9b0f552ce948625b71f7f11b17841d7",
+    "patches/UX-DATA.json": "ddf0091295436c4c392eba3adb4b43ba4b05deb9572376f73537df361883a236",
+    "patches/UX-MISSING.json": "dd716ab623f327364ed6b20e3cd8fc07b32aad7691b6e1aae265b139ab1b524b",
+    "patches/UX-REFERENCE.json": "ea027cdda0b3fa23c5424c74df2303ca5eae9b820663c311842b647f45224237",
+    "patches/UX-STATES.json": "5d5c7f2dadafbb97ec043d023dac75d2885d58e550aa136aa9685739d549a945",
+    "workspace/projects/ux-demo/inputs/cases.json": "70966aa73ac796cfa57886a17889082ec20601892295d55c57b04229ef49219b",
+    "workspace/projects/ux-demo/inputs/reference-list.png": "d4998e2199eaad0ed7fbb20b69ae3d57faee35f440feda6c881f13eb6b8dcfa4",
+    "workspace/projects/ux-demo/inputs/reference-note.md": "761e196652f13ee994e2369a904b9db6f204aba424e51a63d7cfdd01823cb306",
+    "workspace/projects/ux-demo/requirements/UX-BACKEND/analysis/analysis-events.jsonl": "caa3f4af192ea515f2750f1f29d93a53e642d65357646927cf7670d89e9aac64",
+    "workspace/projects/ux-demo/requirements/UX-BACKEND/analysis/analysis-report.md": "e762656e9909e2fa66325be53c0d217c2fc253da2fc54eb06f1c0c5f75c60919",
+    "workspace/projects/ux-demo/requirements/UX-BACKEND/analysis/analysis-result.json": "f41940ee2fc6e3c01bbc7aa6f6934ffad8de0f8fcd00e0f9447ecc91f28d8e2c",
+    "workspace/projects/ux-demo/requirements/UX-BACKEND/analysis/source-manifest.json": "08177526be9e97a5ec86cd0b95defdd6ffcd96501c64fc1adf3c319061bcfe46",
+    "workspace/projects/ux-demo/requirements/UX-BACKEND/prd/handoff-draft-v1.md": "d35532e830cfaf5058ec9778d2c72f94a243fd081787166e643446a4e8d8e069",
+    "workspace/projects/ux-demo/requirements/UX-BACKEND/requirement.json": "20df69fb1d0ea6d0199e6f28643f72d4020a4d7f704c80c7733b08e4b671fe81",
+    "workspace/projects/ux-demo/requirements/UX-CLAIM/analysis/analysis-events.jsonl": "909bcd35f8e6e3fef6d51164e24251d5a631a18dc94e858bdfccbd0b1208751d",
+    "workspace/projects/ux-demo/requirements/UX-CLAIM/analysis/analysis-report.md": "f548329d6bfc491c76164062b7c6051eccfd9b8ee6421a4584896a9c195baf85",
+    "workspace/projects/ux-demo/requirements/UX-CLAIM/analysis/analysis-result.json": "d4e0fca78ccaae1191e2960b68b93a5b1a7440d76737886ab569a2e8935507bc",
+    "workspace/projects/ux-demo/requirements/UX-CLAIM/analysis/source-manifest.json": "13e1d6a070fff75c73c7786612a2711904939c9608df903a028b787758e66a07",
+    "workspace/projects/ux-demo/requirements/UX-CLAIM/prd/handoff-draft-v1.md": "87f20a7cc07264293ccb8d391ba6a0ac27f0312b9e9b0a7be0f61178e02ba8ce",
+    "workspace/projects/ux-demo/requirements/UX-CLAIM/requirement.json": "3f67958e7fb72c830881bf58a405fa18a3afd7385e777912e63b1f3aff7c10fe",
+    "workspace/projects/ux-demo/requirements/UX-DATA/analysis/analysis-events.jsonl": "3f17584ec83978c15b5cececc35d51e5b61c7cfbfc541461a87226899d1b5616",
+    "workspace/projects/ux-demo/requirements/UX-DATA/analysis/analysis-report.md": "59424b29c2ff5bb76e6cb24728bdb918a68af40621bb0a2ba75a427bc00f479c",
+    "workspace/projects/ux-demo/requirements/UX-DATA/analysis/analysis-result.json": "9c39ba8415cdef108d807fb1546de664c23d16f0d2e69322ea0517319a9c5ce3",
+    "workspace/projects/ux-demo/requirements/UX-DATA/analysis/source-manifest.json": "08177526be9e97a5ec86cd0b95defdd6ffcd96501c64fc1adf3c319061bcfe46",
+    "workspace/projects/ux-demo/requirements/UX-DATA/prd/handoff-draft-v1.md": "8222a29211632a6c8542dbe8ad58e3887b7631f26a1fb11ef90048d32289d439",
+    "workspace/projects/ux-demo/requirements/UX-DATA/requirement.json": "34fcaac992ce2bed97b32722d5839459a1f4b326aa78ffe58673a3cf86eea42a",
+    "workspace/projects/ux-demo/requirements/UX-MISSING/analysis/analysis-events.jsonl": "a5065ebe97cd4956635c920982347a0718f373d503021233d042ceaebd42e4ff",
+    "workspace/projects/ux-demo/requirements/UX-MISSING/analysis/analysis-report.md": "7312b6f6725cea14e05141361a824d74c4f57e9cb8157c6a5f85db7d01e786b7",
+    "workspace/projects/ux-demo/requirements/UX-MISSING/analysis/analysis-result.json": "5fd5bf54c7be7e63f81f66041047ffa21ab387c1d9a85c5c223db5a632b2c361",
+    "workspace/projects/ux-demo/requirements/UX-MISSING/analysis/source-manifest.json": "08177526be9e97a5ec86cd0b95defdd6ffcd96501c64fc1adf3c319061bcfe46",
+    "workspace/projects/ux-demo/requirements/UX-MISSING/prd/handoff-draft-v1.md": "9cd50ffdb921a3d458291e84febdb8753afd1350bce1e2613f90e00e2d18a7e3",
+    "workspace/projects/ux-demo/requirements/UX-MISSING/requirement.json": "3ad4263acf0754915222a2b460d0951efa89408f1fdd165b33fae02905364168",
+    "workspace/projects/ux-demo/requirements/UX-REFERENCE/analysis/analysis-events.jsonl": "e0028306c86c2f9a3d246f4be172bbeb68fd1b95f8eabb251207d56721a817e1",
+    "workspace/projects/ux-demo/requirements/UX-REFERENCE/analysis/analysis-report.md": "fc042aab1fda82cae4e3c10edca65aa5aebaa678a897fe4f13233e6cfb18ceea",
+    "workspace/projects/ux-demo/requirements/UX-REFERENCE/analysis/analysis-result.json": "b7da3f3e49f2b21602a9a2ce8f5526da45958426005cb2dc371e780cf303e1fa",
+    "workspace/projects/ux-demo/requirements/UX-REFERENCE/analysis/source-manifest.json": "13e1d6a070fff75c73c7786612a2711904939c9608df903a028b787758e66a07",
+    "workspace/projects/ux-demo/requirements/UX-REFERENCE/prd/handoff-draft-v1.md": "7f827a50e45ecbb33884b0f5547ff9e841764a0c2a9d86814d4f40955d2475bc",
+    "workspace/projects/ux-demo/requirements/UX-REFERENCE/requirement.json": "f7e677683ffe99ecc1ab131a541517e04c708e2e5b1273ed99da1b4a6f2ffe96",
+    "workspace/projects/ux-demo/requirements/UX-STATES/analysis/analysis-events.jsonl": "5a6c84e6a478bfa68f2d5bbbb874427e366397bf236ff59689d9ff2d89f0040c",
+    "workspace/projects/ux-demo/requirements/UX-STATES/analysis/analysis-report.md": "042a61cf902891743978beff254fe1c9e3a4d0f7f0a5e7252c06c8f9f9c4246c",
+    "workspace/projects/ux-demo/requirements/UX-STATES/analysis/analysis-result.json": "88b108a672eb269cc276d7748e8b2f38a34e111d041d8dcc1fd339ca31f6063c",
+    "workspace/projects/ux-demo/requirements/UX-STATES/analysis/source-manifest.json": "13e1d6a070fff75c73c7786612a2711904939c9608df903a028b787758e66a07",
+    "workspace/projects/ux-demo/requirements/UX-STATES/prd/handoff-draft-v1.md": "b5ca3945d2f3fbb1426a28b814584f6181d4be6dbd37ba4eef6a23e2b35b49df",
+    "workspace/projects/ux-demo/requirements/UX-STATES/requirement.json": "5992c865024e4ba5189509083ba175a25ab3caaa1d848743c7648981f153fc1b",
+    "workspace/workspace.json": "accc733d16f675beb7fda00bf2dc8abfe259821a7daba4dcb7a73907e8e393a8"
+  },
+  "limits": [
+    "原文和静态页面为用户批准的合成资料，不是真实系统或用户研究",
+    "六case共享一次独立只读模型调用，不是六次隔离盲测",
+    "模型实际读取PNG图像，未读HTML源码，未验证点击或后台行为",
+    "四个体验字段/观察/问题为模型实际输出，业务骨架/清单及readiness为驱动器提供，不等于完整业务自主分析",
+    "本驱动器只重放已保存输出，不调用模型或浏览器"
+  ]
+}

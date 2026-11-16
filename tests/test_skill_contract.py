@@ -1,4 +1,4 @@
-"""检查阶段6入口、项目安装及按需技术参考；静态契约不替代实际模型评估。"""
+"""检查阶段7入口、项目安装及按需体验参考；静态契约不替代实际看图和模型评估。"""
 
 from pathlib import Path
 import re
@@ -7,8 +7,8 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skill/requirement-analyst"
-SCENARIOS = [*(f"RA-{number:02d}" for number in range(1, 22)), "RA-30", "RA-31"]
-REFERENCES = ("analysis-framework.md", "question-strategy.md", "readiness-rules.md", "incremental-update.md", "historical-retrieval.md", "feasibility-assessment.md")
+SCENARIOS = [*(f"RA-{number:02d}" for number in range(1, 24)), "RA-30", "RA-31"]
+REFERENCES = ("analysis-framework.md", "question-strategy.md", "readiness-rules.md", "incremental-update.md", "historical-retrieval.md", "feasibility-assessment.md", "ux-visual-assessment.md")
 
 
 def read_skill() -> str:
@@ -57,7 +57,7 @@ class SkillContractTests(unittest.TestCase):
                 self.assertTrue((SKILL / "references" / name).is_file())
 
     def test_stage_boundaries(self) -> None:
-        """阶段6复用既有资料工具和技术校验，完整视觉及发布仍不越界。"""
+        """阶段7复用资料/补丁工具做体验分析，完整产品前端、高保真制作及发布不越界。"""
         for filename in ("update_analysis.py", "compare_baseline.py", "index_sources.py", "search_project.py"):
             self.assertTrue((SKILL / "scripts" / filename).is_file())
         content = read_skill()

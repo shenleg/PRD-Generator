@@ -1,0 +1,17 @@
+{
+  "status": "pass",
+  "source": "tests/fixtures/stage-7/reference-list.html",
+  "screenshot": "tests/fixtures/stage-7/reference-list.png",
+  "viewport": {
+    "width": 1360,
+    "height": 900
+  },
+  "mode": "local_headless_chrome_dedicated_empty_profile",
+  "sandbox_note": "MCP在root环境因沙箱启动失败；备用--no-sandbox曾被拒后停止，用户另明确授权本次本地静态页截图，不改全局配置或使用既有账号。",
+  "user_selection": "授权本次本地截图",
+  "authorization_scope": "仅127.0.0.1自建静态资料截图，不扩展至外网或其他浏览器操作",
+  "returncode": 0,
+  "profile_retained_locally": true,
+  "not_a_real_product_page": true,
+  "interactivity_not_implemented": true
+}

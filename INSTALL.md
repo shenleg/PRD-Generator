@@ -46,4 +46,8 @@ uv run --no-project --python /usr/bin/python3 \
 
 当前生产入口新增feasibility-assessment渐进引用。通过实际CLI只读评估合成技术需求，自动调用Skill并读取技术参考；资料充足时限定范围判断，缺资料/旧草稿/部分证明保持unknown，核心业务取舍仍登记产品问题。最小脱敏证据及明确的定点重评范围见 `workspace-sandbox/stage-6/run-manifest.json`，没有新API客户端或原始会话记录入库。
 
-下游测试 Skill 尚未开发，仍按用户批准延期集成验证；它不是安装本分析 Skill 或完成阶段5/6的前提。
+## 阶段7的体验与图像调用
+
+当前安装入口新增ux-visual-assessment按需引用。实际CLI调用Skill并读取1360×900合成PNG（图像载荷返回已核对），未读取HTML源码替代看图；六个case覆盖缺视觉稿、纯后端、已有列表、说法未被图支持、异步状态及数据口径未定。必要脱敏记录见 `workspace-sandbox/stage-7/run-manifest.json`；不存原始模型会话或图片base64，不将截图当真实系统或点击验证。
+
+下游测试 Skill 尚未开发，仍按用户批准延期集成验证；它不是安装本分析 Skill 或完成阶段5/6/7的前提。

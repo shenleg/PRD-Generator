@@ -1,0 +1,39 @@
+{
+  "stage": 7,
+  "status": "pass_with_declared_simulated_visual_scope",
+  "user_selection": "合成页面资料 (Recommended)",
+  "screenshot_permission": "授权本次本地截图",
+  "scenarios": {
+    "RA-22": {"status": "pass", "verified": "复杂页面无视觉稿时ui_dependent=true、观察为空、候选页面明确建议，建议流程/状态和低保真资料，不强制高保真；核心规则保持产品P0。"},
+    "RA-23": {"status": "pass", "verified": "纯后端ui_dependent=false、观察/页面/设计待办为空，无ask_design或视觉索取；正常接口业务与研发问题保留。"}
+  },
+  "extra_cases": {
+    "UX-REFERENCE": "实际看到申请列表/筛选/表头/示意状态，不从他人数据推出可操作权限；跨页/重复/执行时变化仍P0。",
+    "UX-CLAIM": "参考未展示声称已存在的批量按钮/弹窗；登记lookup，不擅自确认存在也不否定全系统；重试生效保留P0。",
+    "UX-STATES": "候选状态和反馈为待设计，部分成功后的取消及批次边界为产品P0，不归为按钮样式。",
+    "UX-DATA": "未定义指标/时间/范围/刷新/异常口径保持产品P0，未自定图表或生成可视化。"
+  },
+  "formal_results": [
+    {"id": "UX-MISSING", "ui_dependent": true, "readiness": "not_ready"},
+    {"id": "UX-BACKEND", "ui_dependent": false, "readiness": "conditionally_ready"},
+    {"id": "UX-REFERENCE", "ui_dependent": true, "readiness": "not_ready"},
+    {"id": "UX-CLAIM", "ui_dependent": true, "readiness": "not_ready"},
+    {"id": "UX-STATES", "ui_dependent": true, "readiness": "not_ready"},
+    {"id": "UX-DATA", "ui_dependent": true, "readiness": "not_ready"}
+  ],
+  "mechanical_validation": "6份正式结果经实际更新器保存及唯一校验器独立通过，四个ux字段和问题原文不改写，观察/建议页面保留来源及不同tag。",
+  "handoff": "6份实际报告和消费者草稿保留待设计、建议与候选流程，消费者前后analysis原字节不变；6次warning草稿不冒充业务就绪。",
+  "observed_failures_and_fixes": [
+    "MCP在root环境因Chromium沙箱失败；备用no-sandbox安全拒绝后停止，用户单独授权本次本地截图才执行。",
+    "消费者丢失ux_assessment四字段，红阶段复现后原样保留并注明建议不等于既有功能。",
+    "报告仍称仅界面依赖/视觉未开展，红阶段复现后按实际保存范围展示。"
+  ],
+  "limits": [
+    "页面/需求均合成；静态HTML仅生成截图，不构成产品前端实现。",
+    "实际模型只读取PNG及参考说明，没有验证点击、后台权限或未展示状态。",
+    "六case共一次实际只读调用，不是六次隔离盲测。",
+    "体验字段、观察及问题来自模型；业务骨架/完成清单/readiness为机械驱动器提供，非完整业务需求自主分析。",
+    "不是实际用户研究、设计签核或真实系统体验验收。",
+    "真实下游测试Skill集成仍按用户批准延期，本次只运行最小消费者。"
+  ]
+}

@@ -1,0 +1,685 @@
+{
+  "mode": "actual_installed_skill_multimodal_ux_assessment",
+  "prompt": "请对 tests/fixtures/stage-7/cases.json 的6个合成需求做只读体验与视觉分析。每例只采用其materials明确给出的资料；有reference-list.png的case必须实际读取该PNG图像及reference-note.md，禁止读取reference-list.html源码或从其他case补事实。截图仅为用户批准的合成低保真参考，不再询问真假。observations仅记录这张图能观察到的内容及位置，没提供图像则为空；page_list区分observed/proposed，建议页面/流程和待设计必须明确是建议，不可写成既有功能。完成ux_assessment现有四字段所需内容，缺资料正确降级、纯后端不强要视觉稿。产品核心规则、设计问题及研发能力确认分开登记，问题按实际业务影响定级，本轮只登记不向用户发起整批追问。不要读旧试跑、tests/results、测试源码或期望，不写文件、不执行浏览器；仅输出结构化评估，case_id保留原值。",
+  "tools": [
+    "Skill",
+    "Read"
+  ],
+  "permission_mode": "dontAsk",
+  "permission_prompts": "none",
+  "result_subtype": "success",
+  "result_is_error": false,
+  "calls": [
+    {
+      "tool": "Skill",
+      "skill": "requirement-analyst"
+    },
+    {
+      "tool": "Read",
+      "project_relative_path": "tests/fixtures/stage-7/cases.json",
+      "result_present": true,
+      "is_error": false
+    },
+    {
+      "tool": "Read",
+      "project_relative_path": ".claude/skills/requirement-analyst/references/ux-visual-assessment.md",
+      "result_present": true,
+      "is_error": false
+    },
+    {
+      "tool": "Read",
+      "project_relative_path": ".claude/skills/requirement-analyst/references/analysis-framework.md",
+      "result_present": true,
+      "is_error": false
+    },
+    {
+      "tool": "Read",
+      "project_relative_path": "tests/fixtures/stage-7/reference-list.png",
+      "result_present": true,
+      "is_error": false,
+      "image_payload_present": true
+    },
+    {
+      "tool": "Read",
+      "project_relative_path": "tests/fixtures/stage-7/reference-note.md",
+      "result_present": true,
+      "is_error": false
+    },
+    {
+      "tool": "Read",
+      "project_relative_path": ".claude/skills/requirement-analyst/references/question-strategy.md",
+      "result_present": true,
+      "is_error": false
+    }
+  ],
+  "structured_output": {
+    "assessments": [
+      {
+        "case_id": "UX-MISSING",
+        "ui_dependent": true,
+        "observations": [],
+        "page_list": [
+          {
+            "content": "建议：多角色采购审批工作台作为待设计界面；入口、页面拆分和现有页面情况均未确认。",
+            "origin": "proposed",
+            "material": "cases.json",
+            "location": "cases[0].requirement"
+          }
+        ],
+        "design_pending_items": [
+          "待补角色及职责资料、审批流程和状态转换说明；建议用角色泳道与状态图表达，不要求高保真。",
+          "待设计审批人分配、驳回修改后重提、批量处理以及各操作结果的界面与状态；业务规则确定前不细化完整界面。"
+        ],
+        "visual_recommendations": [
+          "建议提供现有页面截图或设计规范（如有），以及能表达关键流程和状态的低保真参考；当前无视觉资料，无法评价现有布局或交互。"
+        ],
+        "interaction_flows": [
+          "建议、待确认：角色进入工作台，分配审批人或处理申请；驳回后由相关角色修改并重提，批量处理按待定规则反馈逐项结果。角色交接与状态变化尚未确定。"
+        ],
+        "questions": [
+          {
+            "question": "哪些角色参与审批人分配、审批、驳回后的修改和重提，各自的权限与交接边界是什么？",
+            "priority": "P0",
+            "resolution": "ask_product",
+            "reason": "角色范围和职责未定。",
+            "impact": "无法确定授权操作或还原核心审批流程。",
+            "options": [
+              "由产品逐角色指定权限和交接",
+              "限定少量角色参与并明确职责",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议先按操作列出角色权限和交接，再设计页面；尚未确认。"
+          },
+          {
+            "question": "批量中包含状态或权限不一致的申请时如何处理？",
+            "priority": "P0",
+            "resolution": "ask_product",
+            "reason": "混合批次规则未定。",
+            "impact": "影响实际处理对象、部分结果和验收。",
+            "options": [
+              "逐条判断并反馈结果",
+              "整批拒绝",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议评估逐条判断与逐项反馈，具体由产品确认。"
+          },
+          {
+            "question": "驳回后修改和重提如何改变状态，以及重提后如何重新分配审批？",
+            "priority": "P0",
+            "resolution": "ask_product",
+            "reason": "重提状态及后续流转未定。",
+            "impact": "影响申请生命周期和审批责任。",
+            "options": [
+              "重提后回到待审批并按既定规则分配",
+              "重提后先重新分配审批人",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议先明确状态转换和审批责任，再制作对应交互。"
+          },
+          {
+            "question": "业务规则确定后，工作台的关键状态和操作反馈如何呈现？",
+            "priority": "P1",
+            "resolution": "ask_design",
+            "reason": "未提供视觉稿或流程图。",
+            "impact": "影响操作可理解性和设计交接。",
+            "options": [
+              "提供流程图与低保真状态稿",
+              "先提供文字交互说明",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议先用流程与关键状态低保真说明，避免过早制作高保真。"
+          },
+          {
+            "question": "现有系统是否具备审批分配、重提和逐项批处理所需的接口与状态能力？",
+            "priority": "P1",
+            "resolution": "ask_dev",
+            "reason": "没有现有架构或接口证据。",
+            "impact": "影响实现方案和工作量，当前技术可行性未知。",
+            "options": [
+              "核查现有能力并提供接口与状态说明",
+              "评估需要新增的能力",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议研发依据现有实现核实，不预设能力存在。"
+          }
+        ]
+      },
+      {
+        "case_id": "UX-BACKEND",
+        "ui_dependent": false,
+        "observations": [],
+        "page_list": [],
+        "design_pending_items": [],
+        "visual_recommendations": [
+          "纯内部后端接口，无需视觉稿、页面设计或管理界面；接口实现能力未在资料中验证。"
+        ],
+        "interaction_flows": [
+          "已明确的接口路径：使用现有服务身份，以非空 task_id 查询；已授权任务返回 result_id/status，不存在返回 not_found，无权返回 forbidden。空 task_id 的处理未说明。"
+        ],
+        "questions": [
+          {
+            "question": "空 task_id 应返回什么结果？",
+            "priority": "P1",
+            "resolution": "ask_product",
+            "reason": "需求只规定非空输入。",
+            "impact": "影响非法输入的接口验收，不影响已描述的非空查询路径。",
+            "options": [
+              "返回明确的参数错误",
+              "沿用现有接口的输入校验约定",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议确认并沿用适用的现有接口约定，不预设具体错误码。"
+          },
+          {
+            "question": "现有服务身份、任务授权校验及结果数据是否支持该接口？",
+            "priority": "P1",
+            "resolution": "ask_dev",
+            "reason": "需求指定复用身份，但未提供实现证据。",
+            "impact": "影响技术实现与复用判断；可行性未知。",
+            "options": [
+              "核查现有身份、授权及数据访问能力",
+              "存在缺口时提供实现方案",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议研发核实既有能力，业务上不新增认证规则。"
+          }
+        ]
+      },
+      {
+        "case_id": "UX-REFERENCE",
+        "ui_dependent": true,
+        "observations": [
+          {
+            "content": "顶部显示“采购工作台”和“当前用户：员工甲”；左侧“申请列表”处于高亮。",
+            "tag": "confirmed",
+            "material": "reference-list.png",
+            "location": "顶部栏、左侧导航"
+          },
+          {
+            "content": "主区显示“申请列表”和“新建申请”；筛选区显示申请状态、关键词、查询和重置。",
+            "tag": "confirmed",
+            "material": "reference-list.png",
+            "location": "主区标题及其下方筛选区"
+          },
+          {
+            "content": "表格列为申请编号、申请人、申请状态、申请金额、操作；四行分别包含员工甲和员工乙，以及待审批、已通过、已取消状态，每行显示“查看”。",
+            "tag": "confirmed",
+            "material": "reference-list.png",
+            "location": "列表表头及四条示意数据"
+          },
+          {
+            "content": "列表底部显示“示意数据：4条”和“第1页”；该常态截图未见批量选择控件或批量撤回入口。",
+            "tag": "confirmed",
+            "material": "reference-list.png",
+            "location": "列表区域及底部"
+          },
+          {
+            "content": "截图底部文字注明只展示列表常态，未提供选中态、确认弹窗、加载/空数据/错误画面，也不说明后台权限与状态规则。",
+            "tag": "confirmed",
+            "material": "reference-list.png",
+            "location": "页面底部说明条"
+          }
+        ],
+        "page_list": [
+          {
+            "content": "合成参考中的申请列表常态页面；仅证明截图中的展示。",
+            "origin": "observed",
+            "material": "reference-list.png",
+            "location": "主内容区"
+          },
+          {
+            "content": "建议在列表设计批量撤回入口及选择、处理和结果状态；具体载体待设计，并非已存在功能。",
+            "origin": "proposed",
+            "material": "cases.json",
+            "location": "cases[2].requirement"
+          }
+        ],
+        "design_pending_items": [
+          "待设计可选与不可选项的区分、选择范围、入口和逐条结果反馈；不得以截图中的申请人和状态推断实际授权。",
+          "待设计选中、执行中、全部成功、部分失败和错误等状态；跨页与重复提交的呈现须以产品规则为前提。"
+        ],
+        "visual_recommendations": [
+          "建议沿用截图作为列表常态的低保真构图参考，补充选择、执行和结果的低保真状态及文字交互说明；截图不证明真实系统或点击行为。",
+          "建议用明确文字区分成功、失败及原因，避免仅靠颜色表达结果；具体呈现待设计确认。"
+        ],
+        "interaction_flows": [
+          "已明确业务约束：仅创建人可撤回自己的待审批申请，其他申请不得改变；逐条处理并清晰反馈成功和失败。",
+          "建议、待确认：在列表选取申请并发起批量撤回，逐项校验与处理后展示结果；选择范围、跨页、重复提交及执行时状态变化均待产品确定。"
+        ],
+        "questions": [
+          {
+            "question": "批量选择允许覆盖哪些记录，筛选变化或跨页时选择范围如何计算？",
+            "priority": "P0",
+            "resolution": "ask_product",
+            "reason": "选择范围及跨页行为尚未决定。",
+            "impact": "直接决定实际处理对象，可能造成误操作或遗漏。",
+            "options": [
+              "仅允许选择当前页",
+              "允许跨页保留明确选择",
+              "允许选择全部筛选结果",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议先采用范围清晰的选择方案并明确展示对象数量，待产品确认。"
+          },
+          {
+            "question": "对同一批次重复提交时应如何处理？",
+            "priority": "P0",
+            "resolution": "ask_product",
+            "reason": "重复提交规则未定。",
+            "impact": "影响是否重复执行及结果可验收性。",
+            "options": [
+              "阻止重复提交",
+              "允许提交但保证已处理项不重复生效",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议优先避免重复生效，并明确重复请求的反馈；具体规则待确认。"
+          },
+          {
+            "question": "执行时申请不再处于待审批或创建人资格不满足时，该项如何反馈？",
+            "priority": "P0",
+            "resolution": "ask_product",
+            "reason": "执行时状态变化结果尚未决定，但其他申请不得改变。",
+            "impact": "影响逐条处理结果及权限边界验收。",
+            "options": [
+              "跳过该项并反馈原因",
+              "停止后续处理并反馈已有结果",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议在执行时重新校验且不改变不符合条件的申请，失败反馈方式待产品确认。"
+          },
+          {
+            "question": "选择与逐项反馈应如何呈现？",
+            "priority": "P1",
+            "resolution": "ask_design",
+            "reason": "参考仅有常态列表，缺少交互状态。",
+            "impact": "影响操作可理解性。",
+            "options": [
+              "补充低保真关键状态",
+              "补充文字交互规格",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议先依据确认后的规则补充关键状态。"
+          },
+          {
+            "question": "现有接口是否支持逐项权限及状态校验、重复请求控制和逐项结果？",
+            "priority": "P1",
+            "resolution": "ask_dev",
+            "reason": "截图和说明没有后台实现证据。",
+            "impact": "影响方案及实现工作量，技术能力未知。",
+            "options": [
+              "核查现有接口",
+              "评估新增或调整接口",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议研发逐项核实，不能由截图推断。"
+          }
+        ]
+      },
+      {
+        "case_id": "UX-CLAIM",
+        "ui_dependent": true,
+        "observations": [
+          {
+            "content": "顶部为“采购工作台”，当前用户显示员工甲；左侧“申请列表”高亮。",
+            "tag": "confirmed",
+            "material": "reference-list.png",
+            "location": "顶部栏、左侧导航"
+          },
+          {
+            "content": "申请列表主区显示“新建申请”、申请状态与关键词筛选，以及查询和重置。",
+            "tag": "confirmed",
+            "material": "reference-list.png",
+            "location": "主区标题和筛选区"
+          },
+          {
+            "content": "表格包含申请编号、申请人、申请状态、申请金额、操作列；各行操作显示“查看”。",
+            "tag": "confirmed",
+            "material": "reference-list.png",
+            "location": "列表表头与操作列"
+          },
+          {
+            "content": "该常态截图未见批量撤回按钮或确认弹窗；底部说明未提供选中态、确认弹窗及加载、空数据、错误画面。",
+            "tag": "confirmed",
+            "material": "reference-list.png",
+            "location": "主区及底部说明条"
+          }
+        ],
+        "page_list": [
+          {
+            "content": "合成参考中的申请列表常态页面。",
+            "origin": "observed",
+            "material": "reference-list.png",
+            "location": "主内容区"
+          },
+          {
+            "content": "建议：在已有列表或其他经确认的载体中设计失败重试和结果状态；入口及载体均待核对。",
+            "origin": "proposed",
+            "material": "cases.json",
+            "location": "cases[3].requirement"
+          }
+        ],
+        "design_pending_items": [
+          "待取得批量撤回入口、确认及失败结果相关画面或交互说明，以核对是否可以复用；当前截图不能证实声称的现有按钮与弹窗，也不能证明整个系统不存在。",
+          "待业务规则确定后设计失败原因、重试入口、执行中和重试结果状态。"
+        ],
+        "visual_recommendations": [
+          "建议使用本图仅作列表常态参考；如声称复用已有按钮和确认弹窗，补充对应画面或可交互原型，不从静态图推测点击效果。"
+        ],
+        "interaction_flows": [
+          "业务方声称沿用现有批量撤回按钮和确认弹窗并增加失败重试；所给常态截图未展示这两者，故该复用路径尚无资料支持。",
+          "建议、待确认：用户查看批量结果及失败原因，选择符合待定规则的失败项重试并查看结果；此前的具体入口和确认流程均待核对。"
+        ],
+        "questions": [
+          {
+            "question": "声称可沿用的批量撤回按钮和确认弹窗是否有对应画面或交互资料？",
+            "priority": "P1",
+            "resolution": "lookup",
+            "reason": "现有参考仅展示常态列表，未展示所声称的控件与弹窗。",
+            "impact": "无法验证复用范围或设计已有流程。",
+            "options": [
+              "提供相关截图或原型",
+              "确认需新设计相关交互",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议先取得相关资料；在此之前不认定存在或不存在。"
+          },
+          {
+            "question": "哪些失败项可以重试，重试时是否需要重新校验？",
+            "priority": "P0",
+            "resolution": "ask_product",
+            "reason": "重试对象未定义。",
+            "impact": "影响处理范围、权限及结果正确性。",
+            "options": [
+              "仅允许可恢复失败项重试并重新校验",
+              "允许全部失败项重新校验后尝试",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议区分可恢复失败并在重试时重新校验，范围由产品确定。"
+          },
+          {
+            "question": "结果不明或已成功的项目再次提交时，是否允许重复生效？",
+            "priority": "P0",
+            "resolution": "ask_product",
+            "reason": "重试是否重复生效未定义。",
+            "impact": "可能重复改变业务数据，影响验收。",
+            "options": [
+              "不得重复生效并返回已有结果或状态",
+              "按明确业务规则重新执行",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议避免重复生效并明确结果不明时的处理；尚待产品确认。"
+          },
+          {
+            "question": "结果、失败原因及重试状态如何呈现？",
+            "priority": "P1",
+            "resolution": "ask_design",
+            "reason": "现有参考未给出失败或重试界面。",
+            "impact": "影响用户理解和恢复操作。",
+            "options": [
+              "补充结果及重试状态低保真",
+              "补充交互文字说明",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议在规则明确后提供最小状态稿。"
+          },
+          {
+            "question": "现有批量处理是否提供逐项结果、重试与防重复能力？",
+            "priority": "P1",
+            "resolution": "ask_dev",
+            "reason": "没有请求记录或实现证据。",
+            "impact": "影响技术方案；现有能力未知。",
+            "options": [
+              "核查现有接口和任务机制",
+              "评估需要新增的机制",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议研发核实，不从业务方的复用说法推断后台能力。"
+          }
+        ]
+      },
+      {
+        "case_id": "UX-STATES",
+        "ui_dependent": true,
+        "observations": [
+          {
+            "content": "顶部显示“采购工作台”和当前用户员工甲；左侧选中“申请列表”。",
+            "tag": "confirmed",
+            "material": "reference-list.png",
+            "location": "顶部栏、左侧导航"
+          },
+          {
+            "content": "主区有申请列表标题、新建申请按钮，申请状态和关键词筛选，以及查询、重置控件。",
+            "tag": "confirmed",
+            "material": "reference-list.png",
+            "location": "标题区与筛选区"
+          },
+          {
+            "content": "列表显示申请编号、申请人、申请状态、申请金额、操作列，四条示意记录的操作均为“查看”。",
+            "tag": "confirmed",
+            "material": "reference-list.png",
+            "location": "列表表头和数据行"
+          },
+          {
+            "content": "截图为常态列表，未显示选中、执行中、完成、部分失败、超时或取消状态；页面底部注明未提供选中态、确认弹窗、加载、空数据或错误画面。",
+            "tag": "confirmed",
+            "material": "reference-list.png",
+            "location": "列表及底部说明条"
+          }
+        ],
+        "page_list": [
+          {
+            "content": "合成参考中的申请列表常态页面。",
+            "origin": "observed",
+            "material": "reference-list.png",
+            "location": "主内容区"
+          },
+          {
+            "content": "建议：补充列表上的批量操作与任务结果状态，可采用何种页面或面板尚待设计。",
+            "origin": "proposed",
+            "material": "cases.json",
+            "location": "cases[4].requirement"
+          }
+        ],
+        "design_pending_items": [
+          "待设计选中、提交中、执行中、完成、部分失败、超时及取消相关状态，并展示失败原因；截图不能证明这些状态已经存在。",
+          "待设计同一批次执行中的重复发起限制和反馈；取消控制须以产品对已执行部分的决策为前提。"
+        ],
+        "visual_recommendations": [
+          "建议提供异步任务状态转换说明及关键状态低保真，而不是仅提供常态图；明确区分执行中、结果未知及已完成。",
+          "建议让失败原因可被查看，并在结果中区分成功与失败；具体布局待设计。"
+        ],
+        "interaction_flows": [
+          "已明确：执行中不能重复发起同一批，失败项要能查看原因。",
+          "建议、待确认：选取申请并提交异步批次，执行中显示进度或状态，结束后查看逐项结果和失败原因；超时、取消及已完成部分的处理规则待确认。"
+        ],
+        "questions": [
+          {
+            "question": "批次已执行一部分后是否允许取消，已成功的申请及尚未执行的申请分别如何处理？",
+            "priority": "P0",
+            "resolution": "ask_product",
+            "reason": "产品尚未决定取消及已成功部分的处理。",
+            "impact": "决定业务数据是否保留、回退或继续处理，是核心业务决策而非按钮样式。",
+            "options": [
+              "允许取消剩余项，保留已成功项",
+              "不允许执行中取消",
+              "允许取消并按明确规则处理已成功项",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议优先评估停止未执行项并保留已成功结果的可理解性和业务适用性，不预设采用。"
+          },
+          {
+            "question": "如何判断两次发起属于同一批，以及结果未知或超时后何时可再次发起？",
+            "priority": "P0",
+            "resolution": "ask_product",
+            "reason": "已规定执行中不可重复发起同一批，但批次边界及超时处理未定义。",
+            "impact": "无法判定重复限制，也可能导致重复执行或任务被误认为结束。",
+            "options": [
+              "按任务标识判定，结果未知时先查询任务状态",
+              "按申请集合及业务规则判定",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议先明确业务上的批次身份与超时后恢复规则，再由研发落实。"
+          },
+          {
+            "question": "异步任务的执行、部分失败、超时与取消如何呈现？",
+            "priority": "P1",
+            "resolution": "ask_design",
+            "reason": "仅有常态参考。",
+            "impact": "影响用户识别任务进度、失败原因及可用操作。",
+            "options": [
+              "补充关键状态低保真和转换说明",
+              "先提供状态文案及交互说明",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议按确认后的业务状态提供最小必要状态稿。"
+          },
+          {
+            "question": "现有服务是否支持异步任务状态查询、逐项失败原因及同批次防重？",
+            "priority": "P1",
+            "resolution": "ask_dev",
+            "reason": "参考不包含后台实现证据。",
+            "impact": "影响技术方案和实现成本；能力未知。",
+            "options": [
+              "核查现有任务及接口能力",
+              "评估新增机制",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议研发核实任务状态和防重能力，不把截图当技术证明。"
+          }
+        ]
+      },
+      {
+        "case_id": "UX-DATA",
+        "ui_dependent": true,
+        "observations": [],
+        "page_list": [
+          {
+            "content": "建议：在采购申请数据展示页增加趋势统计与明细查看区域；具体页面结构及是否拆分待设计。",
+            "origin": "proposed",
+            "material": "cases.json",
+            "location": "cases[5].requirement"
+          }
+        ],
+        "design_pending_items": [
+          "待补数据字典、指标定义、时间维度、刷新及异常数据规则；当前无视觉稿，不能判断既有页面。",
+          "待设计状态和部门筛选、趋势展示及明细查看的关系，以及空数据、异常和加载状态；不预设图表类型。"
+        ],
+        "visual_recommendations": [
+          "建议先用指标定义和数据样例澄清信息需求，再选择适当的数据展示形式并提供必要的低保真参考；不强制高保真或指定图表。"
+        ],
+        "interaction_flows": [
+          "建议、待确认：用户按状态和部门筛选，查看趋势统计并进入或展开相应明细；统计口径、时间和筛选与明细的联动规则尚未确定。"
+        ],
+        "questions": [
+          {
+            "question": "趋势统计的指标是什么，按什么时间维度归属和聚合？",
+            "priority": "P0",
+            "resolution": "ask_product",
+            "reason": "指标口径与时间维度均未定义。",
+            "impact": "直接决定统计结果，缺失时无法验收。",
+            "options": [
+              "提供明确指标定义及时间归属规则",
+              "先限定一个业务指标及时间维度",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议提供指标、时间归属和聚合规则及示例，由产品确认，不自行指定口径。"
+          },
+          {
+            "question": "状态和部门筛选的统计范围与明细范围如何对应？",
+            "priority": "P0",
+            "resolution": "ask_product",
+            "reason": "要求筛选及查看明细，但未定义联动和范围。",
+            "impact": "影响统计数字与明细是否一致，可能造成错误解读。",
+            "options": [
+              "明细严格对应选中的统计范围与筛选",
+              "明细采用不同范围并明确说明",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议默认考虑统计与明细范围一致，具体规则待产品确认。"
+          },
+          {
+            "question": "统计多久更新一次，用户应如何理解数据时间？",
+            "priority": "P0",
+            "resolution": "ask_product",
+            "reason": "刷新规则未定，结果时效影响统计解释。",
+            "impact": "影响数据正确性预期与验收。",
+            "options": [
+              "按明确周期刷新并展示数据时间",
+              "按查询时获取的数据计算",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议先明确业务可接受的数据时效及展示要求，不预设刷新频率。"
+          },
+          {
+            "question": "缺失、重复或异常数据在统计和明细中如何处理？",
+            "priority": "P0",
+            "resolution": "ask_product",
+            "reason": "异常数据处理未定。",
+            "impact": "影响统计口径及明细对账。",
+            "options": [
+              "排除并明确提示",
+              "纳入并标记异常",
+              "按异常类型分别处理",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议按异常类型明确处理及展示，待产品确认。"
+          },
+          {
+            "question": "数据展示和明细查看的布局及空、异常状态如何设计？",
+            "priority": "P1",
+            "resolution": "ask_design",
+            "reason": "未提供视觉稿及状态设计。",
+            "impact": "影响筛选、阅读与明细定位体验。",
+            "options": [
+              "提供低保真布局与关键状态",
+              "先提供交互说明",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议口径明确后依据数据特点选择展示形式。"
+          },
+          {
+            "question": "现有数据源是否具备状态、部门、时间及明细字段，并支持所需刷新与筛选？",
+            "priority": "P1",
+            "resolution": "ask_dev",
+            "reason": "没有数据字典或技术资料。",
+            "impact": "影响数据可得性及技术方案；当前能力未知。",
+            "options": [
+              "核查数据字典、数据源及更新机制",
+              "识别数据缺口并评估补充",
+              "其他或暂不确定"
+            ],
+            "recommendation": "建议研发核对数据血缘和能力，不能从需求推断现有支持。"
+          }
+        ]
+      }
+    ]
+  },
+  "source_fingerprints": {
+    "skill/requirement-analyst/SKILL.md": "b1e2716eb1faf55c0b0992d1689d6a9720f18cb511e79f52c55cbcba2b37206d",
+    "skill/requirement-analyst/templates/analysis-report.md": "6a56777f4db9e3ca34c35c455732bf3533959c5bc673d09ef7acc02f53636657",
+    "skill/requirement-analyst/schemas/analysis-result.schema.json": "5e437cba8f8703858aa90cc758ca3a1c77701afd40b6a548460e5aeb35af9cd5",
+    "skill/requirement-analyst/schemas/requirement-item.schema.json": "63f145dd6c75a4384caf0f5df11564c7f07133cdf0ede3bbbba838e2d52ba0d6",
+    "skill/requirement-analyst/schemas/question.schema.json": "f4090632b60c2638a4dc5e37fa3ae0122fd1ba507f692b055b68a40f14fad677",
+    "skill/requirement-analyst/schemas/source.schema.json": "0a72b71a2826f06756851fb156e301ef510ccff949363e6dd925552704be60c9",
+    "skill/requirement-analyst/references/question-strategy.md": "08b7b691979d164b23f9971f4926dfd6483958e3e7268e08ea1354963bdcaa46",
+    "skill/requirement-analyst/references/feasibility-assessment.md": "37a38bd4f4d7de2d6f6ac83ea39f4e871fde7d46fa63e1f9c4eed6e342bf191f",
+    "skill/requirement-analyst/references/ux-visual-assessment.md": "57352215d119d398d40b42c15f67c76432bc4a16c8966bd05bd47643fbcdba88",
+    "skill/requirement-analyst/references/historical-retrieval.md": "3fe053590cbc837c6f7f7117afe86447943d926949ade49b035aefa915fc469c",
+    "skill/requirement-analyst/references/readiness-rules.md": "e1358252f8a8c23eff91d3cbd68ede5582554c8525931d7037c228f57ab0ce8b",
+    "skill/requirement-analyst/references/incremental-update.md": "0a8cbea155209fba6d3a5e37fd4acc5e8d8ac2e1e665870df2c9f0591a0fb3ce",
+    "skill/requirement-analyst/references/analysis-framework.md": "2fe0a6f5be4f9b9bf6be41f58bfa570c96f1a6c30370e6f4c79a65d5a8d128fa",
+    "skill/requirement-analyst/scripts/update_analysis.py": "4c86691d93e69d6f3eccb25c87ac7181e12a552f201d8c56198fd3d693c62485",
+    "skill/requirement-analyst/scripts/index_sources.py": "abc14cbc874b6652bc211fd51b685dcbd26d8822490f6f5c4990f8a794535714",
+    "skill/requirement-analyst/scripts/compare_baseline.py": "d204774a13c0b3b6644a86ed8b7623678613f4b32589f9a6132efe55d580af8b",
+    "skill/requirement-analyst/scripts/search_project.py": "58c435c540bbfdc1f83b19fa8c2ee9d85da6cf66c3bf526fbed890010dd62e1d",
+    "skill/requirement-analyst/scripts/requirements.txt": "856ef1365f90bcd46a30193bd45c49642e6efc4cff86b5146d4a9a0ef61e0412",
+    "skill/requirement-analyst/scripts/project_sources.py": "1c497637a51ba4ae5a7a48f4aa28979d94d4ea9371ddbcc0bb1b00df0dc005a4",
+    "skill/requirement-analyst/scripts/validate_analysis.py": "58acb7ba88e9cdd0a01f4bbffc3bb4ed51bbfba07165342f25ce648c27180e15",
+    "skill/requirement-analyst/scripts/README.md": "e82c2d02db24c41985b83cdae0a34de712a9138ad8c3e7bfabaf9128d7e7bef6",
+    "tests/fixtures/stage-7/reference-list.png": "d4998e2199eaad0ed7fbb20b69ae3d57faee35f440feda6c881f13eb6b8dcfa4",
+    "tests/fixtures/stage-7/reference-note.md": "761e196652f13ee994e2369a904b9db6f204aba424e51a63d7cfdd01823cb306",
+    "tests/fixtures/stage-7/cases.json": "70966aa73ac796cfa57886a17889082ec20601892295d55c57b04229ef49219b",
+    "tests/fixtures/stage-7/reference-list.html": "c32aa116d22cadefee12dfaf301e9f2aab0f0d1331e89e14c4264ff80ba785ca"
+  },
+  "redaction": "仅保留合成任务必要工具及结构化输出，不保存原始会话、实际session、初始化元数据或图像base64。"
+}

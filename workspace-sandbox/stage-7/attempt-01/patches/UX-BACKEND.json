@@ -1,0 +1,190 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "UX-BACKEND",
+  "title": "UX-BACKEND（合成体验分析）",
+  "base_revision": 0,
+  "change_type": "initial_analysis",
+  "actor": "analyst",
+  "summary": "实际模型体验输出机械映射，保留来源、截图事实和设计建议，未提供模拟产品答案",
+  "operations": [
+    {
+      "op": "add_source",
+      "ref": "$input",
+      "value": {
+        "name": "cases.json（阶段7合成资料）",
+        "path": "inputs/cases.json",
+        "type": "input_document",
+        "credibility": "用户批准的合成需求/静态低保真参考，非真实系统或实际点击验证",
+        "last_updated": null,
+        "revision": 1,
+        "adopted_sha256": "70966aa73ac796cfa57886a17889082ec20601892295d55c57b04229ef49219b"
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.goals",
+      "ref": "$goal",
+      "value": {
+        "content": "合成体验能力验证：按本例实际资料范围分析，不把设计建议当既有界面",
+        "tag": "inferred",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "$input",
+            "location": "cases.json：UX-BACKEND"
+          }
+        ],
+        "related_ids": []
+      }
+    },
+    {
+      "op": "add",
+      "collection": "requirements.functional_requirements",
+      "ref": "$function",
+      "value": {
+        "content": "仅为内部服务新增后端结果查询接口，不涉及页面、按钮或用户交互。非空task_id查询已授权任务返回result_id/status，不存在或无权分别返回not_found/forbidden；使用现有服务身份，不新增认证规则。不要替需求增加管理页面。",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "$input",
+            "location": "cases.json：UX-BACKEND"
+          }
+        ],
+        "related_ids": []
+      }
+    },
+    {
+      "op": "add",
+      "collection": "questions",
+      "ref": "$question1",
+      "value": {
+        "question": "空 task_id 应返回什么结果？",
+        "priority": "P1",
+        "resolution": "ask_product",
+        "reason": "需求只规定非空输入。",
+        "impact": "影响非法输入的接口验收，不影响已描述的非空查询路径。",
+        "options": [
+          "返回明确的参数错误",
+          "沿用现有接口的输入校验约定",
+          "其他或暂不确定"
+        ],
+        "recommendation": "建议确认并沿用适用的现有接口约定，不预设具体错误码。",
+        "status": "open",
+        "related_ids": [
+          "$function"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "collection": "questions",
+      "ref": "$question2",
+      "value": {
+        "question": "现有服务身份、任务授权校验及结果数据是否支持该接口？",
+        "priority": "P1",
+        "resolution": "ask_dev",
+        "reason": "需求指定复用身份，但未提供实现证据。",
+        "impact": "影响技术实现与复用判断；可行性未知。",
+        "options": [
+          "核查现有身份、授权及数据访问能力",
+          "存在缺口时提供实现方案",
+          "其他或暂不确定"
+        ],
+        "recommendation": "建议研发核实既有能力，业务上不新增认证规则。",
+        "status": "open",
+        "related_ids": [
+          "$function"
+        ]
+      }
+    }
+  ],
+  "set": {
+    "meta.input_type": "existing_document",
+    "meta.analysis_status": "clarifying",
+    "meta.readiness": "conditionally_ready",
+    "context.source_ids": [
+      "$input"
+    ],
+    "ux_assessment.ui_dependent": false,
+    "ux_assessment.design_pending_items": [],
+    "ux_assessment.visual_recommendations": [
+      "纯内部后端接口，无需视觉稿、页面设计或管理界面；接口实现能力未在资料中验证。"
+    ],
+    "ux_assessment.interaction_flows": [
+      "已明确的接口路径：使用现有服务身份，以非空 task_id 查询；已授权任务返回 result_id/status，不存在返回 not_found，无权返回 forbidden。空 task_id 的处理未说明。"
+    ]
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 7,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成驱动器限定体验验证范围，非完整真实需求业务充分性验收"
+    },
+    {
+      "item": 11,
+      "satisfied": false,
+      "question_refs": [
+        "$question1"
+      ],
+      "reason": "实际模型登记的核心规则/设计待决事项未答，保留缺口"
+    }
+  ]
+}

@@ -41,6 +41,17 @@ class TrialReportTests(unittest.TestCase):
         self.assertNotIn("技术可行性结论和完整视觉分析未开展", report)
         self.assertEqual(data, before)
 
+    def test_ux_assessment_is_not_mislabeled_as_ui_flag_only(self) -> None:
+        """已有体验分析按原建议展示，不再错误宣称仅作依赖判断或未开展完整分析。"""
+        data = json.loads((ROOT / "tests/fixtures/high-low-voltage/analysis-result.json").read_text(encoding="utf-8"))
+        data["ux_assessment"].update(design_pending_items=["待设计：提交中及失败反馈"], visual_recommendations=["建议低保真状态参考"], interaction_flows=["候选：选择后展示结果，待确认"])
+        before = copy.deepcopy(data)
+        report = REPORTS.render_report(data, {"status": "pass", "diagnostics": []})
+        self.assertIn("待设计：提交中及失败反馈", report)
+        self.assertNotIn("仅保留当前界面依赖判断", report)
+        self.assertNotIn("完整视觉分析未开展", report)
+        self.assertEqual(data, before)
+
     def test_tables_escape_markdown_without_changing_data(self) -> None:
         """正文含表格分隔符时仅转义显示，既有标签和正文数据不被改写。"""
         data = json.loads((ROOT / "tests/fixtures/high-low-voltage/analysis-result.json").read_text(encoding="utf-8"))

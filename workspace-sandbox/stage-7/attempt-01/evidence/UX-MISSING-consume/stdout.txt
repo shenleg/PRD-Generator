@@ -1,0 +1,14 @@
+{
+  "validation": {
+    "status": "pass",
+    "diagnostics": []
+  },
+  "requirement_id": "UX-MISSING",
+  "revision": 1,
+  "sync_state": "current",
+  "status": "warning",
+  "action": "draft_created",
+  "message": "已生成简化草稿，待产品负责人确认。",
+  "written": true,
+  "draft_path": "prd/handoff-draft-v1.md"
+}

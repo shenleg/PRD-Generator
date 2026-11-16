@@ -86,6 +86,16 @@ class MinimalConsumerTests(unittest.TestCase):
         for phrase in ("conditionally_feasible", "增加适配器后才可实现", "合成技术负责人资料确认", "不能把未完成改造当作已有功能"):
             self.assertIn(phrase, text)
 
+    def test_ux_pending_design_and_proposed_flow_survive_handoff(self) -> None:
+        """体验建议、待设计状态和候选流程必须进入草稿，不能被消费者丢掉或写成现有功能。"""
+        patch = ready_patch()
+        patch["set"].update({"ux_assessment.ui_dependent": True, "ux_assessment.design_pending_items": ["待设计：混合批次的反馈状态尚无资料"], "ux_assessment.visual_recommendations": ["建议补低保真状态参考，不强制高保真原型"], "ux_assessment.interaction_flows": ["建议流程：选中→执行中反馈→逐条结果，尚未确认"]})
+        self.create(patch)
+        result = self.consume()
+        text = self.draft(result)
+        for phrase in ("ui_dependent", "混合批次的反馈状态尚无资料", "建议补低保真状态参考", "尚未确认"):
+            self.assertIn(phrase, text, phrase)
+
     def test_ra24_missing_analysis_routes_without_creating_requirement(self) -> None:
         """RA-24：没有分析时不创建工作区或需求，只返回分析交接。"""
         result = self.consume()

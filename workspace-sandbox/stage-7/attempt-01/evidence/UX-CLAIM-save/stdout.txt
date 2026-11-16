@@ -1,0 +1,43 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "UX-CLAIM",
+  "revision": 1,
+  "id_map": {
+    "$input": "SRC-1",
+    "$material1": "SRC-2",
+    "$material2": "SRC-3",
+    "$goal": "GOAL-1",
+    "$function": "FR-1",
+    "$observation1": "BND-1",
+    "$observation2": "BND-2",
+    "$observation3": "BND-3",
+    "$observation4": "BND-4",
+    "$page1": "SCN-1",
+    "$page2": "SCN-2",
+    "$question1": "Q-1",
+    "$question2": "Q-2",
+    "$question3": "Q-3",
+    "$question4": "Q-4",
+    "$question5": "Q-5"
+  },
+  "affected_ids": [
+    "GOAL-1",
+    "SCN-1",
+    "SCN-2",
+    "FR-1",
+    "BND-1",
+    "BND-2",
+    "BND-3",
+    "BND-4",
+    "Q-1",
+    "Q-2",
+    "Q-3",
+    "Q-4",
+    "Q-5",
+    "SRC-1",
+    "SRC-2",
+    "SRC-3"
+  ],
+  "written": true
+}

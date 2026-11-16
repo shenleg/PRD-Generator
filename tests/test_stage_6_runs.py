@@ -8,6 +8,7 @@ import tempfile
 import unittest
 
 from test_update_analysis import load_module, read_json
+from historical_sources import recorded_bytes
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -53,11 +54,11 @@ class SavedFeasibilityRuns(unittest.TestCase):
         self.assertEqual(hashlib.sha256((BASE / evolution["before_snapshot"]).read_bytes()).hexdigest(), evolution["before_sha256"])
         self.assertEqual(evolution["affected_case"], "TECH-PARTIAL")
         for relative, expected in self.model["source_fingerprints"].items():
-            self.assertEqual(hashlib.sha256((ROOT / relative).read_bytes()).hexdigest(), expected, relative)
+            self.assertEqual(hashlib.sha256(recorded_bytes(relative, 6)).hexdigest(), expected, relative)
         for relative, expected in self.manifest["artifacts"].items():
             self.assertEqual(hashlib.sha256((self.runs / relative).read_bytes()).hexdigest(), expected, relative)
         for relative, expected in self.manifest["files"].items():
-            self.assertEqual(hashlib.sha256((ROOT / relative).read_bytes()).hexdigest(), expected, relative)
+            self.assertEqual(hashlib.sha256(recorded_bytes(relative, 6)).hexdigest(), expected, relative)
 
     def test_ra20_five_judgments_follow_specific_evidence(self) -> None:
         """明确查询/改造/风险/硬约束分别对应支持、有条件、风险、冲突；未知不冒充能力。"""
