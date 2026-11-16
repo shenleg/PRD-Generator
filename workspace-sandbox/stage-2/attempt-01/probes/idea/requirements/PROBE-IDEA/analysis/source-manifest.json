@@ -1,0 +1,11 @@
+[
+  {
+    "source_id": "SRC-1",
+    "name": "高低压开关逻辑设计表生成想法",
+    "path": "/root/orca/projects/test-skill/tests/fixtures/stage-2-probes/idea.md",
+    "type": "input_document",
+    "credibility": "调用方指定的唯一业务输入；可确认提出了自动生成诉求，未提供领域规则、样表或技术依据。",
+    "last_updated": null,
+    "revision": 1
+  }
+]

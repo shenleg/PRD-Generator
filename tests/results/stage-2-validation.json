@@ -1,0 +1,106 @@
+{
+  "description": "阶段 2 实际最终正式产物复验；pass 只表示数据自洽，不表示需求业务就绪。",
+  "groups": {
+    "high-low-voltage": {
+      "results": [
+        {
+          "requirement_id": "REQ-2026-001",
+          "result_path": "workspace-sandbox/stage-2/attempt-02/high-low-voltage/requirements/REQ-2026-001/analysis/analysis-result.json",
+          "analysis_revision": 3,
+          "analysis_status": "completed",
+          "readiness": "not_ready",
+          "validation": {
+            "status": "pass",
+            "diagnostics": []
+          }
+        }
+      ],
+      "business_question_rounds": 1,
+      "control_question_rounds": 1,
+      "total_question_rounds": 2,
+      "recorded_turns": 3
+    },
+    "task-management": {
+      "results": [
+        {
+          "requirement_id": "REQ-2026-002",
+          "result_path": "workspace-sandbox/stage-2/attempt-02/task-management/requirements/REQ-2026-002/analysis/analysis-result.json",
+          "analysis_revision": 3,
+          "analysis_status": "completed",
+          "readiness": "not_ready",
+          "validation": {
+            "status": "pass",
+            "diagnostics": []
+          }
+        },
+        {
+          "requirement_id": "REQ-2026-003",
+          "result_path": "workspace-sandbox/stage-2/attempt-02/task-management/requirements/REQ-2026-003/analysis/analysis-result.json",
+          "analysis_revision": 3,
+          "analysis_status": "completed",
+          "readiness": "not_ready",
+          "validation": {
+            "status": "pass",
+            "diagnostics": []
+          }
+        },
+        {
+          "requirement_id": "REQ-2026-004",
+          "result_path": "workspace-sandbox/stage-2/attempt-02/task-management/requirements/REQ-2026-004/analysis/analysis-result.json",
+          "analysis_revision": 3,
+          "analysis_status": "completed",
+          "readiness": "not_ready",
+          "validation": {
+            "status": "pass",
+            "diagnostics": []
+          }
+        },
+        {
+          "requirement_id": "REQ-2026-005",
+          "result_path": "workspace-sandbox/stage-2/attempt-02/task-management/requirements/REQ-2026-005/analysis/analysis-result.json",
+          "analysis_revision": 4,
+          "analysis_status": "completed",
+          "readiness": "not_ready",
+          "validation": {
+            "status": "pass",
+            "diagnostics": []
+          }
+        },
+        {
+          "requirement_id": "REQ-2026-006",
+          "result_path": "workspace-sandbox/stage-2/attempt-02/task-management/requirements/REQ-2026-006/analysis/analysis-result.json",
+          "analysis_revision": 3,
+          "analysis_status": "completed",
+          "readiness": "not_ready",
+          "validation": {
+            "status": "pass",
+            "diagnostics": []
+          }
+        }
+      ],
+      "business_question_rounds": 2,
+      "control_question_rounds": 0,
+      "total_question_rounds": 2,
+      "recorded_turns": 4
+    },
+    "probes/idea": {
+      "results": [
+        {
+          "requirement_id": "PROBE-IDEA",
+          "result_path": "workspace-sandbox/stage-2/attempt-02/probes/idea/requirements/PROBE-IDEA/analysis/analysis-result.json",
+          "analysis_revision": 1,
+          "analysis_status": "clarifying",
+          "readiness": "not_ready",
+          "validation": {
+            "status": "pass",
+            "diagnostics": []
+          }
+        }
+      ],
+      "business_question_rounds": 1,
+      "control_question_rounds": 0,
+      "total_question_rounds": 1,
+      "recorded_turns": 1
+    }
+  }
+}

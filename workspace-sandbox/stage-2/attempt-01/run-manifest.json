@@ -1,0 +1,24 @@
+{
+  "description": "阶段 2 模型试跑使用的 Skill、校验器和输入版本；文件变化后不能沿用旧行为结果。",
+  "stage": 2,
+  "files": {
+    "skill/requirement-analyst/SKILL.md": "c7ab0de42c6a21e0a320d340bec18cd87c4719b0fb8cfe889166472c17a5ce12",
+    "skill/requirement-analyst/references/analysis-framework.md": "c7b8ec95745aec39cf4c775bf2efc443d6bde6eb4e4f78a4afe7769e0f632ba1",
+    "skill/requirement-analyst/references/question-strategy.md": "4497dfcf889b6ab55eeed7eafad7dd6a6f3256edeb72b1e44f0d126bd9a948c5",
+    "skill/requirement-analyst/references/readiness-rules.md": "df0956e0482b57d56bfe79b679e102405c1545a18e12708b47eff7f96ac02c83",
+    "skill/requirement-analyst/schemas/analysis-result.schema.json": "9669f2536cc149cfeb8d652e1a10b212f6f1fc935177d150db76bf3745d21ba5",
+    "skill/requirement-analyst/schemas/question.schema.json": "f4090632b60c2638a4dc5e37fa3ae0122fd1ba507f692b055b68a40f14fad677",
+    "skill/requirement-analyst/schemas/requirement-item.schema.json": "63f145dd6c75a4384caf0f5df11564c7f07133cdf0ede3bbbba838e2d52ba0d6",
+    "skill/requirement-analyst/schemas/source.schema.json": "a25962076f4bb26a310b108fffe85648f9d5876af631bf8c78d56629b7093e52",
+    "skill/requirement-analyst/scripts/validate_analysis.py": "c86bcd9f60473aa1b5c2061e0971fc5f21d63017574f6ca18e25237d65259c2c",
+    "skill/requirement-analyst/scripts/requirements.txt": "856ef1365f90bcd46a30193bd45c49642e6efc4cff86b5146d4a9a0ef61e0412",
+    "skill/requirement-analyst/templates/analysis-report.md": "6a56777f4db9e3ca34c35c455732bf3533959c5bc673d09ef7acc02f53636657",
+    "tests/fixtures/high-low-voltage/original-requirement.md": "4840333fa33128c91a66c7ba9726f43d1c1ff3c16910cd9c59ec7688e50431fb",
+    "tests/fixtures/sample-02-task-management.md": "79a4772e26116a0b3afae33933a1425a512bc9f709c5ec79e43edfe8b8e8549b",
+    "tests/fixtures/stage-2-probes/backend.md": "5ecaba884a91b5c580157359bd7496c22f70c5d1b1268b01c02881fe48383337",
+    "tests/fixtures/stage-2-probes/defect.md": "16262d25c70f4bc04b72e234fec5be6312733a43e2c3b9762895b9111dc468ec",
+    "tests/fixtures/stage-2-probes/idea.md": "d6b5ab8bab6ca27a58cfb76307fcf74a38aa0951db4ef92e6c7899cf8088b5ec",
+    "tests/fixtures/stage-2-probes/notification-with-reason.md": "f911340baefc4a13d2cc292fcedec11255ce28344a153eaa09a7f448c068ac84",
+    "tests/fixtures/stage-2-probes/notification.md": "18cf5e8258a4280e8749c6f7c91a422c2753f7726815aa65e8a179602c155ff4"
+  }
+}

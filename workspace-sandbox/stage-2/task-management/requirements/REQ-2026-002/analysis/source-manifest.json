@@ -1,0 +1,11 @@
+[
+  {
+    "source_id": "SRC-1",
+    "name": "仿真任务管理优化（初版）",
+    "path": "/root/orca/projects/test-skill/tests/fixtures/sample-02-task-management.md",
+    "type": "input_document",
+    "credibility": "用户指定的首次业务输入；包含歧义、冲突及缺少的旧资料，不等于已裁决的业务规则。",
+    "last_updated": null,
+    "revision": 1
+  }
+]

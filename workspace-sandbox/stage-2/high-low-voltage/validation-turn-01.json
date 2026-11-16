@@ -1,0 +1,21 @@
+{
+  "turn": 1,
+  "candidate": "/root/orca/projects/test-skill/.claude/worktrees/agent-afe07364050ecc95c/workspace-sandbox/stage-2/high-low-voltage/requirements/REQ-2026-001/analysis/analysis-result.candidate.json",
+  "attempts": [
+    {
+      "attempt": 1,
+      "command": "uv run --offline --no-project --python /usr/bin/python3 --with-requirements /root/orca/projects/test-skill/tests/requirements.txt python -I -B /root/orca/projects/test-skill/skill/requirement-analyst/scripts/validate_analysis.py /root/orca/projects/test-skill/.claude/worktrees/agent-afe07364050ecc95c/workspace-sandbox/stage-2/high-low-voltage/requirements/REQ-2026-001/analysis/analysis-result.candidate.json",
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+      "stderr": "",
+      "output": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    }
+  ],
+  "corrections": 0,
+  "status": "pass",
+  "diagnostics": [],
+  "business_readiness": "not_ready"
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "source_id": "SRC-1",
+    "name": "架构图增加高低压开关组合逻辑设计表——原始需求",
+    "path": "/root/orca/projects/test-skill/tests/fixtures/high-low-voltage/original-requirement.md",
+    "type": "input_document",
+    "credibility": "调用方指定的原始业务材料；其中直接陈述可追溯，未说明的业务规则及技术能力不视为已确认。",
+    "last_updated": null,
+    "revision": 1
+  }
+]

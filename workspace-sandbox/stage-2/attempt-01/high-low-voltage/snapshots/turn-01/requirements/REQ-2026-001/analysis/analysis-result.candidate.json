@@ -1,0 +1,194 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "REQ-2026-001",
+  "meta": {
+    "analysis_revision": 1,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "existing_document",
+    "analysis_status": "clarifying",
+    "readiness": "not_ready"
+  },
+  "context": {
+    "project_id": "architecture-simulation",
+    "domain": "架构图高低压开关组合逻辑设计",
+    "source_ids": ["SRC-1"],
+    "domain_terms": ["高压排列组合 tab", "低压排列组合 tab", "开关动作", "逻辑设计表"]
+  },
+  "value_assessment": {
+    "problem": "现有平台只能做架构图连通性仿真，工程师手工整理开关动作逻辑设计表，效率低且容易出错。",
+    "affected_users": ["工程师"],
+    "expected_benefits": ["减少手工整理和出错机会（依据背景推导，未量化）"],
+    "success_metrics": [],
+    "alternatives": [],
+    "business_value": "unknown",
+    "necessity": "unknown"
+  },
+  "requirements": {
+    "goals": [
+      {"id":"GOAL-1","content":"在架构图中增加高低压开关组合逻辑设计表。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 1 行：需求"}],"status":"active"},
+      {"id":"GOAL-2","content":"通过组合生成逻辑设计表，减少工程师手工整理的工作和出错机会；收益未量化。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 2 行：背景"}],"status":"active"}
+    ],
+    "scenarios": [
+      {"id":"SCN-1","content":"工程师使用架构仿真平台，从架构图读取开关，在高压、低压排列组合 tab 中勾选组合并生成逻辑设计表；组合语义、跨类生成关系和表格内容尚待确认。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 2、4—6 行"}],"status":"active","related_ids":["FR-1","FR-2","FR-3","FR-4","FR-5","Q-1","Q-2","Q-3"]}
+    ],
+    "functional_requirements": [
+      {"id":"FR-1","content":"读取架构图中的开关。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 4 行：读取图中开关"}],"status":"active"},
+      {"id":"FR-2","content":"将图中开关分为高压、低压开关组合；原文未定义归类依据及组合语义。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 4 行：分为高低压开关组合"}],"status":"active","related_ids":["Q-1","Q-4"]},
+      {"id":"FR-3","content":"高压开关作为“高压排列组合” tab。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 5 行：高压排列组合 tab"}],"status":"active"},
+      {"id":"FR-4","content":"低压开关作为“低压排列组合” tab。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 5 行：低压排列组合 tab"}],"status":"active"},
+      {"id":"FR-5","content":"逻辑设计根据勾选的高低压组合生成逻辑设计表。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 6 行：根据勾选生成逻辑设计表"}],"status":"active","related_ids":["Q-2","Q-3"]}
+    ],
+    "business_rules": [
+      {"id":"BR-1","content":"组合分别组织在高压排列组合、低压排列组合两个 tab 中。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 5 行"}],"status":"active","related_ids":["FR-3","FR-4"]},
+      {"id":"BR-2","content":"勾选的高低压组合是生成逻辑设计表的依据；原文未定义跨类组合方式、合法性筛选及空选择语义。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 6 行"}],"status":"active","related_ids":["Q-2","Q-5","Q-6"]}
+    ],
+    "constraints": [
+      {"id":"CON-1","content":"原文描述的现状是平台目前只能对架构图做连通性仿真，工程师需要手工整理开关动作逻辑设计表，效率低且容易出错。这是背景陈述，不是新增功能的技术可行性结论。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 2 行：背景"}],"status":"active"}
+    ],
+    "non_functional_requirements": [],
+    "acceptance_criteria": [
+      {"id":"AC-1","content":"候选验收：给定含高、低压开关的架构图，在归类依据和组合语义已确认后，读取开关并在对应 tab 展示相应组合；具体输入样例和可判定组合集合仍缺，不能视为完整验收。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 4—5 行"}],"status":"to_reassess","related_ids":["FR-1","FR-2","FR-3","FR-4","Q-1","Q-4","Q-5"]},
+      {"id":"AC-2","content":"候选验收：在两个 tab 勾选指定组合后生成逻辑设计表，按业务确认的跨类关系和表结构逐项核对结果；当前没有确定的表格内容、样例与预期结果。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 6 行"}],"status":"to_reassess","related_ids":["FR-5","Q-2","Q-3"]},
+      {"id":"AC-3","content":"候选边界验收：分别构造无开关、只有一类开关、未勾选任何组合或组合受约束的输入；允许生成与否和相应输出待业务定义，不能据此认定验收已完整。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 4—6 行"}],"status":"to_reassess","related_ids":["Q-4","Q-5","Q-6"]}
+    ],
+    "scope": {
+      "in_scope": [
+        {"id":"FR-6","content":"本次原文明示范围为架构图开关读取、高低压排列组合 tab 和依据勾选组合生成逻辑设计表。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 1、4—6 行"}],"status":"active","related_ids":["FR-1","FR-2","FR-3","FR-4","FR-5"]}
+      ],
+      "out_of_scope": []
+    }
+  },
+  "business_assessment": {
+    "flows": [
+      {"id":"FLOW-1","content":"候选流程：读取图中开关 → 按高低压归类 → 分别组织两个 tab 中的组合 → 工程师勾选 → 依据跨类组合规则生成逻辑设计表；归类、组合构造、跨类关系和输出规则未定。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 4—6 行"}],"status":"active","related_ids":["SCN-1","Q-1","Q-2","Q-3","Q-4","Q-5","Q-6"]}
+    ],
+    "states": [],
+    "boundaries": [
+      {"id":"BND-1","content":"候选边界：架构图没有开关或只有高压/低压一类开关时，如何进入组合流程、能否生成尚待确认。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 4—6 行"}],"status":"active","related_ids":["Q-6"]},
+      {"id":"BND-2","content":"候选边界：两侧均有多个已勾选组合时，需要明确跨类组合关系，不得默认为笛卡尔积。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 6 行"}],"status":"active","related_ids":["Q-2"]},
+      {"id":"BND-3","content":"候选边界：单侧或两侧零勾选时，空选择是无输出、允许单侧结果还是另有语义待定。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 6 行"}],"status":"active","related_ids":["Q-6"]}
+    ],
+    "exceptions": [
+      {"id":"EXC-1","content":"候选异常：开关缺少高低压归类信息或无法归类时，阻止生成、提示补齐还是采用其他处理尚未确定。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 4—5 行"}],"status":"active","related_ids":["Q-4","Q-7"]},
+      {"id":"EXC-2","content":"候选异常：若组合触及互斥、联动等约束，哪些组合禁止或需要标识尚未确定；不认定实际已存在这些约束。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 4—6 行"}],"status":"active","related_ids":["Q-5"]}
+    ],
+    "gaps": [
+      {"id":"GAP-1","content":"“组合/排列组合”未说明是一组开关状态、成员集合还是已有工况，也未定义单个开关的状态或动作取值，无法确定组合输入。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 4—5 行"}],"status":"active","related_ids":["Q-1","FR-2","FR-3","FR-4"]},
+      {"id":"GAP-2","content":"勾选多个高压、低压组合后，是交叉组合、显式配对还是独立输出未说明，核心生成流程不可还原。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 6 行"}],"status":"active","related_ids":["Q-2","FR-5"]},
+      {"id":"GAP-3","content":"逻辑设计表的业务含义、最低必要字段和可核对样例未提供，不能确定输出内容及核心验收预期。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 1—2、6 行"}],"status":"active","related_ids":["Q-3","FR-5","AC-2"]},
+      {"id":"GAP-4","content":"高压、低压的业务归类依据及无法归类时的处理未提供，不能判断各开关应进入哪个 tab。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 4—5 行"}],"status":"active","related_ids":["Q-4","FR-1","FR-2"]},
+      {"id":"GAP-5","content":"哪些组合有效、是否存在互斥或联动等约束未说明，不能假定全部组合合法，也不能自行补充行业规则。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 4—6 行"}],"status":"active","related_ids":["Q-5","FR-2","FR-5"]},
+      {"id":"GAP-6","content":"无开关、只有一类开关、单侧未勾选或两侧都未勾选时，是否允许生成及输出含义未说明。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 4—6 行"}],"status":"active","related_ids":["Q-6","FR-1","FR-5"]},
+      {"id":"GAP-7","content":"未取得当前架构图开关数据、属性和数据访问能力的技术资料，现有平台能否支持所需输入和输出尚未经研发核查。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"第 2、4—6 行"}],"status":"active","related_ids":["Q-7","FR-1","FR-2","FR-5"]}
+    ],
+    "conflicts": []
+  },
+  "ux_assessment": {
+    "ui_dependent": true,
+    "design_pending_items": ["原文指定高压、低压两个排列组合 tab，但没有界面资料；登记组合选择和结果表展示所需的交互设计，先明确业务规则，不开展完整视觉分析。"],
+    "visual_recommendations": [],
+    "interaction_flows": ["候选交互：读取图中开关 → 高低压两个 tab 组织组合 → 勾选组合 → 生成逻辑设计表；组合含义、跨类关系、输出与异常行为待确认。"]
+  },
+  "questions": [
+    {
+      "id":"Q-1",
+      "question":"每个 tab 中的一个“组合”，业务上具体表示什么？",
+      "priority":"P0","resolution":"ask_product",
+      "reason":"原文只说排列组合，没有定义组合的基本单位；不能直接假定每个开关只有开/关两态或穷举二进制排列。",
+      "impact":"决定两个 tab 展示的对象、可选内容及后续生成逻辑，是其他规则的前置决策。",
+      "options":["A. 一组开关各自的状态或动作赋值；请随选择说明允许的状态/动作取值。","B. 一组选中的开关成员，仅表示哪些开关参与，不表示状态或动作。","C. 已定义的命名工况；请提供一个工况包含哪些开关信息的例子。","D. 其他，请说明。","E. 暂不确定。"],
+      "recommendation":"推荐 A 作为讨论起点，因为背景提到“开关动作的逻辑设计表”，按开关逐项定义状态/动作更便于核对；具体取值仍须业务确认，不默认只有两态。",
+      "status":"open","related_ids":["GAP-1","FR-2","FR-3","FR-4","AC-1"]
+    },
+    {
+      "id":"Q-2",
+      "question":"同时勾选多个高压组合和多个低压组合时，二者按什么关系生成结果？",
+      "priority":"P0","resolution":"ask_product",
+      "reason":"原文未说明跨高低压类别的组合关系，不能自行推成全排列或按位置配对。",
+      "impact":"决定生成哪些结果及结果条目的对应关系，关系不明会直接生成错误或缺失结果。",
+      "options":["A. 每个已勾选高压组合与每个已勾选低压组合分别交叉配对。","B. 只生成用户明确指定的高压—低压配对。","C. 高压和低压分别输出，不进行跨类配对。","D. 其他，请说明。","E. 暂不确定。"],
+      "recommendation":"推荐 A 作为讨论起点：若目标是查看所勾选高低压组合的共同工况，交叉配对不需要额外隐含匹配规则；若业务只允许指定配对，应选 B。此推荐尚未采用，合法性筛选也未确定。",
+      "status":"open","related_ids":["GAP-2","FR-5","BR-2","BND-2","AC-2"]
+    },
+    {
+      "id":"Q-3",
+      "question":"生成的“逻辑设计表”主要应表达哪一种业务结果？",
+      "priority":"P0","resolution":"ask_product",
+      "reason":"未提供表结构或样例，仅知道生成表格不足以定义可判定输出。",
+      "impact":"决定核心交付内容和验收基准；即使组合算法明确，仍可能生成不是工程师需要的表。",
+      "options":["A. 组合状态表：每行一个完整组合，各开关的状态/动作作为列；请给出一行期望结果及最低必要字段。","B. 动作顺序表：每行一个切换步骤，体现开关动作及先后关系；请给出一个步骤样例和最低必要字段。","C. 沿用已有逻辑设计表格式；请提供表头及一行示例。","D. 其他，请说明并给出最低必要输出示例。","E. 暂不确定。"],
+      "recommendation":"推荐 A 作为讨论起点，因为它直接对应“勾选组合后生成表”；若现有手工表另有用途或固定格式，优先按真实样例修正，不能由分析者代定表头。",
+      "status":"open","related_ids":["GAP-3","FR-5","AC-2"]
+    },
+    {
+      "id":"Q-4",
+      "question":"开关按什么业务依据归入高压或低压，不能归类的开关如何处理？",
+      "priority":"P0","resolution":"ask_product",
+      "reason":"高低压划分在原文中明确存在，但划分标准未提供；无法归类的处理属于同一归类规则的必要边界。",
+      "impact":"归类不明确会使输入错组或遗漏，两个 tab 的内容无法验收。",
+      "options":["A. 按业务已认可的高低压属性归类；属性缺失时提示补齐后再生成。","B. 按业务提供的开关类型映射归类；未覆盖类型提示补齐映射。","C. 由工程师明确指定归类；未指定时提示完成归类。","D. 其他，请说明。","E. 暂不确定。"],
+      "recommendation":"若已有权威属性，推荐 A，可避免重复维护归类规则；研发仍需核实该属性是否存在，不能把推荐视为当前能力。",
+      "status":"open","related_ids":["GAP-4","FR-1","FR-2","EXC-1","AC-1"]
+    },
+    {
+      "id":"Q-5",
+      "question":"可供选择或生成的组合，是否需要按业务合法性规则筛选？",
+      "priority":"P0","resolution":"ask_business",
+      "reason":"原文没有说明组合是否全部有效，也没有给出互斥、联动等约束，不能自行决定合法集合。",
+      "impact":"决定哪些组合可进入最终结果及其可判定预期；组合集合不确定则核心规则和验收不完整。",
+      "options":["A. 所有按已定义取值构造的组合都有效，不另做合法性筛选。","B. 只允许满足业务规则的组合；需提供规则或有效/无效示例。","C. 由工程师维护可用组合清单，系统不自动判断业务合法性。","D. 其他，请说明。","E. 暂不确定。"],
+      "recommendation":"推荐 B 作为讨论起点：若表格用于工程逻辑设计，显式区分有效和无效组合可避免把错误组合作为可用结果；具体限制必须来自业务，不套用未提供的行业规则。",
+      "status":"open","related_ids":["GAP-5","FR-2","FR-5","EXC-2","AC-1","AC-3"]
+    },
+    {
+      "id":"Q-6",
+      "question":"无开关、只有一类开关或存在零勾选时，生成行为采用什么空输入规则？",
+      "priority":"P0","resolution":"ask_product",
+      "reason":"生成依赖勾选的高低压组合，但原文没有说明任一侧为空时的结果语义。",
+      "impact":"决定空输入及单类场景能否完成核心流程，避免默认全选或静默生成不符合预期的表。",
+      "options":["A. 允许只有一侧有开关且有勾选时生成单侧结果；两侧均无有效勾选时不生成并提示。","B. 必须高、低压两侧都有有效勾选才生成，否则提示补齐。","C. 某侧未勾选表示采用该侧全部组合；没有任何开关时不生成。","D. 其他，请说明。","E. 暂不确定。"],
+      "recommendation":"推荐 A 作为讨论起点，避免将未勾选自动解释为全选，同时允许表达单类架构；若业务要求高低压成对才有意义，应选 B。尚未采用此规则。",
+      "status":"open","related_ids":["GAP-6","FR-1","FR-5","BND-1","BND-3","AC-3"]
+    },
+    {
+      "id":"Q-7",
+      "question":"当前架构图可提供哪些开关标识、类型/高低压属性、状态/动作数据，以及支持表格生成的数据访问能力？",
+      "priority":"P1","resolution":"ask_dev",
+      "reason":"没有数据模型、接口或实现资料，本阶段不做技术评估。",
+      "impact":"研发需核实实现所需数据与能力，不能以现有连通性仿真推导出已支持新增功能。",
+      "options":[],"recommendation":"",
+      "status":"open","related_ids":["GAP-7","FR-1","FR-2","FR-5","EXC-1"]
+    }
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "clarification": {
+    "max_business_rounds": 1,
+    "business_rounds_asked": 1,
+    "current_turn": 1,
+    "asked_question_ids": ["Q-1", "Q-2", "Q-3"],
+    "awaiting_user_answer": true,
+    "end_requested": false
+  },
+  "completion_checklist": [
+    {"item":1,"met":true,"reason":"新增逻辑设计表的目标及手工整理痛点明确。","related_questions":[]},
+    {"item":2,"met":true,"reason":"工程师在架构仿真平台使用架构图生成逻辑设计表的场景明确。","related_questions":[]},
+    {"item":3,"met":false,"reason":"流程骨架可描述，但组合单位和跨类生成关系未定。","related_questions":["Q-1","Q-2"]},
+    {"item":4,"met":false,"reason":"输入取值、归类与合法组合规则未定。","related_questions":["Q-1","Q-4","Q-5"]},
+    {"item":5,"met":true,"reason":"当前输入中未发现直接互相冲突的陈述；历史不在本阶段对照。","related_questions":[]},
+    {"item":6,"met":false,"reason":"已识别空输入、单类及无法归类等边界，但处理规则未定。","related_questions":["Q-4","Q-5","Q-6"]},
+    {"item":7,"met":false,"reason":"表格语义、字段、组合预期集合和输出样例缺失，验收仅为待重评草案。","related_questions":["Q-1","Q-2","Q-3","Q-4","Q-5","Q-6"]},
+    {"item":8,"met":true,"reason":"明确记录本阶段未开展历史检索和基线对照。","related_questions":[]},
+    {"item":9,"met":true,"reason":"已登记研发确认项，不作技术可行性判断。","related_questions":["Q-7"]},
+    {"item":10,"met":true,"reason":"明确 ui_dependent 为 true，登记必要待设计事项。","related_questions":[]},
+    {"item":11,"met":true,"reason":"缺口、阻塞及来源已登记，未采用假设或接受风险，仅可形成标注风险的初步草稿。","related_questions":["Q-1","Q-2","Q-3","Q-4","Q-5","Q-6","Q-7"]}
+  ],
+  "analysis_scope_notes": {
+    "history":"本阶段不开展历史检索或基线对照，baseline_revision 为 null，不能推导与历史无冲突。",
+    "technical":"未开展技术可行性评估，缺数据模型及接口等资料，登记 Q-7 给研发，不作可行结论。",
+    "visual":"只判断界面依赖并登记必要待设计项，不开展完整视觉分析。",
+    "non_functional":"原文没有给出性能、规模等非功能指标，不自行补充或认定无此类要求。",
+    "scope":"未提供已确认排除项；out_of_scope 空数组不代表已确认没有其他范围。"
+  }
+}

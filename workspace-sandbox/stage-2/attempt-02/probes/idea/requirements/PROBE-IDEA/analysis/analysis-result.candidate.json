@@ -1,0 +1,341 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "PROBE-IDEA",
+  "meta": {
+    "analysis_revision": 1,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "idea",
+    "analysis_status": "clarifying",
+    "readiness": "not_ready"
+  },
+  "context": {
+    "project_id": "architecture-simulation",
+    "source_ids": ["SRC-1"],
+    "domain_terms": ["高低压开关", "逻辑设计表"],
+    "note": "仅按原文保留术语，不从项目名称认定业务场景，不假定开关状态、连接结构或已有设计规则。"
+  },
+  "conversation": {
+    "round": 1,
+    "business_round_limit": 5,
+    "asked_question_refs": ["PROBE-IDEA/Q-1", "PROBE-IDEA/Q-2", "PROBE-IDEA/Q-3"],
+    "control_questions": [],
+    "awaiting_user_answer": true,
+    "user_requested_stop": false,
+    "note": "本次独立首轮只依据 SRC-1；没有用户回答，不采用推荐、不代为选择，不自行继续下一轮。"
+  },
+  "value_assessment": {
+    "problem": "希望把逻辑设计表的生成交给系统，具体要解决的现有问题尚未说明。",
+    "affected_users": [],
+    "expected_benefits": [],
+    "success_metrics": [],
+    "alternatives": [],
+    "business_value": "unknown",
+    "necessity": "unknown",
+    "related_questions": ["Q-4", "Q-8"],
+    "note": "无收益、成本或频率数字；新增功能的原因仅登记一句 P1，不扩展为价值问卷。"
+  },
+  "requirements": {
+    "goals": [
+      {
+        "id": "GOAL-1",
+        "content": "让系统自动生成高低压开关的逻辑设计表。",
+        "tag": "confirmed",
+        "sources": [{"type": "input_document", "source_id": "SRC-1", "location": "第1行全文：我想让系统自动生成高低压开关的逻辑设计表。"}],
+        "status": "active",
+        "related_ids": ["FR-1", "Q-1", "Q-4"]
+      }
+    ],
+    "scenarios": [],
+    "functional_requirements": [
+      {
+        "id": "FR-1",
+        "content": "系统自动生成高低压开关的逻辑设计表；原文未定义生成依据、行列语义、覆盖范围及结果判定规则。",
+        "tag": "confirmed",
+        "sources": [{"type": "input_document", "source_id": "SRC-1", "location": "第1行：系统自动生成高低压开关的逻辑设计表"}],
+        "status": "active",
+        "related_ids": ["GOAL-1", "Q-1", "Q-2", "Q-3", "Q-5", "Q-6"]
+      }
+    ],
+    "business_rules": [],
+    "constraints": [],
+    "non_functional_requirements": [],
+    "acceptance_criteria": [],
+    "scope": {
+      "in_scope": [
+        {
+          "id": "CON-1",
+          "content": "已明示的需求范围为高低压开关逻辑设计表的自动生成；首版生成哪些情况、采用何种输入及服务何种场景未明确。",
+          "tag": "confirmed",
+          "sources": [{"type": "input_document", "source_id": "SRC-1", "location": "第1行全文"}],
+          "status": "active",
+          "related_ids": ["FR-1", "Q-2", "Q-3", "Q-4"]
+        }
+      ],
+      "out_of_scope": []
+    }
+  },
+  "business_assessment": {
+    "flows": [],
+    "states": [],
+    "boundaries": [
+      {
+        "id": "BND-1",
+        "content": "候选边界，处理规则待定：如果逻辑设计表需要列状态或条件组合，应明确覆盖的业务情况及非法、不适用情况的处理。当前不能断定需要组合枚举、只有两个状态、所有组合合法或存在自动联动。",
+        "tag": "inferred",
+        "sources": [{"type": "input_document", "source_id": "SRC-1", "location": "第1行：高低压开关的逻辑设计表；由输出诉求作出的条件性边界分析"}],
+        "status": "active",
+        "related_ids": ["FR-1", "Q-1", "Q-2", "Q-5"]
+      },
+      {
+        "id": "BND-2",
+        "content": "候选规模增长边界，处理规则待定：若表格包含随开关、状态或条件数量增长的组合，生成、展示及选择结果可能受影响，进而影响输出完整性。实际组合语义与规模均未知，不设数量上限、不假定二态全排列，不自行截断、分页或抽样。",
+        "tag": "inferred",
+        "sources": [{"type": "input_document", "source_id": "SRC-1", "location": "第1行：自动生成高低压开关的逻辑设计表；由可能涉及组合的输出作出的条件性规模分析"}],
+        "status": "active",
+        "related_ids": ["FR-1", "Q-2", "Q-7", "Q-9"]
+      }
+    ],
+    "exceptions": [
+      {
+        "id": "EXC-1",
+        "content": "候选异常，处理规则待定：若必需输入缺失或业务规则相互冲突，生成结果可能不可判定；尚不知应中止、返回部分结果还是采取其他方式，不自动填补或宣称完整。",
+        "tag": "inferred",
+        "sources": [{"type": "input_document", "source_id": "SRC-1", "location": "第1行：系统自动生成；由生成行为作出的条件性异常分析"}],
+        "status": "active",
+        "related_ids": ["FR-1", "Q-3", "Q-5", "Q-6"]
+      }
+    ],
+    "gaps": [
+      {
+        "id": "GAP-1",
+        "content": "逻辑设计表表达什么、每行如何解释尚未提供，不能确定核心输出。",
+        "tag": "inferred",
+        "sources": [{"type": "input_document", "source_id": "SRC-1", "location": "第1行：逻辑设计表；没有表意定义或样表"}],
+        "status": "active",
+        "related_ids": ["FR-1", "Q-1"]
+      },
+      {
+        "id": "GAP-2",
+        "content": "应覆盖哪些业务情况未说明，可能把遗漏的情况误当作生成完成；输出完整性尚不可判定。",
+        "tag": "inferred",
+        "sources": [{"type": "input_document", "source_id": "SRC-1", "location": "第1行全文；未说明覆盖范围"}],
+        "status": "active",
+        "related_ids": ["FR-1", "BND-1", "BND-2", "Q-2"]
+      },
+      {
+        "id": "GAP-3",
+        "content": "系统要根据什么输入生成表格尚不清楚，关键流程无法还原。",
+        "tag": "inferred",
+        "sources": [{"type": "input_document", "source_id": "SRC-1", "location": "第1行：自动生成；未提供输入依据"}],
+        "status": "active",
+        "related_ids": ["FR-1", "Q-3"]
+      },
+      {
+        "id": "GAP-4",
+        "content": "谁在什么工作环节使用表格尚未明确。",
+        "tag": "inferred",
+        "sources": [{"type": "input_document", "source_id": "SRC-1", "location": "第1行全文；未提供核心用户及使用场景"}],
+        "status": "active",
+        "related_ids": ["GOAL-1", "Q-4"]
+      },
+      {
+        "id": "GAP-5",
+        "content": "未给出行结果的计算或判定规则，也未提供已知输入的正确输出；不能形成可执行核心验收。",
+        "tag": "inferred",
+        "sources": [{"type": "input_document", "source_id": "SRC-1", "location": "第1行全文；没有规则或正确性依据"}],
+        "status": "active",
+        "related_ids": ["FR-1", "Q-1", "Q-2", "Q-5"]
+      },
+      {
+        "id": "GAP-6",
+        "content": "输入不足或规则冲突时应输出什么未明确，识别异常不等于有可执行处理规则。",
+        "tag": "inferred",
+        "sources": [{"type": "input_document", "source_id": "SRC-1", "location": "第1行全文；未说明异常预期"}],
+        "status": "active",
+        "related_ids": ["EXC-1", "Q-6"]
+      },
+      {
+        "id": "GAP-7",
+        "content": "若存在组合增长，对较大结果集的业务使用方式尚未知；是否允许限制范围必须由业务决定，不能以技术截断代替完整性规则。",
+        "tag": "inferred",
+        "sources": [{"type": "input_document", "source_id": "SRC-1", "location": "第1行：逻辑设计表；条件性规模增长风险"}],
+        "status": "active",
+        "related_ids": ["BND-2", "Q-2", "Q-7", "Q-9"]
+      },
+      {
+        "id": "GAP-8",
+        "content": "为什么需要自动生成尚未说明，价值和必要性保持 unknown。",
+        "tag": "inferred",
+        "sources": [{"type": "input_document", "source_id": "SRC-1", "location": "第1行全文；未提供痛点"}],
+        "status": "active",
+        "related_ids": ["GOAL-1", "Q-8"]
+      }
+    ],
+    "conflicts": [],
+    "conflict_check": "当前只有一句业务诉求，本次输入与当前会话没有发现相互矛盾的业务陈述；未开展历史对照。"
+  },
+  "questions": [
+    {
+      "id": "Q-1",
+      "question": "你希望逻辑设计表的一行主要表达什么？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "原文没有说明输出含义，不同表意会导致完全不同的生成规则。",
+      "impact": "确定表格的核心业务对象及输出语义，而不是先做无关的命名确认。",
+      "options": ["A. 一组开关状态及该状态下的逻辑结果", "B. 一种操作或触发条件及允许动作、联锁结果", "C. 其他：用一个表格行例子说明", "D. 暂不确定"],
+      "recommendation": "推荐先用 A 的结构提供一个行例子，便于快速说明输入与结果的对应关系；它只是讨论起点，若实际表达条件和动作应选 B，不默认开关二态或必须枚举组合。",
+      "status": "open",
+      "related_ids": ["GAP-1", "FR-1", "BND-1"],
+      "asked_in_round": 1
+    },
+    {
+      "id": "Q-2",
+      "question": "首版生成完成时，表格应覆盖哪些业务情况才算完整？",
+      "priority": "P0",
+      "resolution": "ask_business",
+      "reason": "输出范围不明可能产生看似完成、实际遗漏的结果；这是生成行为的业务规则，不能只留给技术实现。",
+      "impact": "明确完整性口径，避免自动生成被默认理解为任意部分、全排列或可静默截断。",
+      "options": ["A. 覆盖约定业务范围内所有符合规则的情况", "B. 只覆盖用户明确选定的子范围，并明确标出生成范围", "C. 其他：说明完整性的业务口径", "D. 暂不确定"],
+      "recommendation": "推荐 A 作为完整性讨论起点，避免遗漏被当成完成；约定业务范围及规则仍需确认，A 不等于所有二进制组合。若本来只需子范围，选 B 并明确边界，不由系统自行截断。",
+      "status": "open",
+      "related_ids": ["GAP-2", "FR-1", "BND-1", "BND-2", "Q-7"],
+      "asked_in_round": 1
+    },
+    {
+      "id": "Q-3",
+      "question": "期望系统主要依据什么业务输入生成这张表？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "生成依据未提供，核心输入到输出的流程无法还原。",
+      "impact": "决定业务输入入口和后续所需资料；现有系统能否提供是另一个研发确认项。",
+      "options": ["A. 用户给定的开关信息和逻辑规则", "B. 用户提供的设计资料或既有表格", "C. 系统内已有的项目、设备或关系数据", "D. 其他：说明主要输入，可补充必要组合", "E. 暂不确定"],
+      "recommendation": "推荐先按 A 描述一个小输入例子，因为无需假定已有数据或导入能力就能讲清生成依据；不是决定新增配置页面。实际依赖资料或现有数据则分别选 B 或 C，是否具备对应能力由研发核查。",
+      "status": "open",
+      "related_ids": ["GAP-3", "FR-1", "Q-9"],
+      "asked_in_round": 1
+    },
+    {
+      "id": "Q-4",
+      "question": "首版优先用于哪一个工作场景？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "核心使用者及使用环节没有提供。",
+      "impact": "确定核心用户和使用场景，后续复核是否涉及交互界面。",
+      "options": ["A. 设计人员编制或核对逻辑方案", "B. 仿真或测试人员验证逻辑", "C. 运行人员查询操作条件", "D. 其他：说明一个优先场景", "E. 暂不确定"],
+      "recommendation": "推荐 A 作为讨论起点，因为原文称逻辑设计表；不是已确认使用者身份，若用于验证或查询应选 B 或 C。",
+      "status": "open",
+      "related_ids": ["GAP-4", "GOAL-1"],
+      "asked_in_round": null
+    },
+    {
+      "id": "Q-5",
+      "question": "用什么业务依据判定每行逻辑结果正确？",
+      "priority": "P0",
+      "resolution": "ask_business",
+      "reason": "生成规则及正确性标准均未给出，核心规则与验收不能落定。",
+      "impact": "明确合法与不适用情况、输入对应的正确结果，并据此形成可验证案例；不能补造联锁或计算规则。",
+      "options": ["A. 依据业务已确认的规则或标准，并用样例核对", "B. 本次由业务明确判定规则，再共同形成对照样例", "C. 其他：说明权威判定依据", "D. 暂不确定"],
+      "recommendation": "已有明确规则时推荐 A，便于追溯和验收；没有则选 B，不能假装已有标准或正确样表存在。",
+      "status": "open",
+      "related_ids": ["GAP-5", "BND-1", "FR-1", "Q-1", "Q-2", "Q-3"],
+      "asked_in_round": null,
+      "dependency_note": "先明确表意及输入，再细化判定依据；正确性与 Q-2 的覆盖完整性不同。"
+    },
+    {
+      "id": "Q-6",
+      "question": "必需输入缺失或规则冲突导致结果不可判定时，应采取哪种输出策略？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "异常下的预期行为未知，不能把不确定结果默认为正确输出。",
+      "impact": "给 EXC-1 明确业务处理，后续可验证异常输出。",
+      "options": ["A. 停止正式生成并明确原因", "B. 输出可判定部分，同时明确标记不完整及原因", "C. 其他：说明处理策略", "D. 暂不确定"],
+      "recommendation": "推荐 A，防止依据不足的表被当成完整设计结果；若确需部分结果则选 B，再明确可判定边界。",
+      "status": "open",
+      "related_ids": ["GAP-6", "EXC-1", "Q-3", "Q-5"],
+      "asked_in_round": null
+    },
+    {
+      "id": "Q-7",
+      "question": "若确认存在随规模增长的组合结果，较大结果集应怎样供业务使用？",
+      "priority": "P1",
+      "resolution": "ask_product",
+      "reason": "这是组合语义尚未确定时的条件性规模边界，不假定已经遇到性能问题。",
+      "impact": "决定能否分批使用或先明确子范围，保护 Q-2 所定完整性口径；当前不设任意上限或截断。",
+      "options": ["A. 保留约定范围的完整结果，分批查看或选择", "B. 由用户明确缩小业务范围后重新生成，并标注该范围", "C. 其他：说明大结果集使用方式", "D. 暂不确定"],
+      "recommendation": "在必须保留全范围时推荐 A，以避免静默丢失；若业务允许缩小范围选 B，不能由技术自动选取一部分。机制是否支持另由研发核查。",
+      "status": "open",
+      "related_ids": ["GAP-7", "BND-2", "Q-1", "Q-2", "Q-9"],
+      "asked_in_round": null,
+      "priority_note": "目前为条件性 P1；若后续明确规模直接影响核心完整性或验收，应升为 P0，不能以规模问题名固定降级。"
+    },
+    {
+      "id": "Q-8",
+      "question": "自动生成主要希望解决什么现有问题？",
+      "priority": "P1",
+      "resolution": "ask_product",
+      "reason": "原文没有给出新增功能原因，仅需一句主要痛点。",
+      "impact": "支持必要性与价值判断，不索要频率、成本或收益数字。",
+      "options": ["A. 减少手工编表", "B. 减少逻辑遗漏或核对错误", "C. 其他：说明主要问题", "D. 暂不确定"],
+      "recommendation": "推荐从 A 核对，因为自动生成直接对应手工编制的替代；若主要关注正确性应选 B，两项均未被确认。",
+      "status": "open",
+      "related_ids": ["GAP-8", "GOAL-1"],
+      "asked_in_round": null
+    },
+    {
+      "id": "Q-9",
+      "question": "业务输入、规则及覆盖范围明确后，现有系统具备哪些可验证的数据及生成能力，规模上有哪些已知限制？",
+      "priority": "P1",
+      "resolution": "ask_dev",
+      "reason": "没有系统、数据模型或接口资料，不能推断实现支持或可行性。",
+      "impact": "研发确认实际可用能力及限制，不把技术限制直接替换为业务可接受的截断或输出规则。",
+      "options": [],
+      "recommendation": "",
+      "status": "open",
+      "related_ids": ["FR-1", "BND-2", "Q-2", "Q-3", "Q-5", "Q-7"],
+      "asked_in_round": null,
+      "verification": "研发在前置业务明确后核查数据模型、接口、已有生成与结果访问能力，提供证据及已知限制；本轮不作技术评估。"
+    }
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "technical_feasibility": {
+    "conclusion": "unknown",
+    "evidence": [],
+    "credibility": "唯一输入只陈述目标，没有技术证据；本阶段未开展技术评估。",
+    "potential_impact": ["输入可用性及组合规模相关能力可能影响实现方案，需研发核查，不替业务决定结果覆盖范围。"],
+    "related_questions": ["Q-9"],
+    "risks": ["不能把自动生成目标当作现有能力已支持。", "若涉及组合增长，未知技术限制不能成为静默遗漏或截断结果的授权。"]
+  },
+  "ux_assessment": {
+    "ui_dependent": false,
+    "assessment_tag": "inferred",
+    "assessment_basis": "目前只有自动生成表格的诉求，未要求交互界面，暂不认定必须依赖页面；这不是用户确认无需界面。",
+    "design_pending_items": [],
+    "visual_recommendations": [],
+    "interaction_flows": [],
+    "reassessment": "场景及输入方式明确后复核 Q-4、Q-3；若涉及组合结果的展示和选择，结合 BND-2、Q-7 记录业务需要，不自行设计完整界面。"
+  },
+  "completion_checklist": [
+    {"number": 1, "satisfied": false, "reason": "目标方向明确，核心输出含义未明确。", "related_questions": ["Q-1"]},
+    {"number": 2, "satisfied": false, "reason": "核心用户和场景缺失。", "related_questions": ["Q-4"]},
+    {"number": 3, "satisfied": false, "reason": "输入及生成流程无法还原。", "related_questions": ["Q-3"]},
+    {"number": 4, "satisfied": false, "reason": "覆盖范围和行结果判定规则不明确。", "related_questions": ["Q-2", "Q-5"]},
+    {"number": 5, "satisfied": true, "reason": "当前输入及会话未发现重大矛盾；不代表历史无冲突。", "related_questions": []},
+    {"number": 6, "satisfied": false, "reason": "合法范围和异常处理待定；条件性规模边界已登记，未当成已解决。", "related_questions": ["Q-2", "Q-5", "Q-6", "Q-7"]},
+    {"number": 7, "satisfied": false, "reason": "正确输出和完整性均无可判定依据，未写虚构 AC。", "related_questions": ["Q-1", "Q-2", "Q-5", "Q-6"]},
+    {"number": 8, "satisfied": true, "reason": "明确声明本阶段未做历史对照。", "related_questions": []},
+    {"number": 9, "satisfied": true, "reason": "已保留 unknown 和研发确认项，并未宣称完成技术评估。", "related_questions": ["Q-9"]},
+    {"number": 10, "satisfied": true, "reason": "已依据当前诉求作暂时界面依赖判断，场景和输入明确后复核。", "related_questions": ["Q-3", "Q-4", "Q-7"]},
+    {"number": 11, "satisfied": true, "reason": "未解决风险及责任方已记录，无已采用假设，仅支持标注风险的初步草稿。", "related_questions": ["Q-1", "Q-2", "Q-3", "Q-4", "Q-5", "Q-6", "Q-7", "Q-8", "Q-9"]}
+  ],
+  "analysis_limits": {
+    "history": "本阶段不开展历史检索和基线对照，不能推导与历史无冲突。",
+    "technical": "未作技术评估，只有研发确认项 Q-9。",
+    "visual": "没有视觉资料，不做完整视觉分析；仅判断当前界面依赖。",
+    "scope": "out_of_scope 空数组表示没有已确认排除项，不能把未提及视为排除。",
+    "acceptance": "acceptance_criteria 空数组表示资料不足，不是无需验收；核心缺口关联 Q-1、Q-2、Q-5、Q-6。",
+    "downstream": "not_ready，仅供标注风险的初步草稿；校验通过不表示业务就绪、技术可行或批准发布。",
+    "report": "本执行者仅保存 JSON 与实际对话，Markdown 报告由主会话独立产出。"
+  }
+}

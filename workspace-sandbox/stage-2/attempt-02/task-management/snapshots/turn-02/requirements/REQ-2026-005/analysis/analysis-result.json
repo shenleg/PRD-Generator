@@ -1,0 +1,47 @@
+{
+ "schema_version":"1.0","requirement_id":"REQ-2026-005","title":"仿真结果导出",
+ "meta":{"analysis_revision":2,"source_revision":1,"baseline_revision":null,"input_type":"existing_document","analysis_status":"clarifying","readiness":"not_ready"},
+ "context":{"project_id":"architecture-simulation","source_ids":["SRC-1"],"domain_terms":["仿真结果","表格","常用字段","1000条","之前的报告"]},
+ "value_assessment":{"problem":"背景明确导出不方便。","affected_users":["需要结果表格的仿真用户（推断）"],"expected_benefits":["方便取得仿真结果用于后续处理（定性推断）"],"success_metrics":[],"business_value":"unknown","necessity":"necessary"},
+ "requirements":{
+  "goals":[{"id":"GOAL-1","content":"改善仿真结果导出不方便的问题。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"背景；需求第4条"}],"status":"active"}],
+  "scenarios":[{"id":"SCN-1","content":"用户导出所需结果表格；具体数据集合、字段和文件格式尚未确定。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条；备注第2项"}],"status":"active","related_ids":["Q-2","Q-3","Q-4"]}],
+  "functional_requirements":[{"id":"FR-1","content":"仿真结果支持导出成表格，导出常用字段。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条"}],"status":"active"}],
+  "business_rules":[{"id":"BR-1","content":"原文要求最多导出1000条；不自行确定它是总量上限还是单文件上限。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条第1句"}],"status":"active","related_ids":["Q-1"]},{"id":"BR-2","content":"原文另要求数据量大时导出全部结果，不要丢数据；大数据量及与上限的关系未定。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条第2句"}],"status":"active","related_ids":["Q-1"]},{"id":"BR-3","content":"导出格式和之前的报告保持一致；旧报告未提供。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"备注第2项"}],"status":"active","related_ids":["Q-3"]},{"id":"BR-4","content":"暂定每份最多1000条，分多份完整覆盖全部结果，不静默截断。用户仅回答不确定，此为按首轮推荐继续的待验证假设，不是已确认业务规则，也不承诺现有技术支持。","tag":"assumption","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条（候选解释的原文依据）"},{"type":"user_answer","location":"第2轮：REQ-2026-005/Q-1回答不确定"}],"status":"active","related_ids":["Q-1","ASM-1"]}],
+  "constraints":[{"id":"CON-1","content":"尽快上线但未给日期；本期尽量不影响仿真引擎，不认为已经确认禁止任何引擎改动。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"背景；备注第3项"}],"status":"active"}],
+  "acceptance_criteria":[{"id":"AC-1","content":"待重评草案：暂按ASM-1的每份最多1000条、分多份完整覆盖规则，核对数量与完整性；字段、旧格式、结果集合和部分失败预期尚未确定，完整验收仍不可执行。数量规则必须显式标明是假设，不能写成用户确认。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条；备注第2项"},{"type":"user_answer","location":"第2轮：REQ-2026-005/Q-1回答不确定，触发首轮推荐的暂定处理"}],"status":"to_reassess","related_ids":["Q-1","Q-2","Q-3","Q-4","Q-5","ASM-1","BR-4"]}],
+  "scope":{"in_scope":[{"id":"CON-2","content":"仿真结果表格导出，包含原文数量、字段与格式要求的澄清。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条；备注第2项"}],"status":"active"}],"out_of_scope":[]}
+ },
+ "business_assessment":{
+  "flows":[{"id":"FLOW-1","content":"候选流程：确定结果集合→导出→取得表格→核对完整性。当前数量输出按ASM-1暂定分多份完整覆盖，但只是候选业务组织，不指定同步异步实现；现有能力未核实。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条"},{"type":"user_answer","location":"第2轮：REQ-2026-005/Q-1回答不确定，按首轮推荐暂定"}],"status":"active","related_ids":["Q-1","Q-4","Q-5","ASM-1"]}],
+  "boundaries":[{"id":"BND-1","content":"候选边界：空数据、少于1000、等于1000、超过1000，以及数据量持续增长。1000来自原文，记录粒度和大数据量含义未知；不能擅自设新增上限或静默截断。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条"}],"status":"active","related_ids":["Q-1","Q-4","Q-6"]}],
+  "exceptions":[{"id":"EXC-1","content":"候选异常：导出生成或下载失败、部分数据缺失、导出期间结果变化；完整性和失败认定待定，不能把部分数据当成完整成功。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条"}],"status":"active","related_ids":["Q-5","Q-6"]}],
+  "gaps":[{"id":"GAP-1","content":"原数量冲突已按用户不确定后的首轮推荐，登记ASM-1临时处理；尚未得到最终业务确认，不等于风险被接受。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条两句"},{"type":"user_answer","location":"第2轮：REQ-2026-005/Q-1回答不确定"}],"status":"active","related_ids":["Q-1","ASM-1"]},{"id":"GAP-2","content":"字段、旧报告格式、数据集合与条的粒度均未明确。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条；备注第2项"}],"status":"active","related_ids":["Q-2","Q-3","Q-4"]},{"id":"GAP-3","content":"输出不完整时的业务判定缺失。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条"}],"status":"active","related_ids":["Q-5"]}],
+  "conflicts":[{"id":"CNF-1","content":"原文最多1000条与大数据量全部导出的矛盾保留。第2轮用户仅答不确定，依首轮推荐用ASM-1的每份1000条、分多份覆盖暂时处理；这不是最终裁决，待用户核对与研发验证。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条第1句"},{"type":"input_document","source_id":"SRC-1","location":"需求第4条第2句"},{"type":"user_answer","location":"第2轮：REQ-2026-005/Q-1回答不确定"}],"status":"active","related_ids":["BR-1","BR-2","BR-4","ASM-1"],"related_question":"Q-1","resolution_state":"provisionally_addressed"}]
+ },
+ "ux_assessment":{"ui_dependent":true,"design_pending_items":["任务页与旧报告均未提供；只登记导出入口和结果反馈待核对，不展开完整视觉设计。"],"interaction_flows":["确定集合→请求导出→取得结果；具体交互尚待业务和能力确认。"]},
+ "questions":[
+  {"id":"Q-1","question":"超过1000条时，最终应导出多少数据？","priority":"P0","resolution":"ask_product","reason":"上限与全部结果不丢失的说法冲突。","impact":"按有效ASM-1暂时表达数量预期，但还需验证；不确定不等于最终确认或风险接受。","options":["总量最多1000条，超限时明确提示","完整导出所有结果，1000不作为总量上限","每份最多1000条，分多份覆盖全部结果","其他（请说明规则）","暂不确定"],"recommendation":"首轮推荐每份最多1000条、分多份覆盖全部结果；依问题策略对用户不确定的回答登记可验证暂定假设，未判定技术可行。","status":"provisional","answer":"不确定。","answer_sources":[{"type":"user_answer","location":"第2轮：REQ-2026-005/Q-1回答"}],"related_ids":["BR-1","BR-2","BR-4","CNF-1","GAP-1","BND-1","ASM-1"]},
+  {"id":"Q-2","question":"本期导出哪些字段？","priority":"P0","resolution":"ask_product","reason":"常用字段没有清单。","impact":"无法判定核心输出内容。","options":["直接列必需字段及业务含义","以旧报告字段为起点确认本期清单","其他","暂不确定"],"recommendation":"推荐对照旧报告确认本期字段，符合格式延续诉求；不在拿到报告前补造字段。","status":"open","related_ids":["FR-1","GAP-2","AC-1"]},
+  {"id":"Q-3","question":"需要补充之前的报告样例或明确格式说明。","priority":"P0","resolution":"lookup","reason":"所指资料未提供，不做历史检索。","impact":"文件类型、列顺序及值格式不可核对。","options":[],"recommendation":"","status":"open","related_ids":["BR-3","GAP-2","AC-1"]},
+  {"id":"Q-4","question":"一次导出的结果集合按什么范围确定？","priority":"P0","resolution":"ask_product","reason":"全部结果及一条记录的粒度未知。","impact":"可能导错范围或错误计数。","options":["单个任务的结果记录，并明确记录粒度","用户选中任务的结果集合，并明确记录粒度","当前筛选范围的结果集合，并明确记录粒度","其他","暂不确定"],"recommendation":"推荐先明确单任务结果集合，便于定义全部及计数；只是讨论起点，未排除其他范围。","status":"open","related_ids":["GAP-2","BND-1","AC-1"]},
+  {"id":"Q-5","question":"导出只有部分数据生成成功时如何认定本次结果？","priority":"P0","resolution":"ask_product","reason":"不要丢数据必须有部分失败预期。","impact":"不完整输出可能被当成完整报告。","options":["本次失败，不作为完整导出交付","明确标为部分结果及缺失范围，允许补齐","其他","暂不确定"],"recommendation":"推荐本次失败并明确提示，避免用户误用不完整结果；尚未采用。","status":"open","related_ids":["EXC-1","GAP-3"]},
+  {"id":"Q-6","question":"请研发核查现有导出、结果规模、数据一致性、旧格式兼容与引擎影响，不预先承诺全量或分多份可行。","priority":"P1","resolution":"ask_dev","reason":"无技术资料。","impact":"规模和完整性保障未知。","options":[],"recommendation":"","status":"open","related_ids":["FR-1","BND-1","EXC-1","CON-1"]}
+ ],
+ "assumptions":[{"id":"ASM-1","content":"暂按每份最多1000条、分多份完整覆盖全部结果继续分析，不静默丢弃超过部分。此为待验证假设，不是用户已经确认的导出数量规则。","tag":"assumption","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第4条（首轮推荐的原文依据）"},{"type":"user_answer","location":"第2轮：REQ-2026-005/Q-1回答不确定"}],"status":"active","basis":"用户在第2轮对首轮Q-1回答不确定；依问题策略采用首轮已展示的推荐C暂定推进，兼顾1000条与结果完整性，不把该回答标为answered。","verification":"验证人：用户核对业务数量规则，研发核查现有导出能力。途径：用户对照旧报告及超过1000条的样例检查每份条数和全部结果覆盖，明确接受或修改规则；研发核查是否支持分多份及完整性，不以未核查能力当作支持。最终业务确认和技术核查前保留assumption标签。","related_question":"Q-1","related_ids":["BR-4","CNF-1","Q-6"]}],"decisions":[],
+ "completion_checklist":[
+  {"number":1,"satisfied":true,"reason":"改善导出不便目标明确。","related_questions":[]},
+  {"number":2,"satisfied":true,"reason":"用户取得结果表格的场景明确，不新增角色。","related_questions":[]},
+  {"number":3,"satisfied":false,"reason":"数量按有效ASM-1暂定，但结果集合仍不确定。","related_questions":["Q-4"]},
+  {"number":4,"satisfied":false,"reason":"暂定数量规则不能补齐字段、格式及粒度。","related_questions":["Q-2","Q-3","Q-4"]},
+  {"number":5,"satisfied":true,"reason":"数量矛盾以active ASM-1暂时处理，Q-1为provisional；不是最终业务裁决，必须保留假设及验证。","related_questions":["Q-1"]},
+  {"number":6,"satisfied":false,"reason":"超限数量暂定后，部分失败及不完整输出处理仍缺失。","related_questions":["Q-5"]},
+  {"number":7,"satisfied":false,"reason":"字段、格式和结果集合不足以完整验收，数量验收也仅基于假设。","related_questions":["Q-2","Q-3","Q-4","Q-5"]},
+  {"number":8,"satisfied":true,"reason":"已声明未进行历史对照。","related_questions":[]},
+  {"number":9,"satisfied":true,"reason":"研发项保留，未判定分多份技术可行。","related_questions":["Q-6"]},
+  {"number":10,"satisfied":true,"reason":"已判断界面依赖并记录缺资料。","related_questions":[]},
+  {"number":11,"satisfied":true,"reason":"ASM-1有明确依据、用户和研发验证分工及样例核对途径，带风险草稿须保留标签。","related_questions":["Q-1","Q-6"]}
+ ],
+ "analysis_scope":{"history":"未做历史检索或基线对照；旧报告仅登记缺失。","technical":"未做技术可行性评估。","visual":"只判断界面依赖，不进行完整视觉分析。","scope_note":"尚未明确排除项。","delivery":"报告由主会话独立处理。"},
+ "turn_tracking":{"turn":2,"business_rounds_asked_global":2,"business_round_limit":5,"asked_question_ids":[],"asked_question_ids_previous_turn":["Q-1"]}
+}

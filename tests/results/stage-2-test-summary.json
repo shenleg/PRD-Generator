@@ -1,0 +1,9 @@
+{
+  "description": "实际运行的确定性回归；读取已保存模型证据，不重新调用模型。",
+  "tests_run": 59,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "status": "pass",
+  "log": "tests/results/stage-2-test-run.txt"
+}

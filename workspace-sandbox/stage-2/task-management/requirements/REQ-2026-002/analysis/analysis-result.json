@@ -1,0 +1,49 @@
+{
+  "schema_version":"1.0","requirement_id":"REQ-2026-002","title":"任务列表筛选",
+  "meta":{"analysis_revision":1,"source_revision":1,"baseline_revision":null,"input_type":"existing_document","analysis_status":"clarifying","readiness":"not_ready"},
+  "context":{"project_id":"architecture-simulation","source_ids":["SRC-1"],"domain_terms":["任务","常用条件"]},
+  "current_understanding":"改善任务多时难以定位的问题；用户为仿真任务使用者（推断），场景是从任务列表查找目标任务。未假定具体筛选字段或权限。",
+  "value_assessment":{"problem":"任务列表东西多了找不到（背景）。","affected_users":["仿真任务使用者（推断）"],"expected_benefits":["方便定位任务（定性，背景支持）"],"success_metrics":[],"alternatives":[],"business_value":"unknown","necessity":"necessary"},
+  "requirements":{
+    "goals":[{"id":"GOAL-1","content":"改善任务列表内容多时找不到任务的问题。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"背景"}],"status":"active"}],
+    "scenarios":[{"id":"SCN-1","content":"用户在任务列表选择或输入条件定位目标任务；具体条件、组合和触发方式待定。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"背景；需求第1条"}],"status":"active","related_ids":["Q-1","Q-2"]}],
+    "functional_requirements":[{"id":"FR-1","content":"任务列表要能筛选，原文要求把常用条件放上去；未列条件清单。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第1条"}],"status":"active"}],
+    "business_rules":[],
+    "constraints":[{"id":"CON-1","content":"原文要求尽快上线，未给具体日期；本期尽量不影响仿真引擎，不等于禁止所有引擎改动。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"背景；备注第3项"}],"status":"active"}],
+    "non_functional_requirements":[{"id":"NFR-1","content":"筛选要快；未给可验收阈值及测量条件。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第1条"}],"status":"active"}],
+    "acceptance_criteria":[{"id":"AC-1","content":"草案：对有匹配、无匹配的任务应用确认后的条件，结果符合组合规则并满足约定耗时；字段、组合规则及耗时口径缺失，暂不可执行验收。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第1条"}],"status":"to_reassess","related_ids":["FR-1","Q-1","Q-2","Q-3"]}],
+    "scope":{"in_scope":[{"id":"CON-2","content":"任务列表筛选。","tag":"confirmed","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第1条"}],"status":"active"}],"out_of_scope":[]}
+  },
+  "business_assessment":{
+    "flows":[{"id":"FLOW-1","content":"候选流程：进入列表→设置条件→触发筛选→展示结果；触发与组合规则待定。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第1条"}],"status":"active","related_ids":["Q-1","Q-2"]}],
+    "boundaries":[{"id":"BND-1","content":"候选边界：空条件、多条件、无匹配和清空条件；识别不等于已确认处理规则。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第1条"}],"status":"active","related_ids":["Q-2"]}],
+    "exceptions":[{"id":"EXC-1","content":"候选异常：查询失败或旧请求晚返回，具体恢复及一致性保障待研发核查，不能把错误结果当成筛选成功。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第1条"}],"status":"active","related_ids":["Q-4"]}],
+    "gaps":[{"id":"GAP-1","content":"常用条件及取值含义缺失。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第1条"}],"status":"active","related_ids":["Q-1"]},{"id":"GAP-2","content":"条件组合与空条件语义缺失。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第1条"}],"status":"active","related_ids":["Q-2"]},{"id":"GAP-3","content":"筛选快缺少可测指标。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"需求第1条"}],"status":"active","related_ids":["Q-3"]},{"id":"GAP-4","content":"整批优化的交付顺序及目标日期未明确。","tag":"inferred","sources":[{"type":"input_document","source_id":"SRC-1","location":"背景；需求第1至7条"}],"status":"active","related_ids":["Q-5"]}],
+    "conflicts":[]
+  },
+  "ux_assessment":{"ui_dependent":true,"design_pending_items":["现有任务页未提供；待业务确定后核对筛选交互，不做完整视觉设计。"],"visual_recommendations":[],"interaction_flows":["候选：列表→条件→结果；未确定页面细节。"]},
+  "questions":[
+    {"id":"Q-1","question":"本期必须支持哪些筛选条件？","priority":"P0","resolution":"ask_product","reason":"常用条件没有字段清单。","impact":"无法确定核心输入和验收。","options":["由你列出本期必需条件及含义","先提供现有页面或查找示例，再确认条件清单","其他（请说明）","暂不确定"],"recommendation":"推荐列出本期必需条件，避免分析者把常见字段擅自纳入本期。","status":"open","related_ids":["FR-1","GAP-1","AC-1"]},
+    {"id":"Q-2","question":"不同筛选条件如何组合？","priority":"P0","resolution":"ask_product","reason":"组合方式直接改变结果集合。","impact":"核心输出不唯一。","options":["不同条件同时满足（AND），未选条件不限制","任一已选条件满足（OR），未选条件不限制","分别指定组合关系","其他（请说明）","暂不确定"],"recommendation":"推荐 AND、未选不限制，方便逐步缩小范围；尚未采用。","status":"open","related_ids":["FR-1","GAP-2","BND-1"]},
+    {"id":"Q-3","question":"筛选快用哪种口径验收？","priority":"P0","resolution":"ask_product","reason":"原文只有定性要求。","impact":"无法判断速度是否达标。","options":["约定筛选到结果稳定展示的最大耗时（请给阈值和典型任务量）","对照现有基线约定改善目标（请提供基线资料）","其他（请说明）","暂不确定"],"recommendation":"推荐端到端耗时并说明典型任务量，直接对应等待体验；不编造阈值。","status":"open","related_ids":["NFR-1","GAP-3","AC-1"]},
+    {"id":"Q-4","question":"请研发核查现有列表查询、可见范围控制、请求一致性和引擎影响。","priority":"P1","resolution":"ask_dev","reason":"未提供实现资料。","impact":"现有能力和恢复机制未知。","options":[],"recommendation":"","status":"open","related_ids":["FR-1","EXC-1","CON-1"]},
+    {"id":"Q-5","question":"整批优化按什么顺序交付？","priority":"P1","resolution":"ask_product","reason":"一起优化、尽快上线没有具体顺序和日期。","impact":"影响排期与范围协商，不替代核心规则。","options":["先澄清错误与冲突，再确定分批顺序","统一完整交付（请补目标时间）","其他（请说明）","暂不确定"],"recommendation":"推荐先澄清再定分批顺序，避免为赶进度固化模糊规则；不提前排除单元。","status":"open","related_ids":["GAP-4","CON-1"]},
+    {"id":"Q-6","question":"需补充原文所指的现有任务页资料。","priority":"P1","resolution":"lookup","reason":"参考页面未提供。","impact":"不能核对已有入口和交互延续。","options":[],"recommendation":"","status":"open","related_ids":["FR-1"]}
+  ],
+  "assumptions":[],"decisions":[],
+  "completion_checklist":[
+    {"number":1,"satisfied":true,"reason":"定位任务这一目标明确。","related_questions":[]},
+    {"number":2,"satisfied":true,"reason":"任务使用者从列表查找任务的场景明确；未补造角色。","related_questions":[]},
+    {"number":3,"satisfied":false,"reason":"输入与组合流程不确定。","related_questions":["Q-1","Q-2"]},
+    {"number":4,"satisfied":false,"reason":"字段、组合及速度规则缺失。","related_questions":["Q-1","Q-2","Q-3"]},
+    {"number":5,"satisfied":true,"reason":"本单元未发现输入内重大矛盾，不代表无历史冲突。","related_questions":[]},
+    {"number":6,"satisfied":false,"reason":"空条件与组合边界预期不明。","related_questions":["Q-2"]},
+    {"number":7,"satisfied":false,"reason":"验收草案缺少可判定字段和耗时指标。","related_questions":["Q-1","Q-2","Q-3"]},
+    {"number":8,"satisfied":true,"reason":"已声明未做历史对照，baseline_revision=null。","related_questions":[]},
+    {"number":9,"satisfied":true,"reason":"已登记研发核查项，无技术可行性结论。","related_questions":["Q-4"]},
+    {"number":10,"satisfied":true,"reason":"已标记界面依赖并记录缺资料。","related_questions":["Q-6"]},
+    {"number":11,"satisfied":true,"reason":"遗留问题已记录，只支持标风险的初步草稿。","related_questions":[]}
+  ],
+  "analysis_scope":{"history":"本阶段未开展历史检索或基线对照，不能宣称与历史无冲突。","technical":"未开展技术可行性评估，仅登记 ask_dev。","visual":"仅判断界面依赖并记录资料缺失。","exclusions":"out_of_scope 为空表示未明确排除项，不表示已确认无排除项。"},
+  "turn_tracking":{"turn":1,"global_business_rounds_asked":1,"global_business_round_limit":5,"asked_question_ids":[]}
+}
