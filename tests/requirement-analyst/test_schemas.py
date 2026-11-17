@@ -107,7 +107,7 @@ class SchemaTests(unittest.TestCase):
 
     def test_human_approved_golden_sample(self) -> None:
         """黄金样例忠于已审核要点：三个 P0 保持待回答，不能把格式通过当成需求就绪。"""
-        fixture = Path(__file__).resolve().parents[1] / "fixtures/high-low-voltage/analysis-result.json"
+        fixture = Path(__file__).resolve().parents[1] / "fixtures/requirement-analyst/high-low-voltage/analysis-result.json"
         data = json.loads(fixture.read_text(encoding="utf-8"))
         self.validators[SCHEMA_NAMES[0]].validate(data)
         self.assertEqual(data["meta"]["readiness"], "not_ready")

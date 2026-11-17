@@ -6,6 +6,7 @@ from pathlib import Path
 import unittest
 
 from historical_sources import recorded_bytes
+from material_paths import current_material_path
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -90,8 +91,12 @@ class SavedKnowledgeRuns(unittest.TestCase):
             self.assertTrue(mapping)
             for relative, expected in mapping.items():
                 with self.subTest(path=relative):
-                    # 测试源码已分类移动，旧指纹必须读取阶段8原提交，不能重算旧哈希。
-                    raw = recorded_bytes(relative, 8) if directory == ROOT and relative.startswith("tests/") and relative.endswith(".py") else (directory / relative).read_bytes()
+                    # 旧测试源码绑定历史提交；迁移资料读取新位置的当前字节，仍比对旧哈希。
+                    if directory == ROOT and relative.startswith("tests/") and relative.endswith(".py"):
+                        raw = recorded_bytes(relative, 8)
+                    else:
+                        path = current_material_path(relative) if directory == ROOT else directory / relative
+                        raw = path.read_bytes()
                     self.assertEqual(hashlib.sha256(raw).hexdigest(), expected)
 
 

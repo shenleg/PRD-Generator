@@ -69,16 +69,16 @@ class SkillContractTests(unittest.TestCase):
         """阶段 2 和阶段 3 场景均有输入、预设回答及核对清单，不能只列编号。"""
         for scenario in SCENARIOS:
             with self.subTest(scenario=scenario):
-                content = (ROOT / "tests/scenarios" / f"{scenario}.md").read_text(encoding="utf-8")
+                content = (ROOT / "tests/scenarios/requirement-analyst" / f"{scenario}.md").read_text(encoding="utf-8")
                 for marker in (scenario, "输入", "回答", "核对清单", "依据"):
                     self.assertIn(marker, content)
 
     def test_sample_two_is_raw_input_not_test_oracle(self) -> None:
         """第二样例逐字提取，参考要点和后续预设回答不混入被测输入。"""
         source = (ROOT / "docs/requirement-analyst/sample-task-management.md").read_text(encoding="utf-8")
-        fixture = (ROOT / "tests/fixtures/sample-02-task-management.md").read_text(encoding="utf-8")
+        fixture = (ROOT / "tests/fixtures/requirement-analyst/sample-02-task-management.md").read_text(encoding="utf-8")
         self.assertEqual(fixture, source.split("```\n", 1)[1].split("\n```", 1)[0] + "\n")
-        expected = (ROOT / "tests/expected/sample-02-expected.md").read_text(encoding="utf-8")
+        expected = (ROOT / "tests/expected/requirement-analyst/sample-02-expected.md").read_text(encoding="utf-8")
         self.assertIn("用户已认可修订版", expected)
         self.assertNotIn("埋点", fixture)
         self.assertNotIn("预设回答", fixture)

@@ -11,7 +11,7 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[2]
-FIXTURES = ROOT / "tests/fixtures/stage-6"
+FIXTURES = ROOT / "tests/fixtures/requirement-analyst/stage-6"
 SCRIPTS = ROOT / "skill/requirement-analyst/scripts"
 
 

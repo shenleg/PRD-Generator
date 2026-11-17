@@ -8,6 +8,7 @@ import unittest
 
 from test_update_analysis import load_module
 from historical_sources import recorded_bytes
+from material_paths import current_material_path
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -50,8 +51,12 @@ class FinalAcceptanceTests(unittest.TestCase):
         for mapping, directory in ((manifest["source_fingerprints"], ROOT), (manifest["artifacts"], TRIAL)):
             for relative, expected in mapping.items():
                 with self.subTest(path=relative):
-                    # 只为已移动的测试源码读取当时提交；生产和业务产物继续核对当前字节。
-                    raw = recorded_bytes(relative, "final") if directory == ROOT and relative.startswith("tests/") and relative.endswith(".py") else (directory / relative).read_bytes()
+                    # 旧测试源码绑定历史提交；迁移资料读取新位置的当前字节，仍比对旧哈希。
+                    if directory == ROOT and relative.startswith("tests/") and relative.endswith(".py"):
+                        raw = recorded_bytes(relative, "final")
+                    else:
+                        path = current_material_path(relative) if directory == ROOT else directory / relative
+                        raw = path.read_bytes()
                     self.assertEqual(hashlib.sha256(raw).hexdigest(), expected)
 
     def test_current_public_driver_replays_and_refuses_existing_output(self):

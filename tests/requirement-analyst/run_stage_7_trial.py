@@ -11,7 +11,7 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[2]
-FIXTURES = ROOT / "tests/fixtures/stage-7"
+FIXTURES = ROOT / "tests/fixtures/requirement-analyst/stage-7"
 SCRIPTS = ROOT / "skill/requirement-analyst/scripts"
 UX_FIELDS = ("ui_dependent", "design_pending_items", "visual_recommendations", "interaction_flows")
 

@@ -8,7 +8,7 @@
 
 ## 输入
 
-`tests/fixtures/stage-4-procurement-withdrawal.md`。主会话同时是模拟场景作者，知道答案库，因此不具备盲测独立性；保存的每轮补丁只使用当轮已发生的回答，不提前把未来回答写成已确认业务规则。
+`tests/fixtures/requirement-analyst/stage-4-procurement-withdrawal.md`。主会话同时是模拟场景作者，知道答案库，因此不具备盲测独立性；保存的每轮补丁只使用当轮已发生的回答，不提前把未来回答写成已确认业务规则。
 
 ## 预设回答
 

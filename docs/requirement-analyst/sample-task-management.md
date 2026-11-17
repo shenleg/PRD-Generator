@@ -14,8 +14,8 @@
 
 **使用方式**
 
-- 第二节的原文放入 `tests/fixtures/sample-02-task-management.md`。
-- 第三节起的内容放入 `tests/expected/sample-02-expected.md`。
+- 第二节的原文放入 `tests/fixtures/requirement-analyst/sample-02-task-management.md`。
+- 第三节起的内容放入 `tests/expected/requirement-analyst/sample-02-expected.md`。
 - 第三节的埋点清单是我按设计意图列出的**草稿**，由你审阅、增删后才算参考要点。
 
 ---

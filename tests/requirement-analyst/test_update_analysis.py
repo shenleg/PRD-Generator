@@ -510,8 +510,8 @@ class CompletionCheckTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         """加载只读校验器和旧黄金样例；缺文件时直接失败。"""
         cls.validator = load_module(VALIDATOR_PATH, "checks_validator")
-        cls.golden = read_json(ROOT / "tests/fixtures/high-low-voltage/analysis-result.json")
-        cls.manifest = read_json(ROOT / "tests/fixtures/high-low-voltage/source-manifest.json")
+        cls.golden = read_json(ROOT / "tests/fixtures/requirement-analyst/high-low-voltage/analysis-result.json")
+        cls.manifest = read_json(ROOT / "tests/fixtures/requirement-analyst/high-low-voltage/source-manifest.json")
 
     def test_old_result_without_checklist_remains_valid(self) -> None:
         """新增清单字段不破坏既有 schema_version=1.0 的旧结果。"""

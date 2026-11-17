@@ -18,7 +18,7 @@ class TrialReportTests(unittest.TestCase):
 
     def test_report_has_thirteen_sections_and_preserves_input(self) -> None:
         """已有黄金结果生成 13 章视图，渲染前后 JSON 完全相同。"""
-        data = json.loads((ROOT / "tests/fixtures/high-low-voltage/analysis-result.json").read_text(encoding="utf-8"))
+        data = json.loads((ROOT / "tests/fixtures/requirement-analyst/high-low-voltage/analysis-result.json").read_text(encoding="utf-8"))
         before = copy.deepcopy(data)
         report = REPORTS.render_report(data, {"status": "pass", "diagnostics": []})
         self.assertEqual(data, before)
@@ -31,7 +31,7 @@ class TrialReportTests(unittest.TestCase):
 
     def test_assessed_technical_section_is_not_reported_as_unperformed(self) -> None:
         """已有技术评估应按原结论展示，不能仍套旧阶段的“未开展”说明。"""
-        data = json.loads((ROOT / "tests/fixtures/high-low-voltage/analysis-result.json").read_text(encoding="utf-8"))
+        data = json.loads((ROOT / "tests/fixtures/requirement-analyst/high-low-voltage/analysis-result.json").read_text(encoding="utf-8"))
         data["technical_feasibility"] = {"conclusion": "supported", "evidence": [{"content": "合成技术资料明确存在所需查询能力", "sources": [{"type": "project_material", "source_id": "SRC-1", "location": "合成接口契约A"}]}], "credibility": "合成有效资料，仅测试展示", "potential_impact": ["复用现有查询，不扩大权限"], "related_questions": [], "risks": []}
         before = copy.deepcopy(data)
         report = REPORTS.render_report(data, {"status": "pass", "diagnostics": []})
@@ -43,7 +43,7 @@ class TrialReportTests(unittest.TestCase):
 
     def test_ux_assessment_is_not_mislabeled_as_ui_flag_only(self) -> None:
         """已有体验分析按原建议展示，不再错误宣称仅作依赖判断或未开展完整分析。"""
-        data = json.loads((ROOT / "tests/fixtures/high-low-voltage/analysis-result.json").read_text(encoding="utf-8"))
+        data = json.loads((ROOT / "tests/fixtures/requirement-analyst/high-low-voltage/analysis-result.json").read_text(encoding="utf-8"))
         data["ux_assessment"].update(design_pending_items=["待设计：提交中及失败反馈"], visual_recommendations=["建议低保真状态参考"], interaction_flows=["候选：选择后展示结果，待确认"])
         before = copy.deepcopy(data)
         report = REPORTS.render_report(data, {"status": "pass", "diagnostics": []})
@@ -54,7 +54,7 @@ class TrialReportTests(unittest.TestCase):
 
     def test_tables_escape_markdown_without_changing_data(self) -> None:
         """正文含表格分隔符时仅转义显示，既有标签和正文数据不被改写。"""
-        data = json.loads((ROOT / "tests/fixtures/high-low-voltage/analysis-result.json").read_text(encoding="utf-8"))
+        data = json.loads((ROOT / "tests/fixtures/requirement-analyst/high-low-voltage/analysis-result.json").read_text(encoding="utf-8"))
         data["requirements"]["goals"][0]["content"] = "A|B\n第二行"
         report = REPORTS.render_report(data, {"status": "pass", "diagnostics": []})
         self.assertIn("A\\|B<br>第二行", report)

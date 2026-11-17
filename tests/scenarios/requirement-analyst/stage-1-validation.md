@@ -4,7 +4,7 @@
 
 ## 输入与预设回答
 
-基准输入为 `fixtures/high-low-voltage/analysis-result.json` 及邻接来源清单。用户回答：不适用；测试不得把合成的回答或决策写回黄金样例。
+基准输入为 `tests/fixtures/requirement-analyst/high-low-voltage/analysis-result.json` 及邻接来源清单。用户回答：不适用；测试不得把合成的回答或决策写回黄金样例。
 
 | 场景 | 输入变化 | 预期 |
 | --- | --- | --- |
@@ -34,4 +34,4 @@
 - [ ] CLI 分别返回 0、1、2；坏 JSON、缺文件、缺来源清单返回明确诊断。
 - [ ] API 和 CLI 都不修改输入，包括失败场景。
 
-逐项判定依据见 `tests/expected/stage-1-validation.md`，自动化执行见 `tests/test_validate_analysis.py`。
+逐项判定依据见 `tests/expected/requirement-analyst/stage-1-validation.md`，自动化执行见 `tests/requirement-analyst/test_validate_analysis.py`。

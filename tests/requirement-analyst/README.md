@@ -1,6 +1,8 @@
 # Requirement Analyst 测试与历史证据
 
-本目录收纳需求分析 Skill 的测试代码、辅助模块和重放驱动。命令从仓库根目录执行；历史夹具、记录与证据保留原路径，详见 [统一测试说明](../README.md)。下文原阶段记录中的 `results/`、`fixtures/`、`expected/`、`scenarios/` 指 `tests/` 下对应历史资料目录，不是当前目录的子目录。
+本目录收纳需求分析 Skill 的测试代码、辅助模块和重放驱动。命令从仓库根目录执行，详见 [统一测试说明](../README.md)。下文 `fixtures/`、`expected/`、`scenarios/` 分别指 `tests/fixtures/requirement-analyst/`、`tests/expected/requirement-analyst/`、`tests/scenarios/requirement-analyst/`；`results/` 仍指 `tests/results/` 下保留原位置的历史运行记录，不是当前目录的子目录。
+
+当前资料入口：[输入夹具](../fixtures/requirement-analyst/)、[人工参考](../expected/requirement-analyst/)、[场景剧本](../scenarios/requirement-analyst/)。夹具和已认可正文只移动、不改字节，其中旧路径仍是历史来源标识；逐文件当前位置见 `tests/results/repository-layout/test-materials/migration.json`。场景中的现行资料路径已更新，历史运行证据及其哈希不改写。
 
 只运行本 Skill：
 

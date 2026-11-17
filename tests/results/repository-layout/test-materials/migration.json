@@ -1,0 +1,432 @@
+{
+  "baseline_commit": "54375e0fd832a276a28e05c72b619b6b6a2f97d0",
+  "materials": [
+    {
+      "from": "tests/scenarios/RA-01.md",
+      "to": "tests/scenarios/requirement-analyst/RA-01.md",
+      "sha256": "4b19413e78b6d9b5531e51cbf9ed4f11d8db5b98c1868dca569c0fdf46ab275c",
+      "current_sha256": "e102d5cd31ad1a0153775a8e561b2e6e4175da160e25b25b6ab8dac555e5f1fc"
+    },
+    {
+      "from": "tests/scenarios/RA-02.md",
+      "to": "tests/scenarios/requirement-analyst/RA-02.md",
+      "sha256": "04e1098b96effa11e65683c3835247f40032857489d3f3c66769c1de318b3dad",
+      "current_sha256": "b75855cac39ab60e6ce8717c1747ea06a078f68904336886d36eb41e91cf1651"
+    },
+    {
+      "from": "tests/scenarios/RA-03.md",
+      "to": "tests/scenarios/requirement-analyst/RA-03.md",
+      "sha256": "9c150160bea772ef925feb4d0e7ca489518837a394cdd9868a0263f4f4fc2ca5",
+      "current_sha256": "2aad38034ce4d2b52481d75d2654faa4eab48abab983c3005b517da9c646922f"
+    },
+    {
+      "from": "tests/scenarios/RA-04.md",
+      "to": "tests/scenarios/requirement-analyst/RA-04.md",
+      "sha256": "1b7305f59a4cb908b7b6c2d5fc401c479015c0112324423635fbdbda4446f46f",
+      "current_sha256": "d4eafc68f1179d76327118963749069cc00933f7311991077ece59e21822569c"
+    },
+    {
+      "from": "tests/scenarios/RA-05.md",
+      "to": "tests/scenarios/requirement-analyst/RA-05.md",
+      "sha256": "171e341a1361a97f478d264d4f205dd3d06bc6f7100bb804fcccf6eeed88a33a"
+    },
+    {
+      "from": "tests/scenarios/RA-06.md",
+      "to": "tests/scenarios/requirement-analyst/RA-06.md",
+      "sha256": "655572fabacc5b60cc1271e98742972665b3f98eec573268f0354077360f363c"
+    },
+    {
+      "from": "tests/scenarios/RA-07.md",
+      "to": "tests/scenarios/requirement-analyst/RA-07.md",
+      "sha256": "700c5588fde5c5c9207bdad866d447655c672bc9f084e7b262a368a55d725368"
+    },
+    {
+      "from": "tests/scenarios/RA-08.md",
+      "to": "tests/scenarios/requirement-analyst/RA-08.md",
+      "sha256": "d5a8478aae5e190a63d5cd21bc4c50c71fb411ffe818e3613d2a42cb498b1025"
+    },
+    {
+      "from": "tests/scenarios/RA-09.md",
+      "to": "tests/scenarios/requirement-analyst/RA-09.md",
+      "sha256": "3e234bb949581145a95676a18c9371db4eec8cda2bdd9098f6768373eadf773a"
+    },
+    {
+      "from": "tests/scenarios/RA-10.md",
+      "to": "tests/scenarios/requirement-analyst/RA-10.md",
+      "sha256": "ffe2970f174928a21ee5d82529cff20b4bae8b7dcc77814c7b3dd93553324d65"
+    },
+    {
+      "from": "tests/scenarios/RA-11.md",
+      "to": "tests/scenarios/requirement-analyst/RA-11.md",
+      "sha256": "397112faa63020d878da06a007108684096ed4c613c081b28720f516c1e70b6c"
+    },
+    {
+      "from": "tests/scenarios/RA-12.md",
+      "to": "tests/scenarios/requirement-analyst/RA-12.md",
+      "sha256": "fe08754fbfc22028f7069cbe4edead556ec996294f097a9d8f1a278c8bae1350",
+      "current_sha256": "223ad6c6025611ee4378e726436de04168ea3d411cf38efe76110103d8e14175"
+    },
+    {
+      "from": "tests/scenarios/RA-13.md",
+      "to": "tests/scenarios/requirement-analyst/RA-13.md",
+      "sha256": "be3691a6cabb7c242840f17febd989d399be746317b468b3d6882c3c33da516c",
+      "current_sha256": "2ada40e891a34ef5cf583e0f8b832a56abcc8549eb639522e6f03db6de20a41f"
+    },
+    {
+      "from": "tests/scenarios/RA-14.md",
+      "to": "tests/scenarios/requirement-analyst/RA-14.md",
+      "sha256": "7c8a8d4b9d7b0df060dc63beb967c59f0dce7b6afc3abe24b5aeb4177453aa15",
+      "current_sha256": "83cb3b7e130114f261f5179b5749cc96553d89f7160787ad0bcb82642f589228"
+    },
+    {
+      "from": "tests/scenarios/RA-15.md",
+      "to": "tests/scenarios/requirement-analyst/RA-15.md",
+      "sha256": "dfc391044c3cc920040dc3524206f368951602c854ae1acbbafeb170298a34a4",
+      "current_sha256": "513907bd1f0c0da9ab3309b0b709977f24a1570538bba34522d87d1482b34bd2"
+    },
+    {
+      "from": "tests/scenarios/RA-16.md",
+      "to": "tests/scenarios/requirement-analyst/RA-16.md",
+      "sha256": "64171cec0de5ae1442b75f1b9d29586ac393b999c87474914ad09475eeec18ce"
+    },
+    {
+      "from": "tests/scenarios/RA-17.md",
+      "to": "tests/scenarios/requirement-analyst/RA-17.md",
+      "sha256": "65441cb0e62fa80281fe58cc2f065e30c045dc67f4d13c08dd59bf436ee1a00a"
+    },
+    {
+      "from": "tests/scenarios/RA-18.md",
+      "to": "tests/scenarios/requirement-analyst/RA-18.md",
+      "sha256": "8bf405d3a0ff88a4d034c2a4ad0a985cf28f06294f48b524ec5523dbfd2d52e0"
+    },
+    {
+      "from": "tests/scenarios/RA-19.md",
+      "to": "tests/scenarios/requirement-analyst/RA-19.md",
+      "sha256": "e7092e1b0e3d62c450ae764649ee1c563c0ebc2f6727788d47d74cee35177ee0"
+    },
+    {
+      "from": "tests/scenarios/RA-20.md",
+      "to": "tests/scenarios/requirement-analyst/RA-20.md",
+      "sha256": "b0bfa06f37e3db31505117057b0654474fe87522e146893006136f710648488a",
+      "current_sha256": "d0a4f58fefab315e88b54d1fc034df1d2ce65165375b305082e8a05c7577a185"
+    },
+    {
+      "from": "tests/scenarios/RA-21.md",
+      "to": "tests/scenarios/requirement-analyst/RA-21.md",
+      "sha256": "6eca77037fa8ea69fef3454af8534b039b64281f584401f540682da4c2821608"
+    },
+    {
+      "from": "tests/scenarios/RA-22.md",
+      "to": "tests/scenarios/requirement-analyst/RA-22.md",
+      "sha256": "5c5f322bf39c59c48318936465c3c51107cf9cb47383339eaf8df8bf9d619df3",
+      "current_sha256": "139281fa7252011b053f22c65190d4b44d94cefa5665ec02ea08373fa9f9602e"
+    },
+    {
+      "from": "tests/scenarios/RA-23.md",
+      "to": "tests/scenarios/requirement-analyst/RA-23.md",
+      "sha256": "c0ba8fe967c9b3645f9d115d5d9e2934049b46a9e2d15a34c3cbf94e681da21f",
+      "current_sha256": "d3bec0e85d28300c57163964fffe99cd358b9fb08a266e92a7886e7eb761495b"
+    },
+    {
+      "from": "tests/scenarios/RA-24.md",
+      "to": "tests/scenarios/requirement-analyst/RA-24.md",
+      "sha256": "ceac656a08074d022c1e6d0ea758f20d4803756f4b6946ea9b190f3db175f0d4"
+    },
+    {
+      "from": "tests/scenarios/RA-25.md",
+      "to": "tests/scenarios/requirement-analyst/RA-25.md",
+      "sha256": "88add57cf54836770035603c3fb6bdcfe55b3121de1ab4b6c8a3a485b68cfbb7"
+    },
+    {
+      "from": "tests/scenarios/RA-26.md",
+      "to": "tests/scenarios/requirement-analyst/RA-26.md",
+      "sha256": "29b5dbe8050d9d4b047610b5c5d9eba7bd96df6b8465d493d9ea4a10bb162f68"
+    },
+    {
+      "from": "tests/scenarios/RA-27.md",
+      "to": "tests/scenarios/requirement-analyst/RA-27.md",
+      "sha256": "6d193300e0eea20db3cce39aed9927e40d6c686e97504db4a8751d5949f477ee"
+    },
+    {
+      "from": "tests/scenarios/RA-28.md",
+      "to": "tests/scenarios/requirement-analyst/RA-28.md",
+      "sha256": "577dc677f7b630470c6f09774472b3b2778141d8c3778982b7f079dab198c7f6"
+    },
+    {
+      "from": "tests/scenarios/RA-29.md",
+      "to": "tests/scenarios/requirement-analyst/RA-29.md",
+      "sha256": "e0d7b0011a2799f82678841fec0049b1f798c21b7d5055c8d3f283655379ea30"
+    },
+    {
+      "from": "tests/scenarios/RA-30.md",
+      "to": "tests/scenarios/requirement-analyst/RA-30.md",
+      "sha256": "b8fad623a01c7a294505d01121cf8d58f3edcd8052b0801d16dc91d2003748ad"
+    },
+    {
+      "from": "tests/scenarios/RA-31.md",
+      "to": "tests/scenarios/requirement-analyst/RA-31.md",
+      "sha256": "4d60e129ff3755116849af5091434258399f76e60c74546fe52ac6dca3e29c84"
+    },
+    {
+      "from": "tests/scenarios/stage-1-validation.md",
+      "to": "tests/scenarios/requirement-analyst/stage-1-validation.md",
+      "sha256": "6aee7b97f0feb9eb511bc0fe42dbd87c19f05683d0c52a3a7bde5dd6664f0807",
+      "current_sha256": "0d2c43306e30bb4668f46eaf9432ad2a8423a72fca66187e0ad5c047f859cbae"
+    },
+    {
+      "from": "tests/scenarios/stage-4-simulated-procurement.md",
+      "to": "tests/scenarios/requirement-analyst/stage-4-simulated-procurement.md",
+      "sha256": "4ef0d2738f4bd294bf8ac11f7b8cc82ad6c3d5c9f5f7d3e0fda111455fd32e44",
+      "current_sha256": "2e35c32ddf54e5ef23338e5133f19e91c4f480d8ff2e0220b7d8c3adb4f7d85f"
+    },
+    {
+      "from": "tests/fixtures/high-low-voltage/analysis-result.json",
+      "to": "tests/fixtures/requirement-analyst/high-low-voltage/analysis-result.json",
+      "sha256": "5415d1b61ff78aa40ad0adc73384739ac798d055a403ca161f711b8803005660"
+    },
+    {
+      "from": "tests/fixtures/high-low-voltage/original-requirement.md",
+      "to": "tests/fixtures/requirement-analyst/high-low-voltage/original-requirement.md",
+      "sha256": "4840333fa33128c91a66c7ba9726f43d1c1ff3c16910cd9c59ec7688e50431fb"
+    },
+    {
+      "from": "tests/fixtures/high-low-voltage/source-manifest.json",
+      "to": "tests/fixtures/requirement-analyst/high-low-voltage/source-manifest.json",
+      "sha256": "21827c837cbc8975b77a777f80d0b6849eda8ca602bdf77e538aa814e35c2595"
+    },
+    {
+      "from": "tests/fixtures/invalid/cases.json",
+      "to": "tests/fixtures/requirement-analyst/invalid/cases.json",
+      "sha256": "d28a521bfbba2035e16ed78ddc182ba407b6f1c1c44b52765d1d66906915db89"
+    },
+    {
+      "from": "tests/fixtures/invalid/rule-01-structure.json",
+      "to": "tests/fixtures/requirement-analyst/invalid/rule-01-structure.json",
+      "sha256": "dcdbf098a3b4189ef3be069089157d1d27b57a9e814da044f5b22b7c7ec6bb46"
+    },
+    {
+      "from": "tests/fixtures/invalid/rule-02-duplicate-id.json",
+      "to": "tests/fixtures/requirement-analyst/invalid/rule-02-duplicate-id.json",
+      "sha256": "d6645c4db2602eb2afaa8c1b731728366751886af0e4fa61d98e528570e395c2"
+    },
+    {
+      "from": "tests/fixtures/invalid/rule-03-enum.json",
+      "to": "tests/fixtures/requirement-analyst/invalid/rule-03-enum.json",
+      "sha256": "0d474e1bdcbf4a679fe51970140fab71f24084ae2673c50ed1f5f357f53a62cb"
+    },
+    {
+      "from": "tests/fixtures/invalid/rule-04-readiness.json",
+      "to": "tests/fixtures/requirement-analyst/invalid/rule-04-readiness.json",
+      "sha256": "cb7193960ea89694b1e2fa0ce1ad5647157c9d9ff2e2da19b30c6d9640ab7cbe"
+    },
+    {
+      "from": "tests/fixtures/invalid/rule-05-assumption.json",
+      "to": "tests/fixtures/requirement-analyst/invalid/rule-05-assumption.json",
+      "sha256": "a521fb76f9b26a0e2b5e320cac434a7d857fda9ad96294021d2238fa53791e02"
+    },
+    {
+      "from": "tests/fixtures/invalid/rule-06-decision.json",
+      "to": "tests/fixtures/requirement-analyst/invalid/rule-06-decision.json",
+      "sha256": "5a5684d8371227e9edb93dc7e1cba00b996d7af56effde79a686e66bb361c36a"
+    },
+    {
+      "from": "tests/fixtures/invalid/rule-07-source.json",
+      "to": "tests/fixtures/requirement-analyst/invalid/rule-07-source.json",
+      "sha256": "ce1a6e0c95e28a9a7a11fa3906be0cf401fb3ecbde369ca1384895ebb9e0e802"
+    },
+    {
+      "from": "tests/fixtures/invalid/rule-08-withdrawn.json",
+      "to": "tests/fixtures/requirement-analyst/invalid/rule-08-withdrawn.json",
+      "sha256": "66041e5c51084287f0cec3b4a6d3280fc6bf21179c039056bc053ca650312891"
+    },
+    {
+      "from": "tests/fixtures/invalid/rule-09-technical.json",
+      "to": "tests/fixtures/requirement-analyst/invalid/rule-09-technical.json",
+      "sha256": "7a5a3c6196ab3b7973d1ebb73b7f0e464813c2177a1642a2dabcc1fe2dbf36f5"
+    },
+    {
+      "from": "tests/fixtures/invalid/rule-10-conflict.json",
+      "to": "tests/fixtures/requirement-analyst/invalid/rule-10-conflict.json",
+      "sha256": "a4bf34710afd81bdbdc8639f040c51a75580b9680656fc903d71b7816d5362f2"
+    },
+    {
+      "from": "tests/fixtures/invalid/rule-11-stale.json",
+      "to": "tests/fixtures/requirement-analyst/invalid/rule-11-stale.json",
+      "sha256": "62306b9283c9e58f9d316b8e8a4009dd4b75d35199ff37d230773cc012bd1ccc"
+    },
+    {
+      "from": "tests/fixtures/invalid/source-manifest.json",
+      "to": "tests/fixtures/requirement-analyst/invalid/source-manifest.json",
+      "sha256": "21827c837cbc8975b77a777f80d0b6849eda8ca602bdf77e538aa814e35c2595"
+    },
+    {
+      "from": "tests/fixtures/sample-02-task-management-v2.md",
+      "to": "tests/fixtures/requirement-analyst/sample-02-task-management-v2.md",
+      "sha256": "fcdeeb48630557ccf2e6764d00956080a3fc6e6288fee76a64d5c0c602cd2285"
+    },
+    {
+      "from": "tests/fixtures/sample-02-task-management.md",
+      "to": "tests/fixtures/requirement-analyst/sample-02-task-management.md",
+      "sha256": "79a4772e26116a0b3afae33933a1425a512bc9f709c5ec79e43edfe8b8e8549b"
+    },
+    {
+      "from": "tests/fixtures/stage-2-probes/backend.md",
+      "to": "tests/fixtures/requirement-analyst/stage-2-probes/backend.md",
+      "sha256": "5ecaba884a91b5c580157359bd7496c22f70c5d1b1268b01c02881fe48383337"
+    },
+    {
+      "from": "tests/fixtures/stage-2-probes/defect.md",
+      "to": "tests/fixtures/requirement-analyst/stage-2-probes/defect.md",
+      "sha256": "16262d25c70f4bc04b72e234fec5be6312733a43e2c3b9762895b9111dc468ec"
+    },
+    {
+      "from": "tests/fixtures/stage-2-probes/idea.md",
+      "to": "tests/fixtures/requirement-analyst/stage-2-probes/idea.md",
+      "sha256": "d6b5ab8bab6ca27a58cfb76307fcf74a38aa0951db4ef92e6c7899cf8088b5ec"
+    },
+    {
+      "from": "tests/fixtures/stage-2-probes/notification-with-reason.md",
+      "to": "tests/fixtures/requirement-analyst/stage-2-probes/notification-with-reason.md",
+      "sha256": "f911340baefc4a13d2cc292fcedec11255ce28344a153eaa09a7f448c068ac84"
+    },
+    {
+      "from": "tests/fixtures/stage-2-probes/notification.md",
+      "to": "tests/fixtures/requirement-analyst/stage-2-probes/notification.md",
+      "sha256": "18cf5e8258a4280e8749c6f7c91a422c2753f7726815aa65e8a179602c155ff4"
+    },
+    {
+      "from": "tests/fixtures/stage-4-procurement-withdrawal.md",
+      "to": "tests/fixtures/requirement-analyst/stage-4-procurement-withdrawal.md",
+      "sha256": "dc9db49a807458fae876e83b5014d68758acf1aba5e6e1621150db4339f62576"
+    },
+    {
+      "from": "tests/fixtures/stage-5/history/current-user-deletion.md",
+      "to": "tests/fixtures/requirement-analyst/stage-5/history/current-user-deletion.md",
+      "sha256": "d64673d87bfb84c5eba176057295451a953dc77e819b5ed25a5b4b32143ce64a"
+    },
+    {
+      "from": "tests/fixtures/stage-5/history/current-user-filter.md",
+      "to": "tests/fixtures/requirement-analyst/stage-5/history/current-user-filter.md",
+      "sha256": "09c0dfa85ec115ea9ffe13381a3343806a991e0021ef14d2aa309b149ea911b9"
+    },
+    {
+      "from": "tests/fixtures/stage-5/history/legacy-architecture.md",
+      "to": "tests/fixtures/requirement-analyst/stage-5/history/legacy-architecture.md",
+      "sha256": "4641664b9fa66a7f4001c8104e432eba3e317e599705d4a4c55657f4bad6a5c1"
+    },
+    {
+      "from": "tests/fixtures/stage-5/history/user-deletion-v2.md",
+      "to": "tests/fixtures/requirement-analyst/stage-5/history/user-deletion-v2.md",
+      "sha256": "3cdb38ad41dfd62f02538da1dd0039912d0e8a74cb24f896eb117505cc1335b5"
+    },
+    {
+      "from": "tests/fixtures/stage-5/new-batch-delete.md",
+      "to": "tests/fixtures/requirement-analyst/stage-5/new-batch-delete.md",
+      "sha256": "8c04dba8d3e812eae77d0afeeda8b917d7419ecb32cb9e7581a1ffd2f4dc2891"
+    },
+    {
+      "from": "tests/fixtures/stage-5/new-user-filter.md",
+      "to": "tests/fixtures/requirement-analyst/stage-5/new-user-filter.md",
+      "sha256": "b0658f2aee4b88c2e0d566dd1122c323c7ab75d59fe245c72007be0906c7ec97"
+    },
+    {
+      "from": "tests/fixtures/stage-6/cases.json",
+      "to": "tests/fixtures/requirement-analyst/stage-6/cases.json",
+      "sha256": "3edf6222e7a1dec0b91ffa17dc6957d67dd4819c8824eaa3c47d91d3b5949fff"
+    },
+    {
+      "from": "tests/fixtures/stage-6/current-platform.md",
+      "to": "tests/fixtures/requirement-analyst/stage-6/current-platform.md",
+      "sha256": "1034123047309e24042d113d6e917f1c0fe4d7b848ab5acba6eb82d702caceb4"
+    },
+    {
+      "from": "tests/fixtures/stage-6/old-platform-draft.md",
+      "to": "tests/fixtures/requirement-analyst/stage-6/old-platform-draft.md",
+      "sha256": "e39abd6657996a07dcb2307da238073f3623d06bcbd8c1e87c0f30c5c7ea4a8f"
+    },
+    {
+      "from": "tests/fixtures/stage-6/partial-interface.md",
+      "to": "tests/fixtures/requirement-analyst/stage-6/partial-interface.md",
+      "sha256": "cf668804fe962406a4c9dfb585bd8bd64cdef9d22e232b7e289903d213a1a8be"
+    },
+    {
+      "from": "tests/fixtures/stage-7/cases.json",
+      "to": "tests/fixtures/requirement-analyst/stage-7/cases.json",
+      "sha256": "70966aa73ac796cfa57886a17889082ec20601892295d55c57b04229ef49219b"
+    },
+    {
+      "from": "tests/fixtures/stage-7/reference-list.html",
+      "to": "tests/fixtures/requirement-analyst/stage-7/reference-list.html",
+      "sha256": "c32aa116d22cadefee12dfaf301e9f2aab0f0d1331e89e14c4264ff80ba785ca"
+    },
+    {
+      "from": "tests/fixtures/stage-7/reference-list.png",
+      "to": "tests/fixtures/requirement-analyst/stage-7/reference-list.png",
+      "sha256": "d4998e2199eaad0ed7fbb20b69ae3d57faee35f440feda6c881f13eb6b8dcfa4"
+    },
+    {
+      "from": "tests/fixtures/stage-7/reference-note.md",
+      "to": "tests/fixtures/requirement-analyst/stage-7/reference-note.md",
+      "sha256": "761e196652f13ee994e2369a904b9db6f204aba424e51a63d7cfdd01823cb306"
+    },
+    {
+      "from": "tests/fixtures/stage-8/material.md",
+      "to": "tests/fixtures/requirement-analyst/stage-8/material.md",
+      "sha256": "64beb754a4cd5fedfb9685cc3a24e0440f4addf78ba5dd260ba4f723d3086585"
+    },
+    {
+      "from": "tests/expected/high-low-voltage.review.md",
+      "to": "tests/expected/requirement-analyst/high-low-voltage.review.md",
+      "sha256": "f3fece75332c03abb45042ba226667de7c54906400bb11cc0326c219f31e67b4"
+    },
+    {
+      "from": "tests/expected/sample-02-expected.md",
+      "to": "tests/expected/requirement-analyst/sample-02-expected.md",
+      "sha256": "fbc80788c6ecfe17aeed697f5622f05856d3880221fd965874a35ec9e73eceb0"
+    },
+    {
+      "from": "tests/expected/stage-1-validation.md",
+      "to": "tests/expected/requirement-analyst/stage-1-validation.md",
+      "sha256": "463222be77f50fba2fc27cafff044d001aef2bb942bb2a03352e89b36de45720"
+    },
+    {
+      "from": "tests/expected/stage-2-core.md",
+      "to": "tests/expected/requirement-analyst/stage-2-core.md",
+      "sha256": "c0aa0397cc85a1ccb6cd6827727c6a3375c22bfd5182e04fb433738b200da8a1"
+    },
+    {
+      "from": "tests/expected/stage-3-incremental.md",
+      "to": "tests/expected/requirement-analyst/stage-3-incremental.md",
+      "sha256": "ca59ae883c488c3078d5410db9c0cf07a6e2e71adeeec6b38801455d539b92b3"
+    }
+  ],
+  "preserved_files": 2225,
+  "preserved_fingerprints_sha256": "d5e80bdcee5a497cba25c2798a786cefff1e179feddbe6b3c099568e51259c68",
+  "preserved_prefixes": [
+    "skill/",
+    "tools/",
+    "workspace-sandbox/",
+    "tests/results/",
+    "tests/fixtures/prd-generator/",
+    "tests/expected/prd-generator/",
+    "tests/scenarios/prd-generator/"
+  ],
+  "scenario_navigation_replacements": [
+    [
+      "tests/fixtures/",
+      "tests/fixtures/requirement-analyst/"
+    ],
+    [
+      "`fixtures/",
+      "`tests/fixtures/requirement-analyst/"
+    ],
+    [
+      "tests/expected/",
+      "tests/expected/requirement-analyst/"
+    ],
+    [
+      "tests/test_validate_analysis.py",
+      "tests/requirement-analyst/test_validate_analysis.py"
+    ]
+  ]
+}

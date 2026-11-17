@@ -1,6 +1,6 @@
 # 按 Skill 运行测试
 
-本目录将维护代码按 Skill 分类；夹具、参考、场景和已保存证据保留原路径，避免修改原模型记录或认可指纹。
+本目录将维护代码、夹具、人工参考和场景按 Skill 分类；已封存的运行证据保留原路径及字节，不修改模型记录或认可指纹。
 
 ## 入口
 
@@ -33,8 +33,11 @@ uv run --offline --no-project --python /usr/bin/python3 --with-requirements test
 
 | 资料目录 | 归属及约束 |
 | --- | --- |
-| `fixtures/prd-generator/`、`expected/prd-generator/`、`scenarios/prd-generator/`、`results/prd-generator/` | 生成侧已保存的材料和记录 |
-| `fixtures/`、`expected/`、`scenarios/`、`results/` 的其他既有内容 | 分析侧历史材料；保持原字节及路径，不再向根层新增无归属阶段记录 |
+| `fixtures/requirement-analyst/`、`expected/requirement-analyst/`、`scenarios/requirement-analyst/` | 分析侧输入、人工参考和场景剧本 |
+| `fixtures/prd-generator/`、`expected/prd-generator/`、`scenarios/prd-generator/` | 生成侧输入、人工参考和场景剧本 |
+| `results/prd-generator/` | 生成侧已保存的运行记录 |
+| `results/` 其他既有阶段记录 | 分析侧历史证据；保持原字节及路径，不倒改旧清单或认可记录 |
+| `results/repository-layout/` | 仓库级目录整理验证，不属于产品阶段 |
 | `workspace-sandbox/prd-generator/` | 生成侧合成 CLI 证据，按原清单读取 |
 | `workspace-sandbox/stage-*`、`workspace-sandbox/final-acceptance/` | 分析侧历史模型及 CLI 证据，保持原位置 |
 

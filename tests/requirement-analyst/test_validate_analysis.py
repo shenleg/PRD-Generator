@@ -12,7 +12,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPT = ROOT / "skill/requirement-analyst/scripts/validate_analysis.py"
-FIXTURE = ROOT / "tests/fixtures/high-low-voltage"
+FIXTURE = ROOT / "tests/fixtures/requirement-analyst/high-low-voltage"
 SPEC = importlib.util.spec_from_file_location("validate_analysis", SCRIPT)
 MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
@@ -65,7 +65,7 @@ class ValidationTests(unittest.TestCase):
 
     def test_persisted_rule_counterexamples(self) -> None:
         """11 份持久反例均通过真实 CLI 被识别，并返回预期规则及三态结果。"""
-        directory = ROOT / "tests/fixtures/invalid"
+        directory = ROOT / "tests/fixtures/requirement-analyst/invalid"
         cases = json.loads((directory / "cases.json").read_text(encoding="utf-8"))
         self.assertEqual([case["rule"] for case in cases], list(range(1, 12)))
         for case in cases:

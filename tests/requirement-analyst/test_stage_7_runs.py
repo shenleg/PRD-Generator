@@ -9,6 +9,7 @@ import tempfile
 import unittest
 
 from historical_sources import recorded_bytes
+from material_paths import current_material_path
 from test_update_analysis import load_module, read_json
 
 
@@ -28,7 +29,7 @@ class SavedUxRuns(unittest.TestCase):
         cls.runs = BASE / cls.selection["attempt"]
         cls.manifest = read_json(cls.runs / "run-manifest.json")
         cls.assessments = {a["case_id"]: a for a in cls.model["structured_output"]["assessments"]}
-        cls.cases = {a["id"]: a for a in read_json(ROOT / "tests/fixtures/stage-7/cases.json")["cases"]}
+        cls.cases = {a["id"]: a for a in read_json(ROOT / "tests/fixtures/requirement-analyst/stage-7/cases.json")["cases"]}
         cls.validator = load_module(ROOT / "skill/requirement-analyst/scripts/validate_analysis.py", "ux_trial_validator")
 
     def path(self, case: str) -> Path:
@@ -61,7 +62,7 @@ class SavedUxRuns(unittest.TestCase):
         self.assertEqual(capture["user_selection"], "授权本次本地截图")
         self.assertTrue(capture["not_a_real_product_page"])
         self.assertTrue(capture["interactivity_not_implemented"])
-        raw = (ROOT / capture["screenshot"]).read_bytes()
+        raw = current_material_path(capture["screenshot"]).read_bytes()
         self.assertEqual(raw[:8], b"\x89PNG\r\n\x1a\n")
         self.assertEqual(struct.unpack(">II", raw[16:24]), (1360, 900))
         self.assertIn("127.0.0.1", capture["authorization_scope"])

@@ -101,7 +101,7 @@ class SavedHistoryRuns(unittest.TestCase):
         self.assertEqual(final["meta"]["baseline_revision"], 1)
         self.assertEqual(len(read_json(self.project / "requirements/HIST-USER-001/analysis/source-manifest.json")), 2)
         self.assertFalse(self.result("RA-17-final-check")["needs_reassessment"])
-        self.assertEqual((self.project / "versions/user-deletion-v1.md").read_bytes(), (ROOT / "tests/fixtures/stage-5/history/current-user-deletion.md").read_bytes())
+        self.assertEqual((self.project / "versions/user-deletion-v1.md").read_bytes(), (ROOT / "tests/fixtures/requirement-analyst/stage-5/history/current-user-deletion.md").read_bytes())
 
     def test_ra18_old_material_and_ra19_separate_empty_project(self) -> None:
         """年龄警告有真实业务时间，独立空项目明确未对照、不伪造检索或技术结论。"""

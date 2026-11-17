@@ -1,0 +1,49 @@
+{
+  "executed_at": "2026-11-17T11:10:52.503676+00:00",
+  "branch": "refactor/organize-test-materials",
+  "status": "layout_checks_pass_full_regression_has_environment_errors",
+  "moved_files": 77,
+  "scenario_navigation_updates": 13,
+  "fixture_and_expected_bytes_unchanged": true,
+  "preserved_files": 2225,
+  "preserved_fingerprints_match": true,
+  "layout_tests": {
+    "run": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "log": "layout-test-run.txt"
+  },
+  "prd_generator_tests": {
+    "run": 47,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "log": "prd-generator-test-run.txt"
+  },
+  "full_regression": {
+    "run": 271,
+    "passed_test_methods": 267,
+    "failures": 0,
+    "error_records_including_subtests": 42,
+    "error_test_methods": [
+      "test_stage_2_runs.SavedModelRunTests.test_saved_runs_match_stage_two_tag_and_inputs",
+      "test_stage_3_runs.StageThreeModelRuns.test_rule_evolution_is_scoped_and_keeps_original_evidence",
+      "test_stage_3_runs.StageThreeModelRuns.test_stage_three_tag_sources_match_actual_run",
+      "test_stage_4_simulated_trial.SimulatedBusinessTrialTests.test_actual_cli_updates_are_valid_and_append_history"
+    ],
+    "skipped": 0,
+    "duration_seconds": 68.798,
+    "log": "final-test-run.txt",
+    "status": "fail"
+  },
+  "limits": [
+    "stage-2-complete and stage-3-complete tags are absent locally and were not returned by the remote query",
+    "one saved stage-4 candidate path uses an inaccessible absolute /root path from the original machine"
+  ],
+  "new_model_call": false,
+  "git_commit": false,
+  "git_merge": false,
+  "git_tag": false,
+  "git_push": false
+}

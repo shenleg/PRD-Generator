@@ -43,7 +43,7 @@ def run(output: Path) -> dict:
     project = workspace / "projects" / PROJECT
     inputs = project / "inputs"
     inputs.mkdir(parents=True)
-    shutil.copyfile(ROOT / "tests/fixtures/stage-4-procurement-withdrawal.md", inputs / "original-requirement.md")
+    shutil.copyfile(ROOT / "tests/fixtures/requirement-analyst/stage-4-procurement-withdrawal.md", inputs / "original-requirement.md")
     requirement = project / "requirements" / REQUIREMENT
     records = []
     origin = json.loads((ORIGIN / "run-manifest.json").read_text(encoding="utf-8"))
@@ -147,7 +147,7 @@ def run(output: Path) -> dict:
         "source_fingerprints": {str(p.relative_to(ROOT)): _sha(p) for p in
                                 [Path(__file__), SCRIPTS / "update_analysis.py", SCRIPTS / "validate_analysis.py",
                                  ROOT / "tools/minimal_prd_consumer.py", ROOT / "tests/requirement-analyst/render_trial_reports.py",
-                                 ROOT / "tests/fixtures/stage-4-procurement-withdrawal.md"]},
+                                 ROOT / "tests/fixtures/requirement-analyst/stage-4-procurement-withdrawal.md"]},
         "artifacts": {str(p.relative_to(output)): _sha(p) for p in sorted(output.rglob("*"))
                       if p.is_file() and not p.name.startswith(".analysis")},
     }

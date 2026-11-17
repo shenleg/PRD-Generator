@@ -13,7 +13,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 SCRIPTS = ROOT / "skill/requirement-analyst/scripts"
-FIXTURES = ROOT / "tests/fixtures/stage-5"
+FIXTURES = ROOT / "tests/fixtures/requirement-analyst/stage-5"
 
 
 def _sha(path):

@@ -6,8 +6,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-GOLDEN = ROOT / "fixtures/high-low-voltage"
-OUTPUT = ROOT / "fixtures/invalid"
+GOLDEN = ROOT / "fixtures/requirement-analyst/high-low-voltage"
+OUTPUT = ROOT / "fixtures/requirement-analyst/invalid"
 CASES = (
     (1, "structure", "删除必填 ux_assessment"),
     (2, "duplicate-id", "重复 FR-1"),

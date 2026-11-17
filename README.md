@@ -24,9 +24,9 @@ docs/                          当前维护文档
 tests/                         统一测试入口与按 Skill 分类的维护代码
 ├── requirement-analyst/        分析测试、辅助模块及重放驱动
 ├── prd-generator/              生成测试、辅助模块及格式重放驱动
-├── fixtures/                   历史输入，保留原路径和字节
-├── expected/                   人工参考要点，保留认可范围
-├── scenarios/                  场景资料
+├── fixtures/<skill>/           按 Skill 分类的输入，原文字节不变
+├── expected/<skill>/           按 Skill 分类的人工参考，保留认可范围
+├── scenarios/<skill>/          按 Skill 分类的场景剧本
 └── results/                    既有运行记录，不改旧指纹
 tools/                         跨 Skill 最小交接消费者，开发验证用
 workspace-sandbox/             历史试跑证据，保留原位置

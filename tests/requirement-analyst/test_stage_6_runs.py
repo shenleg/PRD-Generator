@@ -27,7 +27,7 @@ class SavedFeasibilityRuns(unittest.TestCase):
         cls.runs = BASE / cls.selection["attempt"]
         cls.manifest = read_json(cls.runs / "run-manifest.json")
         cls.assessments = {a["case_id"]: a for a in cls.model["structured_output"]["assessments"]}
-        cls.cases = {a["id"]: a for a in read_json(ROOT / "tests/fixtures/stage-6/cases.json")["cases"]}
+        cls.cases = {a["id"]: a for a in read_json(ROOT / "tests/fixtures/requirement-analyst/stage-6/cases.json")["cases"]}
         cls.validator = load_module(ROOT / "skill/requirement-analyst/scripts/validate_analysis.py", "technical_saved_validator")
 
     def analysis_path(self, case: str) -> Path:
@@ -118,7 +118,7 @@ class SavedFeasibilityRuns(unittest.TestCase):
                     if matched[3]:
                         self.assertIn(int(matched[3]), ranges[matched[1]])
                 else:
-                    text = (ROOT / "tests/fixtures/stage-6" / evidence["material"]).read_text(encoding="utf-8")
+                    text = (ROOT / "tests/fixtures/requirement-analyst/stage-6" / evidence["material"]).read_text(encoding="utf-8")
                     if location not in text:
                         self.assertIn(evidence["material"], ("partial-interface.md",))
                         title = text.splitlines()[0].removeprefix("# ")

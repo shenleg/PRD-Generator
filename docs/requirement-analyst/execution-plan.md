@@ -25,7 +25,7 @@
 
 ### 开发仓库结构
 
-开发仓库与 Skill 目录分开，测试内容不随 Skill 安装。当前维护文档位于 `docs/requirement-analyst/`，测试代码及驱动位于 `tests/requirement-analyst/`；历史素材和阶段证据保留原路径，新增记录按 `tests/results/requirement-analyst/` 分类，详见 `docs/shared/repository-layout.md`。
+开发仓库与 Skill 目录分开，测试内容不随 Skill 安装。当前维护文档位于 `docs/requirement-analyst/`，测试代码及驱动位于 `tests/requirement-analyst/`；夹具、场景和参考要点也按 Skill 分类，原文和认可正文不改字节。封存阶段证据保留原路径，新增记录按 `tests/results/requirement-analyst/` 分类，详见 `docs/shared/repository-layout.md`。
 
 ```
 requirement-analyst-dev/
@@ -34,9 +34,9 @@ requirement-analyst-dev/
 ├── tests/
 │   ├── requirement-analyst/       测试代码、辅助模块和重放驱动
 │   ├── test_all.py               全仓库统一测试入口
-│   ├── fixtures/                 样例需求原文、反例数据
-│   ├── scenarios/                RA-xx 场景剧本：输入和预设回答
-│   ├── expected/                 人工评审的参考要点
+│   ├── fixtures/requirement-analyst/   样例需求原文、反例数据
+│   ├── scenarios/requirement-analyst/  RA-xx 场景剧本：输入和预设回答
+│   ├── expected/requirement-analyst/   人工评审的参考要点
 │   └── results/                  每次运行的记录
 └── workspace-sandbox/            测试用工作区，结构见规格 9.1
 ```
@@ -74,7 +74,7 @@ requirement-analyst-dev/
 
 **步骤**
 
-1. **整理样例需求**：以"高低压开关组合逻辑设计表"需求为样例，把原文和已有的各版解读放入 `tests/fixtures/`。第二个样例见《第二样例：仿真任务管理优化》，原文放入 `tests/fixtures/`，埋点清单放入 `tests/expected/`。埋点清单是草稿，需要你审阅、增删后才作为参考要点。
+1. **整理样例需求**：以"高低压开关组合逻辑设计表"需求为样例，把原文和已有的各版解读放入 `tests/fixtures/requirement-analyst/`。第二个样例见《第二样例：仿真任务管理优化》，原文放入 `tests/fixtures/requirement-analyst/`，埋点清单放入 `tests/expected/requirement-analyst/`。埋点清单是草稿，需要你审阅、增删后才作为参考要点。
 2. **写参考要点**：对样例需求，人工列出"一个好的分析应该发现什么"：核心缺口、应该追问的 P0 问题、边界和异常、验收条件。这是后面所有评审的依据，不要让模型代写后直接采用。
 3. **建立开发仓库和测试工作区**，结构见上文。
 4. **做出三个待定事项的结论**：
@@ -100,12 +100,12 @@ requirement-analyst-dev/
 **步骤**
 
 1. **写格式定义**：在 `schemas/` 下写 `analysis-result.schema.json`，按规格 9.5 的结构和必填、选填要求；再写 `question.schema.json`、`requirement-item.schema.json`、`source.schema.json`。枚举值按规格的对照表。
-2. **手工写一份黄金样例**：用样例需求，人工填写一份合理的 `analysis-result.json`，放入 `tests/fixtures/`。它同时是格式验证的正例和后续运行结果的对照对象。
+2. **手工写一份黄金样例**：用样例需求，人工填写一份合理的 `analysis-result.json`，放入 `tests/fixtures/requirement-analyst/`。它同时是格式验证的正例和后续运行结果的对照对象。
 3. **写校验脚本 `validate_analysis.py`**：
    - 先实现格式校验。
    - 再按规格 9.6 的 11 条规则逐条实现一致性检查。
    - 输出 `pass`、`warning`、`fail` 三种结果，失败时列出出错的条目编号和原因。
-4. **为每条规则写一个反例**：故意构造违规的数据（如存在 `open` 的 P0 问题却标为 `ready_for_document`），放入 `tests/fixtures/`，确认校验脚本能拦截。
+4. **为每条规则写一个反例**：故意构造违规的数据（如存在 `open` 的 P0 问题却标为 `ready_for_document`），放入 `tests/fixtures/requirement-analyst/`，确认校验脚本能拦截。
 5. **写分析报告模板**：`templates/analysis-report.md`，章节见规格 9.4。
 6. **格式评审**：停下来，把格式给将要读取它的一方看：PRD Generator、测试点分析、用例设计。确认字段够用、命名没有歧义，再定稿。
 
