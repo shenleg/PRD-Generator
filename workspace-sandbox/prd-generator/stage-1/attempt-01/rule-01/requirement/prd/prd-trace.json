@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "meta": {
+    "draft_kind": "formal_draft",
+    "generated_under_readiness": "ready_for_document",
+    "content_hash": "sha256:e4fad3985906cb7572376c52ce97b806b43beeec5bdb6d2846d12bb887b9d88a",
+    "counters": {
+      "FR": 1
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "缺口回交文件",
+  "description": "定义版本化缺口封装及关闭依据；允许扩展，分析侧只能在接收保存成功后标记对应状态。",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "requirement_id",
+    "counters",
+    "requests"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "requirement_id": {
+      "type": "string",
+      "pattern": "^[^\\s/]+$"
+    },
+    "counters": {
+      "type": "object",
+      "required": [
+        "GAPREQ"
+      ],
+      "properties": {
+        "GAPREQ": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "requests": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/request"
+      }
+    }
+  },
+  "$defs": {
+    "request": {
+      "type": "object",
+      "required": [
+        "id",
+        "needed_for",
+        "description",
+        "related_analysis_refs",
+        "raised_in",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^GAPREQ-[1-9][0-9]*$"
+        },
+        "needed_for": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "related_analysis_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[^\\s/]+/(?:GOAL|SCN|FR|BR|CON|NFR|AC|FLOW|STATE|BND|EXC|GAP|CNF|Q|ASM|DEC)-[1-9][0-9]*$"
+          },
+          "uniqueItems": true
+        },
+        "raised_in": {
+          "type": "string",
+          "pattern": "^(?:0\\.[1-9][0-9]*|[1-9][0-9]*\\.(?:0|[1-9][0-9]*)(?:-draft)?)$"
+        },
+        "status": {
+          "enum": [
+            "open",
+            "handed_over",
+            "closed"
+          ]
+        },
+        "resolution": {
+          "type": "object",
+          "required": [
+            "kind",
+            "analysis_refs",
+            "reason"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "supplied",
+                "not_needed"
+              ]
+            },
+            "analysis_refs": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[^\\s/]+/(?:GOAL|SCN|FR|BR|CON|NFR|AC|FLOW|STATE|BND|EXC|GAP|CNF|Q|ASM|DEC)-[1-9][0-9]*$"
+              },
+              "uniqueItems": true,
+              "minItems": 1
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "closed"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "required": [
+              "resolution"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

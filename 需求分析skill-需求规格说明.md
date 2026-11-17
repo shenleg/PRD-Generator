@@ -912,6 +912,7 @@ P0 阻塞由 `priority` 为 `P0` 且 `status` 为 `open` 判定；P1 对文档�
 **发布**：只有就绪度为 `ready_for_document`，最新校验为 `pass`，PRD 不处于待同步状态，并经产品经理明示确认，才允许发布；`conditionally_ready` 不允许发布，须先回到需求分析处理影响就绪的 P1 问题。非阻塞研发确认项按 6.7 判定，不因仍为 `open` 而单独阻止发布。完整的发布条件以 PRD Generator 规格第八节为准。
 
 3. 生成 PRD 时，遇到分析结果无法支撑的内容（如 PRD 模板要求的内容分析结果里没有），不得自行补全为事实，必须回交本 Skill，作为“补充”登记问题。PRD Generator 把缺口登记在 `prd/gap-requests.json`；本 Skill 在“补充”时读取其中 `open` 的缺口，按以下协议处理：
+   - 文件封装：读取生成规格 §9.5 的版本化对象，核对 `requirement_id`，从 `requests` 取缺口；保留顶层计数器、关闭依据和未知扩展字段。`gap_request_ref` 是本需求问题的选填扩展，旧问题仍合法；`open` 尚无接收问题或保存后标记中断均可，`handed_over` 和 `closed` 须唯一对应接收问题。
    - 引用规范：`related_analysis_refs` 使用 `需求编号/分析条目编号`。填入问题的 `related_ids` 前，校验引用存在，本需求引用去掉需求编号前缀，跨需求引用保留完整格式；为空则保持为空。
    - 稳定关联：在接收问题中记录 `gap_request_ref: "GAPREQ-N"`，同一缺口只对应一个接收问题。首次接收时创建新问题，以 `supplement` 事件记录；重复交接时按该引用复用已有问题及其处理进度，不重复创建。
    - 保存顺序：先由 `update_analysis.py` 校验并成功保存接收问题，再仅将缺口的 `status` 改为 `handed_over`。保存失败时不标记交接；状态标记中断后重试，复用已保存的问题，不重复登记。

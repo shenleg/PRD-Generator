@@ -1,0 +1,175 @@
+{
+  "document_role": "stage_0_preparation_catalog_not_product_protocol",
+  "created_at": "2026-11-17T07:43:51.033438+00:00",
+  "source_commit": "d798eb1d865c7ba6704ffc19af408e18b243f323",
+  "status": "adopted_with_human_reviewed_references",
+  "samples": [
+    {
+      "group": "switch-combinations",
+      "requirement_id": "REQ-2026-001",
+      "analysis": "workspace-sandbox/stage-3/evidence/high-low-voltage/initial/analysis/analysis-result.json",
+      "source_manifest": "workspace-sandbox/stage-3/evidence/high-low-voltage/initial/analysis/source-manifest.json",
+      "original": "tests/fixtures/high-low-voltage/original-requirement.md",
+      "meta": {
+        "analysis_revision": 1,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "clarifying",
+        "readiness": "not_ready"
+      },
+      "evidence_kind": "historical_model_initial_snapshot",
+      "sample_adoption": "adopted_by_user",
+      "generator_reference_review": "human_reviewed_approved",
+      "current_validator_status": "pass"
+    },
+    {
+      "group": "task-management",
+      "requirement_id": "REQ-2026-002",
+      "analysis": "workspace-sandbox/stage-3/evidence/task-management/initial-01/analysis/analysis-result.json",
+      "source_manifest": "workspace-sandbox/stage-3/evidence/task-management/initial-01/analysis/source-manifest.json",
+      "original": "tests/fixtures/sample-02-task-management.md",
+      "meta": {
+        "analysis_revision": 1,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "clarifying",
+        "readiness": "not_ready"
+      },
+      "evidence_kind": "historical_model_initial_snapshot",
+      "sample_adoption": "adopted_by_user",
+      "generator_reference_review": "human_reviewed_approved",
+      "current_validator_status": "pass"
+    },
+    {
+      "group": "task-management",
+      "requirement_id": "REQ-2026-003",
+      "analysis": "workspace-sandbox/stage-3/evidence/task-management/initial-02/analysis/analysis-result.json",
+      "source_manifest": "workspace-sandbox/stage-3/evidence/task-management/initial-02/analysis/source-manifest.json",
+      "original": "tests/fixtures/sample-02-task-management.md",
+      "meta": {
+        "analysis_revision": 1,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "clarifying",
+        "readiness": "not_ready"
+      },
+      "evidence_kind": "historical_model_initial_snapshot",
+      "sample_adoption": "adopted_by_user",
+      "generator_reference_review": "human_reviewed_approved",
+      "current_validator_status": "pass"
+    },
+    {
+      "group": "task-management",
+      "requirement_id": "REQ-2026-004",
+      "analysis": "workspace-sandbox/stage-3/evidence/task-management/initial-03/analysis/analysis-result.json",
+      "source_manifest": "workspace-sandbox/stage-3/evidence/task-management/initial-03/analysis/source-manifest.json",
+      "original": "tests/fixtures/sample-02-task-management.md",
+      "meta": {
+        "analysis_revision": 1,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "clarifying",
+        "readiness": "not_ready"
+      },
+      "evidence_kind": "historical_model_initial_snapshot",
+      "sample_adoption": "adopted_by_user",
+      "generator_reference_review": "human_reviewed_approved",
+      "current_validator_status": "pass"
+    },
+    {
+      "group": "task-management",
+      "requirement_id": "REQ-2026-005",
+      "analysis": "workspace-sandbox/stage-3/evidence/task-management/initial-04/analysis/analysis-result.json",
+      "source_manifest": "workspace-sandbox/stage-3/evidence/task-management/initial-04/analysis/source-manifest.json",
+      "original": "tests/fixtures/sample-02-task-management.md",
+      "meta": {
+        "analysis_revision": 1,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "clarifying",
+        "readiness": "not_ready"
+      },
+      "evidence_kind": "historical_model_initial_snapshot",
+      "sample_adoption": "adopted_by_user",
+      "generator_reference_review": "human_reviewed_approved",
+      "current_validator_status": "pass"
+    },
+    {
+      "group": "task-management",
+      "requirement_id": "REQ-2026-006",
+      "analysis": "workspace-sandbox/stage-3/evidence/task-management/initial-05/analysis/analysis-result.json",
+      "source_manifest": "workspace-sandbox/stage-3/evidence/task-management/initial-05/analysis/source-manifest.json",
+      "original": "tests/fixtures/sample-02-task-management.md",
+      "meta": {
+        "analysis_revision": 1,
+        "source_revision": 1,
+        "baseline_revision": null,
+        "input_type": "existing_document",
+        "analysis_status": "clarifying",
+        "readiness": "not_ready"
+      },
+      "evidence_kind": "historical_model_initial_snapshot",
+      "sample_adoption": "adopted_by_user",
+      "generator_reference_review": "human_reviewed_approved",
+      "current_validator_status": "pass"
+    }
+  ],
+  "file_hashes": {
+    "workspace-sandbox/stage-3/evidence/high-low-voltage/initial/analysis/analysis-result.json": "sha256:49ca654b12974c8585687a99198f4d82091441f98d236d35615bc81a8a4e3acc",
+    "workspace-sandbox/stage-3/evidence/high-low-voltage/initial/analysis/source-manifest.json": "sha256:fe8d198f5b249cc848eba55d294ac8a7492fb0062c97e4870a3dcc2dd7d27f7a",
+    "tests/fixtures/high-low-voltage/original-requirement.md": "sha256:4840333fa33128c91a66c7ba9726f43d1c1ff3c16910cd9c59ec7688e50431fb",
+    "workspace-sandbox/stage-3/evidence/task-management/initial-01/analysis/analysis-result.json": "sha256:39aad8a937c1e8db95de61916da45b7afe51a455d6faa1c704addacf9e9e39d4",
+    "workspace-sandbox/stage-3/evidence/task-management/initial-01/analysis/source-manifest.json": "sha256:85095e7e3d61a0118e2e71e75fb36cd4f8cb2e0a1a30034cb487d511881ddaf0",
+    "tests/fixtures/sample-02-task-management.md": "sha256:79a4772e26116a0b3afae33933a1425a512bc9f709c5ec79e43edfe8b8e8549b",
+    "workspace-sandbox/stage-3/evidence/task-management/initial-02/analysis/analysis-result.json": "sha256:902a84897b04ccc6b639b3722d3ec9129eedf01c004b8b8685cc10c9486ef03d",
+    "workspace-sandbox/stage-3/evidence/task-management/initial-02/analysis/source-manifest.json": "sha256:9b11dca7ced34f570b5b671cf161e2a964506149d9074d1111aa587fcdf54d82",
+    "workspace-sandbox/stage-3/evidence/task-management/initial-03/analysis/analysis-result.json": "sha256:847302a5bd1bed03147ff3376c65dbb1dce33620ea59a4a507378c4418b25bbf",
+    "workspace-sandbox/stage-3/evidence/task-management/initial-03/analysis/source-manifest.json": "sha256:4a4b27b2b1226ba809d7678fb4ff8ec67d0c761d0f0d0ccb2585e35af06cf31e",
+    "workspace-sandbox/stage-3/evidence/task-management/initial-04/analysis/analysis-result.json": "sha256:3434246cb5ac3e8c00864b28643e9e10a08fa066d2f0756e02156540f24c9629",
+    "workspace-sandbox/stage-3/evidence/task-management/initial-04/analysis/source-manifest.json": "sha256:8f3272a2d13ed8233dc455e3a644757d5ff2ea64a3308c64d4a7ee2ace51c155",
+    "workspace-sandbox/stage-3/evidence/task-management/initial-05/analysis/analysis-result.json": "sha256:c221ab4c867e04559b6f8a2177ad7ab66ea75ced8cd91ccee21c00238a814af6",
+    "workspace-sandbox/stage-3/evidence/task-management/initial-05/analysis/source-manifest.json": "sha256:429ce03a5e832fb39723ddfc87d8a546d7a10cf0919787ea0a367d60ec8fa22c",
+    "需求文档生成skill-需求规格说明.md": "sha256:07b7398502a62580683915b90f287d1e226776b9f47ee4ccb04ca94ae0c0f806",
+    "需求分析skill-需求规格说明.md": "sha256:2c379b34884b9d3dd569e6d89cd02364c9b9a595c2d44cb70ba7b050bff08e6c",
+    "prd-generator-execution-plan.md": "sha256:b43e2980967e61f423e1310239fa434e46194576bba9a562cb05d556ce944d5a",
+    "分阶段执行文档写作规范.md": "sha256:966fc4ef11ab8c4a20e208f046154536eb25cf6fdefccbdc9e2a156c207c0227",
+    "tests/expected/high-low-voltage.review.md": "sha256:f3fece75332c03abb45042ba226667de7c54906400bb11cc0326c219f31e67b4",
+    "tests/expected/sample-02-expected.md": "sha256:fbc80788c6ecfe17aeed697f5622f05856d3880221fd965874a35ec9e73eceb0",
+    "skill/requirement-analyst/scripts/validate_analysis.py": "sha256:58acb7ba88e9cdd0a01f4bbffc3bb4ed51bbfba07165342f25ce648c27180e15"
+  },
+  "limitations": [
+    "两组样例均未就绪，不代表覆盖全部就绪度或发布分支。",
+    "第二组保留五个独立需求，REQ-2026-003 仅为重点，不是全文分析。",
+    "旧分析侧参考认可不等于生成侧认可。",
+    "原 source-manifest 含当前环境的绝对路径；跨环境试跑须另建工作副本并显式记录重定位，不修改历史文件。"
+  ],
+  "confirmed_at": "2026-11-17T07:49:50.892946+00:00",
+  "decision_evidence": "tests/results/prd-generator/stage-0-decisions.json",
+  "post_review_context_updates": [
+    {
+      "path": "prd-generator-execution-plan.md",
+      "initial_sha256": "sha256:b43e2980967e61f423e1310239fa434e46194576bba9a562cb05d556ce944d5a",
+      "current_sha256": "sha256:4b17ce5da3fa55324e8fc27644d407c82320067d57cb5e18da4202a5cdaa4678",
+      "reason": "根据本次真实用户确认更新阶段0待定表和待确认事项；未改变阶段划分或自行定义协议。"
+    }
+  ],
+  "reference_reviews": [
+    {
+      "path": "tests/expected/prd-generator/high-low-voltage.review-draft.md",
+      "reviewed_original_sha256": "sha256:5a43062fd3e28f81e92316bd41035e803b71459d97d204b7b411e526b4f99781",
+      "current_sha256": "sha256:dd3f5b07d2d54e0e9e8d3e3784aebaa76c9b9d5b6674106d34f61ccdc0d8d70a",
+      "metadata_update": "仅更新认可状态、介绍及评审记录，保留核对要点及候选片段。"
+    },
+    {
+      "path": "tests/expected/prd-generator/task-management.review-draft.md",
+      "reviewed_original_sha256": "sha256:8ac06f42f7e022c69f86d753bf3abbbe468e071588a8296445956b3a46947292",
+      "current_sha256": "sha256:244e393b20ba72dbc1a783f2b82e78a26d213055b5f454ea4ff28d21ca47d164",
+      "metadata_update": "仅更新认可状态、介绍及评审记录，保留核对要点及候选片段。"
+    }
+  ]
+}

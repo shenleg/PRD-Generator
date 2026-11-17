@@ -1,0 +1,24 @@
+{
+  "document_role": "stage_1_actual_format_approval",
+  "recorded_at": "2026-11-17T08:08:22.572128+00:00",
+  "source": "current_conversation_AskUserQuestion_answer",
+  "answer": "认可并继续（推荐）",
+  "proposal": "tests/results/prd-generator/format-review.md",
+  "approved_sha256": "sha256:2054d1c448a97ef97eaa62cc3af2ca32fc5e4f948d37bc954da4a175c5236515",
+  "scope": [
+    "快照摘要写入 release 事件",
+    "编号映射补丁、稳定映射键和摘要算法",
+    "版本化缺口对象、计数器、唯一接收",
+    "正文定位标记及关闭依据",
+    "先补规格后实施阶段1格式、夹具和只读校验器"
+  ],
+  "not_authorized": [
+    "阶段2分析生产补丁",
+    "阶段3实际生成",
+    "真实发布",
+    "git commit",
+    "git merge",
+    "git tag",
+    "git push"
+  ]
+}

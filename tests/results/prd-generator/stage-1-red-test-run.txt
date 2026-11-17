@@ -1,0 +1,18 @@
+setUpClass (test_prd_validation.PrdValidationTests) ... ERROR
+
+======================================================================
+ERROR: setUpClass (test_prd_validation.PrdValidationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/orca/projects/test-skill/tests/test_prd_validation.py", line 27, in setUpClass
+    spec.loader.exec_module(cls.module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 1022, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1159, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1217, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/root/orca/projects/test-skill/skill/prd-generator/scripts/validate_prd.py'
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.001s
+
+FAILED (errors=1)

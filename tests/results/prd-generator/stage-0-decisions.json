@@ -1,0 +1,45 @@
+{
+  "document_role": "stage_0_actual_user_decisions",
+  "recorded_at": "2026-11-17T07:49:50.892946+00:00",
+  "source": "current_conversation_AskUserQuestion_answers",
+  "answers": {
+    "samples_and_references": "采用并认可两份草案",
+    "format_and_metrics_reviewer": "由我评审（推荐）",
+    "real_trial": "阶段 7 前由我提供",
+    "legacy_artifacts": "不自动迁移（推荐）"
+  },
+  "reference_reviews": [
+    {
+      "path": "tests/expected/prd-generator/high-low-voltage.review-draft.md",
+      "reviewed_sha256": "sha256:5a43062fd3e28f81e92316bd41035e803b71459d97d204b7b411e526b4f99781",
+      "reviewer": "user",
+      "status": "human_reviewed_approved",
+      "scope": "生成侧参考要点、候选片段及所选首轮快照；不是业务缺口已解决或发布批准"
+    },
+    {
+      "path": "tests/expected/prd-generator/task-management.review-draft.md",
+      "reviewed_sha256": "sha256:8ac06f42f7e022c69f86d753bf3abbbe468e071588a8296445956b3a46947292",
+      "reviewer": "user",
+      "status": "human_reviewed_approved",
+      "scope": "生成侧参考要点、候选片段及所选首轮快照；不是业务缺口已解决或发布批准"
+    }
+  ],
+  "decisions": {
+    "samples": "adopt_two_groups_keep_six_independent_requirement_snapshots",
+    "format_review": "user_in_stage_1_before_implementation",
+    "metrics_review": "user_after_first_draft_review_in_stage_3",
+    "metrics_thresholds": "not_set_except_existing_spec_targets",
+    "real_trial_preparation": "user_before_stage_7",
+    "legacy_migration": "no_automatic_migration"
+  },
+  "not_authorized": [
+    "开始阶段 1",
+    "自行确定缺失协议值",
+    "替用户回答业务问题",
+    "真实发布",
+    "git commit",
+    "git merge",
+    "git tag",
+    "git push"
+  ]
+}

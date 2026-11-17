@@ -277,6 +277,8 @@
 - 一个正式条目可以对应多个分析条目；分析条目被拆分时，可以对应多个正式条目，并在变更记录中说明。
 - 每个正式条目记录 `source_digest`，用于判断生成依据是否变化。摘要必须覆盖所引用分析条目的完整引用、`content`、`tag`、`status`、`sources`、`related_ids`，以及其他实际用于生成该正式条目的字段；不能只比较正文和状态。
 - 摘要使用 SHA-256；参与计算的对象键排序、忽略序列化空白，保留数组顺序。引用多个分析条目时，按完整分析引用排序后汇总，保证同一输入得到同一摘要。
+- `source_digest` 的具体输入为按完整引用排序的对象数组，每个对象含 `analysis_ref` 和该引用对应的完整分析条目 `item`。序列化使用 UTF-8、对象键排序、紧凑分隔、不转义正常 Unicode 字符，拒绝非有限数值；数组内部顺序保留。摘要为 `sha256:` 加 64 位小写十六进制。`content_hash` 则计算 Markdown 文件原始字节，两者不得混用。
+- 正式条目可选记录稳定的 `mapping_key`。同一需求内唯一，供编号补丁幂等定位；旧 `1.0` 追溯缺少该字段仍可读取，不据此重编号。编号补丁格式见 §9.11。
 - 功能需求和验收条件的表格带“分析来源”列。
 - 无法追溯的内容不得出现在需求性章节。章节导语、术语解释等说明性文字除外，但不得引入新规则。
 
@@ -357,7 +359,7 @@
 
 1. 状态改为 `released`，版本号定稿。
 2. 写入只读快照 `prd/versions/prd-<version>.md` 及对应的追溯文件，记录摘要。
-3. 记录事件 `release_confirmed` 和 `release`。
+3. 记录事件 `release_confirmed` 和 `release`。`release` 事件的 `snapshots` 按 §9.6 登记两份快照路径及原始字节摘要，不另设发布清单。
 4. 已发布 PRD 成为现行基线。新需求与它冲突时，由 Requirement Analyst 按基线变更规则处理，本 Skill 不做冲突分析，也不修改其他需求的 PRD。
 
 ## 8.6 已发布不可变
@@ -408,6 +410,11 @@ requirement-workspace/projects/<project-id>/requirements/REQ-2026-001/
 - 文档信息包含：需求编号、标题、PRD 版本、状态、草稿类型、基于的分析修订号、生成时间、未覆盖的分析项。
 - 每个正式条目带正式编号；功能需求和验收条件用表格，含“分析来源”列。
 - 标注格式见 5.3。
+- 正文使用不可见 HTML 注释定位机器检查范围，不增加可见次要标签。块标记为 `<!-- prd:section <key> -->` / `<!-- /prd:section -->`、`<!-- prd:item <prd_id> -->` / `<!-- /prd:item -->`、`<!-- prd:gap <gap_id> -->` / `<!-- /prd:gap -->`、`<!-- prd:residual <reference> -->` / `<!-- /prd:residual -->`。章节可以包含其他块，其他块不得嵌套，重复、交叉和不成对标记均拒绝。
+- 默认章节键依次为 `info`、`changes`、`background`、`scope`、`scenarios`、`functional_requirements`、`business_rules`、`flows_states`、`boundaries_exceptions`、`constraints`、`acceptance_criteria`、`ux`、`technical`、`impact`、`residuals`、`appendix`。模板可以调整中文标题和布局，但必须保留内容对应的稳定键及条目身份；文首仍为信息和变更记录。
+- 正式编号和标注在其条目块内核对；表格的条目标记放在单元格内，不破坏表格结构。已废止编号仅在 `changes` 留痕，不作为有效条目。未关闭缺口的占位块含 `待分析补充`，每个请求只对应一个占位；其他章节使用引用说明，关闭后占位移除。
+- 遗留项块以完整分析条目引用定位；无独立编号的待设计事项使用 `/ux_assessment/design_pending_items/<index>` JSON Pointer。问题及其假设、决策、推断和未处理矛盾缺口应当按 §5.5 分别可追溯，不能以别处出现编号充数。
+- 文档信息由脚本渲染为可见键值表，包含 §9.3 所列字段；校验可见值与权威元数据一致。机器标记不代表语义忠实性已被自动证明，未标注的需求性文本和内容充分性仍须模型与人工评审。
 
 ## 9.4 追溯文件
 
@@ -453,7 +460,9 @@ requirement-workspace/projects/<project-id>/requirements/REQ-2026-001/
 
 ## 9.5 缺口回交文件
 
-文件：`gap-requests.json`。每个缺口含：`id`（`GAPREQ-N`，同一需求内唯一、不复用）、`needed_for`（需要这些信息的 PRD 章节）、`description`（缺什么）、`related_analysis_refs`（相关的分析条目，可为空）、`raised_in`（登记时的 PRD 版本）、`status`。
+文件：`gap-requests.json`。顶层为对象，必含 `schema_version: "1.0"`、`requirement_id`、`counters: {"GAPREQ": N}` 和请求数组 `requests`。计数器为非负整数且不小于历史已分配最大序号，空集合计数器为 `0`；关闭的请求保留，不删除、不复用编号。封装和单条请求允许不改变已知语义的扩展字段，标记状态时须保留它们。
+
+每个缺口含：`id`（`GAPREQ-N`，同一需求内唯一、不复用）、`needed_for`（需要这些信息的 PRD 章节）、`description`（缺什么）、`related_analysis_refs`（相关的分析条目，可为空）、`raised_in`（登记时的 PRD 版本）、`status`。
 
 **引用格式**：`related_analysis_refs` 统一使用 `需求编号/分析条目编号`，如 `REQ-2026-001/FR-3`。分析侧转入问题的 `related_ids` 前必须校验并规范化：本需求引用转为 `FR-3`，跨需求引用保留完整格式；空数组保持为空，不臆造关联。
 
@@ -474,11 +483,17 @@ requirement-workspace/projects/<project-id>/requirements/REQ-2026-001/
 
 仅登记问题、仅改变问题状态，或仅将缺口标为 `handed_over`，均不足以关闭缺口。采用暂定假设补足内容的，仍须按 5.3、5.5 保留标注和遗留事项；无法唯一找到接收问题时，保留缺口和占位并提示用户。
 
+`closed` 请求另必含生成侧维护的 `resolution`：`kind` 为 `supplied` 或 `not_needed`，`analysis_refs` 为非空完整分析引用数组，`reason` 为依据说明。引用须存在、有效且有内容；`not_needed` 须引用说明不再需要的分析决策或范围依据，不接受只有生成器自述的关闭。校验器核对依据存在、状态及占位关系，不代替自然语言充分性评审。
+
+`gap_request_ref` 是分析问题的选填扩展字段，取本需求内 `GAPREQ-N`；旧问题无此字段仍合法。同一缺口至多一个接收问题。`open` 可以尚未接收，也可以在保存后标记中断时已经有唯一问题；`handed_over` 和 `closed` 必须有唯一接收问题。跨需求资料仅由调用方显式提供，不隐式扫描工作区。
+
 ## 9.6 事件日志
 
 文件：`prd-events.jsonl`，每行一个事件，只追加不修改。字段：`time`、`prd_version`、`change_type`、`summary`、`affected_prd_ids`、`based_on_analysis_revision`、`actor`（`user` 或 `prd_generator`）。发布确认事件另含 `confirmed_by`。
 
 `change_type` 取值：`initial_generation` 首次生成；`sync` 同步；`layout_edit` 排版修改；`manual_edit_detected` 检测到手工修改；`gap_request` 缺口回交；`submit_review` 提交评审；`release_confirmed` 产品经理确认发布；`release` 发布；`deprecate` 废弃。
+
+`release` 事件另必含 `snapshots` 对象，含 `prd` 和 `trace` 两项；每项含 `path` 和 `sha256`。路径相对于当前 `prd/`，必须分别为 `versions/prd-<prd_version>.md`、`versions/prd-trace-<prd_version>.json`；摘要为原始文件字节的 `sha256:` 加 64 位小写十六进制。不允许绝对路径、越界或符号链接。一个版本只能有一个发布事件；记录缺文件、文件缺记录、重复记录或摘要不符均失败。尚无发布时允许 `versions/` 不存在。该校验面向可信本地工作区的一致性，不认证遭同时篡改的日志和快照。
 
 ## 9.7 requirement.json 的 prd 块
 
@@ -523,10 +538,22 @@ requirement-workspace/projects/<project-id>/requirements/REQ-2026-001/
 
 **校验失败时**：脚本必须输出出错的条目编号和原因。模型据此修正后重新校验。校验通过之前，不得提交评审或发布，不得向用户宣布生成完成。连续修正 3 次仍失败时，停止修正，向用户说明问题，保持草稿状态。
 
+校验器只读，诊断含 `rule`、`level`、`item_id`、`path`、`message`，无对应条目时以 `$` 定位。标准输出为包含 `status` 和 `diagnostics` 的单个 JSON；退出码 `pass=0`、`warning=1`、`fail=2`，失败优先且保留适用诊断。显式提供跨需求分析，不读取人用报告、不调用分析写入器。
+
+仅有当前文件时不得宣称已证明历史编号未复用。可显式提供前一追溯，或读取已登记发布快照中的追溯，检查编号保留、计数器不回退、引入版本与既有稳定映射身份不被重置。待同步工作稿的旧来源摘要与当前分析不同应报告同步警告，而不是把该差异单独判为结构失败；独立格式错误仍失败，过期分析仍须遵守草稿类型规则。
+
 ## 9.10 多人协作
 
 - 发布确认必须记录确认人和确认时间。
 - 写入 `prd/` 前，校验 `prd` 块的版本和所依据的分析修订号：与读取时不一致，拒绝写入并提示重新读取，不覆盖他人的修改。
+
+## 9.11 编号映射补丁
+
+编号补丁使用独立 `patch_version: "1.0"`，必含 `requirement_id`、`base_prd_version`、`base_analysis_revision` 和 `items`。首次无 `prd` 块时版本为 `null`，否则为读取时的版本字符串；分析修订为正整数。写入前任一读时版本不符即拒绝，不盲改数字重试。
+
+每项必含非空 `mapping_key`、`kind`、非空且不重复的完整 `analysis_refs`；可选 `prd_id` 仅定位已分配条目，不能指定新编号。同一键重试沿用既有编号，一对多映射使用不同键，同一补丁键不重复。旧追溯无键时通过明确的既有 `prd_id` 定位；歧义或键与编号冲突则拒绝。未知字段、模型提交的计数器、摘要或业务正文均拒绝。实际分配及幂等写入由 `assign_ids.py` 负责，格式校验器不提前写入。
+
+`kind` 与前缀依次对应：`goal/GOAL`、`scenario/SCN`、`functional_requirement/FR`、`business_rule/BR`、`constraint/CON`、`non_functional_requirement/NFR`、`acceptance_criterion/AC`、`flow/FLOW`、`state/STATE`、`boundary/BND`、`exception/EXC`。正式编号至少三位，不截断增长后的序号。
 
 # 十、与 Requirement Analyst 的协作
 
@@ -595,7 +622,8 @@ prd-generator/
 │   └── prd-structure.md             默认章节、模板适配
 ├── schemas/
 │   ├── prd-trace.schema.json
-│   └── gap-request.schema.json
+│   ├── gap-request.schema.json
+│   └── numbering-patch.schema.json
 ├── templates/
 │   ├── prd.md
 │   └── change-summary.md

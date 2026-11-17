@@ -1,0 +1,131 @@
+test_bad_metadata_root_and_event_json (test_prd_validation.PrdValidationTests.test_bad_metadata_root_and_event_json)
+坏元数据和事件 JSON 返回结构化诊断，不引发未处理异常。 ... ok
+test_cross_requirement_references_need_explicit_input (test_prd_validation.PrdValidationTests.test_cross_requirement_references_need_explicit_input)
+跨需求引用只接受显式提供的资料，不隐式检索相邻工作区。 ... ok
+test_damaged_event_and_missing_required_inputs (test_prd_validation.PrdValidationTests.test_damaged_event_and_missing_required_inputs)
+坏事件与缺必需文件返回具体失败，不能变成可选资料降级。 ... ok
+test_duplicate_receiver_and_invalid_gap_reference (test_prd_validation.PrdValidationTests.test_duplicate_receiver_and_invalid_gap_reference)
+重复接收问题及不完整缺口引用均为规则12错误。 ... ok
+test_malformed_blocks_and_untracked_number (test_prd_validation.PrdValidationTests.test_malformed_blocks_and_untracked_number)
+交叉定位块或游离正式编号不能被解析器忽略。 ... ok
+test_manual_hash_change_warning (test_prd_validation.PrdValidationTests.test_manual_hash_change_warning)
+未处理的手工改动是 warning，校验器不自行修正文档或摘要。 ... ok
+test_not_needed_scope_basis_is_valid (test_prd_validation.PrdValidationTests.test_not_needed_scope_basis_is_valid)
+不再需要的关闭依据可来自有效范围条目，不强制伪造新验收内容。 ... ok
+test_numbering_patch_readonly_structure_and_conflict (test_prd_validation.PrdValidationTests.test_numbering_patch_readonly_structure_and_conflict)
+编号补丁只读检查映射身份和读时版本，禁止模型指定新正式编号。 ... ok
+test_open_gap_with_saved_question_is_valid_retry_state (test_prd_validation.PrdValidationTests.test_open_gap_with_saved_question_is_valid_retry_state)
+保存问题后标记中断时 open 加唯一接收问题仍合法，不要求再建问题。 ... ok
+test_optional_source_manifest_missing_downgrades (test_prd_validation.PrdValidationTests.test_optional_source_manifest_missing_downgrades)
+可选来源名称清单无法读取时保留 source_id，不阻断合法分析内容。 ... ok
+test_real_stage_zero_samples_can_be_read_without_writing (test_prd_validation.PrdValidationTests.test_real_stage_zero_samples_can_be_read_without_writing)
+现有首轮样例仍由唯一分析校验器读取；本测试不声称已生成 PRD。 ... ok
+test_review_hidden_id_does_not_replace_visible_id (test_prd_validation.PrdValidationTests.test_review_hidden_id_does_not_replace_visible_id)
+独立评审回归：隐藏定位标记不能替代读者可见的正式编号。 ... FAIL
+test_review_legacy_mapping_cannot_change_kind (test_prd_validation.PrdValidationTests.test_review_legacy_mapping_cannot_change_kind)
+独立评审回归：旧条目无映射键时仍须按正式编号保护既有类别。 ... FAIL
+test_review_numeric_sequence_cannot_be_reused_with_zero_padding (test_prd_validation.PrdValidationTests.test_review_numeric_sequence_cannot_be_reused_with_zero_padding)
+独立评审回归：不同补零字符串不能分配同一个类别数值序号。 ... FAIL
+test_review_sync_warning_lists_changed_references (test_prd_validation.PrdValidationTests.test_review_sync_warning_lists_changed_references)
+独立评审回归：待同步不误判失败，同时明确指出变更的分析引用。 ... FAIL
+test_rule_10_visible_metadata_mismatch (test_prd_validation.PrdValidationTests.test_rule_10_visible_metadata_mismatch)
+规则10核对可见文档信息，而不是仅信任隐藏字段。 ... ok
+test_rule_11_snapshot_integrity_and_symlink (test_prd_validation.PrdValidationTests.test_rule_11_snapshot_integrity_and_symlink)
+规则11校验两份快照原始字节，拒绝篡改及符号链接。 ... ok
+test_rule_11_unrecorded_and_duplicate_release (test_prd_validation.PrdValidationTests.test_rule_11_unrecorded_and_duplicate_release)
+规则11拒绝快照无登记和重复发布记录。 ... ok
+test_rule_12_closed_requires_effective_content (test_prd_validation.PrdValidationTests.test_rule_12_closed_requires_effective_content)
+关闭不能只靠问题状态，撤销依据及缺依据都被拒绝。 ... ok
+test_rule_12_handed_over_requires_unique_receiver (test_prd_validation.PrdValidationTests.test_rule_12_handed_over_requires_unique_receiver)
+handed_over 必须有唯一接收问题，不能假装接收成功。 ... ok
+test_rule_12_open_without_receiver_is_warning (test_prd_validation.PrdValidationTests.test_rule_12_open_without_receiver_is_warning)
+未接收或保存后未标状态的 open 缺口都合法，输出 warning 而非结构失败。 ... ok
+test_rule_12_valid_closed_and_not_needed (test_prd_validation.PrdValidationTests.test_rule_12_valid_closed_and_not_needed)
+有接收问题和有效内容才结构上允许关闭，充分性仍不冒充自动证明。 ... ok
+test_rule_1_missing_field_and_bad_json (test_prd_validation.PrdValidationTests.test_rule_1_missing_field_and_bad_json)
+规则1拒绝缺失必填和重复键，不吞掉损坏输入。 ... ok
+test_rule_2_duplicate_id_counter_and_mapping_key (test_prd_validation.PrdValidationTests.test_rule_2_duplicate_id_counter_and_mapping_key)
+规则2拒绝重复正式编号及映射键，并检出编号计数器落后。 ... ok
+test_rule_2_history_cannot_reset_identity (test_prd_validation.PrdValidationTests.test_rule_2_history_cannot_reset_identity)
+历史对照阻止删除旧编号及改写引入版本，单份文件不伪称有完整历史。 ... ok
+test_rule_3_dangling_or_withdrawn_reference (test_prd_validation.PrdValidationTests.test_rule_3_dangling_or_withdrawn_reference)
+规则3检出不存在及已撤销却仍有效的来源引用。 ... ok
+test_rule_3_withdrawn_source_and_rule_5_pending_label (test_prd_validation.PrdValidationTests.test_rule_3_withdrawn_source_and_rule_5_pending_label)
+撤销来源不能保持有效，待重评状态必须落实到对应条目的待确认标注。 ... ok
+test_rule_4_missing_and_untracked_ids (test_prd_validation.PrdValidationTests.test_rule_4_missing_and_untracked_ids)
+规则4要求正文有效条目与追溯双向对应。 ... ok
+test_rule_5_labels_must_be_inside_item (test_prd_validation.PrdValidationTests.test_rule_5_labels_must_be_inside_item)
+规则5不接受其他章节的推断标注为目标条目充数。 ... ok
+test_rule_6_abolished_not_in_effective_section (test_prd_validation.PrdValidationTests.test_rule_6_abolished_not_in_effective_section)
+规则6拒绝将已废止条目保留在功能正文。 ... ok
+test_rule_7_stale_overrides_readiness (test_prd_validation.PrdValidationTests.test_rule_7_stale_overrides_readiness)
+规则7优先过期状态，不能以正式草稿提示掩盖过期。 ... ok
+test_rule_8_required_residual_missing (test_prd_validation.PrdValidationTests.test_rule_8_required_residual_missing)
+规则8检出缺少适用推断遗留项，不只搜索正文编号。 ... ok
+test_rule_9_orphan_placeholder (test_prd_validation.PrdValidationTests.test_rule_9_orphan_placeholder)
+规则9拒绝未登记或无法对应的占位。 ... ok
+test_snapshot_symlink_and_missing_record_rejected (test_prd_validation.PrdValidationTests.test_snapshot_symlink_and_missing_record_rejected)
+快照符号链接和无记录文件不被当作不可变发布依据。 ... ok
+test_source_digest_changes_and_key_order_stability (test_prd_validation.PrdValidationTests.test_source_digest_changes_and_key_order_stability)
+生成依据摘要覆盖来源和关联，JSON 键顺序不影响算法。 ... ok
+test_sync_warning_and_failure_priority (test_prd_validation.PrdValidationTests.test_sync_warning_and_failure_priority)
+待同步是 warning，结构错误仍优先为 fail；不把未同步摘要差异判失败。 ... ok
+test_valid_fixture_and_readonly_cli (test_prd_validation.PrdValidationTests.test_valid_fixture_and_readonly_cli)
+合法夹具 pass，实际 CLI 从任意目录运行不改变业务字节。 ... ok
+
+======================================================================
+FAIL: test_review_hidden_id_does_not_replace_visible_id (test_prd_validation.PrdValidationTests.test_review_hidden_id_does_not_replace_visible_id)
+独立评审回归：隐藏定位标记不能替代读者可见的正式编号。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/orca/projects/test-skill/tests/test_prd_validation.py", line 321, in test_review_hidden_id_does_not_replace_visible_id
+    self.expect_rule(4)
+    ~~~~~~~~~~~~~~~~^^^
+  File "/root/orca/projects/test-skill/tests/test_prd_validation.py", line 50, in expect_rule
+    self.assertEqual(result["status"], "fail", result)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'pass' != 'fail'
+- pass
++ fail
+ : {'status': 'pass', 'diagnostics': []}
+
+======================================================================
+FAIL: test_review_legacy_mapping_cannot_change_kind (test_prd_validation.PrdValidationTests.test_review_legacy_mapping_cannot_change_kind)
+独立评审回归：旧条目无映射键时仍须按正式编号保护既有类别。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/orca/projects/test-skill/tests/test_prd_validation.py", line 329, in test_review_legacy_mapping_cannot_change_kind
+    self.assertTrue(any(d["rule"] == 2 and d["level"] == "fail" for d in result["diagnostics"]), result)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'status': 'pass', 'diagnostics': []}
+
+======================================================================
+FAIL: test_review_numeric_sequence_cannot_be_reused_with_zero_padding (test_prd_validation.PrdValidationTests.test_review_numeric_sequence_cannot_be_reused_with_zero_padding)
+独立评审回归：不同补零字符串不能分配同一个类别数值序号。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/orca/projects/test-skill/tests/test_prd_validation.py", line 339, in test_review_numeric_sequence_cannot_be_reused_with_zero_padding
+    self.expect_rule(2)
+    ~~~~~~~~~~~~~~~~^^^
+  File "/root/orca/projects/test-skill/tests/test_prd_validation.py", line 50, in expect_rule
+    self.assertEqual(result["status"], "fail", result)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'pass' != 'fail'
+- pass
++ fail
+ : {'status': 'pass', 'diagnostics': []}
+
+======================================================================
+FAIL: test_review_sync_warning_lists_changed_references (test_prd_validation.PrdValidationTests.test_review_sync_warning_lists_changed_references)
+独立评审回归：待同步不误判失败，同时明确指出变更的分析引用。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/root/orca/projects/test-skill/tests/test_prd_validation.py", line 347, in test_review_sync_warning_lists_changed_references
+    self.assertTrue(any("SYNTHETIC-PRD/FR-1" in d["message"] and d["level"] == "warning" for d in result["diagnostics"]), result)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : {'status': 'warning', 'diagnostics': [{'rule': 10, 'level': 'warning', 'item_id': '$', 'path': 'requirement.json/prd/based_on_analysis_revision', 'message': 'PRD 待同步；当前差异不作为结构失败。'}]}
+
+----------------------------------------------------------------------
+Ran 37 tests in 2.372s
+
+FAILED (failures=4)

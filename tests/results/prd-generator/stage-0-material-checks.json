@@ -1,0 +1,16 @@
+{
+  "document_role": "stage_0_material_checks_not_product_acceptance",
+  "checked_at": "2026-11-17T07:46:06.227153+00:00",
+  "status": "pass",
+  "source_hashes_checked": 21,
+  "source_files_unchanged": true,
+  "scenarios_indexed": 34,
+  "scenario_owners_match_execution_plan": true,
+  "sample_snapshots_checked": 6,
+  "sample_validator_calls_passed": 6,
+  "analysis_regression_tests_passed": 216,
+  "tracked_files_modified": [],
+  "generator_product_directory_created": false,
+  "human_reference_review": "pending",
+  "stage_0_exit": "not_passed_pending_human_review_and_decisions"
+}

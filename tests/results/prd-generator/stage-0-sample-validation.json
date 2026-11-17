@@ -1,0 +1,161 @@
+{
+  "document_role": "stage_0_actual_read_only_validation",
+  "executed_at": "2026-11-17T07:43:51.033438+00:00",
+  "status": "pass",
+  "commands_run": 6,
+  "model_called": false,
+  "generator_scenarios_executed": false,
+  "source_fingerprints_unchanged": true,
+  "responses": [
+    {
+      "requirement_id": "REQ-2026-001",
+      "command": [
+        "uv",
+        "run",
+        "--offline",
+        "--no-project",
+        "--python",
+        "/usr/bin/python3",
+        "--with-requirements",
+        "tests/requirements.txt",
+        "python",
+        "-I",
+        "-B",
+        "skill/requirement-analyst/scripts/validate_analysis.py",
+        "workspace-sandbox/stage-3/evidence/high-low-voltage/initial/analysis/analysis-result.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+      "stderr": "",
+      "parsed_response": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "requirement_id": "REQ-2026-002",
+      "command": [
+        "uv",
+        "run",
+        "--offline",
+        "--no-project",
+        "--python",
+        "/usr/bin/python3",
+        "--with-requirements",
+        "tests/requirements.txt",
+        "python",
+        "-I",
+        "-B",
+        "skill/requirement-analyst/scripts/validate_analysis.py",
+        "workspace-sandbox/stage-3/evidence/task-management/initial-01/analysis/analysis-result.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+      "stderr": "",
+      "parsed_response": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "requirement_id": "REQ-2026-003",
+      "command": [
+        "uv",
+        "run",
+        "--offline",
+        "--no-project",
+        "--python",
+        "/usr/bin/python3",
+        "--with-requirements",
+        "tests/requirements.txt",
+        "python",
+        "-I",
+        "-B",
+        "skill/requirement-analyst/scripts/validate_analysis.py",
+        "workspace-sandbox/stage-3/evidence/task-management/initial-02/analysis/analysis-result.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+      "stderr": "",
+      "parsed_response": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "requirement_id": "REQ-2026-004",
+      "command": [
+        "uv",
+        "run",
+        "--offline",
+        "--no-project",
+        "--python",
+        "/usr/bin/python3",
+        "--with-requirements",
+        "tests/requirements.txt",
+        "python",
+        "-I",
+        "-B",
+        "skill/requirement-analyst/scripts/validate_analysis.py",
+        "workspace-sandbox/stage-3/evidence/task-management/initial-03/analysis/analysis-result.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+      "stderr": "",
+      "parsed_response": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "requirement_id": "REQ-2026-005",
+      "command": [
+        "uv",
+        "run",
+        "--offline",
+        "--no-project",
+        "--python",
+        "/usr/bin/python3",
+        "--with-requirements",
+        "tests/requirements.txt",
+        "python",
+        "-I",
+        "-B",
+        "skill/requirement-analyst/scripts/validate_analysis.py",
+        "workspace-sandbox/stage-3/evidence/task-management/initial-04/analysis/analysis-result.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+      "stderr": "",
+      "parsed_response": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    },
+    {
+      "requirement_id": "REQ-2026-006",
+      "command": [
+        "uv",
+        "run",
+        "--offline",
+        "--no-project",
+        "--python",
+        "/usr/bin/python3",
+        "--with-requirements",
+        "tests/requirements.txt",
+        "python",
+        "-I",
+        "-B",
+        "skill/requirement-analyst/scripts/validate_analysis.py",
+        "workspace-sandbox/stage-3/evidence/task-management/initial-05/analysis/analysis-result.json"
+      ],
+      "returncode": 0,
+      "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+      "stderr": "",
+      "parsed_response": {
+        "status": "pass",
+        "diagnostics": []
+      }
+    }
+  ]
+}

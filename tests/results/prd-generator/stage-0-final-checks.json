@@ -1,0 +1,26 @@
+{
+  "document_role": "stage_0_final_preparation_checks_not_product_acceptance",
+  "checked_at": "2026-11-17T07:54:34.490235+00:00",
+  "status": "pass",
+  "stage_0_exit": "pass",
+  "samples_adopted": 2,
+  "independent_snapshots": 6,
+  "human_reviewed_reference_documents": 2,
+  "scenario_owners_verified": 34,
+  "validation_rule_fixture_plans": 12,
+  "current_analysis_validator_passes": 6,
+  "analysis_regression_tests_passed": 216,
+  "historical_business_files_unchanged": true,
+  "execution_plan_updated_only_for_user_decisions": true,
+  "tracked_files_modified": [],
+  "product_code_modified": false,
+  "initial_check_snapshot": "tests/results/prd-generator/stage-0-material-checks.json",
+  "actual_user_decisions": "tests/results/prd-generator/stage-0-decisions.json",
+  "generator_scenarios_executed": false,
+  "next_stage_authorized": false,
+  "deferred_decisions": [
+    "阶段 1 的具体协议值",
+    "阶段 3 首轮评审后的指标阈值",
+    "阶段 7 前的真实需求及参与人"
+  ]
+}

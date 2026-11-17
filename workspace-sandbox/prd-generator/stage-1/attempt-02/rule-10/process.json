@@ -1,0 +1,46 @@
+{
+  "label": "rule-10",
+  "expected_rule": 10,
+  "expected_status": "fail",
+  "command": [
+    "/root/.cache/uv/builds-v0/.tmpXRpdVX/bin/python",
+    "-I",
+    "-B",
+    "/root/orca/projects/test-skill/skill/prd-generator/scripts/validate_prd.py",
+    "/root/orca/projects/test-skill/workspace-sandbox/prd-generator/stage-1/attempt-02/rule-10/requirement"
+  ],
+  "returncode": 2,
+  "stdout": "{\n  \"status\": \"fail\",\n  \"diagnostics\": [\n    {\n      \"rule\": 10,\n      \"level\": \"fail\",\n      \"item_id\": \"$\",\n      \"path\": \"prd.md/info\",\n      \"message\": \"文档信息 PRD 版本 与权威元数据不符。\"\n    }\n  ]\n}\n",
+  "stderr": "",
+  "response": {
+    "status": "fail",
+    "diagnostics": [
+      {
+        "rule": 10,
+        "level": "fail",
+        "item_id": "$",
+        "path": "prd.md/info",
+        "message": "文档信息 PRD 版本 与权威元数据不符。"
+      }
+    ]
+  },
+  "business_hashes_before": {
+    "requirement.json": "sha256:1dd7787673c214d8f588e03d69a78dc95f758f4c68822ba9b1c3f24b83aab55f",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "analysis/analysis-result.json": "sha256:9e745547956a5c5fe9e152be8d07fd2bfcec3f25cf818f2b38b26787b95bdba8",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd.md": "sha256:26ccaf0f95fa93acf345991c74bbdae8914db55e0245e4fe0eaa280c61ab5f85",
+    "prd/prd-events.jsonl": "sha256:e1d8cc001493d4940f06b828ae38eb59923743c05ea7119f2f3209e8ed1941e4",
+    "prd/prd-trace.json": "sha256:3f90f6ff8a3c310caf2deb032a47675409dd20b0e6f80c2393fedf93ad1f00f3"
+  },
+  "business_hashes_after": {
+    "requirement.json": "sha256:1dd7787673c214d8f588e03d69a78dc95f758f4c68822ba9b1c3f24b83aab55f",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "analysis/analysis-result.json": "sha256:9e745547956a5c5fe9e152be8d07fd2bfcec3f25cf818f2b38b26787b95bdba8",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd.md": "sha256:26ccaf0f95fa93acf345991c74bbdae8914db55e0245e4fe0eaa280c61ab5f85",
+    "prd/prd-events.jsonl": "sha256:e1d8cc001493d4940f06b828ae38eb59923743c05ea7119f2f3209e8ed1941e4",
+    "prd/prd-trace.json": "sha256:3f90f6ff8a3c310caf2deb032a47675409dd20b0e6f80c2393fedf93ad1f00f3"
+  },
+  "readonly": true
+}

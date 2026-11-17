@@ -1,0 +1,18 @@
+{
+  "document_role": "stage_0_analysis_regression_evidence",
+  "executed_date": "2026-11-17",
+  "source_commit": "d798eb1",
+  "branch": "chore/prd-generator-stage-0",
+  "status": "pass",
+  "tests_run": 216,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "duration_seconds": 55.080,
+  "returncode": 0,
+  "command": "uv run --offline --no-project --python /usr/bin/python3 --with-requirements tests/requirements.txt python -I -B -m unittest discover -s tests -p 'test_*.py' -v",
+  "raw_log": "tests/results/prd-generator/stage-0-analysis-regression.txt",
+  "model_called": false,
+  "prd_generator_scenarios_executed": false,
+  "limitation": "既有分析侧回归通过，不代表新增交接协议、正式生成器或本次人工参考评审已经完成。"
+}

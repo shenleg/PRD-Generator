@@ -1,0 +1,60 @@
+{
+  "label": "rule-08",
+  "expected_rule": 8,
+  "expected_status": "fail",
+  "command": [
+    "/root/.cache/uv/builds-v0/.tmpXRpdVX/bin/python",
+    "-I",
+    "-B",
+    "/root/orca/projects/test-skill/skill/prd-generator/scripts/validate_prd.py",
+    "/root/orca/projects/test-skill/workspace-sandbox/prd-generator/stage-1/attempt-02/rule-08/requirement"
+  ],
+  "returncode": 2,
+  "stdout": "{\n  \"status\": \"fail\",\n  \"diagnostics\": [\n    {\n      \"rule\": 3,\n      \"level\": \"fail\",\n      \"item_id\": \"PRD-FR-001\",\n      \"path\": \"prd-trace.json/items/source_digest\",\n      \"message\": \"已同步条目的生成依据摘要与当前完整来源不符。\"\n    },\n    {\n      \"rule\": 5,\n      \"level\": \"fail\",\n      \"item_id\": \"PRD-FR-001\",\n      \"path\": \"prd-trace.json/items/tag\",\n      \"message\": \"追溯标签未保留最不确定来源语义。\"\n    },\n    {\n      \"rule\": 8,\n      \"level\": \"fail\",\n      \"item_id\": \"SYNTHETIC-PRD/FR-1\",\n      \"path\": \"prd.md/residuals\",\n      \"message\": \"缺少应列遗留项或该项未在遗留章节中定位。\"\n    }\n  ]\n}\n",
+  "stderr": "",
+  "response": {
+    "status": "fail",
+    "diagnostics": [
+      {
+        "rule": 3,
+        "level": "fail",
+        "item_id": "PRD-FR-001",
+        "path": "prd-trace.json/items/source_digest",
+        "message": "已同步条目的生成依据摘要与当前完整来源不符。"
+      },
+      {
+        "rule": 5,
+        "level": "fail",
+        "item_id": "PRD-FR-001",
+        "path": "prd-trace.json/items/tag",
+        "message": "追溯标签未保留最不确定来源语义。"
+      },
+      {
+        "rule": 8,
+        "level": "fail",
+        "item_id": "SYNTHETIC-PRD/FR-1",
+        "path": "prd.md/residuals",
+        "message": "缺少应列遗留项或该项未在遗留章节中定位。"
+      }
+    ]
+  },
+  "business_hashes_before": {
+    "requirement.json": "sha256:1dd7787673c214d8f588e03d69a78dc95f758f4c68822ba9b1c3f24b83aab55f",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "analysis/analysis-result.json": "sha256:edc71253de5d44ad67f47f2f4a2cb62941d2a466ad70f83bd2359d68af5f8fcd",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd.md": "sha256:e4fad3985906cb7572376c52ce97b806b43beeec5bdb6d2846d12bb887b9d88a",
+    "prd/prd-events.jsonl": "sha256:e1d8cc001493d4940f06b828ae38eb59923743c05ea7119f2f3209e8ed1941e4",
+    "prd/prd-trace.json": "sha256:35ad1d62dd18bb478c5cba9178137f9ad9af430a5f8baf2ef6ab427c3485eb00"
+  },
+  "business_hashes_after": {
+    "requirement.json": "sha256:1dd7787673c214d8f588e03d69a78dc95f758f4c68822ba9b1c3f24b83aab55f",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "analysis/analysis-result.json": "sha256:edc71253de5d44ad67f47f2f4a2cb62941d2a466ad70f83bd2359d68af5f8fcd",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd.md": "sha256:e4fad3985906cb7572376c52ce97b806b43beeec5bdb6d2846d12bb887b9d88a",
+    "prd/prd-events.jsonl": "sha256:e1d8cc001493d4940f06b828ae38eb59923743c05ea7119f2f3209e8ed1941e4",
+    "prd/prd-trace.json": "sha256:35ad1d62dd18bb478c5cba9178137f9ad9af430a5f8baf2ef6ab427c3485eb00"
+  },
+  "readonly": true
+}

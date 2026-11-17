@@ -1,0 +1,138 @@
+{
+  "executed_at": "2026-11-17T08:30:27.039062+00:00",
+  "scope": "阶段1合法工作稿及12条规则的合成反例，只证明格式校验，不是模型生成或真实发布",
+  "status": "pass",
+  "cli_calls": 15,
+  "results": [
+    {
+      "label": "valid",
+      "expected_status": "pass",
+      "actual_status": "pass",
+      "expected_rule": null,
+      "readonly": true,
+      "process": "valid/process.json"
+    },
+    {
+      "label": "rule-01",
+      "expected_status": "fail",
+      "actual_status": "fail",
+      "expected_rule": 1,
+      "readonly": true,
+      "process": "rule-01/process.json"
+    },
+    {
+      "label": "rule-02",
+      "expected_status": "fail",
+      "actual_status": "fail",
+      "expected_rule": 2,
+      "readonly": true,
+      "process": "rule-02/process.json"
+    },
+    {
+      "label": "rule-03",
+      "expected_status": "fail",
+      "actual_status": "fail",
+      "expected_rule": 3,
+      "readonly": true,
+      "process": "rule-03/process.json"
+    },
+    {
+      "label": "rule-04",
+      "expected_status": "fail",
+      "actual_status": "fail",
+      "expected_rule": 4,
+      "readonly": true,
+      "process": "rule-04/process.json"
+    },
+    {
+      "label": "rule-05",
+      "expected_status": "fail",
+      "actual_status": "fail",
+      "expected_rule": 5,
+      "readonly": true,
+      "process": "rule-05/process.json"
+    },
+    {
+      "label": "rule-06",
+      "expected_status": "fail",
+      "actual_status": "fail",
+      "expected_rule": 6,
+      "readonly": true,
+      "process": "rule-06/process.json"
+    },
+    {
+      "label": "rule-07",
+      "expected_status": "fail",
+      "actual_status": "fail",
+      "expected_rule": 7,
+      "readonly": true,
+      "process": "rule-07/process.json"
+    },
+    {
+      "label": "rule-08",
+      "expected_status": "fail",
+      "actual_status": "fail",
+      "expected_rule": 8,
+      "readonly": true,
+      "process": "rule-08/process.json"
+    },
+    {
+      "label": "rule-09",
+      "expected_status": "fail",
+      "actual_status": "fail",
+      "expected_rule": 9,
+      "readonly": true,
+      "process": "rule-09/process.json"
+    },
+    {
+      "label": "rule-10",
+      "expected_status": "fail",
+      "actual_status": "fail",
+      "expected_rule": 10,
+      "readonly": true,
+      "process": "rule-10/process.json"
+    },
+    {
+      "label": "rule-11",
+      "expected_status": "fail",
+      "actual_status": "fail",
+      "expected_rule": 11,
+      "readonly": true,
+      "process": "rule-11/process.json"
+    },
+    {
+      "label": "rule-12",
+      "expected_status": "fail",
+      "actual_status": "fail",
+      "expected_rule": 12,
+      "readonly": true,
+      "process": "rule-12/process.json"
+    },
+    {
+      "label": "snapshot-valid",
+      "expected_status": "pass",
+      "actual_status": "pass",
+      "expected_rule": null,
+      "readonly": true,
+      "process": "snapshot-valid/process.json"
+    },
+    {
+      "label": "snapshot-tampered",
+      "expected_status": "fail",
+      "actual_status": "fail",
+      "expected_rule": 11,
+      "readonly": true,
+      "process": "snapshot-tampered/process.json"
+    }
+  ],
+  "source_hashes": {
+    "skill/prd-generator/schemas/gap-request.schema.json": "sha256:c2da60cd90768f5d70555df2c08b90337d0897c51b30b9ffbb76505ce523bc8c",
+    "skill/prd-generator/schemas/numbering-patch.schema.json": "sha256:b566c3470f7781a60da94c0a915bcebfdf84e1a2c6282c91d4716d0a75b648a9",
+    "skill/prd-generator/schemas/prd-trace.schema.json": "sha256:a307e535d215759f013adf3bbfa8f560fbfb030fe3ab7ded267785352fa0ea89",
+    "skill/prd-generator/scripts/README.md": "sha256:3d2c38d808a2d610c3420afc2ba617936aaa937e7959292784a0f3c510090547",
+    "skill/prd-generator/scripts/validate_prd.py": "sha256:9a8e4260d6fc239426aec03242f845b68b16c8127cf604325d920fc36086a06b"
+  },
+  "model_called": false,
+  "release_executed": false,
+  "stage_2_executed": false
+}
