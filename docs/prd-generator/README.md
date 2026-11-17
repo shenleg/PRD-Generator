@@ -1,0 +1,15 @@
+# PRD Generator 文档
+
+本目录收纳需求文档生成 Skill 的现行规格与执行计划。代码位于 `skill/prd-generator/`，测试维护代码位于 `tests/prd-generator/`。
+
+| 内容 | 入口 |
+| --- | --- |
+| 完整形态、格式与交接协议 | [规格](spec.md) |
+| 阶段 0～7的实施顺序和退出条件 | [执行计划](execution-plan.md) |
+| 测试与合成格式证据 | [测试导航](../../tests/prd-generator/README.md) |
+| 只读校验器使用方式 | [脚本说明](../../skill/prd-generator/scripts/README.md) |
+| 上游能力和接口 | [分析侧文档](../requirement-analyst/README.md) |
+
+阶段 0、1已完成并合入 `main`；生成侧格式和只读校验器已具备，但当前没有 `SKILL.md`、正式编号写入、同步器或发布器，不能称为完整生成 Skill。
+
+下一阶段是分析侧的新缺口接收配套补丁；本次目录整理不是启动阶段 2 的授权。原确认、测试日志和来源指纹保持原样。

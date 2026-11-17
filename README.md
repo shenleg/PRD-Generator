@@ -1,43 +1,57 @@
-# Requirement Analyst：需求分析 Skill
+# 需求协作 Skills
 
-先把需求想清楚，再向文档生成或测试分析交接。负责需求理解、拆分、澄清、业务与完整性分析、增量变更、历史对照、有依据的技术/体验判断，以及具体批准后的领域知识沉淀；不编写或发布正式PRD。
+本仓库维护两个独立、通过共享工作区协作的 Skill：需求分析负责“想清楚”，文档生成负责“写清楚”。源码、文档和测试代码按 Skill 分类，共享规范与历史证据单独保留。
 
-## 当前交付
+## 按 Skill 查找
 
-阶段1～8已在用户批准范围内完成，阶段8已提交`be0f8ba`并合并`master`。整体收口记录见[最终验收](tests/results/final-acceptance.md)；收口文档及链路检查另在`chore/final-skill-acceptance`分支，尚未提交或合并，不推送、不自动打标签。
+| Skill | 当前范围 | 源码 | 文档 | 测试 |
+| --- | --- | --- | --- | --- |
+| `requirement-analyst` | 原阶段 1～8及最终收口完成；真实下游联调仍需补验 | [生产目录](skill/requirement-analyst/) | [文档导航](docs/requirement-analyst/README.md) | [测试与历史证据](tests/requirement-analyst/README.md) |
+| `prd-generator` | 阶段 0、1完成：格式、只读校验及回归；尚无完整生成入口 | [阶段 1 载荷](skill/prd-generator/) | [文档导航](docs/prd-generator/README.md) | [测试说明](tests/prd-generator/README.md) |
 
-结论为阶段场景和本地接口链路验收通过，不是实际产品/研发签核；真实下游Skill集成经用户批准延期，八项量化评价指标的统一基线/阈值待后续样本评审。各阶段模拟材料、实际模型调用、确定性重放和人工批准的范围在验收报告中分别说明。
+阶段记录说明各自的通过范围。合成案例、程序回归、模型行为、人工认可和真实业务签核不混称；当前不能把生成侧格式校验通过等同于正式 PRD 已可生成或发布。
 
-## 开始使用
+## 目录
 
-1. 阅读[安装与调用](INSTALL.md)，保留完整`skill/requirement-analyst/`生产目录；当前项目通过单个相对链接安装，不复制测试或消费者。
-2. 在普通对话中给出需求、工作区和项目；有需求编号则沿用。Skill沿用当前会话信息，由模型在需求分析场景调用，不提供独立斜杠命令。
-3. 按展示的当前理解回答关键问题。用户可随时结束；未回答P0会保留，不因结束或校验pass而视为已就绪。
-4. 正式JSON由更新器写入，报告仅为视图。下游使用唯一校验器，按`readiness`决定草稿用途；知识沉淀须另取具体批准。
+```text
+skill/                         可安装的生产载荷，两个 Skill 并列
+├── requirement-analyst/
+└── prd-generator/
+docs/                          当前维护文档
+├── requirement-analyst/        规格、执行计划、安装说明和样例说明
+├── prd-generator/              规格与执行计划
+└── shared/                     写作规范、仓库布局说明
+tests/                         统一测试入口与按 Skill 分类的维护代码
+├── requirement-analyst/        分析测试、辅助模块及重放驱动
+├── prd-generator/              生成测试、辅助模块及格式重放驱动
+├── fixtures/                   历史输入，保留原路径和字节
+├── expected/                   人工参考要点，保留认可范围
+├── scenarios/                  场景资料
+└── results/                    既有运行记录，不改旧指纹
+tools/                         跨 Skill 最小交接消费者，开发验证用
+workspace-sandbox/             历史试跑证据，保留原位置
+```
 
-## 导航
+- [目录职责及历史路径约定](docs/shared/repository-layout.md)
+- [分阶段执行文档写作规范](docs/shared/staged-execution-guide.md)
+- [统一测试入口](tests/README.md)
+- [最小交接消费者](tools/README.md)：不是正式 PRD Generator，不随产品安装。
 
-| 内容 | 入口 |
-| --- | --- |
-| 能力与数据协议 | [需求规格](需求分析skill-需求规格说明.md) |
-| 阶段目标与退出条件 | [执行文档](分阶段执行文档.md) |
-| Skill入口与按需参考 | [SKILL.md](skill/requirement-analyst/SKILL.md) |
-| 校验、更新、资料及知识脚本 | [脚本说明](skill/requirement-analyst/scripts/README.md) |
-| 最小交接消费者（开发验证，不随安装） | [消费者说明](tools/README.md) |
-| 测试及已保存模型证据 | [测试说明](tests/README.md) |
-| 最终验收与保留事项 | [验收报告](tests/results/final-acceptance.md) |
+## 安装与使用
 
-## 本地验证
+需求分析 Skill 的安装、普通对话触发和当前会话承接见 [安装说明](docs/requirement-analyst/installation.md)。现有 `.claude/skills/requirement-analyst` 仍指向唯一生产目录，本次整理不改安装链接或生产文件。
 
-Python 3.10+，Linux/Unix本地工作区。使用已具备依赖的解释器或uv隔离环境，不需要新增API Key：
+`prd-generator` 当前没有 `SKILL.md`，不能按完整 Skill 调用；阶段 1 的只读 CLI 见 [校验说明](skill/prd-generator/scripts/README.md)。后续按 [执行计划](docs/prd-generator/execution-plan.md) 明确指定阶段。
+
+## 运行全部测试
+
+Python 3.10+，使用已有依赖缓存：
 
 ```bash
 uv run --offline --no-project --python /usr/bin/python3 --with-requirements tests/requirements.txt \
   python -I -B -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
-测试不调用模型、不启动浏览器，写入测试使用临时目录。`--offline`要求依赖已有缓存；新环境按[安装说明](INSTALL.md)准备依赖。实际模型自动调用/图像读取的历史证据不等同于每次测试重新运行模型。
+统一入口发现两组测试，不静默漏掉子目录。测试不调用模型、不启动浏览器；写入测试使用临时目录，实际模型及人工认可仍以保存证据为准。`--offline` 需要依赖已缓存，新环境按安装说明准备依赖。
 
-## 边界
-
-不包含正式PRD Generator、真实下游测试Skill、发布部署、完整产品前端、高保真制作、PDF/图像自动索引解析、向量检索、知识审批身份认证或旧知识替换/废止。当前锁和持久化面向可信、遵锁的Linux/Unix本地进程，不承诺Windows/NFS或恶意并发路径换链安全。具体降级与失败处理以生产参考为准。
+本次目录整理不扩大产品能力，不删除历史材料，不自动提交、推送、合并或打标签。
