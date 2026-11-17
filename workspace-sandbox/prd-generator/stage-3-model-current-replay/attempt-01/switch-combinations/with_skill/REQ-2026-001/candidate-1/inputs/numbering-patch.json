@@ -1,0 +1,92 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "REQ-2026-001",
+  "base_prd_version": null,
+  "base_analysis_revision": 1,
+  "items": [
+    {
+      "mapping_key": "goal",
+      "kind": "goal",
+      "analysis_refs": [
+        "REQ-2026-001/GOAL-1"
+      ]
+    },
+    {
+      "mapping_key": "scenario",
+      "kind": "scenario",
+      "analysis_refs": [
+        "REQ-2026-001/SCN-1"
+      ]
+    },
+    {
+      "mapping_key": "read-switches",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "REQ-2026-001/FR-1"
+      ]
+    },
+    {
+      "mapping_key": "tabs",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "REQ-2026-001/FR-2"
+      ]
+    },
+    {
+      "mapping_key": "generate",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "REQ-2026-001/FR-3"
+      ]
+    },
+    {
+      "mapping_key": "scope",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "REQ-2026-001/FR-4"
+      ]
+    },
+    {
+      "mapping_key": "flow",
+      "kind": "flow",
+      "analysis_refs": [
+        "REQ-2026-001/FLOW-1"
+      ]
+    },
+    {
+      "mapping_key": "empty-input",
+      "kind": "boundary",
+      "analysis_refs": [
+        "REQ-2026-001/BND-1"
+      ]
+    },
+    {
+      "mapping_key": "scale",
+      "kind": "boundary",
+      "analysis_refs": [
+        "REQ-2026-001/BND-2"
+      ]
+    },
+    {
+      "mapping_key": "invalid-combination",
+      "kind": "exception",
+      "analysis_refs": [
+        "REQ-2026-001/EXC-1"
+      ]
+    },
+    {
+      "mapping_key": "tab-acceptance",
+      "kind": "acceptance_criterion",
+      "analysis_refs": [
+        "REQ-2026-001/AC-1"
+      ]
+    },
+    {
+      "mapping_key": "generation-acceptance",
+      "kind": "acceptance_criterion",
+      "analysis_refs": [
+        "REQ-2026-001/AC-2"
+      ]
+    }
+  ]
+}

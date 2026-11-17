@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-17",
+  "status": "approved",
+  "approval_source": "本次会话 AskUserQuestion 的真实用户选择，不是代理或程序判断",
+  "draft_review": {
+    "question": "草稿评审页在 tests/results/prd-generator/stage-3-model-review.html，含高低压一份、任务管理五份独立草稿及无Skill对照。363项回归和当前源码重放均通过。你是否认可六份with_skill草稿及阶段3人工试用结果（不包括业务发布或Git操作）？",
+    "selected_option": "已审阅，认可本轮结果",
+    "review_page": "tests/results/prd-generator/stage-3-model-review.html",
+    "scope": "高低压一份及任务管理五份with_skill风险草稿、阶段3人工试用结果；结合程序与回归证据完成阶段3验收",
+    "reviewed_artifact_fingerprints": "tests/results/prd-generator/stage-3-reviewed-artifacts.json"
+  },
+  "metric_review": {
+    "question": "本轮只有六份未就绪业务样例；已有追溯和标注原始计数，未覆盖的指标记不适用。其余指标阈值如何处理，且不放宽规格已有硬规则？",
+    "selected_option": "仅记录，真实试用前确定（推荐）",
+    "decision": "本轮记录统计口径、原始计数及不适用项；由用户在阶段7真实试用前确定其余阈值，不以六份样例拍数，不宣称全部量化指标达标，不放宽规格已有硬规则。",
+    "responsible": "用户",
+    "decision_deadline": "阶段7真实试用前"
+  },
+  "not_approved_by_this_decision": [
+    "真实业务缺口已经解决或需求已经就绪",
+    "评审提交、正式发布或发布基线",
+    "自动进入阶段4或其他后续阶段",
+    "git commit、merge、tag或push"
+  ]
+}

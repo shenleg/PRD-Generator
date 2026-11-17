@@ -1,0 +1,8 @@
+{
+  "original_output_dir": "/home/collin/orca/PRD-Generator/.claude/worktrees/wf_2b5de280-d12-4/stage3-model-output/task-management/without_skill",
+  "raw_archive": "workspace-sandbox/prd-generator/stage-3-model/iteration-1/raw/task-management/without_skill",
+  "configuration": "without_skill",
+  "group": "task-management",
+  "human_review": "pending",
+  "agent_report": "输出目录：`/home/collin/orca/PRD-Generator/.claude/worktrees/wf_2b5de280-d12-4/stage3-model-output/task-management/without_skill/`\n\n| 需求 | 首次生成 | 重复生成 | 最终校验 | 当前版本 | 结构修正次数 |\n|---|---|---|---|---|---:|\n| REQ-2026-002 | pass | pass | pass | 0.2 | 0 |\n| REQ-2026-003 | pass | pass | pass | 0.2 | 0 |\n| REQ-2026-004 | pass | pass | pass | 0.2 | 0 |\n| REQ-2026-005 | pass | pass | pass | 0.2 | 0 |\n| REQ-2026-006 | pass | pass | pass | 0.2 | 0 |\n\n限制：五份均为风险草稿，仅供沟通，不得作为开发或测试依据；技术可行性与影响分析未覆盖，业务问题及冲突仍待确认。重复生成的编号和需求正文稳定；程序未报告 warning。未发布，未进行忠实性或用户验收签字。"
+}

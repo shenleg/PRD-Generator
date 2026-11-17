@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "meta": {
+    "counters": {
+      "FR": 3
+    },
+    "draft_kind": "formal_draft",
+    "generated_under_readiness": "ready_for_document",
+    "content_hash": "sha256:57eaf5d786813ca7d8369b7a9511f8c86e576bf86637a31182c6f0bae92b9a5d"
+  },
+  "items": [
+    {
+      "prd_id": "PRD-FR-001",
+      "kind": "functional_requirement",
+      "introduced_in": "0.1",
+      "mapping_key": "synthetic-query",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:edfa9dcfb9626ce801955d9448b283e8fa6ad971aff520c64d4a741a56a2b3ae"
+    },
+    {
+      "prd_id": "PRD-FR-002",
+      "kind": "functional_requirement",
+      "introduced_in": "0.1",
+      "mapping_key": "synthetic-FR-2",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-2"
+      ],
+      "tag": "inferred",
+      "status": "active",
+      "source_digest": "sha256:1c09458cb13c0a0b3bce3d705b28ac41ea6ca79ab5d52ceea1b7faa0d238b160"
+    },
+    {
+      "prd_id": "PRD-FR-003",
+      "kind": "functional_requirement",
+      "introduced_in": "0.1",
+      "mapping_key": "synthetic-FR-3",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-3"
+      ],
+      "tag": "assumption",
+      "status": "active",
+      "source_digest": "sha256:9ccfb26429fa7ebe24e3d3954a6219e0567400d7154d00fa2c9a1dd83e7ec39b"
+    }
+  ]
+}

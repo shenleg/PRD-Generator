@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpZV5VbB/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/source-snapshot/prd-generator/scripts/validate_prd.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-005/requirement"
+  ],
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:3434246cb5ac3e8c00864b28643e9e10a08fa066d2f0756e02156540f24c9629",
+    "analysis/source-manifest.json": "sha256:8c4984d99a88b857c5882f0635ab2313a5f29761b7407136838e992628cff6c5",
+    "prd/gap-requests.json": "sha256:c47cc51758260433d91ca1b42f9794e1a0c694eb9aa8d418ababd07ed8a53d26",
+    "prd/prd-events.jsonl": "sha256:e838209026ed62f0919d7a854e12ae023559ec6c91bbe51876184282056a4e29",
+    "prd/prd-trace.json": "sha256:cfd93d84a1b66f82ae1ae119a5af7a8a2fc4a3cae2091c0df5eaa5e4e4d83b27",
+    "prd/prd.md": "sha256:83ba1055161813f26fa65acdca1809b9032f301c10f4ebd7d8089152c53d2216",
+    "requirement.json": "sha256:a11b21912e17b1987cfbb95a01e14ea0154a475910d1d28284252fee5a202970"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:3434246cb5ac3e8c00864b28643e9e10a08fa066d2f0756e02156540f24c9629",
+    "analysis/source-manifest.json": "sha256:8c4984d99a88b857c5882f0635ab2313a5f29761b7407136838e992628cff6c5",
+    "prd/gap-requests.json": "sha256:c47cc51758260433d91ca1b42f9794e1a0c694eb9aa8d418ababd07ed8a53d26",
+    "prd/prd-events.jsonl": "sha256:e838209026ed62f0919d7a854e12ae023559ec6c91bbe51876184282056a4e29",
+    "prd/prd-trace.json": "sha256:cfd93d84a1b66f82ae1ae119a5af7a8a2fc4a3cae2091c0df5eaa5e4e4d83b27",
+    "prd/prd.md": "sha256:83ba1055161813f26fa65acdca1809b9032f301c10f4ebd7d8089152c53d2216",
+    "requirement.json": "sha256:a11b21912e17b1987cfbb95a01e14ea0154a475910d1d28284252fee5a202970"
+  }
+}

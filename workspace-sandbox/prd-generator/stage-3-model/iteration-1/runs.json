@@ -1,0 +1,54 @@
+[
+  {
+    "group": "switch-combinations",
+    "configuration": "with_skill",
+    "output_dir": "/home/collin/orca/PRD-Generator/.claude/worktrees/wf_2b5de280-d12-1/stage3-model-output/switch-combinations/with_skill/",
+    "agent_report": "输出目录：`/home/collin/orca/PRD-Generator/.claude/worktrees/wf_2b5de280-d12-1/stage3-model-output/switch-combinations/with_skill/`\n\n- **REQ-2026-001**：门禁、两次生成及两次结构校验均为 `pass`；草稿类型为 `risk_draft`，版本从 0.1 递增至 0.2；结构失败修正次数为 0。重复生成的 12 个正式条目编号和正文块一致。\n- **限制**：输入目录中仅有这一份需求。分析状态为 `not_ready`，草稿仅供沟通，不得作为开发或测试依据；技术可行性和历史影响分析未覆盖，核心业务规则与验收预期仍待确认。未发布，亦未进行忠实性或用户验收签字。",
+    "transcript_file": "/home/collin/.claude/projects/-home-collin-orca-PRD-Generator/42b7fe90-7a95-497c-a085-d39d728c24f9/subagents/workflows/wf_2b5de280-d12/agent-a5775d7f1ce3be532.jsonl",
+    "timing": {
+      "total_tokens": 32613,
+      "duration_ms": 531730,
+      "total_duration_seconds": 531.73,
+      "measurement_source": "completed_workflow_runtime"
+    }
+  },
+  {
+    "group": "switch-combinations",
+    "configuration": "without_skill",
+    "output_dir": "/home/collin/orca/PRD-Generator/.claude/worktrees/wf_2b5de280-d12-2/stage3-model-output/switch-combinations/without_skill/",
+    "agent_report": "输出目录：`/home/collin/orca/PRD-Generator/.claude/worktrees/wf_2b5de280-d12-2/stage3-model-output/switch-combinations/without_skill/`\n\n- **REQ-2026-001**：首稿 0.1、重复生成 0.2 均为程序 `pass`；编号和业务正文一致。编号补丁结构修正 2 次，草稿写入修正 0 次。\n- **限制**：分析未就绪，产物为仅供沟通的风险草稿，不得作为开发或测试依据。技术可行性和影响分析未覆盖；程序通过不代表忠实性或用户验收已签字。未发布。",
+    "transcript_file": "/home/collin/.claude/projects/-home-collin-orca-PRD-Generator/42b7fe90-7a95-497c-a085-d39d728c24f9/subagents/workflows/wf_2b5de280-d12/agent-a272dc1071ba8197c.jsonl",
+    "timing": {
+      "total_tokens": 48670,
+      "duration_ms": 620144,
+      "total_duration_seconds": 620.144,
+      "measurement_source": "completed_workflow_runtime"
+    }
+  },
+  {
+    "group": "task-management",
+    "configuration": "with_skill",
+    "output_dir": "/home/collin/orca/PRD-Generator/.claude/worktrees/wf_2b5de280-d12-3/stage3-model-output/task-management/with_skill/",
+    "agent_report": "输出目录：`/home/collin/orca/PRD-Generator/.claude/worktrees/wf_2b5de280-d12-3/stage3-model-output/task-management/with_skill/`\n\n| 需求 | 最终程序状态 | 版本 | 结构修正次数 |\n|---|---|---:|---:|\n| REQ-2026-002 筛选 | pass | 0.2 | 1 |\n| REQ-2026-003 批量删除 | pass | 0.2 | 0 |\n| REQ-2026-004 状态显示 | pass | 0.2 | 0 |\n| REQ-2026-005 结果导出 | pass | 0.2 | 0 |\n| REQ-2026-006 结束通知 | pass | 0.2 | 0 |\n\n五项重复生成的编号映射和需求正文均稳定，最终校验无 warning。限制：五份均为 `risk_draft`，仅供沟通，不得作为开发或测试依据；技术可行性和历史需求影响未覆盖，尚未进行忠实性审查或用户验收，未发布。",
+    "transcript_file": "/home/collin/.claude/projects/-home-collin-orca-PRD-Generator/42b7fe90-7a95-497c-a085-d39d728c24f9/subagents/workflows/wf_2b5de280-d12/agent-acafd263e9c1f5dbe.jsonl",
+    "timing": {
+      "total_tokens": 46604,
+      "duration_ms": 2454526,
+      "total_duration_seconds": 2454.526,
+      "measurement_source": "completed_workflow_runtime"
+    }
+  },
+  {
+    "group": "task-management",
+    "configuration": "without_skill",
+    "output_dir": "/home/collin/orca/PRD-Generator/.claude/worktrees/wf_2b5de280-d12-4/stage3-model-output/task-management/without_skill/",
+    "agent_report": "输出目录：`/home/collin/orca/PRD-Generator/.claude/worktrees/wf_2b5de280-d12-4/stage3-model-output/task-management/without_skill/`\n\n| 需求 | 首次生成 | 重复生成 | 最终校验 | 当前版本 | 结构修正次数 |\n|---|---|---|---|---|---:|\n| REQ-2026-002 | pass | pass | pass | 0.2 | 0 |\n| REQ-2026-003 | pass | pass | pass | 0.2 | 0 |\n| REQ-2026-004 | pass | pass | pass | 0.2 | 0 |\n| REQ-2026-005 | pass | pass | pass | 0.2 | 0 |\n| REQ-2026-006 | pass | pass | pass | 0.2 | 0 |\n\n限制：五份均为风险草稿，仅供沟通，不得作为开发或测试依据；技术可行性与影响分析未覆盖，业务问题及冲突仍待确认。重复生成的编号和需求正文稳定；程序未报告 warning。未发布，未进行忠实性或用户验收签字。",
+    "transcript_file": "/home/collin/.claude/projects/-home-collin-orca-PRD-Generator/42b7fe90-7a95-497c-a085-d39d728c24f9/subagents/workflows/wf_2b5de280-d12/agent-a5ed03a61c09d7fbe.jsonl",
+    "timing": {
+      "total_tokens": 58386,
+      "duration_ms": 625199,
+      "total_duration_seconds": 625.199,
+      "measurement_source": "completed_workflow_runtime"
+    }
+  }
+]

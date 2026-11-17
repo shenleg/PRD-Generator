@@ -236,9 +236,9 @@ def _check_gap_requests(analysis: dict, gap_requests: dict | None, registry: dic
             diagnostics.append(_issue(12, question["id"], _pointer(("questions", index, "gap_request_ref")), f"本需求不存在缺口 {question['gap_request_ref']}。"))
 
 
-def _check_sources(analysis: dict, manifest: list, diagnostics: list[dict]) -> None:
-    """校验条目与技术依据的来源，保留待重评或撤销记录中的来源存在性检查。"""
-    source_ids = {source["source_id"] for source in manifest}
+def _check_sources(analysis: dict, manifest: list | None, diagnostics: list[dict]) -> None:
+    """校验来源；manifest缺失时仍检查有效条目有来源，清单依赖项由调用方显式降级告警。"""
+    source_ids = {source["source_id"] for source in manifest or []}
     groups = []
     for path, item in _common_items(analysis):
         groups.append((path, item["id"], item["sources"]))
@@ -246,6 +246,8 @@ def _check_sources(analysis: dict, manifest: list, diagnostics: list[dict]) -> N
             diagnostics.append(_issue(7, item["id"], _pointer((*path, "sources")), "有效条目至少需要一个来源。"))
     for index, evidence in enumerate(analysis.get("technical_feasibility", {}).get("evidence", [])):
         groups.append((("technical_feasibility", "evidence", index), "$", evidence["sources"]))
+    if manifest is None:
+        return  # 仅来源清单的存在性无法核验；有效条目的来源要求已在上方执行。
     for path, item_id, sources in groups:
         for index, source in enumerate(sources):
             if "source_id" in source and source["source_id"] not in source_ids:
@@ -331,16 +333,17 @@ def _check_technical(analysis: dict, diagnostics: list[dict]) -> None:
             diagnostics.append(_issue(9, question_id, _pointer(("technical_feasibility", "related_questions", index)), "技术确认问题必须指向本需求的 ask_dev 问题。"))
 
 
-def _check_history(analysis: dict, manifest: list, diagnostics: list[dict]) -> None:
-    """仅核对显式采用声明，不把来源存在或检索命中等同于业务对照已完成。"""
+def _check_history(analysis: dict, manifest: list | None, diagnostics: list[dict]) -> None:
+    """核对显式采用声明；缺清单仍执行状态、采用范围和基线修订等不依赖来源权威性的约束。"""
     review = analysis.get("context", {}).get("history_review")
     if review is None:
         return  # 旧1.0结果未声明历史对照，保持向后兼容。
-    sources = {source["source_id"]: source for source in manifest}
-    for source_id in review["source_ids"]:
-        source = sources.get(source_id)
-        if source is None or "adopted_sha256" not in source:
-            diagnostics.append(_issue(7, source_id, "/context/history_review/source_ids", "采用的历史资料必须存在并记录adopted_sha256。"))
+    sources = {source["source_id"]: source for source in manifest or []}
+    if manifest is not None:
+        for source_id in review["source_ids"]:
+            source = sources.get(source_id)
+            if source is None or "adopted_sha256" not in source:
+                diagnostics.append(_issue(7, source_id, "/context/history_review/source_ids", "采用的历史资料必须存在并记录adopted_sha256。"))
     if review["status"] == "not_performed" and (review["source_ids"] or "baseline" in review):
         diagnostics.append(_issue(7, "$", "/context/history_review", "未做历史对照时不得声明已采用资料或当前基线。"))
     if review["status"] == "reviewed" and not review["source_ids"]:
@@ -352,8 +355,8 @@ def _check_history(analysis: dict, manifest: list, diagnostics: list[dict]) -> N
     if baseline is not None:
         source = sources.get(baseline["source_id"], {})
         if (baseline["requirement_id"] != analysis["requirement_id"] or baseline["analysis_revision"] != revision
-                or baseline["source_id"] not in review["source_ids"] or source.get("authority") != "current_published"
-                or not source.get("publication_basis")):
+                or baseline["source_id"] not in review["source_ids"]
+                or (manifest is not None and (source.get("authority") != "current_published" or not source.get("publication_basis")))):
             diagnostics.append(_issue(7, "$", "/context/history_review/baseline", "基线须对应本需求显式确认的现行发布来源、采用资料及meta.baseline_revision；草稿不作现行基线。"))
     elif revision is not None:
         diagnostics.append(_issue(7, "$", "/meta/baseline_revision", "新历史对照声明中的非空基线修订须有对应发布依据。"))

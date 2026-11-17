@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "REQ-2026-002",
+  "meta": {
+    "counters": {
+      "GOAL": 1,
+      "SCN": 1,
+      "FR": 2,
+      "CON": 1,
+      "NFR": 1,
+      "AC": 1,
+      "FLOW": 1,
+      "BND": 1,
+      "EXC": 1
+    },
+    "draft_kind": "risk_draft",
+    "generated_under_readiness": "not_ready",
+    "content_hash": "sha256:afa54118674939eb18175cb9dd2ff7c1104562dee8f2434f1d0c0ac1dd7d7cc4"
+  },
+  "items": [
+    {
+      "prd_id": "PRD-GOAL-001",
+      "kind": "goal",
+      "introduced_in": "0.1",
+      "mapping_key": "goal",
+      "analysis_refs": [
+        "REQ-2026-002/GOAL-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:c4f0f1613f3ddbf16cf9b3ed02c137ce5dd26f2c7b5b28c646984a8cba1f843b"
+    },
+    {
+      "prd_id": "PRD-SCN-001",
+      "kind": "scenario",
+      "introduced_in": "0.1",
+      "mapping_key": "scenario",
+      "analysis_refs": [
+        "REQ-2026-002/SCN-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:e8da71505c036af10fa3d2a9de5b8707d35e84a2807e8e85fad61a565027afcf"
+    },
+    {
+      "prd_id": "PRD-FR-001",
+      "kind": "functional_requirement",
+      "introduced_in": "0.1",
+      "mapping_key": "filter",
+      "analysis_refs": [
+        "REQ-2026-002/FR-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:67de8c941b6f69d56021f9e84bf5922468cbe9134865a2ca109b39eb7d3739b9"
+    },
+    {
+      "prd_id": "PRD-FR-002",
+      "kind": "functional_requirement",
+      "introduced_in": "0.1",
+      "mapping_key": "scope",
+      "analysis_refs": [
+        "REQ-2026-002/FR-2"
+      ],
+      "tag": "inferred",
+      "status": "active",
+      "source_digest": "sha256:5e4f2572b5c22a1e468189e832ff50025ab951f0e366a9778fec5832631fe90b"
+    },
+    {
+      "prd_id": "PRD-CON-001",
+      "kind": "constraint",
+      "introduced_in": "0.1",
+      "mapping_key": "constraint",
+      "analysis_refs": [
+        "REQ-2026-002/CON-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:de2913c57629150241b57b6475072d454f71f31ff8d11229b4b48943a140213f"
+    },
+    {
+      "prd_id": "PRD-NFR-001",
+      "kind": "non_functional_requirement",
+      "introduced_in": "0.1",
+      "mapping_key": "performance",
+      "analysis_refs": [
+        "REQ-2026-002/NFR-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:587a8cdc26cfe332122dbb9819a24044b87f4ea6a5638786262770d8b71016a0"
+    },
+    {
+      "prd_id": "PRD-AC-001",
+      "kind": "acceptance_criterion",
+      "introduced_in": "0.1",
+      "mapping_key": "acceptance",
+      "analysis_refs": [
+        "REQ-2026-002/AC-1"
+      ],
+      "tag": "inferred",
+      "status": "to_confirm",
+      "source_digest": "sha256:4d77d47777287e83f0b280756e1090d5fcbebf63968784607d20736b3d87bd28"
+    },
+    {
+      "prd_id": "PRD-FLOW-001",
+      "kind": "flow",
+      "introduced_in": "0.1",
+      "mapping_key": "flow",
+      "analysis_refs": [
+        "REQ-2026-002/FLOW-1"
+      ],
+      "tag": "inferred",
+      "status": "to_confirm",
+      "source_digest": "sha256:38249d0209e605bd424973e88c99f87ef424e42da2f3f125eaaaae6898cfe744"
+    },
+    {
+      "prd_id": "PRD-BND-001",
+      "kind": "boundary",
+      "introduced_in": "0.1",
+      "mapping_key": "boundary",
+      "analysis_refs": [
+        "REQ-2026-002/BND-1"
+      ],
+      "tag": "inferred",
+      "status": "active",
+      "source_digest": "sha256:d1afa100b543983b534689cf9e66ccb0baf89f46ba8fbfd278d280adde8803f8"
+    },
+    {
+      "prd_id": "PRD-EXC-001",
+      "kind": "exception",
+      "introduced_in": "0.1",
+      "mapping_key": "exception",
+      "analysis_refs": [
+        "REQ-2026-002/EXC-1"
+      ],
+      "tag": "inferred",
+      "status": "active",
+      "source_digest": "sha256:ace243c7fa5c229cde95cc0c3985f10022aac67917c4df5511e3522e7ca1ec9b"
+    }
+  ]
+}

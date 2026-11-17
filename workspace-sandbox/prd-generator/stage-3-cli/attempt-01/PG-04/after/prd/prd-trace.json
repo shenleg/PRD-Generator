@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "meta": {
+    "counters": {
+      "FR": 1
+    },
+    "draft_kind": "risk_draft",
+    "generated_under_readiness": "not_ready",
+    "content_hash": "sha256:5acf0a8bee5d5cfe4330f8377f18c5258eed5ee62a6f5698e80e4f904a122ed6"
+  },
+  "items": [
+    {
+      "prd_id": "PRD-FR-001",
+      "kind": "functional_requirement",
+      "introduced_in": "0.1",
+      "mapping_key": "synthetic-query",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:edfa9dcfb9626ce801955d9448b283e8fa6ad971aff520c64d4a741a56a2b3ae"
+    }
+  ]
+}

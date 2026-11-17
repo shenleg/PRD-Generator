@@ -1,0 +1,6 @@
+{
+  "mapping_stable": true,
+  "body_stable_excluding_info_changes": true,
+  "initial_version": "0.1",
+  "repeat_version": "0.2"
+}

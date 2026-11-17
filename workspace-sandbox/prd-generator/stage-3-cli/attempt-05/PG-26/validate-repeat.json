@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpUyxW7T/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-cli/attempt-05/source-snapshot/prd-generator/scripts/validate_prd.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-cli/attempt-05/PG-26/requirement",
+    "--previous-trace",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-cli/attempt-05/PG-26/trace-first.json"
+  ],
+  "cwd": "/",
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:9e745547956a5c5fe9e152be8d07fd2bfcec3f25cf818f2b38b26787b95bdba8",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd-events.jsonl": "sha256:9b868cf467d98f5d0ebf1f0fae8d41933887c8118af6b3d31785b6b690260b6e",
+    "prd/prd-trace.json": "sha256:c895abac578cb26a4ba13b619a9decf50a06d9843ba6879d699608edd4f49176",
+    "prd/prd.md": "sha256:4ef412053f56eef7e9f072faa482817a3913f6518e6cb343fe46e2100dd6344a",
+    "requirement.json": "sha256:e80338707efe23f0b0edcb34655f8d9f5194825df6a7fbbbbe35d4a1cc231768"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:9e745547956a5c5fe9e152be8d07fd2bfcec3f25cf818f2b38b26787b95bdba8",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd-events.jsonl": "sha256:9b868cf467d98f5d0ebf1f0fae8d41933887c8118af6b3d31785b6b690260b6e",
+    "prd/prd-trace.json": "sha256:c895abac578cb26a4ba13b619a9decf50a06d9843ba6879d699608edd4f49176",
+    "prd/prd.md": "sha256:4ef412053f56eef7e9f072faa482817a3913f6518e6cb343fe46e2100dd6344a",
+    "requirement.json": "sha256:e80338707efe23f0b0edcb34655f8d9f5194825df6a7fbbbbe35d4a1cc231768"
+  }
+}

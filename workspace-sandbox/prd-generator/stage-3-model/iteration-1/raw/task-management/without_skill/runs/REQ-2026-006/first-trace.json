@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "REQ-2026-006",
+  "meta": {
+    "counters": {
+      "GOAL": 1,
+      "SCN": 1,
+      "FR": 1,
+      "CON": 1,
+      "AC": 1,
+      "FLOW": 1,
+      "BND": 2,
+      "EXC": 1
+    },
+    "draft_kind": "risk_draft",
+    "generated_under_readiness": "not_ready",
+    "content_hash": "sha256:f14f54608a8467dac52e0df96fd3dfb64ebf3cde3823a2d4abf12fc5a58707c8"
+  },
+  "items": [
+    {
+      "prd_id": "PRD-GOAL-001",
+      "kind": "goal",
+      "introduced_in": "0.1",
+      "mapping_key": "GOAL-1",
+      "analysis_refs": [
+        "REQ-2026-006/GOAL-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:c769de7a45a72572be710ed363a066332055dded4ed1eabe80190af63bfa8ad6"
+    },
+    {
+      "prd_id": "PRD-SCN-001",
+      "kind": "scenario",
+      "introduced_in": "0.1",
+      "mapping_key": "SCN-1",
+      "analysis_refs": [
+        "REQ-2026-006/SCN-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:1134a0640bfe05cc7fd5c6f00c68ef2cd03a7a62e30d130528cc576c9422aa40"
+    },
+    {
+      "prd_id": "PRD-FR-001",
+      "kind": "functional_requirement",
+      "introduced_in": "0.1",
+      "mapping_key": "FR-1",
+      "analysis_refs": [
+        "REQ-2026-006/FR-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:fa38aacc22039dd2d5fb7a10787dd85d664f06329329ac7d42641aa0dc0f272c"
+    },
+    {
+      "prd_id": "PRD-CON-001",
+      "kind": "constraint",
+      "introduced_in": "0.1",
+      "mapping_key": "CON-1",
+      "analysis_refs": [
+        "REQ-2026-006/CON-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:c26fa63a4004c4de6ff1e7da46659c7213597f691921ec801b6444b42bc6ecd0"
+    },
+    {
+      "prd_id": "PRD-AC-001",
+      "kind": "acceptance_criterion",
+      "introduced_in": "0.1",
+      "mapping_key": "AC-1",
+      "analysis_refs": [
+        "REQ-2026-006/AC-1"
+      ],
+      "tag": "inferred",
+      "status": "to_confirm",
+      "source_digest": "sha256:179c24c7479af3147d617072cd82cda7af3729ac20c2173bf894d0db31c025c2"
+    },
+    {
+      "prd_id": "PRD-FLOW-001",
+      "kind": "flow",
+      "introduced_in": "0.1",
+      "mapping_key": "FLOW-1",
+      "analysis_refs": [
+        "REQ-2026-006/FLOW-1"
+      ],
+      "tag": "inferred",
+      "status": "to_confirm",
+      "source_digest": "sha256:0e3764d053350d57aef705634cb399035248f5385c2205bb3ca73cefd7b9026b"
+    },
+    {
+      "prd_id": "PRD-BND-001",
+      "kind": "boundary",
+      "introduced_in": "0.1",
+      "mapping_key": "BND-1",
+      "analysis_refs": [
+        "REQ-2026-006/BND-1"
+      ],
+      "tag": "inferred",
+      "status": "active",
+      "source_digest": "sha256:6d852f627559617d4074f6b7a4bad718a07b33f154410e596a336d56d4d8db0f"
+    },
+    {
+      "prd_id": "PRD-BND-002",
+      "kind": "boundary",
+      "introduced_in": "0.1",
+      "mapping_key": "BND-2",
+      "analysis_refs": [
+        "REQ-2026-006/BND-2"
+      ],
+      "tag": "inferred",
+      "status": "active",
+      "source_digest": "sha256:cf58edfd7ab481098732cfc5b063ab371b2678d79ed48a2750e58efef1eb6b54"
+    },
+    {
+      "prd_id": "PRD-EXC-001",
+      "kind": "exception",
+      "introduced_in": "0.1",
+      "mapping_key": "EXC-1",
+      "analysis_refs": [
+        "REQ-2026-006/EXC-1"
+      ],
+      "tag": "inferred",
+      "status": "active",
+      "source_digest": "sha256:14bae577556eb27f1755c930b2d60b090e00591bb1f093f820c1938b99f4d925"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpZV5VbB/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/source-snapshot/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-005/requirement",
+    "--patch",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-005/repeat-patch.json",
+    "--body",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-005/repeat-body.md",
+    "--candidate-dir",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-005/candidate-2"
+  ],
+  "stdout": "{\"status\": \"pass\", \"diagnostics\": [], \"version\": \"0.2\", \"draft_kind\": \"risk_draft\", \"candidate_dir\": \"/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-005/candidate-2\", \"generated\": true, \"mapping\": [{\"mapping_key\": \"goal\", \"prd_id\": \"PRD-GOAL-001\", \"analysis_refs\": [\"REQ-2026-005/GOAL-1\"]}, {\"mapping_key\": \"scenario\", \"prd_id\": \"PRD-SCN-001\", \"analysis_refs\": [\"REQ-2026-005/SCN-1\"]}, {\"mapping_key\": \"export\", \"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"REQ-2026-005/FR-1\"]}, {\"mapping_key\": \"scope\", \"prd_id\": \"PRD-FR-002\", \"analysis_refs\": [\"REQ-2026-005/FR-2\"]}, {\"mapping_key\": \"limit\", \"prd_id\": \"PRD-BR-001\", \"analysis_refs\": [\"REQ-2026-005/BR-1\"]}, {\"mapping_key\": \"all\", \"prd_id\": \"PRD-BR-002\", \"analysis_refs\": [\"REQ-2026-005/BR-2\"]}, {\"mapping_key\": \"oldformat\", \"prd_id\": \"PRD-CON-001\", \"analysis_refs\": [\"REQ-2026-005/CON-1\"]}, {\"mapping_key\": \"constraint\", \"prd_id\": \"PRD-CON-002\", \"analysis_refs\": [\"REQ-2026-005/CON-2\"]}, {\"mapping_key\": \"acceptance\", \"prd_id\": \"PRD-AC-001\", \"analysis_refs\": [\"REQ-2026-005/AC-1\"]}, {\"mapping_key\": \"flow\", \"prd_id\": \"PRD-FLOW-001\", \"analysis_refs\": [\"REQ-2026-005/FLOW-1\"]}, {\"mapping_key\": \"lifecycle\", \"prd_id\": \"PRD-BND-001\", \"analysis_refs\": [\"REQ-2026-005/BND-1\"]}, {\"mapping_key\": \"permission\", \"prd_id\": \"PRD-BND-002\", \"analysis_refs\": [\"REQ-2026-005/BND-2\"]}, {\"mapping_key\": \"quantity\", \"prd_id\": \"PRD-BND-003\", \"analysis_refs\": [\"REQ-2026-005/BND-3\"]}, {\"mapping_key\": \"failure\", \"prd_id\": \"PRD-EXC-001\", \"analysis_refs\": [\"REQ-2026-005/EXC-1\"]}, {\"mapping_key\": \"consistency\", \"prd_id\": \"PRD-EXC-002\", \"analysis_refs\": [\"REQ-2026-005/EXC-2\"]}], \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"prd/gap-requests.json\", \"requirement.json\", \"prd/prd-events.jsonl\"]}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:3434246cb5ac3e8c00864b28643e9e10a08fa066d2f0756e02156540f24c9629",
+    "analysis/source-manifest.json": "sha256:8c4984d99a88b857c5882f0635ab2313a5f29761b7407136838e992628cff6c5",
+    "prd/gap-requests.json": "sha256:c47cc51758260433d91ca1b42f9794e1a0c694eb9aa8d418ababd07ed8a53d26",
+    "prd/prd-events.jsonl": "sha256:f96c80537df5c6503231dd144ea4f9f26a697023b476e4082c8a24b730afd415",
+    "prd/prd-trace.json": "sha256:a193339d834561022cbe156135fe9925a72f5bb6738aca360271a8152931c4c6",
+    "prd/prd.md": "sha256:1928c6ae46f341e45e400ded95587b8c495fbc8bfeeb20da50b40584ab0be2de",
+    "requirement.json": "sha256:f45139336c933af706c6df9a18d3f7be6dd3d0c378d796921167550bcd7f94ac"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:3434246cb5ac3e8c00864b28643e9e10a08fa066d2f0756e02156540f24c9629",
+    "analysis/source-manifest.json": "sha256:8c4984d99a88b857c5882f0635ab2313a5f29761b7407136838e992628cff6c5",
+    "prd/gap-requests.json": "sha256:c47cc51758260433d91ca1b42f9794e1a0c694eb9aa8d418ababd07ed8a53d26",
+    "prd/prd-events.jsonl": "sha256:e838209026ed62f0919d7a854e12ae023559ec6c91bbe51876184282056a4e29",
+    "prd/prd-trace.json": "sha256:cfd93d84a1b66f82ae1ae119a5af7a8a2fc4a3cae2091c0df5eaa5e4e4d83b27",
+    "prd/prd.md": "sha256:83ba1055161813f26fa65acdca1809b9032f301c10f4ebd7d8089152c53d2216",
+    "requirement.json": "sha256:a11b21912e17b1987cfbb95a01e14ea0154a475910d1d28284252fee5a202970"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpZV5VbB/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/source-snapshot/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/without_skill/REQ-2026-005/requirement",
+    "--patch",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/without_skill/REQ-2026-005/numbering-patch.json",
+    "--body",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/without_skill/REQ-2026-005/model-body.md",
+    "--gaps",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model/iteration-1/raw/task-management/without_skill/runs/REQ-2026-005/candidate-1/prd/gap-requests.json",
+    "--candidate-dir",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/without_skill/REQ-2026-005/candidate-1"
+  ],
+  "stdout": "{\"status\": \"pass\", \"diagnostics\": [], \"version\": \"0.1\", \"draft_kind\": \"risk_draft\", \"candidate_dir\": \"/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/without_skill/REQ-2026-005/candidate-1\", \"generated\": true, \"mapping\": [{\"mapping_key\": \"GOAL-1\", \"prd_id\": \"PRD-GOAL-001\", \"analysis_refs\": [\"REQ-2026-005/GOAL-1\"]}, {\"mapping_key\": \"SCN-1\", \"prd_id\": \"PRD-SCN-001\", \"analysis_refs\": [\"REQ-2026-005/SCN-1\"]}, {\"mapping_key\": \"FR-1\", \"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"REQ-2026-005/FR-1\"]}, {\"mapping_key\": \"BR-1\", \"prd_id\": \"PRD-BR-001\", \"analysis_refs\": [\"REQ-2026-005/BR-1\"]}, {\"mapping_key\": \"BR-2\", \"prd_id\": \"PRD-BR-002\", \"analysis_refs\": [\"REQ-2026-005/BR-2\"]}, {\"mapping_key\": \"CON-1\", \"prd_id\": \"PRD-CON-001\", \"analysis_refs\": [\"REQ-2026-005/CON-1\"]}, {\"mapping_key\": \"CON-2\", \"prd_id\": \"PRD-CON-002\", \"analysis_refs\": [\"REQ-2026-005/CON-2\"]}, {\"mapping_key\": \"AC-1\", \"prd_id\": \"PRD-AC-001\", \"analysis_refs\": [\"REQ-2026-005/AC-1\"]}, {\"mapping_key\": \"FLOW-1\", \"prd_id\": \"PRD-FLOW-001\", \"analysis_refs\": [\"REQ-2026-005/FLOW-1\"]}, {\"mapping_key\": \"BND-1\", \"prd_id\": \"PRD-BND-001\", \"analysis_refs\": [\"REQ-2026-005/BND-1\"]}, {\"mapping_key\": \"BND-2\", \"prd_id\": \"PRD-BND-002\", \"analysis_refs\": [\"REQ-2026-005/BND-2\"]}, {\"mapping_key\": \"BND-3\", \"prd_id\": \"PRD-BND-003\", \"analysis_refs\": [\"REQ-2026-005/BND-3\"]}, {\"mapping_key\": \"EXC-1\", \"prd_id\": \"PRD-EXC-001\", \"analysis_refs\": [\"REQ-2026-005/EXC-1\"]}, {\"mapping_key\": \"EXC-2\", \"prd_id\": \"PRD-EXC-002\", \"analysis_refs\": [\"REQ-2026-005/EXC-2\"]}], \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"prd/gap-requests.json\", \"requirement.json\", \"prd/prd-events.jsonl\"]}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:3434246cb5ac3e8c00864b28643e9e10a08fa066d2f0756e02156540f24c9629",
+    "analysis/source-manifest.json": "sha256:8c4984d99a88b857c5882f0635ab2313a5f29761b7407136838e992628cff6c5",
+    "requirement.json": "sha256:723ba8c768f6ce22ada0100140db5c6bc3cb9a4d4ec7d8c277741e1628b2c319"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:3434246cb5ac3e8c00864b28643e9e10a08fa066d2f0756e02156540f24c9629",
+    "analysis/source-manifest.json": "sha256:8c4984d99a88b857c5882f0635ab2313a5f29761b7407136838e992628cff6c5",
+    "prd/gap-requests.json": "sha256:c47cc51758260433d91ca1b42f9794e1a0c694eb9aa8d418ababd07ed8a53d26",
+    "prd/prd-events.jsonl": "sha256:94028647f94118e90685a8ba0028752c32aa39fe00d7a72e5820f28aa6741d83",
+    "prd/prd-trace.json": "sha256:6c1e55fcca6abaa1b3055b42069f927a77ece9d11590a3643aa5cb7921c76f30",
+    "prd/prd.md": "sha256:eb69584678401749a7854ccf49ab0a608ceb02bc7a392d26c824f59058bcda21",
+    "requirement.json": "sha256:f45139336c933af706c6df9a18d3f7be6dd3d0c378d796921167550bcd7f94ac"
+  }
+}

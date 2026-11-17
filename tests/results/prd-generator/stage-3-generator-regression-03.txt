@@ -1,0 +1,227 @@
+test_analysis_save_failure_never_marks_gap (test_gap_handoff.GapHandoffTests.test_analysis_save_failure_never_marks_gap)
+分析实际替换失败时缺口仍 open，沿原 journal 恢复后重读重试不会重复登记。 ... ok
+test_candidate_refs_must_match_each_gap_ref (test_gap_handoff.GapHandoffTests.test_candidate_refs_must_match_each_gap_ref)
+候选关联不能遗漏、替换、增添或重排缺口关联，失败不写入。 ... ok
+test_closed_gap_is_not_reopened_or_rewritten (test_gap_handoff.GapHandoffTests.test_closed_gap_is_not_reopened_or_rewritten)
+重复接收 closed 缺口保留状态和生成侧 resolution，不自行关闭或重开。 ... ok
+test_concurrent_gap_rewrite_is_not_overwritten (test_gap_handoff.GapHandoffTests.test_concurrent_gap_rewrite_is_not_overwritten)
+分析保存期间生成侧改写缺口时拒绝标记，保留并发内容和已保存接收问题。 ... ok
+test_concurrent_gap_whitespace_change_also_conflicts (test_gap_handoff.GapHandoffTests.test_concurrent_gap_whitespace_change_also_conflicts)
+即使并发只改序列化空白，读时与标记前字节不等也必须拒绝覆盖。 ... ok
+test_cross_requirement_api_tuple_is_supported (test_gap_handoff.GapHandoffTests.test_cross_requirement_api_tuple_is_supported)
+显式分析与来源二元组也能验证跨需求引用，不隐式依赖路径。 ... ok
+test_cross_requirement_requires_explicit_documents (test_gap_handoff.GapHandoffTests.test_cross_requirement_requires_explicit_documents)
+即使外部资料存在于工作区，未显式提供也拒绝，显式路径只读且保留完整引用。 ... ok
+test_dry_run_previews_without_writing (test_gap_handoff.GapHandoffTests.test_dry_run_previews_without_writing)
+无 pending 事务时 dry-run 只校验和预分配，不保存问题或标记缺口。 ... ok
+test_dry_run_still_recovers_pending_analysis_transaction (test_gap_handoff.GapHandoffTests.test_dry_run_still_recovers_pending_analysis_transaction)
+dry-run 不豁免原有 journal 恢复，但不提前完成本次缺口标记。 ... ok
+test_duplicate_candidates_preserve_answer_priority_and_status (test_gap_handoff.GapHandoffTests.test_duplicate_candidates_preserve_answer_priority_and_status)
+候选问题字段被忽略，已保存答案、优先级和处理状态不被重复接收覆盖。 ... ok
+test_duplicate_handoff_is_bytewise_noop (test_gap_handoff.GapHandoffTests.test_duplicate_handoff_is_bytewise_noop)
+纯重复交接复用问题编号，不推进修订、不追加事件、不改任何业务字节。 ... ok
+test_duplicate_with_changed_set_is_not_noop (test_gap_handoff.GapHandoffTests.test_duplicate_with_changed_set_is_not_noop)
+只有分析内容不变才算纯重复，set 引入真实变化仍保存新修订。 ... ok
+test_duplicate_with_other_changes_commits_once (test_gap_handoff.GapHandoffTests.test_duplicate_with_other_changes_commits_once)
+重复接收不阻止同补丁中的真实增量，也不额外消耗问题编号。 ... ok
+test_empty_refs_remain_empty (test_gap_handoff.GapHandoffTests.test_empty_refs_remain_empty)
+无关联缺口接收后仍是空数组，不臆造 GOAL、FR 或问题关联。 ... ok
+test_gap_reference_cannot_be_transferred_by_update (test_gap_handoff.GapHandoffTests.test_gap_reference_cannot_be_transferred_by_update)
+已有接收关联不能通过 update 转移、清除或伪装成另一个缺口。 ... ok
+test_handoff_only_changes_owned_files_and_target_status (test_gap_handoff.GapHandoffTests.test_handoff_only_changes_owned_files_and_target_status)
+只改分析归属文件及对应缺口状态，其他需求、正文、追溯、版本和元数据不动。 ... ok
+test_history_reader_passes_current_gap_context (test_gap_handoff.GapHandoffTests.test_history_reader_passes_current_gap_context)
+接收问题后历史对照与来源复核仍传当前缺口，不因遗漏新校验上下文误拒合法分析。 ... ok
+test_invalid_gap_references_do_not_write (test_gap_handoff.GapHandoffTests.test_invalid_gap_references_do_not_write)
+缺口引用格式错误或条目不存在时拒绝，分析和缺口均逐字节不变。 ... ok
+test_local_full_and_short_refs_are_normalized (test_gap_handoff.GapHandoffTests.test_local_full_and_short_refs_are_normalized)
+本需求完整引用和本地引用均转存为 FR-1，输入补丁不被修改。 ... ok
+test_mark_failure_reports_saved_revision_and_retry_preserves_progress (test_gap_handoff.GapHandoffTests.test_mark_failure_reports_saved_revision_and_retry_preserves_progress)
+保存后标记中断返回 fail/written=true，重读重试只补标记并保留其间回答。 ... ok
+test_null_gap_file_is_not_treated_as_missing (test_gap_handoff.GapHandoffTests.test_null_gap_file_is_not_treated_as_missing)
+存在但为 null 的缺口文件是格式错误，不能按旧格式无缺口降级后继续写分析。 ... ok
+test_old_questions_without_gap_ref_remain_compatible (test_gap_handoff.GapHandoffTests.test_old_questions_without_gap_ref_remain_compatible)
+旧问题无 gap_request_ref 仍可读取和更新，新增接收不污染原问题或旧关联。 ... ok
+test_stale_revision_is_rejected_even_for_duplicate (test_gap_handoff.GapHandoffTests.test_stale_revision_is_rejected_even_for_duplicate)
+旧补丁即使只是重复接收仍拒绝，调用方必须重读当前修订。 ... ok
+test_two_adds_for_one_gap_are_rejected_without_write (test_gap_handoff.GapHandoffTests.test_two_adds_for_one_gap_are_rejected_without_write)
+同一补丁含同缺口的冲突候选时拒绝保存，不猜测优先级，也不建立重复问题。 ... ok
+test_unknown_gap_and_wrong_change_type_are_rejected (test_gap_handoff.GapHandoffTests.test_unknown_gap_and_wrong_change_type_are_rejected)
+未知缺口或非 supplement 接收不能绕过协议。 ... ok
+test_analysis_change_after_validation_rejected (test_prd_draft.PrdDraftTests.test_analysis_change_after_validation_rejected)
+候选校验完成后分析被并发修改，正式PRD不得落盘。 ... ok
+test_candidate_failure_preserves_business_files (test_prd_draft.PrdDraftTests.test_candidate_failure_preserves_business_files)
+缺少需求块的失败候选保留供修正，正式目录原始字节不变。 ... ok
+test_cli_works_from_unrelated_directory (test_prd_draft.PrdDraftTests.test_cli_works_from_unrelated_directory)
+公开保存CLI在隔离模式和其他cwd运行，退出码与单JSON响应一致。 ... ok
+test_dotdot_candidate_cannot_enter_analysis (test_prd_draft.PrdDraftTests.test_dotdot_candidate_cannot_enter_analysis)
+带..的候选路径先规范化，不能绕过生成侧禁止写analysis的边界。 ... ok
+test_first_generation_and_repeat_preserve_identity (test_prd_draft.PrdDraftTests.test_first_generation_and_repeat_preserve_identity)
+首次0.1、重复0.2；分析与其他块不变，编号和需求正文稳定。 ... ok
+test_interruption_recovery_is_idempotent (test_prd_draft.PrdDraftTests.test_interruption_recovery_is_idempotent)
+多文件写入中断保留journal，显式恢复不重复事件也不改分析。 ... ok
+test_metadata_change_after_validation_preserved (test_prd_draft.PrdDraftTests.test_metadata_change_after_validation_preserved)
+即使PRD版本未变，common或其他块的并发修改也不得被旧副本覆盖。 ... ok
+test_new_gap_cannot_reuse_old_counter_range (test_prd_draft.PrdDraftTests.test_new_gap_cannot_reuse_old_counter_range)
+缺口列表有历史高水位时，新请求也不能补用低编号空洞。 ... ok
+test_new_gap_warns_and_has_single_placeholder (test_prd_draft.PrdDraftTests.test_new_gap_warns_and_has_single_placeholder)
+模板确缺内容时保存open缺口与唯一占位，warning不是结构失败或发布批准。 ... ok
+test_recovery_refuses_concurrent_content (test_prd_draft.PrdDraftTests.test_recovery_refuses_concurrent_content)
+恢复期间遇到他人改写正文时保留双方候选，不覆盖新字节。 ... ok
+test_render_failure_preserves_raw_candidate (test_prd_draft.PrdDraftTests.test_render_failure_preserves_raw_candidate)
+编号或信息渲染失败也保留模型原文和补丁供三次修正，不只保留后置校验失败。 ... ok
+test_render_info_is_authoritative_and_readonly (test_prd_draft.PrdDraftTests.test_render_info_is_authoritative_and_readonly)
+渲染使用权威信息并保持需求块原文，正文摘要包含空白差异。 ... ok
+test_same_input_cannot_rewrite_requirement_content (test_prd_draft.PrdDraftTests.test_same_input_cannot_rewrite_requirement_content)
+重复生成不能借合法结构把查询偷换成删除，拒绝后正式草稿字节不变。 ... ok
+test_unreadable_optional_manifest_degrades_without_bypassing_checks (test_prd_draft.PrdDraftTests.test_unreadable_optional_manifest_degrades_without_bypassing_checks)
+可选来源清单不可读时统一保存仍可降级，保留warning而不伪造来源。 ... ok
+test_version_conflict_rejected (test_prd_draft.PrdDraftTests.test_version_conflict_rejected)
+补丁读时版本不符时拒写，而不是盲改版本自动重试。 ... ok
+test_visible_title_handles_table_characters (test_prd_draft.PrdDraftTests.test_visible_title_handles_table_characters)
+标题含竖线、实体和换行时展示转义与权威元数据仍一致，不篡改common。 ... ok
+test_historical_sources_match_saved_checks (test_prd_format_runs.PrdFormatEvidenceTests.test_historical_sources_match_saved_checks)
+封存校验绑定阶段1原提交；当前代码由下方新目录重放，不改旧指纹。 ... ok
+test_public_driver_replays_and_refuses_existing_output (test_prd_format_runs.PrdFormatEvidenceTests.test_public_driver_replays_and_refuses_existing_output)
+公开测试驱动在新目录重跑真实校验器，并拒绝覆盖已有证据。 ... ok
+test_saved_diagnostics_and_readonly_hashes (test_prd_format_runs.PrdFormatEvidenceTests.test_saved_diagnostics_and_readonly_hashes)
+保存的十五次 CLI 调用均符合预期，覆盖十二条规则且业务指纹未变。 ... ok
+test_common_version_and_missing_manifest (test_prd_gate.GateTests.test_common_version_and_missing_manifest)
+首次没有 prd 块可通过，旧整数版本和缺 common 拒绝。 ... ok
+test_missing_invalid_and_installation_failure (test_prd_gate.GateTests.test_missing_invalid_and_installation_failure)
+PG01/02 缺失、无效 JSON、上游必填错误及安装故障均拒绝。 ... ok
+test_missing_manifest_keeps_history_state_consistency (test_prd_gate.GateTests.test_missing_manifest_keeps_history_state_consistency)
+历史依据声明stale不能因清单缺省继续冒充ready的正式草稿。 ... ok
+test_missing_manifest_keeps_source_requirement (test_prd_gate.GateTests.test_missing_manifest_keeps_source_requirement)
+来源清单降级仅跳过清单依赖项，不能让无来源的有效条目变合法。 ... ok
+test_parallel_install (test_prd_gate.GateTests.test_parallel_install)
+技能并列安装时从工作目录之外读取自己的脚本与 schema。 ... ok
+test_readiness_mappings (test_prd_gate.GateTests.test_readiness_mappings)
+三种就绪度映射对应草稿等级，不跳过上游校验。 ... ok
+test_ready_and_readonly_cli (test_prd_gate.GateTests.test_ready_and_readonly_cli)
+正式就绪通过，任意 cwd 执行 CLI 不改变任何文件。 ... ok
+test_stale_priority_and_explicit_override (test_prd_gate.GateTests.test_stale_priority_and_explicit_override)
+PG03 过期优先且必须显式允许，即使缺可选来源仍告警。 ... ok
+test_evidence_and_replay (test_prd_generation_runs.GenerationRunsTests.test_evidence_and_replay)
+每次使用新目录，保留真实命令、指纹及未完成人工审核标志。 ... ok
+test_help_from_other_directory (test_prd_generation_runs.GenerationRunsTests.test_help_from_other_directory)
+隔离模式下任意 cwd 的帮助可用。 ... ok
+test_concurrent_original_bytes_guard (test_prd_numbering.NumberingTests.test_concurrent_original_bytes_guard)
+写入前源文件原字节变化时拒绝覆盖已有追溯。 ... ok
+test_empty_patch_still_checks_version_and_draft_kind (test_prd_numbering.NumberingTests.test_empty_patch_still_checks_version_and_draft_kind)
+没有正式条目的候选也不能绕过版本和过期优先级检查。 ... ok
+test_independent_write_cannot_bypass_analysis_gate (test_prd_numbering.NumberingTests.test_independent_write_cannot_bypass_analysis_gate)
+无来源的有效分析在编号维护入口也拒写，不只依赖Skill先运行门禁。 ... ok
+test_independent_write_keeps_manual_edit_evidence (test_prd_numbering.NumberingTests.test_independent_write_keeps_manual_edit_evidence)
+未判定含义的手工改动不能通过编号维护重置摘要而被静默认可。 ... ok
+test_initial_retry_split_and_high_water (test_prd_numbering.NumberingTests.test_initial_retry_split_and_high_water)
+首次分配、幂等重试及拆分严格递增且不修改输入。 ... ok
+test_legacy_requires_explicit_id (test_prd_numbering.NumberingTests.test_legacy_requires_explicit_id)
+旧追溯匹配相同来源时必须显式绑定旧编号。 ... ok
+test_multiple_refs_digest_and_status (test_prd_numbering.NumberingTests.test_multiple_refs_digest_and_status)
+多来源取最不确定标签、待重评状态，摘要覆盖完整对象且引用排序稳定。 ... ok
+test_reject_invalid_inputs (test_prd_numbering.NumberingTests.test_reject_invalid_inputs)
+拒绝伪造编号、版本冲突、非法字段和落后高水位。 ... ok
+test_withdrawn_never_reuses_id (test_prd_numbering.NumberingTests.test_withdrawn_never_reuses_id)
+撤销已有条目保留编号；首次撤销不消耗编号。 ... ok
+test_write_and_transaction_guard (test_prd_numbering.NumberingTests.test_write_and_transaction_guard)
+默认只读；事务存在时拒绝写入，显式写入只改追溯。 ... ok
+test_write_preserves_body_hash (test_prd_numbering.NumberingTests.test_write_preserves_body_hash)
+独立维护既有追溯时使用实际正文摘要，不写入候选空正文摘要。 ... ok
+test_gap_envelope_and_closed_resolution (test_prd_schemas.PrdSchemaTests.test_gap_envelope_and_closed_resolution)
+裸数组不是封装，closed 必须有非空结构化依据，扩展字段兼容。 ... ok
+test_patch_forbids_model_assigned_data (test_prd_schemas.PrdSchemaTests.test_patch_forbids_model_assigned_data)
+编号补丁拒绝正文、摘要和计数器，不接受模型自行分配新数据。 ... ok
+test_trace_accepts_compatible_extensions (test_prd_schemas.PrdSchemaTests.test_trace_accepts_compatible_extensions)
+旧追溯没有映射键仍可读取，未知兼容字段不被丢弃。 ... ok
+test_trace_reference_and_id_formats (test_prd_schemas.PrdSchemaTests.test_trace_reference_and_id_formats)
+引用必须完整，编号至少三位且可增长，零序号非法。 ... ok
+test_trace_rejects_required_types_and_unknown_version (test_prd_schemas.PrdSchemaTests.test_trace_rejects_required_types_and_unknown_version)
+缺必填、错误枚举、坏摘要和未知格式版本均被格式拒绝。 ... ok
+test_bad_metadata_root_and_event_json (test_prd_validation.PrdValidationTests.test_bad_metadata_root_and_event_json)
+坏元数据和事件 JSON 返回结构化诊断，不引发未处理异常。 ... ok
+test_cross_requirement_references_need_explicit_input (test_prd_validation.PrdValidationTests.test_cross_requirement_references_need_explicit_input)
+跨需求引用只接受显式提供的资料，不隐式检索相邻工作区。 ... ok
+test_damaged_event_and_missing_required_inputs (test_prd_validation.PrdValidationTests.test_damaged_event_and_missing_required_inputs)
+坏事件与缺必需文件返回具体失败，不能变成可选资料降级。 ... ok
+test_duplicate_receiver_and_invalid_gap_reference (test_prd_validation.PrdValidationTests.test_duplicate_receiver_and_invalid_gap_reference)
+重复接收问题及不完整缺口引用均为规则12错误。 ... ok
+test_hidden_label_cannot_replace_visible_annotation (test_prd_validation.PrdValidationTests.test_hidden_label_cannot_replace_visible_annotation)
+标注也必须对读者可见，普通隐藏注释中的推断字样不充数。 ... ok
+test_legacy_trace_can_gain_mapping_key_without_renumbering (test_prd_validation.PrdValidationTests.test_legacy_trace_can_gain_mapping_key_without_renumbering)
+旧1.0追溯显式按编号补键不算身份重置，已有映射键仍禁止改写。 ... ok
+test_malformed_blocks_and_untracked_number (test_prd_validation.PrdValidationTests.test_malformed_blocks_and_untracked_number)
+交叉定位块或游离正式编号不能被解析器忽略。 ... ok
+test_manual_hash_change_warning (test_prd_validation.PrdValidationTests.test_manual_hash_change_warning)
+未处理的手工改动是 warning，校验器不自行修正文档或摘要。 ... ok
+test_not_needed_scope_basis_is_valid (test_prd_validation.PrdValidationTests.test_not_needed_scope_basis_is_valid)
+不再需要的关闭依据可来自有效范围条目，不强制伪造新验收内容。 ... ok
+test_null_input_and_bad_status_type_are_diagnostics (test_prd_validation.PrdValidationTests.test_null_input_and_bad_status_type_are_diagnostics)
+JSON null 和非标量状态不能静默通过或抛出容器类型异常。 ... ok
+test_numbering_patch_cannot_bind_two_keys_to_one_legacy_id (test_prd_validation.PrdValidationTests.test_numbering_patch_cannot_bind_two_keys_to_one_legacy_id)
+只读补丁检查与实际分配一致，拒绝多个键指向同一旧无键编号。 ... ok
+test_numbering_patch_readonly_structure_and_conflict (test_prd_validation.PrdValidationTests.test_numbering_patch_readonly_structure_and_conflict)
+编号补丁只读检查映射身份和读时版本，禁止模型指定新正式编号。 ... ok
+test_open_gap_with_saved_question_is_valid_retry_state (test_prd_validation.PrdValidationTests.test_open_gap_with_saved_question_is_valid_retry_state)
+保存问题后标记中断时 open 加唯一接收问题仍合法，不要求再建问题。 ... ok
+test_optional_source_manifest_missing_downgrades (test_prd_validation.PrdValidationTests.test_optional_source_manifest_missing_downgrades)
+可选来源名称清单无法读取时保留 source_id，不阻断合法分析内容。 ... ok
+test_real_stage_zero_samples_can_be_read_without_writing (test_prd_validation.PrdValidationTests.test_real_stage_zero_samples_can_be_read_without_writing)
+现有首轮样例仍由唯一分析校验器读取；本测试不声称已生成 PRD。 ... ok
+test_review_hidden_id_does_not_replace_visible_id (test_prd_validation.PrdValidationTests.test_review_hidden_id_does_not_replace_visible_id)
+独立评审回归：隐藏定位标记不能替代读者可见的正式编号。 ... ok
+test_review_legacy_mapping_cannot_change_kind (test_prd_validation.PrdValidationTests.test_review_legacy_mapping_cannot_change_kind)
+独立评审回归：旧条目无映射键时仍须按正式编号保护既有类别。 ... ok
+test_review_numeric_sequence_cannot_be_reused_with_zero_padding (test_prd_validation.PrdValidationTests.test_review_numeric_sequence_cannot_be_reused_with_zero_padding)
+独立评审回归：不同补零字符串不能分配同一个类别数值序号。 ... ok
+test_review_sync_warning_lists_changed_references (test_prd_validation.PrdValidationTests.test_review_sync_warning_lists_changed_references)
+独立评审回归：待同步不误判失败，同时明确指出变更的分析引用。 ... ok
+test_rule_10_visible_metadata_mismatch (test_prd_validation.PrdValidationTests.test_rule_10_visible_metadata_mismatch)
+规则10核对可见文档信息，而不是仅信任隐藏字段。 ... ok
+test_rule_11_snapshot_integrity_and_symlink (test_prd_validation.PrdValidationTests.test_rule_11_snapshot_integrity_and_symlink)
+规则11校验两份快照原始字节，拒绝篡改及符号链接。 ... ok
+test_rule_11_unrecorded_and_duplicate_release (test_prd_validation.PrdValidationTests.test_rule_11_unrecorded_and_duplicate_release)
+规则11拒绝快照无登记和重复发布记录。 ... ok
+test_rule_12_closed_requires_effective_content (test_prd_validation.PrdValidationTests.test_rule_12_closed_requires_effective_content)
+关闭不能只靠问题状态，撤销依据及缺依据都被拒绝。 ... ok
+test_rule_12_handed_over_requires_unique_receiver (test_prd_validation.PrdValidationTests.test_rule_12_handed_over_requires_unique_receiver)
+handed_over 必须有唯一接收问题，不能假装接收成功。 ... ok
+test_rule_12_open_without_receiver_is_warning (test_prd_validation.PrdValidationTests.test_rule_12_open_without_receiver_is_warning)
+未接收或保存后未标状态的 open 缺口都合法，输出 warning 而非结构失败。 ... ok
+test_rule_12_valid_closed_and_not_needed (test_prd_validation.PrdValidationTests.test_rule_12_valid_closed_and_not_needed)
+有接收问题和有效内容才结构上允许关闭，充分性仍不冒充自动证明。 ... ok
+test_rule_1_missing_field_and_bad_json (test_prd_validation.PrdValidationTests.test_rule_1_missing_field_and_bad_json)
+规则1拒绝缺失必填和重复键，不吞掉损坏输入。 ... ok
+test_rule_2_duplicate_id_counter_and_mapping_key (test_prd_validation.PrdValidationTests.test_rule_2_duplicate_id_counter_and_mapping_key)
+规则2拒绝重复正式编号及映射键，并检出编号计数器落后。 ... ok
+test_rule_2_history_cannot_reset_identity (test_prd_validation.PrdValidationTests.test_rule_2_history_cannot_reset_identity)
+历史对照阻止删除旧编号及改写引入版本，单份文件不伪称有完整历史。 ... ok
+test_rule_3_dangling_or_withdrawn_reference (test_prd_validation.PrdValidationTests.test_rule_3_dangling_or_withdrawn_reference)
+规则3检出不存在及已撤销却仍有效的来源引用。 ... ok
+test_rule_3_withdrawn_source_and_rule_5_pending_label (test_prd_validation.PrdValidationTests.test_rule_3_withdrawn_source_and_rule_5_pending_label)
+撤销来源不能保持有效，待重评状态必须落实到对应条目的待确认标注。 ... ok
+test_rule_4_missing_and_untracked_ids (test_prd_validation.PrdValidationTests.test_rule_4_missing_and_untracked_ids)
+规则4要求正文有效条目与追溯双向对应。 ... ok
+test_rule_5_labels_must_be_inside_item (test_prd_validation.PrdValidationTests.test_rule_5_labels_must_be_inside_item)
+规则5不接受其他章节的推断标注为目标条目充数。 ... ok
+test_rule_6_abolished_not_in_effective_section (test_prd_validation.PrdValidationTests.test_rule_6_abolished_not_in_effective_section)
+规则6拒绝将已废止条目保留在功能正文。 ... ok
+test_rule_7_stale_overrides_readiness (test_prd_validation.PrdValidationTests.test_rule_7_stale_overrides_readiness)
+规则7优先过期状态，不能以正式草稿提示掩盖过期。 ... ok
+test_rule_8_required_residual_missing (test_prd_validation.PrdValidationTests.test_rule_8_required_residual_missing)
+规则8检出缺少适用推断遗留项，不只搜索正文编号。 ... ok
+test_rule_9_orphan_placeholder (test_prd_validation.PrdValidationTests.test_rule_9_orphan_placeholder)
+规则9拒绝未登记或无法对应的占位。 ... ok
+test_snapshot_symlink_and_missing_record_rejected (test_prd_validation.PrdValidationTests.test_snapshot_symlink_and_missing_record_rejected)
+快照符号链接和无记录文件不被当作不可变发布依据。 ... ok
+test_source_digest_changes_and_key_order_stability (test_prd_validation.PrdValidationTests.test_source_digest_changes_and_key_order_stability)
+生成依据摘要覆盖来源和关联，JSON 键顺序不影响算法。 ... ok
+test_sync_warning_and_failure_priority (test_prd_validation.PrdValidationTests.test_sync_warning_and_failure_priority)
+待同步是 warning，结构错误仍优先为 fail；不把未同步摘要差异判失败。 ... ok
+test_valid_fixture_and_readonly_cli (test_prd_validation.PrdValidationTests.test_valid_fixture_and_readonly_cli)
+合法夹具 pass，实际 CLI 从任意目录运行不改变业务字节。 ... ok
+
+----------------------------------------------------------------------
+Ran 111 tests in 47.949s
+
+OK

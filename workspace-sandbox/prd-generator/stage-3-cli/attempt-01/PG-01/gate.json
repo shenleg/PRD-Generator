@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmp2HZe5Y/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/check_gate.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-cli/attempt-01/PG-01/requirement"
+  ],
+  "cwd": "/",
+  "stdout": "{\n  \"status\": \"fail\",\n  \"diagnostics\": [\n    {\n      \"rule\": 1,\n      \"level\": \"fail\",\n      \"item_id\": \"$\",\n      \"path\": \"/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-cli/attempt-01/PG-01/requirement/analysis/analysis-result.json\",\n      \"message\": \"无法读取 JSON：[Errno 2] No such file or directory: '/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-cli/attempt-01/PG-01/requirement/analysis/analysis-result.json'\"\n    }\n  ],\n  \"allowed\": false,\n  \"draft_kind\": null,\n  \"analysis_revision\": null,\n  \"base_prd_version\": null,\n  \"uncovered_analysis\": []\n}\n",
+  "stderr": "",
+  "exit_code": 2,
+  "before": {
+    "requirement.json": "sha256:c72276d1047b211b813e4faa9674fabc96b32be301b9b945c5b083afc10fba81"
+  },
+  "after": {
+    "requirement.json": "sha256:c72276d1047b211b813e4faa9674fabc96b32be301b9b945c5b083afc10fba81"
+  }
+}

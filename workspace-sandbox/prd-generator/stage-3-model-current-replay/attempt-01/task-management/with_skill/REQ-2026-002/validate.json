@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpZV5VbB/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/source-snapshot/prd-generator/scripts/validate_prd.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-002/requirement"
+  ],
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:39aad8a937c1e8db95de61916da45b7afe51a455d6faa1c704addacf9e9e39d4",
+    "analysis/source-manifest.json": "sha256:76d069bfc81ecff46eed5900702181e26b6482d44f798f6b81de7b4310adcdea",
+    "prd/gap-requests.json": "sha256:ba61174cfc2f026bcf69b6ef766cf1b787898945b5d56db285f0d1e59db713bf",
+    "prd/prd-events.jsonl": "sha256:d154bbaaba4d164c11335f64b649f6e61b3a0f3b6c09be6334390a66f0f95955",
+    "prd/prd-trace.json": "sha256:2c031bbb18e26d4ac4efe1a19cc7cd17d40f9e516f0f3bb2e8926824d96e3ab6",
+    "prd/prd.md": "sha256:f48b7d349e4caa50675b3de643ebd300d0fdcbb2b82ee6079669adbfeb3d24a7",
+    "requirement.json": "sha256:07bb5abeeeb483c2404aeb5dc515ac99c679b5516df66998a5a02efb3dc21c8d"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:39aad8a937c1e8db95de61916da45b7afe51a455d6faa1c704addacf9e9e39d4",
+    "analysis/source-manifest.json": "sha256:76d069bfc81ecff46eed5900702181e26b6482d44f798f6b81de7b4310adcdea",
+    "prd/gap-requests.json": "sha256:ba61174cfc2f026bcf69b6ef766cf1b787898945b5d56db285f0d1e59db713bf",
+    "prd/prd-events.jsonl": "sha256:d154bbaaba4d164c11335f64b649f6e61b3a0f3b6c09be6334390a66f0f95955",
+    "prd/prd-trace.json": "sha256:2c031bbb18e26d4ac4efe1a19cc7cd17d40f9e516f0f3bb2e8926824d96e3ab6",
+    "prd/prd.md": "sha256:f48b7d349e4caa50675b3de643ebd300d0fdcbb2b82ee6079669adbfeb3d24a7",
+    "requirement.json": "sha256:07bb5abeeeb483c2404aeb5dc515ac99c679b5516df66998a5a02efb3dc21c8d"
+  }
+}

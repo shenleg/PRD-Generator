@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpZV5VbB/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/source-snapshot/prd-generator/scripts/validate_prd.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/without_skill/REQ-2026-006/requirement"
+  ],
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:c221ab4c867e04559b6f8a2177ad7ab66ea75ced8cd91ccee21c00238a814af6",
+    "analysis/source-manifest.json": "sha256:6dc52bead4d80a100ae0ece2aaa14e3262d7360a05fb88b56483b127620d452d",
+    "prd/gap-requests.json": "sha256:eb951ba61d066dab4b1b0876e9f5d5c3a1e6a8e525895b5b87e30f5770d656c3",
+    "prd/prd-events.jsonl": "sha256:4aaaf184ba5bc014eff9b22e84d8eb83011c2282748d60cbe4f9cf2dea316a81",
+    "prd/prd-trace.json": "sha256:b623a0fc66e8439afe88e75326c467355500278cb611d5f7bceba39ad4f63d98",
+    "prd/prd.md": "sha256:89956ce569c8425fd2ebdd2bd0901766165b3e3231693127c748437088a90127",
+    "requirement.json": "sha256:02dc21809c95d22f6368bce9f0c7247c3429266fb4c1ac1fd71640f924d97936"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:c221ab4c867e04559b6f8a2177ad7ab66ea75ced8cd91ccee21c00238a814af6",
+    "analysis/source-manifest.json": "sha256:6dc52bead4d80a100ae0ece2aaa14e3262d7360a05fb88b56483b127620d452d",
+    "prd/gap-requests.json": "sha256:eb951ba61d066dab4b1b0876e9f5d5c3a1e6a8e525895b5b87e30f5770d656c3",
+    "prd/prd-events.jsonl": "sha256:4aaaf184ba5bc014eff9b22e84d8eb83011c2282748d60cbe4f9cf2dea316a81",
+    "prd/prd-trace.json": "sha256:b623a0fc66e8439afe88e75326c467355500278cb611d5f7bceba39ad4f63d98",
+    "prd/prd.md": "sha256:89956ce569c8425fd2ebdd2bd0901766165b3e3231693127c748437088a90127",
+    "requirement.json": "sha256:02dc21809c95d22f6368bce9f0c7247c3429266fb4c1ac1fd71640f924d97936"
+  }
+}

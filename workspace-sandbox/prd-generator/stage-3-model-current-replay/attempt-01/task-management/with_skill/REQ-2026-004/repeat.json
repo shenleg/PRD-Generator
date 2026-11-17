@@ -1,0 +1,36 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpZV5VbB/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/source-snapshot/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-004/requirement",
+    "--patch",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-004/repeat-patch.json",
+    "--body",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-004/repeat-body.md",
+    "--candidate-dir",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-004/candidate-2"
+  ],
+  "stdout": "{\"status\": \"pass\", \"diagnostics\": [], \"version\": \"0.2\", \"draft_kind\": \"risk_draft\", \"candidate_dir\": \"/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-004/candidate-2\", \"generated\": true, \"mapping\": [{\"mapping_key\": \"goal\", \"prd_id\": \"PRD-GOAL-001\", \"analysis_refs\": [\"REQ-2026-004/GOAL-1\"]}, {\"mapping_key\": \"scenario\", \"prd_id\": \"PRD-SCN-001\", \"analysis_refs\": [\"REQ-2026-004/SCN-1\"]}, {\"mapping_key\": \"fix\", \"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"REQ-2026-004/FR-1\"]}, {\"mapping_key\": \"scope\", \"prd_id\": \"PRD-FR-002\", \"analysis_refs\": [\"REQ-2026-004/FR-2\"]}, {\"mapping_key\": \"constraint\", \"prd_id\": \"PRD-CON-001\", \"analysis_refs\": [\"REQ-2026-004/CON-1\"]}, {\"mapping_key\": \"realtime\", \"prd_id\": \"PRD-NFR-001\", \"analysis_refs\": [\"REQ-2026-004/NFR-1\"]}, {\"mapping_key\": \"acceptance\", \"prd_id\": \"PRD-AC-001\", \"analysis_refs\": [\"REQ-2026-004/AC-1\"]}, {\"mapping_key\": \"flow\", \"prd_id\": \"PRD-FLOW-001\", \"analysis_refs\": [\"REQ-2026-004/FLOW-1\"]}, {\"mapping_key\": \"boundary\", \"prd_id\": \"PRD-BND-001\", \"analysis_refs\": [\"REQ-2026-004/BND-1\"]}, {\"mapping_key\": \"failure\", \"prd_id\": \"PRD-EXC-001\", \"analysis_refs\": [\"REQ-2026-004/EXC-1\"]}], \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"prd/gap-requests.json\", \"requirement.json\", \"prd/prd-events.jsonl\"]}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:847302a5bd1bed03147ff3376c65dbb1dce33620ea59a4a507378c4418b25bbf",
+    "analysis/source-manifest.json": "sha256:8a302280d3030deacde3c9e1d03e2c91744a2f64a1f7526f738981a346a5573a",
+    "prd/gap-requests.json": "sha256:5731fac251e302e9f1044059a867a6980e612a5b81588cffc85c98ed6e460da5",
+    "prd/prd-events.jsonl": "sha256:4e3b7068e0b61aa526ff162577e69b6c7d0266149642b5b8d5255fd9f437b3e0",
+    "prd/prd-trace.json": "sha256:03d1350fe40551c3f78ff0cb35b1992045372ae2d4dbcc6060b22a036abfb415",
+    "prd/prd.md": "sha256:aa88aa139fd09c7629b6f57b5bdffaf62a2e6f939b4f4adb81a630db16dc2121",
+    "requirement.json": "sha256:a822347deac85cc3f7f5f90298290620109079bb37c0a7b6a29c30541b037701"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:847302a5bd1bed03147ff3376c65dbb1dce33620ea59a4a507378c4418b25bbf",
+    "analysis/source-manifest.json": "sha256:8a302280d3030deacde3c9e1d03e2c91744a2f64a1f7526f738981a346a5573a",
+    "prd/gap-requests.json": "sha256:5731fac251e302e9f1044059a867a6980e612a5b81588cffc85c98ed6e460da5",
+    "prd/prd-events.jsonl": "sha256:5983bcc5cbff2e65faa8d3ed448ce0cdff32c83ad44bf8a5cb6e7ca57cc7053c",
+    "prd/prd-trace.json": "sha256:394a13bd952b98068740e80d9c440b4724e7c3fef0f27a141df097f4d3d05c94",
+    "prd/prd.md": "sha256:449a7da479e2b4353429dd749e56c00c8a189b2e562656c66273837ca4cba41d",
+    "requirement.json": "sha256:f0161f8c27d48d74c2a2c9bb9a4c916eab1a9f32881e4569dce09275527c5a68"
+  }
+}

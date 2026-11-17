@@ -1,0 +1,39 @@
+{
+  "skill_name": "prd-generator",
+  "evals": [
+    {
+      "id": 1,
+      "eval_name": "switch-combinations",
+      "prompt": "请把已保存的高低压开关组合逻辑设计表需求分析整理成可追溯的 PRD 草稿，保留当前风险、未确定内容和遗留事项；不要替我补业务规则，也不要发布。",
+      "expected_output": "REQ-2026-001 的风险草稿及正式追溯；保留组合方式、联动关系、输出内容和研发能力核实等遗留，推断不变成事实。",
+      "files": ["workspace-sandbox/prd-generator/stage-3-model/iteration-1/inputs/switch-combinations/REQ-2026-001/analysis/analysis-result.json"],
+      "assertions": [
+        "实际调用门禁、编号、统一保存和只读校验，最终无结构失败",
+        "初始分析原始字节和 common 未被模型改变，未创建发布快照或发布状态",
+        "draft_kind 为 risk_draft，风险提示与全部适用程序警告展示",
+        "正式编号由脚本分配，每个正式条目有有效完整分析引用和正确来源摘要",
+        "相同输入重复生成需求正文及编号稳定，版本按规则递增",
+        "语义忠实性及遗留事项充分性另交人工，不以程序断言替代认可"
+      ]
+    },
+    {
+      "id": 2,
+      "eval_name": "task-management",
+      "prompt": "请把已保存的仿真任务管理优化需求分析整理成可追溯的 PRD 草稿，保留当前风险、未确定内容和遗留事项；不要替我补业务规则，也不要发布。任务管理五个独立需求分别成稿，不合并。",
+      "expected_output": "REQ-2026-002至REQ-2026-006各自形成风险草稿；REQ-2026-003不是全文；待重评和推断保持，删除权限与边界等未确认规则不自行补足。",
+      "files": ["workspace-sandbox/prd-generator/stage-3-model/iteration-1/inputs/task-management/"],
+      "assertions": [
+        "五个独立需求均有真实门禁、编号、统一保存与只读校验响应，不静默遗漏",
+        "各需求分析原始字节和 common 保持，未合并需求或发布",
+        "五份草稿保持 risk_draft，待重评、推断和适用遗留均通过结构对应检查",
+        "每个正式编号有完整有效追溯；重复生成编号与需求正文稳定，版本递增",
+        "语义忠实性及业务禁止引入项另交人工，不以结构通过代替认可"
+      ]
+    }
+  ],
+  "limitations": [
+    "同样给无Skill对照提供确定性脚本，以隔离Skill流程与参考的作用；不是无工具对照。",
+    "每组每配置只有一次模型运行，不代表统计显著性或安装自动触发效果。",
+    "无Skill对照不读取Skill入口、参考、模板、规格或人工答案；with_skill只加载冻结的生产Skill。"
+  ]
+}

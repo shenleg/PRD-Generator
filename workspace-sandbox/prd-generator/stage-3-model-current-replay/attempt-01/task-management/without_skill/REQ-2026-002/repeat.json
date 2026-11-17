@@ -1,0 +1,36 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpZV5VbB/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/source-snapshot/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/without_skill/REQ-2026-002/requirement",
+    "--patch",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/without_skill/REQ-2026-002/repeat-patch.json",
+    "--body",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/without_skill/REQ-2026-002/repeat-body.md",
+    "--candidate-dir",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/without_skill/REQ-2026-002/candidate-2"
+  ],
+  "stdout": "{\"status\": \"pass\", \"diagnostics\": [], \"version\": \"0.2\", \"draft_kind\": \"risk_draft\", \"candidate_dir\": \"/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/without_skill/REQ-2026-002/candidate-2\", \"generated\": true, \"mapping\": [{\"mapping_key\": \"GOAL-1\", \"prd_id\": \"PRD-GOAL-001\", \"analysis_refs\": [\"REQ-2026-002/GOAL-1\"]}, {\"mapping_key\": \"SCN-1\", \"prd_id\": \"PRD-SCN-001\", \"analysis_refs\": [\"REQ-2026-002/SCN-1\"]}, {\"mapping_key\": \"FR-1\", \"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"REQ-2026-002/FR-1\"]}, {\"mapping_key\": \"NFR-1\", \"prd_id\": \"PRD-NFR-001\", \"analysis_refs\": [\"REQ-2026-002/NFR-1\"]}, {\"mapping_key\": \"CON-1\", \"prd_id\": \"PRD-CON-001\", \"analysis_refs\": [\"REQ-2026-002/CON-1\"]}, {\"mapping_key\": \"AC-1\", \"prd_id\": \"PRD-AC-001\", \"analysis_refs\": [\"REQ-2026-002/AC-1\"]}, {\"mapping_key\": \"FLOW-1\", \"prd_id\": \"PRD-FLOW-001\", \"analysis_refs\": [\"REQ-2026-002/FLOW-1\"]}, {\"mapping_key\": \"BND-1\", \"prd_id\": \"PRD-BND-001\", \"analysis_refs\": [\"REQ-2026-002/BND-1\"]}, {\"mapping_key\": \"EXC-1\", \"prd_id\": \"PRD-EXC-001\", \"analysis_refs\": [\"REQ-2026-002/EXC-1\"]}], \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"prd/gap-requests.json\", \"requirement.json\", \"prd/prd-events.jsonl\"]}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:39aad8a937c1e8db95de61916da45b7afe51a455d6faa1c704addacf9e9e39d4",
+    "analysis/source-manifest.json": "sha256:76d069bfc81ecff46eed5900702181e26b6482d44f798f6b81de7b4310adcdea",
+    "prd/gap-requests.json": "sha256:ba61174cfc2f026bcf69b6ef766cf1b787898945b5d56db285f0d1e59db713bf",
+    "prd/prd-events.jsonl": "sha256:6110b2e23ca7a1a2dad4a9364da41a8aa43364f07fe35b45027fd8b770fb3785",
+    "prd/prd-trace.json": "sha256:d8eaaf728298b62064994d8259f9bdfe140b9e3c85068c3f390b154e7d5fecba",
+    "prd/prd.md": "sha256:d31210e4c040249e0dd90c8480f6d8027d8f863d36a7d2629e689ed2ddb5a8cc",
+    "requirement.json": "sha256:ac2159559d70a14f9d96bac4da65421f06dfe258cb3043aa9f0c9ee840b35df7"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:39aad8a937c1e8db95de61916da45b7afe51a455d6faa1c704addacf9e9e39d4",
+    "analysis/source-manifest.json": "sha256:76d069bfc81ecff46eed5900702181e26b6482d44f798f6b81de7b4310adcdea",
+    "prd/gap-requests.json": "sha256:ba61174cfc2f026bcf69b6ef766cf1b787898945b5d56db285f0d1e59db713bf",
+    "prd/prd-events.jsonl": "sha256:81c7b68173d27792ea6b36679c96a83700e55db4f8bbb69e94e05c5e27934d13",
+    "prd/prd-trace.json": "sha256:30b0971002c6f6ba38e0d003f578ee5daa83c828fc60f03bdfd981640b13611d",
+    "prd/prd.md": "sha256:63542046a7a963a2b9fed68c9378faa268f404846c2f2e5b83bc144c4021c09d",
+    "requirement.json": "sha256:07bb5abeeeb483c2404aeb5dc515ac99c679b5516df66998a5a02efb3dc21c8d"
+  }
+}

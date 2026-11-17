@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpZV5VbB/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/source-snapshot/prd-generator/scripts/validate_prd.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/switch-combinations/with_skill/REQ-2026-001/requirement"
+  ],
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:49ca654b12974c8585687a99198f4d82091441f98d236d35615bc81a8a4e3acc",
+    "analysis/source-manifest.json": "sha256:34f656d08f7a9c38d507b7a45d5ae77b1e308f4161af7664493790b2cc09de6a",
+    "prd/gap-requests.json": "sha256:b11c8b3d8e1870a999b21a93967f04d1a8cc7aa43c500b12c8e2be925ac37d7c",
+    "prd/prd-events.jsonl": "sha256:de56b7adc82efec61b8da24b6a4a89ca784fc2645943438b2be16f17465f6ca1",
+    "prd/prd-trace.json": "sha256:ccfd88ca9da2f5005858f361f4f2cefa829665771e1ece16f6305f8a4f83f2e9",
+    "prd/prd.md": "sha256:921e08ee58f1eb44d768a59ca69403b453ff397b699ac0bdf9b429110fc29a95",
+    "requirement.json": "sha256:7bbbd13c9426c6aebb2cab5a2d6a96f9dd2f3eb3fd7fd6647d8bc66cb0b162ae"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:49ca654b12974c8585687a99198f4d82091441f98d236d35615bc81a8a4e3acc",
+    "analysis/source-manifest.json": "sha256:34f656d08f7a9c38d507b7a45d5ae77b1e308f4161af7664493790b2cc09de6a",
+    "prd/gap-requests.json": "sha256:b11c8b3d8e1870a999b21a93967f04d1a8cc7aa43c500b12c8e2be925ac37d7c",
+    "prd/prd-events.jsonl": "sha256:de56b7adc82efec61b8da24b6a4a89ca784fc2645943438b2be16f17465f6ca1",
+    "prd/prd-trace.json": "sha256:ccfd88ca9da2f5005858f361f4f2cefa829665771e1ece16f6305f8a4f83f2e9",
+    "prd/prd.md": "sha256:921e08ee58f1eb44d768a59ca69403b453ff397b699ac0bdf9b429110fc29a95",
+    "requirement.json": "sha256:7bbbd13c9426c6aebb2cab5a2d6a96f9dd2f3eb3fd7fd6647d8bc66cb0b162ae"
+  }
+}

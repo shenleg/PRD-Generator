@@ -1,0 +1,2 @@
+{   "time": "2026-11-17T16:10:34.098290+00:00",   "prd_version": "0.1",   "change_type": "initial_generation",   "summary": "首次生成工作稿",   "affected_prd_ids": [     "PRD-FR-001"   ],   "based_on_analysis_revision": 1,   "actor": "prd_generator" }
+{   "time": "2026-11-17T16:10:34.744943+00:00",   "prd_version": "0.2",   "change_type": "initial_generation",   "summary": "基于同一分析输入重复生成工作稿",   "affected_prd_ids": [     "PRD-FR-001"   ],   "based_on_analysis_revision": 1,   "actor": "prd_generator" }

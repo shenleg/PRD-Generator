@@ -1,0 +1,248 @@
+{
+  "metadata": {
+    "skill_name": "prd-generator",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-11-17T17:00:39Z",
+    "evals_run": [
+      1,
+      2
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 531.73,
+        "tokens": 32613,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u6240\u6709\u9884\u671f\u72ec\u7acb\u9700\u6c42\u5747\u5b9e\u9645\u751f\u6210\u4e14\u5f53\u524d\u7ed3\u6784\u6821\u9a8c\u65e0\u5931\u8d25",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u5206\u6790\u539f\u59cb\u5b57\u8282\u53cacommon\u4fdd\u6301\uff0c\u4e0d\u53d1\u5e03\u6216\u5408\u5e76\u9700\u6c42",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u6240\u6709\u6b63\u5f0f\u6761\u76ee\u6709\u6709\u6548\u5b8c\u6574\u5f15\u7528\u53ca\u6b63\u786e\u6b63\u6587\u6458\u8981",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u98ce\u9669\u8349\u7a3f\u548c\u53ef\u7a0b\u5e8f\u8bc6\u522b\u7684\u9010\u6761\u6807\u6ce8\u4fdd\u6301",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u540c\u8f93\u5165\u91cd\u590d\u751f\u6210\u81f30.2\u4e14\u9700\u6c42\u6b63\u6587\u4e0e\u7f16\u53f7\u4fdd\u6301",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        }
+      ],
+      "notes": [
+        "\u53ea\u8bc4\u5ba2\u89c2\u7ed3\u6784\u4e0e\u6587\u4ef6\u5f52\u5c5e\uff0c\u4e0d\u8bc4\u81ea\u7136\u8bed\u8a00\u5fe0\u5b9e\u6027\u6216\u7f3a\u53e3\u662f\u5426\u5fc5\u8981\uff1b\u8b66\u544a\u662f\u5426\u5145\u5206\u89e3\u91ca\u987b\u67e5\u770b\u6a21\u578b\u7b54\u590d\u3002",
+        "\u6309\u5df2\u8ba4\u53ef\u4e1a\u52a1\u53c2\u8003\u9010\u6761\u4eba\u5de5\u6838\u5bf9\u9700\u6c42\u3001\u8303\u56f4\u3001\u63a8\u65ad\u548c\u9057\u7559\u4e8b\u9879"
+      ]
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 4,
+        "failed": 1,
+        "total": 5,
+        "time_seconds": 2454.526,
+        "tokens": 46604,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u6240\u6709\u9884\u671f\u72ec\u7acb\u9700\u6c42\u5747\u5b9e\u9645\u751f\u6210\u4e14\u5f53\u524d\u7ed3\u6784\u6821\u9a8c\u65e0\u5931\u8d25",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u5206\u6790\u539f\u59cb\u5b57\u8282\u53cacommon\u4fdd\u6301\uff0c\u4e0d\u53d1\u5e03\u6216\u5408\u5e76\u9700\u6c42",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u6240\u6709\u6b63\u5f0f\u6761\u76ee\u6709\u6709\u6548\u5b8c\u6574\u5f15\u7528\u53ca\u6b63\u786e\u6b63\u6587\u6458\u8981",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u98ce\u9669\u8349\u7a3f\u548c\u53ef\u7a0b\u5e8f\u8bc6\u522b\u7684\u9010\u6761\u6807\u6ce8\u4fdd\u6301",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u540c\u8f93\u5165\u91cd\u590d\u751f\u6210\u81f30.2\u4e14\u9700\u6c42\u6b63\u6587\u4e0e\u7f16\u53f7\u4fdd\u6301",
+          "passed": false,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        }
+      ],
+      "notes": [
+        "\u53ea\u8bc4\u5ba2\u89c2\u7ed3\u6784\u4e0e\u6587\u4ef6\u5f52\u5c5e\uff0c\u4e0d\u8bc4\u81ea\u7136\u8bed\u8a00\u5fe0\u5b9e\u6027\u6216\u7f3a\u53e3\u662f\u5426\u5fc5\u8981\uff1b\u8b66\u544a\u662f\u5426\u5145\u5206\u89e3\u91ca\u987b\u67e5\u770b\u6a21\u578b\u7b54\u590d\u3002",
+        "\u6309\u5df2\u8ba4\u53ef\u4e1a\u52a1\u53c2\u8003\u9010\u6761\u4eba\u5de5\u6838\u5bf9\u9700\u6c42\u3001\u8303\u56f4\u3001\u63a8\u65ad\u548c\u9057\u7559\u4e8b\u9879"
+      ]
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 620.144,
+        "tokens": 48670,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u6240\u6709\u9884\u671f\u72ec\u7acb\u9700\u6c42\u5747\u5b9e\u9645\u751f\u6210\u4e14\u5f53\u524d\u7ed3\u6784\u6821\u9a8c\u65e0\u5931\u8d25",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u5206\u6790\u539f\u59cb\u5b57\u8282\u53cacommon\u4fdd\u6301\uff0c\u4e0d\u53d1\u5e03\u6216\u5408\u5e76\u9700\u6c42",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u6240\u6709\u6b63\u5f0f\u6761\u76ee\u6709\u6709\u6548\u5b8c\u6574\u5f15\u7528\u53ca\u6b63\u786e\u6b63\u6587\u6458\u8981",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u98ce\u9669\u8349\u7a3f\u548c\u53ef\u7a0b\u5e8f\u8bc6\u522b\u7684\u9010\u6761\u6807\u6ce8\u4fdd\u6301",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u540c\u8f93\u5165\u91cd\u590d\u751f\u6210\u81f30.2\u4e14\u9700\u6c42\u6b63\u6587\u4e0e\u7f16\u53f7\u4fdd\u6301",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        }
+      ],
+      "notes": [
+        "\u53ea\u8bc4\u5ba2\u89c2\u7ed3\u6784\u4e0e\u6587\u4ef6\u5f52\u5c5e\uff0c\u4e0d\u8bc4\u81ea\u7136\u8bed\u8a00\u5fe0\u5b9e\u6027\u6216\u7f3a\u53e3\u662f\u5426\u5fc5\u8981\uff1b\u8b66\u544a\u662f\u5426\u5145\u5206\u89e3\u91ca\u987b\u67e5\u770b\u6a21\u578b\u7b54\u590d\u3002",
+        "\u6309\u5df2\u8ba4\u53ef\u4e1a\u52a1\u53c2\u8003\u9010\u6761\u4eba\u5de5\u6838\u5bf9\u9700\u6c42\u3001\u8303\u56f4\u3001\u63a8\u65ad\u548c\u9057\u7559\u4e8b\u9879"
+      ]
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 625.199,
+        "tokens": 58386,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u6240\u6709\u9884\u671f\u72ec\u7acb\u9700\u6c42\u5747\u5b9e\u9645\u751f\u6210\u4e14\u5f53\u524d\u7ed3\u6784\u6821\u9a8c\u65e0\u5931\u8d25",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u5206\u6790\u539f\u59cb\u5b57\u8282\u53cacommon\u4fdd\u6301\uff0c\u4e0d\u53d1\u5e03\u6216\u5408\u5e76\u9700\u6c42",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u6240\u6709\u6b63\u5f0f\u6761\u76ee\u6709\u6709\u6548\u5b8c\u6574\u5f15\u7528\u53ca\u6b63\u786e\u6b63\u6587\u6458\u8981",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u98ce\u9669\u8349\u7a3f\u548c\u53ef\u7a0b\u5e8f\u8bc6\u522b\u7684\u9010\u6761\u6807\u6ce8\u4fdd\u6301",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        },
+        {
+          "text": "\u540c\u8f93\u5165\u91cd\u590d\u751f\u6210\u81f30.2\u4e14\u9700\u6c42\u6b63\u6587\u4e0e\u7f16\u53f7\u4fdd\u6301",
+          "passed": true,
+          "evidence": "\u89c1\u672c\u8fd0\u884coutputs/programmatic-verification.json\u7684\u9010\u9700\u6c42\u8ba1\u6570\u4e0e\u5b9e\u9645\u6587\u4ef6\u8def\u5f84"
+        }
+      ],
+      "notes": [
+        "\u53ea\u8bc4\u5ba2\u89c2\u7ed3\u6784\u4e0e\u6587\u4ef6\u5f52\u5c5e\uff0c\u4e0d\u8bc4\u81ea\u7136\u8bed\u8a00\u5fe0\u5b9e\u6027\u6216\u7f3a\u53e3\u662f\u5426\u5fc5\u8981\uff1b\u8b66\u544a\u662f\u5426\u5145\u5206\u89e3\u91ca\u987b\u67e5\u770b\u6a21\u578b\u7b54\u590d\u3002",
+        "\u6309\u5df2\u8ba4\u53ef\u4e1a\u52a1\u53c2\u8003\u9010\u6761\u4eba\u5de5\u6838\u5bf9\u9700\u6c42\u3001\u8303\u56f4\u3001\u63a8\u65ad\u548c\u9057\u7559\u4e8b\u9879"
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.9,
+        "stddev": 0.1414,
+        "min": 0.8,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 1493.128,
+        "stddev": 1359.6221,
+        "min": 531.73,
+        "max": 2454.526
+      },
+      "tokens": {
+        "mean": 39608.5,
+        "stddev": 9893.131,
+        "min": 32613,
+        "max": 46604
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 622.6715,
+        "stddev": 3.5744,
+        "min": 620.144,
+        "max": 625.199
+      },
+      "tokens": {
+        "mean": 53528.0,
+        "stddev": 6870.2495,
+        "min": 48670,
+        "max": 58386
+      }
+    },
+    "delta": {
+      "pass_rate": "-0.10",
+      "time_seconds": "+870.5",
+      "tokens": "-13920"
+    }
+  },
+  "notes": []
+}

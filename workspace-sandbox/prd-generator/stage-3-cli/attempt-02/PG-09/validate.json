@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmptpWlZj/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/validate_prd.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-cli/attempt-02/PG-09/requirement"
+  ],
+  "cwd": "/",
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:8f1257c72a426ec9602c0c09d7d410a40516f0685cb329bbe5f51da80aaf42d7",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd-events.jsonl": "sha256:f53485933f85ecab8a33d9dfc0fe94680e5c028b5a51f5d938cab283aaf1cd5e",
+    "prd/prd-trace.json": "sha256:4c0768ce4bb0787f469aa357319804e8b18864962ce56757e3f56f85e2bc03a9",
+    "prd/prd.md": "sha256:a45c7931d21bbb8296337e4f4338706a20743f8751c5fe0a259e4acdec84372a",
+    "requirement.json": "sha256:1dd7787673c214d8f588e03d69a78dc95f758f4c68822ba9b1c3f24b83aab55f"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:8f1257c72a426ec9602c0c09d7d410a40516f0685cb329bbe5f51da80aaf42d7",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd-events.jsonl": "sha256:f53485933f85ecab8a33d9dfc0fe94680e5c028b5a51f5d938cab283aaf1cd5e",
+    "prd/prd-trace.json": "sha256:4c0768ce4bb0787f469aa357319804e8b18864962ce56757e3f56f85e2bc03a9",
+    "prd/prd.md": "sha256:a45c7931d21bbb8296337e4f4338706a20743f8751c5fe0a259e4acdec84372a",
+    "requirement.json": "sha256:1dd7787673c214d8f588e03d69a78dc95f758f4c68822ba9b1c3f24b83aab55f"
+  }
+}

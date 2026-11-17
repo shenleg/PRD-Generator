@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmp9oFXLo/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-cli/attempt-04/source-snapshot/prd-generator/scripts/validate_prd.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-cli/attempt-04/PG-11/requirement"
+  ],
+  "cwd": "/",
+  "stdout": "{\n  \"status\": \"warning\",\n  \"diagnostics\": [\n    {\n      \"rule\": 12,\n      \"level\": \"warning\",\n      \"item_id\": \"GAPREQ-1\",\n      \"path\": \"gap-requests.json/status\",\n      \"message\": \"缺口仍待交接或确认。\"\n    }\n  ]\n}\n",
+  "stderr": "",
+  "exit_code": 1,
+  "before": {
+    "analysis/analysis-result.json": "sha256:9e745547956a5c5fe9e152be8d07fd2bfcec3f25cf818f2b38b26787b95bdba8",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "prd/gap-requests.json": "sha256:4ef3c1c4a45640d091fbc4b706a2162c9b63587e3135399622141b9cedc1ea6c",
+    "prd/prd-events.jsonl": "sha256:5d2d01d8dde2453219749d2fa48a867c9103b4ffbf08b097e04c730925943ad4",
+    "prd/prd-trace.json": "sha256:e21994eaeea0b091d167c6d1ec297792e7223d3215604882b52b6a630c8870fa",
+    "prd/prd.md": "sha256:84586ccba8b991ed5035b4093f089e902c62e113b33b07d6ee904fc887b8d182",
+    "requirement.json": "sha256:1dd7787673c214d8f588e03d69a78dc95f758f4c68822ba9b1c3f24b83aab55f"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:9e745547956a5c5fe9e152be8d07fd2bfcec3f25cf818f2b38b26787b95bdba8",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "prd/gap-requests.json": "sha256:4ef3c1c4a45640d091fbc4b706a2162c9b63587e3135399622141b9cedc1ea6c",
+    "prd/prd-events.jsonl": "sha256:5d2d01d8dde2453219749d2fa48a867c9103b4ffbf08b097e04c730925943ad4",
+    "prd/prd-trace.json": "sha256:e21994eaeea0b091d167c6d1ec297792e7223d3215604882b52b6a630c8870fa",
+    "prd/prd.md": "sha256:84586ccba8b991ed5035b4093f089e902c62e113b33b07d6ee904fc887b8d182",
+    "requirement.json": "sha256:1dd7787673c214d8f588e03d69a78dc95f758f4c68822ba9b1c3f24b83aab55f"
+  }
+}

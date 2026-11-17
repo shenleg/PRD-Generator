@@ -1,0 +1,8 @@
+{
+  "common": {
+    "requirement_id": "REQ-2026-006",
+    "project_id": "task-management",
+    "title": "任务结束通知",
+    "created_at": "2026-11-16T04:30:19.972960+00:00"
+  }
+}

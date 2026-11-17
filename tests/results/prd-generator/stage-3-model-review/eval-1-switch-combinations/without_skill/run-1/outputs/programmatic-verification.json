@@ -1,0 +1,30 @@
+{
+  "group": "switch-combinations",
+  "configuration": "without_skill",
+  "human_review": "pending",
+  "requirements": [
+    {
+      "requirement_id": "REQ-2026-001",
+      "generated": true,
+      "human_review": "pending",
+      "workspace": "workspace-sandbox/prd-generator/stage-3-model/iteration-1/raw/switch-combinations/without_skill/workspaces/REQ-2026-001",
+      "analysis_unchanged": true,
+      "common_unchanged": true,
+      "draft_only": true,
+      "program_validation": {
+        "status": "pass",
+        "diagnostics": []
+      },
+      "draft_kind": "risk_draft",
+      "version": "0.2",
+      "trace_total": 12,
+      "valid_trace_count": 12,
+      "label_total": 5,
+      "label_preserved": 5,
+      "content_hash_valid": true,
+      "repeat_evidence_found": true,
+      "repeat_stable": true,
+      "first_successful_candidate": "workspace-sandbox/prd-generator/stage-3-model/iteration-1/raw/switch-combinations/without_skill/artifacts/REQ-2026-001/candidate-0.1"
+    }
+  ]
+}

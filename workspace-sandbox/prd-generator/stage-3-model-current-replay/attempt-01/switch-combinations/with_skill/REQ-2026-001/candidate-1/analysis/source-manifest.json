@@ -1,0 +1,11 @@
+[
+  {
+    "name": "高低压开关组合逻辑设计表原始需求",
+    "path": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model/iteration-1/sources/original-requirement.md",
+    "type": "input_document",
+    "credibility": "调用方指定的唯一业务原文；可证明原文明示内容，但未说明的规则及平台现有能力尚未核实。",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-1"
+  }
+]

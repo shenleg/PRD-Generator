@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpZV5VbB/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/source-snapshot/prd-generator/scripts/validate_prd.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/without_skill/REQ-2026-003/requirement"
+  ],
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:902a84897b04ccc6b639b3722d3ec9129eedf01c004b8b8685cc10c9486ef03d",
+    "analysis/source-manifest.json": "sha256:3cf270b96019e603bbd0f06d0d7282a67082956ab63c8ccf507eaa7096321ef5",
+    "prd/gap-requests.json": "sha256:7a272e93b77c4e001728cbf1ccdcb080dd694d2d37a1c93c3fa6f468f9d2851c",
+    "prd/prd-events.jsonl": "sha256:0db7a0ba1c380b594457fdae53abfb5f9ca121b67f85b2ed2943f5903933e6b9",
+    "prd/prd-trace.json": "sha256:da1f1fc523e17576b3dbe2afc3988bc02338c0084509f309aed84d100e1bf59e",
+    "prd/prd.md": "sha256:40bf93f5ff95e0322f767186ccc6a27b1c1c9edf71ae00478e59512ed1aca46e",
+    "requirement.json": "sha256:ce697c4da3d15844e75e1d6fadd0342891131c200111cc8dfb624adbc3fd1d4c"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:902a84897b04ccc6b639b3722d3ec9129eedf01c004b8b8685cc10c9486ef03d",
+    "analysis/source-manifest.json": "sha256:3cf270b96019e603bbd0f06d0d7282a67082956ab63c8ccf507eaa7096321ef5",
+    "prd/gap-requests.json": "sha256:7a272e93b77c4e001728cbf1ccdcb080dd694d2d37a1c93c3fa6f468f9d2851c",
+    "prd/prd-events.jsonl": "sha256:0db7a0ba1c380b594457fdae53abfb5f9ca121b67f85b2ed2943f5903933e6b9",
+    "prd/prd-trace.json": "sha256:da1f1fc523e17576b3dbe2afc3988bc02338c0084509f309aed84d100e1bf59e",
+    "prd/prd.md": "sha256:40bf93f5ff95e0322f767186ccc6a27b1c1c9edf71ae00478e59512ed1aca46e",
+    "requirement.json": "sha256:ce697c4da3d15844e75e1d6fadd0342891131c200111cc8dfb624adbc3fd1d4c"
+  }
+}

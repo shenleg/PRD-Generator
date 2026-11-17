@@ -1,0 +1,21 @@
+test_aggregate_discovery_matches_both_groups (test_repository_layout.RepositoryLayoutTests.test_aggregate_discovery_matches_both_groups)
+统一入口的测试数量等于两组总和，不能成功运行却静默漏掉一组。 ... ok
+test_current_navigation_links_exist (test_repository_layout.RepositoryLayoutTests.test_current_navigation_links_exist)
+当前维护文档中的本地 Markdown 链接必须存在，历史记录不强改链接。 ... ok
+test_historical_material_paths_are_exact_and_scoped (test_repository_layout.RepositoryLayoutTests.test_historical_material_paths_are_exact_and_scoped)
+只映射实际迁移文件，生成侧、源码及未知路径不被通配重定向。 ... ok
+test_installation_and_root_classification (test_repository_layout.RepositoryLayoutTests.test_installation_and_root_classification)
+生产安装目标不变，根目录不保留一排文档和测试脚本包装。 ... ok
+test_material_reader_does_not_hide_missing_or_changed_current_bytes (test_repository_layout.RepositoryLayoutTests.test_material_reader_does_not_hide_missing_or_changed_current_bytes)
+新位置缺失时不回退旧副本，变更后的当前字节不能被历史字节掩盖。 ... ok
+test_material_roots_are_classified_by_skill (test_repository_layout.RepositoryLayoutTests.test_material_roots_are_classified_by_skill)
+场景、夹具及人工参考都按 Skill 分类，分析侧 31 个场景不得遗漏。 ... ok
+test_moved_materials_preserve_content_and_only_update_scenario_navigation (test_repository_layout.RepositoryLayoutTests.test_moved_materials_preserve_content_and_only_update_scenario_navigation)
+夹具与认可正文逐字保留，场景只允许已登记的路径替换，不改验证含义。 ... ok
+test_replay_help_runs_from_other_directory (test_repository_layout.RepositoryLayoutTests.test_replay_help_runs_from_other_directory)
+当前公开重放脚本在隔离模式及其他工作目录下仍可加载帮助，不执行试跑。 ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.654s
+
+OK

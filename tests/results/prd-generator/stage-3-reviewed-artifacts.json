@@ -1,0 +1,32 @@
+{
+  "scope": "本次真实用户认可的评审页面、参考说明及六份with_skill草稿相关产物",
+  "files": {
+    "tests/results/prd-generator/stage-3-model-review.html": "sha256:8fe9f2373decba383718f44ac6d75f889f4e7f640fab694f0ea3437e029dda53",
+    "tests/results/prd-generator/stage-3-model-analysis.md": "sha256:77a44d20f1e0e9c223383f7c5b95146a98c2a1f00ef82471c498bfec4386ff83",
+    "tests/results/prd-generator/stage-3-review-guide.md": "sha256:f6cfabd524f9d4287623f5d8185ed9b98f8acf178082f54910c597d932fc7c45",
+    "tests/results/prd-generator/stage-3-model-review/programmatic-summary.json": "sha256:ca2ae35480418bb55ff1e9466a1b76672d03823f6a9346a412f5160391408ec5",
+    "tests/results/prd-generator/stage-3-model-review/benchmark.json": "sha256:5e41ddc0ccdaa3b72d4a54c706be6a39b4eaf068d2f32236464c67346098324f",
+    "tests/results/prd-generator/stage-3-model-review/eval-1-switch-combinations/with_skill/run-1/outputs/REQ-2026-001-gap-requests.json": "sha256:b11c8b3d8e1870a999b21a93967f04d1a8cc7aa43c500b12c8e2be925ac37d7c",
+    "tests/results/prd-generator/stage-3-model-review/eval-1-switch-combinations/with_skill/run-1/outputs/REQ-2026-001-prd-trace.json": "sha256:f2781215166f0c31d822087821803c383162be14a39b9efa1e84944c674073df",
+    "tests/results/prd-generator/stage-3-model-review/eval-1-switch-combinations/with_skill/run-1/outputs/REQ-2026-001-prd.md": "sha256:246eb64c129d9356e17b0a05f4974dc2204a62f6ce90a96b27ef2172fa628012",
+    "tests/results/prd-generator/stage-3-model-review/eval-1-switch-combinations/with_skill/run-1/outputs/model-response.md": "sha256:f424e884963653b08dd50beffb95ba53cb304365c6b35a02bdc686b6df5aa793",
+    "tests/results/prd-generator/stage-3-model-review/eval-1-switch-combinations/with_skill/run-1/outputs/programmatic-verification.json": "sha256:f6949cfd146dc10700f4187957cf38de798b2a2fef9f83ff3da1d8ecb5e75f83",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-002-gap-requests.json": "sha256:ba61174cfc2f026bcf69b6ef766cf1b787898945b5d56db285f0d1e59db713bf",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-002-prd-trace.json": "sha256:22c8ad74b37044f24f36efa629b556b942de8448b0bb611aa4278c1e3c36bdb4",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-002-prd.md": "sha256:afa54118674939eb18175cb9dd2ff7c1104562dee8f2434f1d0c0ac1dd7d7cc4",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-003-gap-requests.json": "sha256:7a272e93b77c4e001728cbf1ccdcb080dd694d2d37a1c93c3fa6f468f9d2851c",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-003-prd-trace.json": "sha256:50635ed218e1b13927987545731274f446787a3ccb2d9689189332ec3ce53974",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-003-prd.md": "sha256:908c54b43e402c4d0d23807750e42fec3a9929c978fb774216cb965bc0f1ba52",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-004-gap-requests.json": "sha256:5731fac251e302e9f1044059a867a6980e612a5b81588cffc85c98ed6e460da5",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-004-prd-trace.json": "sha256:25f650ef9a596a04828fd0f6a36e125de2afc80454f8584d648ba114c4e1bfbe",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-004-prd.md": "sha256:077f9ab81a55bd2340349aa1b9a099a1cbab53bb4efd243230802ae81fcc6a81",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-005-gap-requests.json": "sha256:c47cc51758260433d91ca1b42f9794e1a0c694eb9aa8d418ababd07ed8a53d26",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-005-prd-trace.json": "sha256:f2c7ed57e14ceaf04d8544b2bccee7f1843d947d378f816c3cf1788fb92b9e4b",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-005-prd.md": "sha256:a2dd20abf647d175f7d7cda5e9df1d452e738fe289dff5d16bf9d08f7d6f3b9e",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-006-gap-requests.json": "sha256:eb951ba61d066dab4b1b0876e9f5d5c3a1e6a8e525895b5b87e30f5770d656c3",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-006-prd-trace.json": "sha256:7ee44b2d7776ed697b91c8c1612f715ca24ccb03e6eb9cb0aaeccf2ca1ba0de0",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/REQ-2026-006-prd.md": "sha256:e41526b04065366e578f91e79d86fa904b112cd6422654c725088c63412f60fe",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/model-response.md": "sha256:95b70d8c0e6161b4de8a8f622ef721906dafef70984553388637c4236bc7b648",
+    "tests/results/prd-generator/stage-3-model-review/eval-2-task-management/with_skill/run-1/outputs/programmatic-verification.json": "sha256:afc834b8b3951b1b7499f817233f8135f84bd8cc22e73054cbf2879909e8f82a"
+  }
+}

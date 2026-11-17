@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "allowed": true,
+  "draft_kind": "risk_draft",
+  "analysis_revision": 1,
+  "base_prd_version": null,
+  "uncovered_analysis": [
+    "technical_feasibility",
+    "impact_analysis"
+  ]
+}

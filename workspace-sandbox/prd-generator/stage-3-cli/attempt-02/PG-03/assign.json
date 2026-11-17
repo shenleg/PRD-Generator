@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmptpWlZj/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/assign_ids.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-cli/attempt-02/PG-03/requirement",
+    "--patch",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-cli/attempt-02/PG-03/patch.json",
+    "--allow-stale"
+  ],
+  "cwd": "/",
+  "stdout": "{\n  \"schema_version\": \"1.0\",\n  \"requirement_id\": \"SYNTHETIC-PRD\",\n  \"meta\": {\n    \"counters\": {\n      \"FR\": 1\n    },\n    \"draft_kind\": \"stale_draft\",\n    \"generated_under_readiness\": \"ready_for_document\",\n    \"content_hash\": \"sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"\n  },\n  \"items\": [\n    {\n      \"prd_id\": \"PRD-FR-001\",\n      \"kind\": \"functional_requirement\",\n      \"introduced_in\": \"0.1\",\n      \"mapping_key\": \"synthetic-query\",\n      \"analysis_refs\": [\n        \"SYNTHETIC-PRD/FR-1\"\n      ],\n      \"tag\": \"confirmed\",\n      \"status\": \"active\",\n      \"source_digest\": \"sha256:edfa9dcfb9626ce801955d9448b283e8fa6ad971aff520c64d4a741a56a2b3ae\"\n    }\n  ]\n}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:95e4b70553ae546f2b2b337714db4f463aacc0825a76e828fc19bfdc158c17c2",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "requirement.json": "sha256:c72276d1047b211b813e4faa9674fabc96b32be301b9b945c5b083afc10fba81"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:95e4b70553ae546f2b2b337714db4f463aacc0825a76e828fc19bfdc158c17c2",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "requirement.json": "sha256:c72276d1047b211b813e4faa9674fabc96b32be301b9b945c5b083afc10fba81"
+  }
+}

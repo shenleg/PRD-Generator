@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpZV5VbB/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/source-snapshot/prd-generator/scripts/validate_prd.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/without_skill/REQ-2026-005/requirement"
+  ],
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:3434246cb5ac3e8c00864b28643e9e10a08fa066d2f0756e02156540f24c9629",
+    "analysis/source-manifest.json": "sha256:8c4984d99a88b857c5882f0635ab2313a5f29761b7407136838e992628cff6c5",
+    "prd/gap-requests.json": "sha256:c47cc51758260433d91ca1b42f9794e1a0c694eb9aa8d418ababd07ed8a53d26",
+    "prd/prd-events.jsonl": "sha256:677355e283c5bc0e6c02ec7f2acbbc8e51dea472ed4bcf63a68892393e22d8df",
+    "prd/prd-trace.json": "sha256:cd1b01ebf37a4ee05a1e3d8011ab28148d1957b3579594e1fa915536ba57bbcb",
+    "prd/prd.md": "sha256:206b173210e78d4e01edcefc7d3f3f3a8748e0d8b915bf4a20e0dda043be558a",
+    "requirement.json": "sha256:a11b21912e17b1987cfbb95a01e14ea0154a475910d1d28284252fee5a202970"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:3434246cb5ac3e8c00864b28643e9e10a08fa066d2f0756e02156540f24c9629",
+    "analysis/source-manifest.json": "sha256:8c4984d99a88b857c5882f0635ab2313a5f29761b7407136838e992628cff6c5",
+    "prd/gap-requests.json": "sha256:c47cc51758260433d91ca1b42f9794e1a0c694eb9aa8d418ababd07ed8a53d26",
+    "prd/prd-events.jsonl": "sha256:677355e283c5bc0e6c02ec7f2acbbc8e51dea472ed4bcf63a68892393e22d8df",
+    "prd/prd-trace.json": "sha256:cd1b01ebf37a4ee05a1e3d8011ab28148d1957b3579594e1fa915536ba57bbcb",
+    "prd/prd.md": "sha256:206b173210e78d4e01edcefc7d3f3f3a8748e0d8b915bf4a20e0dda043be558a",
+    "requirement.json": "sha256:a11b21912e17b1987cfbb95a01e14ea0154a475910d1d28284252fee5a202970"
+  }
+}

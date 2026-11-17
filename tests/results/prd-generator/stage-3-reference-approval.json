@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-17",
+  "status": "approved",
+  "approval_source": "本次会话 AskUserQuestion 的真实用户选择",
+  "selected_option": "认可参考并试跑（推荐）",
+  "reference": "tests/expected/prd-generator/stage-3.review-draft.md",
+  "reviewed_snapshot": "tests/results/prd-generator/stage-3-reference-reviewed.md",
+  "reviewed_sha256": "sha256:d4a4b1e590404a155bd485ad217ed34967521a6a2702aaff3fa2306d7d40940d",
+  "post_review_metadata_update": "当前参考文件仅更新认可状态及记录指针；评审要点正文不变，原认可字节及指纹以 reviewed_snapshot 为准。",
+  "scope": [
+    "阶段3新增12个场景的预期和语义评审要点",
+    "沿用两组已认可业务参考及六份独立首轮快照",
+    "实际模型首稿生成及无Skill对照试跑"
+  ],
+  "not_approved_by_this_decision": [
+    "尚未产出的实际模型草稿及阶段3最终验收",
+    "实际业务就绪、发布、指标阈值",
+    "提交、合并、打标签或推送"
+  ]
+}

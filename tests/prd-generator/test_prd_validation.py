@@ -151,6 +151,30 @@ class PrdValidationTests(unittest.TestCase):
         self.mutate("analysis/analysis-result.json", lambda d: d["requirements"]["functional_requirements"][0].update(tag="inferred"))
         self.expect_rule(8)
 
+    def test_numbering_patch_cannot_bind_two_keys_to_one_legacy_id(self):
+        """只读补丁检查与实际分配一致，拒绝多个键指向同一旧无键编号。"""
+        self.mutate('prd/prd-trace.json', lambda value: value['items'][0].pop('mapping_key'))
+        item = {'mapping_key': 'first', 'kind': 'functional_requirement', 'analysis_refs': ['SYNTHETIC-PRD/FR-1'], 'prd_id': 'PRD-FR-001'}
+        value = {'patch_version': '1.0', 'requirement_id': 'SYNTHETIC-PRD', 'base_prd_version': '0.1', 'base_analysis_revision': 1, 'items': [item, {**item, 'mapping_key': 'second'}]}
+        path = write_json(Path(self.temp.name) / 'mapping.json', value)
+        result = self.validate(numbering_patch=path)
+        self.assertEqual(result['status'], 'fail', result)
+        self.assertTrue(any('多个映射键' in issue['message'] for issue in result['diagnostics']), result)
+
+    def test_legacy_trace_can_gain_mapping_key_without_renumbering(self):
+        """旧1.0追溯显式按编号补键不算身份重置，已有映射键仍禁止改写。"""
+        current = read_json(self.root / "prd/prd-trace.json")
+        legacy = copy.deepcopy(current)
+        legacy["items"][0].pop("mapping_key")
+        previous = write_json(Path(self.temp.name) / "legacy-trace.json", legacy)
+        result = self.validate(previous_trace=previous)
+        self.assertEqual(result["status"], "pass", result)
+        write_json(previous, current)
+        self.mutate("prd/prd-trace.json", lambda trace: trace["items"][0].update(mapping_key="changed-key"))
+        result = self.validate(previous_trace=previous)
+        self.assertEqual(result["status"], "fail", result)
+        self.assertTrue(any(item["rule"] == 2 for item in result["diagnostics"]))
+
     def test_rule_9_orphan_placeholder(self):
         """规则9拒绝未登记或无法对应的占位。"""
         self.edit_text("无适用遗留项", block("gap", "GAPREQ-1", "待分析补充"))

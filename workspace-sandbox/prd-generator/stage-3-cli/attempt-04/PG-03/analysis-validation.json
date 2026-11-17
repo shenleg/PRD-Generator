@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmp9oFXLo/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-cli/attempt-04/source-snapshot/requirement-analyst/scripts/validate_analysis.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-cli/attempt-04/PG-03/requirement/analysis/analysis-result.json",
+    "--source-manifest",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-cli/attempt-04/PG-03/requirement/analysis/source-manifest.json"
+  ],
+  "cwd": "/",
+  "stdout": "{\n  \"status\": \"warning\",\n  \"diagnostics\": [\n    {\n      \"rule\": 11,\n      \"level\": \"warning\",\n      \"item_id\": \"$\",\n      \"path\": \"/meta/analysis_status\",\n      \"message\": \"分析已过期；下游须提示重新评估。\"\n    }\n  ]\n}\n",
+  "stderr": "",
+  "exit_code": 1,
+  "before": {
+    "analysis/analysis-result.json": "sha256:95e4b70553ae546f2b2b337714db4f463aacc0825a76e828fc19bfdc158c17c2",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "requirement.json": "sha256:c72276d1047b211b813e4faa9674fabc96b32be301b9b945c5b083afc10fba81"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:95e4b70553ae546f2b2b337714db4f463aacc0825a76e828fc19bfdc158c17c2",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "requirement.json": "sha256:c72276d1047b211b813e4faa9674fabc96b32be301b9b945c5b083afc10fba81"
+  }
+}

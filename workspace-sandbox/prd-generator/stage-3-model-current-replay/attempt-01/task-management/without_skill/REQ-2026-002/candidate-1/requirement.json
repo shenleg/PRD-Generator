@@ -1,0 +1,13 @@
+{
+  "common": {
+    "requirement_id": "REQ-2026-002",
+    "project_id": "task-management",
+    "title": "任务列表筛选优化",
+    "created_at": "2026-11-16T04:30:19.610887+00:00"
+  },
+  "prd": {
+    "based_on_analysis_revision": 1,
+    "status": "draft",
+    "version": "0.1"
+  }
+}

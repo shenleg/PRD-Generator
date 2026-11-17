@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "所有预期独立需求均实际生成且当前结构校验无失败",
+      "passed": true,
+      "evidence": "见本运行outputs/programmatic-verification.json的逐需求计数与实际文件路径"
+    },
+    {
+      "text": "分析原始字节及common保持，不发布或合并需求",
+      "passed": true,
+      "evidence": "见本运行outputs/programmatic-verification.json的逐需求计数与实际文件路径"
+    },
+    {
+      "text": "所有正式条目有有效完整引用及正确正文摘要",
+      "passed": true,
+      "evidence": "见本运行outputs/programmatic-verification.json的逐需求计数与实际文件路径"
+    },
+    {
+      "text": "风险草稿和可程序识别的逐条标注保持",
+      "passed": true,
+      "evidence": "见本运行outputs/programmatic-verification.json的逐需求计数与实际文件路径"
+    },
+    {
+      "text": "同输入重复生成至0.2且需求正文与编号保持",
+      "passed": false,
+      "evidence": "见本运行outputs/programmatic-verification.json的逐需求计数与实际文件路径"
+    }
+  ],
+  "summary": {
+    "passed": 4,
+    "failed": 1,
+    "total": 5,
+    "pass_rate": 0.8
+  },
+  "user_notes_summary": {
+    "uncertainties": [
+      "只评客观结构与文件归属，不评自然语言忠实性或缺口是否必要；警告是否充分解释须查看模型答复。"
+    ],
+    "needs_review": [
+      "按已认可业务参考逐条人工核对需求、范围、推断和遗留事项"
+    ],
+    "workarounds": []
+  }
+}

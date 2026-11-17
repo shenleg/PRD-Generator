@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpZV5VbB/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/source-snapshot/prd-generator/scripts/check_gate.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-004/requirement"
+  ],
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": [],\n  \"allowed\": true,\n  \"draft_kind\": \"risk_draft\",\n  \"analysis_revision\": 1,\n  \"base_prd_version\": null,\n  \"uncovered_analysis\": [\n    \"technical_feasibility\",\n    \"impact_analysis\"\n  ]\n}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:847302a5bd1bed03147ff3376c65dbb1dce33620ea59a4a507378c4418b25bbf",
+    "analysis/source-manifest.json": "sha256:8a302280d3030deacde3c9e1d03e2c91744a2f64a1f7526f738981a346a5573a",
+    "requirement.json": "sha256:0ebecdbd3f20987ea6e589d1fcd7917fb2b07e8518e5042f10c0c1fd16571237"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:847302a5bd1bed03147ff3376c65dbb1dce33620ea59a4a507378c4418b25bbf",
+    "analysis/source-manifest.json": "sha256:8a302280d3030deacde3c9e1d03e2c91744a2f64a1f7526f738981a346a5573a",
+    "requirement.json": "sha256:0ebecdbd3f20987ea6e589d1fcd7917fb2b07e8518e5042f10c0c1fd16571237"
+  }
+}

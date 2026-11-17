@@ -1,0 +1,117 @@
+{
+  "group": "task-management",
+  "configuration": "without_skill",
+  "human_review": "pending",
+  "requirements": [
+    {
+      "requirement_id": "REQ-2026-002",
+      "generated": true,
+      "human_review": "pending",
+      "workspace": "workspace-sandbox/prd-generator/stage-3-model/iteration-1/raw/task-management/without_skill/workspaces/REQ-2026-002",
+      "analysis_unchanged": true,
+      "common_unchanged": true,
+      "draft_only": true,
+      "program_validation": {
+        "status": "pass",
+        "diagnostics": []
+      },
+      "draft_kind": "risk_draft",
+      "version": "0.2",
+      "trace_total": 9,
+      "valid_trace_count": 9,
+      "label_total": 4,
+      "label_preserved": 4,
+      "content_hash_valid": true,
+      "repeat_evidence_found": true,
+      "repeat_stable": true
+    },
+    {
+      "requirement_id": "REQ-2026-003",
+      "generated": true,
+      "human_review": "pending",
+      "workspace": "workspace-sandbox/prd-generator/stage-3-model/iteration-1/raw/task-management/without_skill/workspaces/REQ-2026-003",
+      "analysis_unchanged": true,
+      "common_unchanged": true,
+      "draft_only": true,
+      "program_validation": {
+        "status": "pass",
+        "diagnostics": []
+      },
+      "draft_kind": "risk_draft",
+      "version": "0.2",
+      "trace_total": 12,
+      "valid_trace_count": 12,
+      "label_total": 5,
+      "label_preserved": 5,
+      "content_hash_valid": true,
+      "repeat_evidence_found": true,
+      "repeat_stable": true
+    },
+    {
+      "requirement_id": "REQ-2026-004",
+      "generated": true,
+      "human_review": "pending",
+      "workspace": "workspace-sandbox/prd-generator/stage-3-model/iteration-1/raw/task-management/without_skill/workspaces/REQ-2026-004",
+      "analysis_unchanged": true,
+      "common_unchanged": true,
+      "draft_only": true,
+      "program_validation": {
+        "status": "pass",
+        "diagnostics": []
+      },
+      "draft_kind": "risk_draft",
+      "version": "0.2",
+      "trace_total": 9,
+      "valid_trace_count": 9,
+      "label_total": 4,
+      "label_preserved": 4,
+      "content_hash_valid": true,
+      "repeat_evidence_found": true,
+      "repeat_stable": true
+    },
+    {
+      "requirement_id": "REQ-2026-005",
+      "generated": true,
+      "human_review": "pending",
+      "workspace": "workspace-sandbox/prd-generator/stage-3-model/iteration-1/raw/task-management/without_skill/workspaces/REQ-2026-005",
+      "analysis_unchanged": true,
+      "common_unchanged": true,
+      "draft_only": true,
+      "program_validation": {
+        "status": "pass",
+        "diagnostics": []
+      },
+      "draft_kind": "risk_draft",
+      "version": "0.2",
+      "trace_total": 14,
+      "valid_trace_count": 14,
+      "label_total": 7,
+      "label_preserved": 7,
+      "content_hash_valid": true,
+      "repeat_evidence_found": true,
+      "repeat_stable": true
+    },
+    {
+      "requirement_id": "REQ-2026-006",
+      "generated": true,
+      "human_review": "pending",
+      "workspace": "workspace-sandbox/prd-generator/stage-3-model/iteration-1/raw/task-management/without_skill/workspaces/REQ-2026-006",
+      "analysis_unchanged": true,
+      "common_unchanged": true,
+      "draft_only": true,
+      "program_validation": {
+        "status": "pass",
+        "diagnostics": []
+      },
+      "draft_kind": "risk_draft",
+      "version": "0.2",
+      "trace_total": 9,
+      "valid_trace_count": 9,
+      "label_total": 5,
+      "label_preserved": 5,
+      "content_hash_valid": true,
+      "repeat_evidence_found": true,
+      "repeat_stable": true
+    }
+  ]
+}

@@ -43,7 +43,14 @@ class RepositoryLayoutTests(unittest.TestCase):
         self.assertEqual(installed.resolve(), ROOT / "skill/requirement-analyst")
         self.assertTrue({path.name for path in ROOT.glob("*.md")} <= {"README.md", "CLAUDE.md", "AGENTS.md"})
         self.assertEqual(sorted(path.name for path in (ROOT / "tests").glob("*.py")), ["test_all.py"])
-        self.assertFalse((ROOT / "skill/prd-generator/SKILL.md").exists())
+        generator = ROOT / "skill/prd-generator/SKILL.md"
+        self.assertTrue(generator.is_file())
+        entry = generator.read_text(encoding="utf-8")
+        self.assertIn("name: prd-generator", entry)
+        self.assertNotIn("context: fork", entry)
+        self.assertNotIn("disable-model-invocation: true", entry)
+        self.assertNotIn("user-invocable: false", entry)
+        self.assertLessEqual(len(entry.splitlines()), 120)
 
     def test_material_roots_are_classified_by_skill(self):
         """场景、夹具及人工参考都按 Skill 分类，分析侧 31 个场景不得遗漏。"""

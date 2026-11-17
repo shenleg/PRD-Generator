@@ -1,0 +1,78 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "REQ-2026-004",
+  "base_prd_version": null,
+  "base_analysis_revision": 1,
+  "items": [
+    {
+      "mapping_key": "goal",
+      "kind": "goal",
+      "analysis_refs": [
+        "REQ-2026-004/GOAL-1"
+      ]
+    },
+    {
+      "mapping_key": "scenario",
+      "kind": "scenario",
+      "analysis_refs": [
+        "REQ-2026-004/SCN-1"
+      ]
+    },
+    {
+      "mapping_key": "fix",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "REQ-2026-004/FR-1"
+      ]
+    },
+    {
+      "mapping_key": "scope",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "REQ-2026-004/FR-2"
+      ]
+    },
+    {
+      "mapping_key": "constraint",
+      "kind": "constraint",
+      "analysis_refs": [
+        "REQ-2026-004/CON-1"
+      ]
+    },
+    {
+      "mapping_key": "realtime",
+      "kind": "non_functional_requirement",
+      "analysis_refs": [
+        "REQ-2026-004/NFR-1"
+      ]
+    },
+    {
+      "mapping_key": "acceptance",
+      "kind": "acceptance_criterion",
+      "analysis_refs": [
+        "REQ-2026-004/AC-1"
+      ]
+    },
+    {
+      "mapping_key": "flow",
+      "kind": "flow",
+      "analysis_refs": [
+        "REQ-2026-004/FLOW-1"
+      ]
+    },
+    {
+      "mapping_key": "boundary",
+      "kind": "boundary",
+      "analysis_refs": [
+        "REQ-2026-004/BND-1"
+      ]
+    },
+    {
+      "mapping_key": "failure",
+      "kind": "exception",
+      "analysis_refs": [
+        "REQ-2026-004/EXC-1"
+      ]
+    }
+  ]
+}

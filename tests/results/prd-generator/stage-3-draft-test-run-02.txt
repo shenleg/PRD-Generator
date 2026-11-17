@@ -1,0 +1,25 @@
+test_analysis_change_after_validation_rejected (test_prd_draft.PrdDraftTests.test_analysis_change_after_validation_rejected)
+候选校验完成后分析被并发修改，正式PRD不得落盘。 ... ok
+test_candidate_failure_preserves_business_files (test_prd_draft.PrdDraftTests.test_candidate_failure_preserves_business_files)
+缺少需求块的失败候选保留供修正，正式目录原始字节不变。 ... ok
+test_cli_works_from_unrelated_directory (test_prd_draft.PrdDraftTests.test_cli_works_from_unrelated_directory)
+公开保存CLI在隔离模式和其他cwd运行，退出码与单JSON响应一致。 ... ok
+test_first_generation_and_repeat_preserve_identity (test_prd_draft.PrdDraftTests.test_first_generation_and_repeat_preserve_identity)
+首次0.1、重复0.2；分析与其他块不变，编号和需求正文稳定。 ... ok
+test_interruption_recovery_is_idempotent (test_prd_draft.PrdDraftTests.test_interruption_recovery_is_idempotent)
+多文件写入中断保留journal，显式恢复不重复事件也不改分析。 ... ok
+test_metadata_change_after_validation_preserved (test_prd_draft.PrdDraftTests.test_metadata_change_after_validation_preserved)
+即使PRD版本未变，common或其他块的并发修改也不得被旧副本覆盖。 ... ok
+test_new_gap_warns_and_has_single_placeholder (test_prd_draft.PrdDraftTests.test_new_gap_warns_and_has_single_placeholder)
+模板确缺内容时保存open缺口与唯一占位，warning不是结构失败或发布批准。 ... ok
+test_recovery_refuses_concurrent_content (test_prd_draft.PrdDraftTests.test_recovery_refuses_concurrent_content)
+恢复期间遇到他人改写正文时保留双方候选，不覆盖新字节。 ... ok
+test_render_info_is_authoritative_and_readonly (test_prd_draft.PrdDraftTests.test_render_info_is_authoritative_and_readonly)
+渲染使用权威信息并保持需求块原文，正文摘要包含空白差异。 ... ok
+test_version_conflict_rejected (test_prd_draft.PrdDraftTests.test_version_conflict_rejected)
+补丁读时版本不符时拒写，而不是盲改版本自动重试。 ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 1.586s
+
+OK

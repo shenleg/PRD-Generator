@@ -1,0 +1,11 @@
+[
+  {
+    "name": "仿真任务管理优化（初版）",
+    "path": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model/iteration-1/sources/sample-02-task-management.md",
+    "type": "input_document",
+    "credibility": "用户指定的原始需求，删除权限有两种表述，旧逻辑材料缺失；原文可追溯但不能择一当成最终规则。",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-1"
+  }
+]

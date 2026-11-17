@@ -1,0 +1,91 @@
+{
+  "model_run": false,
+  "human_review": "pending",
+  "input": "synthetic, not real business",
+  "scenarios": {
+    "PG-01": {
+      "status": "partial",
+      "programmatic": "pass",
+      "programmatic_scope": "缺失分析拒绝及只读",
+      "human_review": "pending"
+    },
+    "PG-02": {
+      "status": "partial",
+      "programmatic": "pass",
+      "programmatic_scope": "必填字段缺失拒绝及只读",
+      "human_review": "pending"
+    },
+    "PG-03": {
+      "status": "partial",
+      "programmatic": "pass",
+      "programmatic_scope": "过期门禁、显式允许与提示",
+      "human_review": "pending"
+    },
+    "PG-04": {
+      "status": "partial",
+      "programmatic": "pass",
+      "programmatic_scope": "就绪度映射及提示",
+      "human_review": "pending"
+    },
+    "PG-05": {
+      "status": "partial",
+      "programmatic": "pass",
+      "programmatic_scope": "就绪度映射及提示",
+      "human_review": "pending"
+    },
+    "PG-06": {
+      "status": "partial",
+      "programmatic": "pass",
+      "programmatic_scope": "正式草稿类型、提示和状态；未覆盖研发问题及假设",
+      "human_review": "pending"
+    },
+    "PG-10": {
+      "status": "partial",
+      "programmatic": "pass",
+      "programmatic_scope": "空章节与未覆盖字段",
+      "human_review": "pending"
+    },
+    "PG-20": {
+      "status": "partial",
+      "programmatic": "pass",
+      "programmatic_scope": "仅验证无界面分支",
+      "human_review": "pending"
+    },
+    "PG-21": {
+      "status": "partial",
+      "programmatic": "pass",
+      "programmatic_scope": "仅验证技术评估缺省信息；未覆盖研发问题",
+      "human_review": "pending"
+    },
+    "PG-26": {
+      "status": "partial",
+      "programmatic": "pass",
+      "programmatic_scope": "重复生成的条目正文、追溯和版本",
+      "human_review": "pending"
+    },
+    "PG-07": {
+      "status": "partial",
+      "programmatic": "not_run",
+      "human_review": "pending",
+      "reason": "尚未构造该场景所需的合成输入"
+    },
+    "PG-08": {
+      "status": "partial",
+      "programmatic": "not_run",
+      "human_review": "pending",
+      "reason": "尚未构造该场景所需的合成输入"
+    },
+    "PG-09": {
+      "status": "partial",
+      "programmatic": "not_run",
+      "human_review": "pending",
+      "reason": "尚未构造该场景所需的合成输入"
+    },
+    "PG-11": {
+      "status": "partial",
+      "programmatic": "not_run",
+      "human_review": "pending",
+      "reason": "尚未构造该场景所需的合成输入"
+    }
+  }
+}

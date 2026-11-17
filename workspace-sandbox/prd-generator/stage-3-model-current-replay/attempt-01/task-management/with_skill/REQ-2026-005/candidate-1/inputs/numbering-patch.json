@@ -1,0 +1,113 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "REQ-2026-005",
+  "base_prd_version": null,
+  "base_analysis_revision": 1,
+  "items": [
+    {
+      "mapping_key": "goal",
+      "kind": "goal",
+      "analysis_refs": [
+        "REQ-2026-005/GOAL-1"
+      ]
+    },
+    {
+      "mapping_key": "scenario",
+      "kind": "scenario",
+      "analysis_refs": [
+        "REQ-2026-005/SCN-1"
+      ]
+    },
+    {
+      "mapping_key": "export",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "REQ-2026-005/FR-1"
+      ]
+    },
+    {
+      "mapping_key": "scope",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "REQ-2026-005/FR-2"
+      ]
+    },
+    {
+      "mapping_key": "limit",
+      "kind": "business_rule",
+      "analysis_refs": [
+        "REQ-2026-005/BR-1"
+      ]
+    },
+    {
+      "mapping_key": "all",
+      "kind": "business_rule",
+      "analysis_refs": [
+        "REQ-2026-005/BR-2"
+      ]
+    },
+    {
+      "mapping_key": "oldformat",
+      "kind": "constraint",
+      "analysis_refs": [
+        "REQ-2026-005/CON-1"
+      ]
+    },
+    {
+      "mapping_key": "constraint",
+      "kind": "constraint",
+      "analysis_refs": [
+        "REQ-2026-005/CON-2"
+      ]
+    },
+    {
+      "mapping_key": "acceptance",
+      "kind": "acceptance_criterion",
+      "analysis_refs": [
+        "REQ-2026-005/AC-1"
+      ]
+    },
+    {
+      "mapping_key": "flow",
+      "kind": "flow",
+      "analysis_refs": [
+        "REQ-2026-005/FLOW-1"
+      ]
+    },
+    {
+      "mapping_key": "lifecycle",
+      "kind": "boundary",
+      "analysis_refs": [
+        "REQ-2026-005/BND-1"
+      ]
+    },
+    {
+      "mapping_key": "permission",
+      "kind": "boundary",
+      "analysis_refs": [
+        "REQ-2026-005/BND-2"
+      ]
+    },
+    {
+      "mapping_key": "quantity",
+      "kind": "boundary",
+      "analysis_refs": [
+        "REQ-2026-005/BND-3"
+      ]
+    },
+    {
+      "mapping_key": "failure",
+      "kind": "exception",
+      "analysis_refs": [
+        "REQ-2026-005/EXC-1"
+      ]
+    },
+    {
+      "mapping_key": "consistency",
+      "kind": "exception",
+      "analysis_refs": [
+        "REQ-2026-005/EXC-2"
+      ]
+    }
+  ]
+}

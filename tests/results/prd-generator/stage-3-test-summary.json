@@ -1,0 +1,83 @@
+{
+  "date": "2026-11-17",
+  "stage": 3,
+  "stage_status": "completed",
+  "stage_outcome": "pass",
+  "begin_commit": "47e7ec4",
+  "branch": "feat/prd-generator-stage-3",
+  "baseline": {
+    "status": "pass",
+    "tests": 320,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 73.600,
+    "log": "tests/results/prd-generator/stage-3-baseline-test-run.txt"
+  },
+  "current_full_regression": {
+    "status": "pass",
+    "tests": 363,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 112.552,
+    "log": "tests/results/prd-generator/stage-3-final-test-run-02.txt"
+  },
+  "post_review_checks": {
+    "navigation_and_entry_tests": 8,
+    "status": "pass",
+    "log": "tests/results/prd-generator/stage-3-final-navigation.txt",
+    "reviewed_artifact_hashes_verified": 27,
+    "result_json_syntax": "pass",
+    "git_diff_check": "pass"
+  },
+  "cli_evidence": {
+    "status": "pass",
+    "model_run": false,
+    "human_review": "approved_in_stage_3_approval_record",
+    "manifest": "workspace-sandbox/prd-generator/stage-3-cli/attempt-05/manifest.json",
+    "programmatic_cases": 14,
+    "programmatic_passed": 14,
+    "first_full_stage_3_scenarios": ["PG-01", "PG-02", "PG-03", "PG-06", "PG-07", "PG-08", "PG-09", "PG-10", "PG-11", "PG-20", "PG-21", "PG-26"],
+    "generation_only_partial_scenarios": ["PG-04", "PG-05"],
+    "source_snapshot_files": 39,
+    "source_snapshot_matches_current": true
+  },
+  "actual_model_runs": {
+    "status": "programmatic_pass",
+    "completed_runs": 4,
+    "generated_documents": 12,
+    "valid_formal_refs_with_skill": {"valid": 70, "total": 70},
+    "marked_items_with_skill": {"preserved": 35, "total": 35},
+    "metrics_scope": "已正式编号及可程序定位条目，不等同整份自然语言需求的语义追溯完整率",
+    "workflow_run": "wf_2b5de280-d12",
+    "workspace": "workspace-sandbox/prd-generator/stage-3-model/iteration-1",
+    "review_workspace": "tests/results/prd-generator/stage-3-model-review",
+    "expected_groups": 2,
+    "business_requirements_per_configuration": 6,
+    "configurations": ["with_skill", "without_skill"],
+    "automatic_installation_trigger_tested": false,
+    "human_semantic_review": "approved"
+  },
+  "current_source_model_candidate_replay": {
+    "status": "pass",
+    "model_run": false,
+    "actual_model_candidates": 12,
+    "passed": 12,
+    "manifest": "workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/manifest.json",
+    "source_snapshot_matches_current": true
+  },
+  "approvals": {
+    "writer_scope": "tests/results/prd-generator/stage-3-spec-approval.json",
+    "scenario_references_and_model_trials": "tests/results/prd-generator/stage-3-reference-approval.json",
+    "final_draft_acceptance": "tests/results/prd-generator/stage-3-approval.json",
+    "metric_thresholds": "本轮记录原始计数，用户在阶段7真实试用前确定其余阈值；既有硬规则不放宽"
+  },
+  "not_implemented": ["incremental_sync", "gap_closure", "edit_routing_chain", "review_submission", "release", "immutable_release_creation"],
+  "git_actions": {
+    "commit": false,
+    "merge": false,
+    "tag": false,
+    "push": false
+  }
+}

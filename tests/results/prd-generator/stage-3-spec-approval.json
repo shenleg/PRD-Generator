@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-17",
+  "scope": "阶段3统一草稿写入职责",
+  "status": "approved",
+  "approval_source": "本次会话 AskUserQuestion 的真实用户选择",
+  "question": "阶段 3 尚未指定正文、缺口、事件及 prd 元数据的统一写入入口；现有编号补丁明确禁止携带正文。你认可采用哪种方式补齐这一职责（选择后先回写规格，再实施）？",
+  "selected_option": "新增独立写入器（推荐）",
+  "review_draft": "tests/results/prd-generator/stage-3-spec-review-draft.md",
+  "decision": "新增 scripts/write_draft.py，复用门禁、编号、渲染及校验，负责候选校验、写前版本检查和草稿保存；既有数据协议不变，不承担同步或发布。",
+  "not_approved_by_this_decision": [
+    "阶段3新增场景参考和合成输入的人工认可",
+    "阶段3实际模型生成草稿的试用验收",
+    "指标阈值",
+    "真实业务就绪、评审或发布",
+    "提交、合并、打标签或推送"
+  ]
+}

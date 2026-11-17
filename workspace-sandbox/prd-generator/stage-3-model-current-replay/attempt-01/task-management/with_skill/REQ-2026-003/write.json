@@ -1,0 +1,34 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpZV5VbB/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/source-snapshot/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-003/requirement",
+    "--patch",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-003/numbering-patch.json",
+    "--body",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-003/model-body.md",
+    "--gaps",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model/iteration-1/raw/task-management/with_skill/artifacts/REQ-2026-003/run-1/prd/gap-requests.json",
+    "--candidate-dir",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-003/candidate-1"
+  ],
+  "stdout": "{\"status\": \"pass\", \"diagnostics\": [], \"version\": \"0.1\", \"draft_kind\": \"risk_draft\", \"candidate_dir\": \"/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/with_skill/REQ-2026-003/candidate-1\", \"generated\": true, \"mapping\": [{\"mapping_key\": \"goal\", \"prd_id\": \"PRD-GOAL-001\", \"analysis_refs\": [\"REQ-2026-003/GOAL-1\"]}, {\"mapping_key\": \"scenario\", \"prd_id\": \"PRD-SCN-001\", \"analysis_refs\": [\"REQ-2026-003/SCN-1\"]}, {\"mapping_key\": \"delete\", \"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"REQ-2026-003/FR-1\"]}, {\"mapping_key\": \"scope\", \"prd_id\": \"PRD-FR-002\", \"analysis_refs\": [\"REQ-2026-003/FR-2\"]}, {\"mapping_key\": \"all_users\", \"prd_id\": \"PRD-BR-001\", \"analysis_refs\": [\"REQ-2026-003/BR-1\"]}, {\"mapping_key\": \"creators\", \"prd_id\": \"PRD-BR-002\", \"analysis_refs\": [\"REQ-2026-003/BR-2\"]}, {\"mapping_key\": \"previous\", \"prd_id\": \"PRD-BR-003\", \"analysis_refs\": [\"REQ-2026-003/BR-3\"]}, {\"mapping_key\": \"constraint\", \"prd_id\": \"PRD-CON-001\", \"analysis_refs\": [\"REQ-2026-003/CON-1\"]}, {\"mapping_key\": \"acceptance\", \"prd_id\": \"PRD-AC-001\", \"analysis_refs\": [\"REQ-2026-003/AC-1\"]}, {\"mapping_key\": \"flow\", \"prd_id\": \"PRD-FLOW-001\", \"analysis_refs\": [\"REQ-2026-003/FLOW-1\"]}, {\"mapping_key\": \"running\", \"prd_id\": \"PRD-BND-001\", \"analysis_refs\": [\"REQ-2026-003/BND-1\"]}, {\"mapping_key\": \"selection\", \"prd_id\": \"PRD-BND-002\", \"analysis_refs\": [\"REQ-2026-003/BND-2\"]}, {\"mapping_key\": \"failure\", \"prd_id\": \"PRD-EXC-001\", \"analysis_refs\": [\"REQ-2026-003/EXC-1\"]}], \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"prd/gap-requests.json\", \"requirement.json\", \"prd/prd-events.jsonl\"]}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:902a84897b04ccc6b639b3722d3ec9129eedf01c004b8b8685cc10c9486ef03d",
+    "analysis/source-manifest.json": "sha256:3cf270b96019e603bbd0f06d0d7282a67082956ab63c8ccf507eaa7096321ef5",
+    "requirement.json": "sha256:c0ee0c92c14708d4585b7914bb665d9fd2616db3f8ddf2148cc1545edbb58948"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:902a84897b04ccc6b639b3722d3ec9129eedf01c004b8b8685cc10c9486ef03d",
+    "analysis/source-manifest.json": "sha256:3cf270b96019e603bbd0f06d0d7282a67082956ab63c8ccf507eaa7096321ef5",
+    "prd/gap-requests.json": "sha256:7a272e93b77c4e001728cbf1ccdcb080dd694d2d37a1c93c3fa6f468f9d2851c",
+    "prd/prd-events.jsonl": "sha256:b71df5444895376c40cc60475164ab7cad6b7e0f83a9cdffc582bc1917019bc7",
+    "prd/prd-trace.json": "sha256:c76c3239065cb19a139fbfedaa526269f2ffa8b87ba118cc100bf952a5260d7a",
+    "prd/prd.md": "sha256:4f9c9b7aec71007c03b95bfcac4a131f5a6c0bd84515a733aaf2cd3a550aa2d8",
+    "requirement.json": "sha256:518149c6a39be1102187b7034964851eb33852e5d2a6c846e46a0bd6967ea125"
+  }
+}

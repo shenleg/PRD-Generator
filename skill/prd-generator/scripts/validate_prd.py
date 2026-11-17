@@ -5,6 +5,7 @@ from collections import Counter
 from collections.abc import Sequence
 from functools import lru_cache
 import hashlib
+import html
 import importlib.util
 import json
 from pathlib import Path
@@ -227,7 +228,9 @@ def _history(trace, previous, diagnostics, label):
         if new is None:
             diagnostics.append(_issue(2, old["prd_id"], label, "历史正式编号被删除。"))
             continue
-        if old["kind"] != new["kind"] or old["introduced_in"] != new["introduced_in"] or old.get("mapping_key") != new.get("mapping_key") or (old["status"] == "abolished" and new["status"] != "abolished"):
+        # 旧1.0追溯允许没有mapping_key；显式按既有编号补键不改变身份，已有键仍不可重置。
+        key_changed = "mapping_key" in old and old["mapping_key"] != new.get("mapping_key")
+        if old["kind"] != new["kind"] or old["introduced_in"] != new["introduced_in"] or key_changed or (old["status"] == "abolished" and new["status"] != "abolished"):
             diagnostics.append(_issue(2, old["prd_id"], label, "历史编号身份、引入版本或废止状态被重置。"))
     for prefix, number in previous["meta"]["counters"].items():
         if trace["meta"]["counters"].get(prefix, 0) < number:
@@ -448,9 +451,10 @@ def _metadata(metadata, analysis, trace, blocks, text, diagnostics, pending):
         if len(parts) == 2:
             if parts[0] in cells:
                 diagnostics.append(_issue(10, "$", "prd.md/info", "文档信息键重复。"))
-            cells[parts[0]] = parts[1]
+            # 比较可见值而非HTML转义拼写，使含表格分隔符或换行的合法标题仍能校验。
+            cells[parts[0]] = html.unescape(parts[1].replace("<br>", "\n"))
     for key, expected in (("需求编号", analysis["requirement_id"]), ("标题", metadata["common"]["title"]), ("PRD 版本", prd["version"]), ("状态", prd["status"]), ("草稿类型", meta["draft_kind"]), ("基于的分析修订号", str(prd["based_on_analysis_revision"]))):
-        if cells.get(key) != expected:
+        if cells.get(key) != str(expected).replace("\r\n", "\n").replace("\r", "\n"):
             diagnostics.append(_issue(10, "$", "prd.md/info", f"文档信息 {key} 与权威元数据不符。"))
     for key in ("生成时间", "未覆盖的分析项"):
         if not cells.get(key):
@@ -474,7 +478,7 @@ def _patch(patch, metadata, analysis, trace, registry, diagnostics):
         return
     if patch["requirement_id"] != analysis["requirement_id"] or patch["base_prd_version"] != metadata["prd"]["version"] or patch["base_analysis_revision"] != analysis["meta"]["analysis_revision"]:
         diagnostics.append(_issue(2, "$", "numbering-patch", "编号补丁身份或读时版本冲突，须重新读取。"))
-    seen = set()
+    seen, bound_ids = set(), set()
     by_key = {item["mapping_key"]: item for item in trace["items"] if "mapping_key" in item}
     by_id = {item["prd_id"]: item for item in trace["items"]}
     for item in patch["items"]:
@@ -483,6 +487,11 @@ def _patch(patch, metadata, analysis, trace, registry, diagnostics):
             diagnostics.append(_issue(2, key, "numbering-patch/items", "补丁映射键重复。"))
         seen.add(key)
         existing = by_key.get(key)
+        bound_id = item.get("prd_id", existing["prd_id"] if existing else None)
+        if bound_id is not None:
+            if bound_id in bound_ids:
+                diagnostics.append(_issue(2, key, "numbering-patch/items/prd_id", "同一补丁不能以多个映射键绑定同一既有编号。"))
+            bound_ids.add(bound_id)
         if "prd_id" in item:
             located = by_id.get(item["prd_id"])
             if located is None or (existing is not None and existing["prd_id"] != located["prd_id"]) or (located and located.get("mapping_key", key) != key):
@@ -493,6 +502,56 @@ def _patch(patch, metadata, analysis, trace, registry, diagnostics):
             diagnostics.append(_issue(2, key, "numbering-patch/items/kind", "既有映射类别不能改变。"))
         if any(ref not in registry for ref in item["analysis_refs"]):
             diagnostics.append(_issue(3, key, "numbering-patch/items/analysis_refs", "补丁引用未提供或不存在。"))
+
+
+def validate_upstream(root: Path, analysis: dict, diagnostics: list, *, related_analyses: Sequence[Path] = (), gaps: dict | None = None) -> tuple:
+    """只读校验分析和显式关联输入，返回文档及上游结果。
+
+    root 为需求目录，analysis 为已读取分析；diagnostics 收集读取及降级诊断。
+    related_analyses 为关联分析路径，gaps 为可选缺口；安装损坏时异常原样抛出。
+    """
+    upstream = _analyst()
+    # 来源名称清单可选，但缺失时不能伪造清单冒充来源已核验。结构和非来源规则仍调用
+    # 分析侧同一实现，来源与历史权威性检查暂不可完成，显式警告并保留 source_id。
+    documents = []
+    missing_manifests = set()
+    for path, doc in [(root / "analysis/analysis-result.json", analysis), *[(Path(p), None) for p in related_analyses]]:
+        if doc is None:
+            doc = _read(path, diagnostics, 3)
+        if doc is None:
+            continue
+        manifest = _read(path.with_name("source-manifest.json"), diagnostics, 1, optional=True)
+        if manifest is None:
+            missing_manifests.add(id(doc))
+            manifest = []
+            diagnostics.append(_issue(3, "$", path.with_name("source-manifest.json"), "辅助来源清单不可用，仅显示 source_id；来源和历史权威性未核验。", "warning"))
+        documents.append((doc, manifest))
+    if not documents:
+        return documents, {"status": "fail", "diagnostics": []}
+    if missing_manifests:
+        # 精确复用上游规则，不复制规则内容；仅跳过缺失清单所依赖的来源检查。
+        # 该降级不是上游完整 pass，因此保留上方的 warning，不让其可用于正式发布。
+        upstream_issues = []
+        analysis_validator, manifest_validator = upstream._validators()
+        for doc, manifest in documents:
+            upstream_issues.extend(upstream._format_errors(doc, analysis_validator))
+            if id(doc) not in missing_manifests:
+                upstream_issues.extend(upstream._format_errors(manifest, manifest_validator, 7))
+        if not upstream_issues:
+            upstream_registry = upstream._index_documents(documents, upstream_issues)
+            for doc, manifest in documents:
+                upstream._check_references(doc, upstream_registry, upstream_issues)
+                upstream._check_questions(doc, upstream_issues)
+                upstream._check_completion(doc, upstream_issues)
+                upstream._check_technical(doc, upstream_issues)
+                available_manifest = manifest if id(doc) not in missing_manifests else None
+                upstream._check_sources(doc, available_manifest, upstream_issues)
+                upstream._check_history(doc, available_manifest, upstream_issues)
+            upstream._check_gap_requests(documents[0][0], gaps, upstream_registry, upstream_issues)
+        response = upstream._result(upstream_issues)
+    else:
+        response = upstream.validate_analysis(documents[0][0], documents[0][1], related_analyses=documents[1:], gap_requests=gaps)
+    return documents, response
 
 
 def validate_prd(requirement_dir: Path, *, related_analyses: Sequence[Path] = (), previous_trace: Path | None = None, numbering_patch: Path | None = None) -> dict:
@@ -529,47 +588,7 @@ def validate_prd(requirement_dir: Path, *, related_analyses: Sequence[Path] = ()
         metadata_ok = isinstance(pd.get("version"), str) and bool(VERSION.fullmatch(pd["version"])) and isinstance(pd.get("status"), str) and pd["status"] in {"draft", "in_review", "released", "deprecated"} and type(pd.get("based_on_analysis_revision")) is int and pd["based_on_analysis_revision"] >= 1 and isinstance(metadata["common"].get("title"), str)
     if not metadata_ok:
         diagnostics.append(_issue(10, "$", "requirement.json", "common/prd 结构、版本、状态或分析修订号不合法；不迁移旧消费者整数版本。"))
-    upstream = _analyst()
-    # 来源名称清单可选，但缺失时不能伪造清单冒充来源已核验。结构和非来源规则仍调用
-    # 分析侧同一实现，来源与历史权威性检查暂不可完成，显式警告并保留 source_id。
-    documents = []
-    missing_manifests = set()
-    for path, doc in [(root / "analysis/analysis-result.json", analysis), *[(Path(p), None) for p in related_analyses]]:
-        if doc is None:
-            doc = _read(path, diagnostics, 3)
-        if doc is None:
-            continue
-        manifest = _read(path.with_name("source-manifest.json"), diagnostics, 1, optional=True)
-        if manifest is None:
-            missing_manifests.add(id(doc))
-            manifest = []
-            diagnostics.append(_issue(3, "$", path.with_name("source-manifest.json"), "辅助来源清单不可用，仅显示 source_id；来源和历史权威性未核验。", "warning"))
-        documents.append((doc, manifest))
-    if not documents:
-        return _result(diagnostics)
-    if missing_manifests:
-        # 精确复用上游规则，不复制规则内容；仅跳过缺失清单所依赖的来源检查。
-        # 该降级不是上游完整 pass，因此保留上方的 warning，不让其可用于正式发布。
-        upstream_issues = []
-        analysis_validator, manifest_validator = upstream._validators()
-        for doc, manifest in documents:
-            upstream_issues.extend(upstream._format_errors(doc, analysis_validator))
-            if id(doc) not in missing_manifests:
-                upstream_issues.extend(upstream._format_errors(manifest, manifest_validator, 7))
-        if not upstream_issues:
-            upstream_registry = upstream._index_documents(documents, upstream_issues)
-            for doc, manifest in documents:
-                upstream._check_references(doc, upstream_registry, upstream_issues)
-                upstream._check_questions(doc, upstream_issues)
-                upstream._check_completion(doc, upstream_issues)
-                upstream._check_technical(doc, upstream_issues)
-                if id(doc) not in missing_manifests:
-                    upstream._check_sources(doc, manifest, upstream_issues)
-                    upstream._check_history(doc, manifest, upstream_issues)
-            upstream._check_gap_requests(documents[0][0], gaps, upstream_registry, upstream_issues)
-        response = upstream._result(upstream_issues)
-    else:
-        response = upstream.validate_analysis(documents[0][0], documents[0][1], related_analyses=documents[1:], gap_requests=gaps)
+    documents, response = validate_upstream(root, analysis, diagnostics, related_analyses=related_analyses, gaps=gaps)
     for issue in response["diagnostics"]:
         if issue["level"] == "fail":
             # 缺口协议在两侧同属规则12，保留分类以免已有缺口夹具退化为普通来源错误。

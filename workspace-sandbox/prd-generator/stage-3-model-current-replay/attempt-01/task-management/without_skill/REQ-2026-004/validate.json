@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpZV5VbB/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/source-snapshot/prd-generator/scripts/validate_prd.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model-current-replay/attempt-01/task-management/without_skill/REQ-2026-004/requirement"
+  ],
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "analysis/analysis-result.json": "sha256:847302a5bd1bed03147ff3376c65dbb1dce33620ea59a4a507378c4418b25bbf",
+    "analysis/source-manifest.json": "sha256:8a302280d3030deacde3c9e1d03e2c91744a2f64a1f7526f738981a346a5573a",
+    "prd/gap-requests.json": "sha256:5731fac251e302e9f1044059a867a6980e612a5b81588cffc85c98ed6e460da5",
+    "prd/prd-events.jsonl": "sha256:6230b57a4ed92f588bce908748b74be53169df200c77f544c3ac3da31ebbbdc6",
+    "prd/prd-trace.json": "sha256:a9a10687c6a6f703d98c05bde657431edb3711a930cf6534c4eac77f710faac3",
+    "prd/prd.md": "sha256:a40ada26b568f757ca5b75298a1605b2d9d475db32d726df2b3447506fac2833",
+    "requirement.json": "sha256:f0161f8c27d48d74c2a2c9bb9a4c916eab1a9f32881e4569dce09275527c5a68"
+  },
+  "after": {
+    "analysis/analysis-result.json": "sha256:847302a5bd1bed03147ff3376c65dbb1dce33620ea59a4a507378c4418b25bbf",
+    "analysis/source-manifest.json": "sha256:8a302280d3030deacde3c9e1d03e2c91744a2f64a1f7526f738981a346a5573a",
+    "prd/gap-requests.json": "sha256:5731fac251e302e9f1044059a867a6980e612a5b81588cffc85c98ed6e460da5",
+    "prd/prd-events.jsonl": "sha256:6230b57a4ed92f588bce908748b74be53169df200c77f544c3ac3da31ebbbdc6",
+    "prd/prd-trace.json": "sha256:a9a10687c6a6f703d98c05bde657431edb3711a930cf6534c4eac77f710faac3",
+    "prd/prd.md": "sha256:a40ada26b568f757ca5b75298a1605b2d9d475db32d726df2b3447506fac2833",
+    "requirement.json": "sha256:f0161f8c27d48d74c2a2c9bb9a4c916eab1a9f32881e4569dce09275527c5a68"
+  }
+}

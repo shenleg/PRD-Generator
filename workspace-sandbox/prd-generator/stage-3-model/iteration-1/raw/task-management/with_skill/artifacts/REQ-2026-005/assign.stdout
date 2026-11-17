@@ -1,0 +1,202 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "REQ-2026-005",
+  "meta": {
+    "counters": {
+      "GOAL": 1,
+      "SCN": 1,
+      "FR": 2,
+      "BR": 2,
+      "CON": 2,
+      "AC": 1,
+      "FLOW": 1,
+      "BND": 3,
+      "EXC": 2
+    },
+    "draft_kind": "risk_draft",
+    "generated_under_readiness": "not_ready",
+    "content_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "items": [
+    {
+      "prd_id": "PRD-GOAL-001",
+      "kind": "goal",
+      "introduced_in": "0.1",
+      "mapping_key": "goal",
+      "analysis_refs": [
+        "REQ-2026-005/GOAL-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:633079f89c694bf97254381fde603ac632c6b974ea29c5b8cc44662462ddbfbd"
+    },
+    {
+      "prd_id": "PRD-SCN-001",
+      "kind": "scenario",
+      "introduced_in": "0.1",
+      "mapping_key": "scenario",
+      "analysis_refs": [
+        "REQ-2026-005/SCN-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:ab8591b0df70d7040714b69ea638c547d4a1ef1f35f955f8a2c3f700d02b917f"
+    },
+    {
+      "prd_id": "PRD-FR-001",
+      "kind": "functional_requirement",
+      "introduced_in": "0.1",
+      "mapping_key": "export",
+      "analysis_refs": [
+        "REQ-2026-005/FR-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:cc01bc0317b22add4bea207510eace88a19235f3cc6508f65916b9279c74fe7d"
+    },
+    {
+      "prd_id": "PRD-FR-002",
+      "kind": "functional_requirement",
+      "introduced_in": "0.1",
+      "mapping_key": "scope",
+      "analysis_refs": [
+        "REQ-2026-005/FR-2"
+      ],
+      "tag": "inferred",
+      "status": "active",
+      "source_digest": "sha256:32c3a7125cbecec39267171305da9135c2a3fe8ff9453d130ac4053c194f0d93"
+    },
+    {
+      "prd_id": "PRD-BR-001",
+      "kind": "business_rule",
+      "introduced_in": "0.1",
+      "mapping_key": "limit",
+      "analysis_refs": [
+        "REQ-2026-005/BR-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:68a37fc4b650b2c9cd74c125dbd5807dc9c90274433d516143d71b8d637b5ee8"
+    },
+    {
+      "prd_id": "PRD-BR-002",
+      "kind": "business_rule",
+      "introduced_in": "0.1",
+      "mapping_key": "all",
+      "analysis_refs": [
+        "REQ-2026-005/BR-2"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:53252dc65c01b44c8f95fc9bda14bba937564f0e02f33f4ba0451745b242e5a5"
+    },
+    {
+      "prd_id": "PRD-CON-001",
+      "kind": "constraint",
+      "introduced_in": "0.1",
+      "mapping_key": "oldformat",
+      "analysis_refs": [
+        "REQ-2026-005/CON-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:0d9d1c83b94f4266b51e071aec246c52e2852d2d1c1f57bba3bc13feea5f04d2"
+    },
+    {
+      "prd_id": "PRD-CON-002",
+      "kind": "constraint",
+      "introduced_in": "0.1",
+      "mapping_key": "constraint",
+      "analysis_refs": [
+        "REQ-2026-005/CON-2"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:4771ce9a54b6a0728eae439611fdad905f3f33664fa6e1b3d7395109afae6e2b"
+    },
+    {
+      "prd_id": "PRD-AC-001",
+      "kind": "acceptance_criterion",
+      "introduced_in": "0.1",
+      "mapping_key": "acceptance",
+      "analysis_refs": [
+        "REQ-2026-005/AC-1"
+      ],
+      "tag": "inferred",
+      "status": "to_confirm",
+      "source_digest": "sha256:574aeb1b87f5d838678f70be6ecef50fb33f2bdf193fc0a1ab14375ef77b2658"
+    },
+    {
+      "prd_id": "PRD-FLOW-001",
+      "kind": "flow",
+      "introduced_in": "0.1",
+      "mapping_key": "flow",
+      "analysis_refs": [
+        "REQ-2026-005/FLOW-1"
+      ],
+      "tag": "inferred",
+      "status": "to_confirm",
+      "source_digest": "sha256:de5c784d97e1c6e20d67ca03d6392bcf26de10d752697d51073c215d336b07cf"
+    },
+    {
+      "prd_id": "PRD-BND-001",
+      "kind": "boundary",
+      "introduced_in": "0.1",
+      "mapping_key": "lifecycle",
+      "analysis_refs": [
+        "REQ-2026-005/BND-1"
+      ],
+      "tag": "inferred",
+      "status": "active",
+      "source_digest": "sha256:e97874bf58c44472655d3915c00eead3102280ea8929299ae499588143654506"
+    },
+    {
+      "prd_id": "PRD-BND-002",
+      "kind": "boundary",
+      "introduced_in": "0.1",
+      "mapping_key": "permission",
+      "analysis_refs": [
+        "REQ-2026-005/BND-2"
+      ],
+      "tag": "inferred",
+      "status": "active",
+      "source_digest": "sha256:aba8c2b2c49975a138339717f5dd4a661bc2daff2bff882e5c0eb4836d553680"
+    },
+    {
+      "prd_id": "PRD-BND-003",
+      "kind": "boundary",
+      "introduced_in": "0.1",
+      "mapping_key": "quantity",
+      "analysis_refs": [
+        "REQ-2026-005/BND-3"
+      ],
+      "tag": "inferred",
+      "status": "active",
+      "source_digest": "sha256:e1af28c129652e5ec2e9c8be633eabfb50c90ada8a5bcce0951c76435e9bc46c"
+    },
+    {
+      "prd_id": "PRD-EXC-001",
+      "kind": "exception",
+      "introduced_in": "0.1",
+      "mapping_key": "failure",
+      "analysis_refs": [
+        "REQ-2026-005/EXC-1"
+      ],
+      "tag": "inferred",
+      "status": "active",
+      "source_digest": "sha256:e5882523fbefc81fd23df396c003771e5430979778fa87b5b2f38da6c5a518e8"
+    },
+    {
+      "prd_id": "PRD-EXC-002",
+      "kind": "exception",
+      "introduced_in": "0.1",
+      "mapping_key": "consistency",
+      "analysis_refs": [
+        "REQ-2026-005/EXC-2"
+      ],
+      "tag": "inferred",
+      "status": "active",
+      "source_digest": "sha256:27b05fde167a11f49004dbb9b3886017fc0d47b7b96dbb5b0457280278189885"
+    }
+  ]
+}

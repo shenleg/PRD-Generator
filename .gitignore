@@ -15,8 +15,10 @@ __pycache__/
 !/workspace-sandbox/prd-generator/stage-2-cli/**/calls/**/.analysis-write-*
 !/workspace-sandbox/prd-generator/stage-2-cli/**/fixture-original/.analysis-transaction.json
 
-# 最小消费者原子提交 requirement.json 时留下的本地临时文件。
+# 生成侧单文件原子替换和未完成事务是运行文件；候选、恢复证据及业务产物单独保存。
 .prd-write-*
+.prd-trace-*
+.prd-transaction.json
 
 # 用户仅授权提交脱敏安装证据；原始CLI会话、初始化信息及诊断保留本地。
 /workspace-sandbox/stage-4/installation/*

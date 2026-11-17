@@ -1,0 +1,90 @@
+{
+  "role": "model_trial_setup_not_model_output",
+  "historical_files_changed": false,
+  "samples": [
+    {
+      "requirement_id": "REQ-2026-001",
+      "group": "switch-combinations",
+      "historical_analysis": "workspace-sandbox/stage-3/evidence/high-low-voltage/initial/analysis/analysis-result.json",
+      "analysis_sha256": "sha256:49ca654b12974c8585687a99198f4d82091441f98d236d35615bc81a8a4e3acc",
+      "common_source": "workspace-sandbox/stage-3/workspace/projects/high-low-voltage/requirements/REQ-2026-001/requirement.json",
+      "source_relocations": [
+        {
+          "source_id": "SRC-1",
+          "from": "/root/orca/projects/test-skill/tests/fixtures/high-low-voltage/original-requirement.md",
+          "to": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model/iteration-1/sources/original-requirement.md"
+        }
+      ]
+    },
+    {
+      "requirement_id": "REQ-2026-002",
+      "group": "task-management",
+      "historical_analysis": "workspace-sandbox/stage-3/evidence/task-management/initial-01/analysis/analysis-result.json",
+      "analysis_sha256": "sha256:39aad8a937c1e8db95de61916da45b7afe51a455d6faa1c704addacf9e9e39d4",
+      "common_source": "workspace-sandbox/stage-3/workspace/projects/task-management/requirements/REQ-2026-002/requirement.json",
+      "source_relocations": [
+        {
+          "source_id": "SRC-1",
+          "from": "/root/orca/projects/test-skill/tests/fixtures/sample-02-task-management.md",
+          "to": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model/iteration-1/sources/sample-02-task-management.md"
+        }
+      ]
+    },
+    {
+      "requirement_id": "REQ-2026-003",
+      "group": "task-management",
+      "historical_analysis": "workspace-sandbox/stage-3/evidence/task-management/initial-02/analysis/analysis-result.json",
+      "analysis_sha256": "sha256:902a84897b04ccc6b639b3722d3ec9129eedf01c004b8b8685cc10c9486ef03d",
+      "common_source": "workspace-sandbox/stage-3/workspace/projects/task-management/requirements/REQ-2026-003/requirement.json",
+      "source_relocations": [
+        {
+          "source_id": "SRC-1",
+          "from": "/root/orca/projects/test-skill/tests/fixtures/sample-02-task-management.md",
+          "to": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model/iteration-1/sources/sample-02-task-management.md"
+        }
+      ]
+    },
+    {
+      "requirement_id": "REQ-2026-004",
+      "group": "task-management",
+      "historical_analysis": "workspace-sandbox/stage-3/evidence/task-management/initial-03/analysis/analysis-result.json",
+      "analysis_sha256": "sha256:847302a5bd1bed03147ff3376c65dbb1dce33620ea59a4a507378c4418b25bbf",
+      "common_source": "workspace-sandbox/stage-3/workspace/projects/task-management/requirements/REQ-2026-004/requirement.json",
+      "source_relocations": [
+        {
+          "source_id": "SRC-1",
+          "from": "/root/orca/projects/test-skill/tests/fixtures/sample-02-task-management.md",
+          "to": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model/iteration-1/sources/sample-02-task-management.md"
+        }
+      ]
+    },
+    {
+      "requirement_id": "REQ-2026-005",
+      "group": "task-management",
+      "historical_analysis": "workspace-sandbox/stage-3/evidence/task-management/initial-04/analysis/analysis-result.json",
+      "analysis_sha256": "sha256:3434246cb5ac3e8c00864b28643e9e10a08fa066d2f0756e02156540f24c9629",
+      "common_source": "workspace-sandbox/stage-3/workspace/projects/task-management/requirements/REQ-2026-005/requirement.json",
+      "source_relocations": [
+        {
+          "source_id": "SRC-1",
+          "from": "/root/orca/projects/test-skill/tests/fixtures/sample-02-task-management.md",
+          "to": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model/iteration-1/sources/sample-02-task-management.md"
+        }
+      ]
+    },
+    {
+      "requirement_id": "REQ-2026-006",
+      "group": "task-management",
+      "historical_analysis": "workspace-sandbox/stage-3/evidence/task-management/initial-05/analysis/analysis-result.json",
+      "analysis_sha256": "sha256:c221ab4c867e04559b6f8a2177ad7ab66ea75ced8cd91ccee21c00238a814af6",
+      "common_source": "workspace-sandbox/stage-3/workspace/projects/task-management/requirements/REQ-2026-006/requirement.json",
+      "source_relocations": [
+        {
+          "source_id": "SRC-1",
+          "from": "/root/orca/projects/test-skill/tests/fixtures/sample-02-task-management.md",
+          "to": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-3-model/iteration-1/sources/sample-02-task-management.md"
+        }
+      ]
+    }
+  ]
+}

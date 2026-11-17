@@ -1,0 +1,99 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "REQ-2026-003",
+  "base_prd_version": "0.1",
+  "base_analysis_revision": 1,
+  "items": [
+    {
+      "mapping_key": "goal",
+      "kind": "goal",
+      "analysis_refs": [
+        "REQ-2026-003/GOAL-1"
+      ]
+    },
+    {
+      "mapping_key": "scenario",
+      "kind": "scenario",
+      "analysis_refs": [
+        "REQ-2026-003/SCN-1"
+      ]
+    },
+    {
+      "mapping_key": "delete",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "REQ-2026-003/FR-1"
+      ]
+    },
+    {
+      "mapping_key": "scope",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "REQ-2026-003/FR-2"
+      ]
+    },
+    {
+      "mapping_key": "all_users",
+      "kind": "business_rule",
+      "analysis_refs": [
+        "REQ-2026-003/BR-1"
+      ]
+    },
+    {
+      "mapping_key": "creators",
+      "kind": "business_rule",
+      "analysis_refs": [
+        "REQ-2026-003/BR-2"
+      ]
+    },
+    {
+      "mapping_key": "previous",
+      "kind": "business_rule",
+      "analysis_refs": [
+        "REQ-2026-003/BR-3"
+      ]
+    },
+    {
+      "mapping_key": "constraint",
+      "kind": "constraint",
+      "analysis_refs": [
+        "REQ-2026-003/CON-1"
+      ]
+    },
+    {
+      "mapping_key": "acceptance",
+      "kind": "acceptance_criterion",
+      "analysis_refs": [
+        "REQ-2026-003/AC-1"
+      ]
+    },
+    {
+      "mapping_key": "flow",
+      "kind": "flow",
+      "analysis_refs": [
+        "REQ-2026-003/FLOW-1"
+      ]
+    },
+    {
+      "mapping_key": "running",
+      "kind": "boundary",
+      "analysis_refs": [
+        "REQ-2026-003/BND-1"
+      ]
+    },
+    {
+      "mapping_key": "selection",
+      "kind": "boundary",
+      "analysis_refs": [
+        "REQ-2026-003/BND-2"
+      ]
+    },
+    {
+      "mapping_key": "failure",
+      "kind": "exception",
+      "analysis_refs": [
+        "REQ-2026-003/EXC-1"
+      ]
+    }
+  ]
+}

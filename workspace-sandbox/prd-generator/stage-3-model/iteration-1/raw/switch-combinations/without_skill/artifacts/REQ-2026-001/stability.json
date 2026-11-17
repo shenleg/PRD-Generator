@@ -1,0 +1,8 @@
+{
+  "mapping_and_ids_stable": true,
+  "business_body_stable": true,
+  "versions": [
+    "0.1",
+    "0.2"
+  ]
+}
