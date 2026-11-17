@@ -67,6 +67,8 @@ def _format_errors(data: object, validator: Draft202012Validator, rule: int = 1)
         if isinstance(node, dict):
             item_id = node.get("id", node.get("source_id", item_id))
         error_rule = 3 if rule == 1 and error.validator == "enum" else rule
+        if rule == 1 and error.absolute_path and error.absolute_path[-1] == "gap_request_ref":
+            error_rule = 12
         diagnostics.append(_issue(error_rule, str(item_id), _pointer(error.absolute_path), f"格式错误：{error.message}"))
     return diagnostics
 
@@ -150,6 +152,88 @@ def _check_references(analysis: dict, registry: dict, diagnostics: list[dict]) -
             is_effective = owner["status"] == "active" or (owner["id"].startswith("Q-") and owner["status"] != "dropped")
             if is_effective:
                 diagnostics.append(_issue(8, owner_id, _pointer(path), f"仍引用已撤销条目 {reference}；通用条目须待重评，相关问题须按撤销流程废弃。"))
+
+
+def _check_gap_requests(analysis: dict, gap_requests: dict | None, registry: dict, diagnostics: list[dict]) -> None:
+    """检查当前需求的交接边界；关闭依据及 PRD 占位语义留给生成侧校验。"""
+    receivers = {}
+    for index, question in enumerate(analysis["questions"]):
+        if "gap_request_ref" not in question:
+            continue
+        reference = question["gap_request_ref"]
+        path = _pointer(("questions", index, "gap_request_ref"))
+        if reference in receivers:
+            diagnostics.append(_issue(12, question["id"], path, f"缺口 {reference} 已由问题 {receivers[reference]} 接收，不得重复关联。"))
+        else:
+            receivers[reference] = question["id"]
+        if gap_requests is None:
+            diagnostics.append(_issue(12, question["id"], path, f"问题引用了 {reference}，但未提供本需求缺口文件。"))
+    if gap_requests is None:
+        return  # 无缺口且无引用时保留旧版分析行为。
+
+    # 这里只定义读取交接所需的格式，不能依赖另一个 Skill 的安装目录。
+    # resolution 和其他扩展保持只读；关闭充分性不属于分析侧职责。
+    nonblank = {"type": "string", "minLength": 1, "pattern": r"\S"}
+    full_reference = {
+        "type": "string",
+        "pattern": r"^[^\s/]+/(?:GOAL|SCN|FR|BR|CON|NFR|AC|FLOW|STATE|BND|EXC|GAP|CNF|Q|ASM|DEC)-[1-9][0-9]*$",
+    }
+    validator = Draft202012Validator({
+        "type": "object",
+        "required": ["schema_version", "requirement_id", "counters", "requests"],
+        "properties": {
+            "schema_version": {"const": "1.0"},
+            "requirement_id": {"type": "string", "pattern": r"^[^\s/]+$"},
+            "counters": {
+                "type": "object", "required": ["GAPREQ"],
+                "properties": {"GAPREQ": {"type": "integer", "minimum": 0}},
+            },
+            "requests": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "required": ["id", "needed_for", "description", "related_analysis_refs", "raised_in", "status"],
+                    "properties": {
+                        "id": {"type": "string", "pattern": r"^GAPREQ-[1-9][0-9]*$"},
+                        "needed_for": nonblank,
+                        "description": nonblank,
+                        "related_analysis_refs": {"type": "array", "items": full_reference, "uniqueItems": True},
+                        "raised_in": {"type": "string", "pattern": r"^(?:0\.[1-9][0-9]*|[1-9][0-9]*\.(?:0|[1-9][0-9]*)(?:-draft)?)$"},
+                        "status": {"enum": ["open", "handed_over", "closed"]},
+                    },
+                },
+            },
+        },
+    })
+    errors = _format_errors(gap_requests, validator, 12)
+    for error in errors:
+        error["path"] = "/gap-requests" + error["path"]
+    diagnostics.extend(errors)
+    if errors:
+        return
+    if gap_requests["requirement_id"] != analysis["requirement_id"]:
+        diagnostics.append(_issue(12, "$", "/gap-requests/requirement_id", "缺口文件不属于当前需求。"))
+        return
+    requests = gap_requests["requests"]
+    assigned = set()
+    for index, request in enumerate(requests):
+        request_id = request["id"]
+        path = _pointer(("gap-requests", "requests", index))
+        if request_id in assigned:
+            diagnostics.append(_issue(12, request_id, path + "/id", "缺口编号重复。"))
+        assigned.add(request_id)
+        if request["status"] in ("handed_over", "closed") and request_id not in receivers:
+            diagnostics.append(_issue(12, request_id, path + "/status", "已交接或关闭的缺口必须有唯一接收问题。"))
+        for ref_index, reference in enumerate(request["related_analysis_refs"]):
+            requirement_id, item_id = reference.split("/", 1)
+            if item_id not in registry.get(requirement_id, {}):
+                diagnostics.append(_issue(12, request_id, path + f"/related_analysis_refs/{ref_index}", f"缺口引用不存在或未显式提供关联资料：{reference}。"))
+    high_water = max((int(request_id.split("-", 1)[1]) for request_id in assigned), default=0)
+    if gap_requests["counters"]["GAPREQ"] < high_water:
+        diagnostics.append(_issue(12, "$", "/gap-requests/counters/GAPREQ", "缺口计数器低于已分配编号高水位。"))
+    for index, question in enumerate(analysis["questions"]):
+        if "gap_request_ref" in question and question["gap_request_ref"] not in assigned:
+            diagnostics.append(_issue(12, question["id"], _pointer(("questions", index, "gap_request_ref")), f"本需求不存在缺口 {question['gap_request_ref']}。"))
 
 
 def _check_sources(analysis: dict, manifest: list, diagnostics: list[dict]) -> None:
@@ -280,11 +364,14 @@ def validate_analysis(
     source_manifest: list[dict],
     *,
     related_analyses: Sequence[tuple[dict, list[dict]]] = (),
+    gap_requests: dict | None = None,
 ) -> dict:
     """校验分析结果及来源，返回 status 与逐条诊断，不修改输入。
 
     analysis 是当前结构化结果，source_manifest 是其来源清单；related_analyses
     是显式提供的外部结果及对应清单，仅用于核验引用，不执行自动检索。
+    gap_requests 为当前需求缺口文件的内存对象；省略时仅允许没有缺口引用的旧问题。
+    API 不读取工作区；外部分析的问题不与当前需求缺口关联。
     输入数据违规通过 fail 返回；Schema 安装缺失或损坏时抛出文件或 Schema 异常。
     """
     analysis_validator, manifest_validator = _validators()
@@ -299,6 +386,7 @@ def validate_analysis(
             diagnostics.append(_issue(11, "$", "/meta/analysis_status", "分析已过期；下游须提示重新评估。", "warning"))
         return _result(diagnostics)
     registry = _index_documents(documents, diagnostics)
+    _check_gap_requests(analysis, gap_requests, registry, diagnostics)
     _check_references(analysis, registry, diagnostics)
     _check_sources(analysis, source_manifest, diagnostics)
     _check_history(analysis, source_manifest, diagnostics)
@@ -333,16 +421,28 @@ def _load_json(path: Path):
 def main(argv: Sequence[str] | None = None) -> int:
     """读取 argv 指定的分析及来源，输出 JSON，返回 pass=0、warning=1、fail=2。
 
-    argv 为命令行参数，省略时读取进程参数。用户文件错误转为 fail 诊断；
-    参数用法错误由 argparse 报告，内部 Schema 安装错误直接抛出。
+    argv 为命令行参数，省略时读取进程参数。缺口文件可显式指定，否则仅读取
+    当前分析目录同级 prd/gap-requests.json（存在时）；不搜索关联需求缺口。
+    用户文件错误转为 fail 诊断；参数用法错误由 argparse 报告，
+    内部 Schema 安装错误直接抛出。
     """
     parser = argparse.ArgumentParser(description="只读校验需求分析结果，输出 JSON 诊断。")
     parser.add_argument("analysis", type=Path)
     parser.add_argument("--source-manifest", type=Path)
     parser.add_argument("--related-analysis", type=Path, action="append", default=[])
+    parser.add_argument("--gap-requests", type=Path, help="显式指定当前需求缺口文件；默认读取 analysis/../prd/gap-requests.json。")
     args = parser.parse_args(argv)
     documents = []
     diagnostics = []
+    gap_requests = None
+    gap_path = args.gap_requests if args.gap_requests is not None else args.analysis.parent.parent / "prd/gap-requests.json"
+    if args.gap_requests is not None or gap_path.exists():
+        try:
+            gap_requests = _load_json(gap_path)
+            if gap_requests is None:
+                raise ValueError("缺口文件必须为版本化对象，不能为 null")
+        except (OSError, ValueError) as error:
+            diagnostics.append(_issue(12, "$", str(gap_path), f"无法读取缺口 JSON：{error}"))
     for path in [args.analysis, *args.related_analysis]:
         manifest_path = args.source_manifest if path == args.analysis and args.source_manifest is not None else path.with_name("source-manifest.json")
         try:
@@ -360,7 +460,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         result = _result(diagnostics)
     else:
         analysis, manifest = documents[0]
-        result = validate_analysis(analysis, manifest, related_analyses=documents[1:])
+        result = validate_analysis(analysis, manifest, related_analyses=documents[1:], gap_requests=gap_requests)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return EXIT_CODES[result["status"]]
 

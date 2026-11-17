@@ -45,6 +45,7 @@ uv run --no-project --python /usr/bin/python3 --with-requirements tests/requirem
 - `test_stage_2_runs.py`：读取已保存的真实模型输出，检查正式样例的校验、拆分、状态、提问与结束；另从只读响应日志核对探针的轻量价值分析。所声明执行方式对应的证据缺失必须失败，不静默跳过。
 
 - `test_update_analysis.py`：补丁协议、编号、confirmed 保护、撤销方向、显式更正、新版重开、来源、只读预检、并发及中断恢复，均在临时目录运行。
+- `test_gap_validation.py`：阶段 2 配套的缺口封装、唯一接收、显式引用及只读校验；接收写入与故障恢复测试位于 `tests/prd-generator/test_gap_handoff.py`，记录见 `tests/results/prd-generator/stage-2.md`。
 - `test_stage_3_support.py`：新版输入只含已审核变化，报告能读取新标准完成清单。
 - `test_stage_3_runs.py`：读取阶段 3 真实补丁、逐轮响应和快照；另在临时工作区按原顺序重放全部补丁，核对当前写入器无内容漂移。
 
@@ -57,7 +58,7 @@ uv run --no-project --python /usr/bin/python3 --with-requirements tests/requirem
 
 ## 阶段 2 的历史证据
 
-以下阶段 2 记录保留原执行范围，并绑定 `stage-2-complete` 标签源码，不用于冒充当前补丁机制已回归。
+以下阶段 2 记录保留原执行范围，并绑定验收提交 `1d20342`（不依赖克隆时未携带的本地标签），不用于冒充当前补丁机制已回归。
 
 ### 当时如何执行模型
 

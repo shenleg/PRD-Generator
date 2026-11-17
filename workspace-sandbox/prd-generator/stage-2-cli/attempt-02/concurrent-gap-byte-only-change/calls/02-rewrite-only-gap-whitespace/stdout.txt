@@ -1,0 +1,22 @@
+{
+  "status": "fail",
+  "diagnostics": [
+    {
+      "rule": 1,
+      "level": "fail",
+      "item_id": "$",
+      "path": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-2-cli/attempt-02/concurrent-gap-byte-only-change/workspace/projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/gap-requests.json",
+      "message": "缺口文件在接收期间发生变化；分析已保存，请重读缺口后重试标记。"
+    }
+  ],
+  "requirement_id": "GAP-HANDOFF",
+  "revision": 2,
+  "id_map": {
+    "$gap": "Q-2"
+  },
+  "affected_ids": [
+    "Q-2"
+  ],
+  "written": true,
+  "gap_status_written": false
+}

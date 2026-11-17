@@ -1,0 +1,53 @@
+{
+  "label": "initial-old-format",
+  "interface": "public_cli",
+  "model_called": false,
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpo6s9yX/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/skill/requirement-analyst/scripts/update_analysis.py",
+    "--workspace",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-2-cli/attempt-01/concurrent-gap-rewrite/workspace",
+    "--project",
+    "gap-handoff-project",
+    "--patch",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-2-cli/attempt-01/concurrent-gap-rewrite/calls/01-initial-old-format/patch.json"
+  ],
+  "returncode": 0,
+  "expected_status": "pass",
+  "response": {
+    "status": "pass",
+    "diagnostics": [],
+    "requirement_id": "GAP-HANDOFF",
+    "revision": 1,
+    "id_map": {
+      "$goal": "GOAL-1",
+      "$question": "Q-1",
+      "$feature": "FR-1"
+    },
+    "affected_ids": [
+      "GOAL-1",
+      "FR-1",
+      "Q-1"
+    ],
+    "written": true
+  },
+  "fingerprints_before": {},
+  "fingerprints_after": {
+    ".analysis-transaction.json": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+    "workspace.json": "sha256:18d07fa7ddaa5cd89b3ac385d1529415c15dba9cec2b9f29601c449eaaa63692",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/requirement.json": "sha256:a93139741593b553fdfa73d02ba5fd69f90ed1f0559ab0ec16f0eb52ccddd787",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/analysis-events.jsonl": "sha256:48ca65ef95ef4cb893d5565894b81f9a5fdcd0eed8916daecff9877a14a2e499",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/analysis-result.json": "sha256:ee3acef0fd8d43af833009dff8c0e0f980a6cba626c872444ab16a03bf0603df",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "changed_files": [
+    ".analysis-transaction.json",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/analysis-events.jsonl",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/analysis-result.json",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/source-manifest.json",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/requirement.json",
+    "workspace.json"
+  ]
+}

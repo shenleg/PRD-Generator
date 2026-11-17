@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "MODEL-TASK",
+  "counters": {
+    "GAPREQ": 3
+  },
+  "requests": [
+    {
+      "id": "GAPREQ-1",
+      "needed_for": "权限与业务规则",
+      "description": "尚未明确任务成员可以编辑哪些字段；请产品确认业务权限边界。",
+      "related_analysis_refs": [
+        "MODEL-TASK/GOAL-1"
+      ],
+      "raised_in": "0.1",
+      "status": "handed_over"
+    },
+    {
+      "id": "GAPREQ-2",
+      "needed_for": "依赖与技术确认",
+      "description": "尚无证据说明能否复用关联身份需求的现有身份接口；需研发核实现状，不能假定已具备。",
+      "related_analysis_refs": [
+        "MODEL-RELATED/GOAL-1"
+      ],
+      "raised_in": "0.1",
+      "status": "handed_over"
+    },
+    {
+      "id": "GAPREQ-3",
+      "needed_for": "界面与交互",
+      "description": "还没有视觉参考或设计产物，需设计确认后续设计安排。",
+      "related_analysis_refs": [],
+      "raised_in": "0.1",
+      "status": "handed_over"
+    }
+  ],
+  "extension": {
+    "preserve": "保留生成侧扩展"
+  }
+}

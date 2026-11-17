@@ -1,0 +1,110 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "GAP-HANDOFF",
+  "base_revision": 2,
+  "change_type": "supplement",
+  "actor": "analyst",
+  "summary": "继续分析",
+  "operations": [
+    {
+      "op": "update",
+      "target": "Q-2",
+      "changes": {
+        "priority": "P1",
+        "status": "answered",
+        "answer": "中断后继续处理的答复"
+      }
+    }
+  ],
+  "set": {},
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 2,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 3,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 5,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 6,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 8,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 9,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 10,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 11,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    }
+  ]
+}

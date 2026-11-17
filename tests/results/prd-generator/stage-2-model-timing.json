@@ -1,0 +1,9 @@
+{
+  "execution": "independent_subagent_explicit_skill_snapshot",
+  "configured_model": "opus",
+  "resolved_model_id": null,
+  "reported_total_tokens": 43838,
+  "reported_tool_uses": 28,
+  "reported_duration_ms": 272287,
+  "scope": "单次合成缺口接收，不是安装自动触发、对照评测或正式生成器联调"
+}

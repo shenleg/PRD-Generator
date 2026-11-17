@@ -1,0 +1,73 @@
+{
+  "label": "reject-implicit-workspace-scan",
+  "interface": "public_cli",
+  "model_called": false,
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpo6s9yX/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/skill/requirement-analyst/scripts/update_analysis.py",
+    "--workspace",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-2-cli/attempt-01/cross-explicit-analysis/workspace",
+    "--project",
+    "gap-handoff-project",
+    "--patch",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-2-cli/attempt-01/cross-explicit-analysis/calls/03-reject-implicit-workspace-scan/patch.json"
+  ],
+  "returncode": 2,
+  "expected_status": "fail",
+  "response": {
+    "status": "fail",
+    "diagnostics": [
+      {
+        "rule": 12,
+        "level": "fail",
+        "item_id": "GAPREQ-1",
+        "path": "/gap-requests/requests/0/related_analysis_refs/1",
+        "message": "缺口引用不存在或未显式提供关联资料：EXTERNAL/FR-1。"
+      }
+    ],
+    "requirement_id": "GAP-HANDOFF",
+    "revision": 1,
+    "id_map": {},
+    "affected_ids": [],
+    "written": false
+  },
+  "fingerprints_before": {
+    ".analysis-transaction.json": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+    "workspace.json": "sha256:18d07fa7ddaa5cd89b3ac385d1529415c15dba9cec2b9f29601c449eaaa63692",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/requirement.json": "sha256:36ef32b16da0ed6791f0feb4616b9f8d5a6b451abfa856e658e4847a2af588c2",
+    "projects/gap-handoff-project/requirements/EXTERNAL/requirement.json": "sha256:5f65b9083b808e00813d30cecc6c790e1ae940bc0aae2b227ca3587ffe1949d9",
+    "projects/gap-handoff-project/requirements/EXTERNAL/analysis/analysis-events.jsonl": "sha256:32ddead3d44212a521e7eb6d8ece6dfe39bb3399fa1f2039490ed578ca825d86",
+    "projects/gap-handoff-project/requirements/EXTERNAL/analysis/analysis-result.json": "sha256:2dc0a2d79928549ee50603f6e03c56c4b801ac5e90a2cdc7ec5a3e30dc82ac6d",
+    "projects/gap-handoff-project/requirements/EXTERNAL/analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/analysis-events.jsonl": "sha256:8496e7478731dc514665a696c9d75447c888a88b11624de480dba26002655f0b",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/analysis-result.json": "sha256:ee3acef0fd8d43af833009dff8c0e0f980a6cba626c872444ab16a03bf0603df",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/gap-requests.json": "sha256:960d5ae61e2e35ab45296a0dbbbdcd3201efa3fc19c41ee632dfaa58b355e5d4",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/prd-events.jsonl": "sha256:f0d742ebb4bed1d6d5f4e32201bcdcee16a8bad328fd7783519e3d5d993a55ca",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/prd.md": "sha256:b18323277d9e46cb16a07788ee2c659ff08af5a8f2e0c815e667ca159edfd8b9",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/prd-trace.json": "sha256:5cd4e014a46b220d9cb8ca68099d0cd30f786e10cb16a53781a20f40052ef3c7",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/inputs/original.md": "sha256:8c5119f730b1b233710c269b443a7f93e3c2218ef54d9bc6afbd1d6f0fbad1c0",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/versions/prd-1.0.md": "sha256:6a9601fab7c530044980b2009eac46409b13217ceb182bb26540cb8a25b76dea"
+  },
+  "fingerprints_after": {
+    ".analysis-transaction.json": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+    "workspace.json": "sha256:18d07fa7ddaa5cd89b3ac385d1529415c15dba9cec2b9f29601c449eaaa63692",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/requirement.json": "sha256:36ef32b16da0ed6791f0feb4616b9f8d5a6b451abfa856e658e4847a2af588c2",
+    "projects/gap-handoff-project/requirements/EXTERNAL/requirement.json": "sha256:5f65b9083b808e00813d30cecc6c790e1ae940bc0aae2b227ca3587ffe1949d9",
+    "projects/gap-handoff-project/requirements/EXTERNAL/analysis/analysis-events.jsonl": "sha256:32ddead3d44212a521e7eb6d8ece6dfe39bb3399fa1f2039490ed578ca825d86",
+    "projects/gap-handoff-project/requirements/EXTERNAL/analysis/analysis-result.json": "sha256:2dc0a2d79928549ee50603f6e03c56c4b801ac5e90a2cdc7ec5a3e30dc82ac6d",
+    "projects/gap-handoff-project/requirements/EXTERNAL/analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/analysis-events.jsonl": "sha256:8496e7478731dc514665a696c9d75447c888a88b11624de480dba26002655f0b",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/analysis-result.json": "sha256:ee3acef0fd8d43af833009dff8c0e0f980a6cba626c872444ab16a03bf0603df",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/gap-requests.json": "sha256:960d5ae61e2e35ab45296a0dbbbdcd3201efa3fc19c41ee632dfaa58b355e5d4",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/prd-events.jsonl": "sha256:f0d742ebb4bed1d6d5f4e32201bcdcee16a8bad328fd7783519e3d5d993a55ca",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/prd.md": "sha256:b18323277d9e46cb16a07788ee2c659ff08af5a8f2e0c815e667ca159edfd8b9",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/prd-trace.json": "sha256:5cd4e014a46b220d9cb8ca68099d0cd30f786e10cb16a53781a20f40052ef3c7",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/inputs/original.md": "sha256:8c5119f730b1b233710c269b443a7f93e3c2218ef54d9bc6afbd1d6f0fbad1c0",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/versions/prd-1.0.md": "sha256:6a9601fab7c530044980b2009eac46409b13217ceb182bb26540cb8a25b76dea"
+  },
+  "changed_files": []
+}

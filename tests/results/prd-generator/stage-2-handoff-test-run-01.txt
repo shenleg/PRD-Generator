@@ -1,0 +1,86 @@
+test_analysis_save_failure_never_marks_gap (test_gap_handoff.GapHandoffTests.test_analysis_save_failure_never_marks_gap)
+分析实际替换失败时缺口仍 open，沿原 journal 恢复后重读重试不会重复登记。 ... ok
+test_candidate_refs_must_match_each_gap_ref (test_gap_handoff.GapHandoffTests.test_candidate_refs_must_match_each_gap_ref)
+候选关联不能遗漏、替换、增添或重排缺口关联，失败不写入。 ... ok
+test_closed_gap_is_not_reopened_or_rewritten (test_gap_handoff.GapHandoffTests.test_closed_gap_is_not_reopened_or_rewritten)
+重复接收 closed 缺口保留状态和生成侧 resolution，不自行关闭或重开。 ... ok
+test_concurrent_gap_rewrite_is_not_overwritten (test_gap_handoff.GapHandoffTests.test_concurrent_gap_rewrite_is_not_overwritten)
+分析保存期间生成侧改写缺口时拒绝标记，保留并发内容和已保存接收问题。 ... FAIL
+test_concurrent_gap_whitespace_change_also_conflicts (test_gap_handoff.GapHandoffTests.test_concurrent_gap_whitespace_change_also_conflicts)
+即使并发只改序列化空白，读时与标记前字节不等也必须拒绝覆盖。 ... FAIL
+test_cross_requirement_api_tuple_is_supported (test_gap_handoff.GapHandoffTests.test_cross_requirement_api_tuple_is_supported)
+显式分析与来源二元组也能验证跨需求引用，不隐式依赖路径。 ... ok
+test_cross_requirement_requires_explicit_documents (test_gap_handoff.GapHandoffTests.test_cross_requirement_requires_explicit_documents)
+即使外部资料存在于工作区，未显式提供也拒绝，显式路径只读且保留完整引用。 ... ok
+test_dry_run_previews_without_writing (test_gap_handoff.GapHandoffTests.test_dry_run_previews_without_writing)
+无 pending 事务时 dry-run 只校验和预分配，不保存问题或标记缺口。 ... ok
+test_dry_run_still_recovers_pending_analysis_transaction (test_gap_handoff.GapHandoffTests.test_dry_run_still_recovers_pending_analysis_transaction)
+dry-run 不豁免原有 journal 恢复，但不提前完成本次缺口标记。 ... ok
+test_duplicate_candidates_preserve_answer_priority_and_status (test_gap_handoff.GapHandoffTests.test_duplicate_candidates_preserve_answer_priority_and_status)
+候选问题字段被忽略，已保存答案、优先级和处理状态不被重复接收覆盖。 ... ok
+test_duplicate_handoff_is_bytewise_noop (test_gap_handoff.GapHandoffTests.test_duplicate_handoff_is_bytewise_noop)
+纯重复交接复用问题编号，不推进修订、不追加事件、不改任何业务字节。 ... ok
+test_duplicate_with_changed_set_is_not_noop (test_gap_handoff.GapHandoffTests.test_duplicate_with_changed_set_is_not_noop)
+只有分析内容不变才算纯重复，set 引入真实变化仍保存新修订。 ... ok
+test_duplicate_with_other_changes_commits_once (test_gap_handoff.GapHandoffTests.test_duplicate_with_other_changes_commits_once)
+重复接收不阻止同补丁中的真实增量，也不额外消耗问题编号。 ... ok
+test_empty_refs_remain_empty (test_gap_handoff.GapHandoffTests.test_empty_refs_remain_empty)
+无关联缺口接收后仍是空数组，不臆造 GOAL、FR 或问题关联。 ... ok
+test_gap_reference_cannot_be_transferred_by_update (test_gap_handoff.GapHandoffTests.test_gap_reference_cannot_be_transferred_by_update)
+已有接收关联不能通过 update 转移、清除或伪装成另一个缺口。 ... ok
+test_handoff_only_changes_owned_files_and_target_status (test_gap_handoff.GapHandoffTests.test_handoff_only_changes_owned_files_and_target_status)
+只改分析归属文件及对应缺口状态，其他需求、正文、追溯、版本和元数据不动。 ... ok
+test_invalid_gap_references_do_not_write (test_gap_handoff.GapHandoffTests.test_invalid_gap_references_do_not_write)
+缺口引用格式错误或条目不存在时拒绝，分析和缺口均逐字节不变。 ... ok
+test_local_full_and_short_refs_are_normalized (test_gap_handoff.GapHandoffTests.test_local_full_and_short_refs_are_normalized)
+本需求完整引用和本地引用均转存为 FR-1，输入补丁不被修改。 ... ok
+test_mark_failure_reports_saved_revision_and_retry_preserves_progress (test_gap_handoff.GapHandoffTests.test_mark_failure_reports_saved_revision_and_retry_preserves_progress)
+保存后标记中断返回 fail/written=true，重读重试只补标记并保留其间回答。 ... ok
+test_old_questions_without_gap_ref_remain_compatible (test_gap_handoff.GapHandoffTests.test_old_questions_without_gap_ref_remain_compatible)
+旧问题无 gap_request_ref 仍可读取和更新，新增接收不污染原问题或旧关联。 ... ok
+test_stale_revision_is_rejected_even_for_duplicate (test_gap_handoff.GapHandoffTests.test_stale_revision_is_rejected_even_for_duplicate)
+旧补丁即使只是重复接收仍拒绝，调用方必须重读当前修订。 ... ok
+test_two_adds_for_one_gap_share_id (test_gap_handoff.GapHandoffTests.test_two_adds_for_one_gap_share_id)
+同一补丁两次接收同一缺口只建一个问题，两个别名映射到相同 Q 编号。 ... FAIL
+test_unknown_gap_and_wrong_change_type_are_rejected (test_gap_handoff.GapHandoffTests.test_unknown_gap_and_wrong_change_type_are_rejected)
+未知缺口或非 supplement 接收不能绕过协议。 ... ok
+
+======================================================================
+FAIL: test_concurrent_gap_rewrite_is_not_overwritten (test_gap_handoff.GapHandoffTests.test_concurrent_gap_rewrite_is_not_overwritten)
+分析保存期间生成侧改写缺口时拒绝标记，保留并发内容和已保存接收问题。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_gap_handoff.py", line 427, in test_concurrent_gap_rewrite_is_not_overwritten
+    self.assertTrue(fault["triggered"])
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_concurrent_gap_whitespace_change_also_conflicts (test_gap_handoff.GapHandoffTests.test_concurrent_gap_whitespace_change_also_conflicts)
+即使并发只改序列化空白，读时与标记前字节不等也必须拒绝覆盖。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_gap_handoff.py", line 443, in test_concurrent_gap_whitespace_change_also_conflicts
+    self.assertTrue(fault["triggered"])
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_two_adds_for_one_gap_share_id (test_gap_handoff.GapHandoffTests.test_two_adds_for_one_gap_share_id)
+同一补丁两次接收同一缺口只建一个问题，两个别名映射到相同 Q 编号。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_gap_handoff.py", line 327, in test_two_adds_for_one_gap_share_id
+    result = self.accepted(patch)
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_gap_handoff.py", line 197, in accepted
+    self.assertEqual(result["status"], "pass", result)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'fail' != 'pass'
+- fail
++ pass
+ : {'status': 'fail', 'diagnostics': [{'rule': 1, 'level': 'fail', 'item_id': 'GAPREQ-1', 'path': '/operations', 'message': '同一补丁不能多次登记同一缺口。'}], 'requirement_id': 'GAP-HANDOFF', 'revision': None, 'id_map': {}, 'affected_ids': [], 'written': False}
+
+----------------------------------------------------------------------
+Ran 23 tests in 5.656s
+
+FAILED (failures=3)

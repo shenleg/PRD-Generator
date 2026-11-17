@@ -1,0 +1,32 @@
+{
+  "expectations": [
+    {
+      "text": "公开更新器成功保存且未代答或升为就绪",
+      "passed": true,
+      "evidence": "update-response.json为pass/written=true；verification.json确认所有问题open且无答案、readiness=not_ready。"
+    },
+    {
+      "text": "本需求、跨需求及空关联按协议保存",
+      "passed": true,
+      "evidence": "verification.json核对新增三个问题分别关联GOAL-1、MODEL-RELATED/GOAL-1、空数组。"
+    },
+    {
+      "text": "PRD正文、追溯和外部需求未变化",
+      "passed": true,
+      "evidence": "verification.json对比所有业务文件摘要，仅当前分析结果、分析事件及gap文件变化。"
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1
+  },
+  "user_notes_summary": {
+    "needs_review": [
+      "自然语言分工与不臆造事实需用户核对参考要点；本页不代签。"
+    ],
+    "uncertainties": [],
+    "workarounds": []
+  }
+}

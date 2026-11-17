@@ -1,0 +1,8 @@
+{
+  "common": {
+    "requirement_id": "MODEL-RELATED",
+    "project_id": "demo",
+    "title": "关联身份校验需求（合成）",
+    "created_at": "2026-11-17T14:39:32.816581+00:00"
+  }
+}

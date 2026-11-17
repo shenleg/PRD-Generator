@@ -1,0 +1,14 @@
+{
+  "common": {
+    "requirement_id": "GAP-HANDOFF",
+    "project_id": "gap-handoff-project",
+    "title": "合成测试，不是真实需求",
+    "created_at": "2026-11-17T14:49:43.807165+00:00"
+  },
+  "prd": {
+    "version": "0.1",
+    "status": "draft",
+    "based_on_analysis_revision": 1,
+    "extension": "保留"
+  }
+}

@@ -32,6 +32,11 @@
       "type": "array",
       "items": {"$ref": "requirement-item.schema.json#/$defs/item_reference"}
     },
+    "gap_request_ref": {
+      "type": "string",
+      "pattern": "^GAPREQ-[1-9][0-9]*$",
+      "description": "选填的本需求缺口编号；存在性和接收问题唯一性由分析校验器检查，旧问题可省略。"
+    },
     "answer": {
       "type": "string",
       "description": "可选的回答正文，保留用户回答或资料检索结果。"

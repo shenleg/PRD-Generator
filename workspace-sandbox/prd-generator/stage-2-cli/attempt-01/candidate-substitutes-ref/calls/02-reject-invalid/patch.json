@@ -1,0 +1,125 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "GAP-HANDOFF",
+  "base_revision": 1,
+  "change_type": "supplement",
+  "actor": "analyst",
+  "summary": "接收合成缺口，不是模型生成补丁",
+  "operations": [
+    {
+      "op": "add",
+      "collection": "questions",
+      "ref": "$gap",
+      "value": {
+        "question": "合成缺口需要什么补充？",
+        "priority": "P0",
+        "resolution": "ask_product",
+        "reason": "尚不明确",
+        "impact": "无法验收",
+        "options": [
+          "方案甲",
+          "方案乙",
+          "其他",
+          "暂不确定"
+        ],
+        "recommendation": "建议甲，先确认范围",
+        "status": "open",
+        "related_ids": [
+          "GOAL-1"
+        ],
+        "gap_request_ref": "GAPREQ-1"
+      }
+    }
+  ],
+  "set": {},
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 2,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 3,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 5,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 6,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 8,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 9,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 10,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    },
+    {
+      "item": 11,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "测试中尚待确认"
+    }
+  ]
+}

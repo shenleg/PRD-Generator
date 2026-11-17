@@ -7,7 +7,7 @@
 | Skill | 当前范围 | 源码 | 文档 | 测试 |
 | --- | --- | --- | --- | --- |
 | `requirement-analyst` | 原阶段 1～8及最终收口完成；真实下游联调仍需补验 | [生产目录](skill/requirement-analyst/) | [文档导航](docs/requirement-analyst/README.md) | [测试与历史证据](tests/requirement-analyst/README.md) |
-| `prd-generator` | 阶段 0、1完成：格式、只读校验及回归；尚无完整生成入口 | [阶段 1 载荷](skill/prd-generator/) | [文档导航](docs/prd-generator/README.md) | [测试说明](tests/prd-generator/README.md) |
+| `prd-generator` | 阶段 0、1完成；阶段 2 配套补丁已验收；尚无完整生成入口 | [阶段 1 载荷](skill/prd-generator/) | [文档导航](docs/prd-generator/README.md) | [测试说明](tests/prd-generator/README.md) |
 
 阶段记录说明各自的通过范围。合成案例、程序回归、模型行为、人工认可和真实业务签核不混称；当前不能把生成侧格式校验通过等同于正式 PRD 已可生成或发布。
 
@@ -39,7 +39,7 @@ workspace-sandbox/             历史试跑证据，保留原位置
 
 ## 安装与使用
 
-需求分析 Skill 的安装、普通对话触发和当前会话承接见 [安装说明](docs/requirement-analyst/installation.md)。现有 `.claude/skills/requirement-analyst` 仍指向唯一生产目录，本次整理不改安装链接或生产文件。
+需求分析 Skill 的安装、普通对话触发和当前会话承接见 [安装说明](docs/requirement-analyst/installation.md)。现有 `.claude/skills/requirement-analyst` 仍指向唯一生产目录；阶段 2 修改分析侧接收能力，不改安装链接。
 
 `prd-generator` 当前没有 `SKILL.md`，不能按完整 Skill 调用；阶段 1 的只读 CLI 见 [校验说明](skill/prd-generator/scripts/README.md)。后续按 [执行计划](docs/prd-generator/execution-plan.md) 明确指定阶段。
 
@@ -54,4 +54,4 @@ uv run --offline --no-project --python /usr/bin/python3 --with-requirements test
 
 统一入口发现两组测试，不静默漏掉子目录。测试不调用模型、不启动浏览器；写入测试使用临时目录，实际模型及人工认可仍以保存证据为准。`--offline` 需要依赖已缓存，新环境按安装说明准备依赖。
 
-本次目录整理不扩大产品能力，不删除历史材料，不自动提交、推送、合并或打标签。
+阶段实施范围以用户指令和阶段记录为准；不删除历史材料，不自动提交、推送、合并或打标签。

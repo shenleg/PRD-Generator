@@ -1,0 +1,51 @@
+{
+  "status": "pass",
+  "execution": "independent_subagent_explicit_skill_snapshot",
+  "new_model_execution": true,
+  "installed_auto_trigger": false,
+  "formal_generator_called": false,
+  "human_approval": false,
+  "analysis_revision": 2,
+  "changed_files": [
+    "projects/demo/requirements/MODEL-TASK/analysis/analysis-events.jsonl",
+    "projects/demo/requirements/MODEL-TASK/analysis/analysis-result.json",
+    "projects/demo/requirements/MODEL-TASK/prd/gap-requests.json"
+  ],
+  "before_fingerprints": {
+    "workspace.json": "3027c0af98c0488e6fe55e1459f73afe80d6b5c77daefbc86935c08091c79434",
+    "projects/demo/requirements/MODEL-RELATED/requirement.json": "d6521eda6678843d6fa250b3c417f37feb2c21623537cb26ce3beb56c1f90dd0",
+    "projects/demo/requirements/MODEL-TASK/requirement.json": "73fc945d099d9ac29226355cb858e1d296a651cbaac56fb2b554ec444f76c35d",
+    "projects/demo/requirements/MODEL-TASK/analysis/analysis-events.jsonl": "e5cbd739b8e78ad2f3a7c63555be3e6e6edb820c539a28680a5d3559e02e8b9f",
+    "projects/demo/requirements/MODEL-TASK/analysis/analysis-result.json": "a7669270814481c8ee1fc0a377828e28299842a58e1709955825d1aecd37031d",
+    "projects/demo/requirements/MODEL-TASK/analysis/source-manifest.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "projects/demo/requirements/MODEL-TASK/prd/gap-requests.json": "3092c6205efe8212bcb42bd5e43711e8e4ec095c8f07b76876356e4df3aa44b5",
+    "projects/demo/requirements/MODEL-TASK/prd/prd.md": "ff2d4cc9fa4365c7589b72f3cc0901517dda11f4da9ec058954c0f06beed5aa5",
+    "projects/demo/requirements/MODEL-TASK/prd/prd-trace.json": "d3290a088b63e08f546abe94f80aefdab8c844d7ba1f2193b5ee8bdfb68572e4",
+    "projects/demo/requirements/MODEL-RELATED/analysis/analysis-events.jsonl": "dd08fb7fb845c079412096637a2b7240d23859d47ca8224147f384e8154d870e",
+    "projects/demo/requirements/MODEL-RELATED/analysis/analysis-result.json": "25f2d67e650db7b2264defc1efe2dc515a359c6f4955c4a04a6051bc7282454f",
+    "projects/demo/requirements/MODEL-RELATED/analysis/source-manifest.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "after_fingerprints": {
+    "workspace.json": "3027c0af98c0488e6fe55e1459f73afe80d6b5c77daefbc86935c08091c79434",
+    "projects/demo/requirements/MODEL-RELATED/requirement.json": "d6521eda6678843d6fa250b3c417f37feb2c21623537cb26ce3beb56c1f90dd0",
+    "projects/demo/requirements/MODEL-TASK/requirement.json": "73fc945d099d9ac29226355cb858e1d296a651cbaac56fb2b554ec444f76c35d",
+    "projects/demo/requirements/MODEL-TASK/analysis/analysis-events.jsonl": "61f15ad911eda0a8f276c2d27ca7d6cd74d3ce9df2a0c999227f285d283fb1ca",
+    "projects/demo/requirements/MODEL-TASK/analysis/analysis-result.json": "ecf668580fb5a457bf6edd9a2416b3d7b29ed8d9a8221fc691b2d1c5eb54a0f6",
+    "projects/demo/requirements/MODEL-TASK/analysis/source-manifest.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "projects/demo/requirements/MODEL-TASK/prd/gap-requests.json": "aedfa5291d0a46d4e98fb319abe8531ea47e77a130de415174eadc2855c3f75e",
+    "projects/demo/requirements/MODEL-TASK/prd/prd.md": "ff2d4cc9fa4365c7589b72f3cc0901517dda11f4da9ec058954c0f06beed5aa5",
+    "projects/demo/requirements/MODEL-TASK/prd/prd-trace.json": "d3290a088b63e08f546abe94f80aefdab8c844d7ba1f2193b5ee8bdfb68572e4",
+    "projects/demo/requirements/MODEL-RELATED/analysis/analysis-events.jsonl": "dd08fb7fb845c079412096637a2b7240d23859d47ca8224147f384e8154d870e",
+    "projects/demo/requirements/MODEL-RELATED/analysis/analysis-result.json": "25f2d67e650db7b2264defc1efe2dc515a359c6f4955c4a04a6051bc7282454f",
+    "projects/demo/requirements/MODEL-RELATED/analysis/source-manifest.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+  },
+  "checks": [
+    "原问题及目标原值保留",
+    "新增问题全部open且无答案",
+    "本需求/跨需求/空引用转换正确",
+    "三个缺口仅为handed_over",
+    "PRD正文及追溯和外部需求字节不变",
+    "就绪度未升为已就绪"
+  ],
+  "semantic_review": "AI辅助核对通过，人工参考要点尚待用户认可"
+}

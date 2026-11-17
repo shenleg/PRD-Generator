@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "GAP-HANDOFF",
+  "counters": {
+    "GAPREQ": 3
+  },
+  "extension": {
+    "keep": [
+      "生成侧扩展",
+      {
+        "nested": true
+      }
+    ],
+    "concurrent_generation": "必须保留"
+  },
+  "requests": [
+    {
+      "id": "GAPREQ-1",
+      "needed_for": "功能需求",
+      "description": "合成缺口，仅测交接",
+      "related_analysis_refs": [
+        "GAP-HANDOFF/FR-1"
+      ],
+      "raised_in": "0.1",
+      "status": "handed_over",
+      "extension": {
+        "keep": "缺口扩展"
+      }
+    },
+    {
+      "id": "GAPREQ-2",
+      "needed_for": "验收标准",
+      "description": "本轮不接收",
+      "related_analysis_refs": [],
+      "raised_in": "0.1",
+      "status": "open"
+    },
+    {
+      "id": "GAPREQ-3",
+      "needed_for": "业务规则",
+      "description": "并发新生成缺口",
+      "related_analysis_refs": [],
+      "raised_in": "0.2",
+      "status": "open"
+    }
+  ]
+}

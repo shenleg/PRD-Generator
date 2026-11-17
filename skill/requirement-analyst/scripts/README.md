@@ -12,7 +12,7 @@ uv run --with-requirements skill/requirement-analyst/scripts/requirements.txt \
   tests/fixtures/high-low-voltage/analysis-result.json
 ```
 
-默认读取结果旁边的 `source-manifest.json`。来源清单不在同一目录时，用 `--source-manifest PATH` 指定。
+默认读取结果旁边的 `source-manifest.json`，以及当前需求存在的 `../prd/gap-requests.json`。来源清单不在同一目录时，用 `--source-manifest PATH` 指定；独立缺口夹具可用 `--gap-requests PATH` 显式提供。校验器只读，问题接收关联须在本需求缺口中存在且唯一；旧问题没有 `gap_request_ref` 仍合法。
 
 跨需求引用需要显式提供目标分析文件：
 
@@ -48,7 +48,7 @@ uv run --no-project --python /usr/bin/python3 \
 
 可先加 `--dry-run` 预检；`--related-analysis PATH` 可重复指定关联分析。补丁使用 `patch_version: "1.0"`、读取时的 `base_revision` 和临时别名；详见补丁协议，不接受整份 analysis-result 替换。正式结果、来源、事件由脚本维护；报告由分析者根据保存后的 JSON 整理。
 
-输出仍为 pass/warning/fail，额外含 requirement_id、revision、id_map、affected_ids、written。warning 可保存 stale，但必须向用户提示；fail 不写候选业务文件，revision 冲突须重新读取。首次分配需求目录并写 common；后续保留 requirement.json、inputs/ 和 prd/。工作区独占锁及写前记录用于恢复中断，不等于面向任意读取者的跨文件原子快照。
+输出仍为 pass/warning/fail，额外含 requirement_id、revision、id_map、affected_ids、written。warning 可保存 stale，但必须向用户提示；校验失败不提交候选分析，revision 冲突须重新读取。首次分配需求目录并写 common；后续保留 requirement.json 和 inputs/。常规更新不写 prd/；缺口接收成功后唯一例外是标记对应缺口状态，细则见 `../references/incremental-update.md` 的“接收 PRD 缺口”。标记失败可返回 fail 且 written=true，代表分析已提交、缺口尚待重读重试；`gap_status_written` 仅表示本次是否实际改动状态。重复接收复用已有问题，纯重复不推进修订。工作区独占锁及写前记录用于恢复中断，不等于面向任意读取者的跨文件原子快照。
 
 API `update_analysis(workspace, project_id, patch, *, related_analyses=(), dry_run=False)` 返回同一响应对象。输入补丁及关联资料不被修改；用户协议/文件错误给结构化 fail，内部 Schema 安装错误直接抛出。
 

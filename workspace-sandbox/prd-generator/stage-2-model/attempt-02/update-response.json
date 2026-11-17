@@ -1,0 +1,18 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "MODEL-TASK",
+  "revision": 2,
+  "id_map": {
+    "$permission": "Q-2",
+    "$identity": "Q-3",
+    "$design": "Q-4"
+  },
+  "affected_ids": [
+    "Q-2",
+    "Q-3",
+    "Q-4"
+  ],
+  "written": true,
+  "gap_status_written": true
+}

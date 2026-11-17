@@ -419,7 +419,73 @@ def _related_documents(related):
     return documents
 
 
-def _apply(analysis, manifest, patch, project):
+def _prepare_handoffs(analysis, patch, gaps):
+    """在分配编号前规范化缺口引用、复用接收问题，避免重试消耗新编号。"""
+    requests = {item["id"]: item for item in gaps["requests"]} if gaps else {}
+    existing = {q["gap_request_ref"]: q for q in analysis["questions"] if "gap_request_ref" in q}
+    operations, reused, selected = [], {}, []
+    requirement = analysis["requirement_id"]
+    for operation in patch["operations"]:
+        value = operation.get("value", {})
+        if operation["op"] != "add" or operation["collection"] != "questions" or "gap_request_ref" not in value:
+            operations.append(operation)
+            continue
+        ref = value["gap_request_ref"]
+        _require(patch["change_type"] == "supplement", "缺口首次接收或重试须使用 supplement。", "/operations")
+        _require(isinstance(ref, str) and ref in requests, "接收引用不在本需求缺口文件中。", "/operations", str(ref))
+        _require(ref not in selected, "同一补丁不能多次登记同一缺口。", "/operations", ref)
+        selected.append(ref)
+        if ref in existing:
+            # 再交接不是答疑；不以新候选问题覆盖原问题的答案、优先级或处理进度。
+            reused[operation["ref"]] = existing[ref]["id"]
+            continue
+        gap = requests[ref]
+        _require(gap["status"] == "open", "非 open 缺口必须已有接收问题。", "/operations", ref)
+        expected = [r[len(requirement) + 1:] if r.startswith(requirement + "/") else r
+                    for r in gap["related_analysis_refs"]]
+        provided = value.get("related_ids")
+        _require(isinstance(provided, list) and all(isinstance(r, str) for r in provided),
+                 "接收问题须提供 related_ids 数组。", "/operations", ref)
+        normalized = [r[len(requirement) + 1:] if r.startswith(requirement + "/") else r for r in provided]
+        _require(normalized == expected, "接收问题 related_ids 必须忠实对应缺口引用；空关联保持为空。", "/operations", ref)
+        value["related_ids"] = expected
+        operations.append(operation)
+    patch["operations"] = operations
+    return reused, selected
+
+
+def _mark_handoffs(root, gap_path, snapshot, selected):
+    """分析提交后比较读取时原字节，仅标记本次接收的 open 缺口；冲突保留现场。"""
+    if not selected:
+        return False
+    _safe(root, gap_path.relative_to(root))
+    _require(_read_optional(gap_path) == snapshot, "缺口文件在接收期间发生变化；分析已保存，请重读缺口后重试标记。", str(gap_path))
+    gaps = _load_json(gap_path)
+    changed = False
+    for gap in gaps["requests"]:
+        if gap["id"] in selected and gap["status"] == "open":
+            gap["status"] = "handed_over"
+            changed = True
+    if changed:
+        # 缺口不放入分析事务：恢复旧事务不能重放过期的生成侧文件快照。
+        _require(_read_optional(gap_path) == snapshot, "缺口标记前发生并发更新，请重读后重试。", str(gap_path))
+        _atomic_write(gap_path, _json_bytes(gaps))
+    return changed
+
+
+def _finish_handoffs(root, gap_path, snapshot, selected, outcome, dry_run):
+    """将标记失败与分析已提交分开报告，使调用方能安全重试而非重建问题。"""
+    if dry_run or not selected:
+        return outcome
+    try:
+        outcome["gap_status_written"] = _mark_handoffs(root, gap_path, snapshot, selected)
+        return outcome
+    except (_InputError, OSError, UnicodeError, ValueError) as error:
+        failed = _failure(error, outcome["requirement_id"], outcome["revision"])
+        return {**outcome, "status": "fail", "diagnostics": failed["diagnostics"], "gap_status_written": False}
+
+
+def _apply(analysis, manifest, patch, project, reused=None):
     """两遍分配与应用别名，再传播撤销；所有变更仅发生于内存副本。"""
     before_entries = {item["id"]: copy.deepcopy(item) for item in _entries(analysis)}
     _require(len(before_entries) == sum(1 for _ in _entries(analysis)), "既有条目编号重复。")
@@ -429,7 +495,7 @@ def _apply(analysis, manifest, patch, project):
         if match:
             prefix, number = match.groups()
             maxima[prefix] = max(maxima.get(prefix, 0), int(number))
-    id_map = {}
+    id_map = dict(reused or {})
     for operation in patch["operations"]:
         if operation["op"] not in {"add", "add_source"}:
             continue
@@ -463,6 +529,10 @@ def _apply(analysis, manifest, patch, project):
             continue
         _require(item.get("status") != "withdrawn", "不能更新或恢复已撤销条目。", "/operations", target)
         changes = _resolve_fields(operation["changes"], id_map)
+        if "gap_request_ref" in changes:
+            _require(target.startswith("Q-") and "gap_request_ref" in item
+                     and changes["gap_request_ref"] == item["gap_request_ref"],
+                     "接收关联不可新增、移除或转移；首次接收须新增问题。", "/operations", target)
         if item.get("tag") == "confirmed":
             _require(changes.get("tag", "confirmed") == "confirmed", "不能以推断覆盖 confirmed 标签。", "/operations", target)
             if "content" in changes and changes["content"] != item.get("content"):
@@ -593,19 +663,30 @@ def _update_locked(root, project, patch, related, dry_run, validate):
         _require(type(revision) is int and revision >= 1, "既有 analysis_revision 非法。", str(analysis_path))
         _require(isinstance(manifest, list) and all(isinstance(source, dict) for source in manifest), "既有来源清单格式非法。", str(manifest_path))
         _require(type(analysis["meta"].get("source_revision")) is int and analysis["meta"]["source_revision"] >= 1, "既有 source_revision 非法。", str(analysis_path))
-    _require(patch["base_revision"] == revision, f"修订冲突：base_revision={patch['base_revision']}，当前 revision={revision}；请重新读取并分析，不要只修改数字重试。", "/base_revision", requirement)
+    gap_path = _safe(root, base / "prd" / "gap-requests.json")
+    gap_snapshot = _read_optional(gap_path)
+    gaps = _load_json(gap_path) if gap_snapshot is not None else None
+    _require(gap_snapshot is None or gaps is not None, "缺口文件必须为版本化对象，不能为 null。", str(gap_path))
     if not initial:
-        existing = validate(analysis, manifest, related_analyses=related)
+        existing = validate(analysis, manifest, related_analyses=related, gap_requests=gaps)
         if existing["status"] == "fail":
             return {**existing, "requirement_id": requirement, "revision": revision,
                     "id_map": {}, "affected_ids": [], "written": False}
     original = copy.deepcopy(analysis)
     original_manifest = copy.deepcopy(manifest)
-    id_map, affected, before_entries = _apply(analysis, manifest, patch, project)
+    reused, selected = _prepare_handoffs(analysis, patch, gaps)
+    id_map, affected, before_entries = _apply(analysis, manifest, patch, project, reused)
+    _require(patch["base_revision"] == revision, f"修订冲突：base_revision={patch['base_revision']}，当前 revision={revision}；请重新读取并分析，不要只修改数字重试。", "/base_revision", requirement)
+    # 纯重复交接没有新分析事实；重读当前修订后只恢复标记，不覆盖答疑或推进修订。
+    noop_handoff = bool(reused) and not patch["operations"] and analysis == original and manifest == original_manifest
+    if noop_handoff:
+        outcome = {**existing, "requirement_id": requirement, "revision": revision,
+                   "id_map": id_map, "affected_ids": [], "written": False}
+        return _finish_handoffs(root, gap_path, gap_snapshot, selected, outcome, dry_run)
     analysis["meta"]["analysis_revision"] = revision + 1
     if not initial and manifest != original_manifest:
         analysis["meta"]["source_revision"] += 1
-    result = validate(analysis, manifest, related_analyses=related)
+    result = validate(analysis, manifest, related_analyses=related, gap_requests=gaps)
     outcome = {**result, "requirement_id": requirement, "revision": revision + 1,
                "id_map": id_map, "affected_ids": affected, "written": False}
     if result["status"] == "fail":
@@ -655,7 +736,7 @@ def _update_locked(root, project, patch, related, dry_run, validate):
     _atomic_write(_safe(root, _JOURNAL), _json_bytes(record))
     _recover(root)
     outcome["written"] = True
-    return outcome
+    return _finish_handoffs(root, gap_path, gap_snapshot, selected, outcome, dry_run)
 
 
 def update_analysis(workspace: Path, project_id: str, patch: dict, *, related_analyses=(), dry_run: bool = False) -> dict:
@@ -665,7 +746,9 @@ def update_analysis(workspace: Path, project_id: str, patch: dict, *, related_an
     related_analyses 为显式关联结果路径或 (分析结果, 来源清单) 二元组序列；
     dry_run 为真时仅预检并返回拟分配编号，不提交本补丁。锁内仍会恢复既有待完成事务。
     返回：含 status、diagnostics、requirement_id、revision、id_map、affected_ids、written
-    的结果；revision 为本补丁拟保存或已保存的修订号，written 仅在完整提交后为真。
+    的结果；revision 为本补丁拟保存或已保存的修订号，written 表示分析事务已提交。
+    接收缺口时另含 gap_status_written；标记失败返回 fail，但保留已提交的 written/revision，
+    重新读取后复用接收问题。纯重复交接不推进分析修订，也不重写已有问题。
     异常：用户输入、文件、编码、JSON 及协议错误均返回结构化 fail；
     校验器及 Schema 安装缺失或损坏、程序内部错误仍抛出，避免把安装故障误报成业务问题。
     """

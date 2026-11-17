@@ -1,0 +1,27 @@
+{
+  "document_role": "stage_2_actual_user_reference_and_trial_approval",
+  "date": "2026-11-17",
+  "source": "current_conversation_AskUserQuestion_answers",
+  "question": "是否认可阶段 2 的 PG-29 参考要点及这次实际模型接收结果：权限边界交产品、接口复用现状交研发、设计安排交设计；原问题与新问题均保持未解决，三项缺口仅标记 handed_over，就绪度仍为 not_ready，未改 PRD 正文？这是合成试跑认可，不授权发布、提交、合并或进入阶段 3。",
+  "user_selection": "认可参考要点与结果（推荐）",
+  "status": "human_reviewed_approved",
+  "reference_path": "tests/expected/prd-generator/PG-29.review-draft.md",
+  "reviewed_reference_snapshot": "tests/results/prd-generator/stage-2-reference-reviewed.md",
+  "reviewed_reference_sha256": "sha256:3e6168d3c851dac31ac6cbc3ffaf24faf4439245bb04f31bcb12be07a383f0c9",
+  "trial_path": "workspace-sandbox/prd-generator/stage-2-model/attempt-02",
+  "trial_artifact_sha256": {
+    "candidate.patch.json": "sha256:dbdda93c3c72740aeb070729f8e25dc9282eea35ca122bf344dd4325872c9d44",
+    "model-response.md": "sha256:a4dfa7cdd8b351582dfbaf685a790e9607a24d30d77675846a17d16ee3982bf5",
+    "update-response.json": "sha256:809680e05e8b26514779797562e405c13468f92b7c512eec573e46325ce56071",
+    "verification.json": "sha256:544120b1a5344187b10928cab96185de5dd9ef6fa86c73408a44fea4a66169fd"
+  },
+  "scope": "仅认可阶段2合成接收协议参考和本次单轮模型结果；不是业务缺口已解决、真实发布或最终生成器集成",
+  "not_authorized": [
+    "阶段3",
+    "git commit",
+    "git merge",
+    "git tag",
+    "git push",
+    "真实发布"
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "date": "2026-11-17",
+  "phase": 2,
+  "scenario": "PG-29",
+  "stage_status": "completed",
+  "scenario_status": "pass",
+  "program_status": "pass",
+  "execution_modes": [
+    "unit_tests",
+    "public_cli",
+    "public_api_fault_subprocess",
+    "independent_model_explicit_skill_snapshot",
+    "actual_human_reference_review"
+  ],
+  "baseline_commit": "68bb7c2",
+  "branch": "feat/prd-generator-stage-2",
+  "tests": {
+    "run": 320,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 73.509,
+    "log": "tests/results/prd-generator/stage-2-final-test-run-02.txt"
+  },
+  "handoff_unit_tests": 25,
+  "gap_validation_unit_tests": 24,
+  "cli_calls": 38,
+  "fault_api_calls": 4,
+  "source_snapshots_verified": 33,
+  "cli_evidence": "workspace-sandbox/prd-generator/stage-2-cli/attempt-02/run-manifest.json",
+  "model_evidence": "workspace-sandbox/prd-generator/stage-2-model/attempt-02/verification.json",
+  "human_approval": "tests/results/prd-generator/stage-2-approval.json",
+  "traceability_metrics": "not_applicable_no_formal_prd_generation",
+  "source_fingerprints": {
+    ".gitignore": "sha256:29cf35ca751b26824229f193bbaef425e21b1e36537292c6a3a309cef6ff3c24",
+    "README.md": "sha256:ece1520942f8f3b68f01ae400d60b653dd5b02498b88bff7708b4396cb614b7b",
+    "docs/prd-generator/README.md": "sha256:70cd0ee5019cf838d2e2e14625411a6b9839e0974fe6fb7e200a5041670d4d30",
+    "skill/prd-generator/scripts/validate_prd.py": "sha256:b7e27bd39681ec9e5178cf174c1f61cadc3e5c43c017484cfac9294f4d4d95a0",
+    "skill/requirement-analyst/SKILL.md": "sha256:fae51a73fdc2db5b26c26125a3c055163bbb833a1d21e6f03775f3fdcf0fbd5c",
+    "skill/requirement-analyst/references/incremental-update.md": "sha256:1c2292e5434ed8d4a271a4a44388ffd6178fc79c136c337edcdb51b287404363",
+    "skill/requirement-analyst/schemas/question.schema.json": "sha256:fa554b754aa3a11c39aed44902a1fa16c38ebfeaad5979930ea4e239f3d25687",
+    "skill/requirement-analyst/scripts/README.md": "sha256:a7ca70bc447d1201767c9b6064789d00bf51ea09b2ff7642319526ad1bc6e932",
+    "skill/requirement-analyst/scripts/compare_baseline.py": "sha256:4a30ac13ce07135de58c1269c73d1b046df266ac4e4fac3eb57f5f42dd1a8cfe",
+    "skill/requirement-analyst/scripts/update_analysis.py": "sha256:b1fe0cf2d92a7d3c4ab2a6da734b03b71f4abb9c1d640e695d2706673db338b8",
+    "skill/requirement-analyst/scripts/validate_analysis.py": "sha256:251393aea0f7790d2562d9048a364baaa5b5160e32a5c5a47fcf922d3914d413",
+    "tests/prd-generator/README.md": "sha256:741449c40feadfbbbb2a728cacaa4c51c87ace73706b1c4e364d6056a3acfcb3",
+    "tests/prd-generator/run_gap_handoff.py": "sha256:04ac1cdfc5b67cb45aa47d1ab69aa71405e246cf5978a970f605e4141183cb5f",
+    "tests/prd-generator/test_gap_handoff.py": "sha256:3dc9c510e742109da486b988b19ef73d109707dd3e17aeaac7e5c454223756ab",
+    "tests/prd-generator/test_prd_format_runs.py": "sha256:0efdd406e2afbdc43abb752caa0eb2631509bf07d9e9af776bf916a3d162d8ce",
+    "tests/requirement-analyst/README.md": "sha256:d9867aa87d0693511e2937f6724538f7261eac9ffaf7fb3a026da42a2ab5b224",
+    "tests/requirement-analyst/historical_sources.py": "sha256:cbd48734b0f88f8d8208e90b12dd503d98bcb1b46a860a700825560136238560",
+    "tests/requirement-analyst/test_final_acceptance.py": "sha256:72a3235a8133771267e3df3c051345bff297137bc5d185192cd9eb3959135675",
+    "tests/requirement-analyst/test_gap_validation.py": "sha256:d1c49cf8135d57cfe3a231437be9d1d8786b59301ab1d1279e87ce9f3895f166",
+    "tests/requirement-analyst/test_stage_2_runs.py": "sha256:5324869e628be1bd9e2d45983fe4fc6399eff6c0c2971b677b74133e0ef9d6f8",
+    "tests/requirement-analyst/test_stage_3_runs.py": "sha256:f1694579995fbf60049caf0a868bf81d359bf88230fa46f45c022755f85c85e6",
+    "tests/requirement-analyst/test_stage_4_simulated_trial.py": "sha256:7d722c6c9721995ce5d54201a2232971068976f12ee9984082faa80ed7607e17",
+    "tests/requirement-analyst/test_stage_8_runs.py": "sha256:9580062004de7cbec22ed0eff1b6d925209e0616c2e0bf334ad5fe42b155a0f6",
+    "tests/scenarios/prd-generator/README.md": "sha256:e96d336875b9ccb14c5f40e2e98a481a85cb05fdf48b17979f4e485780c8876c"
+  },
+  "not_executed": [
+    "正式PRD生成",
+    "缺口关闭",
+    "正式生成器双Skill联调",
+    "真实发布",
+    "阶段3",
+    "git commit",
+    "git merge",
+    "git tag",
+    "git push"
+  ],
+  "limits": [
+    "合成缺口，正式生成器重联调归阶段7",
+    "单轮实际模型接收；重试/故障由真实程序链路验证，未称多轮模型盲测",
+    "Python测试不调用模型；独立模型试跑显式加载生产快照，不是安装自动触发"
+  ],
+  "pre_commit_verification": {
+    "tests": 320,
+    "seconds": 73.137,
+    "status": "pass",
+    "log": "tests/results/prd-generator/stage-2-pre-commit-test-run.txt",
+    "scope": "提交前完整回归；文档去除临时待提交状态，生产代码与阶段验收时相同",
+    "documentation_fingerprints": {
+      "README.md": "sha256:a2b009e539f8deffbdb33c551184812c2a3c1965e4216df320be11a3d0f2399d",
+      "docs/prd-generator/README.md": "sha256:cea68ae46adf2aa7b6a5005a21c2589208efaa783c39d0d47d3446fef31a0366"
+    }
+  }
+}

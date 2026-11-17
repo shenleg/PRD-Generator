@@ -35,6 +35,12 @@ def _load(path):
     return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_unique, parse_constant=_invalid)
 
 
+def _gaps(analysis_path):
+    """读取显式分析路径所属需求的缺口，不扫描其他需求或将当前缺口冒作历史快照。"""
+    path = analysis_path.parent.parent / "prd" / "gap-requests.json"
+    return _load(path) if path.exists() else None
+
+
 def _validator():
     path = Path(__file__).resolve().with_name("validate_analysis.py")
     spec = importlib.util.spec_from_file_location("comparison_validator", path)
@@ -120,7 +126,7 @@ def _compare(baseline, proposal, related, old_sources, new_sources):
 def _check_adopted(path, root, related):
     analysis = _load(path)
     manifest = _load(path.with_name("source-manifest.json"))
-    validation = _validator()(analysis, manifest, related_analyses=related)
+    validation = _validator()(analysis, manifest, related_analyses=related, gap_requests=_gaps(path))
     if validation["status"] == "fail":
         return {"status": "fail", "validation": validation, "baseline_modified": False}
     review = analysis.get("context", {}).get("history_review")
@@ -201,11 +207,11 @@ def main(argv=None) -> int:
         else:
             proposal = _load(args.proposal)
             validate = _validator()
-            validations = {"proposal": validate(proposal, _load(args.proposal.with_name("source-manifest.json")), related_analyses=related)}
+            validations = {"proposal": validate(proposal, _load(args.proposal.with_name("source-manifest.json")), related_analyses=related, gap_requests=_gaps(args.proposal))}
             baseline = None
             if args.baseline is not None:
                 baseline = _load(args.baseline)
-                validations["baseline"] = validate(baseline, _load(args.baseline.with_name("source-manifest.json")), related_analyses=related)
+                validations["baseline"] = validate(baseline, _load(args.baseline.with_name("source-manifest.json")), related_analyses=related, gap_requests=_gaps(args.baseline))
             if any(v["status"] == "fail" for v in validations.values()):
                 result = {"status": "fail", "message": "输入未通过唯一校验器，不生成差异。", "validations": validations, "baseline_modified": False}
             elif baseline is None:

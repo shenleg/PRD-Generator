@@ -1,0 +1,11 @@
+{
+  "status": "blocked_before_product_invocation",
+  "execution": "independent_subagent_attempt",
+  "new_model_execution": true,
+  "product_script_started": false,
+  "product_exit_code": null,
+  "candidate_saved": false,
+  "reason": "子代理只允许写自己的独立worktree，原任务输出却指向共享checkout；工具拒绝写入。代理结束后空worktree已移除，恢复会话无法新建worktree。没有修改权限或继续写被拒路径。",
+  "successful_retry": "../attempt-02",
+  "note": "本目录的种子补丁与输入由主会话准备；不把准备脚本响应冒充模型接收响应。"
+}

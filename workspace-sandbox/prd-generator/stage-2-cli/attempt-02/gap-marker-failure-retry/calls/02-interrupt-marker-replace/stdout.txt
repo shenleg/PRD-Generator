@@ -1,0 +1,22 @@
+{
+  "status": "fail",
+  "diagnostics": [
+    {
+      "rule": 1,
+      "level": "fail",
+      "item_id": "$",
+      "path": "",
+      "message": "阶段2测试注入：gap-mark"
+    }
+  ],
+  "requirement_id": "GAP-HANDOFF",
+  "revision": 2,
+  "id_map": {
+    "$gap": "Q-2"
+  },
+  "affected_ids": [
+    "Q-2"
+  ],
+  "written": true,
+  "gap_status_written": false
+}

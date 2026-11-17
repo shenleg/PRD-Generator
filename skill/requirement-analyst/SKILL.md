@@ -13,7 +13,7 @@ description: 用于理解需求、分析需求、检查完整性、识别矛盾�
 - 首次分析、存量文档或新增业务内容：读 `references/analysis-framework.md`，选择分析维度、抽取来源并拆分需求。
 - 排问题、组织本轮提问或收到回答/结束要求：读 `references/question-strategy.md`，决定问什么、如何更新问题状态与何时停止。
 - 每轮准备保存或交接：读 `references/readiness-rules.md`，核对完成清单、关联问题和就绪度。
-- 首次保存、答疑补充、更正、撤销或收到新版文档：读 `references/incremental-update.md`，按补丁协议识别影响并由脚本保存。
+- 首次保存、答疑补充、更正、撤销、收到新版文档或 PRD 缺口回交：读 `references/incremental-update.md`，按补丁协议识别影响、查重接收缺口并由脚本保存。
 - 用户指定历史资料、发现新旧规则冲突/重复、需要基线影响或资料过期重评：读 `references/historical-retrieval.md`，先限量检索并核对权威与采用依据，再分析，不自动覆盖历史。
 - 涉及现有架构、接口/数据复用、性能、安全或部署限制：读 `references/feasibility-assessment.md`，按有效证据判断技术结论，资料不足保持 unknown，产品取舍与研发核实分开。
 - 涉及页面、数据展示、复杂流程/状态或有视觉参考：读 `references/ux-visual-assessment.md`，区分截图事实、建议与未展示信息；缺资料登记待设计，纯后端不要求视觉稿。

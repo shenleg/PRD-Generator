@@ -566,12 +566,15 @@ def validate_prd(requirement_dir: Path, *, related_analyses: Sequence[Path] = ()
                 if id(doc) not in missing_manifests:
                     upstream._check_sources(doc, manifest, upstream_issues)
                     upstream._check_history(doc, manifest, upstream_issues)
+            upstream._check_gap_requests(documents[0][0], gaps, upstream_registry, upstream_issues)
         response = upstream._result(upstream_issues)
     else:
-        response = upstream.validate_analysis(documents[0][0], documents[0][1], related_analyses=documents[1:])
+        response = upstream.validate_analysis(documents[0][0], documents[0][1], related_analyses=documents[1:], gap_requests=gaps)
     for issue in response["diagnostics"]:
         if issue["level"] == "fail":
-            diagnostics.append(_issue(3, issue["item_id"], "analysis" + issue["path"], "上游校验失败：" + issue["message"]))
+            # 缺口协议在两侧同属规则12，保留分类以免已有缺口夹具退化为普通来源错误。
+            rule = 12 if issue["rule"] == 12 else 3
+            diagnostics.append(_issue(rule, issue["item_id"], "analysis" + issue["path"], "上游校验失败：" + issue["message"]))
     if not trace_ok or not gap_ok or not metadata_ok or response["status"] == "fail":
         return _result(diagnostics)
     rid = analysis["requirement_id"]

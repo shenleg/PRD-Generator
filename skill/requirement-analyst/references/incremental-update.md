@@ -49,13 +49,40 @@
 
 来源引用、选项、标签、状态等沿用现有 Schema。无法由脚本判断自然语言依据是否真实，模型须对照本轮实际输入，不编造 user_statement、差异或完成状态。
 
+## 接收 PRD 缺口
+
+收到生成侧回交或用户要求处理缺口时，读取本需求 `prd/gap-requests.json` 和最新分析；按本节生成 `supplement` 补丁，先登记问题，再按问题优先级进入澄清流程。缺口的描述是待确认信息，不是新的业务事实。
+
+1. 核对版本化封装的 `schema_version`、`requirement_id`、`counters` 和 `requests`。逐项读取 `open` 缺口；中断重试也读取已保存的问题。跨需求引用只使用显式提供的 `--related-analysis`，不自动搜索工作区。
+2. 按 `gap_request_ref: "GAPREQ-N"` 查重。同一缺口复用已有问题及其答案、优先级和进度；答疑或变更问题仍通过明确的 `update` 操作处理，不借重新交接覆盖。
+3. 首次接收用已有 `add` 操作向 `questions` 新增问题，`value` 填 `gap_request_ref`，其余字段按问题 Schema 和问题策略填写。新编号由更新器分配，模型只给 `$别名`。接收关联不可转移至另一个缺口。
+4. `related_analysis_refs` 必须是完整的 `需求编号/条目编号` 且引用存在。对应 `related_ids` 保持顺序，本需求去掉前缀，跨需求保留完整格式；也可把本需求完整引用交给更新器规范化。空数组保持为空，不额外臆造关联。候选引用不符时更新器拒绝保存。
+5. 根据真实缺口判定优先级、责任方和就绪度，并核对十一项清单。运行更新器，读取实际响应及保存结果；只在分析事务成功后，由更新器把本次接收的 `open` 状态改为 `handed_over`。这只是接收确认，不表示内容已补足。
+
+接收操作示例（嵌入完整补丁，不是独立补丁）：
+
+```json
+{"op":"add","collection":"questions","ref":"$gap_question","value":{
+  "question":"请明确缺口中所需的规则？","priority":"P1","resolution":"ask_product",
+  "reason":"PRD 对应章节缺少分析依据","impact":"影响规则与验收口径",
+  "options":["补充规则","暂不确定","其他"],"recommendation":"先核对实际业务依据",
+  "status":"open","related_ids":["FR-1"],"gap_request_ref":"GAPREQ-1"
+}}
+```
+
+重复 `add` 会返回已有问题编号的 `id_map`，不覆盖候选与已有问题的差异。纯重复接收且其他分析内容未变时，不推进修订、不追加事件；`written=false` 不代表接收失败，应同时看 `status` 和实际缺口状态。首次接收以 `supplement` 事件记录。`closed` 保持关闭，不回退状态。
+
+**失败恢复**：保存失败不标记缺口；若存在未完成分析事务，下次调用先按原事务恢复。分析已保存但状态标记失败时，响应为 `fail`，仍保留 `written=true` 和已保存的 `revision`；重新读取分析及缺口、重新判断并生成当前修订补丁，复用原问题继续标记。普通修订冲突同样拒绝，不能只改数字重试。`gap_status_written` 表示本次是否实际改了缺口状态，不表示缺口已解决。
+
+标记前比较读取时的缺口文件原字节；发生并发变化则保留生成侧最新文件并报告冲突。缺口文件不进入分析事务，避免恢复时重放过期的生成侧快照。分析侧对 `prd/` 的唯一写入例外是由更新器修改本次已保存接收问题对应的 `status`；保留其他缺口、计数器、关闭依据和未知扩展，不改正文、追溯或版本文件。关闭缺口由生成侧在同步时核实实际分析内容后处理。
+
 ## 保存、并发与失败
 
 CLI：`python -I scripts/update_analysis.py --workspace WORKSPACE --project PROJECT --patch PATCH.json [--dry-run] [--related-analysis PATH ...]`。路径相对调用目录，不要求在 Skill 目录运行；无网络、无模型调用。
 
 脚本在工作区独占锁下读取当前 revision 并检查 base_revision；不一致则拒绝，重新读取后重新分析，不能只改补丁的数字重试。预检应用到内存副本，调用唯一 validate_analysis；fail 不改正式结果、来源、事件或工作区计数。warning 只允许保存带 stale 提示的合法状态。dry-run 不分配持久编号、不推进 revision；实际保存仍要重新校验。
 
-保存时首次 revision=1，之后每次加 1；追加事件含规定六字段，并额外保留 operations、before/after 变化快照及 user_statement，确保旧内容可追溯。未变化条目保持原值。脚本只写 workspace.json、首次 common 和 analysis 下的结果、来源、事件；不写 inputs/、prd/ 或分析报告。已有 requirement.json 的其他块保持原样。
+保存时首次 revision=1，之后每次加 1；追加事件含规定六字段，并额外保留 operations、before/after 变化快照及 user_statement，确保旧内容可追溯。未变化条目保持原值。脚本常规只写 workspace.json、首次 common 和 analysis 下的结果、来源、事件；接收缺口时仅另按上节修改 `prd/gap-requests.json` 对应状态。不写 inputs/ 或分析报告，不修改其他 prd/ 文件。已有 requirement.json 的其他块保持原样。
 
 多文件写入使用锁、写前事务记录和单文件原子替换；中断后下一次调用先恢复待完成事务，再检查 revision。它不是对不遵守锁的任意读取方提供跨文件原子快照。事件旧字节保持前缀不变，恢复不得重复追加同一 revision。不要手工改写或清理事务记录来绕过冲突。
 

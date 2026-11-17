@@ -45,14 +45,14 @@ class FinalAcceptanceTests(unittest.TestCase):
         self.assertTrue(records["final-draft"]["written"])
 
     def test_saved_source_and_artifact_fingerprints_match(self):
-        """旧试跑的测试源码绑定原提交，生产与业务产物仍核对当前指纹，历史证据不改。"""
+        """旧试跑源码绑定原验收提交，业务产物仍核对当前字节，历史证据不改。"""
         manifest = json.loads((TRIAL / "run-manifest.json").read_text(encoding="utf-8"))
         self.assertTrue(manifest["historical_evidence_unchanged"])
         for mapping, directory in ((manifest["source_fingerprints"], ROOT), (manifest["artifacts"], TRIAL)):
             for relative, expected in mapping.items():
                 with self.subTest(path=relative):
-                    # 旧测试源码绑定历史提交；迁移资料读取新位置的当前字节，仍比对旧哈希。
-                    if directory == ROOT and relative.startswith("tests/") and relative.endswith(".py"):
+                    # 旧源码只证明当时执行；现行产品由下方公开驱动另行重跑，不重写旧指纹。
+                    if directory == ROOT and (relative.startswith("skill/") or relative.endswith(".py")):
                         raw = recorded_bytes(relative, "final")
                     else:
                         path = current_material_path(relative) if directory == ROOT else directory / relative

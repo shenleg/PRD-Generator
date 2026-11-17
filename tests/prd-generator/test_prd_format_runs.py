@@ -3,6 +3,7 @@
 import importlib.util
 import json
 from pathlib import Path
+import subprocess
 import tempfile
 import unittest
 
@@ -36,11 +37,13 @@ class PrdFormatEvidenceTests(unittest.TestCase):
         self.assertFalse(manifest["model_called"])
         self.assertFalse(manifest["release_executed"])
 
-    def test_current_production_sources_match_saved_checks(self):
-        """当前生产校验载荷与保存证据指纹匹配，不改旧哈希冒充新版本已测。"""
+    def test_historical_sources_match_saved_checks(self):
+        """封存校验绑定阶段1原提交；当前代码由下方新目录重放，不改旧指纹。"""
         manifest = read_json(EVIDENCE / "run-manifest.json")
         for relative, expected in manifest["source_hashes"].items():
-            self.assertEqual(digest((ROOT / relative).read_bytes()), expected, relative)
+            raw = subprocess.run(["git", "show", f"36b584a:{relative}"], cwd=ROOT,
+                                 check=True, capture_output=True).stdout
+            self.assertEqual(digest(raw), expected, relative)
 
     def test_public_driver_replays_and_refuses_existing_output(self):
         """公开测试驱动在新目录重跑真实校验器，并拒绝覆盖已有证据。"""

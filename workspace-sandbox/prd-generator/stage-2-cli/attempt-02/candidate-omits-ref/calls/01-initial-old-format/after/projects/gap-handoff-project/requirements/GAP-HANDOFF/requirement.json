@@ -1,0 +1,8 @@
+{
+  "common": {
+    "requirement_id": "GAP-HANDOFF",
+    "project_id": "gap-handoff-project",
+    "title": "合成测试，不是真实需求",
+    "created_at": "2026-11-17T14:56:00.170460+00:00"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "status": "fail",
+  "diagnostics": [
+    {
+      "rule": 1,
+      "level": "fail",
+      "item_id": "Q-2",
+      "path": "/operations",
+      "message": "接收关联不可新增、移除或转移；首次接收须新增问题。"
+    }
+  ],
+  "requirement_id": "GAP-HANDOFF",
+  "revision": null,
+  "id_map": {},
+  "affected_ids": [],
+  "written": false
+}

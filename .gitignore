@@ -10,6 +10,11 @@ __pycache__/
 .analysis-transaction.json
 .analysis-write-*
 
+# 阶段2故障留证的只读快照须完整保留；实际工作区的运行锁、journal 和临时文件仍忽略。
+!/workspace-sandbox/prd-generator/stage-2-cli/**/calls/**/.analysis-transaction.json
+!/workspace-sandbox/prd-generator/stage-2-cli/**/calls/**/.analysis-write-*
+!/workspace-sandbox/prd-generator/stage-2-cli/**/fixture-original/.analysis-transaction.json
+
 # 最小消费者原子提交 requirement.json 时留下的本地临时文件。
 .prd-write-*
 

@@ -1,0 +1,62 @@
+{
+  "label": "save-progress",
+  "interface": "public_cli",
+  "model_called": false,
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpn1zDC5/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/skill/requirement-analyst/scripts/update_analysis.py",
+    "--workspace",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-2-cli/attempt-02/local-duplicate-ownership/workspace",
+    "--project",
+    "gap-handoff-project",
+    "--patch",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-2-cli/attempt-02/local-duplicate-ownership/calls/06-save-progress/patch.json"
+  ],
+  "returncode": 0,
+  "expected_status": "pass",
+  "response": {
+    "status": "pass",
+    "diagnostics": [],
+    "requirement_id": "GAP-HANDOFF",
+    "revision": 3,
+    "id_map": {},
+    "affected_ids": [
+      "Q-2"
+    ],
+    "written": true
+  },
+  "fingerprints_before": {
+    ".analysis-transaction.json": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+    "workspace.json": "sha256:18d07fa7ddaa5cd89b3ac385d1529415c15dba9cec2b9f29601c449eaaa63692",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/requirement.json": "sha256:44c9978ed275e6f731a2e89e3ca9c6f609a587ab0cb0531b59d344433a99b537",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/analysis-events.jsonl": "sha256:92f5992a1050b5b537992bf226e9ca43d0d91a6594f86b6ef2c22bf74229a339",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/analysis-result.json": "sha256:786c36c72d8d9b7e0814c3874c348fcbc62251bcbf192c801876eed4494687c1",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/gap-requests.json": "sha256:785ec21fb6242f9bfa185cf62ed8f41587abbba9b083dabea73be879c19c842b",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/prd-events.jsonl": "sha256:f0d742ebb4bed1d6d5f4e32201bcdcee16a8bad328fd7783519e3d5d993a55ca",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/prd.md": "sha256:b18323277d9e46cb16a07788ee2c659ff08af5a8f2e0c815e667ca159edfd8b9",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/prd-trace.json": "sha256:5cd4e014a46b220d9cb8ca68099d0cd30f786e10cb16a53781a20f40052ef3c7",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/inputs/original.md": "sha256:8c5119f730b1b233710c269b443a7f93e3c2218ef54d9bc6afbd1d6f0fbad1c0",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/versions/prd-1.0.md": "sha256:6a9601fab7c530044980b2009eac46409b13217ceb182bb26540cb8a25b76dea"
+  },
+  "fingerprints_after": {
+    ".analysis-transaction.json": "sha256:38e0b9de817f645c4bec37c0d4a3e58baecccb040f5718dc069a72c7385a0bed",
+    "workspace.json": "sha256:18d07fa7ddaa5cd89b3ac385d1529415c15dba9cec2b9f29601c449eaaa63692",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/requirement.json": "sha256:44c9978ed275e6f731a2e89e3ca9c6f609a587ab0cb0531b59d344433a99b537",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/analysis-events.jsonl": "sha256:15a93c7461a317925754abc49476b0e9b2c858a2c31936ede9ff6a13c2c0e867",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/analysis-result.json": "sha256:085efc9b9285bdb24a4cff11a60bbd566f2158e14bb690e1de9dc4634377ada3",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/gap-requests.json": "sha256:785ec21fb6242f9bfa185cf62ed8f41587abbba9b083dabea73be879c19c842b",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/prd-events.jsonl": "sha256:f0d742ebb4bed1d6d5f4e32201bcdcee16a8bad328fd7783519e3d5d993a55ca",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/prd.md": "sha256:b18323277d9e46cb16a07788ee2c659ff08af5a8f2e0c815e667ca159edfd8b9",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/prd-trace.json": "sha256:5cd4e014a46b220d9cb8ca68099d0cd30f786e10cb16a53781a20f40052ef3c7",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/inputs/original.md": "sha256:8c5119f730b1b233710c269b443a7f93e3c2218ef54d9bc6afbd1d6f0fbad1c0",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/prd/versions/prd-1.0.md": "sha256:6a9601fab7c530044980b2009eac46409b13217ceb182bb26540cb8a25b76dea"
+  },
+  "changed_files": [
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/analysis-events.jsonl",
+    "projects/gap-handoff-project/requirements/GAP-HANDOFF/analysis/analysis-result.json"
+  ]
+}

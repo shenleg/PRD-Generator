@@ -53,8 +53,8 @@ class StageThreeModelRuns(unittest.TestCase):
         self.assertEqual(len(matches), 1, (group, name))
         return matches[0]
 
-    def test_stage_three_tag_sources_match_actual_run(self) -> None:
-        """历史模型试跑绑定stage-3-complete，当前写入器另由真实补丁重放验证。"""
+    def test_stage_three_commit_sources_match_actual_run(self) -> None:
+        """历史模型试跑绑定原验收提交，当前写入器另由真实补丁重放验证。"""
         self.assertEqual(self.manifest["stage"], 3)
         self.assertGreaterEqual(len(self.manifest["files"]), 19)
         for relative, expected in self.manifest["files"].items():

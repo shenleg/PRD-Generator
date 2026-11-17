@@ -78,7 +78,12 @@ class SimulatedBusinessTrialTests(unittest.TestCase):
             provenance = read_json(directory / "provenance.json")
             self.assertEqual(hashlib.sha256((directory / "patch.json").read_bytes()).hexdigest(), provenance["patch_sha256"])
             origin = Path(provenance["origin"])
-            if not origin.is_absolute():
+            if origin.is_absolute():
+                # 原机器的绝对路径仅作来源标识；只按明确的仓库内后缀定位当前同字节候选。
+                marker = "/workspace-sandbox/"
+                self.assertIn(marker, str(origin))
+                origin = ROOT / "workspace-sandbox" / str(origin).split(marker, 1)[1]
+            else:
                 origin = ROOT / origin
             self.assertEqual(origin.read_bytes(), (directory / "patch.json").read_bytes())
             self.assertEqual(read_json(directory / "process.json")["returncode"], {"pass": 0, "warning": 1, "fail": 2}[result["status"]])

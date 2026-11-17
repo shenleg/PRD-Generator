@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "requirement_id": "GAP-HANDOFF",
+  "revision": 2,
+  "id_map": {
+    "$gap": "Q-2"
+  },
+  "affected_ids": [
+    "Q-2"
+  ],
+  "written": false
+}

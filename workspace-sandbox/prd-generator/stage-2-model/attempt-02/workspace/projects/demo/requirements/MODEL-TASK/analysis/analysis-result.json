@@ -1,0 +1,224 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "MODEL-TASK",
+  "meta": {
+    "analysis_revision": 2,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "existing_document",
+    "analysis_status": "paused",
+    "readiness": "not_ready"
+  },
+  "context": {
+    "project_id": "demo"
+  },
+  "requirements": {
+    "goals": [
+      {
+        "content": "支持团队协作管理任务",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "合成测试输入"
+          }
+        ],
+        "id": "GOAL-1"
+      }
+    ],
+    "scenarios": [],
+    "functional_requirements": [],
+    "business_rules": [],
+    "constraints": [],
+    "non_functional_requirements": [],
+    "acceptance_criteria": []
+  },
+  "business_assessment": {
+    "flows": [],
+    "states": [],
+    "boundaries": [],
+    "exceptions": [],
+    "gaps": [],
+    "conflicts": []
+  },
+  "ux_assessment": {
+    "ui_dependent": false
+  },
+  "questions": [
+    {
+      "question": "哪些团队和任务状态属于本期范围？",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "尚不明确",
+      "impact": "无法验收",
+      "options": [
+        "方案甲",
+        "方案乙",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "建议甲，先确认范围",
+      "status": "open",
+      "related_ids": [
+        "GOAL-1"
+      ],
+      "id": "Q-1"
+    },
+    {
+      "question": "任务成员可以编辑哪些字段？待产品确认业务权限边界。",
+      "priority": "P0",
+      "resolution": "ask_product",
+      "reason": "GAPREQ-1 指出权限规则未明确；关系到成员能否进行授权范围内的操作，不能以设计或技术能力代替产品决定。",
+      "impact": "无法确定授权编辑边界及其核心验收预期。",
+      "options": [
+        "按产品确认的可编辑字段白名单开放",
+        "本期不开放成员编辑",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "待产品提供实际业务权限依据后明确字段边界；本轮不采用任何候选方案。",
+      "status": "open",
+      "related_ids": [
+        "GOAL-1"
+      ],
+      "gap_request_ref": "GAPREQ-1",
+      "id": "Q-2"
+    },
+    {
+      "question": "能否复用关联身份需求的现有身份接口？待研发核实当前接口能力及适用范围。",
+      "priority": "P1",
+      "resolution": "ask_dev",
+      "reason": "GAPREQ-2 缺少现有身份接口可复用的证据；关联 GOAL-1 仅确认身份识别目标，不证明接口已具备。",
+      "impact": "影响身份依赖及集成方案，当前不能承诺已有可复用能力。",
+      "options": [
+        "研发提供证据确认可直接复用",
+        "研发核实后列出必要改造",
+        "研发确认不可复用并说明限制",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "由研发核对现行接口资料及能力范围；未核实前保持未知，不由产品承诺实现现状。",
+      "status": "open",
+      "related_ids": [
+        "MODEL-RELATED/GOAL-1"
+      ],
+      "gap_request_ref": "GAPREQ-2",
+      "id": "Q-3"
+    },
+    {
+      "question": "缺少视觉参考或设计产物时，后续设计如何安排？待设计确认。",
+      "priority": "P1",
+      "resolution": "ask_design",
+      "reason": "GAPREQ-3 明确回交设计资料与后续安排缺口；本轮仅登记，未提供视觉材料，不臆造页面或交互。",
+      "impact": "界面与交互部分尚无可核验的设计依据，后续设计范围和安排待确认。",
+      "options": [
+        "由设计提供适用参考并确认范围",
+        "由设计安排必要的低保真或交互说明",
+        "其他",
+        "暂不确定"
+      ],
+      "recommendation": "由设计确认最小必要资料与安排；不预设高保真前置，不把待设计内容写成已确认方案。",
+      "status": "open",
+      "related_ids": [],
+      "gap_request_ref": "GAPREQ-3",
+      "id": "Q-4"
+    }
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "保留原有未满足状态；本轮未澄清目标对应的本期范围。"
+    },
+    {
+      "item": 2,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "本期团队、任务状态与场景尚待产品确认。"
+    },
+    {
+      "item": 3,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "范围及任务状态未定，核心流程尚不能还原；本轮不补业务答案。"
+    },
+    {
+      "item": 4,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1",
+        "Q-2"
+      ],
+      "reason": "原有范围未决，且成员可编辑字段的关键业务权限规则未确认。"
+    },
+    {
+      "item": 5,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "保留原有未满足结论，本轮仅接收缺口，未开展足以解除原未满足状态的矛盾核验。"
+    },
+    {
+      "item": 6,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1",
+        "Q-2"
+      ],
+      "reason": "范围和授权编辑边界未确定，关键边界及异常处理不能据此视为已明确。"
+    },
+    {
+      "item": 7,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1",
+        "Q-2"
+      ],
+      "reason": "核心范围及权限预期尚未确认，不能形成完整可判定的核心验收条件。"
+    },
+    {
+      "item": 8,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1"
+      ],
+      "reason": "保留原有未满足状态；仅核验显式关联目标引用，未开展历史冲突对照。"
+    },
+    {
+      "item": 9,
+      "satisfied": false,
+      "question_refs": [
+        "Q-3"
+      ],
+      "reason": "已接收身份接口复用的研发确认问题，但本轮不开展技术评估，保留原有未满足状态，不宣称完成整体技术风险核对。"
+    },
+    {
+      "item": 10,
+      "satisfied": false,
+      "question_refs": [
+        "Q-4"
+      ],
+      "reason": "已登记设计安排缺口；保留原有分析，不借回交擅自改变 ui_dependent 判断，实际界面依赖和体验分析范围仍待核对。"
+    },
+    {
+      "item": 11,
+      "satisfied": false,
+      "question_refs": [
+        "Q-1",
+        "Q-2"
+      ],
+      "reason": "核心范围及权限风险仍阻碍可验收草稿形成，未采用假设或代为接受风险。"
+    }
+  ]
+}

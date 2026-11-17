@@ -1,0 +1,17 @@
+{
+  "status": "fail",
+  "diagnostics": [
+    {
+      "rule": 12,
+      "level": "fail",
+      "item_id": "GAPREQ-1",
+      "path": "/gap-requests/requests/0/related_analysis_refs/0",
+      "message": "格式错误：'FR-1' does not match '^[^\\\\s/]+/(?:GOAL|SCN|FR|BR|CON|NFR|AC|FLOW|STATE|BND|EXC|GAP|CNF|Q|ASM|DEC)-[1-9][0-9]*$'"
+    }
+  ],
+  "requirement_id": "GAP-HANDOFF",
+  "revision": 1,
+  "id_map": {},
+  "affected_ids": [],
+  "written": false
+}

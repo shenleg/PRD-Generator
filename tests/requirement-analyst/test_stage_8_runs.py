@@ -83,7 +83,7 @@ class SavedKnowledgeRuns(unittest.TestCase):
         self.assertEqual(found["results"][0]["sha256"], read_json(TRIAL / "verification.json")["entry_sha256"])
 
     def test_trial_fingerprints_match_actual_source_and_artifacts(self):
-        """旧试跑测试源码绑定阶段8提交，当前生产与证据漂移仍失败，不改旧指纹。"""
+        """旧试跑源码绑定阶段8提交，业务证据漂移仍失败，不改旧指纹。"""
         manifest = read_json(BASE / "run-manifest.json")
         self.assertTrue(manifest["knowledge_written"])
         self.assertEqual(manifest["status"], "completed_with_actual_user_approval_in_simulated_project")
@@ -91,8 +91,8 @@ class SavedKnowledgeRuns(unittest.TestCase):
             self.assertTrue(mapping)
             for relative, expected in mapping.items():
                 with self.subTest(path=relative):
-                    # 旧测试源码绑定历史提交；迁移资料读取新位置的当前字节，仍比对旧哈希。
-                    if directory == ROOT and relative.startswith("tests/") and relative.endswith(".py"):
+                    # 源码绑定原执行版本；资料和产物仍读取当前字节，不能用历史副本掩盖改动。
+                    if directory == ROOT and (relative.startswith("skill/") or relative.endswith(".py")):
                         raw = recorded_bytes(relative, 8)
                     else:
                         path = current_material_path(relative) if directory == ROOT else directory / relative
