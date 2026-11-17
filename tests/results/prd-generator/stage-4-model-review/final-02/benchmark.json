@@ -1,0 +1,285 @@
+{
+  "metadata": {
+    "skill_name": "prd-generator",
+    "executor_model": "opus（Agent工具配置）",
+    "analyzer_model": "主线程程序汇总",
+    "timestamp": "2026-11-17T19:22:43.562050+00:00",
+    "evals_run": [
+      1,
+      2
+    ],
+    "runs_per_configuration": 1,
+    "skill_path": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-model/iteration-1/current-skill-snapshot/prd-generator"
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "directed-items",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 443.727,
+        "tokens": 48876,
+        "tool_calls": 56,
+        "errors": 4
+      },
+      "expectations": [
+        {
+          "text": "全部独立需求实际保存同步，修订基准更新、版本为0.2且恰有一个sync事件",
+          "passed": true,
+          "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "未变正式条目含标记的原始字节及章节保持",
+          "passed": true,
+          "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "既有编号、引入版本和废止历史保留，新增编号不复用",
+          "passed": true,
+          "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "分析目录、common及其他元数据块原字节或结构保持，事件只追加",
+          "passed": true,
+          "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "推断标签落到对应条目且遗留事项保留",
+          "passed": true,
+          "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "最终工作稿通过当前格式校验，警告与成功不混同",
+          "passed": true,
+          "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": true}；逐场景证据见verification.json"
+        }
+      ],
+      "notes": [
+        "语义仍待人工评审；原始执行、worktree路径调整及当前源码重放分别留证。"
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "directed-items",
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.3333333333333333,
+        "passed": 2,
+        "failed": 4,
+        "total": 6,
+        "time_seconds": 146.119,
+        "tokens": 17742,
+        "tool_calls": 8,
+        "errors": 2
+      },
+      "expectations": [
+        {
+          "text": "全部独立需求实际保存同步，修订基准更新、版本为0.2且恰有一个sync事件",
+          "passed": false,
+          "evidence": "{\"PG-14\": false, \"PG-16\": false, \"PG-32-tag\": false}；逐场景证据见verification.json"
+        },
+        {
+          "text": "未变正式条目含标记的原始字节及章节保持",
+          "passed": true,
+          "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "既有编号、引入版本和废止历史保留，新增编号不复用",
+          "passed": false,
+          "evidence": "{\"PG-14\": true, \"PG-16\": false, \"PG-32-tag\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "分析目录、common及其他元数据块原字节或结构保持，事件只追加",
+          "passed": true,
+          "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "推断标签落到对应条目且遗留事项保留",
+          "passed": false,
+          "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": false}；逐场景证据见verification.json"
+        },
+        {
+          "text": "最终工作稿通过当前格式校验，警告与成功不混同",
+          "passed": false,
+          "evidence": "{\"PG-14\": false, \"PG-16\": false, \"PG-32-tag\": false}；逐场景证据见verification.json"
+        }
+      ],
+      "notes": [
+        "语义仍待人工评审；原始执行、worktree路径调整及当前源码重放分别留证。"
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "gap-resolution",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 637.63,
+        "tokens": 77438,
+        "tool_calls": 99,
+        "errors": 1
+      },
+      "expectations": [
+        {
+          "text": "全部独立需求实际保存同步，修订基准更新、版本为0.2且恰有一个sync事件",
+          "passed": true,
+          "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": true, \"PG-31-retain-answer\": true, \"PG-31-supplied\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "未变正式条目含标记的原始字节及章节保持",
+          "passed": true,
+          "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": true, \"PG-31-retain-answer\": true, \"PG-31-supplied\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "既有编号、引入版本和废止历史保留，新增编号不复用",
+          "passed": true,
+          "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": true, \"PG-31-retain-answer\": true, \"PG-31-supplied\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "分析目录、common及其他元数据块原字节或结构保持，事件只追加",
+          "passed": true,
+          "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": true, \"PG-31-retain-answer\": true, \"PG-31-supplied\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "实际补足和明确不再需要关闭且引用有效依据，只有回答的缺口保留占位",
+          "passed": true,
+          "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": true, \"PG-31-retain-answer\": true, \"PG-31-supplied\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "暂定补足关闭后仍保留暂定标注、假设依据及验证方式和遗留项",
+          "passed": true,
+          "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": true, \"PG-31-retain-answer\": true, \"PG-31-supplied\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "最终工作稿通过当前格式校验，警告与成功不混同",
+          "passed": true,
+          "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": true, \"PG-31-retain-answer\": true, \"PG-31-supplied\": true}；逐场景证据见verification.json"
+        }
+      ],
+      "notes": [
+        "语义仍待人工评审；原始执行、worktree路径调整及当前源码重放分别留证。"
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "gap-resolution",
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.2857142857142857,
+        "passed": 2,
+        "failed": 5,
+        "total": 7,
+        "time_seconds": 299.283,
+        "tokens": 23266,
+        "tool_calls": 19,
+        "errors": 2
+      },
+      "expectations": [
+        {
+          "text": "全部独立需求实际保存同步，修订基准更新、版本为0.2且恰有一个sync事件",
+          "passed": false,
+          "evidence": "{\"PG-31-not-needed\": false, \"PG-31-provisional\": false, \"PG-31-retain-answer\": false, \"PG-31-supplied\": false}；逐场景证据见verification.json"
+        },
+        {
+          "text": "未变正式条目含标记的原始字节及章节保持",
+          "passed": true,
+          "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": true, \"PG-31-retain-answer\": true, \"PG-31-supplied\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "既有编号、引入版本和废止历史保留，新增编号不复用",
+          "passed": false,
+          "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": false, \"PG-31-retain-answer\": true, \"PG-31-supplied\": false}；逐场景证据见verification.json"
+        },
+        {
+          "text": "分析目录、common及其他元数据块原字节或结构保持，事件只追加",
+          "passed": true,
+          "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": true, \"PG-31-retain-answer\": true, \"PG-31-supplied\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "实际补足和明确不再需要关闭且引用有效依据，只有回答的缺口保留占位",
+          "passed": false,
+          "evidence": "{\"PG-31-not-needed\": false, \"PG-31-provisional\": false, \"PG-31-retain-answer\": true, \"PG-31-supplied\": false}；逐场景证据见verification.json"
+        },
+        {
+          "text": "暂定补足关闭后仍保留暂定标注、假设依据及验证方式和遗留项",
+          "passed": false,
+          "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": false, \"PG-31-retain-answer\": true, \"PG-31-supplied\": true}；逐场景证据见verification.json"
+        },
+        {
+          "text": "最终工作稿通过当前格式校验，警告与成功不混同",
+          "passed": false,
+          "evidence": "{\"PG-31-not-needed\": false, \"PG-31-provisional\": false, \"PG-31-retain-answer\": false, \"PG-31-supplied\": false}；逐场景证据见verification.json"
+        }
+      ],
+      "notes": [
+        "语义仍待人工评审；原始执行、worktree路径调整及当前源码重放分别留证。"
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 540.6785,
+        "stddev": 137.1101,
+        "min": 443.727,
+        "max": 637.63
+      },
+      "tokens": {
+        "mean": 63157.0,
+        "stddev": 20196.3839,
+        "min": 48876,
+        "max": 77438
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.3095,
+        "stddev": 0.0337,
+        "min": 0.2857,
+        "max": 0.3333
+      },
+      "time_seconds": {
+        "mean": 222.701,
+        "stddev": 108.3033,
+        "min": 146.119,
+        "max": 299.283
+      },
+      "tokens": {
+        "mean": 20504.0,
+        "stddev": 3906.0579,
+        "min": 17742,
+        "max": 23266
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.69",
+      "time_seconds": "+318.0",
+      "tokens": "+42653"
+    }
+  },
+  "notes": [
+    "旧Skill尚未实现同步，正确拒绝只表示能力边界；不能据此证明相对其他已实现方案的质量优势。",
+    "每组每配置一次运行，不可解释为统计稳定性；计时包括隔离路径调整和证据整理。",
+    "未变字节与文件归属等保护断言也可在正确拒绝时通过；完成断言、缺口去留和标签断言共同区分实际同步。",
+    "条目组实际成功前有环境阻断及取消启动，原件均保留；这里统计最终有真实保存的任务，不是首次成功率或全量尝试成功率。",
+    "条目组使用current-source-retry，缺口组使用current-skill-snapshot；随后用最终当前源码分别重放真实成功候选，不冒充新模型调用。",
+    "模型报告中“已人工逐章”只计AI辅助核对，不能作为用户人工认可；自然语言忠实性、缺口充分性及旧稿整章保护降级仍须用户审阅。"
+  ]
+}

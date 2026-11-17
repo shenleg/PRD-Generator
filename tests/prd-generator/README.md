@@ -1,6 +1,6 @@
 # PRD Generator 测试
 
-本目录收纳生成侧格式、阶段 2 缺口接收，以及阶段 3 门禁、编号、首稿保存和公开 CLI 留证测试。程序结果、模型行为和人工认可分别记录；阶段 3 最终试用已获用户认可，当前不包含正式发布能力。
+本目录收纳生成侧格式、缺口接收、门禁、编号、首稿保存、增量同步及公开 CLI 留证测试。程序结果、模型行为和人工认可分别记录；阶段 3～4 已获最终人工认可，程序、模型及验收分别见独立记录，当前不包含正式发布能力。
 
 ## 维护代码
 
@@ -18,6 +18,13 @@
 | `test_prd_draft.py` | 信息视图、统一首稿、重复稳定性、候选保留及故障恢复 |
 | `run_prd_generation.py`、`test_prd_generation_runs.py` | 合成场景的真实公开 CLI 留证与新目录重放，不冒充模型输出 |
 | `run_model_draft_replay.py` | 用当前冻结源码重放已保存的真实模型候选，不称为新模型调用 |
+| `test_prd_sync_check.py` | 只读修订与完整来源比较、五类变化、只改标签/来源/关联和JSON稳定性 |
+| `test_prd_sync_write.py`、`prd_sync_support.py` | 最小化同步、编号、缺口关闭/保留、暂定依据、并发与恢复 |
+| `run_prd_sync.py`、`test_prd_sync_runs.py` | 在新目录运行阶段4七项场景及分支的公开CLI并核对证据，不冒充实际模型 |
+| `test_prd_sync_regressions.py` | 非编号整章保护、稳定章节归属、旧键碰撞、多来源及真实跨进程交接竞争 |
+| `prepare_prd_sync_model.py` | 冻结隔离模型输入与Skill快照，不把程序候选或参考答案喂给模型 |
+| `grade_prd_sync_model.py`、`build_prd_sync_review.py` | 从真实文件评分客观断言，并使用Skill Creator官方工具生成静态评审页 |
+| `run_model_sync_replay.py` | 用当前冻结源码重放实际模型成功候选，单独记录旧稿章节证据不足，不称新模型调用 |
 
 代码根定位已适应分类后的目录。原始夹具、参考和认可记录仍在 `tests/fixtures/prd-generator/`、`tests/expected/prd-generator/`、`tests/results/prd-generator/`，没有重写旧哈希。
 
@@ -35,6 +42,10 @@ uv run --offline --no-project --python /usr/bin/python3 --with-requirements test
 ```bash
 uv run --offline --no-project --python /usr/bin/python3 --with-requirements tests/requirements.txt \
   python -I -B tests/prd-generator/run_prd_format_checks.py --output /path/to/new-format-trial
+
+# 阶段4公开同步CLI：输出目录必须不存在。
+uv run --offline --no-project --python /usr/bin/python3 --with-requirements tests/requirements.txt \
+  python -I -B tests/prd-generator/run_prd_sync.py --output /path/to/new-sync-trial
 ```
 
 ## 已保存证据
@@ -43,6 +54,9 @@ uv run --offline --no-project --python /usr/bin/python3 --with-requirements test
 - [阶段 1](../results/prd-generator/stage-1.md)
 - [阶段 2](../results/prd-generator/stage-2.md)
 - [阶段 3：首稿实施与试跑](../results/prd-generator/stage-3.md)
+- [阶段 4：同步实施与验证进度](../results/prd-generator/stage-4.md)
+- [阶段 4 实际输出评审页](../results/prd-generator/stage-4-model-review/final-02/review.html)
+- [阶段 4 模型分析及人工评审指南](../results/prd-generator/stage-4-review-guide.md)
 - [实际草稿评审页](../results/prd-generator/stage-3-model-review.html)
 - [模型试跑分析](../results/prd-generator/stage-3-model-analysis.md)
 - [人工试用指南](../results/prd-generator/stage-3-review-guide.md)

@@ -1,0 +1,14 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "base_prd_version": "0.1",
+  "base_analysis_revision": 2,
+  "items": [
+    {
+      "mapping_key": "synthetic-query",
+      "kind": "functional_requirement",
+      "prd_id": "PRD-FR-001",
+      "analysis_refs": ["SYNTHETIC-PRD/FR-1"]
+    }
+  ]
+}

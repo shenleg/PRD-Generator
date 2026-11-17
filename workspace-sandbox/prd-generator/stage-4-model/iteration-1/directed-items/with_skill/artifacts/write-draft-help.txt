@@ -1,0 +1,21 @@
+usage: write_draft.py [-h] [--patch PATCH] [--body BODY] [--gaps GAPS]
+                      [--candidate-dir CANDIDATE_DIR]
+                      [--related-analysis RELATED_ANALYSIS] [--allow-stale]
+                      [--recover] [--sync]
+                      requirement_dir
+
+编排首稿及显式增量同步的候选校验与受并发保护的保存；不执行编辑、评审或发布。
+
+positional arguments:
+  requirement_dir
+
+options:
+  -h, --help            show this help message and exit
+  --patch PATCH
+  --body BODY
+  --gaps GAPS
+  --candidate-dir CANDIDATE_DIR
+  --related-analysis RELATED_ANALYSIS
+  --allow-stale
+  --recover
+  --sync                按当前分析增量同步已有未发布工作稿

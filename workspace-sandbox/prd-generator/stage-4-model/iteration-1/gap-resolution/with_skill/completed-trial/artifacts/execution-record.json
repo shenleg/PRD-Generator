@@ -1,0 +1,35 @@
+{
+  "purpose": "真实 Skill 行为试跑的执行事实与路径调整留证；不是人工批准",
+  "skill_root": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-model/iteration-1/current-skill-snapshot",
+  "original_run": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill",
+  "private_trial": "/home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps",
+  "path_adjustment": "协调线程在执行期间要求遵守 worktree 隔离；初始 inputs 复制到私有 trial/workspace 后继续，所有后续写入仅在私有 trial/workspace、outputs、artifacts。未回写主 checkout。",
+  "early_shared_writes": "调整前，在原 run/artifacts 下创建了四个场景的 check-sync.before.json 与 check-sync.before.stderr，只读工具退出码均为 0；未修改共享 workspace。此后复制这些响应至私有 artifacts，不再覆盖或删除共享材料。",
+  "first_read_failure": "第一次 metadata Read 的路径意外带多余字符，返回 File does not exist；立即用用户指定的正确路径重读成功。没有由此读取其他输入。",
+  "working_directory": "/home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98",
+  "working_directory_reason": "较高优先级的 worktree 环境指令禁止切换主 checkout，因此所有命令从此可信 worktree 调用给定快照的绝对生产工具路径；未在输入目录运行解释器。",
+  "python_invocation": "uv run --offline --no-project --python /usr/bin/python3 --with-requirements <skill_root>/requirement-analyst/scripts/requirements.txt python -I -B <skill_root>/prd-generator/scripts/<tool>.py",
+  "private_check_sync_before_exit_codes": {"PG-31-not-needed": 0, "PG-31-provisional": 0, "PG-31-retain-answer": 0, "PG-31-supplied": 0},
+  "assign_ids_attempt_1_exit_codes": {"PG-31-not-needed": 0, "PG-31-provisional": 0, "PG-31-retain-answer": 0, "PG-31-supplied": 0},
+  "write_draft_attempt_1_exit_codes": {"PG-31-not-needed": 0, "PG-31-provisional": 2, "PG-31-retain-answer": 0, "PG-31-supplied": 0},
+  "provisional_failure": {
+    "diagnostics": [
+      {"rule": 8, "level": "fail", "item_id": "SYNTHETIC-PRD/ASM-1", "path": "prd.md/residuals", "message": "缺少应列遗留项或该项未在遗留章节中定位。"},
+      {"rule": 8, "level": "fail", "item_id": "SYNTHETIC-PRD/Q-1", "path": "prd.md/residuals", "message": "缺少应列遗留项或该项未在遗留章节中定位。"}
+    ],
+    "written": [],
+    "failed_attempt_unchanged_diff_exit_code": 0,
+    "correction": "查阅生产 prd-structure 和模板后，在新 attempt-2 候选中补 prd:residual 定位标记及同一假设的交叉说明。保留 attempt-1 正文、补丁、gap、工具生成候选、完整响应与 stderr，不修改或删除失败证据。",
+    "correction_count": 1,
+    "check_sync_before_attempt_2_exit_code": 0,
+    "write_draft_attempt_2_exit_code": 0
+  },
+  "validate_final_exit_codes": {"PG-31-not-needed": 0, "PG-31-provisional": 0, "PG-31-retain-answer": 0, "PG-31-supplied": 0},
+  "check_sync_final_exit_codes": {"PG-31-not-needed": 0, "PG-31-provisional": 0, "PG-31-retain-answer": 0, "PG-31-supplied": 0},
+  "analysis_directory_diff_exit_codes": {"PG-31-not-needed": 0, "PG-31-provisional": 0, "PG-31-retain-answer": 0, "PG-31-supplied": 0},
+  "metadata_review": "四份 metadata.diff 均只改变 prd.based_on_analysis_revision 1→2 和 prd.version 0.1→0.2；common、other_owner 保持原样。",
+  "unchanged_item_review": "四份 final-changes.diff 中原 functional_requirements 章节没有字节变化；旧 trace 条目的编号、引入版本、映射、标签、状态及来源摘要不变。新增编号仅取 assign_ids 的 PRD-AC-001，最终引入版本由统一入口写为 0.2。",
+  "diagnostics": "最终工具全部 pass、diagnostics=[]；未覆盖分析项仍为 value_assessment、technical_feasibility、impact_analysis。工具未将这些列为 warning，但模型在最终说明中告知降级。",
+  "scope": "未修改产品实现或分析；未读人工参考、测试源码、preparation-only、expected 或其他运行/模型输出；未委派；未发布、安装、提交、推送或其他 Git 写操作。初始仅 git rev-parse 确认已有仓库。",
+  "approval_boundary": "formal_draft 沿用分析门禁结果；不代表评审、发布、人工确认或真实业务完成。"
+}

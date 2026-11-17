@@ -1,0 +1,9 @@
+{
+  "tool_calls": {
+    "Read": 6,
+    "Bash": 2
+  },
+  "total_tool_calls": 8,
+  "errors_encountered": 0,
+  "counted_as_task_success": false
+}

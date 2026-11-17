@@ -1,0 +1,139 @@
+test_all_allocatable_prefixes_use_canonical_kinds (test_prd_sync_check.SyncCheckTests.test_all_allocatable_prefixes_use_canonical_kinds)
+新增类别统一复用 KINDS，不遗漏业务流程、状态及边界等可分配条目。 ... ok
+test_array_order_is_preserved (test_prd_sync_check.SyncCheckTests.test_array_order_is_preserved)
+PG-34 条目内来源、关联和扩展数组顺序改变均不能被稳定摘要排序掉。 ... ok
+test_authoritative_gate_cannot_be_bypassed_by_missing_auxiliary (test_prd_sync_check.SyncCheckTests.test_authoritative_gate_cannot_be_bypassed_by_missing_auxiliary)
+缺辅助文件也不能跳过有效分析的来源检查，拒绝结果保持只读。 ... ok
+test_changed_content_is_reported_even_at_same_revision (test_prd_sync_check.SyncCheckTests.test_changed_content_is_reported_even_at_same_revision)
+实际差异独立于修订门禁，同修订来源被改动仍报告 modified。 ... ok
+test_complete_extension_fields_change_digest (test_prd_sync_check.SyncCheckTests.test_complete_extension_fields_change_digest)
+PG-32 只改实际生成的完整扩展字段也必须判定为修改。 ... ok
+test_digest_unchanged_takes_priority_over_source_status (test_prd_sync_check.SyncCheckTests.test_digest_unchanged_takes_priority_over_source_status)
+已同步的撤销和待重评来源不应每次被重复报告为变化。 ... ok
+test_directory_and_cli_are_readonly_with_real_differences (test_prd_sync_check.SyncCheckTests.test_directory_and_cli_are_readonly_with_real_differences)
+PG-13 API 和任意 cwd 的公开 CLI 报告差异，目录指纹前后完全不变。 ... ok
+test_directory_does_not_validate_old_status_against_new_withdrawal (test_prd_sync_check.SyncCheckTests.test_directory_does_not_validate_old_status_against_new_withdrawal)
+新分析撤销或待重评不应因旧稿仍有效而被完整 PRD 校验错误拦截。 ... ok
+test_directory_failure_and_cli_fail_exit (test_prd_sync_check.SyncCheckTests.test_directory_failure_and_cli_fail_exit)
+未来基准、无效 JSON 和追溯不存在时输出 JSON fail，拒绝但不保存。 ... ok
+test_explicit_related_analysis_is_compared_without_mutation (test_prd_sync_check.SyncCheckTests.test_explicit_related_analysis_is_compared_without_mutation)
+跨需求引用参与摘要，但不把关联资料的未引用功能当成本需求新增条目。 ... ok
+test_future_baseline_and_invalid_revision_rejected (test_prd_sync_check.SyncCheckTests.test_future_baseline_and_invalid_revision_rejected)
+分析基准来自未来或修订不是正整数时拒绝，不静默当作无需同步。 ... ok
+test_identity_conflicts_rejected (test_prd_sync_check.SyncCheckTests.test_identity_conflicts_rejected)
+主分析、需求、追溯身份及显式关联分析的重复身份均不能混用。 ... ok
+test_invalid_structure_number_and_nonfinite_digest_rejected (test_prd_sync_check.SyncCheckTests.test_invalid_structure_number_and_nonfinite_digest_rejected)
+无效结构、编号类别、高水位、映射键重复和非有限摘要输入均拒绝。 ... ok
+test_label_source_and_relationship_changes (test_prd_sync_check.SyncCheckTests.test_label_source_and_relationship_changes)
+PG-32 单独修改标签、来源或关联均改变摘要而保留旧编号。 ... ok
+test_meta_and_non_numbered_changes_do_not_rewrite_items (test_prd_sync_check.SyncCheckTests.test_meta_and_non_numbered_changes_do_not_rewrite_items)
+meta 和未编号遗留项更新只留给 writer 重汇总，不制造正式条目差异。 ... ok
+test_missing_auxiliary_events_and_manifest_degrade (test_prd_sync_check.SyncCheckTests.test_missing_auxiliary_events_and_manifest_degrade)
+辅助事件与清单缺失仅降级，按实际来源比较且诊断不臆造变更原因。 ... ok
+test_missing_references_are_not_treated_as_withdrawn (test_prd_sync_check.SyncCheckTests.test_missing_references_are_not_treated_as_withdrawn)
+缺失条目或未显式提供的跨需求引用必须报错，不能猜测为撤销。 ... ok
+test_multiple_sources_order_and_status_priority (test_prd_sync_check.SyncCheckTests.test_multiple_sources_order_and_status_priority)
+多来源完整覆盖依据，外层引用排序稳定，撤销优先于待重评。 ... ok
+test_new_active_and_reassessment_but_not_withdrawn_sources (test_prd_sync_check.SyncCheckTests.test_new_active_and_reassessment_but_not_withdrawn_sources)
+新增可分配的有效与待重评条目被发现，撤销新条目不进入 added。 ... ok
+test_object_keys_and_json_whitespace_do_not_change_digest (test_prd_sync_check.SyncCheckTests.test_object_keys_and_json_whitespace_do_not_change_digest)
+PG-34 递归键顺序及外部 JSON 排版不同不产生正式条目差异。 ... ok
+test_related_analysis_cli_and_missing_related_reference (test_prd_sync_check.SyncCheckTests.test_related_analysis_cli_and_missing_related_reference)
+公开 CLI 只接收显式关联路径，跨需求引用缺失不能隐式扫描工作区。 ... ok
+test_revision_only_is_pending_without_item_change (test_prd_sync_check.SyncCheckTests.test_revision_only_is_pending_without_item_change)
+PG-13 只增加分析修订会待同步，不把正式条目误判成修改。 ... ok
+test_split_mapping_is_not_reported_as_new_source (test_prd_sync_check.SyncCheckTests.test_split_mapping_is_not_reported_as_new_source)
+旧来源一对多时所有映射均受影响，且不误报来源为新增。 ... ok
+test_stale_without_insistence_is_denied_but_still_compared (test_prd_sync_check.SyncCheckTests.test_stale_without_insistence_is_denied_but_still_compared)
+过期未坚持时 allowed 为假，仍报告 pending/差异，明确允许后仅为过期草稿。 ... ok
+test_symlink_and_installation_failure_are_failures (test_prd_sync_check.SyncCheckTests.test_symlink_and_installation_failure_are_failures)
+拒绝跟随用户追溯链接，依赖安装故障也必须明确报告 fail。 ... ok
+test_unchanged_baseline_and_pure_inputs (test_prd_sync_check.SyncCheckTests.test_unchanged_baseline_and_pure_inputs)
+PG-13 同修订和相同摘要为未变，比较结果也不与输入共享可变引用列表。 ... ok
+test_withdrawn_and_to_reassess_classification (test_prd_sync_check.SyncCheckTests.test_withdrawn_and_to_reassess_classification)
+撤销和待重评来源变化输出专门分类，不要求旧追溯预先采用新状态。 ... ok
+test_acceptance_can_attach_only_to_explicit_function (test_prd_sync_regressions.PrdSyncRegressionTests.test_acceptance_can_attach_only_to_explicit_function)
+章节归属保护保留规格4.4允许的显式AC挂靠功能，未关联挂靠则拒绝。 ... ok
+test_explicit_old_analysis_must_match_baseline (test_prd_sync_regressions.PrdSyncRegressionTests.test_explicit_old_analysis_must_match_baseline)
+旧分析须匹配旧基准修订，不能拿当前分析补成“旧证据”。 ... ok
+test_generated_legacy_key_avoids_real_mapping_keys (test_prd_sync_regressions.PrdSyncRegressionTests.test_generated_legacy_key_avoids_real_mapping_keys)
+回归：合法既有键legacy:PRD-FR-001不能与旧无键条目的自动补键碰撞。 ... ok
+test_legacy_missing_section_evidence_is_explicit_warning (test_prd_sync_regressions.PrdSyncRegressionTests.test_legacy_missing_section_evidence_is_explicit_warning)
+兼容旧trace时不伪造旧章节摘要；明确警告须人工核对，成功后建立新依据。 ... ok
+test_new_function_in_wrong_section_refused (test_prd_sync_regressions.PrdSyncRegressionTests.test_new_function_in_wrong_section_refused)
+回归：新增功能不能以合法编号藏到业务规则章节并被宣布同步完成。 ... ok
+test_optional_section_digest_validation_and_handover_compatibility (test_prd_sync_regressions.PrdSyncRegressionTests.test_optional_section_digest_validation_and_handover_compatibility)
+选填字段结构及已同步依据失配会失败，单独open到handed_over标记不制造失配。 ... ok
+test_real_process_handover_serializes_with_generator (test_prd_sync_regressions.PrdSyncRegressionTests.test_real_process_handover_serializes_with_generator)
+真实子进程在生成侧替换前竞争同一目录锁；等待后发现快照冲突，不覆盖任一方。 ... FAIL
+test_unchanged_scope_cannot_be_rewritten (test_prd_sync_regressions.PrdSyncRegressionTests.test_unchanged_scope_cannot_be_rewritten)
+回归：仅改查询时不得顺带把“本期不含支付”偷换成“本期包含支付”。 ... ok
+test_help_from_other_directory (test_prd_sync_runs.PrdSyncRunsTests.test_help_from_other_directory)
+隔离解释器从任意目录仍能定位测试辅助和生产代码。 ... ok
+test_public_evidence_and_no_overwrite (test_prd_sync_runs.PrdSyncRunsTests.test_public_evidence_and_no_overwrite)
+十四分支保存输入、真实响应及前后文件，源码可核对且重复路径拒绝覆盖。 ... ok
+test_concurrent_gap_handover_cannot_be_overwritten (test_prd_sync_write.PrdSyncWriteTests.test_concurrent_gap_handover_cannot_be_overwritten)
+分析侧在读取后标记handed_over时，生成侧拒绝覆盖而非把其重置成open。 ... ok
+test_conflict_and_manual_change_do_not_overwrite (test_prd_sync_write.PrdSyncWriteTests.test_conflict_and_manual_change_do_not_overwrite)
+写前版本冲突或未处理手改拒写；不靠重算摘要接纳未知正文。 ... ok
+test_default_entry_or_no_pending_or_deprecated_refused (test_prd_sync_write.PrdSyncWriteTests.test_default_entry_or_no_pending_or_deprecated_refused)
+默认首稿入口不绕过同步，无待同步变化及废弃状态不能用同步编辑。 ... ok
+test_directed_content_update_and_ownership (test_prd_sync_write.PrdSyncWriteTests.test_directed_content_update_and_ownership)
+PG-14修改指定内容并保留未变原字节、编号、common、其他块和整个分析目录。 ... ok
+test_gap_supplied_closes_and_preserves_extensions (test_prd_sync_write.PrdSyncWriteTests.test_gap_supplied_closes_and_preserves_extensions)
+PG-31实际AC补足且唯一问题已答后才关闭，并替换占位、保留历史与扩展。 ... ok
+test_handed_over_or_answer_without_content_stays_open (test_prd_sync_write.PrdSyncWriteTests.test_handed_over_or_answer_without_content_stays_open)
+PG-31保留分支：已交接或只有问题回答不自动关闭缺口，原占位继续可追踪。 ... ok
+test_interruption_recovers_once_without_duplicate_sync_event (test_prd_sync_write.PrdSyncWriteTests.test_interruption_recovers_once_without_duplicate_sync_event)
+复用事务恢复同步中断，恢复不重复追加sync事件，也不产生新的版本。 ... ok
+test_invalid_gap_closures_and_identity_edits_refused (test_prd_sync_write.PrdSyncWriteTests.test_invalid_gap_closures_and_identity_edits_refused)
+接收仍open、无效依据、失效依据、非范围的不再需要及改写原缺口均不能保存。 ... ok
+test_missing_or_ambiguous_receiver_cannot_close (test_prd_sync_write.PrdSyncWriteTests.test_missing_or_ambiguous_receiver_cannot_close)
+缺失或重复接收对应关系时上游拒绝并保留原缺口，不猜配对、不修改分析。 ... ok
+test_not_needed_closes_with_real_scope_basis (test_prd_sync_write.PrdSyncWriteTests.test_not_needed_closes_with_real_scope_basis)
+PG-31不再需要必须引用有效范围依据，不能只写生成器解释。 ... ok
+test_omitted_new_analysis_mapping_rejected (test_prd_sync_write.PrdSyncWriteTests.test_omitted_new_analysis_mapping_rejected)
+新增有效分析项不能被空补丁静默忽略。 ... ok
+test_only_tag_change_updates_marks_and_residuals (test_prd_sync_write.PrdSyncWriteTests.test_only_tag_change_updates_marks_and_residuals)
+PG-32正文不变而标签变成推断时，更新适用标注及遗留项，不重编号。 ... ok
+test_provisional_supply_keeps_assumption_and_residuals (test_prd_sync_write.PrdSyncWriteTests.test_provisional_supply_keeps_assumption_and_residuals)
+PG-31暂定内容补足后可关闭，但AC标注、问题、假设依据和验证方式不能消失。 ... ok
+test_public_cli_uses_explicit_sync_mode (test_prd_sync_write.PrdSyncWriteTests.test_public_cli_uses_explicit_sync_mode)
+公开CLI在隔离调用目录下保存同步，并返回单个JSON及真实三态退出码。 ... ok
+test_revision_only_sync_does_not_rewrite_items (test_prd_sync_write.PrdSyncWriteTests.test_revision_only_sync_does_not_rewrite_items)
+PG-13/34只有修订递增或JSON重排时更新信息事件，所有正式条目原字节保持。 ... ok
+test_stale_requires_actual_opt_in (test_prd_sync_write.PrdSyncWriteTests.test_stale_requires_actual_opt_in)
+过期优先于就绪度，未坚持拒写，坚持后只保存stale_draft。 ... ok
+test_to_reassess_keeps_uncertainty (test_prd_sync_write.PrdSyncWriteTests.test_to_reassess_keeps_uncertainty)
+PG-14待重评来源同步为to_confirm，不能保留确定语气或丢掉待确认标注。 ... ok
+test_unaffected_rewrite_or_remapping_rejected (test_prd_sync_write.PrdSyncWriteTests.test_unaffected_rewrite_or_remapping_rejected)
+未变条目的润色、定位标记变化和映射篡改均拒绝，不被新版本掩盖。 ... ok
+test_unreadable_auxiliaries_degrade_without_writing_analysis (test_prd_sync_write.PrdSyncWriteTests.test_unreadable_auxiliaries_degrade_without_writing_analysis)
+辅助清单和事件缺失仍可按权威分析同步，信息记录降级并显示全部警告。 ... ok
+test_withdrawal_then_addition_keeps_high_water (test_prd_sync_write.PrdSyncWriteTests.test_withdrawal_then_addition_keeps_high_water)
+PG-15/16废止不删除身份，后续新增递增且不复用旧号或改引入版本。 ... ok
+
+======================================================================
+FAIL: test_real_process_handover_serializes_with_generator (test_prd_sync_regressions.PrdSyncRegressionTests.test_real_process_handover_serializes_with_generator)
+真实子进程在生成侧替换前竞争同一目录锁；等待后发现快照冲突，不覆盖任一方。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_regressions.py", line 174, in test_real_process_handover_serializes_with_generator
+    self.assertEqual(child.returncode, 0, stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : Traceback (most recent call last):
+  File "/tmp/tmpw_yr8aoq/concurrent_marker.py", line 20, in <module>
+    module._mark_handoffs(root, path, snapshot, ['GAPREQ-1'])
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/collin/orca/PRD-Generator/skill/requirement-analyst/scripts/update_analysis.py", line 467, in _mark_handoffs
+    _require(_read_optional(gap_path) == snapshot, "缺口文件在接收期间发生变化；分析已保存，请重读缺口后重试标记。", str(gap_path))
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/collin/orca/PRD-Generator/skill/requirement-analyst/scripts/update_analysis.py", line 53, in _require
+    raise _InputError(message, path, item_id)
+concurrent_analysis._InputError: 缺口文件在接收期间发生变化；分析已保存，请重读缺口后重试标记。
+
+
+----------------------------------------------------------------------
+Ran 57 tests in 24.698s
+
+FAILED (failures=1)

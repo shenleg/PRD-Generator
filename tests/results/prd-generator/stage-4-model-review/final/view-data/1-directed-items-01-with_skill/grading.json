@@ -1,0 +1,71 @@
+{
+  "expectations": [
+    {
+      "text": "全部独立需求实际保存同步，修订基准更新、版本为0.2且恰有一个sync事件",
+      "passed": true,
+      "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": true}；逐场景证据见verification.json"
+    },
+    {
+      "text": "未变正式条目含标记的原始字节及章节保持",
+      "passed": true,
+      "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": true}；逐场景证据见verification.json"
+    },
+    {
+      "text": "既有编号、引入版本和废止历史保留，新增编号不复用",
+      "passed": true,
+      "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": true}；逐场景证据见verification.json"
+    },
+    {
+      "text": "分析目录、common及其他元数据块原字节或结构保持，事件只追加",
+      "passed": true,
+      "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": true}；逐场景证据见verification.json"
+    },
+    {
+      "text": "推断标签落到对应条目且遗留事项保留",
+      "passed": true,
+      "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": true}；逐场景证据见verification.json"
+    },
+    {
+      "text": "最终工作稿通过当前格式校验，警告与成功不混同",
+      "passed": true,
+      "evidence": "{\"PG-14\": true, \"PG-16\": true, \"PG-32-tag\": true}；逐场景证据见verification.json"
+    }
+  ],
+  "execution_metrics": {
+    "tool_calls": {
+      "Bash": 15,
+      "Read": 19,
+      "Write": 22
+    },
+    "total_tool_calls": 56,
+    "total_steps": 114,
+    "errors_encountered": 4,
+    "errors_scope": "运行时tool_result.is_error，不包含生产候选校验失败数；修正过程见原响应。",
+    "output_chars": 19768,
+    "transcript_chars": 118857
+  },
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "timing": {
+    "total_tokens": 48876,
+    "duration_ms": 443727,
+    "total_duration_seconds": 443.727,
+    "source": "successful private-trial agent completion notification",
+    "execution_note": "本计时只对应最终实际保存三份需求的独立模型执行；此前环境阻断、路径矛盾及取消启动分别保留，不把本次完成断言率称为首次成功率。使用专用Write/Edit逐文件创建候选，PG-32-tag因遗留定位标记修正一次。"
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [
+      "自然语言忠实性和缺口充分性仍须人工审阅"
+    ],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "overall": "旧Skill仅作未实现功能的边界对照；单次运行不证明统计稳定性，语义不由字符串断言认证。"
+  }
+}

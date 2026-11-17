@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-17",
+  "stage": 4,
+  "kind": "section_source_protection_approval",
+  "source": "本会话AskUserQuestion的真实用户选择",
+  "answer": "增加章节摘要（推荐）",
+  "reviewed_document": "tests/results/prd-generator/stage-4-section-reviewed.md",
+  "sha256": "sha256:a1f93f6f539301d5d57ebf590c04f438d3719504ac82c7a57ebd8ccfbf33aa97",
+  "scope": "新增兼容选填section_source_digests，新稿自动保护未变整章；旧稿可提供匹配修订的旧分析，缺证据明确降级而不冒称已证明。先回写规格再实现并回归；已冻结模型结果保留，当前代码重放另记。",
+  "not_approved": ["阶段4已完成", "实际模型输出语义认可", "业务发布", "Git提交合并标签或推送"]
+}

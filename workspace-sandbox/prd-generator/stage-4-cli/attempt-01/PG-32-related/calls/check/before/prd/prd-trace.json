@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "meta": {
+    "draft_kind": "formal_draft",
+    "generated_under_readiness": "ready_for_document",
+    "content_hash": "sha256:98c5e632018f493349b1ac12b4ec9e05369c15878b3d41dd90b29e5be45c35d9",
+    "counters": {
+      "FR": 2
+    }
+  },
+  "items": [
+    {
+      "prd_id": "PRD-FR-001",
+      "mapping_key": "synthetic-query",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "introduced_in": "0.1",
+      "source_digest": "sha256:edfa9dcfb9626ce801955d9448b283e8fa6ad971aff520c64d4a741a56a2b3ae"
+    },
+    {
+      "prd_id": "PRD-FR-002",
+      "mapping_key": "synthetic-export",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-2"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "introduced_in": "0.1",
+      "source_digest": "sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6"
+    }
+  ]
+}

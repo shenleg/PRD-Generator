@@ -1,0 +1,76 @@
+{
+  "expectations": [
+    {
+      "text": "全部独立需求实际保存同步，修订基准更新、版本为0.2且恰有一个sync事件",
+      "passed": false,
+      "evidence": "{\"PG-31-not-needed\": false, \"PG-31-provisional\": false, \"PG-31-retain-answer\": false, \"PG-31-supplied\": false}；逐场景证据见verification.json"
+    },
+    {
+      "text": "未变正式条目含标记的原始字节及章节保持",
+      "passed": true,
+      "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": true, \"PG-31-retain-answer\": true, \"PG-31-supplied\": true}；逐场景证据见verification.json"
+    },
+    {
+      "text": "既有编号、引入版本和废止历史保留，新增编号不复用",
+      "passed": false,
+      "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": false, \"PG-31-retain-answer\": true, \"PG-31-supplied\": false}；逐场景证据见verification.json"
+    },
+    {
+      "text": "分析目录、common及其他元数据块原字节或结构保持，事件只追加",
+      "passed": true,
+      "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": true, \"PG-31-retain-answer\": true, \"PG-31-supplied\": true}；逐场景证据见verification.json"
+    },
+    {
+      "text": "实际补足和明确不再需要关闭且引用有效依据，只有回答的缺口保留占位",
+      "passed": false,
+      "evidence": "{\"PG-31-not-needed\": false, \"PG-31-provisional\": false, \"PG-31-retain-answer\": true, \"PG-31-supplied\": false}；逐场景证据见verification.json"
+    },
+    {
+      "text": "暂定补足关闭后仍保留暂定标注、假设依据及验证方式和遗留项",
+      "passed": false,
+      "evidence": "{\"PG-31-not-needed\": true, \"PG-31-provisional\": false, \"PG-31-retain-answer\": true, \"PG-31-supplied\": true}；逐场景证据见verification.json"
+    },
+    {
+      "text": "最终工作稿通过当前格式校验，警告与成功不混同",
+      "passed": false,
+      "evidence": "{\"PG-31-not-needed\": false, \"PG-31-provisional\": false, \"PG-31-retain-answer\": false, \"PG-31-supplied\": false}；逐场景证据见verification.json"
+    }
+  ],
+  "execution_metrics": {
+    "tool_calls": {
+      "Read": 6,
+      "Bash": 10,
+      "Write": 3
+    },
+    "total_tool_calls": 19,
+    "total_steps": 42,
+    "transcript_chars": 39122,
+    "output_chars": 13669,
+    "errors_encountered": 2,
+    "errors_scope": "仅计运行时tool_result.is_error；产品候选校验失败另见实际响应，不以此数代表零候选修正。"
+  },
+  "summary": {
+    "passed": 2,
+    "failed": 5,
+    "total": 7,
+    "pass_rate": 0.2857142857142857
+  },
+  "timing": {
+    "total_tokens": 23266,
+    "duration_ms": 299283,
+    "total_duration_seconds": 299.283,
+    "source": "agent completion notification",
+    "execution_note": "旧Skill正确拒绝同步；共享路径Write被worktree隔离拒绝后在私有worktree保存最终说明，由主线程复制归档。"
+  },
+  "claims": [],
+  "user_notes_summary": {
+    "uncertainties": [
+      "自然语言忠实性和缺口充分性仍须人工审阅"
+    ],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "overall": "旧Skill仅作未实现功能的边界对照；单次运行不证明统计稳定性，语义不由字符串断言认证。"
+  }
+}

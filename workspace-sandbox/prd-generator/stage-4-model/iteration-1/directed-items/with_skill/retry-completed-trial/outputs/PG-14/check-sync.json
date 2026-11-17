@@ -1,0 +1,33 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "allowed": true,
+  "pending": true,
+  "based_on_analysis_revision": 1,
+  "analysis_revision": 2,
+  "items": [
+    {"prd_id":"PRD-FR-001","analysis_refs":["SYNTHETIC-PRD/FR-1"],"category":"modified","source_digest":"sha256:4f34d916156d4899da01e7edcb0933ff71f4f62de90a08f56dfd5c8cab56e3dd"},
+    {"prd_id":"PRD-FR-002","analysis_refs":["SYNTHETIC-PRD/FR-2"],"category":"unchanged","source_digest":"sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6"}
+  ],
+  "added": [],
+  "draft_kind":"formal_draft",
+  "base_prd_version":"0.1",
+  "uncovered_analysis":["value_assessment","technical_feasibility","impact_analysis"],
+  "sections":[
+    {"section":"background","category":"unknown","source_digest":"sha256:0eb792ab1ef5bdc6cfb1653a545a710a28553e1e6ed0a0cd84b97d339efd83d5"},
+    {"section":"scope","category":"unknown","source_digest":"sha256:86228ebd4538aa80f04d12116cd9d3b4dad87bfed7ec93077dbcf0f0d666d71c"},
+    {"section":"scenarios","category":"unknown","source_digest":"sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead"},
+    {"section":"functional_requirements","category":"unknown","source_digest":"sha256:e15d47fbda8f33e2858bfc5c1371e960092928a9e51c12d10665488ed394062f"},
+    {"section":"business_rules","category":"unknown","source_digest":"sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead"},
+    {"section":"flows_states","category":"unknown","source_digest":"sha256:15578a45e607d1732550c6b3b50d18b429dcb97312a7b6d049201c896a110bf0"},
+    {"section":"boundaries_exceptions","category":"unknown","source_digest":"sha256:f8e887d42e0311d6c5dc32965225e8208adf99cd5f807354d5b97718f6df1d1b"},
+    {"section":"constraints","category":"unknown","source_digest":"sha256:15f8af6fa6e3a5d66bd1981b7cdf45b065dcaf6d3bc63acb951cb6ff03d4af74"},
+    {"section":"acceptance_criteria","category":"unknown","source_digest":"sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead"},
+    {"section":"ux","category":"unknown","source_digest":"sha256:ce04eeca2f8f3c539339816375839777750895b3afc89f3463548e33de645ccb"},
+    {"section":"technical","category":"unknown","source_digest":"sha256:968ded902767d85c5236465586a5d75d414f4547be2081c4a2c5f53d98d4a885"},
+    {"section":"impact","category":"unknown","source_digest":"sha256:0eb792ab1ef5bdc6cfb1653a545a710a28553e1e6ed0a0cd84b97d339efd83d5"},
+    {"section":"residuals","category":"unknown","source_digest":"sha256:5a8ccec796c0745d8b1a5690da3b86adcf3dbb6ca2749d4e8fb06c3d6abfe726"},
+    {"section":"appendix","category":"unknown","source_digest":"sha256:3b02b01a76fc5279ca31e69100d4773fa4d5c4797439730b2d01722900e7e23a"}
+  ],
+  "section_basis_available":false
+}

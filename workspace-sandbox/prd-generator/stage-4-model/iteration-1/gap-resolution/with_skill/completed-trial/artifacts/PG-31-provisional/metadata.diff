@@ -1,0 +1,14 @@
+--- /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-provisional/requirement.json	2026-11-17 18:15:20.393267567 +0000
++++ /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-provisional/requirement.json	2026-11-17 18:23:56.132232871 +0000
+@@ -6,9 +6,9 @@
+     "created_at": "2026-11-17T00:00:00Z"
+   },
+   "prd": {
+-    "based_on_analysis_revision": 1,
++    "based_on_analysis_revision": 2,
+     "status": "draft",
+-    "version": "0.1"
++    "version": "0.2"
+   },
+   "other_owner": {
+     "keep": "不能覆盖其他块"

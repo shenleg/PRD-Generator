@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "meta": {
+    "draft_kind": "formal_draft",
+    "generated_under_readiness": "ready_for_document",
+    "content_hash": "sha256:1be01536c3c5b0158881d5a09835dab0ab1da0404bccee266fda0418344154c6",
+    "counters": {
+      "FR": 3
+    },
+    "section_source_digests": {
+      "background": "sha256:0eb792ab1ef5bdc6cfb1653a545a710a28553e1e6ed0a0cd84b97d339efd83d5",
+      "scope": "sha256:86228ebd4538aa80f04d12116cd9d3b4dad87bfed7ec93077dbcf0f0d666d71c",
+      "scenarios": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead",
+      "functional_requirements": "sha256:1ffa85829f1a3e3dbad67b211268824b6453eba05420763438f504c40b9ee5d2",
+      "business_rules": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead",
+      "flows_states": "sha256:15578a45e607d1732550c6b3b50d18b429dcb97312a7b6d049201c896a110bf0",
+      "boundaries_exceptions": "sha256:f8e887d42e0311d6c5dc32965225e8208adf99cd5f807354d5b97718f6df1d1b",
+      "constraints": "sha256:15f8af6fa6e3a5d66bd1981b7cdf45b065dcaf6d3bc63acb951cb6ff03d4af74",
+      "acceptance_criteria": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead",
+      "ux": "sha256:ce04eeca2f8f3c539339816375839777750895b3afc89f3463548e33de645ccb",
+      "technical": "sha256:968ded902767d85c5236465586a5d75d414f4547be2081c4a2c5f53d98d4a885",
+      "impact": "sha256:0eb792ab1ef5bdc6cfb1653a545a710a28553e1e6ed0a0cd84b97d339efd83d5",
+      "residuals": "sha256:5a8ccec796c0745d8b1a5690da3b86adcf3dbb6ca2749d4e8fb06c3d6abfe726",
+      "appendix": "sha256:b7bdcfd02ffdca185b498a54849eefead1cc1bcb02deb34763509eedff7c3c03"
+    }
+  },
+  "items": [
+    {
+      "prd_id": "PRD-FR-001",
+      "mapping_key": "synthetic-query",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-1"
+      ],
+      "tag": "confirmed",
+      "status": "abolished",
+      "introduced_in": "0.1",
+      "source_digest": "sha256:091f0a2811e968d7d218282affead382f3fe0c63cc48157c9f1771c910a80631"
+    },
+    {
+      "prd_id": "PRD-FR-002",
+      "mapping_key": "synthetic-export",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-2"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "introduced_in": "0.1",
+      "source_digest": "sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6"
+    },
+    {
+      "prd_id": "PRD-FR-003",
+      "kind": "functional_requirement",
+      "introduced_in": "0.2",
+      "mapping_key": "new-statistics",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-3"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:8e575facde4268f3275a91c59e026ed2316f6b452c3411064962904bcaa4e218"
+    }
+  ]
+}

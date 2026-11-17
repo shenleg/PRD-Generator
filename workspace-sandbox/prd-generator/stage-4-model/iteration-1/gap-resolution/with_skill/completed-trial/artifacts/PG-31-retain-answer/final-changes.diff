@@ -1,0 +1,76 @@
+diff --color -ru /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-retain-answer/prd/prd-events.jsonl /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-retain-answer/prd/prd-events.jsonl
+--- /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-retain-answer/prd/prd-events.jsonl	2026-11-17 18:15:20.398101154 +0000
++++ /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-retain-answer/prd/prd-events.jsonl	2026-11-17 18:22:59.679788140 +0000
+@@ -1 +1,2 @@
+ {"time": "2026-11-17T00:00:00Z", "prd_version": "0.1", "change_type": "initial_generation", "summary": "合成格式夹具", "affected_prd_ids": ["PRD-FR-001"], "based_on_analysis_revision": 1, "actor": "prd_generator"}
++{   "time": "2026-11-17T18:22:59.590842+00:00",   "prd_version": "0.2",   "change_type": "sync",   "summary": "新增：无；修改：无；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：已按当前分析更新；保留缺口及占位（尚未提交经内容核实的关闭依据）：GAPREQ-1；分析事件说明：合成指定分析变化，仅用于验证同步",   "affected_prd_ids": [],   "based_on_analysis_revision": 2,   "actor": "prd_generator" }
+diff --color -ru /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-retain-answer/prd/prd-trace.json /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-retain-answer/prd/prd-trace.json
+--- /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-retain-answer/prd/prd-trace.json	2026-11-17 18:15:20.400229108 +0000
++++ /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-retain-answer/prd/prd-trace.json	2026-11-17 18:22:59.669345819 +0000
+@@ -4,7 +4,7 @@
+   "meta": {
+     "draft_kind": "formal_draft",
+     "generated_under_readiness": "ready_for_document",
+-    "content_hash": "sha256:d604155e01be7f33369fb61db58ce1361c9ae0e313f2a96f1168d21f7888d294",
++    "content_hash": "sha256:914fcd47534fe8f8f6a0c535a9ae223eadec4bd5f0f86ff74f8e3d230b8ea1ae",
+     "counters": {
+       "FR": 2
+     }
+diff --color -ru /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-retain-answer/prd/prd.md /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-retain-answer/prd/prd.md
+--- /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-retain-answer/prd/prd.md	2026-11-17 18:15:20.400017465 +0000
++++ /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-retain-answer/prd/prd.md	2026-11-17 18:22:59.664531768 +0000
+@@ -1,20 +1,25 @@
+ 草稿，待产品经理确认后发布。
+ 
+ <!-- prd:section info -->
++## 文档信息
++
+ | 字段 | 值 |
+ | --- | --- |
+ | 需求编号 | SYNTHETIC-PRD |
+ | 标题 | 合成格式夹具 |
+-| PRD 版本 | 0.1 |
++| PRD 版本 | 0.2 |
+ | 状态 | draft |
+ | 草稿类型 | formal_draft |
+-| 基于的分析修订号 | 1 |
+-| 生成时间 | 2026-11-17T00:00:00Z |
+-| 未覆盖的分析项 | technical_feasibility、impact_analysis、value_assessment |
++| 基于的分析修订号 | 2 |
++| 生成时间 | 2026-11-17T18:22:59.590842+00:00 |
++| 未覆盖的分析项 | value_assessment、technical_feasibility、impact_analysis |
+ <!-- /prd:section -->
+ 
+ <!-- prd:section changes -->
+-首次合成夹具
++## 变更记录
++
++- 2026-11-17T00:00:00Z · 0.1 · 合成格式夹具（PRD-FR-001）
++- 2026-11-17T18:22:59.590842+00:00 · 0.2 · 新增：无；修改：无；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：已按当前分析更新；保留缺口及占位（尚未提交经内容核实的关闭依据）：GAPREQ-1；分析事件说明：合成指定分析变化，仅用于验证同步
+ <!-- /prd:section -->
+ 
+ <!-- prd:section scope -->
+@@ -48,7 +53,7 @@
+ <!-- /prd:section -->
+ 
+ <!-- prd:section residuals -->
+-验收缺口 GAPREQ-1 尚未核实。
++验收缺口 GAPREQ-1 保留 handed_over，验收占位保持。唯一接收问题 SYNTHETIC-PRD/Q-1 虽为 answered，但回答只说明已收到回复；当前分析的验收条件为空，也无明确不再需要的决策或范围依据，SYNTHETIC-PRD/FR-1 仅描述查询功能，不能补足验收条件。建议返回需求分析，由产品按原问题补充可核对的查询验收条件（ask_product，推荐先补分析）。
+ <!-- /prd:section -->
+ 
+ <!-- prd:section appendix -->
+diff --color -ru /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-retain-answer/requirement.json /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-retain-answer/requirement.json
+--- /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-retain-answer/requirement.json	2026-11-17 18:15:20.399234894 +0000
++++ /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-retain-answer/requirement.json	2026-11-17 18:22:59.675191073 +0000
+@@ -6,9 +6,9 @@
+     "created_at": "2026-11-17T00:00:00Z"
+   },
+   "prd": {
+-    "based_on_analysis_revision": 1,
++    "based_on_analysis_revision": 2,
+     "status": "draft",
+-    "version": "0.1"
++    "version": "0.2"
+   },
+   "other_owner": {
+     "keep": "不能覆盖其他块"

@@ -1,0 +1,50 @@
+{
+  "stage": 4,
+  "semantic_review": "pending_human",
+  "runs": [
+    {
+      "task": "directed-items",
+      "configuration": "with_skill",
+      "passed": 6,
+      "failed": 0,
+      "total": 6,
+      "pass_rate": 1.0,
+      "all_tasks_synced": true,
+      "all_inputs_unchanged": false,
+      "evidence": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-model/iteration-1/directed-items/with_skill"
+    },
+    {
+      "task": "directed-items",
+      "configuration": "old_skill",
+      "passed": 2,
+      "failed": 4,
+      "total": 6,
+      "pass_rate": 0.3333333333333333,
+      "all_tasks_synced": false,
+      "all_inputs_unchanged": true,
+      "evidence": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-model/iteration-1/directed-items/old_skill"
+    },
+    {
+      "task": "gap-resolution",
+      "configuration": "with_skill",
+      "passed": 7,
+      "failed": 0,
+      "total": 7,
+      "pass_rate": 1.0,
+      "all_tasks_synced": true,
+      "all_inputs_unchanged": false,
+      "evidence": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill"
+    },
+    {
+      "task": "gap-resolution",
+      "configuration": "old_skill",
+      "passed": 2,
+      "failed": 5,
+      "total": 7,
+      "pass_rate": 0.2857142857142857,
+      "all_tasks_synced": false,
+      "all_inputs_unchanged": true,
+      "evidence": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/old_skill"
+    }
+  ]
+}

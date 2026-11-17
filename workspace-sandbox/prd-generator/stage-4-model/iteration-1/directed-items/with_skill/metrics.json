@@ -1,0 +1,13 @@
+{
+  "tool_calls": {
+    "Bash": 15,
+    "Read": 19,
+    "Write": 22
+  },
+  "total_tool_calls": 56,
+  "total_steps": 114,
+  "errors_encountered": 4,
+  "errors_scope": "运行时tool_result.is_error，不包含生产候选校验失败数；修正过程见原响应。",
+  "output_chars": 19768,
+  "transcript_chars": 118857
+}

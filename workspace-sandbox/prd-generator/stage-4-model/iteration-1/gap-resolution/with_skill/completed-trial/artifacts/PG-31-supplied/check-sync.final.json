@@ -1,0 +1,42 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "allowed": true,
+  "pending": false,
+  "based_on_analysis_revision": 2,
+  "analysis_revision": 2,
+  "items": [
+    {
+      "prd_id": "PRD-FR-001",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-1"
+      ],
+      "category": "unchanged",
+      "source_digest": "sha256:edfa9dcfb9626ce801955d9448b283e8fa6ad971aff520c64d4a741a56a2b3ae"
+    },
+    {
+      "prd_id": "PRD-FR-002",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-2"
+      ],
+      "category": "unchanged",
+      "source_digest": "sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6"
+    },
+    {
+      "prd_id": "PRD-AC-001",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/AC-1"
+      ],
+      "category": "unchanged",
+      "source_digest": "sha256:524a2ae5b15fe7a81ce71c6e70b8c82aa9cd0814ce61d719978dfcb9cbacab6b"
+    }
+  ],
+  "added": [],
+  "draft_kind": "formal_draft",
+  "base_prd_version": "0.2",
+  "uncovered_analysis": [
+    "value_assessment",
+    "technical_feasibility",
+    "impact_analysis"
+  ]
+}

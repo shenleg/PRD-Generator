@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "meta": {
+    "analysis_revision": 2,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "existing_document",
+    "analysis_status": "completed",
+    "readiness": "ready_for_document"
+  },
+  "requirements": {
+    "goals": [],
+    "scenarios": [],
+    "functional_requirements": [
+      {
+        "id": "FR-1",
+        "content": "合成查询功能，不代表真实业务",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "合成资料第1条"
+          }
+        ]
+      },
+      {
+        "id": "FR-2",
+        "content": "合成导出功能，不代表真实业务",
+        "tag": "confirmed",
+        "status": "active",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "合成资料第1条"
+          }
+        ]
+      }
+    ],
+    "business_rules": [],
+    "constraints": [],
+    "non_functional_requirements": [],
+    "acceptance_criteria": [],
+    "scope": {
+      "in_scope": [],
+      "out_of_scope": []
+    }
+  },
+  "business_assessment": {
+    "flows": [],
+    "states": [],
+    "boundaries": [],
+    "exceptions": [],
+    "gaps": [],
+    "conflicts": []
+  },
+  "ux_assessment": {
+    "ui_dependent": false,
+    "design_pending_items": []
+  },
+  "questions": [
+    {
+      "id": "Q-1",
+      "question": "查询功能以什么条件验收？",
+      "priority": "P3",
+      "resolution": "ask_product",
+      "reason": "合成验收缺口",
+      "impact": "仅供测试",
+      "options": [
+        "补足",
+        "不再需要"
+      ],
+      "recommendation": "先补分析",
+      "status": "answered",
+      "related_ids": [
+        "FR-1"
+      ],
+      "gap_request_ref": "GAPREQ-1",
+      "answer": "已收到回复；仍须核实有效分析条目，不能只凭这句关闭"
+    }
+  ],
+  "assumptions": [],
+  "decisions": [],
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 7,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "counters": {
+    "GAPREQ": 1
+  },
+  "requests": [
+    {
+      "id": "GAPREQ-1",
+      "needed_for": "acceptance_criteria",
+      "description": "查询功能的验收条件尚缺",
+      "related_analysis_refs": [
+        "SYNTHETIC-PRD/FR-1"
+      ],
+      "raised_in": "0.1",
+      "status": "closed",
+      "resolution": {
+        "kind": "supplied",
+        "analysis_refs": [
+          "SYNTHETIC-PRD/AC-1"
+        ],
+        "reason": "唯一接收问题 SYNTHETIC-PRD/Q-1 已回答；当前有效且 confirmed 的 AC-1 明确规定查询只返回与输入条件匹配的记录，并关联 FR-1，实际提供了原缺失的查询验收条件，不是仅凭问题答案或交接状态关闭。"
+      },
+      "extension": {
+        "keep": "缺口扩展"
+      }
+    }
+  ],
+  "extension": "封装扩展"
+}

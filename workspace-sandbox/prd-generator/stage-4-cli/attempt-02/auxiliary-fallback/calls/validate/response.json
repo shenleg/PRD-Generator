@@ -1,0 +1,29 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpFyQyg8/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/validate_prd.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-02/auxiliary-fallback/requirement"
+  ],
+  "cwd": "/",
+  "stdout": "{\n  \"status\": \"warning\",\n  \"diagnostics\": [\n    {\n      \"rule\": 3,\n      \"level\": \"warning\",\n      \"item_id\": \"$\",\n      \"path\": \"/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-02/auxiliary-fallback/requirement/analysis/source-manifest.json\",\n      \"message\": \"辅助来源清单不可用，仅显示 source_id；来源和历史权威性未核验。\"\n    }\n  ]\n}\n",
+  "stderr": "",
+  "exit_code": 1,
+  "before": {
+    "requirement.json": "sha256:5d0adba31e3df3fbf53c486d62d91edad30a4cc4a45016da2cc2649409a2ff93",
+    "analysis/analysis-result.json": "sha256:21677de103ca7cde912c4b90d88084fad1518b7d863c66e29a4b5c6ae5d5c977",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd-events.jsonl": "sha256:44e14eca37b22b70264111963c5d47b3dee401a2292848ac5ffd6928f22233ab",
+    "prd/prd.md": "sha256:5de25b7ba80b09ab8e311f81eaf0c97f192176ae70e33d84e23dafe9f1ceb926",
+    "prd/prd-trace.json": "sha256:55e9f9e019958b13de27138e593f95c016b517c123dcecdbc21d51bc90feec24"
+  },
+  "after": {
+    "requirement.json": "sha256:5d0adba31e3df3fbf53c486d62d91edad30a4cc4a45016da2cc2649409a2ff93",
+    "analysis/analysis-result.json": "sha256:21677de103ca7cde912c4b90d88084fad1518b7d863c66e29a4b5c6ae5d5c977",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd-events.jsonl": "sha256:44e14eca37b22b70264111963c5d47b3dee401a2292848ac5ffd6928f22233ab",
+    "prd/prd.md": "sha256:5de25b7ba80b09ab8e311f81eaf0c97f192176ae70e33d84e23dafe9f1ceb926",
+    "prd/prd-trace.json": "sha256:55e9f9e019958b13de27138e593f95c016b517c123dcecdbc21d51bc90feec24"
+  }
+}

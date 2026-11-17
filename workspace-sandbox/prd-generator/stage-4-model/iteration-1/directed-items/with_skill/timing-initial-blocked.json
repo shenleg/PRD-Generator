@@ -1,0 +1,8 @@
+{
+  "total_tokens": 28713,
+  "duration_ms": 225627,
+  "total_duration_seconds": 225.627,
+  "source": "first agent completion notification",
+  "result": "blocked_before_sync",
+  "note": "隔离worktree无法Write共享checkout，停止而未绕过；同一代理已收到转到私有worktree新目录继续任务的消息，后续完成单独记录。"
+}

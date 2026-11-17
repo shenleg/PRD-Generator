@@ -455,22 +455,30 @@ def _prepare_handoffs(analysis, patch, gaps):
 
 
 def _mark_handoffs(root, gap_path, snapshot, selected):
-    """分析提交后比较读取时原字节，仅标记本次接收的 open 缺口；冲突保留现场。"""
+    """分析提交后在共享需求目录锁内标记接收；原字节冲突保留现场供重读重试。"""
     if not selected:
         return False
     _safe(root, gap_path.relative_to(root))
-    _require(_read_optional(gap_path) == snapshot, "缺口文件在接收期间发生变化；分析已保存，请重读缺口后重试标记。", str(gap_path))
-    gaps = _load_json(gap_path)
-    changed = False
-    for gap in gaps["requests"]:
-        if gap["id"] in selected and gap["status"] == "open":
-            gap["status"] = "handed_over"
-            changed = True
-    if changed:
-        # 缺口不放入分析事务：恢复旧事务不能重放过期的生成侧文件快照。
-        _require(_read_optional(gap_path) == snapshot, "缺口标记前发生并发更新，请重读后重试。", str(gap_path))
-        _atomic_write(gap_path, _json_bytes(gaps))
-    return changed
+    # 两侧都写gap文件，须与生成侧持有同一稳定目录锁；单独的分析工作区锁不能阻止读后写覆盖。
+    # 该锁仅包住接收标记，不改变分析先保存再标记的顺序，也不创建analysis目录中的新文件。
+    descriptor = os.open(gap_path.parent.parent, os.O_RDONLY | os.O_DIRECTORY)
+    try:
+        fcntl.flock(descriptor, fcntl.LOCK_EX)
+        _require(_read_optional(gap_path) == snapshot, "缺口文件在接收期间发生变化；分析已保存，请重读缺口后重试标记。", str(gap_path))
+        gaps = _load_json(gap_path)
+        changed = False
+        for gap in gaps["requests"]:
+            if gap["id"] in selected and gap["status"] == "open":
+                gap["status"] = "handed_over"
+                changed = True
+        if changed:
+            # 缺口不放入分析事务：恢复旧事务不能重放过期的生成侧文件快照。
+            _require(_read_optional(gap_path) == snapshot, "缺口标记前发生并发更新，请重读后重试。", str(gap_path))
+            _atomic_write(gap_path, _json_bytes(gaps))
+        return changed
+    finally:
+        fcntl.flock(descriptor, fcntl.LOCK_UN)
+        os.close(descriptor)
 
 
 def _finish_handoffs(root, gap_path, snapshot, selected, outcome, dry_run):

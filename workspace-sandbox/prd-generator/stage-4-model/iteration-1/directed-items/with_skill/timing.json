@@ -1,0 +1,7 @@
+{
+  "total_tokens": 48876,
+  "duration_ms": 443727,
+  "total_duration_seconds": 443.727,
+  "source": "successful private-trial agent completion notification",
+  "execution_note": "本计时只对应最终实际保存三份需求的独立模型执行；此前环境阻断、路径矛盾及取消启动分别保留，不把本次完成断言率称为首次成功率。使用专用Write/Edit逐文件创建候选，PG-32-tag因遗留定位标记修正一次。"
+}

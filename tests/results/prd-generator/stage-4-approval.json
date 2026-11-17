@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-17",
+  "stage": 4,
+  "kind": "implementation_scope_and_reference_approval",
+  "source": "本会话 AskUserQuestion 的真实用户选择",
+  "decisions": [
+    {
+      "question": "阶段 4 需要保存增量同步结果，但现行规格把 check_sync.py 限为只读、write_draft.py 限为首稿生成。是否按 tests/results/prd-generator/stage-4-spec-review-draft.md 扩展现有写入器，再回写规格并实现？",
+      "answer": "扩展现有写入器（推荐）",
+      "snapshot": "tests/results/prd-generator/stage-4-spec-reviewed.md",
+      "sha256": "sha256:fe9770bf347411f50f6cd5b73184caf7a73c9fcb8596d86ff579b4d35655d30c"
+    },
+    {
+      "question": "是否认可 tests/expected/prd-generator/stage-4.review-draft.md 的七项场景参考要点及隔离模型试跑范围，作为阶段 4 实施依据？认可参考不代表认可后续输出，也不授权业务发布或 Git 提交。",
+      "answer": "认可参考并试跑（推荐）",
+      "snapshot": "tests/results/prd-generator/stage-4-reference-reviewed.md",
+      "sha256": "sha256:ecf0d27256a74ab99d9e4858eecb31efe8852ed9408c7ea1e5190511aed01999"
+    }
+  ],
+  "scope": "先回写获确认的同步写入职责，实施阶段4七项场景与回归，并进行两组代表任务的隔离模型试跑；参考不作为被测模型输入。",
+  "not_approved": ["后续实际模型输出的语义验收", "阶段4退出条件已满足", "业务评审或发布", "正式安装", "git commit", "git merge", "git tag", "git push"]
+}

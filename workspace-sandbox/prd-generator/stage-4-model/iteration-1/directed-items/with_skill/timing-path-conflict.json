@@ -1,0 +1,8 @@
+{
+  "total_tokens": 17976,
+  "duration_ms": 37667,
+  "total_duration_seconds": 37.667,
+  "source": "agent completion notification",
+  "result": "not_executed_scope_conflict",
+  "note": "主线程错误地将共享目录限定为唯一写范围，又通过协调消息要求改到worktree；代理正确拒绝矛盾范围，仅只读加载资料。未保存、未校验、无候选，不计同步通过。已另行使用从一开始就仅写自己worktree的明确任务，未要求绕过该拒绝。"
+}

@@ -1,0 +1,15 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "base_prd_version": "0.1",
+  "base_analysis_revision": 2,
+  "items": [
+    {
+      "mapping_key": "synthetic-statistics",
+      "kind": "functional_requirement",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-3"
+      ]
+    }
+  ]
+}

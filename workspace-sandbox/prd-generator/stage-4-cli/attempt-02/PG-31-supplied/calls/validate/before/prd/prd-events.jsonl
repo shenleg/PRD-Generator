@@ -1,0 +1,2 @@
+{"time": "2026-11-17T00:00:00Z", "prd_version": "0.1", "change_type": "initial_generation", "summary": "合成格式夹具", "affected_prd_ids": ["PRD-FR-001"], "based_on_analysis_revision": 1, "actor": "prd_generator"}
+{   "time": "2026-11-17T18:53:15.786017+00:00",   "prd_version": "0.2",   "change_type": "sync",   "summary": "新增：PRD-AC-001；修改：无；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：已按当前分析更新；核实关闭缺口：GAPREQ-1；分析事件说明：合成指定分析变化，仅用于验证同步",   "affected_prd_ids": [     "PRD-AC-001"   ],   "based_on_analysis_revision": 2,   "actor": "prd_generator" }

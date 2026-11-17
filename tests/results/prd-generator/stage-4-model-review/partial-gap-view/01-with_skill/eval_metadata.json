@@ -1,0 +1,17 @@
+{
+  "eval_id": 2,
+  "eval_name": "gap-resolution",
+  "config": "with_skill",
+  "prompt": "这些是明确标记的合成需求，已有人用旧PRD，分析侧已更新。请按当前权威分析逐需求增量同步，保留未变条目原字节与编号，使用工具分配新增编号，不要整篇润色。若存在缺口，核对原描述、唯一接收问题和实际分析内容，充分或有明确不再需要依据才关闭；只有交接或回答但缺少所需内容则保留并说明，暂定补足保留标注、假设依据和验证方式。本任务不授权修改analysis、其他元数据块、发布、安装或Git操作。若你加载的Skill明确不支持同步，请说明能力边界并保持工作稿不变，勿绕过其边界自写实现。仅使用给定Skill目录中的生产工具，不读测试源码、人工参考、其他运行或preparation-only。工作区为 /home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/workspace，各场景为独立合成需求，不能合并；产物和最终说明保存到 /home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/outputs。同步候选、补丁、工具响应及修正过程另存在本run的artifacts目录，每轮失败保留，最多连续修正3次。请在outputs下保存每份最终PRD、trace和gap副本，以及model-response.md（逐场景的完成或拒绝、缺口依据、警告和路径）。",
+  "skill_root": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-model/iteration-1/current-skill-snapshot",
+  "input_root": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/workspace",
+  "assertions": [
+    "全部独立需求实际保存同步，修订基准更新、版本为0.2且恰有一个sync事件",
+    "未变正式条目含标记的原始字节及章节保持",
+    "既有编号、引入版本和废止历史保留，新增编号不复用",
+    "分析目录、common及其他元数据块原字节或结构保持，事件只追加",
+    "实际补足和明确不再需要关闭且引用有效依据，只有回答的缺口保留占位",
+    "暂定补足关闭后仍保留暂定标注、假设依据及验证方式和遗留项",
+    "最终工作稿通过当前格式校验，警告与成功不混同"
+  ]
+}

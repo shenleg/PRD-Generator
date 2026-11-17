@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "counters": {
+    "GAPREQ": 1
+  },
+  "requests": [
+    {
+      "id": "GAPREQ-1",
+      "needed_for": "acceptance_criteria",
+      "description": "查询功能的验收条件尚缺",
+      "related_analysis_refs": [
+        "SYNTHETIC-PRD/FR-1"
+      ],
+      "raised_in": "0.1",
+      "status": "closed",
+      "resolution": {
+        "kind": "not_needed",
+        "analysis_refs": ["SYNTHETIC-PRD/FR-3"],
+        "reason": "唯一接收问题 SYNTHETIC-PRD/Q-1 已回答；有效范围排除项 FR-3 明确写明本期不扩展查询验收、该模板验收信息不再需要，因此原缺口所需内容本期不再需要，不是仅凭 answered 或 handed_over 关闭。"
+      },
+      "extension": {
+        "keep": "缺口扩展"
+      }
+    }
+  ],
+  "extension": "封装扩展"
+}

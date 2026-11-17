@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-17",
+  "stage": 4,
+  "kind": "final_human_semantic_acceptance",
+  "source": "本会话AskUserQuestion的真实用户选择",
+  "question": "是否已审阅阶段 4 完整输出页 tests/results/prd-generator/stage-4-model-review/final-02/review.html，并认可七份实际同步的表达、缺口关闭/保留判断，以及旧稿章节依据不足时的逐章核对结果？本确认只用于阶段 4 验收，不授权 Git 提交、合并、推送、业务发布或开始阶段 5。",
+  "answer": "已审阅，认可本轮结果",
+  "approved_scope": [
+    "七份实际同步输出的自然语言表达",
+    "缺口关闭或保留判断、暂定标注及遗留事项",
+    "旧稿章节依据不足时的逐章核对结果",
+    "结合最终421项回归、14个CLI分支、7份当前源码重放及实际模型证据，完成阶段4验收"
+  ],
+  "review_page": "tests/results/prd-generator/stage-4-model-review/final-02/review.html",
+  "artifact_fingerprints": "tests/results/prd-generator/stage-4-reviewed-artifacts.json",
+  "notes": ["认可的是实际评审材料，不将模型自述“已人工逐章”当作先前已有人工意见", "旧Skill正确拒绝和环境中断原件保持，不倒改成成功", "历史评审页面和模型清单中的pending字段保持原字节，当前最终结论以本记录为准"],
+  "not_approved": ["git commit", "git merge", "git tag", "git push", "正式安装", "业务评审或发布", "开始阶段5"]
+}

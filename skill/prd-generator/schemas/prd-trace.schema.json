@@ -45,6 +45,14 @@
           "type": "string",
           "pattern": "^sha256:[0-9a-f]{64}$"
         },
+        "section_source_digests": {
+          "description": "兼容选填的生成时章节依据快照；不包含脚本渲染的信息和变更记录。",
+          "type": "object",
+          "propertyNames": {
+            "enum": ["background", "scope", "scenarios", "functional_requirements", "business_rules", "flows_states", "boundaries_exceptions", "constraints", "acceptance_criteria", "ux", "technical", "impact", "residuals", "appendix"]
+          },
+          "additionalProperties": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+        },
         "counters": {
           "type": "object",
           "propertyNames": {

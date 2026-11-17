@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-17",
+  "stage": 4,
+  "status": "completed",
+  "acceptance": "pass",
+  "branch": "feat/prd-generator-stage-4",
+  "base_commit": "077f924",
+  "baseline": {"tests": 363, "failures": 0, "errors": 0, "skipped": 0, "seconds": 110.868, "log": "tests/results/prd-generator/stage-4-baseline-test-run.txt"},
+  "sync_specialized": {"tests": 57, "failures": 0, "errors": 0, "skipped": 0, "seconds": 24.422, "log": "tests/results/prd-generator/stage-4-sync-test-run-04.txt"},
+  "final_regression": {"tests": 421, "failures": 0, "errors": 0, "skipped": 0, "seconds": 131.582, "log": "tests/results/prd-generator/stage-4-final-test-run-03.txt"},
+  "public_cli": {
+    "execution": "synthetic_public_cli",
+    "cases": 14,
+    "passed": 14,
+    "source_files_matched": 41,
+    "source_mismatches": [],
+    "manifest": "workspace-sandbox/prd-generator/stage-4-cli/attempt-05/manifest.json",
+    "model_invocation": false
+  },
+  "scenarios": {
+    "PG-13": "pass",
+    "PG-14": "pass",
+    "PG-15": "pass",
+    "PG-16": "pass",
+    "PG-31": "pass",
+    "PG-32": "pass",
+    "PG-34": "pass"
+  },
+  "approvals": ["tests/results/prd-generator/stage-4-approval.json", "tests/results/prd-generator/stage-4-section-approval.json", "tests/results/prd-generator/stage-4-final-approval.json"],
+  "models": {
+    "iteration": "workspace-sandbox/prd-generator/stage-4-model/iteration-1",
+    "status": "actual_outputs_and_programmatic_checks_pass",
+    "completed_workspaces": 7,
+    "objective_assertions_passed": 13,
+    "objective_assertions_total": 13,
+    "failed_candidates_corrected": {"directed_inferred_residual": 1, "provisional_residuals": 1},
+    "old_skill_result": "correct_refusal_not_task_completion",
+    "environment_attempts": "preserved_not_counted_as_success",
+    "current_source_replay": {"cases": 7, "passed": 7, "source_files_matched": 41, "manifest": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/manifest.json", "model_invocation": false},
+    "review_page": "tests/results/prd-generator/stage-4-model-review/final-02/review.html",
+    "review_artifact_fingerprints": "tests/results/prd-generator/stage-4-reviewed-artifacts.json",
+    "human_semantic_review": "approved_by_user",
+    "final_approval": "tests/results/prd-generator/stage-4-final-approval.json"
+  },
+  "limitations": ["旧追溯没有章节摘要或可信旧分析时须人工逐章核对，不自动宣称整章最小化已证明", "机器格式校验不代替缺口充分性或自然语言忠实性", "未实现编辑、评审发布和发布后另建工作稿", "正式安装联调仍归阶段7"],
+  "git_actions": {"as_of": "阶段4人工验收结束时；用户随后明确授权提交、合并、推送，实际结果以Git历史和远端为准", "committed": false, "merged": false, "tagged": false, "pushed": false},
+  "published": false
+}

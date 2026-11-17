@@ -1,0 +1,65 @@
+{
+  "PG-14": {
+    "complete": true,
+    "stable": true,
+    "ids": true,
+    "owned": true,
+    "tag": true,
+    "gaps": null,
+    "provisional": true,
+    "valid": true,
+    "program_status": "pass",
+    "validation": {
+      "status": "pass",
+      "diagnostics": []
+    },
+    "unchanged_items": 1,
+    "old_ids": 2,
+    "new_ids": 2,
+    "version": "0.2",
+    "sync_events": 1,
+    "workspace_unchanged": false
+  },
+  "PG-16": {
+    "complete": true,
+    "stable": true,
+    "ids": true,
+    "owned": true,
+    "tag": true,
+    "gaps": null,
+    "provisional": true,
+    "valid": true,
+    "program_status": "pass",
+    "validation": {
+      "status": "pass",
+      "diagnostics": []
+    },
+    "unchanged_items": 2,
+    "old_ids": 2,
+    "new_ids": 3,
+    "version": "0.2",
+    "sync_events": 1,
+    "workspace_unchanged": false
+  },
+  "PG-32-tag": {
+    "complete": true,
+    "stable": true,
+    "ids": true,
+    "owned": true,
+    "tag": true,
+    "gaps": null,
+    "provisional": true,
+    "valid": true,
+    "program_status": "pass",
+    "validation": {
+      "status": "pass",
+      "diagnostics": []
+    },
+    "unchanged_items": 1,
+    "old_ids": 2,
+    "new_ids": 2,
+    "version": "0.2",
+    "sync_events": 1,
+    "workspace_unchanged": false
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "total_tokens": 34551,
+  "duration_ms": 154896,
+  "total_duration_seconds": 154.896,
+  "source": "agent completion notification",
+  "result": "partial_readonly_and_numbering_candidates",
+  "note": "私有worktree中三份check_sync及assign_ids只读候选已运行；构造正文的复杂Bash命令被范围验证拒绝后停止，未绕过；没有write_draft成功响应，不计同步完成。后续试跑明确使用专用Write/Edit逐文件创建候选。"
+}

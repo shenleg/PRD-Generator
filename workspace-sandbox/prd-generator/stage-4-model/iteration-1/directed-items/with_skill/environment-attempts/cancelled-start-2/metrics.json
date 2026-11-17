@@ -1,0 +1,8 @@
+{
+  "tool_calls": {
+    "Read": 1
+  },
+  "total_tool_calls": 1,
+  "errors_encountered": 1,
+  "counted_as_task_success": false
+}

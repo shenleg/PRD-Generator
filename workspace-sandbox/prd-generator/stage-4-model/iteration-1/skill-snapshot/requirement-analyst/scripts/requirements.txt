@@ -1,0 +1,2 @@
+# 安装校验器所需的 JSON Schema 与 RFC 3339 格式检查依赖。
+jsonschema[format]==4.26.0

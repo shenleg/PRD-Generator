@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "counters": {
+    "GAPREQ": 1
+  },
+  "requests": [
+    {
+      "id": "GAPREQ-1",
+      "needed_for": "acceptance_criteria",
+      "description": "查询功能的验收条件尚缺",
+      "related_analysis_refs": [
+        "SYNTHETIC-PRD/FR-1"
+      ],
+      "raised_in": "0.1",
+      "status": "closed",
+      "resolution": {
+        "kind": "supplied",
+        "analysis_refs": [
+          "SYNTHETIC-PRD/AC-1",
+          "SYNTHETIC-PRD/ASM-1"
+        ],
+        "reason": "唯一接收问题 SYNTHETIC-PRD/Q-1 为 provisional；有效暂定验收 AC-1 给出查询只返回条件匹配记录，补足原缺失的查询验收条件。ASM-1 给出暂定假设、产品尚待核对验收口径的依据与后续核对验收样例的验证方式。仅关闭信息缺口，正文继续标注【暂定】并保留问题、假设和验证遗留事项，不当作已确认事实。"
+      },
+      "extension": {
+        "keep": "缺口扩展"
+      }
+    }
+  ],
+  "extension": "封装扩展"
+}

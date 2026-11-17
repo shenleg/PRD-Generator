@@ -7,7 +7,7 @@
 | Skill | 当前范围 | 源码 | 文档 | 测试 |
 | --- | --- | --- | --- | --- |
 | `requirement-analyst` | 原阶段 1～8及最终收口完成；真实下游联调仍需补验 | [生产目录](skill/requirement-analyst/) | [文档导航](docs/requirement-analyst/README.md) | [测试与历史证据](tests/requirement-analyst/README.md) |
-| `prd-generator` | 阶段 0～3 已验收；支持可追溯首稿，同步、评审和发布尚未实现 | [生产入口](skill/prd-generator/SKILL.md) | [文档导航](docs/prd-generator/README.md) | [测试说明](tests/prd-generator/README.md) |
+| `prd-generator` | 阶段 0～4 已验收；支持首稿与未发布稿增量同步，评审和发布尚未实现 | [生产入口](skill/prd-generator/SKILL.md) | [文档导航](docs/prd-generator/README.md) | [测试说明](tests/prd-generator/README.md) |
 
 阶段记录说明各自的通过范围。合成案例、程序回归、模型行为、人工认可和真实业务签核不混称；草稿生成、格式校验或阶段验收均不等同于正式发布批准。
 
@@ -41,7 +41,7 @@ workspace-sandbox/             历史试跑证据，保留原位置
 
 需求分析 Skill 的安装、普通对话触发和当前会话承接见 [安装说明](docs/requirement-analyst/installation.md)。现有 `.claude/skills/requirement-analyst` 仍指向唯一生产目录；阶段 2 修改分析侧接收能力，不改安装链接。
 
-`prd-generator` 已有 [Skill 入口](skill/prd-generator/SKILL.md)，支持首次草稿及同一分析输入的重复生成；两个 Skill 需并列安装。门禁、编号、统一保存及恢复用法见 [脚本说明](skill/prd-generator/scripts/README.md)。本次未改实际安装链接，不把显式加载试跑称为安装自动触发。同步、编辑、评审及发布仍按 [执行计划](docs/prd-generator/execution-plan.md) 后续阶段实施。
+`prd-generator` 已有 [Skill 入口](skill/prd-generator/SKILL.md)，支持首次草稿、同一分析输入重复生成及未发布工作稿的显式增量同步；两个 Skill 需并列安装。门禁、比较、编号、统一保存及恢复用法见 [脚本说明](skill/prd-generator/scripts/README.md)，阶段 4 的实际验证与待验收项见 [进度记录](tests/results/prd-generator/stage-4.md)。本次未改实际安装链接，不把显式加载试跑称为安装自动触发。编辑、评审、发布及发布后另建工作稿仍按 [执行计划](docs/prd-generator/execution-plan.md) 后续阶段实施。
 
 ## 运行全部测试
 

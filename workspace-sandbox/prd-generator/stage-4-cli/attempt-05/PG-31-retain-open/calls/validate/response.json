@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmp6wAigN/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/validate_prd.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-05/PG-31-retain-open/requirement"
+  ],
+  "cwd": "/",
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": []\n}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "requirement.json": "sha256:5d0adba31e3df3fbf53c486d62d91edad30a4cc4a45016da2cc2649409a2ff93",
+    "analysis/analysis-events.jsonl": "sha256:c774daac710f700a35534c4a3750274821a47c7c2d2d45d48f557ab67cc2d8d4",
+    "analysis/analysis-result.json": "sha256:0ea40d2df82e701b4a4883cb234e9315dbd58b8a423f2f92d1958ffe2f52dcb5",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "prd/gap-requests.json": "sha256:6e5444160a956d4a20c30f42e3f380e4c3efe341a7b51bce173763ca8bf78c62",
+    "prd/prd-events.jsonl": "sha256:46a2e57b1a9306bd6f4e825583625feed67ee966d308d3c4904ec6d5bc1d2997",
+    "prd/prd.md": "sha256:652c9b4490bafab587a42bd56239c12c565f0bd18eab0a9f93e980d7f4834889",
+    "prd/prd-trace.json": "sha256:2d17118f399309ff98ba6cce200ed4d228293410be38ede128bd77167c326920"
+  },
+  "after": {
+    "requirement.json": "sha256:5d0adba31e3df3fbf53c486d62d91edad30a4cc4a45016da2cc2649409a2ff93",
+    "analysis/analysis-events.jsonl": "sha256:c774daac710f700a35534c4a3750274821a47c7c2d2d45d48f557ab67cc2d8d4",
+    "analysis/analysis-result.json": "sha256:0ea40d2df82e701b4a4883cb234e9315dbd58b8a423f2f92d1958ffe2f52dcb5",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "prd/gap-requests.json": "sha256:6e5444160a956d4a20c30f42e3f380e4c3efe341a7b51bce173763ca8bf78c62",
+    "prd/prd-events.jsonl": "sha256:46a2e57b1a9306bd6f4e825583625feed67ee966d308d3c4904ec6d5bc1d2997",
+    "prd/prd.md": "sha256:652c9b4490bafab587a42bd56239c12c565f0bd18eab0a9f93e980d7f4834889",
+    "prd/prd-trace.json": "sha256:2d17118f399309ff98ba6cce200ed4d228293410be38ede128bd77167c326920"
+  }
+}

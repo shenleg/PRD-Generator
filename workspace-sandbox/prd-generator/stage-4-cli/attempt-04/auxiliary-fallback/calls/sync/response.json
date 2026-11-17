@@ -1,0 +1,36 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmp0Awm2B/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-04/auxiliary-fallback/requirement",
+    "--sync",
+    "--patch",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-04/auxiliary-fallback/patch.json",
+    "--body",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-04/auxiliary-fallback/candidate.md",
+    "--candidate-dir",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-04/auxiliary-fallback/candidate"
+  ],
+  "cwd": "/",
+  "stdout": "{\"status\": \"warning\", \"diagnostics\": [{\"rule\": 3, \"level\": \"warning\", \"item_id\": \"$\", \"path\": \"/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-04/auxiliary-fallback/requirement/analysis/source-manifest.json\", \"message\": \"辅助来源清单不可用，仅显示 source_id；来源和历史权威性未核验。\"}, {\"rule\": 0, \"level\": \"warning\", \"item_id\": \"$\", \"path\": \"analysis/analysis-events.jsonl\", \"message\": \"分析事件不可用，仅按条目生成变更摘要：未提供分析事件\"}, {\"rule\": 3, \"level\": \"warning\", \"item_id\": \"$\", \"path\": \"/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-04/auxiliary-fallback/candidate/analysis/source-manifest.json\", \"message\": \"辅助来源清单不可用，仅显示 source_id；来源和历史权威性未核验。\"}], \"version\": \"0.2\", \"draft_kind\": \"formal_draft\", \"candidate_dir\": \"/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-04/auxiliary-fallback/candidate\", \"generated\": true, \"synced\": true, \"comparison\": {\"pending\": true, \"based_on_analysis_revision\": 1, \"analysis_revision\": 2, \"items\": [{\"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-1\"], \"category\": \"unchanged\", \"source_digest\": \"sha256:edfa9dcfb9626ce801955d9448b283e8fa6ad971aff520c64d4a741a56a2b3ae\"}, {\"prd_id\": \"PRD-FR-002\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-2\"], \"category\": \"unchanged\", \"source_digest\": \"sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6\"}], \"added\": []}, \"change_summary\": \"新增：无；修改：无；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：未变\", \"mapping\": [{\"mapping_key\": \"synthetic-query\", \"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-1\"]}, {\"mapping_key\": \"synthetic-export\", \"prd_id\": \"PRD-FR-002\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-2\"]}], \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"prd/gap-requests.json\", \"requirement.json\", \"prd/prd-events.jsonl\"]}\n",
+  "stderr": "",
+  "exit_code": 1,
+  "before": {
+    "requirement.json": "sha256:c422ea129fdba041582403c93e619366492d5a4507f62ca02473b38aaa5f1f03",
+    "analysis/analysis-result.json": "sha256:21677de103ca7cde912c4b90d88084fad1518b7d863c66e29a4b5c6ae5d5c977",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd-events.jsonl": "sha256:e1d8cc001493d4940f06b828ae38eb59923743c05ea7119f2f3209e8ed1941e4",
+    "prd/prd.md": "sha256:98c5e632018f493349b1ac12b4ec9e05369c15878b3d41dd90b29e5be45c35d9",
+    "prd/prd-trace.json": "sha256:ce213dfdb52e25fd8e7f07c366b46a3e482ff234307ca21b425f3c89188cff7d"
+  },
+  "after": {
+    "requirement.json": "sha256:5d0adba31e3df3fbf53c486d62d91edad30a4cc4a45016da2cc2649409a2ff93",
+    "analysis/analysis-result.json": "sha256:21677de103ca7cde912c4b90d88084fad1518b7d863c66e29a4b5c6ae5d5c977",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd-events.jsonl": "sha256:4c132e1b017873c7a469f58aad061f8e660b260b117c33e2dce2fa777d497f6b",
+    "prd/prd.md": "sha256:82c0ce8dbf09af61d3bb724ad85d7dcea8e81de6ea5ed982f02475d30c8fa1ba",
+    "prd/prd-trace.json": "sha256:709997b90a994b42f7eb8f224ee552f22512431bb37254c1b795b7ebb7afe603"
+  }
+}

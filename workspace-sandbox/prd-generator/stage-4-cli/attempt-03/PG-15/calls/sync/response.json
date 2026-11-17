@@ -1,0 +1,40 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpOshktT/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-03/PG-15/requirement",
+    "--sync",
+    "--patch",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-03/PG-15/patch.json",
+    "--body",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-03/PG-15/candidate.md",
+    "--candidate-dir",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-03/PG-15/candidate"
+  ],
+  "cwd": "/",
+  "stdout": "{\"status\": \"pass\", \"diagnostics\": [], \"version\": \"0.2\", \"draft_kind\": \"formal_draft\", \"candidate_dir\": \"/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-cli/attempt-03/PG-15/candidate\", \"generated\": true, \"synced\": true, \"comparison\": {\"pending\": true, \"based_on_analysis_revision\": 1, \"analysis_revision\": 2, \"items\": [{\"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-1\"], \"category\": \"withdrawn\", \"source_digest\": \"sha256:091f0a2811e968d7d218282affead382f3fe0c63cc48157c9f1771c910a80631\"}, {\"prd_id\": \"PRD-FR-002\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-2\"], \"category\": \"unchanged\", \"source_digest\": \"sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6\"}], \"added\": []}, \"change_summary\": \"新增：无；修改：无；废止：PRD-FR-001；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：未变；分析事件说明：合成指定分析变化，仅用于验证同步\", \"mapping\": [{\"mapping_key\": \"synthetic-query\", \"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-1\"]}, {\"mapping_key\": \"synthetic-export\", \"prd_id\": \"PRD-FR-002\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-2\"]}], \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"prd/gap-requests.json\", \"requirement.json\", \"prd/prd-events.jsonl\"]}\n",
+  "stderr": "",
+  "exit_code": 0,
+  "before": {
+    "requirement.json": "sha256:c422ea129fdba041582403c93e619366492d5a4507f62ca02473b38aaa5f1f03",
+    "analysis/analysis-events.jsonl": "sha256:c774daac710f700a35534c4a3750274821a47c7c2d2d45d48f557ab67cc2d8d4",
+    "analysis/analysis-result.json": "sha256:6f8092f9b68826cc9ad91ce0c83f8423412dc6ed612a5b77b0b03277fa24c666",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd-events.jsonl": "sha256:e1d8cc001493d4940f06b828ae38eb59923743c05ea7119f2f3209e8ed1941e4",
+    "prd/prd.md": "sha256:98c5e632018f493349b1ac12b4ec9e05369c15878b3d41dd90b29e5be45c35d9",
+    "prd/prd-trace.json": "sha256:ce213dfdb52e25fd8e7f07c366b46a3e482ff234307ca21b425f3c89188cff7d"
+  },
+  "after": {
+    "requirement.json": "sha256:5d0adba31e3df3fbf53c486d62d91edad30a4cc4a45016da2cc2649409a2ff93",
+    "analysis/analysis-events.jsonl": "sha256:c774daac710f700a35534c4a3750274821a47c7c2d2d45d48f557ab67cc2d8d4",
+    "analysis/analysis-result.json": "sha256:6f8092f9b68826cc9ad91ce0c83f8423412dc6ed612a5b77b0b03277fa24c666",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd-events.jsonl": "sha256:269165dc1f80bd0adb82bd2a62ecbff57e51d89f1e6ada3ff54ada74ff58530d",
+    "prd/prd.md": "sha256:5f5fd23a5b55e6ee1c857a76b82f89709224a32b50fa43680ad87c1e01b35f57",
+    "prd/prd-trace.json": "sha256:4d73f7bf68fc0f5655ace67ffb41bba9cabe18992dafe992f5b3b40e0b38ea0c"
+  }
+}

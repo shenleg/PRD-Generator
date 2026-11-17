@@ -1,0 +1,86 @@
+{
+  "PG-31-not-needed": {
+    "complete": true,
+    "stable": true,
+    "ids": true,
+    "owned": true,
+    "tag": true,
+    "gaps": true,
+    "provisional": true,
+    "valid": true,
+    "program_status": "pass",
+    "validation": {
+      "status": "pass",
+      "diagnostics": []
+    },
+    "unchanged_items": 2,
+    "old_ids": 2,
+    "new_ids": 2,
+    "version": "0.2",
+    "sync_events": 1,
+    "workspace_unchanged": false
+  },
+  "PG-31-provisional": {
+    "complete": true,
+    "stable": true,
+    "ids": true,
+    "owned": true,
+    "tag": true,
+    "gaps": true,
+    "provisional": true,
+    "valid": true,
+    "program_status": "pass",
+    "validation": {
+      "status": "pass",
+      "diagnostics": []
+    },
+    "unchanged_items": 2,
+    "old_ids": 2,
+    "new_ids": 3,
+    "version": "0.2",
+    "sync_events": 1,
+    "workspace_unchanged": false
+  },
+  "PG-31-retain-answer": {
+    "complete": true,
+    "stable": true,
+    "ids": true,
+    "owned": true,
+    "tag": true,
+    "gaps": true,
+    "provisional": true,
+    "valid": true,
+    "program_status": "pass",
+    "validation": {
+      "status": "pass",
+      "diagnostics": []
+    },
+    "unchanged_items": 2,
+    "old_ids": 2,
+    "new_ids": 2,
+    "version": "0.2",
+    "sync_events": 1,
+    "workspace_unchanged": false
+  },
+  "PG-31-supplied": {
+    "complete": true,
+    "stable": true,
+    "ids": true,
+    "owned": true,
+    "tag": true,
+    "gaps": true,
+    "provisional": true,
+    "valid": true,
+    "program_status": "pass",
+    "validation": {
+      "status": "pass",
+      "diagnostics": []
+    },
+    "unchanged_items": 2,
+    "old_ids": 2,
+    "new_ids": 3,
+    "version": "0.2",
+    "sync_events": 1,
+    "workspace_unchanged": false
+  }
+}

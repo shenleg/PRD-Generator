@@ -1,0 +1,107 @@
+diff --color -ru /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-not-needed/prd/gap-requests.json /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-not-needed/prd/gap-requests.json
+--- /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-not-needed/prd/gap-requests.json	2026-11-17 18:15:20.388022135 +0000
++++ /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-not-needed/prd/gap-requests.json	2026-11-17 18:22:58.784119771 +0000
+@@ -13,7 +13,14 @@
+         "SYNTHETIC-PRD/FR-1"
+       ],
+       "raised_in": "0.1",
+-      "status": "handed_over",
++      "status": "closed",
++      "resolution": {
++        "kind": "not_needed",
++        "analysis_refs": [
++          "SYNTHETIC-PRD/FR-3"
++        ],
++        "reason": "唯一接收问题 SYNTHETIC-PRD/Q-1 已回答；有效范围排除项 FR-3 明确写明本期不扩展查询验收、该模板验收信息不再需要，因此原缺口所需内容本期不再需要，不是仅凭 answered 或 handed_over 关闭。"
++      },
+       "extension": {
+         "keep": "缺口扩展"
+       }
+diff --color -ru /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-not-needed/prd/prd-events.jsonl /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-not-needed/prd/prd-events.jsonl
+--- /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-not-needed/prd/prd-events.jsonl	2026-11-17 18:15:20.386754310 +0000
++++ /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-not-needed/prd/prd-events.jsonl	2026-11-17 18:22:58.792951134 +0000
+@@ -1 +1,2 @@
+ {"time": "2026-11-17T00:00:00Z", "prd_version": "0.1", "change_type": "initial_generation", "summary": "合成格式夹具", "affected_prd_ids": ["PRD-FR-001"], "based_on_analysis_revision": 1, "actor": "prd_generator"}
++{   "time": "2026-11-17T18:22:58.702033+00:00",   "prd_version": "0.2",   "change_type": "sync",   "summary": "新增：无；修改：无；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：已按当前分析更新；核实关闭缺口：GAPREQ-1；分析事件说明：合成指定分析变化，仅用于验证同步",   "affected_prd_ids": [],   "based_on_analysis_revision": 2,   "actor": "prd_generator" }
+diff --color -ru /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-not-needed/prd/prd-trace.json /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-not-needed/prd/prd-trace.json
+--- /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-not-needed/prd/prd-trace.json	2026-11-17 18:15:20.388761223 +0000
++++ /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-not-needed/prd/prd-trace.json	2026-11-17 18:22:58.779934318 +0000
+@@ -4,7 +4,7 @@
+   "meta": {
+     "draft_kind": "formal_draft",
+     "generated_under_readiness": "ready_for_document",
+-    "content_hash": "sha256:d604155e01be7f33369fb61db58ce1361c9ae0e313f2a96f1168d21f7888d294",
++    "content_hash": "sha256:72452f500ad5e7156f02ac53d149adcfd86cc2519890e7f4d73da2e2a2199b40",
+     "counters": {
+       "FR": 2
+     }
+diff --color -ru /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-not-needed/prd/prd.md /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-not-needed/prd/prd.md
+--- /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-not-needed/prd/prd.md	2026-11-17 18:15:20.388562224 +0000
++++ /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-not-needed/prd/prd.md	2026-11-17 18:22:58.775647633 +0000
+@@ -1,24 +1,29 @@
+ 草稿，待产品经理确认后发布。
+ 
+ <!-- prd:section info -->
++## 文档信息
++
+ | 字段 | 值 |
+ | --- | --- |
+ | 需求编号 | SYNTHETIC-PRD |
+ | 标题 | 合成格式夹具 |
+-| PRD 版本 | 0.1 |
++| PRD 版本 | 0.2 |
+ | 状态 | draft |
+ | 草稿类型 | formal_draft |
+-| 基于的分析修订号 | 1 |
+-| 生成时间 | 2026-11-17T00:00:00Z |
+-| 未覆盖的分析项 | technical_feasibility、impact_analysis、value_assessment |
++| 基于的分析修订号 | 2 |
++| 生成时间 | 2026-11-17T18:22:58.702033+00:00 |
++| 未覆盖的分析项 | value_assessment、technical_feasibility、impact_analysis |
+ <!-- /prd:section -->
+ 
+ <!-- prd:section changes -->
+-首次合成夹具
++## 变更记录
++
++- 2026-11-17T00:00:00Z · 0.1 · 合成格式夹具（PRD-FR-001）
++- 2026-11-17T18:22:58.702033+00:00 · 0.2 · 新增：无；修改：无；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：已按当前分析更新；核实关闭缺口：GAPREQ-1；分析事件说明：合成指定分析变化，仅用于验证同步
+ <!-- /prd:section -->
+ 
+ <!-- prd:section scope -->
+-分析结果中无此项
++本期不含：本期不扩展查询验收，该模板验收信息不再需要。分析范围依据：SYNTHETIC-PRD/FR-3。
+ <!-- /prd:section -->
+ 
+ <!-- prd:section scenarios -->
+@@ -42,13 +47,11 @@
+ <!-- /prd:section -->
+ 
+ <!-- prd:section acceptance_criteria -->
+-<!-- prd:gap GAPREQ-1 -->
+-待分析补充：查询功能的验收条件尚缺
+-<!-- /prd:gap -->
++本期不扩展查询验收，该模板验收信息不再需要；范围依据 SYNTHETIC-PRD/FR-3。分析结果中无验收条件，不另行臆造。
+ <!-- /prd:section -->
+ 
+ <!-- prd:section residuals -->
+-验收缺口 GAPREQ-1 尚未核实。
++GAPREQ-1 已按 not_needed 核实关闭：唯一接收问题 SYNTHETIC-PRD/Q-1 已回答，且当前有效范围排除项 SYNTHETIC-PRD/FR-3 明确说明本期不扩展查询验收、该模板验收信息不再需要。不是仅凭问题状态关闭；未修改查询及导出功能。本场景分析无其他待列遗留事项。
+ <!-- /prd:section -->
+ 
+ <!-- prd:section appendix -->
+diff --color -ru /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-not-needed/requirement.json /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-not-needed/requirement.json
+--- /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/artifacts/initial-workspace/PG-31-not-needed/requirement.json	2026-11-17 18:15:20.387747502 +0000
++++ /home/collin/orca/PRD-Generator/.claude/worktrees/agent-af28332f3be0f7c98/trial-stage4-gaps/workspace/PG-31-not-needed/requirement.json	2026-11-17 18:22:58.788474857 +0000
+@@ -6,9 +6,9 @@
+     "created_at": "2026-11-17T00:00:00Z"
+   },
+   "prd": {
+-    "based_on_analysis_revision": 1,
++    "based_on_analysis_revision": 2,
+     "status": "draft",
+-    "version": "0.1"
++    "version": "0.2"
+   },
+   "other_owner": {
+     "keep": "不能覆盖其他块"

@@ -1,0 +1,7 @@
+{
+  "total_tokens": 17742,
+  "duration_ms": 146119,
+  "total_duration_seconds": 146.119,
+  "source": "agent completion notification",
+  "execution_note": "旧Skill按能力边界拒绝同步；工作区产物原样复制已完成，Write因worktree隔离拒绝共享目录，最终说明由主线程根据真实报告补存。"
+}

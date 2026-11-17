@@ -1,0 +1,13 @@
+本文件记录本次实际遇到的 Write 工具拒绝，不是生产校验器的诊断。
+
+当时主工作目录：/home/collin/orca/PRD-Generator/.claude/worktrees/agent-a6258d2858543aa2a
+
+以下三项通过同一 parallel 调用尝试创建，均失败，未形成候选补丁文件：
+1. artifacts/PG-14-patch-1.json
+2. artifacts/PG-16-patch-1.json
+3. artifacts/PG-32-tag-patch-1.json
+
+每项实际工具响应相同：
+<tool_use_error>This agent is isolated in the worktree /home/collin/orca/PRD-Generator/.claude/worktrees/agent-a6258d2858543aa2a. Edit the worktree copy of this file instead of the shared-checkout path.</tool_use_error>
+
+遇到拒绝后没有改用 Bash 绕过，没有调用 write_draft --sync。随后环境更新为主目录 /home/collin/orca/PRD-Generator，且不再处于隔离工作树；按协调要求仅保存已有产物和记录，三个场景均收束为 partial。

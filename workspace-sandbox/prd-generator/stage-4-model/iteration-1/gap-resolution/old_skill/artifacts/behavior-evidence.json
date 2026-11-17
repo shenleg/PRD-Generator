@@ -1,0 +1,43 @@
+{
+  "eval_id": 2,
+  "config": "old_skill",
+  "skill_file": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-model/iteration-1/skill-snapshot/prd-generator/SKILL.md",
+  "boundary_quote": "本 Skill 当前支持首次草稿和相同分析输入的重复生成。同步、编辑、提交评审、发布尚未实现；收到此类请求时明确告知，不模拟完成。",
+  "decision": "拒绝四个独立场景的增量同步；工作稿不变，仅归档现有文件的字节一致副本。",
+  "production_scripts_invoked": [],
+  "candidate_or_patch_created": false,
+  "sync_validation_attempts": 0,
+  "analysis_read_or_written": false,
+  "gap_observation": {
+    "scenarios": ["PG-31-retain-answer", "PG-31-not-needed", "PG-31-provisional", "PG-31-supplied"],
+    "id": "GAPREQ-1",
+    "needed_for": "acceptance_criteria",
+    "description": "查询功能的验收条件尚缺",
+    "related_analysis_refs": ["SYNTHETIC-PRD/FR-1"],
+    "status": "handed_over",
+    "resolution": "未执行接收问题与分析内容的语义核对，未关闭缺口；状态原样保留。"
+  },
+  "tool_failures": [
+    {
+      "operation": "最初尝试批量创建副本并校验的复合 Bash 命令",
+      "actual_response": "This agent is isolated in the worktree /home/collin/orca/PRD-Generator/.claude/worktrees/agent-a1954042053dc97e6, but this command is too complex to verify that it stays inside the worktree. Refusing to run it — a worktree-isolated agent's git operations must target its own worktree. Split it into plain, separate commands and run them from /home/collin/orca/PRD-Generator/.claude/worktrees/agent-a1954042053dc97e6.",
+      "followup": "依照工具提示拆成简单的 mkdir、cp 与 sha256sum 命令；均成功。没有更改隔离设置或切换目录。"
+    },
+    {
+      "operation": "Write 本 run 共享路径 artifacts/behavior-evidence.json",
+      "actual_response": "This agent is isolated in the worktree /home/collin/orca/PRD-Generator/.claude/worktrees/agent-a1954042053dc97e6. Edit the worktree copy of this file instead of the shared-checkout path.",
+      "followup": "停止写共享路径，按协调指示把证据及最终响应保存在本 worktree/trial-stage4-old-gaps，由主线程复制。此前成功创建的共享副本与校验清单未覆盖或删除。"
+    }
+  ],
+  "copy_verification": {
+    "manifest": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/old_skill/artifacts/copy-sha256.txt",
+    "copied_files_per_scenario": ["prd.md", "prd-trace.json", "gap-requests.json"],
+    "matching_source_copy_pairs": 12,
+    "note": "清单为复制后的原件及副本校验值，不宣称存在复制前的哈希快照。"
+  },
+  "file_sha256_all_scenarios": {
+    "prd.md": "d604155e01be7f33369fb61db58ce1361c9ae0e313f2a96f1168d21f7888d294",
+    "prd-trace.json": "782fc50f2479bccb501ce087b875afa90e223c61f5e4a389010cfb428aee1c67",
+    "gap-requests.json": "6e5444160a956d4a20c30f42e3f380e4c3efe341a7b51bce173763ca8bf78c62"
+  }
+}

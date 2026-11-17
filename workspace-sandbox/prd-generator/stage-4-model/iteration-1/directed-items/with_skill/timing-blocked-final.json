@@ -1,0 +1,8 @@
+{
+  "total_tokens": 30686,
+  "duration_ms": 42107,
+  "total_duration_seconds": 42.107,
+  "source": "resumed agent completion notification",
+  "result": "partial_no_sync",
+  "note": "该通知的total_tokens为恢复会话累计量；首轮225.627秒与本轮42.107秒分别保留，不将累计tokens再次相加。三份均未保存。后续重新从冻结输入在可写运行目录进行独立试跑，单独留证。"
+}

@@ -6,7 +6,8 @@
 
 - 阶段 0 建立索引；阶段 2 的 `PG-29` 已验收 `pass`，见 `tests/results/prd-generator/stage-2.md`。阶段 3 的 `PG-01`～`PG-03`、`PG-06`～`PG-11`、`PG-20`～`PG-21`、`PG-26` 已完成本阶段验收，程序、实际模型及人工认可分别见 `tests/results/prd-generator/stage-3.md` 和 `stage-3-approval.json`。
 - 其余场景仍未完整验收；`PG-04`、`PG-05` 只有生成局部检查，不认领阶段6的完整生命周期通过。格式夹具和确定性CLI不冒充实际模型生成。
-- 各 `PG-xx.md` 剧本在进入所属阶段前编写并由人工参考要点约束；本轮未批量生成空壳剧本。
+- 阶段 4 的 `PG-13`～`PG-16`、`PG-31`、`PG-32`、`PG-34` 已完成首次完整验收 `pass`；程序、实际模型、当前源码重放及真实人工认可分别见 `tests/results/prd-generator/stage-4.md`、`stage-4-test-summary.json`、`stage-4-final-approval.json`。参考见 `tests/expected/prd-generator/stage-4.review-draft.md`，原评审材料保持原字节。
+- 各 `PG-xx.md` 剧本在进入所属阶段前编写并由人工参考要点约束；不批量生成空壳剧本。
 - 阶段 1 验证只读校验器的合法与反例夹具，不提前认领后续完整生命周期场景。
 - 前置阶段只验证局部行为；第一次完整验收只归属下表阶段，后续重复运行记为回归。
 - 两组原始样例均未就绪，不能假装覆盖全部就绪度、正式发布和并发分支；这些分支需按规格另构造明确标记的合成输入。

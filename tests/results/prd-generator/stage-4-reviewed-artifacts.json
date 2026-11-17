@@ -1,0 +1,265 @@
+{
+  "date": "2026-11-17",
+  "stage": 4,
+  "kind": "artifacts_presented_for_human_review",
+  "human_approval": false,
+  "note": "只固定评审材料，用户尚未给出最终认可；包含真实模型原件与当前源码重放，不把重放称新模型调用。",
+  "files": [
+    {
+      "path": "tests/results/prd-generator/stage-4-model-review/final-02/review.html",
+      "sha256": "sha256:7a699ac05cfe460837f6496bacc0d7316f378e978ec95be0b6739fabccd5c59b"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-4-model-review/final-02/benchmark.json",
+      "sha256": "sha256:3cd83aaabead93b61103336362ecfbe910fe83b72e6d8f4a310d3abc27a892fa"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-4-model-review/final-02/benchmark.md",
+      "sha256": "sha256:609e8e73f0fbfbe9b09d10098ca3917e0cbef58511f3315242174d09e5542a8d"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-4-review-guide.md",
+      "sha256": "sha256:a062f7b2d03ef8e6a2b73b832a4040f368bed03fb637e7509ee324ff353a2250"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-4-model-analysis.md",
+      "sha256": "sha256:38a3b473192fa07ff5624819347cb7e344cb9f6049c777d137d9f7b1859201fb"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-4-model-review/actual-differences.json",
+      "sha256": "sha256:c9cb3b85cd1be126750802a26b498d198d21bf1356d6b8ad0ac19769f4ab87f5"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/directed-items/with_skill/retry-completed-trial/outputs/model-response.md",
+      "sha256": "sha256:6c279158dc5812b25e834fa3006d5efcc9efbc5a64e59c3077d1f3ca76435505"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/inputs/directed-items/PG-14/analysis/analysis-result.json",
+      "sha256": "sha256:0c850d0e3a29f407ef99b30beb2884c957b33919ab8127ade2d53ea512f87da4"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/inputs/directed-items/PG-14/prd/prd.md",
+      "sha256": "sha256:98c5e632018f493349b1ac12b4ec9e05369c15878b3d41dd90b29e5be45c35d9"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/directed-items/with_skill/retry-completed-trial/workspace/PG-14/prd/prd.md",
+      "sha256": "sha256:4c20db4a8b56ac2ebe75375df41bb57570ca100fce794a8627174e0ed3ba0350"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/directed-items/with_skill/retry-completed-trial/workspace/PG-14/prd/prd-trace.json",
+      "sha256": "sha256:6ec58f7cc91909ee231a5e35880ccad1264a3c42fd53c540c5d6d6682b3050a8"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/directed-items/with_skill/retry-completed-trial/workspace/PG-14/prd/gap-requests.json",
+      "sha256": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/directed-items/PG-14/requirement/prd/prd.md",
+      "sha256": "sha256:64e245fac77bc3344aa666efa0c4df1474a02d3253738f1b83c2ff468d114e18"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/directed-items/PG-14/requirement/prd/prd-trace.json",
+      "sha256": "sha256:77c69e1a71586c082b7bc98d6d0418cd725db83c9bda744bfcff1dba3732e075"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/directed-items/PG-14/requirement/prd/gap-requests.json",
+      "sha256": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/inputs/directed-items/PG-16/analysis/analysis-result.json",
+      "sha256": "sha256:a2f7c389179e818406372939dc6f3fcb339dc5fb8f780cdc9326a5acca511f4d"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/inputs/directed-items/PG-16/prd/prd.md",
+      "sha256": "sha256:a3b066cce4e2b57f3d911e6cae0ccbdd96892c6373b51185da4308ec33908c1a"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/directed-items/with_skill/retry-completed-trial/workspace/PG-16/prd/prd.md",
+      "sha256": "sha256:b1eafc7b1aa44e218b51e557a0a54bb4090b225d509bde9fc4af78a0c5d17bac"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/directed-items/with_skill/retry-completed-trial/workspace/PG-16/prd/prd-trace.json",
+      "sha256": "sha256:9ac607903480b66f54a59cb3787f0550edd12ecfd9efcd08c8f2ad9aa18e237a"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/directed-items/with_skill/retry-completed-trial/workspace/PG-16/prd/gap-requests.json",
+      "sha256": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/directed-items/PG-16/requirement/prd/prd.md",
+      "sha256": "sha256:8fbe0f1dc1641efdc418eb272c9e0ca2814e8d3d7df1f6d763470fbd3af120f1"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/directed-items/PG-16/requirement/prd/prd-trace.json",
+      "sha256": "sha256:ceb0005822bb7cc0132f83abd8950fb4b5c0f808800bc57aa902a43f72f04f40"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/directed-items/PG-16/requirement/prd/gap-requests.json",
+      "sha256": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/inputs/directed-items/PG-32-tag/analysis/analysis-result.json",
+      "sha256": "sha256:36eaf10cd58908f5348a9a60725d659b68ea8699907f3a67d192e54b1c623720"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/inputs/directed-items/PG-32-tag/prd/prd.md",
+      "sha256": "sha256:98c5e632018f493349b1ac12b4ec9e05369c15878b3d41dd90b29e5be45c35d9"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/directed-items/with_skill/retry-completed-trial/workspace/PG-32-tag/prd/prd.md",
+      "sha256": "sha256:11fc5254b3064c5412d7445e4d3b5c051e7c17dc6667cace63c605a03e0d0c64"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/directed-items/with_skill/retry-completed-trial/workspace/PG-32-tag/prd/prd-trace.json",
+      "sha256": "sha256:8934aac109660b384abb15e876cd37889f76682bcc97a3eb088bfebc21a793cb"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/directed-items/with_skill/retry-completed-trial/workspace/PG-32-tag/prd/gap-requests.json",
+      "sha256": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/directed-items/PG-32-tag/requirement/prd/prd.md",
+      "sha256": "sha256:b9d577a9b14c58159b1e29d094e9715e5d94ea684a232cc39cd30b321b6192ca"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/directed-items/PG-32-tag/requirement/prd/prd-trace.json",
+      "sha256": "sha256:d17468fe4ec6b0f881ab1f0a369777e2a9094e803f70482c5eecc9782a1696fa"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/directed-items/PG-32-tag/requirement/prd/gap-requests.json",
+      "sha256": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/completed-trial/outputs/model-response.md",
+      "sha256": "sha256:02df67845fb9cd995c4eeee108ab9f48b46cd981a314274c39976d8654c5adc7"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/inputs/gap-resolution/PG-31-not-needed/analysis/analysis-result.json",
+      "sha256": "sha256:5faa8c8298509456f3684893c65e0332b0e50a97915cf10b6a306f06f9230c66"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/inputs/gap-resolution/PG-31-not-needed/prd/prd.md",
+      "sha256": "sha256:d604155e01be7f33369fb61db58ce1361c9ae0e313f2a96f1168d21f7888d294"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/completed-trial/workspace/PG-31-not-needed/prd/prd.md",
+      "sha256": "sha256:72452f500ad5e7156f02ac53d149adcfd86cc2519890e7f4d73da2e2a2199b40"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/completed-trial/workspace/PG-31-not-needed/prd/prd-trace.json",
+      "sha256": "sha256:dc2cc0eef2b076979489db0679d23082b653b318c607c701ffa2462fe28f5ca7"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/completed-trial/workspace/PG-31-not-needed/prd/gap-requests.json",
+      "sha256": "sha256:7d92df868cec630458424894001e0ba3a16a48afc68d294fcdb3e36d6c01d684"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/gap-resolution/PG-31-not-needed/requirement/prd/prd.md",
+      "sha256": "sha256:bb594a292b81ebe8f632513fdd8ec278dd7d4145e129bdd3e134585ea58e8e17"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/gap-resolution/PG-31-not-needed/requirement/prd/prd-trace.json",
+      "sha256": "sha256:70bc8344ca7e8ac7e313b67722eaa4fac03695816aae1052f2c7a30952bee249"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/gap-resolution/PG-31-not-needed/requirement/prd/gap-requests.json",
+      "sha256": "sha256:7d92df868cec630458424894001e0ba3a16a48afc68d294fcdb3e36d6c01d684"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/inputs/gap-resolution/PG-31-provisional/analysis/analysis-result.json",
+      "sha256": "sha256:1c4e6824f3f3d212738752908fb01a72b31d32d19cc485b219771a2cb606c6bb"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/inputs/gap-resolution/PG-31-provisional/prd/prd.md",
+      "sha256": "sha256:d604155e01be7f33369fb61db58ce1361c9ae0e313f2a96f1168d21f7888d294"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/completed-trial/workspace/PG-31-provisional/prd/prd.md",
+      "sha256": "sha256:69c3302522f1fe8a6315294ab8493e88c5b43a6a70b08fa878131794153e2509"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/completed-trial/workspace/PG-31-provisional/prd/prd-trace.json",
+      "sha256": "sha256:d00b005c79074e0800de4e48ef98c7c5653753396f8bac354c3111b3b8f70c99"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/completed-trial/workspace/PG-31-provisional/prd/gap-requests.json",
+      "sha256": "sha256:c5e6c0424806f9f175e9618d6d294ca5395ddc543734d3e590ad6bf7a4ac01a2"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/gap-resolution/PG-31-provisional/requirement/prd/prd.md",
+      "sha256": "sha256:a3bdcd338194d32372eb72f55102ce686770da61fb6b1963e5f35292ce0eab0e"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/gap-resolution/PG-31-provisional/requirement/prd/prd-trace.json",
+      "sha256": "sha256:ab683c9ea8cdc7a578eef61ab819a848ad4595f868042aa6c83bec6b8d4b421a"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/gap-resolution/PG-31-provisional/requirement/prd/gap-requests.json",
+      "sha256": "sha256:c5e6c0424806f9f175e9618d6d294ca5395ddc543734d3e590ad6bf7a4ac01a2"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/inputs/gap-resolution/PG-31-retain-answer/analysis/analysis-result.json",
+      "sha256": "sha256:d0155999cd55af1d8026ac46e44c00d77a2813fca15c7b6b3447de715d8bdea5"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/inputs/gap-resolution/PG-31-retain-answer/prd/prd.md",
+      "sha256": "sha256:d604155e01be7f33369fb61db58ce1361c9ae0e313f2a96f1168d21f7888d294"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/completed-trial/workspace/PG-31-retain-answer/prd/prd.md",
+      "sha256": "sha256:914fcd47534fe8f8f6a0c535a9ae223eadec4bd5f0f86ff74f8e3d230b8ea1ae"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/completed-trial/workspace/PG-31-retain-answer/prd/prd-trace.json",
+      "sha256": "sha256:4f7758e1d3d89c66ada33bde2e269bb28f970488062c3920cfc028bd7c88f19a"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/completed-trial/workspace/PG-31-retain-answer/prd/gap-requests.json",
+      "sha256": "sha256:6e5444160a956d4a20c30f42e3f380e4c3efe341a7b51bce173763ca8bf78c62"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/gap-resolution/PG-31-retain-answer/requirement/prd/prd.md",
+      "sha256": "sha256:f7ec4529c75afbe425c936c4d83e852d0574e4f3c4c63b7e5ea6d8d333fd7da8"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/gap-resolution/PG-31-retain-answer/requirement/prd/prd-trace.json",
+      "sha256": "sha256:dc3a1752e5fa192f76c9788e8b1f6fdabfdda2b5c3314e2af4720e1d2af0b1e3"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/gap-resolution/PG-31-retain-answer/requirement/prd/gap-requests.json",
+      "sha256": "sha256:6e5444160a956d4a20c30f42e3f380e4c3efe341a7b51bce173763ca8bf78c62"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/inputs/gap-resolution/PG-31-supplied/analysis/analysis-result.json",
+      "sha256": "sha256:4656fd97c50a3d9db675bfdc1cca18c0ed6fe02840dbc478a6c8c8e14be244a0"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/inputs/gap-resolution/PG-31-supplied/prd/prd.md",
+      "sha256": "sha256:d604155e01be7f33369fb61db58ce1361c9ae0e313f2a96f1168d21f7888d294"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/completed-trial/workspace/PG-31-supplied/prd/prd.md",
+      "sha256": "sha256:ac366f471fec9e89bb8ca9c3189aa56abf97dd1524017043fed4ed7d23909806"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/completed-trial/workspace/PG-31-supplied/prd/prd-trace.json",
+      "sha256": "sha256:49d4ef8579d77098c463f5f17e4d5e9a7e5723693e22c17d43650a47bdbed06d"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model/iteration-1/gap-resolution/with_skill/completed-trial/workspace/PG-31-supplied/prd/gap-requests.json",
+      "sha256": "sha256:9709ec1fafe82b25ef6990bd78daf2e3285d213582ceeb4a76c92fb5a67a5ac4"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/gap-resolution/PG-31-supplied/requirement/prd/prd.md",
+      "sha256": "sha256:0cd0d1081a1daae3d05bb3ff999f0ee89bd6700ba219db882ae32e595f462c2d"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/gap-resolution/PG-31-supplied/requirement/prd/prd-trace.json",
+      "sha256": "sha256:7a5468d39e99dbdff7fa7ba442759573fa969bba6f3e8c7609016ac490222ad5"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-4-model-current-replay/attempt-02/gap-resolution/PG-31-supplied/requirement/prd/gap-requests.json",
+      "sha256": "sha256:9709ec1fafe82b25ef6990bd78daf2e3285d213582ceeb4a76c92fb5a67a5ac4"
+    }
+  ]
+}

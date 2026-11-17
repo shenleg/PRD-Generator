@@ -1,0 +1,15 @@
+usage: assign_ids.py [-h] --patch PATCH [--write] [--allow-stale]
+                     [--related-analysis RELATED_ANALYSIS]
+                     requirement_dir
+
+分配稳定的 PRD 编号并生成候选追溯；独立写入不修改正文或分析资料。
+
+positional arguments:
+  requirement_dir
+
+options:
+  -h, --help            show this help message and exit
+  --patch PATCH
+  --write
+  --allow-stale
+  --related-analysis RELATED_ANALYSIS

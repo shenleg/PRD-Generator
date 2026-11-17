@@ -18,6 +18,7 @@ SCHEMA_DIR = Path(__file__).resolve().parent.parent / "schemas"
 ANALYST = Path(__file__).resolve().parents[2] / "requirement-analyst/scripts/validate_analysis.py"
 EXIT_CODES = {"pass": 0, "warning": 1, "fail": 2}
 KINDS = dict(zip(("goal", "scenario", "functional_requirement", "business_rule", "constraint", "non_functional_requirement", "acceptance_criterion", "flow", "state", "boundary", "exception"), ("GOAL", "SCN", "FR", "BR", "CON", "NFR", "AC", "FLOW", "STATE", "BND", "EXC")))
+KIND_SECTIONS = dict(zip(KINDS, ("scope", "scenarios", "functional_requirements", "business_rules", "constraints", "constraints", "acceptance_criteria", "flows_states", "flows_states", "boundaries_exceptions", "boundaries_exceptions")))
 PROMPTS = {
     "risk_draft": "本文档基于未就绪的需求分析生成，存在未解决的阻塞问题，仅供沟通，不得作为开发或测试依据。",
     "conditional_draft": "本文档存在待回答的问题和暂定假设，见“遗留事项”。",
@@ -77,6 +78,49 @@ def source_digest(analysis_refs: Sequence[str], registry: dict) -> str:
     """
     data = [{"analysis_ref": ref, "item": registry[ref]} for ref in sorted(analysis_refs)]
     return _sha(json.dumps(data, sort_keys=True, ensure_ascii=False, separators=(",", ":"), allow_nan=False).encode("utf-8"))
+
+
+def section_source_digests(analysis: dict, gaps: dict, *, trace: dict | None = None,
+                           source_manifest=None, related_analyses=()) -> dict:
+    """返回各业务章节生成时完整依据的稳定摘要，不读取或修改文件。
+
+    analysis/gaps为当前权威分析及缺口候选；trace仅用于定位实际跨来源映射，
+    source_manifest为可用来源名称清单，related_analyses仅为显式关联分析。
+    信息及事件章节由脚本渲染，不参与比较；缺数据、引用或非法JSON值抛出KeyError/TypeError/ValueError。
+    摘要相等只证明所记录依据未变，不证明自然语言表达充分或忠实。
+    """
+    req, business = analysis['requirements'], analysis['business_assessment']
+    questions = analysis['questions']
+    inferred = [item for _, item in _analyst()._entries(analysis) if item.get('tag') == 'inferred' and item.get('status') != 'withdrawn']
+    data = {
+        'background': analysis.get('value_assessment'),
+        'scope': {'goals': req['goals'], 'scope': req['scope'], 'excluded': [q for q in questions if q['status'] == 'excluded'], 'decisions': analysis['decisions']},
+        'scenarios': req['scenarios'], 'functional_requirements': req['functional_requirements'],
+        'business_rules': req['business_rules'], 'flows_states': {key: business[key] for key in ('flows', 'states')},
+        'boundaries_exceptions': {key: business[key] for key in ('boundaries', 'exceptions')},
+        'constraints': {key: req[key] for key in ('constraints', 'non_functional_requirements')},
+        'acceptance_criteria': req['acceptance_criteria'], 'ux': analysis.get('ux_assessment'),
+        'technical': {'assessment': analysis.get('technical_feasibility'), 'ask_dev': [q for q in questions if q['resolution'] == 'ask_dev']},
+        'impact': analysis.get('impact_analysis'),
+        'residuals': {'questions': questions, 'assumptions': analysis['assumptions'], 'decisions': analysis['decisions'],
+                      'gaps': business['gaps'], 'conflicts': business['conflicts'], 'inferred': inferred,
+                      'design_pending_items': analysis.get('ux_assessment', {}).get('design_pending_items', [])},
+        'appendix': {'context': analysis.get('context'), 'sources': [item.get('sources', []) for _, item in _analyst()._entries(analysis)], 'manifest': source_manifest},
+    }
+    labels = dict(zip(SECTION_KEYS[2:], ('背景与价值', '目标与范围', '用户与场景', '功能需求', '业务规则', '流程与状态', '边界与异常', '约束与非功能需求', '验收条件', '界面与交互', '技术说明与研发确认项', '关联与影响', '遗留事项', '附录')))
+    registry, _ = _registry((analysis, *related_analyses))
+    # open与handed_over的占位语义相同；分析侧允许单独标记接收，不让它造成已同步正文依据失配。
+    requests = [{**gap, 'status': 'closed' if gap['status'] == 'closed' else 'unresolved'} for gap in gaps['requests']]
+    result = {}
+    for key, value in data.items():
+        mapped = sorted({ref for item in (trace or {}).get('items', []) if KIND_SECTIONS.get(item['kind']) == key for ref in item['analysis_refs']})
+        payload = {'analysis': value, 'mapped_sources': [{'analysis_ref': ref, 'item': registry[ref]} for ref in mapped],
+                   'gap_requests': requests if key == 'residuals' else [gap for gap in requests if gap['needed_for'] in (key, labels[key])]}
+        # 验收挂靠功能章节时，其依据变化也必须开放对应章节；不是凭模型推断新的挂靠。
+        if key == 'functional_requirements':
+            payload['attached_acceptance'] = [item for item in req['acceptance_criteria'] if item.get('related_ids')]
+        result[key] = _sha(json.dumps(payload, sort_keys=True, ensure_ascii=False, separators=(',', ':'), allow_nan=False).encode('utf-8'))
+    return result
 
 
 @lru_cache(maxsize=1)
@@ -330,6 +374,16 @@ def _trace_checks(trace, registry, paths, blocks, text, diagnostics, pending):
         elif not content or content["section"] in {"info", "changes", "residuals", "appendix"}:
             diagnostics.append(_issue(4, pid, "prd.md", "有效条目缺少需求正文中的定位块。"))
         if content and item["status"] != "abolished":
+            expected_section = KIND_SECTIONS[item['kind']]
+            attached = False
+            if item['kind'] == 'acceptance_criterion' and content['section'] == 'functional_requirements':
+                linked = {ref.rsplit('/', 1)[0] + '/' + related if '/' not in related else related
+                          for ref in refs if ref in registry for related in registry[ref].get('related_ids', [])}
+                attached = any(candidate['kind'] == 'functional_requirement' and candidate['status'] != 'abolished'
+                               and linked.intersection(candidate['analysis_refs'])
+                               and blocks['item'].get(candidate['prd_id'], {}).get('section') == 'functional_requirements' for candidate in items)
+            if content['section'] != expected_section and not attached:
+                diagnostics.append(_issue(4, pid, 'prd.md', f'条目种类应位于稳定章节{expected_section}，验收仅可按显式关联挂靠功能。'))
             visible = re.sub(r"<!--[\s\S]*?-->", "", content["text"])
             if pid not in PRD_ID.findall(visible):
                 diagnostics.append(_issue(4, pid, "prd.md", "条目的可见正文缺少正式编号，隐藏标记不能代替。"))
@@ -608,6 +662,14 @@ def validate_prd(requirement_dir: Path, *, related_analyses: Sequence[Path] = ()
     if trace["meta"]["content_hash"] != _sha(data):
         diagnostics.append(_issue(4, "$", "prd.md", "正文摘要变化，检测到未处理手工修改；须比较含义后处理。", "warning"))
     blocks = _blocks(text, diagnostics)
+    saved_sections = trace['meta'].get('section_source_digests')
+    if saved_sections is not None and not pending:
+        current_sections = section_source_digests(analysis, gaps, trace=trace, source_manifest=documents[0][1], related_analyses=[doc for doc, _ in documents[1:]])
+        for key, digest in saved_sections.items():
+            if key == 'appendix' and any('source-manifest.json' in issue['path'] and issue['level'] == 'warning' for issue in diagnostics):
+                continue  # 缺来源名称时仍校验权威条目，不把辅助清单降级伪装成章节依据失败。
+            if digest != current_sections[key]:
+                diagnostics.append(_issue(3, key, 'prd-trace.json/meta/section_source_digests', '已同步章节依据与当前分析不符。'))
     _trace_checks(trace, registry, paths, blocks, text, diagnostics, pending)
     _residuals(analysis, registry, blocks, diagnostics)
     _gaps(gaps, analysis, registry, paths, blocks, text, diagnostics)
