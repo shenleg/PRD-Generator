@@ -1,0 +1,47 @@
+[
+  {
+    "name": "真实试用原始需求",
+    "path": "input/brief.md",
+    "type": "input_document",
+    "credibility": "本次真实试用的原始业务输入，指定资料基线为 7b016bf。",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-1"
+  },
+  {
+    "name": "基线根 README",
+    "path": "input/source/README.md",
+    "type": "project_material",
+    "credibility": "用户指定的 7b016bf 资料基线原文，用于核对仓库入口现状。",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-2"
+  },
+  {
+    "name": "PRD Generator 文档入口",
+    "path": "input/source/docs/prd-generator/README.md",
+    "type": "project_material",
+    "credibility": "用户指定的 7b016bf 资料基线原文，用于核对生成侧状态及证据导航。",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-3"
+  },
+  {
+    "name": "需求分析 Skill 安装说明",
+    "path": "input/source/docs/requirement-analyst/installation.md",
+    "type": "project_material",
+    "credibility": "用户指定的 7b016bf 资料基线原文，用于核对分析侧阶段及证据范围。",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-4"
+  },
+  {
+    "name": "PRD Generator 阶段 6 记录",
+    "path": "input/source/tests/results/prd-generator/stage-6.md",
+    "type": "project_material",
+    "credibility": "用户指定的 7b016bf 资料基线原文，记录生成侧程序回归、实际模型对照和人工认可的范围。",
+    "last_updated": null,
+    "revision": 1,
+    "source_id": "SRC-5"
+  }
+]

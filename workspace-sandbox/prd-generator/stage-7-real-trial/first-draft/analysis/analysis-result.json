@@ -1,0 +1,489 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "REQ-2026-001",
+  "meta": {
+    "analysis_revision": 1,
+    "source_revision": 1,
+    "baseline_revision": null,
+    "input_type": "existing_document",
+    "analysis_status": "completed",
+    "readiness": "ready_for_document"
+  },
+  "context": {
+    "project_id": "stage7-real-trial",
+    "domain": "仓库文档状态与证据导航",
+    "source_ids": [
+      "SRC-1",
+      "SRC-2",
+      "SRC-3",
+      "SRC-4",
+      "SRC-5"
+    ],
+    "domain_terms": [
+      "已实现",
+      "程序回归",
+      "实际模型证据",
+      "已人工验收",
+      "未验证",
+      "真实业务发布"
+    ],
+    "history_review": {
+      "status": "not_performed",
+      "reason": "已人工读取并对照用户指定的四份固定资料，记录根 README 现状矛盾及证据范围；未执行带采用指纹的正式历史检索或分析基线对照，不能据此声称其他历史资料不存在冲突。",
+      "source_ids": []
+    }
+  },
+  "requirements": {
+    "goals": [
+      {
+        "content": "让维护者和首次接手的协作者从根 README 找到两个 Skill 的当前能力、验证范围、未验证事项和可信证据，并减少同一入口前后矛盾。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "谁遇到了什么问题；希望交付什么"
+          }
+        ],
+        "status": "active",
+        "id": "GOAL-1"
+      }
+    ],
+    "scenarios": [
+      {
+        "content": "新协作者或维护者从根 README 查看两个 Skill 的能力摘要，沿导航进入对应详细状态，再查找可追溯的验收依据和未验证事项。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "谁遇到了什么问题；希望交付什么"
+          },
+          {
+            "type": "user_answer",
+            "location": "本轮项目发起人确认，业务决定 1 和 2"
+          }
+        ],
+        "status": "active",
+        "id": "SCN-1"
+      }
+    ],
+    "functional_requirements": [
+      {
+        "content": "根 README 只承载两个 Skill 的能力状态摘要和导航；详细状态分别由两个 Skill 自己的文档承载。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "本轮项目发起人确认，业务决定 1：按推荐继续"
+          }
+        ],
+        "status": "active",
+        "id": "FR-1"
+      },
+      {
+        "content": "各 Skill 的详细状态按主要能力说明已实现、已验证、已人工验收及未验证范围，并提供可追溯的证据入口，不逐条复制测试清单。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "希望交付什么"
+          },
+          {
+            "type": "user_answer",
+            "location": "本轮项目发起人确认，业务决定 2"
+          }
+        ],
+        "status": "active",
+        "id": "FR-2"
+      }
+    ],
+    "business_rules": [
+      {
+        "content": "已验证须能区分程序回归与实际模型证据；已实现、已验证、已人工验收和未验证不得混称。隔离合成发布不算真实业务发布，草稿、格式校验和阶段验收也不等同于正式发布批准。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "本轮项目发起人确认，业务决定 2"
+          },
+          {
+            "type": "project_material",
+            "source_id": "SRC-2",
+            "location": "按 Skill 查找，状态表下的说明"
+          },
+          {
+            "type": "project_material",
+            "source_id": "SRC-5",
+            "location": "引言；实际模型对照；阶段退出"
+          }
+        ],
+        "status": "active",
+        "id": "BR-1"
+      },
+      {
+        "content": "两个 Skill 的阶段编号各自独立，不能用分析侧阶段 7 代表生成侧阶段 7 的双 Skill 联调。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "谁遇到了什么问题"
+          },
+          {
+            "type": "project_material",
+            "source_id": "SRC-4",
+            "location": "阶段7的体验与图像调用"
+          },
+          {
+            "type": "project_material",
+            "source_id": "SRC-3",
+            "location": "阶段进度说明"
+          },
+          {
+            "type": "user_answer",
+            "location": "本轮项目发起人确认，业务决定 2"
+          }
+        ],
+        "status": "active",
+        "id": "BR-2"
+      },
+      {
+        "content": "各 Skill 维护者更新各自的详细状态，仓库入口维护者核对根 README 的摘要。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "本轮项目发起人确认，业务决定 3：按推荐继续"
+          }
+        ],
+        "status": "active",
+        "id": "BR-3"
+      }
+    ],
+    "constraints": [],
+    "non_functional_requirements": [],
+    "acceptance_criteria": [
+      {
+        "content": "检查根 README：能从能力摘要分别导航到两个 Skill 的详细状态；根入口摘要与对应详细状态及同页说明不再互相矛盾。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "希望交付什么"
+          },
+          {
+            "type": "user_answer",
+            "location": "本轮项目发起人确认，业务决定 1"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "FR-1",
+          "GAP-1"
+        ],
+        "id": "AC-1"
+      },
+      {
+        "content": "检查各 Skill 详细状态：按主要能力能区分已实现、已验证、已人工验收和未验证；已验证能区分程序回归与实际模型证据，证据可追溯，且不将合成发布标为真实业务发布、不混用两个 Skill 的阶段编号。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "本轮项目发起人确认，业务决定 2"
+          },
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "希望交付什么"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "FR-2",
+          "BR-1",
+          "BR-2"
+        ],
+        "id": "AC-2"
+      },
+      {
+        "content": "检查交接说明：能识别各 Skill 维护者更新各自详细状态、仓库入口维护者核对根 README 摘要的责任分工；不将未约定的自动化更新写成既定要求。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "本轮项目发起人确认，业务决定 3；未约定自动化更新"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "BR-3",
+          "BND-3"
+        ],
+        "id": "AC-3"
+      },
+      {
+        "content": "检查生成侧阶段 6 的状态表述：不把两组实际模型证据扩称为十项场景均有模型覆盖，不把隔离合成发布或阶段人工认可写成真实业务发布，也不把未开始的阶段 7 正式双 Skill 联调写成已完成。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "project_material",
+            "source_id": "SRC-5",
+            "location": "实际模型对照；阶段退出"
+          },
+          {
+            "type": "user_answer",
+            "location": "本轮项目发起人确认，业务决定 2"
+          }
+        ],
+        "status": "active",
+        "related_ids": [
+          "BND-1",
+          "BR-1"
+        ],
+        "id": "AC-4"
+      }
+    ],
+    "scope": {
+      "in_scope": [
+        {
+          "content": "本需求面向现有仓库的 Markdown 能力状态、证据导航和维护交接；本轮只分析并交给文档生成，不实施原件改造。",
+          "tag": "confirmed",
+          "sources": [
+            {
+              "type": "input_document",
+              "source_id": "SRC-1",
+              "location": "希望交付什么；试用边界"
+            },
+            {
+              "type": "user_answer",
+              "location": "本轮请求：需求暂不实施文档改造，仅分析并交给文档生成"
+            }
+          ],
+          "status": "active",
+          "id": "CON-1"
+        }
+      ],
+      "out_of_scope": [
+        {
+          "content": "不要求建设新系统、重跑旧验收、改写历史证据或实际发布业务 PRD；本次试用不修改指定输入原件。",
+          "tag": "confirmed",
+          "sources": [
+            {
+              "type": "input_document",
+              "source_id": "SRC-1",
+              "location": "希望交付什么；试用边界"
+            }
+          ],
+          "status": "active",
+          "id": "CON-2"
+        }
+      ]
+    }
+  },
+  "business_assessment": {
+    "flows": [
+      {
+        "content": "维护交接：各 Skill 维护者更新所属详细状态；仓库入口维护者核对根 README 摘要。具体触发机制和自动化方式未约定。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "本轮项目发起人确认，业务决定 3；未约定自动化更新"
+          }
+        ],
+        "status": "active",
+        "id": "FLOW-1"
+      }
+    ],
+    "states": [],
+    "boundaries": [
+      {
+        "content": "生成侧阶段 6 的十项场景有程序剧本验证，独立实际模型证据仅覆盖记录中的两组；已获本轮阶段结果人工认可，但未发生真实业务 PRD 发布，也未开始生成侧阶段 7 正式双 Skill 联调。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "project_material",
+            "source_id": "SRC-5",
+            "location": "回归过程；实际模型对照；阶段退出"
+          }
+        ],
+        "status": "active",
+        "id": "BND-1"
+      },
+      {
+        "content": "分析侧阶段 7 记录的是体验与图像调用，分析侧阶段 8 记录受控知识沉淀；这些记录不等同于生成侧阶段 7 的正式双 Skill 联调。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "project_material",
+            "source_id": "SRC-4",
+            "location": "阶段7的体验与图像调用；阶段8的受控知识沉淀"
+          },
+          {
+            "type": "input_document",
+            "source_id": "SRC-1",
+            "location": "谁遇到了什么问题"
+          }
+        ],
+        "status": "active",
+        "id": "BND-2"
+      },
+      {
+        "content": "未约定自动化更新、每项详细能力状态是否必须分别链接原始日志、具体实现方案、人员姓名或正式发布；这些事项不作为已确认规则。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "本轮请求：没有约定的事项不自行补充"
+          }
+        ],
+        "status": "active",
+        "id": "BND-3"
+      }
+    ],
+    "exceptions": [],
+    "gaps": [
+      {
+        "content": "现状缺陷：基线根 README 状态表称生成侧评审和发布尚未实现，同页安装与使用部分称阶段 6 已增加评审、发布、废弃及发布后另建工作稿。生成侧文档入口和阶段 6 记录支持后者所述的阶段 6 实现范围；应在后续文档改造中消除摘要与详细状态的矛盾，不改写历史证据。",
+        "tag": "confirmed",
+        "sources": [
+          {
+            "type": "project_material",
+            "source_id": "SRC-2",
+            "location": "按 Skill 查找；安装与使用"
+          },
+          {
+            "type": "project_material",
+            "source_id": "SRC-3",
+            "location": "阶段进度说明"
+          },
+          {
+            "type": "project_material",
+            "source_id": "SRC-5",
+            "location": "实施；阶段退出"
+          },
+          {
+            "type": "user_answer",
+            "location": "本轮请求：根 README 的矛盾是现状"
+          }
+        ],
+        "status": "active",
+        "id": "GAP-1"
+      }
+    ],
+    "conflicts": []
+  },
+  "ux_assessment": {
+    "ui_dependent": false,
+    "design_pending_items": [],
+    "visual_recommendations": [
+      "本需求是现有 Markdown 文档的状态与导航，不要求系统界面、视觉稿或高保真原型。"
+    ],
+    "interaction_flows": [
+      "读者从根 README 的摘要和导航进入各 Skill 的详细状态及证据入口；不推定其他系统交互。"
+    ]
+  },
+  "questions": [],
+  "assumptions": [],
+  "decisions": [],
+  "value_assessment": {
+    "problem": "根 README 对生成侧状态前后矛盾，两个 Skill 的阶段编号又相互独立，新协作者难以判断各自能力、验证范围和验收依据。",
+    "affected_users": [
+      "首次接手仓库的协作者",
+      "各 Skill 维护者",
+      "仓库入口维护者"
+    ],
+    "expected_benefits": [
+      "从统一入口找到两个 Skill 的能力摘要、详细状态和证据。",
+      "减少状态表述矛盾和不同验证层次的混称。"
+    ],
+    "success_metrics": [
+      "以需求验收条件检查导航、状态区分、证据追溯及责任分工；未约定量化指标。"
+    ],
+    "business_value": "unknown",
+    "necessity": "necessary"
+  },
+  "impact_analysis": {
+    "affected_modules": [
+      "根 README 状态摘要和导航",
+      "requirement-analyst 自有详细状态文档",
+      "prd-generator 自有详细状态文档"
+    ],
+    "proposed_changes": [
+      "后续文档生成应消除根入口现状矛盾，并保持摘要与各 Skill 详细状态一致。",
+      "按主要能力组织状态与证据入口，保留证据的实际覆盖范围和未验证边界。",
+      "记录维护责任，不将自动化、逐项原始日志链接或具体实现方案当成既定要求。"
+    ]
+  },
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "目标是使读者从根入口找到可信且不互相矛盾的能力状态和证据。"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "新协作者和维护者的查阅场景及维护交接角色已明确。"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "可还原从根摘要进入各 Skill 详细状态及证据入口的查阅路径，也明确维护分工。"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "摘要与详细状态的归属、证据分类、阶段编号边界和维护职责已由发起人确认。"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "根 README 的冲突是已识别的现状缺陷，不是需要在两项互斥业务规则中另行裁决；目标是后续消除矛盾。"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "已分析合成发布、模型覆盖、阶段编号、历史证据和本轮不实施的关键边界；未约定的实现细节没有写成规则。"
+    },
+    {
+      "item": 7,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "可通过检查导航一致性、主要能力状态、证据类别及维护分工形成可验证的核心验收条件。"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "指定资料已人工对照并记录现状矛盾；正式指纹化历史检索未开展及其限制已明确声明。"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "需求仅涉及现有 Markdown 文档与责任交接，不要求自动化或新系统；未开展实现层技术可行性评估，也不作技术可行承诺。"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "已判断不依赖新增系统界面，分析限于现有 Markdown 状态及导航，不要求视觉稿。"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "未约定的自动化、逐项原始日志链接和实现方案均保留为未定，不作为形成文档草稿的前置假设。"
+    }
+  ]
+}

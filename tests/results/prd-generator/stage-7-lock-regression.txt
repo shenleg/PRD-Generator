@@ -1,0 +1,9 @@
+test_analysis_publication_waits_for_prd_directory_lock (test_update_analysis.UpdateAnalysisTests.test_analysis_publication_waits_for_prd_directory_lock)
+PG-28 回归：PRD 写入窗口内，普通分析更新不得提前提交修订或事件。 ... ok
+test_analysis_recovery_waits_for_prd_directory_lock (test_update_analysis.UpdateAnalysisTests.test_analysis_recovery_waits_for_prd_directory_lock)
+PG-28 回归：重放中断的旧分析提交也不能从 PRD 写入锁旁路。 ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.578s
+
+OK

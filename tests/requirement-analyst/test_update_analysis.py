@@ -1,12 +1,15 @@
 """阶段 3 补丁写入契约回归；仅在临时工作区写入，不用合成数据冒充模型行为。"""
 
 from copy import deepcopy
+import fcntl
 import importlib.util
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
+from threading import Event, Thread
 import unittest
 from unittest import mock
 
@@ -501,6 +504,80 @@ class UpdateAnalysisTests(unittest.TestCase):
         events = (self.analysis_dir(result) / "analysis-events.jsonl").read_text(encoding="utf-8").splitlines()
         self.assertEqual(len(events), 2)
         self.assertEqual(read_json(self.analysis_dir(result) / "analysis-result.json")["meta"]["analysis_revision"], 2)
+
+    def apply_during_prd_lock(self, patch: dict, requirement: Path) -> dict:
+        """用需求目录锁暂停公开更新，验证等待期间业务文件未变；线程或写入错误使测试失败。"""
+        before = business_bytes(requirement)
+        reached = Event()
+        waits_for_directory = Event()
+        responses = []
+        real_flock = fcntl.flock
+
+        def observe_directory_lock(descriptor, operation):
+            """通知测试真实锁调用已到达，让后台线程继续在内核等待。"""
+            if operation == fcntl.LOCK_EX and os.path.samestat(os.fstat(descriptor), requirement.stat()):
+                waits_for_directory.set()
+                reached.set()
+            return real_flock(descriptor, operation)
+
+        def apply_patch():
+            """提交真实补丁；未经过共同锁而提前退出时也通知测试。"""
+            try:
+                responses.append(self.apply(patch))
+            finally:
+                reached.set()
+
+        descriptor = os.open(requirement, os.O_RDONLY | os.O_DIRECTORY)
+        with mock.patch.object(fcntl, "flock", side_effect=observe_directory_lock):
+            worker = Thread(target=apply_patch, daemon=True)
+            try:
+                real_flock(descriptor, fcntl.LOCK_EX)
+                worker.start()
+                self.assertTrue(reached.wait(10), "分析既未等待目录锁也未返回")
+                self.assertTrue(waits_for_directory.is_set(), f"分析未等待 PRD 目录锁：{responses}")
+                self.assertEqual(business_bytes(requirement), before)
+            finally:
+                os.close(descriptor)
+                if worker.ident is not None:
+                    worker.join(10)
+            self.assertFalse(worker.is_alive(), "目录解锁后分析仍未返回")
+        self.assertEqual(len(responses), 1)
+        return responses[0]
+
+    def test_analysis_publication_waits_for_prd_directory_lock(self) -> None:
+        """PG-28 回归：PRD 写入窗口内，普通分析更新不得提前提交修订或事件。"""
+        result, _ = self.create()
+        analysis = self.analysis_dir(result)
+        patch = followup(result)
+        patch["operations"] = [{"op": "add", "collection": "requirements.functional_requirements", "ref": "$other", "value": common("合成功能")}]
+        response = self.apply_during_prd_lock(patch, analysis.parent)
+        self.assertTrue(response["written"], response)
+        self.assertEqual(read_json(analysis / "analysis-result.json")["meta"]["analysis_revision"], 2)
+        self.assertEqual(len((analysis / "analysis-events.jsonl").read_text(encoding="utf-8").splitlines()), 2)
+
+    def test_analysis_recovery_waits_for_prd_directory_lock(self) -> None:
+        """PG-28 回归：重放中断的旧分析提交也不能从 PRD 写入锁旁路。"""
+        result, _ = self.create()
+        analysis = self.analysis_dir(result)
+        patch = followup(result)
+        real_replace = os.replace
+
+        def interrupt_result(source, target):
+            """事务留存后仅阻断分析结果替换，其他替换按真实路径执行。"""
+            if Path(target) == analysis / "analysis-result.json":
+                raise OSError("测试注入：正式分析结果替换中断")
+            return real_replace(source, target)
+
+        with mock.patch.object(os, "replace", side_effect=interrupt_result):
+            self.assertEqual(self.apply(patch)["status"], "fail")
+        self.assertIsNotNone(read_json(self.workspace / ".analysis-transaction.json"))
+        self.assertEqual(read_json(analysis / "analysis-result.json")["meta"]["analysis_revision"], 1)
+        response = self.apply_during_prd_lock(patch, analysis.parent)
+        self.assertEqual(response["status"], "fail", response)
+        self.assertIsNone(read_json(self.workspace / ".analysis-transaction.json"))
+        self.assertEqual(read_json(analysis / "analysis-result.json")["meta"]["analysis_revision"], 2)
+        events = [json.loads(line) for line in (analysis / "analysis-events.jsonl").read_text(encoding="utf-8").splitlines()]
+        self.assertEqual([event["revision"] for event in events], [1, 2])
 
 
 class CompletionCheckTests(unittest.TestCase):

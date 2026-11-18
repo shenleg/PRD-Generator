@@ -1,0 +1,13 @@
+test_installed_generator_and_sync_preserve_all_analysis_files (test_prd_installed_conflicts.InstalledConflictTests.test_installed_generator_and_sync_preserve_all_analysis_files)
+PG-27 程序链：正式登记、分析接收和实际补足、生成核实关闭，分段比较文件归属。 ... ok
+test_stale_analysis_revision_requires_rereading (test_prd_installed_conflicts.InstalledConflictTests.test_stale_analysis_revision_requires_rereading)
+分析员提交 r2 后拒绝 r1 首稿，重读 r2 正式生成且包含新增内容。 ... ok
+test_stale_gap_candidate_requires_rereading_after_handoff (test_prd_installed_conflicts.InstalledConflictTests.test_stale_gap_candidate_requires_rereading_after_handoff)
+分析员重试只补交接标记；同修订、同 PRD 版本的旧缺口候选仍拒写。 ... ok
+test_stale_prd_version_requires_rereading (test_prd_installed_conflicts.InstalledConflictTests.test_stale_prd_version_requires_rereading)
+两个作者读取 0.1：B 正式提交 0.2，A 的旧稿拒写，重读后才能提交 0.3。 ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 8.178s
+
+OK

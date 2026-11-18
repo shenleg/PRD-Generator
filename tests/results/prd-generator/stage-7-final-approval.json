@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-18",
+  "stage": 7,
+  "status": "approved",
+  "source": "用户在本次真实对话中直接回复",
+  "decision": "阶段 7 验收通过",
+  "requirement_id": "REQ-2026-001",
+  "approved_trial_draft_version": "0.2",
+  "accepted_scope": [
+    "隔离安装的正式双 Skill 联调、直接调用、自动触发及会话承接",
+    "PG-27 文件归属及缺口从登记到同步关闭、PG-28 交错写入拒绝及重读",
+    "真实试用首稿和用户实际变更后的 0.2 同步结果",
+    "最终程序回归及阶段 7 退出"
+  ],
+  "scenario_status": {"PG-27": "pass", "PG-28": "pass"},
+  "reviewed_artifacts": {
+    "workspace-sandbox/prd-generator/stage-7-real-trial/first-draft/evidence.json": "sha256:a2426ee8afd85cb3ce3a616c123d4c4c04f864e625bf5ff795b150ed6afb6f29",
+    "workspace-sandbox/prd-generator/stage-7-real-trial/synced-draft/prd/prd.md": "sha256:43a6f2530578f870b01873b4f32035c05f9472f8ac31833a3ec41afc607d9232",
+    "workspace-sandbox/prd-generator/stage-7-real-trial/synced-draft/evidence.json": "sha256:27033b92488cdcae4e808f9521a594d006ddec6f975850e88f6cf60e99976606",
+    "tests/results/prd-generator/stage-7-host-evidence.json": "sha256:df2ebe1bc12faccea2b5d4cec6fbe4ee42e8a18f45b26061609317e4f8d390c6",
+    "tests/results/prd-generator/stage-7-installed-model-handoff.json": "sha256:d4726784128cccc8a62bda78e7cbf5d5711f8fd0fbaac7aad42f15b65b6b01db",
+    "tests/results/prd-generator/stage-7-final-regression.txt": "sha256:71c2bdf28db162675d31ecf9735256b0746d5295894535f583172072874cb9d1"
+  },
+  "not_authorized": ["实际业务发布", "实施试用需求的 README 改造", "git commit", "git merge", "git tag", "git push"]
+}

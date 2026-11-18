@@ -3,6 +3,7 @@
 import argparse
 import base64
 import copy
+from contextlib import contextmanager
 from datetime import datetime, timezone
 import fcntl
 import importlib.util
@@ -130,17 +131,31 @@ def _sync_directory(path):
         os.close(descriptor)
 
 
-def _atomic_write(path, content):
-    """同目录写入并原子替换；临时文件不承载独立业务状态。"""
-    # 新目录也要同步父目录，否则掉电可能保留日志却丢失已创建的目录项。
+def _ensure_directory(path):
+    """创建缺失的目录链并同步每层目录项，避免崩溃后日志引用尚未持久化的目录。"""
     missing = []
-    parent = path.parent
-    while not parent.exists():
-        missing.append(parent)
-        parent = parent.parent
+    while not path.exists():
+        missing.append(path)
+        path = path.parent
     for directory in reversed(missing):
         directory.mkdir()
         _sync_directory(directory.parent)
+
+
+@contextmanager
+def _requirement_lock(directory):
+    """与生成侧共用需求目录锁；分析侧始终先取得工作区锁。"""
+    descriptor = os.open(directory, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+    try:
+        fcntl.flock(descriptor, fcntl.LOCK_EX)
+        yield
+    finally:
+        os.close(descriptor)
+
+
+def _atomic_write(path, content):
+    """同目录写入并原子替换；临时文件不承载独立业务状态。"""
+    _ensure_directory(path.parent)
     descriptor, temporary = tempfile.mkstemp(prefix=".analysis-write-", dir=path.parent)
     with os.fdopen(descriptor, "wb") as stream:
         stream.write(content)
@@ -195,26 +210,32 @@ def _recover(root):
             _require(after.startswith(before or b""), "事务事件未保留原始前缀。", name)
         if name.endswith("/requirement.json"):
             _require(before is None, "事务不得覆盖既有 common 或 prd。", name)
-        current = _read_optional(path)
-        # append 的单次 write 也可能被中断；只接受位于已记录前缀与完整新值之间的字节。
-        partial_append = append and current is not None and len(current) >= len(before or b"") and after.startswith(current)
-        _require(current == before or current == after or partial_append, "事务恢复冲突：文件不再等于记录的旧值或新值；请人工检查，不要删除事务记录。", name)
-        decoded.append((path, before, after, current, append))
-    for path, before, after, current, append in decoded:
-        if current == after:
-            continue
-        if append:
-            # 不重写旧事件；恢复检测完整新字节，避免重复追加同一 revision。
-            path.parent.mkdir(parents=True, exist_ok=True)
-            with path.open("ab") as stream:
-                stream.write(after[len(current or b""):])
-                stream.flush()
-                os.fsync(stream.fileno())
-            _sync_directory(path.parent)
-        else:
-            _atomic_write(path, after)
-    # 保留持久日志文件，以 null 标记完成，避免删除恢复记录与锁文件。
-    _atomic_write(journal, _json_bytes(None))
+        decoded.append((path, before, after, append))
+    directory = _safe(root, base)
+    # 首次保存也先锁目录：分析结果出现后，生成侧不能在整笔分析落盘前开始写入。
+    _ensure_directory(directory)
+    with _requirement_lock(directory):
+        pending = []
+        for path, before, after, append in decoded:
+            current = _read_optional(path)
+            # append 的单次 write 也可能被中断；只接受位于已记录前缀与完整新值之间的字节。
+            partial_append = append and current is not None and len(current) >= len(before or b"") and after.startswith(current)
+            _require(current == before or current == after or partial_append, "事务恢复冲突：文件不再等于记录的旧值或新值；请人工检查，不要删除事务记录。", str(path.relative_to(root)))
+            if current != after:
+                pending.append((path, after, current, append))
+        for path, after, current, append in pending:
+            if append:
+                # 不重写旧事件；恢复检测完整新字节，避免重复追加同一 revision。
+                _ensure_directory(path.parent)
+                with path.open("ab") as stream:
+                    stream.write(after[len(current or b""):])
+                    stream.flush()
+                    os.fsync(stream.fileno())
+                _sync_directory(path.parent)
+            else:
+                _atomic_write(path, after)
+        # 保留持久日志文件，以 null 标记完成，避免删除恢复记录与锁文件。
+        _atomic_write(journal, _json_bytes(None))
     return record
 
 
@@ -459,11 +480,8 @@ def _mark_handoffs(root, gap_path, snapshot, selected):
     if not selected:
         return False
     _safe(root, gap_path.relative_to(root))
-    # 两侧都写gap文件，须与生成侧持有同一稳定目录锁；单独的分析工作区锁不能阻止读后写覆盖。
-    # 该锁仅包住接收标记，不改变分析先保存再标记的顺序，也不创建analysis目录中的新文件。
-    descriptor = os.open(gap_path.parent.parent, os.O_RDONLY | os.O_DIRECTORY)
-    try:
-        fcntl.flock(descriptor, fcntl.LOCK_EX)
+    # 接收标记与分析提交分开加锁：恢复分析事务不应重放生成侧文件。
+    with _requirement_lock(gap_path.parent.parent):
         _require(_read_optional(gap_path) == snapshot, "缺口文件在接收期间发生变化；分析已保存，请重读缺口后重试标记。", str(gap_path))
         gaps = _load_json(gap_path)
         changed = False
@@ -476,9 +494,6 @@ def _mark_handoffs(root, gap_path, snapshot, selected):
             _require(_read_optional(gap_path) == snapshot, "缺口标记前发生并发更新，请重读后重试。", str(gap_path))
             _atomic_write(gap_path, _json_bytes(gaps))
         return changed
-    finally:
-        fcntl.flock(descriptor, fcntl.LOCK_UN)
-        os.close(descriptor)
 
 
 def _finish_handoffs(root, gap_path, snapshot, selected, outcome, dry_run):

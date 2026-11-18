@@ -1,0 +1,50 @@
+test_stale_analysis_revision_requires_rereading (test_prd_installed_conflicts.InstalledConflictTests.test_stale_analysis_revision_requires_rereading)
+分析员提交 r2 后拒绝 r1 首稿，重读 r2 正式生成且包含新增内容。 ... FAIL
+test_stale_gap_candidate_requires_rereading_after_handoff (test_prd_installed_conflicts.InstalledConflictTests.test_stale_gap_candidate_requires_rereading_after_handoff)
+分析员重试只补交接标记；同修订、同 PRD 版本的旧缺口候选仍拒写。 ... FAIL
+test_stale_prd_version_requires_rereading (test_prd_installed_conflicts.InstalledConflictTests.test_stale_prd_version_requires_rereading)
+两个作者读取 0.1：B 正式提交 0.2，A 的旧稿拒写，重读后才能提交 0.3。 ... FAIL
+
+======================================================================
+FAIL: test_stale_analysis_revision_requires_rereading (test_prd_installed_conflicts.InstalledConflictTests.test_stale_analysis_revision_requires_rereading)
+分析员提交 r2 后拒绝 r1 首稿，重读 r2 正式生成且包含新增内容。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "./tests/prd-generator/test_prd_installed_conflicts.py", line 169, in test_stale_analysis_revision_requires_rereading
+    self.save(self.candidate("fresh-r2", initial=True, body=body), version="0.1")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./tests/prd-generator/test_prd_installed_conflicts.py", line 134, in save
+    self.assertIn(result["status"], ("pass", "warning"), result)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'fail' not found in ('pass', 'warning') : {'status': 'fail', 'diagnostics': [{'rule': 0, 'level': 'fail', 'item_id': '$', 'path': '$', 'message': "'scope'"}], 'candidate_dir': '/tmp/tmpll27sjzs/fresh-r2-candidate', 'written': [], 'generated': False, 'transaction_complete': False, 'recovery_required': False}
+
+======================================================================
+FAIL: test_stale_gap_candidate_requires_rereading_after_handoff (test_prd_installed_conflicts.InstalledConflictTests.test_stale_gap_candidate_requires_rereading_after_handoff)
+分析员重试只补交接标记；同修订、同 PRD 版本的旧缺口候选仍拒写。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "./tests/prd-generator/test_prd_installed_conflicts.py", line 199, in test_stale_gap_candidate_requires_rereading_after_handoff
+    self.save(self.candidate("initial-gap", initial=True, body=body, gaps=gaps), version="0.1")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./tests/prd-generator/test_prd_installed_conflicts.py", line 134, in save
+    self.assertIn(result["status"], ("pass", "warning"), result)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'fail' not found in ('pass', 'warning') : {'status': 'fail', 'diagnostics': [{'rule': 0, 'level': 'fail', 'item_id': '$', 'path': '$', 'message': "'scope'"}], 'candidate_dir': '/tmp/tmp7wvo01pf/initial-gap-candidate', 'written': [], 'generated': False, 'transaction_complete': False, 'recovery_required': False}
+
+======================================================================
+FAIL: test_stale_prd_version_requires_rereading (test_prd_installed_conflicts.InstalledConflictTests.test_stale_prd_version_requires_rereading)
+两个作者读取 0.1：B 正式提交 0.2，A 的旧稿拒写，重读后才能提交 0.3。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "./tests/prd-generator/test_prd_installed_conflicts.py", line 176, in test_stale_prd_version_requires_rereading
+    self.save(self.candidate("first", initial=True), version="0.1")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "./tests/prd-generator/test_prd_installed_conflicts.py", line 134, in save
+    self.assertIn(result["status"], ("pass", "warning"), result)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'fail' not found in ('pass', 'warning') : {'status': 'fail', 'diagnostics': [{'rule': 0, 'level': 'fail', 'item_id': '$', 'path': '$', 'message': "'scope'"}], 'candidate_dir': '/tmp/tmpkd25dh52/first-candidate', 'written': [], 'generated': False, 'transaction_complete': False, 'recovery_required': False}
+
+----------------------------------------------------------------------
+Ran 3 tests in 2.793s
+
+FAILED (failures=3)

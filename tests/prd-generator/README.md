@@ -32,6 +32,7 @@
 | `grade_prd_edit_model.py`、`build_prd_edit_review.py` | 原实际产物评分和官方静态评审页，保留模型发现的质量失败 |
 | `run_model_edit_replay.py` | 当前冻结源码重放原始模型候选，修复验证不称新模型调用 |
 | `test_prd_release.py` | 十个阶段 6 场景的真实生产 CLI、版本交错、同版绑定、快照冲突及中断恢复；设置 `PRD_STAGE6_EVIDENCE` 可保存新证据 |
+| `test_prd_installed_conflicts.py` | 从无关目录调用已安装 CLI，走完正式缺口交接与最小同步，验证三类并发拒写和重读；不调用模型 |
 | `prepare_prd_release_model.py`、`advance_prd_release_model.py` | 冻结阶段 6 合成输入和新旧 Skill，归档真实轮次、单独推进分析侧合成更正 |
 | `grade_prd_release_model.py` | 从真实文件核对提审、确认、快照、同步及文件保护，使用 Skill Creator 生成静态人工评审页 |
 
@@ -74,6 +75,7 @@ uv run --offline --no-project --python /usr/bin/python3 --with-requirements test
 - [阶段 3：首稿实施与试跑](../results/prd-generator/stage-3.md)
 - [阶段 4：同步实施与验证进度](../results/prd-generator/stage-4.md)
 - [阶段 5：实施认可](../results/prd-generator/stage-5-approval.json)、[阶段记录](../results/prd-generator/stage-5.md)、[最终评审页](../results/prd-generator/stage-5-model-review/final-03/review.html)、[最终人工认可](../results/prd-generator/stage-5-final-approval.json)：原模型与修复重放分别留证
+- [阶段 7：隔离安装、并发及试用记录](../results/prd-generator/stage-7.md)
 - [阶段 4 实际输出评审页](../results/prd-generator/stage-4-model-review/final-02/review.html)
 - [阶段 4 模型分析及人工评审指南](../results/prd-generator/stage-4-review-guide.md)
 - [实际草稿评审页](../results/prd-generator/stage-3-model-review.html)

@@ -1,0 +1,19 @@
+test_analysis_publication_waits_for_prd_directory_lock (test_update_analysis.UpdateAnalysisTests.test_analysis_publication_waits_for_prd_directory_lock)
+PG-28 回归：PRD 写入窗口内，普通分析更新不得提前提交修订或事件。 ... FAIL
+
+======================================================================
+FAIL: test_analysis_publication_waits_for_prd_directory_lock (test_update_analysis.UpdateAnalysisTests.test_analysis_publication_waits_for_prd_directory_lock)
+PG-28 回归：PRD 写入窗口内，普通分析更新不得提前提交修订或事件。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "./tests/requirement-analyst/test_update_analysis.py", line 553, in test_analysis_publication_waits_for_prd_directory_lock
+    response = self.apply_during_prd_lock(patch, analysis.parent)
+  File "./tests/requirement-analyst/test_update_analysis.py", line 537, in apply_during_prd_lock
+    self.assertTrue(waits_for_directory.is_set(), f"分析未等待 PRD 目录锁：{responses}")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : 分析未等待 PRD 目录锁：[{'status': 'pass', 'diagnostics': [], 'requirement_id': 'REQ-2026-001', 'revision': 2, 'id_map': {'$other': 'FR-1'}, 'affected_ids': ['FR-1'], 'written': True}]
+
+----------------------------------------------------------------------
+Ran 1 test in 0.311s
+
+FAILED (failures=1)

@@ -92,13 +92,15 @@ def section_source_digests(analysis: dict, gaps: dict, *, trace: dict | None = N
     req, business = analysis['requirements'], analysis['business_assessment']
     questions = analysis['questions']
     inferred = [item for _, item in _analyst()._entries(analysis) if item.get('tag') == 'inferred' and item.get('status') != 'withdrawn']
+    # 上游允许省略可选集合；缺省与空集合不提供生成依据，也不应换掉已有空章节摘要。
     data = {
         'background': analysis.get('value_assessment'),
-        'scope': {'goals': req['goals'], 'scope': req['scope'], 'excluded': [q for q in questions if q['status'] == 'excluded'], 'decisions': analysis['decisions']},
+        'scope': {'goals': req['goals'], 'scope': req.get('scope', {'in_scope': [], 'out_of_scope': []}),
+                  'excluded': [q for q in questions if q['status'] == 'excluded'], 'decisions': analysis['decisions']},
         'scenarios': req['scenarios'], 'functional_requirements': req['functional_requirements'],
-        'business_rules': req['business_rules'], 'flows_states': {key: business[key] for key in ('flows', 'states')},
+        'business_rules': req['business_rules'], 'flows_states': {key: business.get(key, []) for key in ('flows', 'states')},
         'boundaries_exceptions': {key: business[key] for key in ('boundaries', 'exceptions')},
-        'constraints': {key: req[key] for key in ('constraints', 'non_functional_requirements')},
+        'constraints': {key: req.get(key, []) for key in ('constraints', 'non_functional_requirements')},
         'acceptance_criteria': req['acceptance_criteria'], 'ux': analysis.get('ux_assessment'),
         'technical': {'assessment': analysis.get('technical_feasibility'), 'ask_dev': [q for q in questions if q['resolution'] == 'ask_dev']},
         'impact': analysis.get('impact_analysis'),

@@ -1,0 +1,61 @@
+{
+  "scope": "用户真实选择 A，模型只读分流和产出候选，操作者调用已安装脚本；不代表发布或最终人工验收",
+  "date": "2026-11-18",
+  "requirement_id": "REQ-2026-001",
+  "base": "0.1",
+  "synced": "0.2",
+  "analysis_revision": 2,
+  "files": {
+    "requirement.json": "sha256:1f2a56e9f3d81b1c479d5e64ab36f16571f0890cb1ac8057cb8de92751cc7e48",
+    "analysis/analysis-result.json": "sha256:1c9e8194cb1588e49fc37082570915144897e2f1228fe9e47baa8c796a445d4f",
+    "analysis/source-manifest.json": "sha256:8d19b072a4e3b0704c184249b2b8dd7ef2963c918e1c2c1be8c86c4945285e50",
+    "analysis/analysis-events.jsonl": "sha256:3f382b4e4cb0ab59bb5ef6016b5a29df1da554c36e9b78e38c0f3fad997a8b85",
+    "prd/prd.md": "sha256:43a6f2530578f870b01873b4f32035c05f9472f8ac31833a3ec41afc607d9232",
+    "prd/prd-trace.json": "sha256:152b128fdbeb30b7ec247683178f8a585d7cf5c36a4bdf9f890190312d3f36a9",
+    "prd/gap-requests.json": "sha256:b11c8b3d8e1870a999b21a93967f04d1a8cc7aa43c500b12c8e2be925ac37d7c",
+    "prd/prd-events.jsonl": "sha256:d4df89f4466889680a79927f11ebc4ff88faac016775de771751c77277de6b91"
+  },
+  "validation": "pass",
+  "routed_without_writing": true,
+  "analysis_only_update_wrote": [
+    "projects/stage7-real-trial/requirements/REQ-2026-001/analysis/analysis-events.jsonl",
+    "projects/stage7-real-trial/requirements/REQ-2026-001/analysis/analysis-result.json"
+  ],
+  "sync_changed_files": [
+    "prd/prd-events.jsonl",
+    "prd/prd-trace.json",
+    "prd/prd.md",
+    "requirement.json"
+  ],
+  "sync_analysis_before": {
+    "analysis/analysis-events.jsonl": "sha256:3f382b4e4cb0ab59bb5ef6016b5a29df1da554c36e9b78e38c0f3fad997a8b85",
+    "analysis/analysis-result.json": "sha256:1c9e8194cb1588e49fc37082570915144897e2f1228fe9e47baa8c796a445d4f",
+    "analysis/source-manifest.json": "sha256:8d19b072a4e3b0704c184249b2b8dd7ef2963c918e1c2c1be8c86c4945285e50"
+  },
+  "sync_analysis_after": {
+    "analysis/analysis-events.jsonl": "sha256:3f382b4e4cb0ab59bb5ef6016b5a29df1da554c36e9b78e38c0f3fad997a8b85",
+    "analysis/analysis-result.json": "sha256:1c9e8194cb1588e49fc37082570915144897e2f1228fe9e47baa8c796a445d4f",
+    "analysis/source-manifest.json": "sha256:8d19b072a4e3b0704c184249b2b8dd7ef2963c918e1c2c1be8c86c4945285e50"
+  },
+  "formal_items": 17,
+  "valid_traces": 17,
+  "stable_ids": 17,
+  "unaffected_item_bytes_unchanged": 14,
+  "changed_items": [
+    "PRD-AC-003",
+    "PRD-BR-003",
+    "PRD-FLOW-001"
+  ],
+  "changed_prd_sections": [
+    "acceptance_criteria",
+    "business_rules",
+    "changes",
+    "flows_states",
+    "impact",
+    "info"
+  ],
+  "out_of_scope_sections_changed": 0,
+  "registered_gaps": 0,
+  "status": "draft",
+  "known_scope": "根 README 及固定原件未实施；真实发布未执行。"
+}

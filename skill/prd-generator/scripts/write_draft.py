@@ -55,7 +55,7 @@ def _hash(raw):
 
 @contextmanager
 def _lock(root):
-    """锁定现有需求目录而不在 analysis/ 创建锁；只串行化合作的生成侧写入。"""
+    """锁定现有需求目录，与分析侧串行化同一需求的写入；不在 analysis/ 创建锁。"""
     _safe(root)
     descriptor = os.open(root, os.O_RDONLY | os.O_DIRECTORY)
     try:

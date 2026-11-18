@@ -1,0 +1,131 @@
+{
+  "kind": "installed_synthetic_model_cli_handoff",
+  "date": "2026-11-18",
+  "case": "PG-27",
+  "scope": "合成工程联调。模型在同一安装会话给出候选，操作者调用正式脚本；不是模型自主执行写入，不替代真实需求试用和人工验收。",
+  "same_session": true,
+  "model_rounds": {
+    "05-synth-mapping": [
+      "prd-generator"
+    ],
+    "08-synth-body": [
+      "prd-generator"
+    ],
+    "10-synth-handoff": [
+      "requirement-analyst"
+    ],
+    "12-synth-supplement": [
+      "requirement-analyst"
+    ],
+    "15-synth-sync-mapping": [
+      "prd-generator"
+    ],
+    "17-synth-sync-body": [
+      "prd-generator"
+    ]
+  },
+  "workspace_fingerprints": {
+    "generate": {
+      "exit_code": 1,
+      "status": "warning",
+      "changed": [
+        "prd/gap-requests.json",
+        "prd/prd-events.jsonl",
+        "prd/prd-trace.json",
+        "prd/prd.md",
+        "requirement.json"
+      ],
+      "analysis_hashes_unchanged": true,
+      "analysis_before": {
+        "analysis/analysis-events.jsonl": "sha256:47108ad7c439aa13f36b1650bb666c71147c6d12222c9431ff47c0148607f4f6",
+        "analysis/analysis-result.json": "sha256:1e6c358fc10a8611b98fea372769bf28d84c669748a0979e5d01284adcea65b6",
+        "analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "analysis_after": {
+        "analysis/analysis-events.jsonl": "sha256:47108ad7c439aa13f36b1650bb666c71147c6d12222c9431ff47c0148607f4f6",
+        "analysis/analysis-result.json": "sha256:1e6c358fc10a8611b98fea372769bf28d84c669748a0979e5d01284adcea65b6",
+        "analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      }
+    },
+    "handoff": {
+      "exit_code": 0,
+      "status": "pass",
+      "changed": [
+        "analysis/analysis-events.jsonl",
+        "analysis/analysis-result.json",
+        "prd/gap-requests.json"
+      ],
+      "analysis_hashes_unchanged": false,
+      "analysis_before": {
+        "analysis/analysis-events.jsonl": "sha256:47108ad7c439aa13f36b1650bb666c71147c6d12222c9431ff47c0148607f4f6",
+        "analysis/analysis-result.json": "sha256:1e6c358fc10a8611b98fea372769bf28d84c669748a0979e5d01284adcea65b6",
+        "analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "analysis_after": {
+        "analysis/analysis-events.jsonl": "sha256:821e8f17a0f3fa6b2f6dafe9f6351e68221e569156730713c3671c8a663ffe4d",
+        "analysis/analysis-result.json": "sha256:1f9888e757ac38ff76e06527aaa71152341f187eefbff2e8ad9da1cb2dfdbf70",
+        "analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      }
+    },
+    "supplement": {
+      "exit_code": 0,
+      "status": "pass",
+      "changed": [
+        "analysis/analysis-events.jsonl",
+        "analysis/analysis-result.json"
+      ],
+      "analysis_hashes_unchanged": false,
+      "analysis_before": {
+        "analysis/analysis-events.jsonl": "sha256:821e8f17a0f3fa6b2f6dafe9f6351e68221e569156730713c3671c8a663ffe4d",
+        "analysis/analysis-result.json": "sha256:1f9888e757ac38ff76e06527aaa71152341f187eefbff2e8ad9da1cb2dfdbf70",
+        "analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "analysis_after": {
+        "analysis/analysis-events.jsonl": "sha256:175f5e6bc85f048a50706184cde65cd35ec057b164ab506212495deedfd3d1e9",
+        "analysis/analysis-result.json": "sha256:d4d6b5925a2bf04d0b3d549d788116dd8dc4a8502d2214f09ab00a2adb738e24",
+        "analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      }
+    },
+    "sync": {
+      "exit_code": 0,
+      "status": "pass",
+      "changed": [
+        "prd/gap-requests.json",
+        "prd/prd-events.jsonl",
+        "prd/prd-trace.json",
+        "prd/prd.md",
+        "requirement.json"
+      ],
+      "analysis_hashes_unchanged": true,
+      "analysis_before": {
+        "analysis/analysis-events.jsonl": "sha256:175f5e6bc85f048a50706184cde65cd35ec057b164ab506212495deedfd3d1e9",
+        "analysis/analysis-result.json": "sha256:d4d6b5925a2bf04d0b3d549d788116dd8dc4a8502d2214f09ab00a2adb738e24",
+        "analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      "analysis_after": {
+        "analysis/analysis-events.jsonl": "sha256:175f5e6bc85f048a50706184cde65cd35ec057b164ab506212495deedfd3d1e9",
+        "analysis/analysis-result.json": "sha256:d4d6b5925a2bf04d0b3d549d788116dd8dc4a8502d2214f09ab00a2adb738e24",
+        "analysis/source-manifest.json": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      }
+    }
+  },
+  "gap_states": [
+    "open",
+    "handed_over",
+    "closed"
+  ],
+  "unique_receiver": "Q-1",
+  "closure_source": "STAGE7-AUTO/AC-1",
+  "stable_existing_item": {
+    "prd_id": "PRD-FR-001",
+    "sha256": "sha256:371e58c1d67f1596ddd8f473de9d11581a8d48e6cb998933287060d411fe2fac"
+  },
+  "changed_prd_sections": [
+    "acceptance_criteria",
+    "changes",
+    "info",
+    "residuals"
+  ],
+  "generation_version": "0.1",
+  "sync_version": "0.2"
+}

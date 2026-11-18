@@ -6,7 +6,7 @@
 
 - Python 3.10+，使用并列 `requirement-analyst/scripts/requirements.txt` 的依赖；两个 Skill 必须一起安装。
 - 分析校验器从相邻生产目录加载，不复制分析规则，不依赖仓库测试和最小消费者。脚本支持隔离模式及任意调用目录。
-- 当前针对可信 Linux/Unix 本地工作区，使用目录锁串行化合作的生成侧写入；不承诺恶意并发路径替换或网络文件系统的持久化安全。
+- 当前针对可信 Linux/Unix 本地工作区。共享需求目录锁串行化同一需求的生成侧写入、分析提交和恢复、缺口接收标记；不承诺不遵守此锁的写入方、不同需求间引用或网络文件系统的跨文件原子性。
 - 工作区必须由分析侧已有的 `requirement.json/common` 和 `analysis/analysis-result.json` 开始；生成侧不创建需求，不读取 `analysis-report.md`，不写 `analysis/`。
 
 以下命令中的 `PY` 表示：

@@ -1,0 +1,35 @@
+{
+  "kind": "real_trial_initial_draft",
+  "production_base_commit": "7b016bf",
+  "draft_kind": "formal_draft",
+  "draft_version": "0.1",
+  "analysis_revision": 1,
+  "files": {
+    "requirement.json": "sha256:1daaea2e665cada344f1f0b1504a4243f38af37a3d85886d43c0d094f5fccb2c",
+    "analysis/analysis-result.json": "sha256:26e4d7e7ef07556d950e6f45e794e53b75014ef64696e76fe76c851add9643c8",
+    "analysis/source-manifest.json": "sha256:8d19b072a4e3b0704c184249b2b8dd7ef2963c918e1c2c1be8c86c4945285e50",
+    "analysis/analysis-events.jsonl": "sha256:c042c638d910fce3780ac7f7c5889329dc18c1de102982e9a43acb4a7738b261",
+    "prd/prd.md": "sha256:84ad7f0ec7210c168802ee830394c04d108a45dfadd8adf2b8391afa19f12f0d",
+    "prd/prd-trace.json": "sha256:40ce1963a54db7a60588d366e278f4697fd60f7df75c13b44aced51bbefb6faa",
+    "prd/gap-requests.json": "sha256:b11c8b3d8e1870a999b21a93967f04d1a8cc7aa43c500b12c8e2be925ac37d7c",
+    "prd/prd-events.jsonl": "sha256:40225e1974f6ace162cbb689aa3797fe05b6e322e5629ed8018ec5f62945c169"
+  },
+  "generated": true,
+  "generation_status": "pass",
+  "validation_status": "pass",
+  "validation_diagnostics": [],
+  "formal_items": 17,
+  "registered_gaps": 0,
+  "analysis_before": {
+    "analysis/analysis-events.jsonl": "sha256:c042c638d910fce3780ac7f7c5889329dc18c1de102982e9a43acb4a7738b261",
+    "analysis/analysis-result.json": "sha256:26e4d7e7ef07556d950e6f45e794e53b75014ef64696e76fe76c851add9643c8",
+    "analysis/source-manifest.json": "sha256:8d19b072a4e3b0704c184249b2b8dd7ef2963c918e1c2c1be8c86c4945285e50"
+  },
+  "analysis_after": {
+    "analysis/analysis-events.jsonl": "sha256:c042c638d910fce3780ac7f7c5889329dc18c1de102982e9a43acb4a7738b261",
+    "analysis/analysis-result.json": "sha256:26e4d7e7ef07556d950e6f45e794e53b75014ef64696e76fe76c851add9643c8",
+    "analysis/source-manifest.json": "sha256:8d19b072a4e3b0704c184249b2b8dd7ef2963c918e1c2c1be8c86c4945285e50"
+  },
+  "analysis_files_unchanged": true,
+  "provenance": "安装态模型编写候选、操作者调用安装态公开脚本保存和复核；发布未执行；不是最终人工验收。"
+}

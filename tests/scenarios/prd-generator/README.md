@@ -9,6 +9,7 @@
 - 阶段 4 的 `PG-13`～`PG-16`、`PG-31`、`PG-32`、`PG-34` 已完成首次完整验收 `pass`；程序、实际模型、当前源码重放及真实人工认可分别见 `tests/results/prd-generator/stage-4.md`、`stage-4-test-summary.json`、`stage-4-final-approval.json`。参考见 `tests/expected/prd-generator/stage-4.review-draft.md`，原评审材料保持原字节。
 - 阶段 5 的 `PG-17`、`PG-18` 已登记首次完整验收 `pass`；程序、两组四份模型运行、修复后重放及真实最终人工认可见 `tests/results/prd-generator/stage-5.md`、`stage-5-test-summary.json`、`stage-5-final-approval.json`。`PG-19` 仅做已认可的局部检查，完整发布拒绝仍属阶段 6。
 - 阶段 6 的十个场景已完成首次完整验收 `pass`，见[阶段记录](../../results/prd-generator/stage-6.md)和[最终人工认可](../../results/prd-generator/stage-6-final-approval.json)。实际模型证据限于有条件稿及确认发布后同步两组；其余完整边界以真实脚本试跑为证，剧本文首的未执行说明是编写时状态。
+- 阶段 7 的 [PG-27](PG-27.md)、[PG-28](PG-28.md) 已通过正式安装联调与并发检查，见[最终验收报告](../../results/prd-generator/final-acceptance.md)；真实试用的最终人工验收独立记录。开工基线不算正式联调证据。
 - 各 `PG-xx.md` 剧本在进入所属阶段前编写并由人工参考要点约束；不批量生成空壳剧本。
 - 阶段 1 验证只读校验器的合法与反例夹具，不提前认领后续完整生命周期场景。
 - 前置阶段只验证局部行为；第一次完整验收只归属下表阶段，后续重复运行记为回归。
