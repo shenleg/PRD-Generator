@@ -1,0 +1,230 @@
+{
+  "metadata": {
+    "skill_name": "prd-generator",
+    "skill_path": "skill/prd-generator",
+    "executor_model": "sonnet (Agent tool alias)",
+    "analyzer_model": "deterministic artifact grading",
+    "timestamp": "2026-11-18T02:19:38Z",
+    "evals_run": [
+      1,
+      2
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 4,
+        "failed": 0,
+        "total": 4,
+        "time_seconds": 286.169,
+        "tokens": 24658,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "有条件稿保持 0.1，实际进入 in_review 且仅追加一次提审",
+          "passed": true,
+          "evidence": "首轮与最终元数据：{'based_on_analysis_revision': 1, 'status': 'in_review', 'version': '0.1'}；提审事件逐项核对。"
+        },
+        {
+          "text": "只读发布检查明确报告 conditionally_ready，模型未尝试发布",
+          "passed": true,
+          "evidence": "在 artifacts 核对实际 check/for=release、就绪度及响应；是否讲清 P1 另由人工判断。"
+        },
+        {
+          "text": "任何轮次均无发布确认、发布事件或版本快照",
+          "passed": true,
+          "evidence": "初轮及最终事件与 versions 目录均无发布产物。"
+        },
+        {
+          "text": "分析、非 PRD 元数据、编号、缺口与现行业务正文保持",
+          "passed": true,
+          "evidence": "比较分析文件摘要、其他元数据、追溯映射、缺口与固定信息块以外正文原字节。"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 5,
+        "failed": 0,
+        "total": 5,
+        "time_seconds": 488.008,
+        "tokens": 43397,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "首轮实际提审并检查通过；等待明确答复，未提前发布",
+          "passed": true,
+          "evidence": "核对首轮归档、实际只读检查响应、提审记录、无快照；是否明确提出待确认问题另由人工评审。"
+        },
+        {
+          "text": "收到合成确认后定稿 1.0，确认人、时间、快照摘要和权限均正确",
+          "passed": true,
+          "evidence": "第二轮归档和驱动时间对照 release_confirmed；核对权限、摘要和 release 事件。"
+        },
+        {
+          "text": "仅更新受影响功能，发布后同步到 2.0-draft 且返回 draft",
+          "passed": true,
+          "evidence": "比较两个阶段业务正文和事件；当前实际元数据 {'based_on_analysis_revision': 2, 'status': 'draft', 'version': '2.0-draft'}。"
+        },
+        {
+          "text": "旧 1.0 基线的两份快照原字节未改，无第二次发布",
+          "passed": true,
+          "evidence": "第二轮 1.0 快照与最后一轮逐文件原始摘要及两条发布日志一致。"
+        },
+        {
+          "text": "各阶段分析、非 PRD 元数据、编号及缺口均未被模型改动",
+          "passed": true,
+          "evidence": "逐轮比较分析目录、common 及其他元数据，编号/映射/引入版本和缺口不变；分析仅允许测试驱动单独更新。"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 2,
+        "failed": 2,
+        "total": 4,
+        "time_seconds": 174.411,
+        "tokens": 20539,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "有条件稿保持 0.1，实际进入 in_review 且仅追加一次提审",
+          "passed": false,
+          "evidence": "首轮与最终元数据：{'based_on_analysis_revision': 1, 'status': 'draft', 'version': '0.1'}；提审事件逐项核对。"
+        },
+        {
+          "text": "只读发布检查明确报告 conditionally_ready，模型未尝试发布",
+          "passed": false,
+          "evidence": "在 artifacts 核对实际 check/for=release、就绪度及响应；是否讲清 P1 另由人工判断。"
+        },
+        {
+          "text": "任何轮次均无发布确认、发布事件或版本快照",
+          "passed": true,
+          "evidence": "初轮及最终事件与 versions 目录均无发布产物。"
+        },
+        {
+          "text": "分析、非 PRD 元数据、编号、缺口与现行业务正文保持",
+          "passed": true,
+          "evidence": "比较分析文件摘要、其他元数据、追溯映射、缺口与固定信息块以外正文原字节。"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.2,
+        "passed": 1,
+        "failed": 4,
+        "total": 5,
+        "time_seconds": 212.916,
+        "tokens": 22460,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "首轮实际提审并检查通过；等待明确答复，未提前发布",
+          "passed": false,
+          "evidence": "核对首轮归档、实际只读检查响应、提审记录、无快照；是否明确提出待确认问题另由人工评审。"
+        },
+        {
+          "text": "收到合成确认后定稿 1.0，确认人、时间、快照摘要和权限均正确",
+          "passed": false,
+          "evidence": "第二轮归档和驱动时间对照 release_confirmed；核对权限、摘要和 release 事件。"
+        },
+        {
+          "text": "仅更新受影响功能，发布后同步到 2.0-draft 且返回 draft",
+          "passed": false,
+          "evidence": "比较两个阶段业务正文和事件；当前实际元数据 {'based_on_analysis_revision': 1, 'status': 'draft', 'version': '0.1'}。"
+        },
+        {
+          "text": "旧 1.0 基线的两份快照原字节未改，无第二次发布",
+          "passed": false,
+          "evidence": "第二轮 1.0 快照与最后一轮逐文件原始摘要及两条发布日志一致。"
+        },
+        {
+          "text": "各阶段分析、非 PRD 元数据、编号及缺口均未被模型改动",
+          "passed": true,
+          "evidence": "逐轮比较分析目录、common 及其他元数据，编号/映射/引入版本和缺口不变；分析仅允许测试驱动单独更新。"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 387.0885,
+        "stddev": 142.7217,
+        "min": 286.169,
+        "max": 488.008
+      },
+      "tokens": {
+        "mean": 34027.5,
+        "stddev": 13250.474,
+        "min": 24658,
+        "max": 43397
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.35,
+        "stddev": 0.2121,
+        "min": 0.2,
+        "max": 0.5
+      },
+      "time_seconds": {
+        "mean": 193.6635,
+        "stddev": 27.2271,
+        "min": 174.411,
+        "max": 212.916
+      },
+      "tokens": {
+        "mean": 21499.5,
+        "stddev": 1358.3521,
+        "min": 20539,
+        "max": 22460
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.65",
+      "time_seconds": "+193.4",
+      "tokens": "+12528"
+    }
+  },
+  "notes": [
+    "每配置每组一次；同一模型会话的后续轮不算新样本。",
+    "旧 Skill 如实拒绝是正确处理能力边界；不能计作成功执行新增操作。",
+    "数字来自实际产物；原因与确认措辞需人工核对。时间与 token 不作为效率结论。"
+  ]
+}

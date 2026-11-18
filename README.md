@@ -41,7 +41,7 @@ workspace-sandbox/             历史试跑证据，保留原位置
 
 需求分析 Skill 的安装、普通对话触发和当前会话承接见 [安装说明](docs/requirement-analyst/installation.md)。现有 `.claude/skills/requirement-analyst` 仍指向唯一生产目录；阶段 2 修改分析侧接收能力，不改安装链接。
 
-`prd-generator` 已有 [Skill 入口](skill/prd-generator/SKILL.md)，支持首次草稿、同一分析输入重复生成及未发布工作稿的显式增量同步；两个 Skill 需并列安装。门禁、比较、编号、统一保存及恢复用法见 [脚本说明](skill/prd-generator/scripts/README.md)，阶段 4 的实际验证与待验收项见 [进度记录](tests/results/prd-generator/stage-4.md)。本次未改实际安装链接，不把显式加载试跑称为安装自动触发。阶段 5 编辑和手改处理的实施方案、参考及四次隔离模型试跑已获认可，实现、回归、模型及当前源码重放完成，并获用户最终语义认可，见 [阶段记录](tests/results/prd-generator/stage-5.md) 与 [最终认可](tests/results/prd-generator/stage-5-final-approval.json)；评审、发布及发布后另建工作稿仍属后续阶段。
+`prd-generator` 已有 [Skill 入口](skill/prd-generator/SKILL.md)，支持首次草稿、同一分析输入重复生成及未发布工作稿的显式增量同步；两个 Skill 需并列安装。门禁、比较、编号、统一保存及恢复用法见 [脚本说明](skill/prd-generator/scripts/README.md)，阶段 4 的实际验证与待验收项见 [进度记录](tests/results/prd-generator/stage-4.md)。本次未改实际安装链接，不把显式加载试跑称为安装自动触发。阶段 5 编辑和手改处理的实施方案、参考及四次隔离模型试跑已获认可，实现、回归、模型及当前源码重放完成，并获用户最终语义认可，见 [阶段记录](tests/results/prd-generator/stage-5.md) 与 [最终认可](tests/results/prd-generator/stage-5-final-approval.json)。阶段 6 增加评审、发布、废弃及发布后另建工作稿，当前验证范围见[阶段 6 记录](tests/results/prd-generator/stage-6.md)；正式安装联调和真实试用仍属阶段 7。
 
 ## 运行全部测试
 

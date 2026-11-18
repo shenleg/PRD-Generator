@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "编号映射补丁",
+  "description": "模型只提交稳定映射键、类别、分析引用和可选既有编号；拒绝正文、摘要、计数器及未知字段，脚本负责实际分配。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "patch_version",
+    "requirement_id",
+    "base_prd_version",
+    "base_analysis_revision",
+    "items"
+  ],
+  "properties": {
+    "patch_version": {
+      "const": "1.0"
+    },
+    "requirement_id": {
+      "type": "string",
+      "pattern": "^[^\\s/]+$"
+    },
+    "base_prd_version": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "string",
+          "pattern": "^(?:0\\.[1-9][0-9]*|[1-9][0-9]*\\.(?:0|[1-9][0-9]*)(?:-draft)?)$"
+        }
+      ]
+    },
+    "base_analysis_revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mapping_key",
+          "kind",
+          "analysis_refs"
+        ],
+        "properties": {
+          "mapping_key": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "kind": {
+            "enum": [
+              "goal",
+              "scenario",
+              "functional_requirement",
+              "business_rule",
+              "constraint",
+              "non_functional_requirement",
+              "acceptance_criterion",
+              "flow",
+              "state",
+              "boundary",
+              "exception"
+            ]
+          },
+          "analysis_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[^\\s/]+/(?:GOAL|SCN|FR|BR|CON|NFR|AC|FLOW|STATE|BND|EXC|GAP|CNF|Q|ASM|DEC)-[1-9][0-9]*$"
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "prd_id": {
+            "type": "string",
+            "pattern": "^PRD-(?:GOAL|SCN|FR|BR|CON|NFR|AC|FLOW|STATE|BND|EXC)-(?=\\d{3,}$)0*[1-9][0-9]*$"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "confirmed_by": "合成测试产品经理（仅限本次隔离试跑）",
+  "confirmed_at": "2026-11-18T02:14:47.792837+00:00",
+  "requirement_id": "SYNTHETIC-PRD",
+  "submitted_version": "0.1",
+  "analysis_revision": 1,
+  "target_version": "1.0",
+  "synthetic": true
+}

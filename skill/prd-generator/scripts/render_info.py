@@ -111,7 +111,8 @@ def render_info(body: str, requirement: dict, trace: dict, *, generated_at: str,
     table = "\n".join(["| 字段 | 值 |", "| --- | --- |", *(f"| {name} | {_cell(item)} |" for name, item in pairs)])
     info = "<!-- prd:section info -->\n## 文档信息\n\n" + table + "\n<!-- /prd:section -->"
     record = "" if changes is None else "\n\n<!-- prd:section changes -->\n## 变更记录\n\n" + changes + "\n<!-- /prd:section -->"
-    return validator.PROMPTS[kind] + "\n\n" + info + record + "\n\n" + value.strip("\r\n") + "\n"
+    prompt = "" if prd["status"] in {"released", "deprecated"} else validator.PROMPTS[kind] + "\n\n"
+    return prompt + info + record + "\n\n" + value.strip("\r\n") + "\n"
 
 
 def main(argv=None) -> int:

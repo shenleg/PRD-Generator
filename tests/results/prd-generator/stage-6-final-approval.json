@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-18",
+  "stage": 6,
+  "source": "本次 AskUserQuestion 的真实用户选择",
+  "question": "查看阶段 6 评审页和指南后，你是否认可这两组实际输出，完成阶段 6 人工验收？",
+  "decision": "已审阅，认可本轮结果",
+  "status": "approved",
+  "reviewed_artifacts": {
+    "path": "tests/results/prd-generator/stage-6-reviewed-artifacts.json",
+    "sha256": "sha256:e937e189b332e8562eac61be2f329e30a4d3cabaaa1526321dd742f58646ca07",
+    "count": 246
+  },
+  "accepted_scope": [
+    "有条件稿的实际提审、拒绝发布及业务范围阻断说明",
+    "就绪稿的限版确认、合成定稿及两份不可覆盖快照",
+    "发布后的最小同步、工作稿版本与现行基线分别报告",
+    "两组实际模型输出和阶段 5 能力边界对照，以及阶段 6 程序验收记录"
+  ],
+  "scenario_status": {
+    "PG-04": "pass", "PG-05": "pass", "PG-12": "pass", "PG-19": "pass",
+    "PG-22": "pass", "PG-23": "pass", "PG-24": "pass", "PG-25": "pass", "PG-30": "pass", "PG-33": "pass"
+  },
+  "not_authorized": ["真实业务发布", "安装变更", "进入阶段 7", "git commit", "git merge", "git tag", "git push"]
+}

@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "正式编号追溯文件",
+  "description": "定义追溯身份、生成快照、编号与完整分析引用；跨条目及历史一致性由只读校验器检查，允许兼容扩展。",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "requirement_id",
+    "meta",
+    "items"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "requirement_id": {
+      "type": "string",
+      "pattern": "^[^\\s/]+$"
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "draft_kind",
+        "generated_under_readiness",
+        "content_hash",
+        "counters"
+      ],
+      "properties": {
+        "draft_kind": {
+          "enum": [
+            "risk_draft",
+            "conditional_draft",
+            "stale_draft",
+            "formal_draft"
+          ]
+        },
+        "generated_under_readiness": {
+          "enum": [
+            "not_ready",
+            "conditionally_ready",
+            "ready_for_document"
+          ]
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "content_baseline": {
+          "description": "上次统一保存的正文原文；UTF-8 原始字节摘要由校验器与 content_hash 核对。",
+          "type": "string"
+        },
+        "section_source_digests": {
+          "description": "兼容选填的生成时章节依据快照；不包含脚本渲染的信息和变更记录。",
+          "type": "object",
+          "propertyNames": {
+            "enum": ["background", "scope", "scenarios", "functional_requirements", "business_rules", "flows_states", "boundaries_exceptions", "constraints", "acceptance_criteria", "ux", "technical", "impact", "residuals", "appendix"]
+          },
+          "additionalProperties": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+        },
+        "counters": {
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "GOAL",
+              "SCN",
+              "FR",
+              "BR",
+              "CON",
+              "NFR",
+              "AC",
+              "FLOW",
+              "STATE",
+              "BND",
+              "EXC"
+            ]
+          },
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "prd_id",
+          "kind",
+          "analysis_refs",
+          "tag",
+          "status",
+          "introduced_in",
+          "source_digest"
+        ],
+        "properties": {
+          "prd_id": {
+            "type": "string",
+            "pattern": "^PRD-(?:GOAL|SCN|FR|BR|CON|NFR|AC|FLOW|STATE|BND|EXC)-(?=\\d{3,}$)0*[1-9][0-9]*$"
+          },
+          "mapping_key": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "kind": {
+            "enum": [
+              "goal",
+              "scenario",
+              "functional_requirement",
+              "business_rule",
+              "constraint",
+              "non_functional_requirement",
+              "acceptance_criterion",
+              "flow",
+              "state",
+              "boundary",
+              "exception"
+            ]
+          },
+          "analysis_refs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[^\\s/]+/(?:GOAL|SCN|FR|BR|CON|NFR|AC|FLOW|STATE|BND|EXC|GAP|CNF|Q|ASM|DEC)-[1-9][0-9]*$"
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "tag": {
+            "enum": [
+              "confirmed",
+              "inferred",
+              "assumption"
+            ]
+          },
+          "status": {
+            "enum": [
+              "active",
+              "to_confirm",
+              "abolished"
+            ]
+          },
+          "introduced_in": {
+            "type": "string",
+            "pattern": "^(?:0\\.[1-9][0-9]*|[1-9][0-9]*\\.(?:0|[1-9][0-9]*)(?:-draft)?)$"
+          },
+          "source_digest": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          }
+        }
+      }
+    }
+  }
+}

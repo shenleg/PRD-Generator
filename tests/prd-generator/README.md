@@ -1,6 +1,6 @@
 # PRD Generator 测试
 
-本目录收纳生成侧格式、缺口接收、门禁、编号、首稿保存、增量同步及公开 CLI 留证测试。程序结果、模型行为和人工认可分别记录；阶段 3～5 已获最终人工认可，阶段 5 的原模型问题、修复及当前源码重放分别留证，当前不包含正式发布能力。
+本目录收纳生成侧格式、缺口接收、门禁、编号、首稿保存、增量同步及公开 CLI 留证测试。程序结果、模型行为和人工认可分别记录；阶段 3～5 已获最终人工认可，阶段 5 的原模型问题、修复及当前源码重放分别留证，阶段 6 增加评审、发布、不可变基线和废弃的合成程序用例，实际范围见[阶段 6 记录](../results/prd-generator/stage-6.md)。
 
 ## 维护代码
 
@@ -31,6 +31,9 @@
 | `prepare_prd_edit_model.py` | 冻结阶段5四份模型运行输入与源码，不泄露参考或后续回答 |
 | `grade_prd_edit_model.py`、`build_prd_edit_review.py` | 原实际产物评分和官方静态评审页，保留模型发现的质量失败 |
 | `run_model_edit_replay.py` | 当前冻结源码重放原始模型候选，修复验证不称新模型调用 |
+| `test_prd_release.py` | 十个阶段 6 场景的真实生产 CLI、版本交错、同版绑定、快照冲突及中断恢复；设置 `PRD_STAGE6_EVIDENCE` 可保存新证据 |
+| `prepare_prd_release_model.py`、`advance_prd_release_model.py` | 冻结阶段 6 合成输入和新旧 Skill，归档真实轮次、单独推进分析侧合成更正 |
+| `grade_prd_release_model.py` | 从真实文件核对提审、确认、快照、同步及文件保护，使用 Skill Creator 生成静态人工评审页 |
 
 代码根定位已适应分类后的目录。原始夹具、参考和认可记录仍在 `tests/fixtures/prd-generator/`、`tests/expected/prd-generator/`、`tests/results/prd-generator/`，没有重写旧哈希。
 
@@ -54,6 +57,15 @@ uv run --offline --no-project --python /usr/bin/python3 --with-requirements test
   python -I -B tests/prd-generator/run_prd_sync.py --output /path/to/new-sync-trial
 ```
 
+模型对照须先有用户授权。准备阶段 6 的新目录：
+
+```bash
+uv run --offline --no-project --python /usr/bin/python3 --with-requirements tests/requirements.txt \
+  python -I -B tests/prd-generator/prepare_prd_release_model.py --output /path/to/new-model-trial
+```
+
+准备脚本不调用模型。新版和阶段 5 输入逐字节相同；只有新版在实际提问后收到测试确认，发布完成后由独立分析驱动更新一次，再由同一模型会话同步。
+
 ## 已保存证据
 
 - [阶段 0](../results/prd-generator/stage-0.md)
@@ -71,4 +83,4 @@ uv run --offline --no-project --python /usr/bin/python3 --with-requirements test
 - [格式认可](../results/prd-generator/stage-1-format-approval.json)
 - [当前十五次 CLI 清单](../../workspace-sandbox/prd-generator/stage-1/attempt-02/run-manifest.json)
 
-旧证据源码绑定当时提交，旧产物和原指纹保持；现行生产代码使用公开入口在新目录重放。接收协议留证命令与边界见 PG-29 剧本，不能把确定性重放称为新模型调用。当前没有正式发布器，合成快照确认不是真实发布授权。
+旧证据源码绑定当时提交，旧产物和原指纹保持；现行生产代码使用公开入口在新目录重放。接收协议留证命令与边界见 PG-29 剧本，不能把确定性重放称为新模型调用。阶段 6 的发布程序用例通过正式入口创建本地合成快照；不把合成确认当真实业务发布授权。

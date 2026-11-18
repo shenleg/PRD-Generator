@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-18",
+  "stage": 6,
+  "source": "本次 AskUserQuestion 的真实用户选择",
+  "decision": "认可方案和参考 (Recommended)",
+  "status": "approved_for_implementation_and_program_tests",
+  "reviewed_artifacts": {
+    "tests/results/prd-generator/stage-6-spec-review-draft.md": "sha256:54f7cc6a55bfd34c28604eb87a80c39daa5608a2840cf5b8d489a6db1a295a13",
+    "tests/expected/prd-generator/stage-6.review-draft.md": "sha256:f6ee1672ef7be399b6b220a98de0dea2ad774bc58012c88c21feed0cd85a1364"
+  },
+  "not_authorized": ["模型试跑", "阶段最终验收", "真实业务发布", "安装变更", "git commit", "git merge", "git tag", "git push"]
+}

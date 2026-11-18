@@ -1,0 +1,16 @@
+{
+  "common": {
+    "requirement_id": "SYNTHETIC-PRD",
+    "title": "合成格式夹具",
+    "project_id": "synthetic",
+    "created_at": "2026-11-17T00:00:00Z"
+  },
+  "other_owner": {
+    "keep": "不能覆盖其他块"
+  },
+  "prd": {
+    "based_on_analysis_revision": 1,
+    "status": "deprecated",
+    "version": "0.1"
+  }
+}

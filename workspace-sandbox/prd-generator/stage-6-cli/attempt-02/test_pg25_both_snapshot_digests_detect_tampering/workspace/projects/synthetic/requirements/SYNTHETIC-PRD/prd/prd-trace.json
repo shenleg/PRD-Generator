@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "meta": {
+    "counters": {
+      "FR": 2
+    },
+    "draft_kind": "formal_draft",
+    "generated_under_readiness": "ready_for_document",
+    "content_hash": "sha256:d16550b70fc5cafb140130494d9513c9ebeb3bddf1348cf59807ab8d221c3426",
+    "section_source_digests": {
+      "background": "sha256:0eb792ab1ef5bdc6cfb1653a545a710a28553e1e6ed0a0cd84b97d339efd83d5",
+      "scope": "sha256:86228ebd4538aa80f04d12116cd9d3b4dad87bfed7ec93077dbcf0f0d666d71c",
+      "scenarios": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead",
+      "functional_requirements": "sha256:623acd443071f76a80293a39babf7e0c4486fb9ab8159fb8c57e340a9a01b5c4",
+      "business_rules": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead",
+      "flows_states": "sha256:15578a45e607d1732550c6b3b50d18b429dcb97312a7b6d049201c896a110bf0",
+      "boundaries_exceptions": "sha256:f8e887d42e0311d6c5dc32965225e8208adf99cd5f807354d5b97718f6df1d1b",
+      "constraints": "sha256:15f8af6fa6e3a5d66bd1981b7cdf45b065dcaf6d3bc63acb951cb6ff03d4af74",
+      "acceptance_criteria": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead",
+      "ux": "sha256:ce04eeca2f8f3c539339816375839777750895b3afc89f3463548e33de645ccb",
+      "technical": "sha256:968ded902767d85c5236465586a5d75d414f4547be2081c4a2c5f53d98d4a885",
+      "impact": "sha256:0eb792ab1ef5bdc6cfb1653a545a710a28553e1e6ed0a0cd84b97d339efd83d5",
+      "residuals": "sha256:5a8ccec796c0745d8b1a5690da3b86adcf3dbb6ca2749d4e8fb06c3d6abfe726",
+      "appendix": "sha256:3b02b01a76fc5279ca31e69100d4773fa4d5c4797439730b2d01722900e7e23a"
+    },
+    "content_baseline": "<!-- prd:section info -->\n## 文档信息\n\n| 字段 | 值 |\n| --- | --- |\n| 需求编号 | SYNTHETIC-PRD |\n| 标题 | 合成格式夹具 |\n| PRD 版本 | 1.0 |\n| 状态 | released |\n| 草稿类型 | formal_draft |\n| 基于的分析修订号 | 1 |\n| 生成时间 | 2026-11-18T02:02:14.807381+00:00 |\n| 未覆盖的分析项 | value_assessment、technical_feasibility、impact_analysis |\n<!-- /prd:section -->\n\n<!-- prd:section changes -->\n## 变更记录\n\n- 2026-11-18T02:02:14.807381+00:00 · 0.1 · 首次生成工作稿（PRD-FR-001、PRD-FR-002）\n- 2026-11-18T02:02:15.477128+00:00 · 0.1 · 提交产品经理评审\n- 2026-11-18T02:02:15.838052+00:00 · 1.0 · 产品经理明示确认发布该送审稿\n- 2026-11-18T02:02:16.087272+00:00 · 1.0 · 发布为现行基线\n<!-- /prd:section -->\n\n<!-- prd:section scope -->\n分析结果中无此项\n<!-- /prd:section -->\n\n<!-- prd:section scenarios -->\n分析结果中无此项\n<!-- /prd:section -->\n\n<!-- prd:section functional_requirements -->\n| 正式编号与功能需求 | 分析来源 |\n| --- | --- |\n| <!-- prd:item PRD-FR-001 -->PRD-FR-001：合成查询功能，不代表真实业务；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\n\n| <!-- prd:item PRD-FR-002 -->PRD-FR-002：合成导出功能，不代表真实业务；分析来源 SYNTHETIC-PRD/FR-2<!-- /prd:item --> | SYNTHETIC-PRD/FR-2 |\n<!-- /prd:section -->\n\n<!-- prd:section business_rules -->\n分析结果中无此项\n<!-- /prd:section -->\n\n<!-- prd:section boundaries_exceptions -->\n分析结果中无此项\n<!-- /prd:section -->\n\n<!-- prd:section acceptance_criteria -->\n分析结果中无此项\n<!-- /prd:section -->\n\n<!-- prd:section residuals -->\n无适用遗留项\n<!-- /prd:section -->\n\n<!-- prd:section appendix -->\nSRC-1\n<!-- /prd:section -->\n"
+  },
+  "items": [
+    {
+      "prd_id": "PRD-FR-001",
+      "kind": "functional_requirement",
+      "introduced_in": "0.1",
+      "mapping_key": "synthetic-query",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:edfa9dcfb9626ce801955d9448b283e8fa6ad971aff520c64d4a741a56a2b3ae"
+    },
+    {
+      "prd_id": "PRD-FR-002",
+      "kind": "functional_requirement",
+      "introduced_in": "0.1",
+      "mapping_key": "synthetic-export",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-2"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6"
+    }
+  ]
+}

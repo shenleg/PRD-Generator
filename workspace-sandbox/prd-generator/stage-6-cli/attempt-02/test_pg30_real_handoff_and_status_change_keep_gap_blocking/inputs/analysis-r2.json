@@ -1,0 +1,101 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "base_revision": 1,
+  "change_type": "supplement",
+  "actor": "analyst",
+  "summary": "合成分析更新，非真实需求",
+  "operations": [
+    {
+      "op": "add",
+      "collection": "questions",
+      "ref": "$gap",
+      "value": {
+        "question": "怎样补足查询验收阈值？",
+        "priority": "P3",
+        "resolution": "ask_product",
+        "reason": "尚无依据",
+        "impact": "待核实",
+        "options": [
+          "补足",
+          "暂不确定"
+        ],
+        "recommendation": "保留缺口",
+        "status": "open",
+        "related_ids": [
+          "FR-1"
+        ],
+        "gap_request_ref": "GAPREQ-1"
+      }
+    }
+  ],
+  "set": {},
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 7,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    }
+  ]
+}

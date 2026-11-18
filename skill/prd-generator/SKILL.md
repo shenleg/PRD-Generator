@@ -1,21 +1,21 @@
 ---
 name: prd-generator
-description: 根据需求分析生成、同步或编辑可追溯 PRD，检查手工修改和遗留事项；收到提交评审或发布请求时说明当前能力边界。
+description: 根据需求分析生成、同步或编辑可追溯 PRD，查看遗留事项并处理手工修改；用于提交或退回评审、检查发布条件、确认发布、查看已发布基线或废弃需求。
 ---
 
-# PRD 生成与增量同步
+# PRD 生成、同步与发布
 
-本 Skill 支持首稿、同分析输入重复生成、未发布工作稿增量同步、排版编辑及手改处理。提交评审、发布及发布后另建工作稿尚未实现，不模拟完成。需求内容修改或含义不明的改动交回 Requirement Analyst，不调用分析写入器。
+以需求分析为权威生成、维护和定稿 PRD。需求内容修改或含义不明的改动交回 Requirement Analyst；生成侧不调用分析写入器。
 
 ## 流程
 
 1. 确定已有需求目录和可选项目模板。没有需求目录或分析结果时建议先做需求分析，不创建需求。仅以 `analysis/analysis-result.json` 为业务权威；不读人用分析报告，不写 `analysis/`。跨需求分析只接受用户显式提供的路径。
-2. 读取 [门禁和降级](references/gating-rules.md)。首稿运行 `check_gate.py`；每次操作已有 PRD 前读取 [同步规则](references/sync-rules.md)，运行只读 `check_sync.py` 检查门禁及待同步状态。展示全部诊断，失败即停止；过期时先建议重评，用户明确坚持后才允许过期草稿。检查或查看请求本身不授权写入。
-3. **编辑或检测到手改时**，先读 [修改分流和正文基准](references/numbering-and-trace.md)，用 `write_draft.py --inspect-edits` 只读查看整篇差异并核对含义。内容性或无法判断的请求只回交、不写；只有排版差异可经逐项语义核对后保存，用户实际坚持保留内容变化时才标注不一致。只读查看不写事件；记录检测须有明确处理授权。若同时待同步，先处理手改，再由分析侧更正并同步，不借编辑前移分析基准。编辑完成后直接进入第 7 步检查保存结果；内容请求给出回交建议后结束，不继续首稿或同步。按脚本实际响应报告本次编辑或拒绝。
-4. **需要同步时**，按同步规则以旧稿为基础，只改受影响内容，未变条目保留原始字节和编号。核实每个缺口的唯一接收问题与实际内容，充分才关闭，交接或问题状态变化不等于补足。原有不一致须核实分析确实覆盖后才能清除。用 `write_draft.py --sync` 统一保存；不要用首稿整篇重写或独立编号写入绕过同步。成功后进入保存结果检查。
-5. **首稿或同输入重复生成时**，读取 [内容生成](references/generation-rules.md)、[章节结构](references/prd-structure.md) 和 [编号追溯](references/numbering-and-trace.md)。按有效分析构造正文、遗留事项及确有必要的缺口，不以空必有章节自动认定缺口；模板必需而分析缺失的信息占位登记。构造独立映射补丁，调用 `assign_ids.py` 取得脚本分配的候选编号；不自行编号，默认不写入。
-6. 按 `templates/prd.md` 构造带定位标记的候选，由 `write_draft.py` 统一保存并渲染文档信息。命令：`write_draft.py REQUIREMENT_DIR --patch PATCH.json --body CANDIDATE.md --candidate-dir NEW_DIRECTORY`；可选 `--gaps GAP_REQUESTS.json`。候选目录须在正式需求及关联分析目录外且不存在，不用编号 `--write` 代替统一保存。
-7. 保存前核对候选、读时版本、分析及待写文件；并发变化则重读，不覆盖。展示全部警告；失败保留候选及诊断，不宣布完成。连续三次修正仍失败即停止。中断按入口返回信息显式 `--recover`，不重复追加事件。
-8. 成功后说明草稿类型、实际变化、缺口关闭依据或保留原因、遗留事项及文件位置，不暗示已评审或发布。只读查看不能宣称已同步。
+2. **评审、发布、查看基线或废弃**：读 [评审发布规则](references/versioning-and-release.md)，先运行对应的 `snapshot_release.py` 只读检查，包括待同步状态。发布仅在全项门禁通过并收到产品经理对本送审稿的明示确认后执行；同版退回重提也须重新确认。只读查看不写。生命周期操作在此分支结束，不继续首稿或同步。
+3. 其他请求读 [门禁和降级](references/gating-rules.md)。首稿运行 `check_gate.py`；操作已有 PRD 前读 [同步规则](references/sync-rules.md)，用只读 `check_sync.py` 检查门禁及待同步。展示全部诊断，失败即停止；过期先建议重评，用户明确坚持后才允许过期草稿。
+4. **编辑或检测到手改时**，读 [修改分流](references/numbering-and-trace.md)，用 `write_draft.py --inspect-edits` 查看整篇差异。内容性或无法判断的请求只回交；排版需逐项核对含义，用户明确坚持保留内容变化才标注不一致。只读查看不记录事件。若同时待同步，先处理手改，再由分析侧更正并同步；排版不前移分析基准。编辑后直接检查保存结果，不继续首稿。
+5. **同步**：以旧稿为基础，只改受影响内容，未变条目保留原字节和编号。核实每个缺口的唯一接收问题与实际内容，充分才关闭；已有不一致也须依据核实。用 `write_draft.py --sync` 保存后直接检查结果。发布后同步或排版按 [版本规则](references/versioning-and-release.md)另建工作稿，旧快照保持不动。
+6. **首稿或首次发布前重复生成**：读 [内容生成](references/generation-rules.md)、[章节结构](references/prd-structure.md) 和 [编号追溯](references/numbering-and-trace.md)。按有效分析构造正文、遗留事项和确有需要的缺口；模板必需而分析缺失的内容占位登记。用独立映射补丁调用 `assign_ids.py` 获取候选编号，不自编正式编号。
+7. 首稿按 `templates/prd.md` 构造带定位标记的候选，以 `write_draft.py REQUIREMENT_DIR --patch PATCH.json --body CANDIDATE.md --candidate-dir NEW_DIRECTORY` 统一保存，可选 `--gaps GAP_REQUESTS.json`。候选目录须位于需求及关联分析目录外且不存在。
+8. **检查保存结果**：展示警告；并发变化则重读。失败保留候选和诊断，连续三次修正仍失败即停止。中断按实际响应使用 `write_draft.py --recover`。成功时说明工作稿、实际变化、遗留事项与缺口处理，不把保存或查看称为已评审、已发布或已同步。
 
 编号、摘要及格式以相应脚本和生成规格为准；机器校验不代替语义忠实性、缺口充分性及未标记文本的人工审查。变更摘要使用 [模板](templates/change-summary.md)，只记录实际变化。

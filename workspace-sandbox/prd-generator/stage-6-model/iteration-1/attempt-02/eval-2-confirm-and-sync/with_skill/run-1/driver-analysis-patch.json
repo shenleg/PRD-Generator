@@ -1,0 +1,93 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "base_revision": 1,
+  "change_type": "correction",
+  "actor": "user",
+  "summary": "阶段 6 合成试跑：测试驱动独立更正 FR-1",
+  "user_statement": "仅在本次合成需求中，把查询改为：合成查询仅返回用户选定分组中的记录，不代表真实业务。其他规则不动。",
+  "operations": [
+    {
+      "op": "update",
+      "target": "FR-1",
+      "changes": {
+        "content": "合成查询仅返回用户选定分组中的记录，不代表真实业务",
+        "sources": [
+          {
+            "type": "user_answer",
+            "location": "阶段 6 模拟发布之后的新一轮合成更正"
+          }
+        ]
+      }
+    }
+  ],
+  "set": {},
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 7,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    }
+  ]
+}

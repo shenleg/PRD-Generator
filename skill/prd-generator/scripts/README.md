@@ -1,6 +1,6 @@
 # PRD 生成与同步脚本
 
-本目录实现门禁、正式编号、信息渲染、统一首稿及显式增量同步保存，并保留只读校验。支持排版编辑、手改检测和坚持保留标注；评审、发布及发布后另建工作稿尚未实现，不能以草稿或合成快照代替发布基线。阶段验收以实际运行及人工记录为准。
+本目录实现门禁、编号、信息渲染、草稿生成、增量同步、编辑、评审、发布及废弃。阶段验收以实际运行和人工记录为准；测试确认只适用于隔离的合成工作区。
 
 ## 依赖与安装边界
 
@@ -85,7 +85,7 @@ PY skill/prd-generator/scripts/write_draft.py REQUIREMENT_DIR --sync \
   --candidate-dir NEW_DIRECTORY_OUTSIDE_REQUIREMENT
 ```
 
-`--gaps` 可省略以保留当前请求。显式同步只接纳已有未发布工作稿，分析修订须高于原基准；首次发布前版本递增，状态回到 `draft`。撤销保留编号及事件记录；待重评保留标注；新增不复用编号。未变条目改写、遗漏新增映射、替换既有分析身份、手工修改未处理和并发目标变化均拒写。
+`--gaps` 可省略以保留当前请求。显式同步要求分析修订高于原基准，产生新工作稿，状态回到 `draft`。首发前次版本递增；首发后按[版本规则](../references/versioning-and-release.md#工作稿版本与基线)另建或递增工作稿。撤销保留编号及事件记录；待重评保留标注；新增不复用编号。未变条目改写、遗漏新增映射、替换既有分析身份、手工修改未处理和并发目标变化均拒写。
 
 关闭缺口须提交完整缺口候选中的 `closed` 与既有 `resolution`，唯一接收问题非 `open`，引用当前有效、有内容的分析依据；`not_needed` 须引用决策或范围依据。脚本不能仅凭状态判定补足；模型与人工须核对所需内容充分性。未提交核实依据则保留请求和占位；暂定补足仍保留标注及遗留事项。禁止改写缺口描述、扩展或伪造 `handed_over`。
 
@@ -107,7 +107,23 @@ PY skill/prd-generator/scripts/write_draft.py REQUIREMENT_DIR --edit layout|dete
 
 查看输出实际摘要、预期摘要、`diff`、`baseline_available`、`changed`，不写事件。编辑基准摘要绑定读取时当前正文原始字节，不能使用可能过时的追溯摘要；版本、分析修订和待写文件均需重新核对。`layout` 需要正文及模型逐差异核对后提供的 `--meaning-reviewed`；`detect` 不带正文和确认标志，只在明确授权处理时追加事件，不递增版本、不刷新旧摘要；`keep` 需要正文及用户实际坚持后的 `--keep-confirmed`。标志本身不证明语义或用户意愿。候选的信息和变更记录由脚本渲染；编号、引用、来源摘要、计数器、缺口内容与交接状态保持。
 
-正文基准缺失且旧稿已手改时须提供摘要匹配的真实旧正文，不能伪造。尚未改稿的内容性或无法判断请求只建议回交分析，不写正文或事件。成对不一致为明确不得发布的警告，不成对为失败；已有不一致不得因排版、重复生成或未经核实的同步清除。新增手工不一致遗留项后，写入器允许并移除遗留章内独立的“无适用遗留项”等空集合提示，不借此删改真实遗留说明。具体分流、定位及基准见 [修改分流](../references/numbering-and-trace.md)；完整 `PG-19` 发布拒绝属于阶段 6。
+正文基准缺失且旧稿已手改时须提供摘要匹配的真实旧正文，不能伪造。尚未改稿的内容性或无法判断请求只建议回交分析，不写正文或事件。成对不一致为明确不得发布的警告，不成对为失败；已有不一致不得因排版、重复生成或未经核实的同步清除。新增手工不一致遗留项后，写入器允许并移除遗留章内独立的“无适用遗留项”等空集合提示，不借此删改真实遗留说明。具体分流、定位及基准见 [修改分流](../references/numbering-and-trace.md)；发布后的排版另建或递增工作稿，不动旧快照。
+
+## 评审、发布和废弃
+
+```text
+PY skill/prd-generator/scripts/snapshot_release.py DIR check --for-action submit-review
+PY skill/prd-generator/scripts/snapshot_release.py DIR submit-review --binding VALUE_FROM_CHECK
+PY skill/prd-generator/scripts/snapshot_release.py DIR check
+PY skill/prd-generator/scripts/snapshot_release.py DIR release --binding VALUE_FROM_CHECK \
+  --confirmed-by PM_NAME --confirmed-at ISO_TIMESTAMP_WITH_TIMEZONE
+```
+
+`check` 只读，默认检查 `release`。也可指定 `--for-action return-review` 或 `deprecate` 后以同名操作和检查绑定写入；`deprecate` 同样需要实际产品经理确认人和确认时间。任何操作的检查绑定不能用于其他操作或版本。可重复传入显式 `--related-analysis`，写入可用 `--candidate-dir` 保留新候选。
+
+将检查列出的实际版本和分析修订展示给产品经理；实际确认后才提交发布参数。看 `applied` 和 `written` 判断写入，`baseline_version` 与 `baseline_verified` 区别待定稿和已经验证的最新快照；若已废弃，最后基线只作为历史资料。失败报告具体原因，不重用旧确认。若 `recovery_required: true`，先用 `write_draft.py DIR --recover` 完成原事务，不重复执行发布。
+
+两份快照以只读权限独占新建，日志记录原始字节摘要。仅实际发布可创建快照；生成、同步、编辑和退回不修改旧基线。详情见[发布门禁](../references/versioning-and-release.md#发布门禁)。
 
 ## 单独渲染信息
 
@@ -128,7 +144,7 @@ PY skill/prd-generator/scripts/render_info.py REQUIREMENT_DIR \
 | `--previous-trace PATH` | 核对历史编号、高水位及稳定身份；没有历史不宣称证明从未复用 |
 | `--numbering-patch PATH` | 对已有工作稿附加只读映射补丁检查，不分配编号 |
 
-来源清单缺失或不可读时复用上游适用检查并显式警告，来源只显示 `source_id`，不把未核验来源当作完整上游通过。旧追溯没有 `mapping_key` 仍可读，显式按旧编号补键不重编号；已有键不可被重置。快照摘要按原始字节核对，当前仍无真实发布入口。
+来源清单缺失或不可读时复用上游适用检查并显式警告，来源只显示 `source_id`，不把未核验来源当作完整上游通过。旧追溯没有 `mapping_key` 仍可读，显式按旧编号补键不重编号；已有键不可被重置。快照摘要按原始字节核对；若存在未完成事务，先恢复再校验，不把部分落盘当成有效发布。
 
 ## 结果边界
 

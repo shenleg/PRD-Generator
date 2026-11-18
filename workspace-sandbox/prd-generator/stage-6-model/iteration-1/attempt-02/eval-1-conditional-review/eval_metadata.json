@@ -1,0 +1,6 @@
+{
+  "eval_id": 1,
+  "eval_name": "conditional-review",
+  "prompt": "请把这个需求的 PRD 提交评审，然后检查一下能不能定稿。如果现在还不能定稿，告诉我卡在哪、下一步找谁处理。现在不要发布。",
+  "assertions": []
+}

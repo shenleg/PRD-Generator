@@ -1,0 +1,34 @@
+[
+  {
+    "task": "conditional-review",
+    "config": "with_skill",
+    "passed": 4,
+    "failed": 0,
+    "total": 4,
+    "pass_rate": 1.0
+  },
+  {
+    "task": "conditional-review",
+    "config": "old_skill",
+    "passed": 2,
+    "failed": 2,
+    "total": 4,
+    "pass_rate": 0.5
+  },
+  {
+    "task": "confirm-and-sync",
+    "config": "with_skill",
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  },
+  {
+    "task": "confirm-and-sync",
+    "config": "old_skill",
+    "passed": 1,
+    "failed": 4,
+    "total": 5,
+    "pass_rate": 0.2
+  }
+]

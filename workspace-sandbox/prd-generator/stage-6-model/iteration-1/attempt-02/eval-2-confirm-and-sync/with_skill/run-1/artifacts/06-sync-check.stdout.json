@@ -1,0 +1,116 @@
+{
+  "status": "pass",
+  "diagnostics": [],
+  "allowed": true,
+  "pending": true,
+  "based_on_analysis_revision": 1,
+  "analysis_revision": 2,
+  "items": [
+    {
+      "prd_id": "PRD-FR-001",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-1"
+      ],
+      "category": "modified",
+      "source_digest": "sha256:f79f8f1f9e2943d8e8902b65744d6e6ee47de97bb35552b6ff482708c6fe425b"
+    },
+    {
+      "prd_id": "PRD-FR-002",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-2"
+      ],
+      "category": "unchanged",
+      "source_digest": "sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6"
+    }
+  ],
+  "added": [],
+  "draft_kind": "formal_draft",
+  "base_prd_version": "1.0",
+  "uncovered_analysis": [
+    "value_assessment",
+    "technical_feasibility",
+    "impact_analysis"
+  ],
+  "manual_edits": {
+    "changed": false,
+    "content_hash": "sha256:224c8f3dcd6771cca08cd41adbab020938b110cdda27a1aee9359002a93bfc79",
+    "expected_content_hash": "sha256:224c8f3dcd6771cca08cd41adbab020938b110cdda27a1aee9359002a93bfc79",
+    "baseline_available": true,
+    "diff": "",
+    "affected_prd_ids": [],
+    "affected_sections": []
+  },
+  "sections": [
+    {
+      "section": "background",
+      "category": "unchanged",
+      "source_digest": "sha256:0eb792ab1ef5bdc6cfb1653a545a710a28553e1e6ed0a0cd84b97d339efd83d5"
+    },
+    {
+      "section": "scope",
+      "category": "unchanged",
+      "source_digest": "sha256:86228ebd4538aa80f04d12116cd9d3b4dad87bfed7ec93077dbcf0f0d666d71c"
+    },
+    {
+      "section": "scenarios",
+      "category": "unchanged",
+      "source_digest": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead"
+    },
+    {
+      "section": "functional_requirements",
+      "category": "modified",
+      "source_digest": "sha256:afb49c16fe3e21f2cc052850150ee88ccf7008743c1102426390c4c113dda4eb"
+    },
+    {
+      "section": "business_rules",
+      "category": "unchanged",
+      "source_digest": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead"
+    },
+    {
+      "section": "flows_states",
+      "category": "unchanged",
+      "source_digest": "sha256:15578a45e607d1732550c6b3b50d18b429dcb97312a7b6d049201c896a110bf0"
+    },
+    {
+      "section": "boundaries_exceptions",
+      "category": "unchanged",
+      "source_digest": "sha256:f8e887d42e0311d6c5dc32965225e8208adf99cd5f807354d5b97718f6df1d1b"
+    },
+    {
+      "section": "constraints",
+      "category": "unchanged",
+      "source_digest": "sha256:15f8af6fa6e3a5d66bd1981b7cdf45b065dcaf6d3bc63acb951cb6ff03d4af74"
+    },
+    {
+      "section": "acceptance_criteria",
+      "category": "unchanged",
+      "source_digest": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead"
+    },
+    {
+      "section": "ux",
+      "category": "unchanged",
+      "source_digest": "sha256:ce04eeca2f8f3c539339816375839777750895b3afc89f3463548e33de645ccb"
+    },
+    {
+      "section": "technical",
+      "category": "unchanged",
+      "source_digest": "sha256:e6bc957de5286f19db7d708f45d7f1d0ffe8dd0c55e05244f8770d12c5b9d313"
+    },
+    {
+      "section": "impact",
+      "category": "unchanged",
+      "source_digest": "sha256:0eb792ab1ef5bdc6cfb1653a545a710a28553e1e6ed0a0cd84b97d339efd83d5"
+    },
+    {
+      "section": "residuals",
+      "category": "unchanged",
+      "source_digest": "sha256:5a7cd3638b61e57252c45b33679dd62210f977217a8f69818265a1b4e1d36046"
+    },
+    {
+      "section": "appendix",
+      "category": "modified",
+      "source_digest": "sha256:45b10ab2bf76986a9bab66d6dc51a80d1ad1d0894a81c2a536d61c5355e5fc79"
+    }
+  ],
+  "section_basis_available": true
+}

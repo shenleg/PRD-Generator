@@ -1,0 +1,87 @@
+{
+  "patch_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "base_revision": 2,
+  "change_type": "supplement",
+  "actor": "analyst",
+  "summary": "合成分析更新，非真实需求",
+  "operations": [
+    {
+      "op": "update",
+      "target": "Q-1",
+      "changes": {
+        "status": "answered",
+        "answer": "收到了回复，尚未得到可用阈值"
+      }
+    }
+  ],
+  "set": {},
+  "completion_checks": [
+    {
+      "item": 1,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 2,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 3,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 4,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 5,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 6,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 7,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 8,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 9,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 10,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    },
+    {
+      "item": 11,
+      "satisfied": true,
+      "question_refs": [],
+      "reason": "合成校验夹具，不是业务完成证明"
+    }
+  ]
+}

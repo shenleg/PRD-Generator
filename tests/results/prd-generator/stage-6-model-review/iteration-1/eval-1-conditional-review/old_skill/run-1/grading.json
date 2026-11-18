@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "有条件稿保持 0.1，实际进入 in_review 且仅追加一次提审",
+      "passed": false,
+      "evidence": "首轮与最终元数据：{'based_on_analysis_revision': 1, 'status': 'draft', 'version': '0.1'}；提审事件逐项核对。"
+    },
+    {
+      "text": "只读发布检查明确报告 conditionally_ready，模型未尝试发布",
+      "passed": false,
+      "evidence": "在 artifacts 核对实际 check/for=release、就绪度及响应；是否讲清 P1 另由人工判断。"
+    },
+    {
+      "text": "任何轮次均无发布确认、发布事件或版本快照",
+      "passed": true,
+      "evidence": "初轮及最终事件与 versions 目录均无发布产物。"
+    },
+    {
+      "text": "分析、非 PRD 元数据、编号、缺口与现行业务正文保持",
+      "passed": true,
+      "evidence": "比较分析文件摘要、其他元数据、追溯映射、缺口与固定信息块以外正文原字节。"
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 2,
+    "total": 4,
+    "pass_rate": 0.5
+  }
+}

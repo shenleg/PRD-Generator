@@ -1,0 +1,4 @@
+{   "time": "2026-11-18T02:02:25.594958+00:00",   "prd_version": "0.1",   "change_type": "initial_generation",   "summary": "首次生成工作稿",   "affected_prd_ids": [     "PRD-FR-001",     "PRD-FR-002"   ],   "based_on_analysis_revision": 1,   "actor": "prd_generator" }
+{"time": "2026-11-18T02:02:26.257542+00:00", "prd_version": "0.1", "change_type": "submit_review", "summary": "提交产品经理评审", "affected_prd_ids": [], "based_on_analysis_revision": 1, "actor": "prd_generator"}
+{"time": "2026-11-18T02:02:26.663603+00:00", "prd_version": "0.1", "change_type": "return_review", "summary": "评审退回工作稿", "affected_prd_ids": [], "based_on_analysis_revision": 1, "actor": "prd_generator"}
+{"time": "2026-11-18T02:02:26.875612+00:00", "prd_version": "0.1", "change_type": "deprecate", "summary": "产品经理确认废弃需求，保留历史", "affected_prd_ids": [], "based_on_analysis_revision": 1, "actor": "user", "confirmed_by": "合成产品经理（仅用于程序测试）"}

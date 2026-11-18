@@ -1,0 +1,10 @@
+{
+  "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f",
+  "analysis/analysis-result.json": "sha256:0a53d1a25b365871cc1a503ed6d4d72e39fcb3cd9dcc7f8be3c40b7ee9d9df2b",
+  "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+  "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+  "prd/prd-events.jsonl": "sha256:5deca032cf2595abbd8559a768e2761efe1a02c2a0d9e68cdc4826201e9e5446",
+  "prd/prd-trace.json": "sha256:2abf235fc9cf69f78b10ef72e8a6c8e12609266f900cf76f4165fb4c26ccc7c2",
+  "prd/prd.md": "sha256:e99c5bb988169b851bdedce02e80f067021195d29537ced4595b83b64db0cd0e",
+  "requirement.json": "sha256:5196495abd227a528d44a0757eb1c96c9e2c49928ee35a9e88f39ab2f1aeee51"
+}

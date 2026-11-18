@@ -1,0 +1,2 @@
+# 回归测试复用校验器依赖；测试本身不随 Skill 安装。
+-r ../skill/requirement-analyst/scripts/requirements.txt

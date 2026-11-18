@@ -66,8 +66,8 @@ def _lock(root):
         os.close(descriptor)
 
 
-def _atomic_write(path, raw):
-    """同目录准备后原子替换单文件；跨文件完成状态由私有 journal 管理。"""
+def _atomic_write(path, raw, *, new_readonly=False):
+    """同目录准备后原子替换；定稿快照改用只读、不可替换的新建。"""
     _safe(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     descriptor, name = tempfile.mkstemp(prefix=".prd-write-", dir=path.parent)
@@ -76,8 +76,14 @@ def _atomic_write(path, raw):
         with os.fdopen(descriptor, "wb") as stream:
             stream.write(raw)
             stream.flush()
+            if new_readonly:
+                os.fchmod(stream.fileno(), 0o444)
             os.fsync(stream.fileno())
-        os.replace(temporary, path)
+        # 独占发布路径，避免检查后出现同名快照时被 rename 覆盖。
+        if new_readonly:
+            os.link(temporary, path)
+        else:
+            os.replace(temporary, path)
         directory = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
         try:
             os.fsync(directory)
@@ -128,18 +134,51 @@ def _read_json(path):
     return _module("validate_prd")._json(path)
 
 
+def _release_targets(version):
+    """从有效正式版本派生本需求的两个新建目标，拒绝工作稿或任意路径。"""
+    if not isinstance(version, str) or not _module('validate_prd').VERSION.fullmatch(version) or version.startswith('0.') or version.endswith('-draft'):
+        raise ValueError('快照目标必须使用正式发布版本号')
+    return (f'prd/versions/prd-{version}.md', f'prd/versions/prd-trace-{version}.json')
+
+
+def _snapshot_inputs(root, guards):
+    """读取已有快照作为候选校验证据，同时保护原始字节不被并发替换。"""
+    directory = root / 'prd/versions'
+    _safe(directory)
+    snapshots = {}
+    for path in sorted(directory.iterdir()) if directory.exists() else ():
+        if not path.is_file() or path.is_symlink():
+            raise ValueError(f'快照必须是普通文件：{path}')
+        raw = _raw(path)
+        if raw is None:
+            raise ValueError(f'快照读取期间已变化：{path}')
+        snapshots[str(path.relative_to(root))] = raw
+        guards.append({'path': str(path), 'sha256': _hash(raw)})
+    return snapshots
+
+
 def _finish(root, journal):
     """校验事务各目标只处于读时或本事务写后状态，再向前完成；冲突保留 journal。"""
     entries = journal.get("entries", [])
-    if journal.get("format") != "prd-draft-transaction-1" or [entry.get("path") for entry in entries] != list(TARGETS):
-        raise ValueError("不识别草稿恢复记录，未执行任何业务写入")
+    kind = journal.get('format')
+    if kind == 'prd-draft-transaction-1':
+        new_snapshots = ()
+    elif kind == 'prd-release-transaction-1' and journal['result'].get('action') == 'release':
+        new_snapshots = _release_targets(journal['result']['version'])
+    else:
+        raise ValueError('不识别 PRD 恢复记录，未执行任何业务写入')
+    if [entry.get('path') for entry in entries] != list(new_snapshots + TARGETS):
+        raise ValueError('事务写入目标不符合工作区协议')
     _check_guards(journal["guards"])
     pending = []
     for entry in entries:
         data = base64.b64decode(entry["data"], validate=True)
         if _hash(data) != entry["after"]:
             raise ValueError(f"事务候选摘要不符：{entry['path']}")
-        current = _hash(_raw(root / entry["path"]))
+        path = root / entry['path']
+        current = _hash(_raw(path))
+        if entry['path'] in new_snapshots and (entry['before'] is not None or (current == entry['after'] and path.stat().st_mode & 0o222)):
+            raise ValueError(f'快照必须是本事务新建的只读文件：{entry["path"]}')
         if current not in (entry["before"], entry["after"]):
             raise ValueError(f"草稿文件已被其他操作修改，拒绝覆盖：{entry['path']}")
         pending.append((entry, data))
@@ -150,7 +189,10 @@ def _finish(root, journal):
         if current not in (entry["before"], entry["after"]):
             raise ValueError(f"写入前文件已变化：{entry['path']}")
         if current != entry["after"]:
-            _atomic_write(root / entry["path"], data)
+            if entry['path'] in new_snapshots:
+                _atomic_write(root / entry['path'], data, new_readonly=True)
+            else:
+                _atomic_write(root / entry['path'], data)
     _check_guards(journal["guards"])
     for entry, _ in pending:
         if _hash(_raw(root / entry["path"])) != entry["after"]:
@@ -191,9 +233,9 @@ def _new_candidate(root, supplied, protected=()):
     return path
 
 
-def _stage_payload(root, candidate, payload, related, previous, diagnostics):
-    """在候选目录校验整份产物并保留诊断，返回是否非失败；不触碰正式产物。"""
-    for name, raw in payload.items():
+def _stage_payload(root, candidate, payload, related, previous, diagnostics, *, snapshots=None, check=None):
+    """复制候选及既有快照证据，再执行指定校验；不触碰正式产物。"""
+    for name, raw in {**(snapshots or {}), **payload}.items():
         path = candidate / name
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(raw)
@@ -208,8 +250,8 @@ def _stage_payload(root, candidate, payload, related, previous, diagnostics):
             path = candidate / 'analysis' / name
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(raw)
-    checked = _module('validate_prd').validate_prd(candidate, related_analyses=related,
-                 previous_trace=root / 'prd/prd-trace.json' if previous else None)
+    checked = (check(candidate) if check else _module('validate_prd').validate_prd(
+        candidate, related_analyses=related, previous_trace=root / 'prd/prd-trace.json' if previous else None))
     diagnostics.extend(checked['diagnostics'])
     return checked['status'] != 'fail'
 
@@ -217,16 +259,18 @@ def _stage_payload(root, candidate, payload, related, previous, diagnostics):
 def _commit_payload(root, before, payload, guards, result):
     """核对全部读时文件后用既有事务保存，返回真实写入位置；冲突或中断保留现场。"""
     _check_guards(guards)
-    for name in TARGETS:
-        if _raw(root / name) != before[name]:
-            raise ValueError(f'写前文件已变化，重新读取后再处理：{name}')
-    journal = {'format': 'prd-draft-transaction-1', 'guards': guards, 'result': result,
+    new_snapshots = _release_targets(result['version']) if result.get('action') == 'release' else ()
+    targets = new_snapshots + TARGETS
+    for name in targets:
+        if (name in new_snapshots and before[name] is not None) or _raw(root / name) != before[name]:
+            raise ValueError(f'写前文件已变化或快照已存在，重新读取后再处理：{name}')
+    journal = {'format': 'prd-release-transaction-1' if new_snapshots else 'prd-draft-transaction-1', 'guards': guards, 'result': result,
                'entries': [{'path': name, 'before': _hash(before[name]), 'after': _hash(payload[name]),
-                            'data': base64.b64encode(payload[name]).decode('ascii')} for name in TARGETS]}
+                            'data': base64.b64encode(payload[name]).decode('ascii')} for name in targets]}
     _atomic_write(root / JOURNAL, _encode(journal))
     _finish(root, journal)
-    # 既有生成/同步响应沿用完整事务目标清单；编辑额外明确区分只追加检测事件的实际写入。
-    written = list(TARGETS) if result.get('generated') else [name for name in TARGETS if before[name] != payload[name]]
+    # 既有生成/同步响应沿用完整目标清单；编辑和生命周期报告实际变化文件。
+    written = list(TARGETS) if result.get('generated') else [name for name in targets if before[name] != payload[name]]
     return {**result, 'written': written}
 
 
@@ -247,20 +291,53 @@ def _preserve_manual_marks(before, after, requirement_id):
         raise ValueError('不得无依据清除与分析不一致标注及遗留项：' + '、'.join(sorted(missing)))
 
 
-def _next_version(requirement, sync=False):
-    """首稿固定为0.1；同步或重复生成递增未发布版本，不触碰发布后生命周期。"""
-    prd = requirement.get("prd")
+def _version_key(version):
+    """将已核验版本号转为数值二元组，避免误把 2.10 排在 2.2 前。"""
+    return tuple(map(int, version.removesuffix('-draft').split('.')))
+
+
+def _workspace_version(prd, snapshots):
+    """核对版本和生命周期是否与快照谱系一致；返回最近定稿号或 None。"""
+    version, status = prd['version'], prd['status']
+    if not isinstance(version, str) or not _module('validate_prd').VERSION.fullmatch(version):
+        raise ValueError('不支持旧版本格式，不自动迁移或覆盖')
+    published = [name.removeprefix('prd/versions/prd-').removesuffix('.md') for name in snapshots if name.endswith('.md')]
+    for finalized in published:
+        if not all(name in snapshots for name in _release_targets(finalized)):
+            raise ValueError(f'已发布版本 {finalized} 缺少快照文件')
+    latest = max(published, key=_version_key, default=None)
+    if version.startswith('0.'):
+        valid = latest is None and status != 'released'
+    elif version.endswith('-draft'):
+        valid = latest is not None and status != 'released' and _version_key(version) > _version_key(latest)
+    else:
+        valid = status in {'released', 'deprecated'} and version == latest
+    if not valid:
+        raise ValueError('工作稿版本、状态与最新发布快照不一致，请先校验基线')
+    return latest
+
+
+def _next_version(requirement, *, operation='generate', snapshots=None, content_changed=False):
+    """选工作稿号；仅显式同步或编辑可从定稿另建工作稿。"""
+    prd = requirement.get('prd')
     if prd is None:
-        if sync:
-            raise ValueError("尚无工作稿，不能同步；请先生成首稿")
-        return "0.1"
-    version = prd.get("version")
-    validator = _module("validate_prd")
-    if not isinstance(version, str) or not validator.VERSION.fullmatch(version) or not version.startswith("0."):
-        raise ValueError("旧格式或发布后版本不在当前未发布草稿范围内，不自动迁移或覆盖")
-    if prd.get("status") not in ({"draft", "in_review"} if sync else {"draft"}):
-        raise ValueError("当前不是可更新的未发布工作稿，不处理发布或废弃状态")
-    return f"0.{int(version.split('.')[1]) + 1}"
+        if operation != 'generate':
+            raise ValueError('尚无工作稿，请先生成首稿')
+        if snapshots:
+            raise ValueError('存在发布快照，首稿入口不覆盖已发布需求')
+        return '0.1'
+    latest = _workspace_version(prd, snapshots or {})
+    if operation == 'generate':
+        if latest is not None or prd['status'] != 'draft':
+            raise ValueError('首稿入口不覆盖已有发布需求或非草稿状态，请使用适用操作')
+    elif prd['status'] not in {'draft', 'in_review', 'released'}:
+        raise ValueError('当前状态不能同步或编辑；废弃需求仅可查看')
+    major, minor = _version_key(prd['version'])
+    if latest is None:
+        return f'0.{minor + 1}'
+    if content_changed:
+        return f'{major + 1}.0-draft'
+    return f'{major}.{minor + 1}-draft'
 
 
 def _gap_document(root, supplied, requirement_id, version, existing, sync=False):
@@ -495,7 +572,7 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
     """校验并保存首稿、重复草稿或显式增量同步，返回诊断、编号、版本和实际保存位置。
 
     patch 仅含获认可协议的编号映射；body 为按编号候选编写的 Markdown，gaps 为可选完整缺口候选。
-    sync 仅在按当前分析定向更新已有未发布工作稿时为真，缺口关闭须提交既有resolution依据。
+    sync 仅在按当前分析定向更新已有工作稿或从定稿另建工作稿时为真，关闭缺口须提交 resolution 依据。
     previous_analysis可显式提供匹配旧基准修订的分析，为缺章节摘要的旧稿建立比较证据，不修改该文件。
     related_analyses 只使用调用方显式给出的资料；allow_stale 仅可对应用户实际坚持。
     generated_at 可固定测试时间，默认取实际UTC；candidate_dir 须为需求目录外不存在的新目录。
@@ -516,6 +593,7 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
             if previous_analysis is not None and not sync:
                 raise ValueError('显式旧分析只用于 --sync，不改变首稿输入')
             guards = _guards(root, related_analyses, sync=sync, previous_analysis=previous_analysis)
+            snapshots = _snapshot_inputs(root, guards)
             gate = _module("check_gate").check_gate(root, allow_stale=allow_stale, related_analyses=related_analyses)
             diagnostics.extend(gate.get("diagnostics", []))
             if not gate["allowed"]:
@@ -530,7 +608,8 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
             (inputs / "numbering-patch.json").write_bytes(_encode(patch))
             if gaps is not None:
                 (inputs / "gap-requests.json").write_bytes(_encode(gaps))
-            version = _next_version(requirement, sync=sync)
+            # 先用内容版分配新编号；若证明只是修订前移，就不会存在用该版引入的条目或缺口。
+            version = _next_version(requirement, operation='sync' if sync else 'generate', snapshots=snapshots, content_changed=sync)
             previous = _read_json(root / "prd/prd-trace.json") if before["prd/prd-trace.json"] is not None else None
             if "prd" in requirement:
                 if not sync and requirement["prd"]["based_on_analysis_revision"] != analysis["meta"]["analysis_revision"]:
@@ -546,8 +625,6 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
                         return {**existing_check, "candidate_dir": str(candidate), "written": [], "generated": False}
             elif any(before[name] is not None for name in TARGETS if name not in ("requirement.json", "prd/prd-trace.json")):
                 raise ValueError("无 prd 元数据但存在草稿文件，请先核对旧格式或未完成保存")
-            if (root / "prd/versions").exists() and any((root / "prd/versions").iterdir()):
-                raise ValueError("存在发布快照，首稿入口不覆盖已发布需求")
             related = [_read_json(Path(path)) for path in related_analyses]
             comparison = None
             if sync:
@@ -580,6 +657,11 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
                 old_blocks, new_blocks = _check_minimal_sync(old_text, body, comparison, previous, trace)
                 summary, affected = _sync_summary(root, comparison, previous, trace, old_blocks, new_blocks,
                                                  existing_gaps, gap_document, diagnostics, uncovered)
+                if snapshots and baseline_sections == trace['meta']['section_source_digests'] and previous['items'] == trace['items'] and existing_gaps == gap_document and all(previous['meta'][key] == trace['meta'][key] for key in ('draft_kind', 'generated_under_readiness')):
+                    # 最小同步已核对全部业务章节和章节外原文；只前移基准是次版本维护。
+                    version = _next_version(requirement, operation='sync', snapshots=snapshots)
+                if not any(item['status'] != 'abolished' for item in trace['items']) and any(item['status'] == 'abolished' for item in trace['items']):
+                    diagnostics.append({**_diagnostic('全部已映射条目均已撤销；请由产品经理决定是否废弃，未自动废弃'), 'level': 'warning'})
             next_requirement = deepcopy(requirement)
             next_requirement["prd"] = {**requirement.get("prd", {}), "based_on_analysis_revision": analysis["meta"]["analysis_revision"], "status": "draft", "version": version}
             timestamp = generated_at or datetime.now(timezone.utc).isoformat()
@@ -604,7 +686,7 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
                 _preserve_manual_marks(before['prd/prd.md'].decode('utf-8'), text, trace['requirement_id'])
             payload = {"prd/prd.md": text.encode("utf-8"), "prd/prd-trace.json": _encode(trace),
                        "prd/gap-requests.json": _encode(gap_document), "requirement.json": _encode(next_requirement), "prd/prd-events.jsonl": events_raw}
-            if not _stage_payload(root, candidate, payload, related_analyses, previous, diagnostics):
+            if not _stage_payload(root, candidate, payload, related_analyses, previous, diagnostics, snapshots=snapshots):
                 return {"status": "fail", "diagnostics": diagnostics, "candidate_dir": str(candidate), "written": [], "generated": False}
             if "prd" in requirement and not sync:
                 # 只排除脚本负责更新的两个块；章节外文本同样可能承载需求，不能漏比较。
@@ -757,7 +839,7 @@ def edit_draft(requirement_dir: Path, *, mode: str, base_prd_version: str, base_
                meaning_reviewed: bool = False, keep_confirmed: bool = False, previous_body: Path | None = None,
                related_analyses: Sequence[Path] = (), allow_stale: bool = False,
                generated_at: str | None = None, candidate_dir: Path | None = None) -> dict:
-    """处理已有未发布工作稿的排版、显式手改检测或用户坚持保留，返回实际保存及诊断。
+    """处理当前稿的排版、显式手改检测或用户坚持保留，返回实际保存及诊断。
 
     mode 为 layout/detect/keep；base_* 绑定读时 PRD 版本、当前分析修订及当前正文实际摘要。
     summary 描述已核对的差异；body 是编辑候选，detect 时为空。meaning_reviewed 表示模型已逐差异
@@ -795,9 +877,8 @@ def edit_draft(requirement_dir: Path, *, mode: str, base_prd_version: str, base_
             diagnostics.extend(gate['diagnostics'])
             if not gate['allowed']:
                 return {**gate, 'written': [], 'edited': False}
-            next_version = _next_version(requirement, sync=True)
-            if (root / 'prd/versions').exists() and any((root / 'prd/versions').iterdir()):
-                raise ValueError('阶段5编辑入口不覆盖已有发布快照的需求')
+            snapshots = _snapshot_inputs(root, guards)
+            next_version = _next_version(requirement, operation='edit', snapshots=snapshots)
             if base_prd_version != requirement['prd']['version'] or type(base_analysis_revision) is not int or base_analysis_revision != analysis['meta']['analysis_revision']:
                 raise ValueError('编辑读时 PRD 版本或分析修订已变化，须重新读取差异')
             current_raw = before['prd/prd.md']
@@ -880,7 +961,7 @@ def edit_draft(requirement_dir: Path, *, mode: str, base_prd_version: str, base_
                 new_trace['meta']['content_baseline'] = text
                 payload.update({'prd/prd.md': text.encode('utf-8'), 'prd/prd-trace.json': _encode(new_trace),
                                 'requirement.json': _encode(new_requirement)})
-            if not _stage_payload(root, candidate, payload, related_analyses, True, diagnostics):
+            if not _stage_payload(root, candidate, payload, related_analyses, True, diagnostics, snapshots=snapshots):
                 return {'status': 'fail', 'diagnostics': diagnostics, 'candidate_dir': str(candidate), 'written': [], 'edited': False}
             result = {'status': 'warning' if diagnostics else 'pass', 'diagnostics': diagnostics, 'version': version,
                       'edited': mode != 'detect', 'detected': mode != 'layout', 'generated': False,
@@ -906,7 +987,7 @@ def main(argv=None) -> int:
     parser.add_argument("--related-analysis", action="append", type=Path, default=[])
     parser.add_argument("--allow-stale", action="store_true")
     parser.add_argument("--recover", action="store_true")
-    parser.add_argument("--sync", action="store_true", help="按当前分析增量同步已有未发布工作稿")
+    parser.add_argument("--sync", action="store_true", help="按当前分析同步已有 PRD；已发布需求另建工作稿")
     parser.add_argument('--previous-analysis', type=Path, help='缺章节依据的旧稿可显式提供匹配原基准修订的旧分析')
     parser.add_argument('--inspect-edits', action='store_true', help='只读比较正文摘要及实际手改差异')
     parser.add_argument('--edit', choices=('layout', 'detect', 'keep'), help='显式处理排版、手改检测或用户坚持保留')

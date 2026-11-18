@@ -1,0 +1,58 @@
+{
+  "confirmation": {
+    "confirmed_by": "合成测试产品经理（仅限本次隔离试跑）",
+    "confirmed_at": "2026-11-18T02:14:47.792837+00:00",
+    "requirement_id": "SYNTHETIC-PRD",
+    "submitted_version": "0.1",
+    "analysis_revision": 1,
+    "target_version": "1.0",
+    "synthetic": true
+  },
+  "old_text": "合成查询功能，不代表真实业务",
+  "new_text": "合成查询仅返回用户选定分组中的记录，不代表真实业务",
+  "analysis_revision": 2,
+  "argv": [
+    "/home/collin/.cache/uv/builds-v0/.tmpCqgohh/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-6-model/iteration-1/attempt-02/current-skill/requirement-analyst/scripts/update_analysis.py",
+    "--workspace",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-6-model/iteration-1/attempt-02/eval-2-confirm-and-sync/with_skill/run-1/workspace",
+    "--project",
+    "synthetic",
+    "--patch",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-6-model/iteration-1/attempt-02/eval-2-confirm-and-sync/with_skill/run-1/driver-analysis-patch.json"
+  ],
+  "exit_code": 0,
+  "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": [],\n  \"requirement_id\": \"SYNTHETIC-PRD\",\n  \"revision\": 2,\n  \"id_map\": {},\n  \"affected_ids\": [\n    \"FR-1\"\n  ],\n  \"written\": true\n}\n",
+  "stderr": "",
+  "before": {
+    "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f",
+    "analysis/analysis-result.json": "sha256:cc12fd077bfcede0711e3bbdc4f66e5f43590ee553cc7398b0e16ef99f2d5b2b",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd-events.jsonl": "sha256:d2160062499b051339ffc1eed65dd6234d41907b8dd1ba02d4d8655fd6e2e781",
+    "prd/prd-trace.json": "sha256:cc4a116ea660f2b08dd615d4f4edffde1d567945e6c9e2d430f0c0c2fa236e0e",
+    "prd/prd.md": "sha256:224c8f3dcd6771cca08cd41adbab020938b110cdda27a1aee9359002a93bfc79",
+    "prd/versions/prd-1.0.md": "sha256:224c8f3dcd6771cca08cd41adbab020938b110cdda27a1aee9359002a93bfc79",
+    "prd/versions/prd-trace-1.0.json": "sha256:cc4a116ea660f2b08dd615d4f4edffde1d567945e6c9e2d430f0c0c2fa236e0e",
+    "requirement.json": "sha256:83e00d9871561212929df7623ea1e0d7428c2c9b4d18429cd8ff78d4ce1a0647"
+  },
+  "after": {
+    "analysis/analysis-events.jsonl": "sha256:b112c372e189437194062fa2bc5eb42c2e622c126ed610bb89729171cbf6f2ea",
+    "analysis/analysis-result.json": "sha256:99e24e581f93bf0bffbe7e493595c2b05393863607fbaf95395431831a216795",
+    "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+    "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+    "prd/prd-events.jsonl": "sha256:d2160062499b051339ffc1eed65dd6234d41907b8dd1ba02d4d8655fd6e2e781",
+    "prd/prd-trace.json": "sha256:cc4a116ea660f2b08dd615d4f4edffde1d567945e6c9e2d430f0c0c2fa236e0e",
+    "prd/prd.md": "sha256:224c8f3dcd6771cca08cd41adbab020938b110cdda27a1aee9359002a93bfc79",
+    "prd/versions/prd-1.0.md": "sha256:224c8f3dcd6771cca08cd41adbab020938b110cdda27a1aee9359002a93bfc79",
+    "prd/versions/prd-trace-1.0.json": "sha256:cc4a116ea660f2b08dd615d4f4edffde1d567945e6c9e2d430f0c0c2fa236e0e",
+    "requirement.json": "sha256:83e00d9871561212929df7623ea1e0d7428c2c9b4d18429cd8ff78d4ce1a0647"
+  },
+  "analysis_after_external_update": {
+    "analysis-events.jsonl": "sha256:b112c372e189437194062fa2bc5eb42c2e622c126ed610bb89729171cbf6f2ea",
+    "analysis-result.json": "sha256:99e24e581f93bf0bffbe7e493595c2b05393863607fbaf95395431831a216795",
+    "source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3"
+  }
+}

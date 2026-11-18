@@ -1,0 +1,35 @@
+{
+  "expectations": [
+    {
+      "text": "首轮实际提审并检查通过；等待明确答复，未提前发布",
+      "passed": true,
+      "evidence": "核对首轮归档、实际只读检查响应、提审记录、无快照；是否明确提出待确认问题另由人工评审。"
+    },
+    {
+      "text": "收到合成确认后定稿 1.0，确认人、时间、快照摘要和权限均正确",
+      "passed": true,
+      "evidence": "第二轮归档和驱动时间对照 release_confirmed；核对权限、摘要和 release 事件。"
+    },
+    {
+      "text": "仅更新受影响功能，发布后同步到 2.0-draft 且返回 draft",
+      "passed": true,
+      "evidence": "比较两个阶段业务正文和事件；当前实际元数据 {'based_on_analysis_revision': 2, 'status': 'draft', 'version': '2.0-draft'}。"
+    },
+    {
+      "text": "旧 1.0 基线的两份快照原字节未改，无第二次发布",
+      "passed": true,
+      "evidence": "第二轮 1.0 快照与最后一轮逐文件原始摘要及两条发布日志一致。"
+    },
+    {
+      "text": "各阶段分析、非 PRD 元数据、编号及缺口均未被模型改动",
+      "passed": true,
+      "evidence": "逐轮比较分析目录、common 及其他元数据，编号/映射/引入版本和缺口不变；分析仅允许测试驱动单独更新。"
+    }
+  ],
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "total": 5,
+    "pass_rate": 1.0
+  }
+}

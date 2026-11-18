@@ -1,0 +1,263 @@
+[
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/write_draft.py",
+      "/tmp/tmpu_7udlcn/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "--patch",
+      "/tmp/tmpu_7udlcn/inputs/1/numbering.json",
+      "--body",
+      "/tmp/tmpu_7udlcn/inputs/1/body.md",
+      "--candidate-dir",
+      "/tmp/tmpu_7udlcn/candidate-1"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"status\": \"pass\", \"diagnostics\": [], \"version\": \"0.1\", \"draft_kind\": \"formal_draft\", \"candidate_dir\": \"/tmp/tmpu_7udlcn/candidate-1\", \"generated\": true, \"synced\": false, \"mapping\": [{\"mapping_key\": \"synthetic-query\", \"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-1\"]}, {\"mapping_key\": \"synthetic-export\", \"prd_id\": \"PRD-FR-002\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-2\"]}], \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"prd/gap-requests.json\", \"requirement.json\", \"prd/prd-events.jsonl\"]}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:92a9b1842bc2b06912eaa372a887ed3ce60ee6f107396a7cadb9f58d1a532286",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    },
+    "after": {
+      "requirement.json": "sha256:5196495abd227a528d44a0757eb1c96c9e2c49928ee35a9e88f39ab2f1aeee51",
+      "prd/prd-events.jsonl": "sha256:0fd6e605f7d510f6a087a5659f97ceb8880aadeb89451e795ea41f05450ab775",
+      "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+      "prd/prd-trace.json": "sha256:5c59b909ec328aba6d2d31cdcf84cd3176407c47e0bc8b40f403d5eda50a403b",
+      "prd/prd.md": "sha256:e153d0098d1fd50366135a5aa49204866a0672a6eb050699e430f61112a4672a",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/snapshot_release.py",
+      "/tmp/tmpu_7udlcn/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "check",
+      "--for-action",
+      "submit-review"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"action\": \"check\", \"written\": [], \"applied\": false, \"diagnostics\": [], \"check_for\": \"submit-review\", \"requirement_id\": \"SYNTHETIC-PRD\", \"version\": \"0.1\", \"prd_status\": \"draft\", \"based_on_analysis_revision\": 1, \"analysis_revision\": 1, \"readiness\": \"ready_for_document\", \"target_version\": null, \"pending\": false, \"baseline_version\": null, \"baseline_verified\": false, \"status\": \"pass\", \"binding\": \"sha256:591329142e6e43d186cfecbf13d68183856d72b9ca0677f7ae6347f98b46684d\"}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:5196495abd227a528d44a0757eb1c96c9e2c49928ee35a9e88f39ab2f1aeee51",
+      "prd/prd-events.jsonl": "sha256:0fd6e605f7d510f6a087a5659f97ceb8880aadeb89451e795ea41f05450ab775",
+      "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+      "prd/prd-trace.json": "sha256:5c59b909ec328aba6d2d31cdcf84cd3176407c47e0bc8b40f403d5eda50a403b",
+      "prd/prd.md": "sha256:e153d0098d1fd50366135a5aa49204866a0672a6eb050699e430f61112a4672a",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    },
+    "after": {
+      "requirement.json": "sha256:5196495abd227a528d44a0757eb1c96c9e2c49928ee35a9e88f39ab2f1aeee51",
+      "prd/prd-events.jsonl": "sha256:0fd6e605f7d510f6a087a5659f97ceb8880aadeb89451e795ea41f05450ab775",
+      "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+      "prd/prd-trace.json": "sha256:5c59b909ec328aba6d2d31cdcf84cd3176407c47e0bc8b40f403d5eda50a403b",
+      "prd/prd.md": "sha256:e153d0098d1fd50366135a5aa49204866a0672a6eb050699e430f61112a4672a",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/snapshot_release.py",
+      "/tmp/tmpu_7udlcn/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "submit-review",
+      "--binding",
+      "sha256:591329142e6e43d186cfecbf13d68183856d72b9ca0677f7ae6347f98b46684d"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"action\": \"submit-review\", \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"requirement.json\", \"prd/prd-events.jsonl\"], \"applied\": true, \"diagnostics\": [], \"check_for\": \"submit-review\", \"requirement_id\": \"SYNTHETIC-PRD\", \"version\": \"0.1\", \"prd_status\": \"in_review\", \"based_on_analysis_revision\": 1, \"analysis_revision\": 1, \"readiness\": \"ready_for_document\", \"target_version\": null, \"pending\": false, \"baseline_version\": null, \"baseline_verified\": false, \"status\": \"pass\", \"candidate_dir\": \"/tmp/prd-candidate-g5gghgsw\"}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:5196495abd227a528d44a0757eb1c96c9e2c49928ee35a9e88f39ab2f1aeee51",
+      "prd/prd-events.jsonl": "sha256:0fd6e605f7d510f6a087a5659f97ceb8880aadeb89451e795ea41f05450ab775",
+      "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+      "prd/prd-trace.json": "sha256:5c59b909ec328aba6d2d31cdcf84cd3176407c47e0bc8b40f403d5eda50a403b",
+      "prd/prd.md": "sha256:e153d0098d1fd50366135a5aa49204866a0672a6eb050699e430f61112a4672a",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    },
+    "after": {
+      "requirement.json": "sha256:5061a53fd8bc3a1d2e6045100e421d4873ead4b9b96eba20c2771ba823b92a19",
+      "prd/prd-events.jsonl": "sha256:827174f1a18bc04b3aec8d2fd468e7b970988278fdd956924fb8d3f534f4d5ed",
+      "prd/prd-trace.json": "sha256:77070d21bfd1b5df604ad6d7b174d496d3c055f6d731795910b749d99f03738f",
+      "prd/prd.md": "sha256:b9d911e0f83494c6b823e45134f0527072184590e55f6ed963bfd8c545d6b945",
+      "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/snapshot_release.py",
+      "/tmp/tmpu_7udlcn/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "release"
+    ],
+    "exit_code": 2,
+    "stdout": "{\"action\": \"release\", \"written\": [], \"applied\": false, \"diagnostics\": [{\"rule\": 1, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"prd\", \"message\": \"PRD 校验必须为 pass；请处理列出的警告或错误。\"}, {\"rule\": 4, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"prd.md\", \"message\": \"正文摘要变化，存在未处理手改；先比较并处理。\"}, {\"rule\": 4, \"level\": \"warning\", \"item_id\": \"$\", \"path\": \"prd.md\", \"message\": \"正文摘要变化，检测到未处理手工修改；须比较含义后处理。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"binding\", \"message\": \"缺少检查绑定值或送审稿已变；重新检查，发布须重新确认。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"confirmation\", \"message\": \"无有效产品经理确认：缺少产品经理明示确认的人和时间。\"}], \"check_for\": \"release\", \"requirement_id\": \"SYNTHETIC-PRD\", \"version\": \"0.1\", \"prd_status\": \"in_review\", \"based_on_analysis_revision\": 1, \"analysis_revision\": 1, \"readiness\": \"ready_for_document\", \"target_version\": \"1.0\", \"pending\": false, \"baseline_version\": null, \"baseline_verified\": false, \"status\": \"fail\"}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:5061a53fd8bc3a1d2e6045100e421d4873ead4b9b96eba20c2771ba823b92a19",
+      "prd/prd-events.jsonl": "sha256:827174f1a18bc04b3aec8d2fd468e7b970988278fdd956924fb8d3f534f4d5ed",
+      "prd/prd-trace.json": "sha256:77070d21bfd1b5df604ad6d7b174d496d3c055f6d731795910b749d99f03738f",
+      "prd/prd.md": "sha256:26e850f641e1786c2ea4fc0a7437293b5203e76b487fbcc8f0f3faf4ad120365",
+      "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    },
+    "after": {
+      "requirement.json": "sha256:5061a53fd8bc3a1d2e6045100e421d4873ead4b9b96eba20c2771ba823b92a19",
+      "prd/prd-events.jsonl": "sha256:827174f1a18bc04b3aec8d2fd468e7b970988278fdd956924fb8d3f534f4d5ed",
+      "prd/prd-trace.json": "sha256:77070d21bfd1b5df604ad6d7b174d496d3c055f6d731795910b749d99f03738f",
+      "prd/prd.md": "sha256:26e850f641e1786c2ea4fc0a7437293b5203e76b487fbcc8f0f3faf4ad120365",
+      "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/write_draft.py",
+      "/tmp/tmpu_7udlcn/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "--edit",
+      "detect",
+      "--base-prd-version",
+      "0.1",
+      "--base-analysis-revision",
+      "1",
+      "--base-content-hash",
+      "sha256:26e850f641e1786c2ea4fc0a7437293b5203e76b487fbcc8f0f3faf4ad120365",
+      "--edit-summary",
+      "合成测试，已核对实际差异",
+      "--candidate-dir",
+      "/tmp/tmpu_7udlcn/candidate-2"
+    ],
+    "exit_code": 1,
+    "stdout": "{\"status\": \"warning\", \"diagnostics\": [{\"rule\": 4, \"level\": \"warning\", \"item_id\": \"$\", \"path\": \"prd.md\", \"message\": \"正文摘要变化，检测到未处理手工修改；须比较含义后处理。\"}], \"version\": \"0.1\", \"edited\": false, \"detected\": true, \"generated\": false, \"manual_edits\": {\"changed\": true, \"content_hash\": \"sha256:26e850f641e1786c2ea4fc0a7437293b5203e76b487fbcc8f0f3faf4ad120365\", \"expected_content_hash\": \"sha256:b9d911e0f83494c6b823e45134f0527072184590e55f6ed963bfd8c545d6b945\", \"baseline_available\": true, \"diff\": \"--- last-saved/prd.md\\n+++ current/prd.md\\n@@ -33,7 +33,7 @@\\n <!-- prd:section functional_requirements -->\\n | 正式编号与功能需求 | 分析来源 |\\n | --- | --- |\\n-| <!-- prd:item PRD-FR-001 -->PRD-FR-001：合成查询功能，不代表真实业务；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\\n+| <!-- prd:item PRD-FR-001 -->PRD-FR-001：查询并导出全部数据，不代表真实业务；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\\n \\n | <!-- prd:item PRD-FR-002 -->PRD-FR-002：合成导出功能，不代表真实业务；分析来源 SYNTHETIC-PRD/FR-2<!-- /prd:item --> | SYNTHETIC-PRD/FR-2 |\\n <!-- /prd:section -->\\n\", \"affected_prd_ids\": [\"PRD-FR-001\"], \"affected_sections\": [\"functional_requirements\"]}, \"candidate_dir\": \"/tmp/tmpu_7udlcn/candidate-2\", \"written\": [\"prd/prd-events.jsonl\"]}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:5061a53fd8bc3a1d2e6045100e421d4873ead4b9b96eba20c2771ba823b92a19",
+      "prd/prd-events.jsonl": "sha256:827174f1a18bc04b3aec8d2fd468e7b970988278fdd956924fb8d3f534f4d5ed",
+      "prd/prd-trace.json": "sha256:77070d21bfd1b5df604ad6d7b174d496d3c055f6d731795910b749d99f03738f",
+      "prd/prd.md": "sha256:26e850f641e1786c2ea4fc0a7437293b5203e76b487fbcc8f0f3faf4ad120365",
+      "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    },
+    "after": {
+      "requirement.json": "sha256:5061a53fd8bc3a1d2e6045100e421d4873ead4b9b96eba20c2771ba823b92a19",
+      "prd/prd-events.jsonl": "sha256:3471f974a6dae186cfaf21f9864bc477d3ad1d3a7662495fcc037c867eb1dd4a",
+      "prd/prd-trace.json": "sha256:77070d21bfd1b5df604ad6d7b174d496d3c055f6d731795910b749d99f03738f",
+      "prd/prd.md": "sha256:26e850f641e1786c2ea4fc0a7437293b5203e76b487fbcc8f0f3faf4ad120365",
+      "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/write_draft.py",
+      "/tmp/tmpu_7udlcn/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "--edit",
+      "keep",
+      "--base-prd-version",
+      "0.1",
+      "--base-analysis-revision",
+      "1",
+      "--base-content-hash",
+      "sha256:26e850f641e1786c2ea4fc0a7437293b5203e76b487fbcc8f0f3faf4ad120365",
+      "--edit-summary",
+      "合成测试，已核对实际差异",
+      "--candidate-dir",
+      "/tmp/tmpu_7udlcn/candidate-3",
+      "--body",
+      "/tmp/tmpu_7udlcn/inputs/3/edit.md",
+      "--keep-confirmed"
+    ],
+    "exit_code": 1,
+    "stdout": "{\"status\": \"warning\", \"diagnostics\": [{\"rule\": 8, \"level\": \"warning\", \"item_id\": \"SYNTHETIC-PRD/PRD-FR-001\", \"path\": \"prd.md\", \"message\": \"存在与分析不一致的内容，不得发布。\"}], \"version\": \"0.2\", \"edited\": true, \"detected\": true, \"generated\": false, \"manual_edits\": {\"changed\": true, \"content_hash\": \"sha256:26e850f641e1786c2ea4fc0a7437293b5203e76b487fbcc8f0f3faf4ad120365\", \"expected_content_hash\": \"sha256:b9d911e0f83494c6b823e45134f0527072184590e55f6ed963bfd8c545d6b945\", \"baseline_available\": true, \"diff\": \"--- last-saved/prd.md\\n+++ current/prd.md\\n@@ -33,7 +33,7 @@\\n <!-- prd:section functional_requirements -->\\n | 正式编号与功能需求 | 分析来源 |\\n | --- | --- |\\n-| <!-- prd:item PRD-FR-001 -->PRD-FR-001：合成查询功能，不代表真实业务；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\\n+| <!-- prd:item PRD-FR-001 -->PRD-FR-001：查询并导出全部数据，不代表真实业务；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\\n \\n | <!-- prd:item PRD-FR-002 -->PRD-FR-002：合成导出功能，不代表真实业务；分析来源 SYNTHETIC-PRD/FR-2<!-- /prd:item --> | SYNTHETIC-PRD/FR-2 |\\n <!-- /prd:section -->\\n\", \"affected_prd_ids\": [\"PRD-FR-001\"], \"affected_sections\": [\"functional_requirements\"]}, \"candidate_dir\": \"/tmp/tmpu_7udlcn/candidate-3\", \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"requirement.json\", \"prd/prd-events.jsonl\"]}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:5061a53fd8bc3a1d2e6045100e421d4873ead4b9b96eba20c2771ba823b92a19",
+      "prd/prd-events.jsonl": "sha256:3471f974a6dae186cfaf21f9864bc477d3ad1d3a7662495fcc037c867eb1dd4a",
+      "prd/prd-trace.json": "sha256:77070d21bfd1b5df604ad6d7b174d496d3c055f6d731795910b749d99f03738f",
+      "prd/prd.md": "sha256:26e850f641e1786c2ea4fc0a7437293b5203e76b487fbcc8f0f3faf4ad120365",
+      "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    },
+    "after": {
+      "requirement.json": "sha256:677c5cdfb7b213d5d878ce6b96bf80ffa1eea77937fc1cd15912b747101c978a",
+      "prd/prd-events.jsonl": "sha256:97d1f84ed81d705098340c1b286f6ccac0d09f78265605e4493d7846844a18ee",
+      "prd/prd-trace.json": "sha256:2db297c0432b283d85711d517ab3209f8e65fc0c1e306511990fa12c3a60ac06",
+      "prd/prd.md": "sha256:5bc23a96b779ef275cbefd4c348911c6891bfa1e61e62b6f2250aca20308e73a",
+      "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/snapshot_release.py",
+      "/tmp/tmpu_7udlcn/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "release"
+    ],
+    "exit_code": 2,
+    "stdout": "{\"action\": \"release\", \"written\": [], \"applied\": false, \"diagnostics\": [{\"rule\": 1, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"prd\", \"message\": \"PRD 校验必须为 pass；请处理列出的警告或错误。\"}, {\"rule\": 4, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"prd.md\", \"message\": \"存在【与分析不一致】标注，不能发布。\"}, {\"rule\": 8, \"level\": \"warning\", \"item_id\": \"SYNTHETIC-PRD/PRD-FR-001\", \"path\": \"prd.md\", \"message\": \"存在与分析不一致的内容，不得发布。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"binding\", \"message\": \"缺少检查绑定值或送审稿已变；重新检查，发布须重新确认。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"confirmation\", \"message\": \"无有效产品经理确认：缺少产品经理明示确认的人和时间。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"requirement.json/prd/status\", \"message\": \"必须先提交该版评审并处于 in_review。\"}], \"check_for\": \"release\", \"requirement_id\": \"SYNTHETIC-PRD\", \"version\": \"0.2\", \"prd_status\": \"draft\", \"based_on_analysis_revision\": 1, \"analysis_revision\": 1, \"readiness\": \"ready_for_document\", \"target_version\": \"1.0\", \"pending\": false, \"baseline_version\": null, \"baseline_verified\": false, \"status\": \"fail\"}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:677c5cdfb7b213d5d878ce6b96bf80ffa1eea77937fc1cd15912b747101c978a",
+      "prd/prd-events.jsonl": "sha256:97d1f84ed81d705098340c1b286f6ccac0d09f78265605e4493d7846844a18ee",
+      "prd/prd-trace.json": "sha256:2db297c0432b283d85711d517ab3209f8e65fc0c1e306511990fa12c3a60ac06",
+      "prd/prd.md": "sha256:5bc23a96b779ef275cbefd4c348911c6891bfa1e61e62b6f2250aca20308e73a",
+      "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    },
+    "after": {
+      "requirement.json": "sha256:677c5cdfb7b213d5d878ce6b96bf80ffa1eea77937fc1cd15912b747101c978a",
+      "prd/prd-events.jsonl": "sha256:97d1f84ed81d705098340c1b286f6ccac0d09f78265605e4493d7846844a18ee",
+      "prd/prd-trace.json": "sha256:2db297c0432b283d85711d517ab3209f8e65fc0c1e306511990fa12c3a60ac06",
+      "prd/prd.md": "sha256:5bc23a96b779ef275cbefd4c348911c6891bfa1e61e62b6f2250aca20308e73a",
+      "prd/gap-requests.json": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    }
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "scope": "仅在新版就绪稿同一隔离模型会话按实际状态追加两轮；不是新样本或真实业务发布。",
+  "rounds": [
+    {"after": "首轮已提审，记录了具体送审版并明确请求确认；无发布事件或快照。", "prompt": "我是合成测试产品经理（仅限本次隔离试跑），我明确同意把需求 SYNTHETIC-PRD 的送审稿 0.1（分析修订 1）发布为 1.0。我的实际测试确认时间是 2026-11-18T02:14:47.792837+00:00。请在本地执行并核对两份定稿快照。", "output": "eval-2-confirm-and-sync/with_skill/run-1/outputs/model-response-release.md"},
+    {"after": "第二轮真实完成合成定稿，驱动器单独通过分析侧正式入口推进分析修订至 2。", "prompt": "需求分析同事已经按最新要求更新了分析，请按最新分析同步这份 PRD。先不要发布，也不要提交评审。同步后请告诉我现在的工作稿版本，以及仍在生效的是哪一版基线。", "output": "eval-2-confirm-and-sync/with_skill/run-1/outputs/model-response-sync.md"}
+  ],
+  "legacy_followup": "阶段 5 旧版未提审、不具备发布能力，也未请求产品经理确认，未注入后续答复。"
+}

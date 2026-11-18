@@ -314,7 +314,7 @@ def _events(path, diagnostics):
         diagnostics.append(_issue(1, "$", path, f"无法读取事件日志：{error}"))
         return []
     result = []
-    types = {"initial_generation", "sync", "layout_edit", "manual_edit_detected", "gap_request", "submit_review", "release_confirmed", "release", "deprecate"}
+    types = {"initial_generation", "sync", "layout_edit", "manual_edit_detected", "gap_request", "submit_review", "return_review", "release_confirmed", "release", "deprecate"}
     for index, line in enumerate(lines, 1):
         try:
             event = json.loads(line, object_pairs_hook=_unique, parse_constant=_constant)
@@ -412,8 +412,9 @@ def _snapshots(prd, trace, events, diagnostics):
                 relative = "versions/" + path.name
                 if relative not in registered or not path.is_file() or path.is_symlink():
                     diagnostics.append(_issue(11, "$", relative, "快照无对应发布记录或类型不合法。"))
-    for previous, label in history:
-        _history(trace, previous, diagnostics, label)
+    if trace is not None:
+        for previous, label in history:
+            _history(trace, previous, diagnostics, label)
 
 
 def _trace_checks(trace, registry, paths, blocks, text, diagnostics, pending):
@@ -577,8 +578,8 @@ def _gaps(gaps, analysis, registry, paths, blocks, text, diagnostics):
         diagnostics.append(_issue(9, "$", "prd.md", "存在定位块之外的游离占位。"))
 
 
-def _metadata(metadata, analysis, trace, blocks, text, diagnostics, pending):
-    """检查可见文档信息和草稿提示；发布快照中的旧信息不与新分析强行比较。"""
+def _document_info(metadata, trace, blocks, text, diagnostics):
+    """校验稿件自身的信息视图及提示，返回可见字段以便状态变更保留原生成信息。"""
     prd = metadata["prd"]
     meta = trace["meta"]
     info = blocks["section"].get("info", {}).get("text", "")
@@ -590,23 +591,32 @@ def _metadata(metadata, analysis, trace, blocks, text, diagnostics, pending):
                 diagnostics.append(_issue(10, "$", "prd.md/info", "文档信息键重复。"))
             # 比较可见值而非HTML转义拼写，使含表格分隔符或换行的合法标题仍能校验。
             cells[parts[0]] = html.unescape(parts[1].replace("<br>", "\n"))
-    for key, expected in (("需求编号", analysis["requirement_id"]), ("标题", metadata["common"]["title"]), ("PRD 版本", prd["version"]), ("状态", prd["status"]), ("草稿类型", meta["draft_kind"]), ("基于的分析修订号", str(prd["based_on_analysis_revision"]))):
+    for key, expected in (("需求编号", trace["requirement_id"]), ("标题", metadata["common"]["title"]), ("PRD 版本", prd["version"]), ("状态", prd["status"]), ("草稿类型", meta["draft_kind"]), ("基于的分析修订号", str(prd["based_on_analysis_revision"]))):
         if cells.get(key) != str(expected).replace("\r\n", "\n").replace("\r", "\n"):
             diagnostics.append(_issue(10, "$", "prd.md/info", f"文档信息 {key} 与权威元数据不符。"))
     for key in ("生成时间", "未覆盖的分析项"):
         if not cells.get(key):
             diagnostics.append(_issue(10, "$", "prd.md/info", f"文档信息缺少 {key}。"))
+    if prd["status"] in {"released", "deprecated"}:
+        if any(prompt in text for prompt in PROMPTS.values()):
+            diagnostics.append(_issue(7, "$", "prd.md", "已发布或废弃稿仍有草稿提示。"))
+    elif not text.startswith(PROMPTS[meta["draft_kind"]]):
+        diagnostics.append(_issue(7, "$", "prd.md", "文首草稿提示与类型不一致。"))
+    return cells
+
+
+def _metadata(metadata, analysis, trace, blocks, text, diagnostics, pending):
+    """校验信息视图，检查当前稿是否遵循分析就绪度；历史快照不与新分析比较。"""
+    _document_info(metadata, trace, blocks, text, diagnostics)
+    if metadata['prd']['status'] == 'deprecated':
+        return
+    meta = trace['meta']
     expected_kind = "stale_draft" if analysis["meta"]["analysis_status"] == "stale" else {"not_ready": "risk_draft", "conditionally_ready": "conditional_draft", "ready_for_document": "formal_draft"}[analysis["meta"]["readiness"]]
     if analysis["meta"]["analysis_status"] == "stale" or not pending:
         if meta["draft_kind"] != expected_kind:
             diagnostics.append(_issue(7, "$", "prd-trace.json/meta/draft_kind", "草稿类型与当前分析状态或就绪度不符。"))
     if not pending and meta["generated_under_readiness"] != analysis["meta"]["readiness"]:
         diagnostics.append(_issue(7, "$", "prd-trace.json/meta/generated_under_readiness", "生成时就绪度快照与已同步分析不符。"))
-    if prd["status"] == "released":
-        if any(prompt in text for prompt in PROMPTS.values()):
-            diagnostics.append(_issue(7, "$", "prd.md", "已发布工作稿仍有草稿提示。"))
-    elif not text.startswith(PROMPTS[meta["draft_kind"]]):
-        diagnostics.append(_issue(7, "$", "prd.md", "文首草稿提示与类型不一致。"))
 
 
 def _patch(patch, metadata, analysis, trace, registry, diagnostics):
@@ -702,6 +712,9 @@ def validate_prd(requirement_dir: Path, *, related_analyses: Sequence[Path] = ()
     root = Path(requirement_dir).absolute()
     prd = root / "prd"
     diagnostics = []
+    transaction = prd / '.prd-transaction.json'
+    if transaction.exists() or transaction.is_symlink():
+        return _result([_issue(1, '$', transaction, 'PRD 保存尚未完成，请先恢复，不能据部分落盘声明有效。')])
     analysis = _read(root / "analysis/analysis-result.json", diagnostics, 1)
     metadata = _read(root / "requirement.json", diagnostics, 10)
     trace = _read(prd / "prd-trace.json", diagnostics, 1)

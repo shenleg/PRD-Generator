@@ -1,0 +1,396 @@
+[
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/write_draft.py",
+      "/tmp/tmp0vl6b4p_/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "--patch",
+      "/tmp/tmp0vl6b4p_/inputs/1/numbering.json",
+      "--body",
+      "/tmp/tmp0vl6b4p_/inputs/1/body.md",
+      "--gaps",
+      "/tmp/tmp0vl6b4p_/inputs/gap-input.json",
+      "--candidate-dir",
+      "/tmp/tmp0vl6b4p_/candidate-1"
+    ],
+    "exit_code": 1,
+    "stdout": "{\"status\": \"warning\", \"diagnostics\": [{\"rule\": 12, \"level\": \"warning\", \"item_id\": \"GAPREQ-1\", \"path\": \"gap-requests.json/status\", \"message\": \"缺口仍待交接或确认。\"}], \"version\": \"0.1\", \"draft_kind\": \"formal_draft\", \"candidate_dir\": \"/tmp/tmp0vl6b4p_/candidate-1\", \"generated\": true, \"synced\": false, \"mapping\": [{\"mapping_key\": \"synthetic-query\", \"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-1\"]}, {\"mapping_key\": \"synthetic-export\", \"prd_id\": \"PRD-FR-002\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-2\"]}], \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"prd/gap-requests.json\", \"requirement.json\", \"prd/prd-events.jsonl\"]}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:92a9b1842bc2b06912eaa372a887ed3ce60ee6f107396a7cadb9f58d1a532286",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    },
+    "after": {
+      "requirement.json": "sha256:5196495abd227a528d44a0757eb1c96c9e2c49928ee35a9e88f39ab2f1aeee51",
+      "prd/prd-events.jsonl": "sha256:25c1f32057df80f4a02f867dceb05d781ed4859b94e5d179795f5deff73a73ab",
+      "prd/gap-requests.json": "sha256:c1173e76de416afcbcdf067675c140e28766a0ab56f4da5b56884b3a12ecfaa0",
+      "prd/prd-trace.json": "sha256:5637693466c3aef6cde7aadf55a3188147f2b2ced610d8bf7f062b4345f4dd1f",
+      "prd/prd.md": "sha256:d2e23146942decceb1c39cbab9c8065dfcb5ff74e82d8cffc53b897b0721288e",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/requirement-analyst/scripts/update_analysis.py",
+      "--workspace",
+      "/tmp/tmp0vl6b4p_/workspace",
+      "--project",
+      "synthetic",
+      "--patch",
+      "/tmp/tmp0vl6b4p_/inputs/analysis-r2.json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": [],\n  \"requirement_id\": \"SYNTHETIC-PRD\",\n  \"revision\": 2,\n  \"id_map\": {\n    \"$gap\": \"Q-1\"\n  },\n  \"affected_ids\": [\n    \"Q-1\"\n  ],\n  \"written\": true,\n  \"gap_status_written\": true\n}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:5196495abd227a528d44a0757eb1c96c9e2c49928ee35a9e88f39ab2f1aeee51",
+      "prd/prd-events.jsonl": "sha256:25c1f32057df80f4a02f867dceb05d781ed4859b94e5d179795f5deff73a73ab",
+      "prd/gap-requests.json": "sha256:c1173e76de416afcbcdf067675c140e28766a0ab56f4da5b56884b3a12ecfaa0",
+      "prd/prd-trace.json": "sha256:5637693466c3aef6cde7aadf55a3188147f2b2ced610d8bf7f062b4345f4dd1f",
+      "prd/prd.md": "sha256:d2e23146942decceb1c39cbab9c8065dfcb5ff74e82d8cffc53b897b0721288e",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    },
+    "after": {
+      "requirement.json": "sha256:5196495abd227a528d44a0757eb1c96c9e2c49928ee35a9e88f39ab2f1aeee51",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "prd/prd-events.jsonl": "sha256:25c1f32057df80f4a02f867dceb05d781ed4859b94e5d179795f5deff73a73ab",
+      "prd/prd-trace.json": "sha256:5637693466c3aef6cde7aadf55a3188147f2b2ced610d8bf7f062b4345f4dd1f",
+      "prd/prd.md": "sha256:d2e23146942decceb1c39cbab9c8065dfcb5ff74e82d8cffc53b897b0721288e",
+      "analysis/analysis-result.json": "sha256:bc50cd8973e06d6a2ab04d682321550194179b415592798bf80e2a4b41973e4e",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:38284bc8223869456b69d0e0ba77c43a3e8b1c746ae8952be701ae25ed634526"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/write_draft.py",
+      "/tmp/tmp0vl6b4p_/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "--patch",
+      "/tmp/tmp0vl6b4p_/inputs/2/numbering.json",
+      "--body",
+      "/tmp/tmp0vl6b4p_/inputs/2/body.md",
+      "--sync",
+      "--candidate-dir",
+      "/tmp/tmp0vl6b4p_/candidate-2"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"status\": \"pass\", \"diagnostics\": [], \"version\": \"0.2\", \"draft_kind\": \"formal_draft\", \"candidate_dir\": \"/tmp/tmp0vl6b4p_/candidate-2\", \"generated\": true, \"synced\": true, \"comparison\": {\"pending\": true, \"based_on_analysis_revision\": 1, \"analysis_revision\": 2, \"items\": [{\"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-1\"], \"category\": \"unchanged\", \"source_digest\": \"sha256:edfa9dcfb9626ce801955d9448b283e8fa6ad971aff520c64d4a741a56a2b3ae\"}, {\"prd_id\": \"PRD-FR-002\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-2\"], \"category\": \"unchanged\", \"source_digest\": \"sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6\"}], \"added\": []}, \"change_summary\": \"新增：无；修改：无；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：未变；保留缺口及占位（尚未提交经内容核实的关闭依据）：GAPREQ-1；分析事件说明：合成分析更新，非真实需求\", \"mapping\": [{\"mapping_key\": \"synthetic-query\", \"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-1\"]}, {\"mapping_key\": \"synthetic-export\", \"prd_id\": \"PRD-FR-002\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-2\"]}], \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"prd/gap-requests.json\", \"requirement.json\", \"prd/prd-events.jsonl\"]}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:5196495abd227a528d44a0757eb1c96c9e2c49928ee35a9e88f39ab2f1aeee51",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "prd/prd-events.jsonl": "sha256:25c1f32057df80f4a02f867dceb05d781ed4859b94e5d179795f5deff73a73ab",
+      "prd/prd-trace.json": "sha256:5637693466c3aef6cde7aadf55a3188147f2b2ced610d8bf7f062b4345f4dd1f",
+      "prd/prd.md": "sha256:d2e23146942decceb1c39cbab9c8065dfcb5ff74e82d8cffc53b897b0721288e",
+      "analysis/analysis-result.json": "sha256:bc50cd8973e06d6a2ab04d682321550194179b415592798bf80e2a4b41973e4e",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:38284bc8223869456b69d0e0ba77c43a3e8b1c746ae8952be701ae25ed634526"
+    },
+    "after": {
+      "requirement.json": "sha256:31ea9c0d20ff6c2bac467038b1c8f2de0e84dd4630cd049d8eee25f603a9f81f",
+      "prd/prd-events.jsonl": "sha256:88b0dd65612295705c2de2c8829b4c023baeae9bd76278f2692826bc46d87ca3",
+      "prd/prd-trace.json": "sha256:70a8948fb505c7d45e9e3052c7620e5c3e938cc715cb4d8a5acedb43291846bc",
+      "prd/prd.md": "sha256:04bc8e7e18dc88cb80e7e0d91274a78b79fa7ad450c8c309cfe4083a7c52ab4c",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:bc50cd8973e06d6a2ab04d682321550194179b415592798bf80e2a4b41973e4e",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:38284bc8223869456b69d0e0ba77c43a3e8b1c746ae8952be701ae25ed634526"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/snapshot_release.py",
+      "/tmp/tmp0vl6b4p_/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "check",
+      "--for-action",
+      "submit-review"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"action\": \"check\", \"written\": [], \"applied\": false, \"diagnostics\": [], \"check_for\": \"submit-review\", \"requirement_id\": \"SYNTHETIC-PRD\", \"version\": \"0.2\", \"prd_status\": \"draft\", \"based_on_analysis_revision\": 2, \"analysis_revision\": 2, \"readiness\": \"ready_for_document\", \"target_version\": null, \"pending\": false, \"baseline_version\": null, \"baseline_verified\": false, \"status\": \"pass\", \"binding\": \"sha256:54570520871ca3683a03e3a5e5a3d86c9e2af33e9fb42771e9f3840c25db1b56\"}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:31ea9c0d20ff6c2bac467038b1c8f2de0e84dd4630cd049d8eee25f603a9f81f",
+      "prd/prd-events.jsonl": "sha256:88b0dd65612295705c2de2c8829b4c023baeae9bd76278f2692826bc46d87ca3",
+      "prd/prd-trace.json": "sha256:70a8948fb505c7d45e9e3052c7620e5c3e938cc715cb4d8a5acedb43291846bc",
+      "prd/prd.md": "sha256:04bc8e7e18dc88cb80e7e0d91274a78b79fa7ad450c8c309cfe4083a7c52ab4c",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:bc50cd8973e06d6a2ab04d682321550194179b415592798bf80e2a4b41973e4e",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:38284bc8223869456b69d0e0ba77c43a3e8b1c746ae8952be701ae25ed634526"
+    },
+    "after": {
+      "requirement.json": "sha256:31ea9c0d20ff6c2bac467038b1c8f2de0e84dd4630cd049d8eee25f603a9f81f",
+      "prd/prd-events.jsonl": "sha256:88b0dd65612295705c2de2c8829b4c023baeae9bd76278f2692826bc46d87ca3",
+      "prd/prd-trace.json": "sha256:70a8948fb505c7d45e9e3052c7620e5c3e938cc715cb4d8a5acedb43291846bc",
+      "prd/prd.md": "sha256:04bc8e7e18dc88cb80e7e0d91274a78b79fa7ad450c8c309cfe4083a7c52ab4c",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:bc50cd8973e06d6a2ab04d682321550194179b415592798bf80e2a4b41973e4e",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:38284bc8223869456b69d0e0ba77c43a3e8b1c746ae8952be701ae25ed634526"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/snapshot_release.py",
+      "/tmp/tmp0vl6b4p_/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "submit-review",
+      "--binding",
+      "sha256:54570520871ca3683a03e3a5e5a3d86c9e2af33e9fb42771e9f3840c25db1b56"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"action\": \"submit-review\", \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"requirement.json\", \"prd/prd-events.jsonl\"], \"applied\": true, \"diagnostics\": [], \"check_for\": \"submit-review\", \"requirement_id\": \"SYNTHETIC-PRD\", \"version\": \"0.2\", \"prd_status\": \"in_review\", \"based_on_analysis_revision\": 2, \"analysis_revision\": 2, \"readiness\": \"ready_for_document\", \"target_version\": null, \"pending\": false, \"baseline_version\": null, \"baseline_verified\": false, \"status\": \"pass\", \"candidate_dir\": \"/tmp/prd-candidate-apbv83v6\"}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:31ea9c0d20ff6c2bac467038b1c8f2de0e84dd4630cd049d8eee25f603a9f81f",
+      "prd/prd-events.jsonl": "sha256:88b0dd65612295705c2de2c8829b4c023baeae9bd76278f2692826bc46d87ca3",
+      "prd/prd-trace.json": "sha256:70a8948fb505c7d45e9e3052c7620e5c3e938cc715cb4d8a5acedb43291846bc",
+      "prd/prd.md": "sha256:04bc8e7e18dc88cb80e7e0d91274a78b79fa7ad450c8c309cfe4083a7c52ab4c",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:bc50cd8973e06d6a2ab04d682321550194179b415592798bf80e2a4b41973e4e",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:38284bc8223869456b69d0e0ba77c43a3e8b1c746ae8952be701ae25ed634526"
+    },
+    "after": {
+      "requirement.json": "sha256:ee1169be2b1730a0c07d58a2799db294bcc275c6aac6c283280f704297c1db7e",
+      "prd/prd-events.jsonl": "sha256:652ade29048e24b94a3083a6f110c3767842bdce0f4355208a42e9c5b5a1112b",
+      "prd/prd-trace.json": "sha256:a4af86a02ec0874d1d4cecb0ee6797f35de9c02624c2f42e77ae8280209b0090",
+      "prd/prd.md": "sha256:df9c951cb458c574a8a6da264792304d70208c5d0d3bb9b8deec54afc2824387",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:bc50cd8973e06d6a2ab04d682321550194179b415592798bf80e2a4b41973e4e",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:38284bc8223869456b69d0e0ba77c43a3e8b1c746ae8952be701ae25ed634526"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/snapshot_release.py",
+      "/tmp/tmp0vl6b4p_/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "release"
+    ],
+    "exit_code": 2,
+    "stdout": "{\"action\": \"release\", \"written\": [], \"applied\": false, \"diagnostics\": [{\"rule\": 9, \"level\": \"fail\", \"item_id\": \"GAPREQ-1\", \"path\": \"prd.md/acceptance_criteria\", \"message\": \"存在待分析补充占位，不能发布。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"binding\", \"message\": \"缺少检查绑定值或送审稿已变；重新检查，发布须重新确认。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"confirmation\", \"message\": \"无有效产品经理确认：缺少产品经理明示确认的人和时间。\"}, {\"rule\": 12, \"level\": \"fail\", \"item_id\": \"GAPREQ-1\", \"path\": \"gap-requests.json\", \"message\": \"缺口 handed_over 未关闭；接收不代表内容已补足。\"}], \"check_for\": \"release\", \"requirement_id\": \"SYNTHETIC-PRD\", \"version\": \"0.2\", \"prd_status\": \"in_review\", \"based_on_analysis_revision\": 2, \"analysis_revision\": 2, \"readiness\": \"ready_for_document\", \"target_version\": \"1.0\", \"pending\": false, \"baseline_version\": null, \"baseline_verified\": false, \"status\": \"fail\"}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:ee1169be2b1730a0c07d58a2799db294bcc275c6aac6c283280f704297c1db7e",
+      "prd/prd-events.jsonl": "sha256:652ade29048e24b94a3083a6f110c3767842bdce0f4355208a42e9c5b5a1112b",
+      "prd/prd-trace.json": "sha256:a4af86a02ec0874d1d4cecb0ee6797f35de9c02624c2f42e77ae8280209b0090",
+      "prd/prd.md": "sha256:df9c951cb458c574a8a6da264792304d70208c5d0d3bb9b8deec54afc2824387",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:bc50cd8973e06d6a2ab04d682321550194179b415592798bf80e2a4b41973e4e",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:38284bc8223869456b69d0e0ba77c43a3e8b1c746ae8952be701ae25ed634526"
+    },
+    "after": {
+      "requirement.json": "sha256:ee1169be2b1730a0c07d58a2799db294bcc275c6aac6c283280f704297c1db7e",
+      "prd/prd-events.jsonl": "sha256:652ade29048e24b94a3083a6f110c3767842bdce0f4355208a42e9c5b5a1112b",
+      "prd/prd-trace.json": "sha256:a4af86a02ec0874d1d4cecb0ee6797f35de9c02624c2f42e77ae8280209b0090",
+      "prd/prd.md": "sha256:df9c951cb458c574a8a6da264792304d70208c5d0d3bb9b8deec54afc2824387",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:bc50cd8973e06d6a2ab04d682321550194179b415592798bf80e2a4b41973e4e",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:38284bc8223869456b69d0e0ba77c43a3e8b1c746ae8952be701ae25ed634526"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/requirement-analyst/scripts/update_analysis.py",
+      "--workspace",
+      "/tmp/tmp0vl6b4p_/workspace",
+      "--project",
+      "synthetic",
+      "--patch",
+      "/tmp/tmp0vl6b4p_/inputs/analysis-r3.json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\n  \"status\": \"pass\",\n  \"diagnostics\": [],\n  \"requirement_id\": \"SYNTHETIC-PRD\",\n  \"revision\": 3,\n  \"id_map\": {},\n  \"affected_ids\": [\n    \"Q-1\"\n  ],\n  \"written\": true\n}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:ee1169be2b1730a0c07d58a2799db294bcc275c6aac6c283280f704297c1db7e",
+      "prd/prd-events.jsonl": "sha256:652ade29048e24b94a3083a6f110c3767842bdce0f4355208a42e9c5b5a1112b",
+      "prd/prd-trace.json": "sha256:a4af86a02ec0874d1d4cecb0ee6797f35de9c02624c2f42e77ae8280209b0090",
+      "prd/prd.md": "sha256:df9c951cb458c574a8a6da264792304d70208c5d0d3bb9b8deec54afc2824387",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:bc50cd8973e06d6a2ab04d682321550194179b415592798bf80e2a4b41973e4e",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:38284bc8223869456b69d0e0ba77c43a3e8b1c746ae8952be701ae25ed634526"
+    },
+    "after": {
+      "requirement.json": "sha256:ee1169be2b1730a0c07d58a2799db294bcc275c6aac6c283280f704297c1db7e",
+      "prd/prd-events.jsonl": "sha256:652ade29048e24b94a3083a6f110c3767842bdce0f4355208a42e9c5b5a1112b",
+      "prd/prd-trace.json": "sha256:a4af86a02ec0874d1d4cecb0ee6797f35de9c02624c2f42e77ae8280209b0090",
+      "prd/prd.md": "sha256:df9c951cb458c574a8a6da264792304d70208c5d0d3bb9b8deec54afc2824387",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:afdf43b6a7207cfe2d4142f0709ae69f7ddcc7008d848c7358e88b19c5afd7fb",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e16561ba3a118750d6a29aedbd6690f249f42522ed3f7306ecaba92ed7d440cf"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/write_draft.py",
+      "/tmp/tmp0vl6b4p_/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "--patch",
+      "/tmp/tmp0vl6b4p_/inputs/3/numbering.json",
+      "--body",
+      "/tmp/tmp0vl6b4p_/inputs/3/body.md",
+      "--sync",
+      "--candidate-dir",
+      "/tmp/tmp0vl6b4p_/candidate-3"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"status\": \"pass\", \"diagnostics\": [], \"version\": \"0.3\", \"draft_kind\": \"formal_draft\", \"candidate_dir\": \"/tmp/tmp0vl6b4p_/candidate-3\", \"generated\": true, \"synced\": true, \"comparison\": {\"pending\": true, \"based_on_analysis_revision\": 2, \"analysis_revision\": 3, \"items\": [{\"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-1\"], \"category\": \"unchanged\", \"source_digest\": \"sha256:edfa9dcfb9626ce801955d9448b283e8fa6ad971aff520c64d4a741a56a2b3ae\"}, {\"prd_id\": \"PRD-FR-002\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-2\"], \"category\": \"unchanged\", \"source_digest\": \"sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6\"}], \"added\": []}, \"change_summary\": \"新增：无；修改：无；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：未变；保留缺口及占位（尚未提交经内容核实的关闭依据）：GAPREQ-1；分析事件说明：合成分析更新，非真实需求\", \"mapping\": [{\"mapping_key\": \"synthetic-query\", \"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-1\"]}, {\"mapping_key\": \"synthetic-export\", \"prd_id\": \"PRD-FR-002\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-2\"]}], \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"prd/gap-requests.json\", \"requirement.json\", \"prd/prd-events.jsonl\"]}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:ee1169be2b1730a0c07d58a2799db294bcc275c6aac6c283280f704297c1db7e",
+      "prd/prd-events.jsonl": "sha256:652ade29048e24b94a3083a6f110c3767842bdce0f4355208a42e9c5b5a1112b",
+      "prd/prd-trace.json": "sha256:a4af86a02ec0874d1d4cecb0ee6797f35de9c02624c2f42e77ae8280209b0090",
+      "prd/prd.md": "sha256:df9c951cb458c574a8a6da264792304d70208c5d0d3bb9b8deec54afc2824387",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:afdf43b6a7207cfe2d4142f0709ae69f7ddcc7008d848c7358e88b19c5afd7fb",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e16561ba3a118750d6a29aedbd6690f249f42522ed3f7306ecaba92ed7d440cf"
+    },
+    "after": {
+      "requirement.json": "sha256:19678d09f8fb0cb9cd223d354e9037ce3b346bc7c2a73ddb926dba98bf6ca505",
+      "prd/prd-events.jsonl": "sha256:eb3507e3dd1d8f42fe870e499a0622b38b2eb579061699364e9a0b9d6004a325",
+      "prd/prd-trace.json": "sha256:bf9654d0148730e9d3e160ed82e8a308c4204688dc96d3dd04977df5a10ca0bd",
+      "prd/prd.md": "sha256:412b92816290dbf4507299649fdbb25d81360ad41927d320219b674859b46981",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:afdf43b6a7207cfe2d4142f0709ae69f7ddcc7008d848c7358e88b19c5afd7fb",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e16561ba3a118750d6a29aedbd6690f249f42522ed3f7306ecaba92ed7d440cf"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/snapshot_release.py",
+      "/tmp/tmp0vl6b4p_/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "check",
+      "--for-action",
+      "submit-review"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"action\": \"check\", \"written\": [], \"applied\": false, \"diagnostics\": [], \"check_for\": \"submit-review\", \"requirement_id\": \"SYNTHETIC-PRD\", \"version\": \"0.3\", \"prd_status\": \"draft\", \"based_on_analysis_revision\": 3, \"analysis_revision\": 3, \"readiness\": \"ready_for_document\", \"target_version\": null, \"pending\": false, \"baseline_version\": null, \"baseline_verified\": false, \"status\": \"pass\", \"binding\": \"sha256:e6aca3f1390b6bae046ebb9a1e33c27a7512ca7bad0d2c6661d2115449a15714\"}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:19678d09f8fb0cb9cd223d354e9037ce3b346bc7c2a73ddb926dba98bf6ca505",
+      "prd/prd-events.jsonl": "sha256:eb3507e3dd1d8f42fe870e499a0622b38b2eb579061699364e9a0b9d6004a325",
+      "prd/prd-trace.json": "sha256:bf9654d0148730e9d3e160ed82e8a308c4204688dc96d3dd04977df5a10ca0bd",
+      "prd/prd.md": "sha256:412b92816290dbf4507299649fdbb25d81360ad41927d320219b674859b46981",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:afdf43b6a7207cfe2d4142f0709ae69f7ddcc7008d848c7358e88b19c5afd7fb",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e16561ba3a118750d6a29aedbd6690f249f42522ed3f7306ecaba92ed7d440cf"
+    },
+    "after": {
+      "requirement.json": "sha256:19678d09f8fb0cb9cd223d354e9037ce3b346bc7c2a73ddb926dba98bf6ca505",
+      "prd/prd-events.jsonl": "sha256:eb3507e3dd1d8f42fe870e499a0622b38b2eb579061699364e9a0b9d6004a325",
+      "prd/prd-trace.json": "sha256:bf9654d0148730e9d3e160ed82e8a308c4204688dc96d3dd04977df5a10ca0bd",
+      "prd/prd.md": "sha256:412b92816290dbf4507299649fdbb25d81360ad41927d320219b674859b46981",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:afdf43b6a7207cfe2d4142f0709ae69f7ddcc7008d848c7358e88b19c5afd7fb",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e16561ba3a118750d6a29aedbd6690f249f42522ed3f7306ecaba92ed7d440cf"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/snapshot_release.py",
+      "/tmp/tmp0vl6b4p_/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "submit-review",
+      "--binding",
+      "sha256:e6aca3f1390b6bae046ebb9a1e33c27a7512ca7bad0d2c6661d2115449a15714"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"action\": \"submit-review\", \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"requirement.json\", \"prd/prd-events.jsonl\"], \"applied\": true, \"diagnostics\": [], \"check_for\": \"submit-review\", \"requirement_id\": \"SYNTHETIC-PRD\", \"version\": \"0.3\", \"prd_status\": \"in_review\", \"based_on_analysis_revision\": 3, \"analysis_revision\": 3, \"readiness\": \"ready_for_document\", \"target_version\": null, \"pending\": false, \"baseline_version\": null, \"baseline_verified\": false, \"status\": \"pass\", \"candidate_dir\": \"/tmp/prd-candidate-h8ymvysk\"}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:19678d09f8fb0cb9cd223d354e9037ce3b346bc7c2a73ddb926dba98bf6ca505",
+      "prd/prd-events.jsonl": "sha256:eb3507e3dd1d8f42fe870e499a0622b38b2eb579061699364e9a0b9d6004a325",
+      "prd/prd-trace.json": "sha256:bf9654d0148730e9d3e160ed82e8a308c4204688dc96d3dd04977df5a10ca0bd",
+      "prd/prd.md": "sha256:412b92816290dbf4507299649fdbb25d81360ad41927d320219b674859b46981",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:afdf43b6a7207cfe2d4142f0709ae69f7ddcc7008d848c7358e88b19c5afd7fb",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e16561ba3a118750d6a29aedbd6690f249f42522ed3f7306ecaba92ed7d440cf"
+    },
+    "after": {
+      "requirement.json": "sha256:53e4b108ebbc59891852665ceda8c294e01066b18d4a68c2471efea1940711f2",
+      "prd/prd-events.jsonl": "sha256:99d127f804039de0c335514edbe64e21708196090444ecd522989a58c4231a24",
+      "prd/prd-trace.json": "sha256:b10e2c2a0026de154ff1095512e0cbb071cd30ccda2102d89f11879a0da1fc48",
+      "prd/prd.md": "sha256:aa1d83b688395357ff7d2e81be063a55e4a5cbe98e66a2d5af4fa728dac76cd9",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:afdf43b6a7207cfe2d4142f0709ae69f7ddcc7008d848c7358e88b19c5afd7fb",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e16561ba3a118750d6a29aedbd6690f249f42522ed3f7306ecaba92ed7d440cf"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/snapshot_release.py",
+      "/tmp/tmp0vl6b4p_/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "release"
+    ],
+    "exit_code": 2,
+    "stdout": "{\"action\": \"release\", \"written\": [], \"applied\": false, \"diagnostics\": [{\"rule\": 9, \"level\": \"fail\", \"item_id\": \"GAPREQ-1\", \"path\": \"prd.md/acceptance_criteria\", \"message\": \"存在待分析补充占位，不能发布。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"binding\", \"message\": \"缺少检查绑定值或送审稿已变；重新检查，发布须重新确认。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"confirmation\", \"message\": \"无有效产品经理确认：缺少产品经理明示确认的人和时间。\"}, {\"rule\": 12, \"level\": \"fail\", \"item_id\": \"GAPREQ-1\", \"path\": \"gap-requests.json\", \"message\": \"缺口 handed_over 未关闭；接收不代表内容已补足。\"}], \"check_for\": \"release\", \"requirement_id\": \"SYNTHETIC-PRD\", \"version\": \"0.3\", \"prd_status\": \"in_review\", \"based_on_analysis_revision\": 3, \"analysis_revision\": 3, \"readiness\": \"ready_for_document\", \"target_version\": \"1.0\", \"pending\": false, \"baseline_version\": null, \"baseline_verified\": false, \"status\": \"fail\"}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:53e4b108ebbc59891852665ceda8c294e01066b18d4a68c2471efea1940711f2",
+      "prd/prd-events.jsonl": "sha256:99d127f804039de0c335514edbe64e21708196090444ecd522989a58c4231a24",
+      "prd/prd-trace.json": "sha256:b10e2c2a0026de154ff1095512e0cbb071cd30ccda2102d89f11879a0da1fc48",
+      "prd/prd.md": "sha256:aa1d83b688395357ff7d2e81be063a55e4a5cbe98e66a2d5af4fa728dac76cd9",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:afdf43b6a7207cfe2d4142f0709ae69f7ddcc7008d848c7358e88b19c5afd7fb",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e16561ba3a118750d6a29aedbd6690f249f42522ed3f7306ecaba92ed7d440cf"
+    },
+    "after": {
+      "requirement.json": "sha256:53e4b108ebbc59891852665ceda8c294e01066b18d4a68c2471efea1940711f2",
+      "prd/prd-events.jsonl": "sha256:99d127f804039de0c335514edbe64e21708196090444ecd522989a58c4231a24",
+      "prd/prd-trace.json": "sha256:b10e2c2a0026de154ff1095512e0cbb071cd30ccda2102d89f11879a0da1fc48",
+      "prd/prd.md": "sha256:aa1d83b688395357ff7d2e81be063a55e4a5cbe98e66a2d5af4fa728dac76cd9",
+      "prd/gap-requests.json": "sha256:ba3fe58ef037fba62e82c5664ceda4f3da3de1dcc81f3ed0b09d315cedc15bfb",
+      "analysis/analysis-result.json": "sha256:afdf43b6a7207cfe2d4142f0709ae69f7ddcc7008d848c7358e88b19c5afd7fb",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e16561ba3a118750d6a29aedbd6690f249f42522ed3f7306ecaba92ed7d440cf"
+    }
+  }
+]

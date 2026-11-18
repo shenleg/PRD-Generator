@@ -1,0 +1,104 @@
+[
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/write_draft.py",
+      "/tmp/tmpl14wsay4/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "--patch",
+      "/tmp/tmpl14wsay4/inputs/1/numbering.json",
+      "--body",
+      "/tmp/tmpl14wsay4/inputs/1/body.md",
+      "--gaps",
+      "/tmp/tmpl14wsay4/inputs/gap-input.json",
+      "--candidate-dir",
+      "/tmp/tmpl14wsay4/candidate-1"
+    ],
+    "exit_code": 1,
+    "stdout": "{\"status\": \"warning\", \"diagnostics\": [{\"rule\": 12, \"level\": \"warning\", \"item_id\": \"GAPREQ-1\", \"path\": \"gap-requests.json/status\", \"message\": \"缺口仍待交接或确认。\"}], \"version\": \"0.1\", \"draft_kind\": \"formal_draft\", \"candidate_dir\": \"/tmp/tmpl14wsay4/candidate-1\", \"generated\": true, \"synced\": false, \"mapping\": [{\"mapping_key\": \"synthetic-query\", \"prd_id\": \"PRD-FR-001\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-1\"]}, {\"mapping_key\": \"synthetic-export\", \"prd_id\": \"PRD-FR-002\", \"analysis_refs\": [\"SYNTHETIC-PRD/FR-2\"]}], \"written\": [\"prd/prd.md\", \"prd/prd-trace.json\", \"prd/gap-requests.json\", \"requirement.json\", \"prd/prd-events.jsonl\"]}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:92a9b1842bc2b06912eaa372a887ed3ce60ee6f107396a7cadb9f58d1a532286",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    },
+    "after": {
+      "requirement.json": "sha256:5196495abd227a528d44a0757eb1c96c9e2c49928ee35a9e88f39ab2f1aeee51",
+      "prd/prd-events.jsonl": "sha256:a0e9a722e58878b831d7012c412372005bde281dd263948c78ad04d057b1c081",
+      "prd/gap-requests.json": "sha256:c1173e76de416afcbcdf067675c140e28766a0ab56f4da5b56884b3a12ecfaa0",
+      "prd/prd-trace.json": "sha256:b31c9319cbfaaab51cc91546805d3a9e1b08330a9ce06c08bd9e87cf95557ded",
+      "prd/prd.md": "sha256:b3144a8da6e7d72441b3c10f9f816b78a67b34fcdbd1e95097913d6e19e8609b",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/snapshot_release.py",
+      "/tmp/tmpl14wsay4/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "release"
+    ],
+    "exit_code": 2,
+    "stdout": "{\"action\": \"release\", \"written\": [], \"applied\": false, \"diagnostics\": [{\"rule\": 1, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"prd\", \"message\": \"PRD 校验必须为 pass；请处理列出的警告或错误。\"}, {\"rule\": 9, \"level\": \"fail\", \"item_id\": \"GAPREQ-1\", \"path\": \"prd.md/acceptance_criteria\", \"message\": \"存在待分析补充占位，不能发布。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"binding\", \"message\": \"缺少检查绑定值或送审稿已变；重新检查，发布须重新确认。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"confirmation\", \"message\": \"无有效产品经理确认：缺少产品经理明示确认的人和时间。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"requirement.json/prd/status\", \"message\": \"必须先提交该版评审并处于 in_review。\"}, {\"rule\": 12, \"level\": \"fail\", \"item_id\": \"GAPREQ-1\", \"path\": \"gap-requests.json\", \"message\": \"缺口 open 未关闭；接收不代表内容已补足。\"}, {\"rule\": 12, \"level\": \"warning\", \"item_id\": \"GAPREQ-1\", \"path\": \"gap-requests.json/status\", \"message\": \"缺口仍待交接或确认。\"}], \"check_for\": \"release\", \"requirement_id\": \"SYNTHETIC-PRD\", \"version\": \"0.1\", \"prd_status\": \"draft\", \"based_on_analysis_revision\": 1, \"analysis_revision\": 1, \"readiness\": \"ready_for_document\", \"target_version\": \"1.0\", \"pending\": false, \"baseline_version\": null, \"baseline_verified\": false, \"status\": \"fail\"}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:5196495abd227a528d44a0757eb1c96c9e2c49928ee35a9e88f39ab2f1aeee51",
+      "prd/prd-events.jsonl": "sha256:a0e9a722e58878b831d7012c412372005bde281dd263948c78ad04d057b1c081",
+      "prd/gap-requests.json": "sha256:c1173e76de416afcbcdf067675c140e28766a0ab56f4da5b56884b3a12ecfaa0",
+      "prd/prd-trace.json": "sha256:b31c9319cbfaaab51cc91546805d3a9e1b08330a9ce06c08bd9e87cf95557ded",
+      "prd/prd.md": "sha256:b3144a8da6e7d72441b3c10f9f816b78a67b34fcdbd1e95097913d6e19e8609b",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    },
+    "after": {
+      "requirement.json": "sha256:5196495abd227a528d44a0757eb1c96c9e2c49928ee35a9e88f39ab2f1aeee51",
+      "prd/prd-events.jsonl": "sha256:a0e9a722e58878b831d7012c412372005bde281dd263948c78ad04d057b1c081",
+      "prd/gap-requests.json": "sha256:c1173e76de416afcbcdf067675c140e28766a0ab56f4da5b56884b3a12ecfaa0",
+      "prd/prd-trace.json": "sha256:b31c9319cbfaaab51cc91546805d3a9e1b08330a9ce06c08bd9e87cf95557ded",
+      "prd/prd.md": "sha256:b3144a8da6e7d72441b3c10f9f816b78a67b34fcdbd1e95097913d6e19e8609b",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    }
+  },
+  {
+    "command": [
+      "/home/collin/.cache/uv/builds-v0/.tmpTTdcKH/bin/python",
+      "-I",
+      "-B",
+      "/home/collin/orca/PRD-Generator/skill/prd-generator/scripts/snapshot_release.py",
+      "/tmp/tmpl14wsay4/workspace/projects/synthetic/requirements/SYNTHETIC-PRD",
+      "release"
+    ],
+    "exit_code": 2,
+    "stdout": "{\"action\": \"release\", \"written\": [], \"applied\": false, \"diagnostics\": [{\"rule\": 1, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"prd\", \"message\": \"PRD 校验必须为 pass；请处理列出的警告或错误。\"}, {\"rule\": 4, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"prd.md\", \"message\": \"正文摘要变化，存在未处理手改；先比较并处理。\"}, {\"rule\": 4, \"level\": \"warning\", \"item_id\": \"$\", \"path\": \"prd.md\", \"message\": \"正文摘要变化，检测到未处理手工修改；须比较含义后处理。\"}, {\"rule\": 9, \"level\": \"fail\", \"item_id\": \"GAPREQ-1\", \"path\": \"prd.md\", \"message\": \"未关闭缺口缺少唯一待分析补充占位。\"}, {\"rule\": 9, \"level\": \"fail\", \"item_id\": \"GAPREQ-2\", \"path\": \"prd.md\", \"message\": \"占位未登记缺口。\"}, {\"rule\": 9, \"level\": \"fail\", \"item_id\": \"GAPREQ-2\", \"path\": \"prd.md/acceptance_criteria\", \"message\": \"存在待分析补充占位，不能发布。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"binding\", \"message\": \"缺少检查绑定值或送审稿已变；重新检查，发布须重新确认。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"confirmation\", \"message\": \"无有效产品经理确认：缺少产品经理明示确认的人和时间。\"}, {\"rule\": 10, \"level\": \"fail\", \"item_id\": \"$\", \"path\": \"requirement.json/prd/status\", \"message\": \"必须先提交该版评审并处于 in_review。\"}, {\"rule\": 12, \"level\": \"fail\", \"item_id\": \"GAPREQ-1\", \"path\": \"gap-requests.json\", \"message\": \"缺口 open 未关闭；接收不代表内容已补足。\"}, {\"rule\": 12, \"level\": \"warning\", \"item_id\": \"GAPREQ-1\", \"path\": \"gap-requests.json/status\", \"message\": \"缺口仍待交接或确认。\"}], \"check_for\": \"release\", \"requirement_id\": \"SYNTHETIC-PRD\", \"version\": \"0.1\", \"prd_status\": \"draft\", \"based_on_analysis_revision\": 1, \"analysis_revision\": 1, \"readiness\": \"ready_for_document\", \"target_version\": \"1.0\", \"pending\": false, \"baseline_version\": null, \"baseline_verified\": false, \"status\": \"fail\"}\n",
+    "stderr": "",
+    "before": {
+      "requirement.json": "sha256:5196495abd227a528d44a0757eb1c96c9e2c49928ee35a9e88f39ab2f1aeee51",
+      "prd/prd-events.jsonl": "sha256:a0e9a722e58878b831d7012c412372005bde281dd263948c78ad04d057b1c081",
+      "prd/gap-requests.json": "sha256:c1173e76de416afcbcdf067675c140e28766a0ab56f4da5b56884b3a12ecfaa0",
+      "prd/prd-trace.json": "sha256:b31c9319cbfaaab51cc91546805d3a9e1b08330a9ce06c08bd9e87cf95557ded",
+      "prd/prd.md": "sha256:3bf4303b525dad2f1c99852b476145a7255aad887444cac1d7fa1dcd70d70f39",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    },
+    "after": {
+      "requirement.json": "sha256:5196495abd227a528d44a0757eb1c96c9e2c49928ee35a9e88f39ab2f1aeee51",
+      "prd/prd-events.jsonl": "sha256:a0e9a722e58878b831d7012c412372005bde281dd263948c78ad04d057b1c081",
+      "prd/gap-requests.json": "sha256:c1173e76de416afcbcdf067675c140e28766a0ab56f4da5b56884b3a12ecfaa0",
+      "prd/prd-trace.json": "sha256:b31c9319cbfaaab51cc91546805d3a9e1b08330a9ce06c08bd9e87cf95557ded",
+      "prd/prd.md": "sha256:3bf4303b525dad2f1c99852b476145a7255aad887444cac1d7fa1dcd70d70f39",
+      "analysis/analysis-result.json": "sha256:bd54f7e81ac6cbf9e2c2c85c8a488ef19ab5476957b98a4dad4693441e8ebd02",
+      "analysis/source-manifest.json": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3",
+      "analysis/analysis-events.jsonl": "sha256:e264fa63200fb1e33a7598463b37427905c92e3786ade4a509f0a4f08175d79f"
+    }
+  }
+]
