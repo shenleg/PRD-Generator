@@ -1,0 +1,11 @@
+[
+  {
+    "source_id": "SRC-1",
+    "name": "合成测试资料",
+    "path": "synthetic.md",
+    "type": "input_document",
+    "credibility": "仅供格式测试",
+    "last_updated": null,
+    "revision": 1
+  }
+]

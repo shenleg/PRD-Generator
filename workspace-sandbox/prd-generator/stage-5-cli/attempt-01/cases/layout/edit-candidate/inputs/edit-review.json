@@ -1,0 +1,18 @@
+{
+  "mode": "layout",
+  "base_prd_version": "0.1",
+  "base_analysis_revision": 1,
+  "base_content_hash": "sha256:f7c682c244e8e323ca1a50343a740934f0933950b67f3af0fa7d0bff97dc778f",
+  "summary": "合成CLI边界验证，不代表自然语言人工签核",
+  "meaning_reviewed": true,
+  "keep_confirmed": false,
+  "comparison": {
+    "changed": false,
+    "content_hash": "sha256:f7c682c244e8e323ca1a50343a740934f0933950b67f3af0fa7d0bff97dc778f",
+    "expected_content_hash": "sha256:f7c682c244e8e323ca1a50343a740934f0933950b67f3af0fa7d0bff97dc778f",
+    "baseline_available": true,
+    "diff": "",
+    "affected_prd_ids": [],
+    "affected_sections": []
+  }
+}

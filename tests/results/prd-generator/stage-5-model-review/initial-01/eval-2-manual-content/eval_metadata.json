@@ -1,0 +1,5 @@
+{
+  "eval_id": 2,
+  "eval_name": "manual-content",
+  "prompt": "manual-item 和 manual-scope 两份独立需求的文档都被我手工改过。请检查实际改动，记录检测结果并告诉我下一步应该怎么处理；先不要替我保留、撤回或修改分析。如果需要我决定，请具体说明并提问，然后停下等待回答。\n这些输入明确为合成验证，不代表真实业务。按你加载的Skill能力处理；若Skill明确不支持编辑，说明边界并保持工作稿不变，不自写实现绕过边界。只使用给定Skill目录内的生产工具；不读测试源码、人工参考、preparation-only、其他运行或其他版本的Skill。不修改analysis、common、其他元数据块，不发布、安装、Git操作或删除文件。候选、逐次脚本JSON响应和运行命令保存在本run的artifacts中，最多连续修正三次，失败材料保留。加载的Skill根是 /home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-model/iteration-1/old-skill-snapshot；工作区是 /home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-model/iteration-1/manual-content/old_skill/workspace；最终说明保存到 /home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-model/iteration-1/manual-content/old_skill/outputs/model-response.md。最终说明逐场景区分实际保存、拒绝、警告、未执行，不把AI语义判断冒充人工评审。不要在候选中顺带润色其他内容。"
+}

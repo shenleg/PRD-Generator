@@ -1,0 +1,42 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpRV6gEL/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-01/source-snapshot/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-01/cases/missing-baseline/requirement",
+    "--edit",
+    "layout",
+    "--body",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-01/cases/missing-baseline/candidate.md",
+    "--base-prd-version",
+    "0.1",
+    "--base-analysis-revision",
+    "1",
+    "--base-content-hash",
+    "sha256:cbc96c9d8091f1620d0a2904baf029c62b426d81d4c9be859007c7f2acafe5ba",
+    "--edit-summary",
+    "合成CLI边界验证，不代表自然语言人工签核",
+    "--candidate-dir",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-01/cases/missing-baseline/edit-candidate",
+    "--meaning-reviewed"
+  ],
+  "returncode": 2,
+  "response": {
+    "status": "fail",
+    "diagnostics": [
+      {
+        "rule": 0,
+        "level": "fail",
+        "item_id": "$",
+        "path": "$",
+        "message": "缺少可核验旧正文，不能认定排版无害或定位全部不一致；请补 --previous-body"
+      }
+    ],
+    "candidate_dir": null,
+    "written": [],
+    "edited": false,
+    "transaction_complete": false,
+    "recovery_required": false
+  }
+}

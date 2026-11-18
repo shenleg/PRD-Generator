@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "requirement_id": "SYNTHETIC-PRD",
+  "meta": {
+    "counters": {
+      "FR": 1
+    },
+    "draft_kind": "formal_draft",
+    "generated_under_readiness": "ready_for_document",
+    "content_hash": "sha256:b63bd7afa68812da88eab9e8f7ca85204f6514f606269b9652b6b621b1c38b38",
+    "section_source_digests": {
+      "background": "sha256:0eb792ab1ef5bdc6cfb1653a545a710a28553e1e6ed0a0cd84b97d339efd83d5",
+      "scope": "sha256:86228ebd4538aa80f04d12116cd9d3b4dad87bfed7ec93077dbcf0f0d666d71c",
+      "scenarios": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead",
+      "functional_requirements": "sha256:ea854138af18694755ea5c11fdacb1bb57f8446476aada32a2e77e55e9950fe9",
+      "business_rules": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead",
+      "flows_states": "sha256:15578a45e607d1732550c6b3b50d18b429dcb97312a7b6d049201c896a110bf0",
+      "boundaries_exceptions": "sha256:f8e887d42e0311d6c5dc32965225e8208adf99cd5f807354d5b97718f6df1d1b",
+      "constraints": "sha256:15f8af6fa6e3a5d66bd1981b7cdf45b065dcaf6d3bc63acb951cb6ff03d4af74",
+      "acceptance_criteria": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead",
+      "ux": "sha256:ce04eeca2f8f3c539339816375839777750895b3afc89f3463548e33de645ccb",
+      "technical": "sha256:968ded902767d85c5236465586a5d75d414f4547be2081c4a2c5f53d98d4a885",
+      "impact": "sha256:0eb792ab1ef5bdc6cfb1653a545a710a28553e1e6ed0a0cd84b97d339efd83d5",
+      "residuals": "sha256:5a8ccec796c0745d8b1a5690da3b86adcf3dbb6ca2749d4e8fb06c3d6abfe726",
+      "appendix": "sha256:248aababd940483e173528a427e8b6246affa694736a06148649f638503f872a"
+    },
+    "content_baseline": "草稿，待产品经理确认后发布。\n\n<!-- prd:section info -->\n## 文档信息\n\n| 字段 | 值 |\n| --- | --- |\n| 需求编号 | SYNTHETIC-PRD |\n| 标题 | 合成导出需求（非真实业务） |\n| PRD 版本 | 0.2 |\n| 状态 | draft |\n| 草稿类型 | formal_draft |\n| 基于的分析修订号 | 1 |\n| 生成时间 | 2026-11-17T20:20:11.023503+00:00 |\n| 未覆盖的分析项 | value_assessment、technical_feasibility、impact_analysis |\n<!-- /prd:section -->\n\n<!-- prd:section changes -->\n## 变更记录\n\n- 2026-11-17T20:20:10.357429+00:00 · 0.1 · 首次生成工作稿（PRD-FR-001）\n- 2026-11-17T20:20:11.023503+00:00 · 0.2 · 合成CLI边界验证，不代表自然语言人工签核（PRD-FR-001）\n<!-- /prd:section -->\n\n<!-- prd:section scope -->\n分析结果中无此项\n<!-- /prd:section -->\n\n<!-- prd:section scenarios -->\n分析结果中无此项\n<!-- /prd:section -->\n\n<!-- prd:section functional_requirements -->\n| 正式编号与功能需求 | 分析来源 |\n| --- | --- |\n| <!-- prd:item PRD-FR-001 -->PRD-FR-001：【与分析不一致】用户可以导出全部数据；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\n<!-- /prd:section -->\n\n<!-- prd:section business_rules -->\n分析结果中无此项\n<!-- /prd:section -->\n\n<!-- prd:section boundaries_exceptions -->\n分析结果中无此项\n<!-- /prd:section -->\n\n<!-- prd:section acceptance_criteria -->\n分析结果中无此项\n<!-- /prd:section -->\n\n<!-- prd:section residuals -->\n<!-- prd:residual SYNTHETIC-PRD/PRD-FR-001 -->\n【与分析不一致】差异：手工扩大导出范围，建议回交分析核实后同步。\n<!-- /prd:residual -->\n<!-- /prd:section -->\n\n<!-- prd:section appendix -->\nSRC-1\n<!-- /prd:section -->\n"
+  },
+  "items": [
+    {
+      "prd_id": "PRD-FR-001",
+      "kind": "functional_requirement",
+      "introduced_in": "0.1",
+      "mapping_key": "synthetic-query",
+      "analysis_refs": [
+        "SYNTHETIC-PRD/FR-1"
+      ],
+      "tag": "confirmed",
+      "status": "active",
+      "source_digest": "sha256:1ee788741fb945ec3e47e1ebdc58e735bf00a158c824b0ccb7a6985c60581986"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpcs7pxX/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/cases/unreviewed-layout/requirement",
+    "--inspect-edits"
+  ],
+  "returncode": 1,
+  "response": {
+    "status": "warning",
+    "diagnostics": [
+      {
+        "rule": 3,
+        "level": "warning",
+        "item_id": "$",
+        "path": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/cases/unreviewed-layout/requirement/analysis/analysis-events.jsonl",
+        "message": "辅助分析事件不可用，仅按条目比较生成变更摘要，不推断变更原因。"
+      }
+    ],
+    "allowed": true,
+    "pending": false,
+    "based_on_analysis_revision": 1,
+    "analysis_revision": 1,
+    "items": [
+      {
+        "prd_id": "PRD-FR-001",
+        "analysis_refs": [
+          "SYNTHETIC-PRD/FR-1"
+        ],
+        "category": "unchanged",
+        "source_digest": "sha256:1ee788741fb945ec3e47e1ebdc58e735bf00a158c824b0ccb7a6985c60581986"
+      }
+    ],
+    "added": [],
+    "draft_kind": "formal_draft",
+    "base_prd_version": "0.1",
+    "uncovered_analysis": [
+      "value_assessment",
+      "technical_feasibility",
+      "impact_analysis"
+    ],
+    "manual_edits": {
+      "changed": false,
+      "content_hash": "sha256:39eb30d609410e331ce68debf695b16af506661982ce066b6a200b4bed9f4eff",
+      "expected_content_hash": "sha256:39eb30d609410e331ce68debf695b16af506661982ce066b6a200b4bed9f4eff",
+      "baseline_available": true,
+      "diff": "",
+      "affected_prd_ids": [],
+      "affected_sections": []
+    },
+    "sections": [
+      {
+        "section": "background",
+        "category": "unchanged",
+        "source_digest": "sha256:0eb792ab1ef5bdc6cfb1653a545a710a28553e1e6ed0a0cd84b97d339efd83d5"
+      },
+      {
+        "section": "scope",
+        "category": "unchanged",
+        "source_digest": "sha256:86228ebd4538aa80f04d12116cd9d3b4dad87bfed7ec93077dbcf0f0d666d71c"
+      },
+      {
+        "section": "scenarios",
+        "category": "unchanged",
+        "source_digest": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead"
+      },
+      {
+        "section": "functional_requirements",
+        "category": "unchanged",
+        "source_digest": "sha256:ea854138af18694755ea5c11fdacb1bb57f8446476aada32a2e77e55e9950fe9"
+      },
+      {
+        "section": "business_rules",
+        "category": "unchanged",
+        "source_digest": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead"
+      },
+      {
+        "section": "flows_states",
+        "category": "unchanged",
+        "source_digest": "sha256:15578a45e607d1732550c6b3b50d18b429dcb97312a7b6d049201c896a110bf0"
+      },
+      {
+        "section": "boundaries_exceptions",
+        "category": "unchanged",
+        "source_digest": "sha256:f8e887d42e0311d6c5dc32965225e8208adf99cd5f807354d5b97718f6df1d1b"
+      },
+      {
+        "section": "constraints",
+        "category": "unchanged",
+        "source_digest": "sha256:15f8af6fa6e3a5d66bd1981b7cdf45b065dcaf6d3bc63acb951cb6ff03d4af74"
+      },
+      {
+        "section": "acceptance_criteria",
+        "category": "unchanged",
+        "source_digest": "sha256:970ea7d17fa36f759de9b33c986839bb465d60dd6a140f052325fefe94af1ead"
+      },
+      {
+        "section": "ux",
+        "category": "unchanged",
+        "source_digest": "sha256:ce04eeca2f8f3c539339816375839777750895b3afc89f3463548e33de645ccb"
+      },
+      {
+        "section": "technical",
+        "category": "unchanged",
+        "source_digest": "sha256:968ded902767d85c5236465586a5d75d414f4547be2081c4a2c5f53d98d4a885"
+      },
+      {
+        "section": "impact",
+        "category": "unchanged",
+        "source_digest": "sha256:0eb792ab1ef5bdc6cfb1653a545a710a28553e1e6ed0a0cd84b97d339efd83d5"
+      },
+      {
+        "section": "residuals",
+        "category": "unchanged",
+        "source_digest": "sha256:5a8ccec796c0745d8b1a5690da3b86adcf3dbb6ca2749d4e8fb06c3d6abfe726"
+      },
+      {
+        "section": "appendix",
+        "category": "unchanged",
+        "source_digest": "sha256:248aababd940483e173528a427e8b6246affa694736a06148649f638503f872a"
+      }
+    ],
+    "section_basis_available": true,
+    "changed": false,
+    "content_hash": "sha256:39eb30d609410e331ce68debf695b16af506661982ce066b6a200b4bed9f4eff",
+    "expected_content_hash": "sha256:39eb30d609410e331ce68debf695b16af506661982ce066b6a200b4bed9f4eff",
+    "baseline_available": true,
+    "diff": "",
+    "affected_prd_ids": [],
+    "affected_sections": [],
+    "base_analysis_revision": 1,
+    "written": []
+  }
+}

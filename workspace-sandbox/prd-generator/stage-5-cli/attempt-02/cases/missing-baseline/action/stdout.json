@@ -1,0 +1,1 @@
+{"status": "fail", "diagnostics": [{"rule": 0, "level": "fail", "item_id": "$", "path": "$", "message": "缺少可核验旧正文，不能认定排版无害或定位全部不一致；请补 --previous-body"}], "candidate_dir": null, "written": [], "edited": false, "transaction_complete": false, "recovery_required": false}

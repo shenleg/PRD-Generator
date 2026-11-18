@@ -1,0 +1,8 @@
+#!/bin/sh
+# 两份候选分别来自对应正文；layout-request 仅将“用户可以”改为“用户可”，manual-layout 保留已核对的加粗。
+ROOT=/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-model/iteration-1/current-skill-snapshot
+TRIAL=/home/collin/orca/PRD-Generator/.claude/worktrees/agent-ab17c6bd5a2d7e52a/stage-5-trial
+uv run --offline --no-project --python /usr/bin/python3 --with-requirements "$ROOT/requirement-analyst/scripts/requirements.txt" python -I -B "$ROOT/prd-generator/scripts/write_draft.py" "$TRIAL/workspace/layout-request" --edit layout --base-prd-version 0.1 --base-analysis-revision 1 --base-content-hash sha256:eee0ee2e5ffa19ac25fa13eb14c151d112ca81ec9575c91889ef8f1a8eb839b7 --edit-summary '将“用户可以”简化为“用户可”，不改变导出规则。' --body "$TRIAL/artifacts/layout-request-candidate.md" --meaning-reviewed --candidate-dir "$TRIAL/artifacts/layout-request-save-candidate" > "$TRIAL/artifacts/layout-request-save.json" 2> "$TRIAL/artifacts/layout-request-save.stderr"
+printf 'layout-request save exit=%s\n' "$?"
+uv run --offline --no-project --python /usr/bin/python3 --with-requirements "$ROOT/requirement-analyst/scripts/requirements.txt" python -I -B "$ROOT/prd-generator/scripts/write_draft.py" "$TRIAL/workspace/manual-layout" --edit layout --base-prd-version 0.1 --base-analysis-revision 1 --base-content-hash sha256:5ee10ebe8d797fc6e7e6269edbd3d244b7aae8b88e90912f3d22b9e38e97dde6 --edit-summary '保留功能需求中“用户可以”的加粗排版。' --body "$TRIAL/artifacts/manual-layout-candidate.md" --meaning-reviewed --candidate-dir "$TRIAL/artifacts/manual-layout-save-candidate" > "$TRIAL/artifacts/manual-layout-save.json" 2> "$TRIAL/artifacts/manual-layout-save.stderr"
+printf 'manual-layout save exit=%s\n' "$?"

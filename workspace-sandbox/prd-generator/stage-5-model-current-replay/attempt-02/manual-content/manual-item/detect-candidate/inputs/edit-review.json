@@ -1,0 +1,22 @@
+{
+  "mode": "detect",
+  "base_prd_version": "0.1",
+  "base_analysis_revision": 1,
+  "base_content_hash": "sha256:71157bbf0d92976700ede31e20020bf86df4bc7f86c051f4f79b3a27bba1747a",
+  "summary": "检测到 PRD-FR-001 从导出当前筛选结果改为导出全部数据，属于内容变化。",
+  "meaning_reviewed": false,
+  "keep_confirmed": false,
+  "comparison": {
+    "changed": true,
+    "content_hash": "sha256:71157bbf0d92976700ede31e20020bf86df4bc7f86c051f4f79b3a27bba1747a",
+    "expected_content_hash": "sha256:3dbfc5edab12da302b965508de9f83e643403b25e42cd784043708fab5be9ab3",
+    "baseline_available": true,
+    "diff": "--- last-saved/prd.md\n+++ current/prd.md\n@@ -32,7 +32,7 @@\n <!-- prd:section functional_requirements -->\n | 正式编号与功能需求 | 分析来源 |\n | --- | --- |\n-| <!-- prd:item PRD-FR-001 -->PRD-FR-001：用户可以导出当前筛选结果；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\n+| <!-- prd:item PRD-FR-001 -->PRD-FR-001：用户可以导出全部数据；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\n <!-- /prd:section -->\n \n <!-- prd:section business_rules -->\n",
+    "affected_prd_ids": [
+      "PRD-FR-001"
+    ],
+    "affected_sections": [
+      "functional_requirements"
+    ]
+  }
+}

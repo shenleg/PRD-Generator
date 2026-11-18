@@ -1,0 +1,15 @@
+usage: validate_prd.py [-h] [--related-analysis RELATED_ANALYSIS]
+                       [--previous-trace PREVIOUS_TRACE]
+                       [--numbering-patch NUMBERING_PATCH]
+                       requirement_dir
+
+只读校验 PRD，不生成、不发布、不写分析。
+
+positional arguments:
+  requirement_dir
+
+options:
+  -h, --help            show this help message and exit
+  --related-analysis RELATED_ANALYSIS
+  --previous-trace PREVIOUS_TRACE
+  --numbering-patch NUMBERING_PATCH

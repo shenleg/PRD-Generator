@@ -1,0 +1,22 @@
+{
+  "mode": "layout",
+  "base_prd_version": "0.1",
+  "base_analysis_revision": 1,
+  "base_content_hash": "sha256:f84e6cb52873c6ab4b22639175da13f9ba128a2c37f5dd464ecaa86a8d810353",
+  "summary": "合成CLI边界验证，不代表自然语言人工签核",
+  "meaning_reviewed": true,
+  "keep_confirmed": false,
+  "comparison": {
+    "changed": true,
+    "content_hash": "sha256:f84e6cb52873c6ab4b22639175da13f9ba128a2c37f5dd464ecaa86a8d810353",
+    "expected_content_hash": "sha256:70ca768a000b9146fd3300a7765dddcd9c2d58a5f01f40a0b30ff7fd3d0a6cc6",
+    "baseline_available": true,
+    "diff": "--- last-saved/prd.md\n+++ current/prd.md\n@@ -32,7 +32,7 @@\n <!-- prd:section functional_requirements -->\n | 正式编号与功能需求 | 分析来源 |\n | --- | --- |\n-| <!-- prd:item PRD-FR-001 -->PRD-FR-001：用户可以导出当前筛选结果；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\n+| <!-- prd:item PRD-FR-001 -->PRD-FR-001：**用户可以**导出当前筛选结果；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\n <!-- /prd:section -->\n \n <!-- prd:section business_rules -->\n",
+    "affected_prd_ids": [
+      "PRD-FR-001"
+    ],
+    "affected_sections": [
+      "functional_requirements"
+    ]
+  }
+}

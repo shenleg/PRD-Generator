@@ -1,0 +1,20 @@
+{
+  "mode": "keep",
+  "base_prd_version": "0.1",
+  "base_analysis_revision": 1,
+  "base_content_hash": "sha256:c06624251343e27760c035b12e912a287d5e86b8493160346382bc2932b38b05",
+  "summary": "合成CLI边界验证，不代表自然语言人工签核",
+  "meaning_reviewed": false,
+  "keep_confirmed": true,
+  "comparison": {
+    "changed": true,
+    "content_hash": "sha256:c06624251343e27760c035b12e912a287d5e86b8493160346382bc2932b38b05",
+    "expected_content_hash": "sha256:a5cf35e40334e3dc5b668e79b7ba50a274f10c01be069b4cd482a10321a04cd6",
+    "baseline_available": true,
+    "diff": "--- last-saved/prd.md\n+++ current/prd.md\n@@ -22,7 +22,7 @@\n <!-- /prd:section -->\n \n <!-- prd:section scope -->\n-分析结果中无此项\n+允许跨租户导出\n <!-- /prd:section -->\n \n <!-- prd:section scenarios -->\n",
+    "affected_prd_ids": [],
+    "affected_sections": [
+      "scope"
+    ]
+  }
+}

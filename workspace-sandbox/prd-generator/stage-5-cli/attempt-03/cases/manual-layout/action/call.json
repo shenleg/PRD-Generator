@@ -1,0 +1,53 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpcs7pxX/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/cases/manual-layout/requirement",
+    "--edit",
+    "layout",
+    "--body",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/cases/manual-layout/candidate.md",
+    "--base-prd-version",
+    "0.1",
+    "--base-analysis-revision",
+    "1",
+    "--base-content-hash",
+    "sha256:3780cdc94125de403960b2ec6b833f4d791c3ce4f9e3603725441d227177b5cd",
+    "--edit-summary",
+    "合成CLI边界验证，不代表自然语言人工签核",
+    "--candidate-dir",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/cases/manual-layout/edit-candidate",
+    "--meaning-reviewed"
+  ],
+  "returncode": 0,
+  "response": {
+    "status": "pass",
+    "diagnostics": [],
+    "version": "0.2",
+    "edited": true,
+    "detected": false,
+    "generated": false,
+    "manual_edits": {
+      "changed": true,
+      "content_hash": "sha256:3780cdc94125de403960b2ec6b833f4d791c3ce4f9e3603725441d227177b5cd",
+      "expected_content_hash": "sha256:f85282fd2e2adc483ed97df867ff5f154dcba04c78f0f736e7fc2accc733b7a6",
+      "baseline_available": true,
+      "diff": "--- last-saved/prd.md\n+++ current/prd.md\n@@ -32,7 +32,7 @@\n <!-- prd:section functional_requirements -->\n | 正式编号与功能需求 | 分析来源 |\n | --- | --- |\n-| <!-- prd:item PRD-FR-001 -->PRD-FR-001：用户可以导出当前筛选结果；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\n+| <!-- prd:item PRD-FR-001 -->PRD-FR-001：**用户可以**导出当前筛选结果；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\n <!-- /prd:section -->\n \n <!-- prd:section business_rules -->\n",
+      "affected_prd_ids": [
+        "PRD-FR-001"
+      ],
+      "affected_sections": [
+        "functional_requirements"
+      ]
+    },
+    "candidate_dir": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/cases/manual-layout/edit-candidate",
+    "written": [
+      "prd/prd.md",
+      "prd/prd-trace.json",
+      "requirement.json",
+      "prd/prd-events.jsonl"
+    ]
+  }
+}

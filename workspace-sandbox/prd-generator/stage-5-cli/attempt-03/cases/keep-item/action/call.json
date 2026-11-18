@@ -1,0 +1,61 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpcs7pxX/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/cases/keep-item/requirement",
+    "--edit",
+    "keep",
+    "--body",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/cases/keep-item/candidate.md",
+    "--base-prd-version",
+    "0.1",
+    "--base-analysis-revision",
+    "1",
+    "--base-content-hash",
+    "sha256:92469591e9f32523816006188d801b125295ae974c5aa762d4c07756f6df411e",
+    "--edit-summary",
+    "合成CLI边界验证，不代表自然语言人工签核",
+    "--candidate-dir",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/cases/keep-item/edit-candidate",
+    "--keep-confirmed"
+  ],
+  "returncode": 1,
+  "response": {
+    "status": "warning",
+    "diagnostics": [
+      {
+        "rule": 8,
+        "level": "warning",
+        "item_id": "SYNTHETIC-PRD/PRD-FR-001",
+        "path": "prd.md",
+        "message": "存在与分析不一致的内容，不得发布。"
+      }
+    ],
+    "version": "0.2",
+    "edited": true,
+    "detected": true,
+    "generated": false,
+    "manual_edits": {
+      "changed": true,
+      "content_hash": "sha256:92469591e9f32523816006188d801b125295ae974c5aa762d4c07756f6df411e",
+      "expected_content_hash": "sha256:da6dfbfc19477da564cafec6dcf003d3b0e5d7285da12f3283646b36e90d3b29",
+      "baseline_available": true,
+      "diff": "--- last-saved/prd.md\n+++ current/prd.md\n@@ -32,7 +32,7 @@\n <!-- prd:section functional_requirements -->\n | 正式编号与功能需求 | 分析来源 |\n | --- | --- |\n-| <!-- prd:item PRD-FR-001 -->PRD-FR-001：用户可以导出当前筛选结果；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\n+| <!-- prd:item PRD-FR-001 -->PRD-FR-001：用户可以导出全部数据；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\n <!-- /prd:section -->\n \n <!-- prd:section business_rules -->\n",
+      "affected_prd_ids": [
+        "PRD-FR-001"
+      ],
+      "affected_sections": [
+        "functional_requirements"
+      ]
+    },
+    "candidate_dir": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/cases/keep-item/edit-candidate",
+    "written": [
+      "prd/prd.md",
+      "prd/prd-trace.json",
+      "requirement.json",
+      "prd/prd-events.jsonl"
+    ]
+  }
+}

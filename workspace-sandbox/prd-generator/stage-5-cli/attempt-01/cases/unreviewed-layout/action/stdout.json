@@ -1,0 +1,1 @@
+{"status": "fail", "diagnostics": [{"rule": 0, "level": "fail", "item_id": "$", "path": "$", "message": "排版须先逐差异核对含义，不能以用户坚持代替语义核对"}], "candidate_dir": null, "written": [], "edited": false, "transaction_complete": false, "recovery_required": false}

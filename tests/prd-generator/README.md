@@ -1,6 +1,6 @@
 # PRD Generator 测试
 
-本目录收纳生成侧格式、缺口接收、门禁、编号、首稿保存、增量同步及公开 CLI 留证测试。程序结果、模型行为和人工认可分别记录；阶段 3～4 已获最终人工认可，程序、模型及验收分别见独立记录，当前不包含正式发布能力。
+本目录收纳生成侧格式、缺口接收、门禁、编号、首稿保存、增量同步及公开 CLI 留证测试。程序结果、模型行为和人工认可分别记录；阶段 3～5 已获最终人工认可，阶段 5 的原模型问题、修复及当前源码重放分别留证，当前不包含正式发布能力。
 
 ## 维护代码
 
@@ -25,6 +25,12 @@
 | `prepare_prd_sync_model.py` | 冻结隔离模型输入与Skill快照，不把程序候选或参考答案喂给模型 |
 | `grade_prd_sync_model.py`、`build_prd_sync_review.py` | 从真实文件评分客观断言，并使用Skill Creator官方工具生成静态评审页 |
 | `run_model_sync_replay.py` | 用当前冻结源码重放实际模型成功候选，单独记录旧稿章节证据不足，不称新模型调用 |
+| `test_prd_edit_validation.py` | 兼容正文基准、不一致目标及遗留配对、只读及发布阻断诊断 |
+| `test_prd_edits.py` | 排版、手改检测/保留、身份及摘要、旧稿证据、并发恢复与空集合提示回归 |
+| `run_prd_edits.py`、`test_prd_edit_runs.py` | 十个编辑分支的公开CLI留证，不覆盖旧目录 |
+| `prepare_prd_edit_model.py` | 冻结阶段5四份模型运行输入与源码，不泄露参考或后续回答 |
+| `grade_prd_edit_model.py`、`build_prd_edit_review.py` | 原实际产物评分和官方静态评审页，保留模型发现的质量失败 |
+| `run_model_edit_replay.py` | 当前冻结源码重放原始模型候选，修复验证不称新模型调用 |
 
 代码根定位已适应分类后的目录。原始夹具、参考和认可记录仍在 `tests/fixtures/prd-generator/`、`tests/expected/prd-generator/`、`tests/results/prd-generator/`，没有重写旧哈希。
 
@@ -55,6 +61,7 @@ uv run --offline --no-project --python /usr/bin/python3 --with-requirements test
 - [阶段 2](../results/prd-generator/stage-2.md)
 - [阶段 3：首稿实施与试跑](../results/prd-generator/stage-3.md)
 - [阶段 4：同步实施与验证进度](../results/prd-generator/stage-4.md)
+- [阶段 5：实施认可](../results/prd-generator/stage-5-approval.json)、[阶段记录](../results/prd-generator/stage-5.md)、[最终评审页](../results/prd-generator/stage-5-model-review/final-03/review.html)、[最终人工认可](../results/prd-generator/stage-5-final-approval.json)：原模型与修复重放分别留证
 - [阶段 4 实际输出评审页](../results/prd-generator/stage-4-model-review/final-02/review.html)
 - [阶段 4 模型分析及人工评审指南](../results/prd-generator/stage-4-review-guide.md)
 - [实际草稿评审页](../results/prd-generator/stage-3-model-review.html)

@@ -1,0 +1,59 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpRV6gEL/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-01/source-snapshot/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-01/cases/keep-section/requirement",
+    "--edit",
+    "keep",
+    "--body",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-01/cases/keep-section/candidate.md",
+    "--base-prd-version",
+    "0.1",
+    "--base-analysis-revision",
+    "1",
+    "--base-content-hash",
+    "sha256:c06624251343e27760c035b12e912a287d5e86b8493160346382bc2932b38b05",
+    "--edit-summary",
+    "合成CLI边界验证，不代表自然语言人工签核",
+    "--candidate-dir",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-01/cases/keep-section/edit-candidate",
+    "--keep-confirmed"
+  ],
+  "returncode": 1,
+  "response": {
+    "status": "warning",
+    "diagnostics": [
+      {
+        "rule": 8,
+        "level": "warning",
+        "item_id": "SYNTHETIC-PRD/prd/sections/scope",
+        "path": "prd.md",
+        "message": "存在与分析不一致的内容，不得发布。"
+      }
+    ],
+    "version": "0.2",
+    "edited": true,
+    "detected": true,
+    "generated": false,
+    "manual_edits": {
+      "changed": true,
+      "content_hash": "sha256:c06624251343e27760c035b12e912a287d5e86b8493160346382bc2932b38b05",
+      "expected_content_hash": "sha256:a5cf35e40334e3dc5b668e79b7ba50a274f10c01be069b4cd482a10321a04cd6",
+      "baseline_available": true,
+      "diff": "--- last-saved/prd.md\n+++ current/prd.md\n@@ -22,7 +22,7 @@\n <!-- /prd:section -->\n \n <!-- prd:section scope -->\n-分析结果中无此项\n+允许跨租户导出\n <!-- /prd:section -->\n \n <!-- prd:section scenarios -->\n",
+      "affected_prd_ids": [],
+      "affected_sections": [
+        "scope"
+      ]
+    },
+    "candidate_dir": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-01/cases/keep-section/edit-candidate",
+    "written": [
+      "prd/prd.md",
+      "prd/prd-trace.json",
+      "requirement.json",
+      "prd/prd-events.jsonl"
+    ]
+  }
+}

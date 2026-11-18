@@ -1,4 +1,4 @@
-"""编排首稿及显式增量同步的候选校验与受并发保护的保存；不执行编辑、评审或发布。"""
+"""编排首稿、显式同步与经语义核对的编辑保存；复用候选、并发及恢复，不评审或发布。"""
 
 import argparse
 import base64
@@ -11,6 +11,8 @@ from functools import lru_cache
 import importlib.util
 import json
 import os
+import re
+from collections import Counter
 from pathlib import Path
 import tempfile
 
@@ -170,9 +172,79 @@ def recover_draft(requirement_dir: Path) -> dict:
             if not isinstance(journal, dict):
                 raise ValueError("恢复记录不是对象")
             _finish(root, journal)
-            return {**journal["result"], "recovered": True, "written": list(TARGETS)}
+            written = list(TARGETS) if journal['result'].get('generated') else [entry['path'] for entry in journal['entries'] if entry['before'] != entry['after']]
+            return {**journal['result'], 'recovered': True, 'written': written}
     except (OSError, ValueError, KeyError, TypeError) as error:
         return {"status": "fail", "diagnostics": [_diagnostic(error, JOURNAL)], "written": [], "recovery_required": (root / JOURNAL).exists()}
+
+
+def _new_candidate(root, supplied, protected=()):
+    """建立正式需求和只读输入目录外的新候选目录，返回路径；冲突或越界抛出异常。"""
+    if supplied is None:
+        return Path(tempfile.mkdtemp(prefix='prd-candidate-'))
+    _safe(Path(supplied))
+    path = Path(os.path.abspath(supplied))
+    parents = [root, *(Path(os.path.abspath(item)).parent for item in protected)]
+    if any(path == parent or parent in path.parents for parent in parents):
+        raise ValueError('候选目录必须在正式需求和关联分析目录之外')
+    path.mkdir(parents=True, exist_ok=False)
+    return path
+
+
+def _stage_payload(root, candidate, payload, related, previous, diagnostics):
+    """在候选目录校验整份产物并保留诊断，返回是否非失败；不触碰正式产物。"""
+    for name, raw in payload.items():
+        path = candidate / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(raw)
+    for name in ('analysis-result.json', 'source-manifest.json'):
+        try:
+            raw = _raw(root / 'analysis' / name)
+        except OSError:
+            if name != 'source-manifest.json':
+                raise
+            raw = None  # 辅助清单不可读的降级由门禁展示，不补造可读来源。
+        if raw is not None:
+            path = candidate / 'analysis' / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(raw)
+    checked = _module('validate_prd').validate_prd(candidate, related_analyses=related,
+                 previous_trace=root / 'prd/prd-trace.json' if previous else None)
+    diagnostics.extend(checked['diagnostics'])
+    return checked['status'] != 'fail'
+
+
+def _commit_payload(root, before, payload, guards, result):
+    """核对全部读时文件后用既有事务保存，返回真实写入位置；冲突或中断保留现场。"""
+    _check_guards(guards)
+    for name in TARGETS:
+        if _raw(root / name) != before[name]:
+            raise ValueError(f'写前文件已变化，重新读取后再处理：{name}')
+    journal = {'format': 'prd-draft-transaction-1', 'guards': guards, 'result': result,
+               'entries': [{'path': name, 'before': _hash(before[name]), 'after': _hash(payload[name]),
+                            'data': base64.b64encode(payload[name]).decode('ascii')} for name in TARGETS]}
+    _atomic_write(root / JOURNAL, _encode(journal))
+    _finish(root, journal)
+    # 既有生成/同步响应沿用完整事务目标清单；编辑额外明确区分只追加检测事件的实际写入。
+    written = list(TARGETS) if result.get('generated') else [name for name in TARGETS if before[name] != payload[name]]
+    return {**result, 'written': written}
+
+
+def _changes_text(events):
+    """渲染追加日志，不把说明里提及的标注名称误判为正文状态；保留编号和真实历史。"""
+    marker = _module('validate_prd').INCONSISTENCY
+    return '\n'.join(f"- {item['time']} · {item['prd_version']} · {item['summary'].replace(marker, '与分析不一致')}"
+                     + ('（' + '、'.join(item['affected_prd_ids']) + '）' if item['affected_prd_ids'] else '') for item in events)
+
+
+def _preserve_manual_marks(before, after, requirement_id):
+    """拒绝以排版、重复生成或未经核实的同步清除既有不一致；不替代分析内容核实。"""
+    validator = _module('validate_prd')
+    original = validator.manual_inconsistencies(before, requirement_id)
+    current = validator.manual_inconsistencies(after, requirement_id)
+    missing = original.keys() - current.keys()
+    if missing:
+        raise ValueError('不得无依据清除与分析不一致标注及遗留项：' + '、'.join(sorted(missing)))
 
 
 def _next_version(requirement, sync=False):
@@ -450,15 +522,7 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
                 return {**gate, "written": [], "generated": False}
             requirement = _read_json(root / "requirement.json")
             analysis = _read_json(root / "analysis/analysis-result.json")
-            if candidate_dir is None:
-                candidate = Path(tempfile.mkdtemp(prefix="prd-candidate-"))
-            else:
-                _safe(Path(candidate_dir))
-                candidate = Path(os.path.abspath(candidate_dir))
-                protected = [root, *(Path(os.path.abspath(path)).parent for path in (*related_analyses, *((previous_analysis,) if previous_analysis is not None else ())))]
-                if any(candidate == parent or parent in candidate.parents for parent in protected):
-                    raise ValueError("候选目录必须在正式需求和关联分析目录之外")
-                candidate.mkdir(parents=True, exist_ok=False)
+            candidate = _new_candidate(root, candidate_dir, (*related_analyses, *((previous_analysis,) if previous_analysis is not None else ())))
             # 先保留模型原始材料；即使编号或渲染阶段失败，也能按真实候选修正而不是丢失现场。
             inputs = candidate / "inputs"
             inputs.mkdir()
@@ -473,7 +537,8 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
                     raise ValueError("分析已变化，需使用 --sync 定向同步；首稿入口不整篇覆盖")
                 if previous is None or any(before[name] is None for name in TARGETS):
                     raise ValueError("已有工作稿文件不完整，请先恢复，不覆盖已有成果")
-                if previous["meta"]["content_hash"] != renderer.content_hash(before["prd/prd.md"]):
+                content_check = renderer.compare_content(before['prd/prd.md'], previous)
+                if content_check['changed']:
                     raise ValueError("工作稿含尚未处理的手工修改，首稿入口不覆盖")
                 if not sync:
                     existing_check = validator.validate_prd(root, related_analyses=related_analyses)
@@ -530,31 +595,16 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
                 new_events.append({**event, "change_type": "gap_request", "summary": "登记生成中发现的分析缺口，保留占位并建议交回需求分析"})
             events_raw += b"".join(_encode(item).replace(b"\n", b" ").rstrip() + b"\n" for item in new_events)
             events = [json.loads(line) for line in events_raw.decode("utf-8").splitlines() if line.strip()]
-            changes = "\n".join(f"- {item['time']} · {item['prd_version']} · {item['summary']}" + ("（" + "、".join(item['affected_prd_ids']) + "）" if item['affected_prd_ids'] else "") for item in events)
+            changes = _changes_text(events)
             text = renderer.render_info(body, next_requirement, trace, generated_at=timestamp,
                         uncovered_analysis=uncovered, changes=changes)
             trace["meta"]["content_hash"] = renderer.content_hash(text.encode("utf-8"))
+            trace['meta']['content_baseline'] = text
+            if previous:
+                _preserve_manual_marks(before['prd/prd.md'].decode('utf-8'), text, trace['requirement_id'])
             payload = {"prd/prd.md": text.encode("utf-8"), "prd/prd-trace.json": _encode(trace),
                        "prd/gap-requests.json": _encode(gap_document), "requirement.json": _encode(next_requirement), "prd/prd-events.jsonl": events_raw}
-            for name, raw in payload.items():
-                path = candidate / name
-                path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_bytes(raw)
-            for name in ("analysis-result.json", "source-manifest.json"):
-                try:
-                    raw = _raw(root / "analysis" / name)
-                except OSError:
-                    if name != "source-manifest.json":
-                        raise
-                    raw = None  # 可选清单的降级已由门禁完整告警，候选不伪造可读来源。
-                if raw is not None:
-                    path = candidate / "analysis" / name
-                    path.parent.mkdir(parents=True, exist_ok=True)
-                    path.write_bytes(raw)
-            checked = validator.validate_prd(candidate, related_analyses=related_analyses,
-                        previous_trace=root / "prd/prd-trace.json" if previous else None)
-            diagnostics.extend(checked["diagnostics"])
-            if checked["status"] == "fail":
+            if not _stage_payload(root, candidate, payload, related_analyses, previous, diagnostics):
                 return {"status": "fail", "diagnostics": diagnostics, "candidate_dir": str(candidate), "written": [], "generated": False}
             if "prd" in requirement and not sync:
                 # 只排除脚本负责更新的两个块；章节外文本同样可能承载需求，不能漏比较。
@@ -562,20 +612,11 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
                 new_stable = renderer._take_section(renderer._take_section(text, "info"), "changes").strip("\r\n")
                 if old_stable != new_stable:
                     raise ValueError("同一分析输入重复生成不得改写需求正文；保留候选，需求修改须交回分析")
-            _check_guards(guards)
-            for name in TARGETS:
-                if _raw(root / name) != before[name]:
-                    raise ValueError(f"写前文件已变化，重新读取后再生成：{name}")
             result = {"status": "warning" if diagnostics else "pass", "diagnostics": diagnostics, "version": version,
                       "draft_kind": gate["draft_kind"], "candidate_dir": str(candidate), "generated": True, "synced": sync,
                       **({"comparison": comparison, "change_summary": summary} if sync else {}),
                       "mapping": [{"mapping_key": item.get("mapping_key"), "prd_id": item["prd_id"], "analysis_refs": item["analysis_refs"]} for item in trace["items"]]}
-            journal = {"format": "prd-draft-transaction-1", "guards": guards, "result": result,
-                       "entries": [{"path": name, "before": _hash(before[name]), "after": _hash(payload[name]),
-                                    "data": base64.b64encode(payload[name]).decode("ascii")} for name in TARGETS]}
-            _atomic_write(root / JOURNAL, _encode(journal))
-            _finish(root, journal)
-            return {**result, "written": list(TARGETS)}
+            return _commit_payload(root, before, payload, guards, result)
     except (OSError, ValueError, KeyError, TypeError) as error:
         written = []
         if (root / JOURNAL).exists():
@@ -589,8 +630,270 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
                 "written": written, "generated": False, "transaction_complete": False, "recovery_required": (root / JOURNAL).exists()}
 
 
+def _without_empty_residual_notice(text):
+    """移除遗留章中独立的空集合提示；新增实际遗留项后该提示已不再为真，不是需求规则。"""
+    residual = _parsed(text)['section']['residuals']
+    # 只处理完整独立行，不触碰业务句子或“无遗留项”作为引用说明的片段。
+    value = re.sub(r'(?m)^[ \t]*(?:[-*][ \t]+)?(?:暂无|无)(?:适用)?遗留(?:事)?项[。.]?[ \t]*(?:\r?\n|$)', '', residual['text'])
+    return text[:residual['start']] + value + text[residual['end']:]
+
+
+def _stable_body(text):
+    """排除脚本渲染块，保留需求正文和章节外文本以检查编辑范围。"""
+    renderer = _module('render_info')
+    return renderer._take_section(renderer._take_section(text, 'info'), 'changes').strip('\r\n')
+
+
+def _section_without_items(text, key, blocks):
+    """以条目身份替代其原文，隔离同章的非编号内容变化，避免父章重复计为手改目标。"""
+    section = blocks['section'].get(key)
+    if section is None:
+        return None
+    value = text[section['start']:section['end']]
+    spans = [(pid, block) for pid, block in blocks['item'].items() if block['section'] == key]
+    for pid, block in sorted(spans, key=lambda pair: pair[1]['start'], reverse=True):
+        start, end = _raw_span(text, block)
+        value = value[:start-section['start']] + '<item:' + pid + '>' + value[end-section['start']:]
+    return value
+
+
+def _required_manual_refs(baseline, current, rid):
+    """返回旧稿到手改正文的所有条目及非编号内容目标；无法定位的变化抛出 ValueError。"""
+    old, new = _parsed(baseline), _parsed(current)
+    if old['item'].keys() != new['item'].keys() or old['section'].keys() != new['section'].keys():
+        raise ValueError('手改破坏条目或稳定章节身份，须回交分析，不能以保留标注掩盖')
+    refs = {rid + '/' + pid for pid in old['item'] if old['item'][pid]['text'] != new['item'][pid]['text']}
+    validator = _module('validate_prd')
+    for key in validator.CONTENT_SECTIONS:
+        if _section_without_items(baseline, key, old) != _section_without_items(current, key, new):
+            refs.add(rid + '/prd/sections/' + key)
+    def frame(text, blocks):
+        """排除全部已定位章节及固定提示，返回不能归属目标的正文框架。"""
+        for block in sorted(blocks['section'].values(), key=lambda value: value['start'], reverse=True):
+            start, end = _raw_span(text, block)
+            text = text[:start] + text[end:]
+        for prompt in validator.PROMPTS.values():
+            if text.startswith(prompt):
+                text = text[len(prompt):]
+                break
+        return text.strip('\r\n')
+    if frame(baseline, old) != frame(current, new):
+        raise ValueError('章节外内容性改动无法稳定定位，须回交分析，不直接保留为有效需求')
+    return refs
+
+
+def _check_edit_identity(current, candidate, *, keep=False, rid=None):
+    """保护正式身份、章节和引用；坚持保留仅允许增加对应标注及遗留项，不夹带新内容。"""
+    old, new = _parsed(current), _parsed(candidate)
+    for kind in ('item', 'gap', 'section'):
+        if old[kind].keys() != new[kind].keys():
+            raise ValueError(f'编辑不得增删 {kind} 定位身份；需求变化须回交分析')
+    for pid, block in old['item'].items():
+        if new['item'][pid]['section'] != block['section']:
+            raise ValueError(f'编辑不能改变条目的内容归属：{pid}')
+    validator = _module('validate_prd')
+    manual_old = validator.manual_inconsistencies(current, rid)
+    manual_new = validator.manual_inconsistencies(candidate, rid)
+    if not keep:
+        if old['residual'].keys() != new['residual'].keys() or manual_old.keys() != manual_new.keys():
+            raise ValueError('排版编辑不能增删遗留项或不一致状态')
+        pattern = r'[A-Za-z0-9_-]+/(?:GOAL|SCN|FR|BR|CON|NFR|AC|FLOW|STATE|BND|EXC|Q|ASM|DEC|CNF|GAP)-[0-9]+'
+        if Counter(re.findall(pattern, _stable_body(current))) != Counter(re.findall(pattern, _stable_body(candidate))):
+            raise ValueError('排版编辑不得改变完整分析引用')
+        for pid in old['gap']:
+            if old['gap'][pid]['text'] != new['gap'][pid]['text']:
+                raise ValueError('排版编辑不能改写缺口占位内容')
+        return
+    def normalized(text, blocks):
+        """移除手工不一致说明和标签，比较剩余全文；不允许借坚持保留改写其他业务事实。"""
+        for ref, block in sorted(blocks['residual'].items(), key=lambda pair: pair[1]['start'], reverse=True):
+            if ref.startswith(rid + '/PRD-') or ref.startswith(rid + '/prd/sections/'):
+                start, end = _raw_span(text, block)
+                text = text[:start] + text[end:]
+        return ' '.join(_stable_body(_without_empty_residual_notice(text)).replace(validator.INCONSISTENCY, '').split())
+    if normalized(current, old) != normalized(candidate, new):
+        raise ValueError('坚持保留候选只能增加不一致标注及遗留说明，不能再改写手工内容或其他正文')
+    if not old['residual'].keys() <= new['residual'].keys():
+        raise ValueError('坚持保留不得移除既有遗留事项')
+
+
+def inspect_edits(requirement_dir: Path, *, previous_body: Path | None = None,
+                  related_analyses: Sequence[Path] = (), allow_stale: bool = False) -> dict:
+    """只读检查工作稿并返回实际摘要、旧稿可用性、完整差异和读时版本，不记录事件。
+
+    requirement_dir 为已有需求；previous_body 可提供 hash 匹配的旧正文，related_analyses 仅显式资料。
+    allow_stale 仅对应真实用户坚持。用户文件或协议异常转为 fail 诊断，不创建候选或业务文件。
+    """
+    root = Path(os.path.abspath(requirement_dir))
+    try:
+        _safe(Path(requirement_dir))
+        with _lock(root):
+            if (root / JOURNAL).exists():
+                raise ValueError('存在未完成事务，请先 --recover，再检查实际正文')
+            before = {name: _raw(root / name) for name in TARGETS}
+            guards = _guards(root, related_analyses)
+            if previous_body is not None:
+                guards.append({'path': str(Path(previous_body).absolute()), 'sha256': _guard_hash(Path(previous_body))})
+            comparison = _module('check_sync').check_sync(root, related_analyses=related_analyses, allow_stale=allow_stale)
+            requirement = _read_json(root / 'requirement.json')
+            trace = _read_json(root / 'prd/prd-trace.json')
+            change = _module('render_info').compare_content(before['prd/prd.md'], trace,
+                         previous_content=_raw(Path(previous_body)) if previous_body else None)
+            _check_guards(guards)
+            if any(_raw(root / name) != before[name] for name in TARGETS):
+                raise ValueError('检查期间工作稿已变化，请重新读取')
+            if previous_body is not None and change['baseline_available']:
+                for issue in comparison['diagnostics']:
+                    if '旧稿缺少可核验正文基准' in issue['message']:
+                        issue['message'] = '正文摘要变化；已用显式旧正文核验比较基准，仍须按实际差异判断含义。'
+            return {**comparison, **change, 'manual_edits': change, 'base_prd_version': requirement['prd']['version'],
+                    'base_analysis_revision': comparison['analysis_revision'], 'written': []}
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        return {'status': 'fail', 'diagnostics': [_diagnostic(error)], 'written': []}
+
+
+def edit_draft(requirement_dir: Path, *, mode: str, base_prd_version: str, base_analysis_revision: int,
+               base_content_hash: str, summary: str, body: str | None = None,
+               meaning_reviewed: bool = False, keep_confirmed: bool = False, previous_body: Path | None = None,
+               related_analyses: Sequence[Path] = (), allow_stale: bool = False,
+               generated_at: str | None = None, candidate_dir: Path | None = None) -> dict:
+    """处理已有未发布工作稿的排版、显式手改检测或用户坚持保留，返回实际保存及诊断。
+
+    mode 为 layout/detect/keep；base_* 绑定读时 PRD 版本、当前分析修订及当前正文实际摘要。
+    summary 描述已核对的差异；body 是编辑候选，detect 时为空。meaning_reviewed 表示模型已逐差异
+    判断排版不改含义，keep_confirmed 仅对应真实用户坚持；两者都不是脚本的语义证明。
+    previous_body 为缺基准旧稿的显式证据；related_analyses 和 allow_stale 语义同生成门禁。
+    generated_at 可固定测试时间；candidate_dir 必须为正式需求外的新目录。输入、校验及并发错误
+    返回 fail 并保留候选，中断保留既有 journal 以显式恢复；不写分析或发布快照。
+    """
+    root = Path(os.path.abspath(requirement_dir))
+    candidate, before, payload, diagnostics = None, {}, {}, []
+    validator, renderer = _module('validate_prd'), _module('render_info')
+    try:
+        _safe(Path(requirement_dir))
+        if mode not in {'layout', 'detect', 'keep'} or not isinstance(summary, str) or not summary.strip():
+            raise ValueError('编辑模式无效或缺少实际差异说明')
+        if (mode == 'detect' and (body is not None or meaning_reviewed or keep_confirmed)) or (mode != 'detect' and body is None):
+            raise ValueError('detect 仅记录检测，不接收正文或确认；layout/keep 必须提供候选正文')
+        if mode == 'layout' and (not meaning_reviewed or keep_confirmed):
+            raise ValueError('排版须先逐差异核对含义，不能以用户坚持代替语义核对')
+        if mode == 'keep' and (not keep_confirmed or meaning_reviewed):
+            raise ValueError('坚持保留须有用户实际确认，不能冒充语义未变')
+        with _lock(root):
+            if (root / JOURNAL).exists():
+                raise ValueError('存在未完成草稿事务，请先 --recover')
+            before = {name: _raw(root / name) for name in TARGETS}
+            if any(raw is None for raw in before.values()):
+                raise ValueError('已有工作稿文件不完整，不能编辑；先生成或恢复')
+            guards = _guards(root, related_analyses)
+            if previous_body:
+                guards.append({'path': str(Path(previous_body).absolute()), 'sha256': _guard_hash(Path(previous_body))})
+            requirement = _read_json(root / 'requirement.json')
+            analysis = _read_json(root / 'analysis/analysis-result.json')
+            trace = _read_json(root / 'prd/prd-trace.json')
+            gate = _module('check_gate').check_gate(root, related_analyses=related_analyses, allow_stale=allow_stale)
+            diagnostics.extend(gate['diagnostics'])
+            if not gate['allowed']:
+                return {**gate, 'written': [], 'edited': False}
+            next_version = _next_version(requirement, sync=True)
+            if (root / 'prd/versions').exists() and any((root / 'prd/versions').iterdir()):
+                raise ValueError('阶段5编辑入口不覆盖已有发布快照的需求')
+            if base_prd_version != requirement['prd']['version'] or type(base_analysis_revision) is not int or base_analysis_revision != analysis['meta']['analysis_revision']:
+                raise ValueError('编辑读时 PRD 版本或分析修订已变化，须重新读取差异')
+            current_raw = before['prd/prd.md']
+            if base_content_hash != renderer.content_hash(current_raw):
+                raise ValueError('编辑读时正文已变化，不能只改基准数字重试')
+            pending = requirement['prd']['based_on_analysis_revision'] < analysis['meta']['analysis_revision']
+            if pending and mode == 'layout':
+                raise ValueError('PRD 待同步；排版不代替分析同步或前移分析基准')
+            comparison = renderer.compare_content(current_raw, trace,
+                        previous_content=_raw(Path(previous_body)) if previous_body else None)
+            current = current_raw.decode('utf-8')
+            current_blocks = _parsed(current)
+            if mode in {'detect', 'keep'} and not comparison['changed']:
+                raise ValueError('当前正文摘要未变，没有尚未处理的手工修改')
+            if mode in {'layout', 'keep'} and not comparison['baseline_available']:
+                raise ValueError('缺少可核验旧正文，不能认定排版无害或定位全部不一致；请补 --previous-body')
+            candidate = _new_candidate(root, candidate_dir, related_analyses)
+            inputs = candidate / 'inputs'
+            inputs.mkdir()
+            (inputs / 'observed.md').write_bytes(current_raw)
+            review = {'mode': mode, 'base_prd_version': base_prd_version, 'base_analysis_revision': base_analysis_revision,
+                      'base_content_hash': base_content_hash, 'summary': summary, 'meaning_reviewed': meaning_reviewed,
+                      'keep_confirmed': keep_confirmed, 'comparison': comparison}
+            (inputs / 'edit-review.json').write_bytes(_encode(review))
+            if body is not None:
+                (inputs / 'body.md').write_bytes(body.encode('utf-8'))
+            old_text = trace['meta'].get('content_baseline')
+            if previous_body:
+                old_text = _raw(Path(previous_body)).decode('utf-8')
+            if old_text is None and not comparison['changed']:
+                old_text = current
+            if old_text is not None:
+                (inputs / 'baseline.md').write_bytes(old_text.encode('utf-8'))
+            events = [json.loads(line, object_pairs_hook=validator._unique, parse_constant=validator._constant)
+                      for line in before['prd/prd-events.jsonl'].decode('utf-8').splitlines() if line.strip()]
+            timestamp = generated_at or datetime.now(timezone.utc).isoformat()
+            rid = trace['requirement_id']
+            actual_targets = comparison['affected_prd_ids']
+            new_requirement, new_trace = deepcopy(requirement), deepcopy(trace)
+            if mode != 'detect':
+                _check_edit_identity(current, body, keep=mode == 'keep', rid=rid)
+                candidate_blocks = _parsed(body)
+                if old_text is not None:
+                    _preserve_manual_marks(old_text, body, rid)
+                if mode == 'keep':
+                    required = _required_manual_refs(old_text, current, rid)
+                    marked = validator.manual_inconsistencies(body, rid)
+                    previous_marks = validator.manual_inconsistencies(old_text, rid)
+                    if not required or not required <= marked.keys() or marked.keys() - previous_marks.keys() - required:
+                        raise ValueError('坚持保留须逐一标注全部实际变化目标，不得漏标或标注无关目标')
+                    body = _without_empty_residual_notice(body)
+                new_requirement['prd'] = {**requirement['prd'], 'version': next_version, 'status': 'draft'}
+            version = new_requirement['prd']['version']
+            event = {'time': timestamp, 'prd_version': version, 'change_type': 'layout_edit' if mode == 'layout' else 'manual_edit_detected',
+                     'summary': summary.strip(), 'affected_prd_ids': actual_targets if mode != 'layout' else sorted(
+                         pid for pid in current_blocks['item'] if current_blocks['item'][pid]['text'] != candidate_blocks['item'][pid]['text']),
+                     'based_on_analysis_revision': requirement['prd']['based_on_analysis_revision'], 'actor': 'prd_generator',
+                     'handling': mode, 'observed_content_hash': comparison['content_hash'],
+                     'expected_content_hash': comparison['expected_content_hash']}
+            if mode == 'detect' and any(item.get('change_type') == 'manual_edit_detected' and item.get('handling') == 'detect'
+                    and item.get('prd_version') == version and item.get('observed_content_hash') == comparison['content_hash']
+                    and item.get('expected_content_hash') == comparison['expected_content_hash'] for item in events):
+                _check_guards(guards)
+                if any(_raw(root / name) != before[name] for name in TARGETS):
+                    raise ValueError('检测记录重试期间文件已变化，须重新读取')
+                return {'status': 'warning', 'diagnostics': [{**_diagnostic('同一手改已记录，仍须回交分析或等待用户决定'), 'level': 'warning'}],
+                        'detected': True, 'already_recorded': True, 'edited': False, 'version': version,
+                        'manual_edits': comparison, 'candidate_dir': str(candidate), 'written': []}
+            events_raw = before['prd/prd-events.jsonl']
+            if events_raw and not events_raw.endswith(b'\n'):
+                events_raw += b'\n'
+            events_raw += _encode(event).replace(b'\n', b' ').rstrip() + b'\n'
+            payload = dict(before)
+            payload['prd/prd-events.jsonl'] = events_raw
+            if mode != 'detect':
+                changes = _changes_text([*events, event])
+                text = renderer.render_info(body, new_requirement, new_trace, generated_at=timestamp,
+                            uncovered_analysis=gate.get('uncovered_analysis', ()), changes=changes)
+                new_trace['meta']['content_hash'] = renderer.content_hash(text.encode('utf-8'))
+                new_trace['meta']['content_baseline'] = text
+                payload.update({'prd/prd.md': text.encode('utf-8'), 'prd/prd-trace.json': _encode(new_trace),
+                                'requirement.json': _encode(new_requirement)})
+            if not _stage_payload(root, candidate, payload, related_analyses, True, diagnostics):
+                return {'status': 'fail', 'diagnostics': diagnostics, 'candidate_dir': str(candidate), 'written': [], 'edited': False}
+            result = {'status': 'warning' if diagnostics else 'pass', 'diagnostics': diagnostics, 'version': version,
+                      'edited': mode != 'detect', 'detected': mode != 'layout', 'generated': False,
+                      'manual_edits': comparison, 'candidate_dir': str(candidate)}
+            return _commit_payload(root, before, payload, guards, result)
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        written = [name for name, raw in payload.items() if before.get(name) != raw and _raw(root / name) == raw] if (root / JOURNAL).exists() else []
+        return {'status': 'fail', 'diagnostics': diagnostics + [_diagnostic(error)], 'candidate_dir': str(candidate) if candidate else None,
+                'written': written, 'edited': False, 'transaction_complete': False, 'recovery_required': (root / JOURNAL).exists()}
+
+
 def main(argv=None) -> int:
-    """执行首稿、显式同步保存或恢复；argv 为命令参数，返回 pass0/warning1/fail2。
+    """执行首稿、显式同步/编辑、只读比较或恢复；argv 为命令参数，返回 pass0/warning1/fail2。
 
     单个 JSON 输出真实结果；参数缺失由 argparse 报错，安装故障原样抛出，不自动承认过期分析。
     """
@@ -605,20 +908,56 @@ def main(argv=None) -> int:
     parser.add_argument("--recover", action="store_true")
     parser.add_argument("--sync", action="store_true", help="按当前分析增量同步已有未发布工作稿")
     parser.add_argument('--previous-analysis', type=Path, help='缺章节依据的旧稿可显式提供匹配原基准修订的旧分析')
+    parser.add_argument('--inspect-edits', action='store_true', help='只读比较正文摘要及实际手改差异')
+    parser.add_argument('--edit', choices=('layout', 'detect', 'keep'), help='显式处理排版、手改检测或用户坚持保留')
+    parser.add_argument('--previous-body', type=Path, help='缺正文基准旧稿的 hash 匹配旧正文')
+    parser.add_argument('--base-prd-version')
+    parser.add_argument('--base-analysis-revision', type=int)
+    parser.add_argument('--base-content-hash', help='读取时当前正文实际摘要，不是追溯中的旧摘要')
+    parser.add_argument('--edit-summary')
+    parser.add_argument('--meaning-reviewed', action='store_true', help='模型已逐差异核对排版候选不改变含义')
+    parser.add_argument('--keep-confirmed', action='store_true', help='仅对应用户实际坚持保留内容性手改的回答')
     args = parser.parse_args(argv)
+    if sum(bool(value) for value in (args.recover, args.sync, args.inspect_edits, args.edit)) > 1:
+        parser.error('恢复、同步、只读编辑比较和编辑处理模式互斥')
+    editing_inputs = any((args.base_prd_version is not None, args.base_analysis_revision is not None,
+                          args.base_content_hash is not None, args.edit_summary is not None, args.meaning_reviewed, args.keep_confirmed))
+    if not args.edit and editing_inputs:
+        parser.error('编辑读时依据和确认仅用于 --edit')
+    if args.previous_body and not (args.edit or args.inspect_edits):
+        parser.error('--previous-body 仅用于编辑比较或处理')
     if args.recover:
-        if args.patch or args.body or args.gaps or args.sync or args.previous_analysis:
-            parser.error("--recover 不接受新的候选材料")
+        if args.patch or args.body or args.gaps or args.previous_analysis or args.candidate_dir:
+            parser.error('--recover 不接受新的候选材料')
         result = recover_draft(args.requirement_dir)
+    elif args.inspect_edits:
+        if args.patch or args.body or args.gaps or args.previous_analysis or args.candidate_dir:
+            parser.error('--inspect-edits 是只读操作，不接收候选材料')
+        result = inspect_edits(args.requirement_dir, previous_body=args.previous_body,
+                              related_analyses=args.related_analysis, allow_stale=args.allow_stale)
+    elif args.edit:
+        if args.patch or args.gaps or args.previous_analysis:
+            parser.error('编辑不接收编号补丁、缺口候选或旧分析')
+        if any(value is None for value in (args.base_prd_version, args.base_analysis_revision, args.base_content_hash, args.edit_summary)):
+            parser.error('编辑必须提供 --base-prd-version、--base-analysis-revision、--base-content-hash 和 --edit-summary')
+        try:
+            result = edit_draft(args.requirement_dir, mode=args.edit, base_prd_version=args.base_prd_version,
+                    base_analysis_revision=args.base_analysis_revision, base_content_hash=args.base_content_hash,
+                    summary=args.edit_summary, body=args.body.read_bytes().decode('utf-8') if args.body else None,
+                    meaning_reviewed=args.meaning_reviewed, keep_confirmed=args.keep_confirmed,
+                    previous_body=args.previous_body, related_analyses=args.related_analysis,
+                    allow_stale=args.allow_stale, candidate_dir=args.candidate_dir)
+        except (OSError, ValueError, KeyError, TypeError) as error:
+            result = {'status': 'fail', 'diagnostics': [_diagnostic(error)], 'written': [], 'edited': False}
     else:
         if not args.patch or not args.body:
-            parser.error("保存草稿需要 --patch 和 --body")
+            parser.error('保存草稿需要 --patch 和 --body')
         try:
-            result = write_draft(args.requirement_dir, patch=_read_json(args.patch), body=args.body.read_text(encoding="utf-8"),
+            result = write_draft(args.requirement_dir, patch=_read_json(args.patch), body=args.body.read_bytes().decode('utf-8'),
                                 gaps=_read_json(args.gaps) if args.gaps else None, candidate_dir=args.candidate_dir,
                                 related_analyses=args.related_analysis, allow_stale=args.allow_stale, sync=args.sync, previous_analysis=args.previous_analysis)
         except (OSError, ValueError, KeyError, TypeError) as error:
-            result = {"status": "fail", "diagnostics": [_diagnostic(error)], "written": [], "generated": False}
+            result = {'status': 'fail', 'diagnostics': [_diagnostic(error)], 'written': [], 'generated': False}
     print(json.dumps(result, ensure_ascii=False, allow_nan=False))
     return EXIT_CODES[result["status"]]
 

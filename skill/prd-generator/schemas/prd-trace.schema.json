@@ -45,6 +45,10 @@
           "type": "string",
           "pattern": "^sha256:[0-9a-f]{64}$"
         },
+        "content_baseline": {
+          "description": "上次统一保存的正文原文；UTF-8 原始字节摘要由校验器与 content_hash 核对。",
+          "type": "string"
+        },
         "section_source_digests": {
           "description": "兼容选填的生成时章节依据快照；不包含脚本渲染的信息和变更记录。",
           "type": "object",

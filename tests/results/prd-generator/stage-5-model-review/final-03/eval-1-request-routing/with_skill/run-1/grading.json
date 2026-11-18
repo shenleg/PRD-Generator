@@ -1,0 +1,62 @@
+{
+  "expectations": [
+    {
+      "text": "内容修改请求未直接改稿",
+      "passed": true,
+      "evidence": "content-request：初始与实际最终目录全部原始文件摘要比较；交接表述及理由另由人工阅读。"
+    },
+    {
+      "text": "含义变化措辞未按排版保存",
+      "passed": true,
+      "evidence": "ambiguous-request：初始与实际最终目录全部原始文件摘要比较；交接表述及理由另由人工阅读。"
+    },
+    {
+      "text": "纯措辞润色实际保存为0.2并记录layout_edit",
+      "passed": true,
+      "evidence": "layout-request/requirement.json、prd-events.jsonl及当前源码校验。"
+    },
+    {
+      "text": "手工排版经实际比较后保存为0.2",
+      "passed": true,
+      "evidence": "manual-layout/requirement.json、prd-events.jsonl及当前源码校验。"
+    },
+    {
+      "text": "所有需求的编号引用、分析与其他元数据保持",
+      "passed": true,
+      "evidence": "逐需求比较分析全目录、requirement.json除prd块、trace.items及counters。"
+    },
+    {
+      "text": "两份排版处理后正文摘要和基准一致",
+      "passed": true,
+      "evidence": "需要实际排版保存；旧版保持未处理的手工排版不能因未写文件算完成。"
+    }
+  ],
+  "summary": {
+    "passed": 6,
+    "failed": 0,
+    "total": 6,
+    "pass_rate": 1.0
+  },
+  "claims": [
+    {
+      "claim": "已获最终人工语义验收",
+      "type": "quality",
+      "verified": false,
+      "evidence": "本脚本不代签，待用户评审。"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "前两项只证明未越权写入，具体范围/触发条件分流理由仍须人工评审；旧Skill正确拒绝不算程序故障。"
+    ],
+    "needs_review": [
+      "语义分流、措辞不改含义、保留手改及遗留说明充分性"
+    ],
+    "workarounds": [
+      "模型运行于私有worktree，完成后归档；原共享输入保持原样。"
+    ]
+  },
+  "eval_feedback": {
+    "overall": "每配置每组仅一次运行，不能据此估计稳定通过率；文件保护断言不区分语言分流质量。"
+  }
+}

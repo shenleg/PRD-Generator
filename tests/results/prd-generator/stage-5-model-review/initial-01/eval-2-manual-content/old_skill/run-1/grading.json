@@ -1,0 +1,62 @@
+{
+  "expectations": [
+    {
+      "text": "两份手改首轮均记录实际检测事件",
+      "passed": false,
+      "evidence": "首轮事件中manual_edit_detected/handling=detect；原始检测响应和diff保存在artifacts。"
+    },
+    {
+      "text": "首轮未提前保留或撤回用户手改",
+      "passed": true,
+      "evidence": "首轮与输入除追加事件外的全部文件原字节比较；模拟回答在实际提问后才提供。"
+    },
+    {
+      "text": "模拟用户坚持后两份均保存不一致标注",
+      "passed": false,
+      "evidence": "检查真实最终0.2版本、事件、原内容标注及结构化配对；模拟回答不是真实业务签核。"
+    },
+    {
+      "text": "对应遗留项及校验明确不得发布",
+      "passed": false,
+      "evidence": "当前校验器逐目标检查配对并输出warning，不声称执行阶段6发布API。"
+    },
+    {
+      "text": "编号引用、分析与其他元数据保持",
+      "passed": true,
+      "evidence": "比较分析目录、非prd元数据、trace.items与counters。"
+    },
+    {
+      "text": "处理后正文摘要一致且保留检测事件",
+      "passed": false,
+      "evidence": "比较当前正文原字节、content_hash和content_baseline，并核对首轮及最终事件。"
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 4,
+    "total": 6,
+    "pass_rate": 0.3333333333333333
+  },
+  "claims": [
+    {
+      "claim": "已获最终人工语义验收",
+      "type": "quality",
+      "verified": false,
+      "evidence": "本脚本不代签，待用户评审。"
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [
+      "遗留说明是否充分、保留是否忠于用户手改仍须人工阅读；PG-19完整发布拒绝未执行。"
+    ],
+    "needs_review": [
+      "语义分流、措辞不改含义、保留手改及遗留说明充分性"
+    ],
+    "workarounds": [
+      "模型运行于私有worktree，完成后归档；原共享输入保持原样。"
+    ]
+  },
+  "eval_feedback": {
+    "overall": "每配置每组仅一次运行，不能据此估计稳定通过率；文件保护断言不区分语言分流质量。"
+  }
+}

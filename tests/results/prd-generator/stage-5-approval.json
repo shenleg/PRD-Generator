@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-17",
+  "stage": 5,
+  "status": "approved_for_implementation",
+  "base_commit": "480768e940d214bbbba74a25b484ab0d57f08d97",
+  "decisions": [
+    {
+      "question": "实现方案",
+      "answer": "采用整套建议（推荐）"
+    },
+    {
+      "question": "参考与试跑",
+      "answer": "认可参考并试跑（推荐）"
+    }
+  ],
+  "approved_artifacts": [
+    {
+      "path": "tests/results/prd-generator/stage-5-spec-reviewed.md",
+      "sha256": "sha256:ca83018e88a7c77e62f958036e4902f364865cab74ac5a6a2a944371ab182147"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-reference-reviewed.md",
+      "sha256": "sha256:24b4dadcf678cf031f64fc6bab8ed209230320e4bbabc3fe36cea6331dbd1d81"
+    }
+  ],
+  "scope": "扩展统一写入器；兼容正文基准；不一致定位与发布阻断；坚持保留保存递增次版本；两组四次隔离模型试跑及旧Skill对照",
+  "not_authorized": [
+    "阶段最终验收",
+    "真实业务发布",
+    "安装变更",
+    "git commit",
+    "git merge",
+    "git tag",
+    "git push"
+  ]
+}

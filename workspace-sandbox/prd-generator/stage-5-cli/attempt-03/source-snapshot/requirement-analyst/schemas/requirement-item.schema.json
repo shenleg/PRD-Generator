@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "通用分析条目",
+  "description": "定义需求、业务分析、假设和决策共用的字段与引用格式；编号唯一性、引用存在性和有效条目的来源非空检查由 validate_analysis.py 完成。",
+  "type": "object",
+  "required": ["id", "content", "tag", "sources", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(GOAL|SCN|FR|BR|CON|NFR|AC|FLOW|STATE|BND|EXC|GAP|CNF|ASM|DEC)-[1-9][0-9]*$"
+    },
+    "content": {"type": "string", "minLength": 1},
+    "tag": {"enum": ["confirmed", "inferred", "assumption"]},
+    "sources": {
+      "type": "array",
+      "items": {"$ref": "source.schema.json"}
+    },
+    "status": {"enum": ["active", "to_reassess", "withdrawn"]},
+    "related_ids": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/item_reference"},
+      "description": "可选的依赖或关联；同需求写条目编号，跨需求写需求编号/条目编号。"
+    }
+  },
+  "$defs": {
+    "requirement_id": {
+      "type": "string",
+      "pattern": "^[^\\s/]+$",
+      "description": "沿用用户编号，或由脚本分配 REQ-年份-三位序号。"
+    },
+    "item_reference": {
+      "type": "string",
+      "pattern": "^(?:[^\\s/]+/)?(?:GOAL|SCN|FR|BR|CON|NFR|AC|FLOW|STATE|BND|EXC|GAP|CNF|Q|ASM|DEC|SRC)-[1-9][0-9]*$"
+    },
+    "question_reference": {
+      "type": "string",
+      "pattern": "^Q-[1-9][0-9]*$"
+    },
+    "requirement_reference": {
+      "type": "string",
+      "pattern": "^[^\\s/]+(?:/(?:GOAL|SCN|FR|BR|CON|NFR|AC|FLOW|STATE|BND|EXC|GAP|CNF|Q|ASM|DEC|SRC)-[1-9][0-9]*)?$",
+      "description": "影响分析使用的需求编号，或跨需求条目引用。"
+    }
+  }
+}

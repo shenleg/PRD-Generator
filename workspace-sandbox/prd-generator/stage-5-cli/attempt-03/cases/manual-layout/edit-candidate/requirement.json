@@ -1,0 +1,16 @@
+{
+  "common": {
+    "requirement_id": "SYNTHETIC-PRD",
+    "title": "合成导出需求（非真实业务）",
+    "project_id": "synthetic",
+    "created_at": "2026-11-17T00:00:00Z"
+  },
+  "foreign_extension": {
+    "keep": "由其他维护者管理"
+  },
+  "prd": {
+    "based_on_analysis_revision": 1,
+    "status": "draft",
+    "version": "0.2"
+  }
+}

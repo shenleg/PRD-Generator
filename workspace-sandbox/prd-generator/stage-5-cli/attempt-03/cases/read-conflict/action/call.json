@@ -1,0 +1,42 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpcs7pxX/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/cases/read-conflict/requirement",
+    "--edit",
+    "layout",
+    "--body",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/cases/read-conflict/candidate.md",
+    "--base-prd-version",
+    "0.9",
+    "--base-analysis-revision",
+    "1",
+    "--base-content-hash",
+    "sha256:915b1192e95025efdb5a90d735e73521885bca10d0414dd6657993d808a2453a",
+    "--edit-summary",
+    "合成CLI边界验证，不代表自然语言人工签核",
+    "--candidate-dir",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-03/cases/read-conflict/edit-candidate",
+    "--meaning-reviewed"
+  ],
+  "returncode": 2,
+  "response": {
+    "status": "fail",
+    "diagnostics": [
+      {
+        "rule": 0,
+        "level": "fail",
+        "item_id": "$",
+        "path": "$",
+        "message": "编辑读时 PRD 版本或分析修订已变化，须重新读取差异"
+      }
+    ],
+    "candidate_dir": null,
+    "written": [],
+    "edited": false,
+    "transaction_complete": false,
+    "recovery_required": false
+  }
+}

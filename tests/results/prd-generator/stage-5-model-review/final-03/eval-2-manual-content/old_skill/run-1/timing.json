@@ -1,0 +1,10 @@
+{
+  "total_tokens": 53140,
+  "duration_ms": 218719,
+  "total_duration_seconds": 218.719,
+  "rounds": [
+    "timing-first-round.json",
+    "timing-followup.json"
+  ],
+  "note": "按各轮通知原值汇总，含模型上下文读取；不是API账单或费用估算。"
+}

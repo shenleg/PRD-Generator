@@ -1,0 +1,26 @@
+{
+  "status": "pass",
+  "missing_local_links": [],
+  "reviewed_artifact_count": 212,
+  "changed_reviewed_artifacts": [],
+  "source_checks": [
+    {
+      "manifest": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/manifest.json",
+      "source_files": 41,
+      "mismatches": []
+    },
+    {
+      "manifest": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manifest.json",
+      "source_files": 41,
+      "mismatches": []
+    }
+  ],
+  "final_approval": "approved",
+  "tests": 463,
+  "git_operations": {
+    "committed": false,
+    "merged": false,
+    "tagged": false,
+    "pushed": false
+  }
+}

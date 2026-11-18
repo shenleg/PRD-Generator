@@ -1,0 +1,855 @@
+{
+  "date": "2026-11-17",
+  "purpose": "待用户最终语义评审的固定材料，不是认可记录",
+  "status": "pending_human_review",
+  "artifacts": [
+    {
+      "path": "tests/results/prd-generator/stage-5-model-analysis.md",
+      "sha256": "sha256:f98dd8649197803efb76e01bc87c0aa547d8377a9cc9778c32e94e4d4f8fadb8"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/benchmark.json",
+      "sha256": "sha256:a78f4d2107339808e93dfccc9f8253c57bc8edfce278ed8915d98b3e2518659f"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/benchmark.md",
+      "sha256": "sha256:5caeeb086f17fe632fc0d82bbbc2b439b26f8c788620577aaab1cec7f195a99c"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/eval_metadata.json",
+      "sha256": "sha256:90312738c635e3bc402b36a78a40a83d4c7a0ae6fabae0718c851354e19a131f"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/eval_metadata.json",
+      "sha256": "sha256:0f14f7e0b8fcf006fbab7264266d0d87e87bc58ac3142fd15fc028fda7b0deee"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/grading.json",
+      "sha256": "sha256:ea27b4e3f3d65be5f3c09e40ca277987009a1144c7722c638b7846ff531299fd"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/ambiguous-request-actual-diff.txt",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/ambiguous-request-analysis.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/ambiguous-request-events.jsonl",
+      "sha256": "sha256:3aa98cd5884b0709dbaa786ff5dd47fb376c97d57c2519c84efdb8437752e0e1"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/ambiguous-request-final.md",
+      "sha256": "sha256:a4fd31b906427c24ee117c103f7b116d5eb7ed847c1c2b9c63a0fc9d58d55622"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/ambiguous-request-trace.json",
+      "sha256": "sha256:0285d1dce50b360472ba51e6f318b66800007964904925db2bb22a89b06f969e"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/content-request-actual-diff.txt",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/content-request-analysis.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/content-request-events.jsonl",
+      "sha256": "sha256:b7533d3431423077da8a1b286313741e79966f560125be9c8de5ee859e6d41ee"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/content-request-final.md",
+      "sha256": "sha256:d47e6dcb83f43f9551a84b1a38e027c8731d52a8ed7bbacd9e0c51b05d2ce171"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/content-request-trace.json",
+      "sha256": "sha256:bbcd3b3cb5812169030f2d7add556709689689c6fa1d75d31647720af9f93dab"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/layout-request-actual-diff.txt",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/layout-request-analysis.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/layout-request-events.jsonl",
+      "sha256": "sha256:d6789ec77806901827c476981f34898f12ba4d3b86d3b71ee1faae65ddf17b14"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/layout-request-final.md",
+      "sha256": "sha256:eee0ee2e5ffa19ac25fa13eb14c151d112ca81ec9575c91889ef8f1a8eb839b7"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/layout-request-trace.json",
+      "sha256": "sha256:2c886d56a82c12d58877c1708106b04c625a609d66f0cadd55773b53afe50dbb"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/manual-layout-actual-diff.txt",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/manual-layout-analysis.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/manual-layout-events.jsonl",
+      "sha256": "sha256:7cf301d2dccf06d5905546a3981fc1098a718646b20ca3dd204c0a47311d8386"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/manual-layout-final.md",
+      "sha256": "sha256:5ee10ebe8d797fc6e7e6269edbd3d244b7aae8b88e90912f3d22b9e38e97dde6"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/manual-layout-trace.json",
+      "sha256": "sha256:fd5cc55e033fd8a3051c9e2fcf2019bbe85a28372552594d86b022818c97fb3e"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/outputs/model-response.md",
+      "sha256": "sha256:aaabbef67dcfa280b5787ddf6d23060bf5f5efa9c16f2fa8f55067dd16d18a32"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/old_skill/run-1/timing.json",
+      "sha256": "sha256:c3443cc37d77e5e570ed179a4c13a22c06ba7f4015d1218968f8e28fd331cbf4"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/eval_metadata.json",
+      "sha256": "sha256:85e153f9b784b8a67c8e5201e495bf2192a65cfad2d783eb714ceb925968ba37"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/grading.json",
+      "sha256": "sha256:3082282ad7176b614e8c56828c692a366e4f425c92d5124e2888b9233dd35bed"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/00-current-source-replay.md",
+      "sha256": "sha256:d75f58875963733073277c435ad488e3ed8a62d2646e9dcc0af25764468d1159"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/ambiguous-request-actual-diff.txt",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/ambiguous-request-analysis.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/ambiguous-request-events.jsonl",
+      "sha256": "sha256:3aa98cd5884b0709dbaa786ff5dd47fb376c97d57c2519c84efdb8437752e0e1"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/ambiguous-request-final.md",
+      "sha256": "sha256:a4fd31b906427c24ee117c103f7b116d5eb7ed847c1c2b9c63a0fc9d58d55622"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/ambiguous-request-trace.json",
+      "sha256": "sha256:0285d1dce50b360472ba51e6f318b66800007964904925db2bb22a89b06f969e"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/content-request-actual-diff.txt",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/content-request-analysis.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/content-request-events.jsonl",
+      "sha256": "sha256:b7533d3431423077da8a1b286313741e79966f560125be9c8de5ee859e6d41ee"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/content-request-final.md",
+      "sha256": "sha256:d47e6dcb83f43f9551a84b1a38e027c8731d52a8ed7bbacd9e0c51b05d2ce171"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/content-request-trace.json",
+      "sha256": "sha256:bbcd3b3cb5812169030f2d7add556709689689c6fa1d75d31647720af9f93dab"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/layout-request-actual-diff.txt",
+      "sha256": "sha256:70f7148a0f0a9d971738ca343093e26e4d673c7dde0a0b2f81fd09fedc808ef2"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/layout-request-actual-model-original-candidate.md",
+      "sha256": "sha256:22a49c5da9d10bf18541b3e76fc619cfea29e324201ff91157df8ea1d6d4e801"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/layout-request-analysis.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/layout-request-current-source-replay-trace.json",
+      "sha256": "sha256:7866e9c42e35e5d05b261991144581f41e8f20019f186d3bc741d2930f255815"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/layout-request-current-source-replay.md",
+      "sha256": "sha256:ccee492e86fdc9d196687dbeaa839b801794620a5aa740a9c50dceed50731c47"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/layout-request-events.jsonl",
+      "sha256": "sha256:b4852af157e329b95d8efd2d53e20546b7f54c1eddd3790353a346ebe3e5f31c"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/layout-request-final.md",
+      "sha256": "sha256:270b91789c2c11ee294a6e4389b97260a565c957e673559e89ebacd5590f532e"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/layout-request-trace.json",
+      "sha256": "sha256:11f91a5167fedde42604d11c479f09ad24d0d928ffddb3774ae49bf8508b1c14"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/manual-layout-actual-diff.txt",
+      "sha256": "sha256:4f938d60761cf81c90197d490e9f610148b860e538999a3822eaae24fd8fe1d3"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/manual-layout-actual-model-original-candidate.md",
+      "sha256": "sha256:5ee10ebe8d797fc6e7e6269edbd3d244b7aae8b88e90912f3d22b9e38e97dde6"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/manual-layout-analysis.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/manual-layout-current-source-replay-trace.json",
+      "sha256": "sha256:28e4ecbb9d36c38a14197086ce5300238cda69754e63e55a199d6558d774a05c"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/manual-layout-current-source-replay.md",
+      "sha256": "sha256:1d94ce7b5d288d9350763b02f19dcc14dc8e9a1fec385f528b368574e17680cf"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/manual-layout-events.jsonl",
+      "sha256": "sha256:64ed8883951015ef2190d295bf3d7b1c323308991df607b66ab03fb4a0f7b9df"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/manual-layout-final.md",
+      "sha256": "sha256:55ff59462f4b6f6f47f2d8eaf1db792385b482ea7807ec3911677578e34f1e46"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/manual-layout-trace.json",
+      "sha256": "sha256:4aff7c3c64877f9b90879b81ca2a5c84f3031cda98c0af4fca36cabe5dcfb75a"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/outputs/model-response.md",
+      "sha256": "sha256:50e7554e27801086366f32b403e0e362114f07fae813885ed2fa2dabd5f8c56d"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-1-request-routing/with_skill/run-1/timing.json",
+      "sha256": "sha256:5fffef13843e0eacc44227a53786ae52fd2537f1f85e27f486863b423dddfd19"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/eval_metadata.json",
+      "sha256": "sha256:0cbe970616242c4c9ba9a656b3915d96a2b04e4a34f1306c1122214b9c529f2e"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/eval_metadata.json",
+      "sha256": "sha256:0e9419f37a142d6159295c13b7fc187ad71be5025867759ac7552cc1f3ddbf51"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/grading.json",
+      "sha256": "sha256:43c85e235c09885c9790e5fbd959764ec838b112e7f3cb4f94d1e50204302304"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/outputs/manual-item-actual-diff.txt",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/outputs/manual-item-analysis.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/outputs/manual-item-events.jsonl",
+      "sha256": "sha256:bf1b397fe8114be88e2d602f5355f9300a2826e968e872bba0feb337a41dcbd4"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/outputs/manual-item-final.md",
+      "sha256": "sha256:71157bbf0d92976700ede31e20020bf86df4bc7f86c051f4f79b3a27bba1747a"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/outputs/manual-item-trace.json",
+      "sha256": "sha256:c3dfa9f3a20f5e9eff4c44b07751ff99a085a40340719f41be531099684466b5"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/outputs/manual-scope-actual-diff.txt",
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/outputs/manual-scope-analysis.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/outputs/manual-scope-events.jsonl",
+      "sha256": "sha256:4a3bc4dd78dae3278a3916731e6b88c0c7ad8c4af7a86750946172f822d1202d"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/outputs/manual-scope-final.md",
+      "sha256": "sha256:3f716d1a6b3308a652f2ab30c3ab757bd5ad68900a307321307db3979396cde9"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/outputs/manual-scope-trace.json",
+      "sha256": "sha256:debcff693d462f5335147ab73d6eeeb4a34bf2eecd278179640c36e8515903ba"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/outputs/model-response-followup.md",
+      "sha256": "sha256:ceac261f3b7ed57ac7119814ad014699bbf1a2c7305dac86a176f8cf8fd0aae8"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/outputs/model-response.md",
+      "sha256": "sha256:397a5598606f37f9d168dd896bbcc6f7db2e9fcba7183cf8e0f4e34cdea0c16c"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/old_skill/run-1/timing.json",
+      "sha256": "sha256:69a7bfd8f30d8f3c3e8f452d2974beb33ee83eef2499c8a71d50bd34a92a9299"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/eval_metadata.json",
+      "sha256": "sha256:3c67105c725563dd0f47ef745737ab373b0744c557dc4bfe9d6b0e715221628a"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/grading.json",
+      "sha256": "sha256:03db554ea9771a9cd8fc450ba86eaa688af5140308864355df42d0a5525a3d98"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/00-current-source-replay.md",
+      "sha256": "sha256:d75f58875963733073277c435ad488e3ed8a62d2646e9dcc0af25764468d1159"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-item-actual-diff.txt",
+      "sha256": "sha256:9c534abe3a05d0492badf0a4df02972cf43210b54d418abe140d02c7e5db4f39"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-item-actual-model-original-candidate.md",
+      "sha256": "sha256:6c94c657e507b56e0796648bf0718e05a8ddcb964ff924e529dafb1394f3a672"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-item-analysis.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-item-current-source-replay-trace.json",
+      "sha256": "sha256:106b76ba648123c100c908a20a9751476050a09894e4a34343ce597e89f9097c"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-item-current-source-replay.md",
+      "sha256": "sha256:2a39c3913eca1619b14ec9ac323a55fcb9436fc59ea92dc1ae35a65c325cf73e"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-item-events.jsonl",
+      "sha256": "sha256:32d00ab8d2b3e31a580f127b54447aaab994ca80300f31e115e110596a9e7df7"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-item-final.md",
+      "sha256": "sha256:542e905ed497954d66afdf3c1ef7efcb86b6f05eeb1f9c1cc7228636b1198289"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-item-trace.json",
+      "sha256": "sha256:d275a24328bec2088c2def12ebb5c51fdccbf97eb0ccf9afaa520b88a42889bf"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-scope-actual-diff.txt",
+      "sha256": "sha256:ffb01e245e35e13cd9ea6d22d93ea13c14327aeba1e909a386a2aacb5e7af2e5"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-scope-actual-model-original-candidate.md",
+      "sha256": "sha256:5023652e3dbe9ad7baf08bc100c12daa93185b2d6dab55e502f9dd34159b2c61"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-scope-analysis.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-scope-current-source-replay-trace.json",
+      "sha256": "sha256:dfac90c67543cf361512469a4808b9752777e93d7ec71d6409eb67f4e6d521a2"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-scope-current-source-replay.md",
+      "sha256": "sha256:be68efa87cd9e3a561f2941b3115857ec8bfb138641883d44fea85ff1aaa3278"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-scope-events.jsonl",
+      "sha256": "sha256:a6fa7e8373532bee53dbb63aa3e207f064389a3de070e1148478c8ee02fea171"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-scope-final.md",
+      "sha256": "sha256:aae63c0e178dddb59b37b46734414a2ce2f5818f281589c93156f06267a62741"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/manual-scope-trace.json",
+      "sha256": "sha256:cd30041b40e1da473be6fa810eef8ffe042af2c3ef63236f6517e358b894d85d"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/model-response-followup.md",
+      "sha256": "sha256:90cee3d02060cb2669997725a7dff3917d9e43ff2037f6e9e04533b70f0dba73"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/outputs/model-response.md",
+      "sha256": "sha256:34bdd02b0677d4a4f9270915f452e110f5b51d13d486f7ce618bc63349254d2d"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/eval-2-manual-content/with_skill/run-1/timing.json",
+      "sha256": "sha256:52a72683c37ab391e9066d2366337ada28191ed2e7656c4cfdf4d84732de5556"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/grading-summary.json",
+      "sha256": "sha256:c1094ff0475c761462ba5d0ae3a27b7680539ed6dce202c2fcf08557ec5cbd55"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-model-review/final-03/review.html",
+      "sha256": "sha256:582be6f0e42ab12a4f437bdc83bcd73726485f50e60ec131c6df347284d2c989"
+    },
+    {
+      "path": "tests/results/prd-generator/stage-5-review-guide.md",
+      "sha256": "sha256:4230495bb7fd0d9a3101128603a5250321eb269d7bf67a0a6533fa8ddc7c6fbd"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/manifest.json",
+      "sha256": "sha256:6d992cc1f72fa5a5eb6c66be92d5bdf7a22755e04d494e7555a08448246db256"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/SKILL.md",
+      "sha256": "sha256:05e9e56e6c7dcc344ca156c46f02b54e491bc38922d4f7dbdd9c481981a2970d"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/references/gating-rules.md",
+      "sha256": "sha256:1d7d5e810c3f6af8405e2ba0bdab783b0aa14646d084429926c7aefea0b0c46f"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/references/generation-rules.md",
+      "sha256": "sha256:c7c4deb1be05f2258e158d7b24d1b038c38d8932bf50282a4c00faa9804d5738"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/references/numbering-and-trace.md",
+      "sha256": "sha256:57ba53192d81d38395fdd412c7fb130a3e2a28b6f650b35c8931ba692aa03a9e"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/references/prd-structure.md",
+      "sha256": "sha256:6c31e0d5d60fcf15883ab8c254c14887c7ab05c26aa22d2047b832e1e8e27d12"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/references/sync-rules.md",
+      "sha256": "sha256:dce1db58995333bd1fadd0b19d125ae64db4e2b3f6b518aff31c931f975e3695"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/schemas/gap-request.schema.json",
+      "sha256": "sha256:c2da60cd90768f5d70555df2c08b90337d0897c51b30b9ffbb76505ce523bc8c"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/schemas/numbering-patch.schema.json",
+      "sha256": "sha256:b566c3470f7781a60da94c0a915bcebfdf84e1a2c6282c91d4716d0a75b648a9"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/schemas/prd-trace.schema.json",
+      "sha256": "sha256:5ec066eaf532cdc750f48f94facf26a2db6e13ba6d9a15ae932d6744c85ad855"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/scripts/README.md",
+      "sha256": "sha256:61e5ffcc3ed0ad8f0d6e5321cd0d4ea125c8ed37b663200bb345b508ab8217fb"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/scripts/assign_ids.py",
+      "sha256": "sha256:395049f068f6f91ad1841d5b993d0ceea77c28299eafee79019aa35232f644d7"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/scripts/check_gate.py",
+      "sha256": "sha256:61a56aa337ee4707555b3d8ef9b0ee8e753128e73d9dc0cc7305367dd5346408"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/scripts/check_sync.py",
+      "sha256": "sha256:bfd556533fb71d4a25f908b6c079512fc4a53b3f18007747e9257fb6f7acd95b"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/scripts/render_info.py",
+      "sha256": "sha256:d76ed433dd72b28471f6d397c64df660b63b4d8a641cd23a727f56773e5ce344"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/scripts/validate_prd.py",
+      "sha256": "sha256:2cbc5660c4735b193164ac1a14b8f4c5cd6692b9e2818247884922642c917e0f"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/scripts/write_draft.py",
+      "sha256": "sha256:1f69879724d688a4e986f2f6ed400ea6e49b2f110c23f9eeab6fdabda916d93d"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/templates/change-summary.md",
+      "sha256": "sha256:8f0761882027b2d05248c7e2c9374266fd4ef4ea9202c234e354c0893f6c4650"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/prd-generator/templates/prd.md",
+      "sha256": "sha256:0fa4528d3de68c1c8fadd4ceb36dc4c4dae046dd9526b639f9e27d6ebaa45cda"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/SKILL.md",
+      "sha256": "sha256:fae51a73fdc2db5b26c26125a3c055163bbb833a1d21e6f03775f3fdcf0fbd5c"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/references/analysis-framework.md",
+      "sha256": "sha256:2fe0a6f5be4f9b9bf6be41f58bfa570c96f1a6c30370e6f4c79a65d5a8d128fa"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/references/domain-knowledge.md",
+      "sha256": "sha256:8a51c9dbb328336e591d289cc1334acba0c04435dfa0d8ed695ffadb8f509485"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/references/feasibility-assessment.md",
+      "sha256": "sha256:37a38bd4f4d7de2d6f6ac83ea39f4e871fde7d46fa63e1f9c4eed6e342bf191f"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/references/historical-retrieval.md",
+      "sha256": "sha256:3fe053590cbc837c6f7f7117afe86447943d926949ade49b035aefa915fc469c"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/references/incremental-update.md",
+      "sha256": "sha256:a195c2ebe8635f5782f8d41a7b9cff2cc75d646467d2a59b2bb616fade943edd"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/references/question-strategy.md",
+      "sha256": "sha256:8ad577721b9cb34da02166a2699b6ec9d867281e2a3138b72374c64aabf8f8cb"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/references/readiness-rules.md",
+      "sha256": "sha256:e1358252f8a8c23eff91d3cbd68ede5582554c8525931d7037c228f57ab0ce8b"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/references/ux-visual-assessment.md",
+      "sha256": "sha256:57352215d119d398d40b42c15f67c76432bc4a16c8966bd05bd47643fbcdba88"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/schemas/analysis-result.schema.json",
+      "sha256": "sha256:5e437cba8f8703858aa90cc758ca3a1c77701afd40b6a548460e5aeb35af9cd5"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/schemas/question.schema.json",
+      "sha256": "sha256:fa554b754aa3a11c39aed44902a1fa16c38ebfeaad5979930ea4e239f3d25687"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/schemas/requirement-item.schema.json",
+      "sha256": "sha256:63f145dd6c75a4384caf0f5df11564c7f07133cdf0ede3bbbba838e2d52ba0d6"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/schemas/source.schema.json",
+      "sha256": "sha256:0a72b71a2826f06756851fb156e301ef510ccff949363e6dd925552704be60c9"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/scripts/README.md",
+      "sha256": "sha256:a7ca70bc447d1201767c9b6064789d00bf51ea09b2ff7642319526ad1bc6e932"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/scripts/compare_baseline.py",
+      "sha256": "sha256:4a30ac13ce07135de58c1269c73d1b046df266ac4e4fac3eb57f5f42dd1a8cfe"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/scripts/index_sources.py",
+      "sha256": "sha256:abc14cbc874b6652bc211fd51b685dcbd26d8822490f6f5c4990f8a794535714"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/scripts/project_sources.py",
+      "sha256": "sha256:1c497637a51ba4ae5a7a48f4aa28979d94d4ea9371ddbcc0bb1b00df0dc005a4"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/scripts/requirements.txt",
+      "sha256": "sha256:856ef1365f90bcd46a30193bd45c49642e6efc4cff86b5146d4a9a0ef61e0412"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/scripts/save_knowledge.py",
+      "sha256": "sha256:7b2deff684d0acb1aeb44106b3c50ef9e31c101adefe5314b0aba9c7f3f54de6"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/scripts/search_project.py",
+      "sha256": "sha256:58c435c540bbfdc1f83b19fa8c2ee9d85da6cf66c3bf526fbed890010dd62e1d"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/scripts/update_analysis.py",
+      "sha256": "sha256:59c9a5752b8d6d5df9f903543e7a0e3c8740feea2d6a55f89160e9dd0e285d8a"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/scripts/validate_analysis.py",
+      "sha256": "sha256:d13f0be502f3ca7b1977a768984e27dc0b77dd93c41665b5f405b7cd9ad683de"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/source-snapshot/requirement-analyst/templates/analysis-report.md",
+      "sha256": "sha256:6a56777f4db9e3ca34c35c455732bf3533959c5bc673d09ef7acc02f53636657"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manifest.json",
+      "sha256": "sha256:3baaf7ca2848d62f5c5c6677eff2d1eaecde17374f7270002c9b6a54730ff222"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manual-content/manual-item/requirement/analysis/analysis-result.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manual-content/manual-item/requirement/analysis/source-manifest.json",
+      "sha256": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manual-content/manual-item/requirement/prd/gap-requests.json",
+      "sha256": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manual-content/manual-item/requirement/prd/prd-events.jsonl",
+      "sha256": "sha256:f3ecc4a95e1de7fe5d83da2a502cb0cb033f1e3768439efeb3fc51ecd22d6677"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manual-content/manual-item/requirement/prd/prd-trace.json",
+      "sha256": "sha256:106b76ba648123c100c908a20a9751476050a09894e4a34343ce597e89f9097c"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manual-content/manual-item/requirement/prd/prd.md",
+      "sha256": "sha256:2a39c3913eca1619b14ec9ac323a55fcb9436fc59ea92dc1ae35a65c325cf73e"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manual-content/manual-item/requirement/requirement.json",
+      "sha256": "sha256:21e685d462190d3ff5a00130ae1057c94395a4f6f0f47573648391920a625ef6"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manual-content/manual-scope/requirement/analysis/analysis-result.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manual-content/manual-scope/requirement/analysis/source-manifest.json",
+      "sha256": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manual-content/manual-scope/requirement/prd/gap-requests.json",
+      "sha256": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manual-content/manual-scope/requirement/prd/prd-events.jsonl",
+      "sha256": "sha256:02b41fa22944409039d6ccea897e3c36f06e43aa75175530f8644d8134ca288c"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manual-content/manual-scope/requirement/prd/prd-trace.json",
+      "sha256": "sha256:dfac90c67543cf361512469a4808b9752777e93d7ec71d6409eb67f4e6d521a2"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manual-content/manual-scope/requirement/prd/prd.md",
+      "sha256": "sha256:be68efa87cd9e3a561f2941b3115857ec8bfb138641883d44fea85ff1aaa3278"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manual-content/manual-scope/requirement/requirement.json",
+      "sha256": "sha256:21e685d462190d3ff5a00130ae1057c94395a4f6f0f47573648391920a625ef6"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/layout-request/requirement/analysis/analysis-result.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/layout-request/requirement/analysis/source-manifest.json",
+      "sha256": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/layout-request/requirement/prd/gap-requests.json",
+      "sha256": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/layout-request/requirement/prd/prd-events.jsonl",
+      "sha256": "sha256:fc7f142e921cd1a44600a226c8f263f351763d88922ff55806a5a3878c94ca60"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/layout-request/requirement/prd/prd-trace.json",
+      "sha256": "sha256:7866e9c42e35e5d05b261991144581f41e8f20019f186d3bc741d2930f255815"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/layout-request/requirement/prd/prd.md",
+      "sha256": "sha256:ccee492e86fdc9d196687dbeaa839b801794620a5aa740a9c50dceed50731c47"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/layout-request/requirement/requirement.json",
+      "sha256": "sha256:21e685d462190d3ff5a00130ae1057c94395a4f6f0f47573648391920a625ef6"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/manual-layout/requirement/analysis/analysis-result.json",
+      "sha256": "sha256:84e0f1aba98b3ef7ce3724b37a7ba27e28bab0c6af1f1c99645190e86187e824"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/manual-layout/requirement/analysis/source-manifest.json",
+      "sha256": "sha256:8ca970b861a1ffa978e0821b5362b292a205d84c35397a6936ff0f64852d99b3"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/manual-layout/requirement/prd/gap-requests.json",
+      "sha256": "sha256:0755e2cf64e2e05f7714e783e1e3aef90df6f31243d76b9a8d01d39c485a43ee"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/manual-layout/requirement/prd/prd-events.jsonl",
+      "sha256": "sha256:0b67ff616c13bd72739ed937e500a71f6fbd4b1e758d2aa5da59c76494bdd6bc"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/manual-layout/requirement/prd/prd-trace.json",
+      "sha256": "sha256:28e4ecbb9d36c38a14197086ce5300238cda69754e63e55a199d6558d774a05c"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/manual-layout/requirement/prd/prd.md",
+      "sha256": "sha256:1d94ce7b5d288d9350763b02f19dcc14dc8e9a1fec385f528b368574e17680cf"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/manual-layout/requirement/requirement.json",
+      "sha256": "sha256:21e685d462190d3ff5a00130ae1057c94395a4f6f0f47573648391920a625ef6"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/SKILL.md",
+      "sha256": "sha256:05e9e56e6c7dcc344ca156c46f02b54e491bc38922d4f7dbdd9c481981a2970d"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/references/gating-rules.md",
+      "sha256": "sha256:1d7d5e810c3f6af8405e2ba0bdab783b0aa14646d084429926c7aefea0b0c46f"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/references/generation-rules.md",
+      "sha256": "sha256:c7c4deb1be05f2258e158d7b24d1b038c38d8932bf50282a4c00faa9804d5738"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/references/numbering-and-trace.md",
+      "sha256": "sha256:57ba53192d81d38395fdd412c7fb130a3e2a28b6f650b35c8931ba692aa03a9e"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/references/prd-structure.md",
+      "sha256": "sha256:6c31e0d5d60fcf15883ab8c254c14887c7ab05c26aa22d2047b832e1e8e27d12"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/references/sync-rules.md",
+      "sha256": "sha256:dce1db58995333bd1fadd0b19d125ae64db4e2b3f6b518aff31c931f975e3695"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/schemas/gap-request.schema.json",
+      "sha256": "sha256:c2da60cd90768f5d70555df2c08b90337d0897c51b30b9ffbb76505ce523bc8c"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/schemas/numbering-patch.schema.json",
+      "sha256": "sha256:b566c3470f7781a60da94c0a915bcebfdf84e1a2c6282c91d4716d0a75b648a9"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/schemas/prd-trace.schema.json",
+      "sha256": "sha256:5ec066eaf532cdc750f48f94facf26a2db6e13ba6d9a15ae932d6744c85ad855"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/scripts/README.md",
+      "sha256": "sha256:61e5ffcc3ed0ad8f0d6e5321cd0d4ea125c8ed37b663200bb345b508ab8217fb"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/scripts/assign_ids.py",
+      "sha256": "sha256:395049f068f6f91ad1841d5b993d0ceea77c28299eafee79019aa35232f644d7"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/scripts/check_gate.py",
+      "sha256": "sha256:61a56aa337ee4707555b3d8ef9b0ee8e753128e73d9dc0cc7305367dd5346408"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/scripts/check_sync.py",
+      "sha256": "sha256:bfd556533fb71d4a25f908b6c079512fc4a53b3f18007747e9257fb6f7acd95b"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/scripts/render_info.py",
+      "sha256": "sha256:d76ed433dd72b28471f6d397c64df660b63b4d8a641cd23a727f56773e5ce344"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/scripts/validate_prd.py",
+      "sha256": "sha256:2cbc5660c4735b193164ac1a14b8f4c5cd6692b9e2818247884922642c917e0f"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/scripts/write_draft.py",
+      "sha256": "sha256:1f69879724d688a4e986f2f6ed400ea6e49b2f110c23f9eeab6fdabda916d93d"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/templates/change-summary.md",
+      "sha256": "sha256:8f0761882027b2d05248c7e2c9374266fd4ef4ea9202c234e354c0893f6c4650"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/templates/prd.md",
+      "sha256": "sha256:0fa4528d3de68c1c8fadd4ceb36dc4c4dae046dd9526b639f9e27d6ebaa45cda"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/SKILL.md",
+      "sha256": "sha256:fae51a73fdc2db5b26c26125a3c055163bbb833a1d21e6f03775f3fdcf0fbd5c"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/references/analysis-framework.md",
+      "sha256": "sha256:2fe0a6f5be4f9b9bf6be41f58bfa570c96f1a6c30370e6f4c79a65d5a8d128fa"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/references/domain-knowledge.md",
+      "sha256": "sha256:8a51c9dbb328336e591d289cc1334acba0c04435dfa0d8ed695ffadb8f509485"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/references/feasibility-assessment.md",
+      "sha256": "sha256:37a38bd4f4d7de2d6f6ac83ea39f4e871fde7d46fa63e1f9c4eed6e342bf191f"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/references/historical-retrieval.md",
+      "sha256": "sha256:3fe053590cbc837c6f7f7117afe86447943d926949ade49b035aefa915fc469c"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/references/incremental-update.md",
+      "sha256": "sha256:a195c2ebe8635f5782f8d41a7b9cff2cc75d646467d2a59b2bb616fade943edd"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/references/question-strategy.md",
+      "sha256": "sha256:8ad577721b9cb34da02166a2699b6ec9d867281e2a3138b72374c64aabf8f8cb"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/references/readiness-rules.md",
+      "sha256": "sha256:e1358252f8a8c23eff91d3cbd68ede5582554c8525931d7037c228f57ab0ce8b"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/references/ux-visual-assessment.md",
+      "sha256": "sha256:57352215d119d398d40b42c15f67c76432bc4a16c8966bd05bd47643fbcdba88"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/schemas/analysis-result.schema.json",
+      "sha256": "sha256:5e437cba8f8703858aa90cc758ca3a1c77701afd40b6a548460e5aeb35af9cd5"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/schemas/question.schema.json",
+      "sha256": "sha256:fa554b754aa3a11c39aed44902a1fa16c38ebfeaad5979930ea4e239f3d25687"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/schemas/requirement-item.schema.json",
+      "sha256": "sha256:63f145dd6c75a4384caf0f5df11564c7f07133cdf0ede3bbbba838e2d52ba0d6"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/schemas/source.schema.json",
+      "sha256": "sha256:0a72b71a2826f06756851fb156e301ef510ccff949363e6dd925552704be60c9"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/scripts/README.md",
+      "sha256": "sha256:a7ca70bc447d1201767c9b6064789d00bf51ea09b2ff7642319526ad1bc6e932"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/scripts/compare_baseline.py",
+      "sha256": "sha256:4a30ac13ce07135de58c1269c73d1b046df266ac4e4fac3eb57f5f42dd1a8cfe"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/scripts/index_sources.py",
+      "sha256": "sha256:abc14cbc874b6652bc211fd51b685dcbd26d8822490f6f5c4990f8a794535714"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/scripts/project_sources.py",
+      "sha256": "sha256:1c497637a51ba4ae5a7a48f4aa28979d94d4ea9371ddbcc0bb1b00df0dc005a4"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/scripts/requirements.txt",
+      "sha256": "sha256:856ef1365f90bcd46a30193bd45c49642e6efc4cff86b5146d4a9a0ef61e0412"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/scripts/save_knowledge.py",
+      "sha256": "sha256:7b2deff684d0acb1aeb44106b3c50ef9e31c101adefe5314b0aba9c7f3f54de6"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/scripts/search_project.py",
+      "sha256": "sha256:58c435c540bbfdc1f83b19fa8c2ee9d85da6cf66c3bf526fbed890010dd62e1d"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/scripts/update_analysis.py",
+      "sha256": "sha256:59c9a5752b8d6d5df9f903543e7a0e3c8740feea2d6a55f89160e9dd0e285d8a"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/scripts/validate_analysis.py",
+      "sha256": "sha256:d13f0be502f3ca7b1977a768984e27dc0b77dd93c41665b5f405b7cd9ad683de"
+    },
+    {
+      "path": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/requirement-analyst/templates/analysis-report.md",
+      "sha256": "sha256:6a56777f4db9e3ca34c35c455732bf3533959c5bc673d09ef7acc02f53636657"
+    }
+  ]
+}

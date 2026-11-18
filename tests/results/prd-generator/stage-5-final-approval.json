@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-18",
+  "stage": 5,
+  "decision": "已审阅，认可本轮结果",
+  "status": "approved",
+  "source": "本次AskUserQuestion的真实用户选择",
+  "question": "在阅读最终评审页和指南后，是否认可本轮分流、措辞和修复后的遗留项表达，完成阶段5人工验收？",
+  "reviewed_artifacts": {
+    "path": "tests/results/prd-generator/stage-5-reviewed-artifacts.json",
+    "sha256": "sha256:593e59b1212a78d84778cfdee5bf8eb6b5f13d06da5b9dabf85863de21d735fe",
+    "count": 212
+  },
+  "accepted_scope": [
+    "PG-17内容及含义变化请求的回交分流",
+    "PG-18措辞与排版语义核对及保存",
+    "手工内容检测与用户坚持保留的局部链路",
+    "原模型空集合提示质量问题及修复后原首候选重放",
+    "固定评审材料中的本轮实际表达与遗留说明"
+  ],
+  "preserved_original_results": {
+    "request_routing_with_skill": "6/6",
+    "manual_content_with_skill": "6/7",
+    "current_source_replay": "4/4",
+    "note": "不把修复后重放改写为原模型满分，也不是新模型调用。"
+  },
+  "scenarios": {
+    "PG-17": "pass",
+    "PG-18": "pass",
+    "PG-19": "仅阶段5局部检查；完整发布拒绝留阶段6"
+  },
+  "not_authorized": [
+    "git commit",
+    "git merge",
+    "git tag",
+    "git push",
+    "开始阶段6",
+    "真实业务评审或发布",
+    "安装变更"
+  ]
+}

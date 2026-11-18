@@ -1,0 +1,1 @@
+{"status": "fail", "diagnostics": [{"rule": 0, "level": "fail", "item_id": "$", "path": "$", "message": "坚持保留须有用户实际确认，不能冒充语义未变"}], "candidate_dir": null, "written": [], "edited": false, "transaction_complete": false, "recovery_required": false}

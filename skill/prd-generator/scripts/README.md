@@ -1,6 +1,6 @@
 # PRD 生成与同步脚本
 
-本目录实现门禁、正式编号、信息渲染、统一首稿及显式增量同步保存，并保留只读校验。编辑分流、评审、发布及发布后另建工作稿尚未实现，不能以草稿或合成快照代替发布基线。阶段验收以实际运行及人工记录为准。
+本目录实现门禁、正式编号、信息渲染、统一首稿及显式增量同步保存，并保留只读校验。支持排版编辑、手改检测和坚持保留标注；评审、发布及发布后另建工作稿尚未实现，不能以草稿或合成快照代替发布基线。阶段验收以实际运行及人工记录为准。
 
 ## 依赖与安装边界
 
@@ -92,6 +92,22 @@ PY skill/prd-generator/scripts/write_draft.py REQUIREMENT_DIR --sync \
 统一保存记录兼容选填的 `meta.section_source_digests`，依据未变的整章也须保持原字节，补足对范围等非编号内容的保护。旧追溯缺字段时可用 `--previous-analysis OLD_ANALYSIS.json` 指定与旧基准身份/修订匹配的分析；缺可信旧依据时输出明确警告，须人工逐章核对，不能冒称已自动证明全篇最小化。成功后建立当前章节依据。功能、规则等保持对应稳定键，验收仅按显式 `related_ids` 挂靠功能。
 
 同步共用上述候选、并发及恢复机制，事件类型为 `sync`；变更记录包含四类受影响编号、就绪度和遗留事项变化。辅助事件缺失只按条目汇总，来源清单缺失只显示 `source_id`，降级写入信息且完整输出警告。`check_sync.py` 始终只读。
+
+## 显式编辑与手改检测
+
+每次操作先用 `check_sync.py` 检查待同步及只读 `manual_edits` 比较；发现手改先处理，再由分析侧更正并同步，不能用编辑前移分析基准。
+
+```text
+PY skill/prd-generator/scripts/write_draft.py REQUIREMENT_DIR --inspect-edits [--previous-body OLD.md]
+PY skill/prd-generator/scripts/write_draft.py REQUIREMENT_DIR --edit layout|detect|keep \
+  --base-prd-version VERSION --base-analysis-revision N --base-content-hash SHA \
+  --edit-summary TEXT [--body CANDIDATE.md] [--meaning-reviewed] [--keep-confirmed] \
+  [--previous-body OLD.md] [--candidate-dir NEW_DIRECTORY_OUTSIDE_REQUIREMENT]
+```
+
+查看输出实际摘要、预期摘要、`diff`、`baseline_available`、`changed`，不写事件。编辑基准摘要绑定读取时当前正文原始字节，不能使用可能过时的追溯摘要；版本、分析修订和待写文件均需重新核对。`layout` 需要正文及模型逐差异核对后提供的 `--meaning-reviewed`；`detect` 不带正文和确认标志，只在明确授权处理时追加事件，不递增版本、不刷新旧摘要；`keep` 需要正文及用户实际坚持后的 `--keep-confirmed`。标志本身不证明语义或用户意愿。候选的信息和变更记录由脚本渲染；编号、引用、来源摘要、计数器、缺口内容与交接状态保持。
+
+正文基准缺失且旧稿已手改时须提供摘要匹配的真实旧正文，不能伪造。尚未改稿的内容性或无法判断请求只建议回交分析，不写正文或事件。成对不一致为明确不得发布的警告，不成对为失败；已有不一致不得因排版、重复生成或未经核实的同步清除。新增手工不一致遗留项后，写入器允许并移除遗留章内独立的“无适用遗留项”等空集合提示，不借此删改真实遗留说明。具体分流、定位及基准见 [修改分流](../references/numbering-and-trace.md)；完整 `PG-19` 发布拒绝属于阶段 6。
 
 ## 单独渲染信息
 

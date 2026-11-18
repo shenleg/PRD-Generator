@@ -1,0 +1,41 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmpRV6gEL/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-01/source-snapshot/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-01/cases/unreviewed-layout/requirement",
+    "--edit",
+    "layout",
+    "--body",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-01/cases/unreviewed-layout/candidate.md",
+    "--base-prd-version",
+    "0.1",
+    "--base-analysis-revision",
+    "1",
+    "--base-content-hash",
+    "sha256:1662a5ff1fa80a7628a0a08ab1f3ea95d22d235226ca8a9b98a1b2879b074c65",
+    "--edit-summary",
+    "合成CLI边界验证，不代表自然语言人工签核",
+    "--candidate-dir",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-cli/attempt-01/cases/unreviewed-layout/edit-candidate"
+  ],
+  "returncode": 2,
+  "response": {
+    "status": "fail",
+    "diagnostics": [
+      {
+        "rule": 0,
+        "level": "fail",
+        "item_id": "$",
+        "path": "$",
+        "message": "排版须先逐差异核对含义，不能以用户坚持代替语义核对"
+      }
+    ],
+    "candidate_dir": null,
+    "written": [],
+    "edited": false,
+    "transaction_complete": false,
+    "recovery_required": false
+  }
+}

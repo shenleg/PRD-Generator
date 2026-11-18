@@ -1,0 +1,12 @@
+{
+  "status": "warning",
+  "diagnostics": [
+    {
+      "rule": 8,
+      "level": "warning",
+      "item_id": "SYNTHETIC-PRD/prd/sections/scope",
+      "path": "prd.md",
+      "message": "存在与分析不一致的内容，不得发布。"
+    }
+  ]
+}

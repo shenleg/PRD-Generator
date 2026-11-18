@@ -18,6 +18,7 @@ def _load(name, filename):
 _numbering = _load("prd_sync_numbering", "assign_ids.py")
 _validator = _numbering._validator
 _gate = _load("prd_sync_gate", "check_gate.py")
+_renderer = _load("prd_sync_renderer", "render_info.py")
 
 
 def compare_sources(analysis: dict, requirement: dict, trace: dict, *, related_analyses=()) -> dict:
@@ -112,6 +113,15 @@ def check_sync(requirement_dir, *, related_analyses=(), allow_stale=False) -> di
         related = [_validator._read(path, diagnostics, 3) for path in paths]
         if all(document is not None for document in (requirement, analysis, trace, *related)):
             result.update(compare_sources(analysis, requirement, trace, related_analyses=related))
+            body_path = root / 'prd/prd.md'
+            if body_path.is_symlink() or any(parent.is_symlink() for parent in body_path.parents):
+                raise ValueError('正文比较不使用符号链接路径')
+            result['manual_edits'] = _renderer.compare_content(body_path.read_bytes(), trace)
+            if result['manual_edits']['changed']:
+                message = '正文摘要变化，需比较实际差异并按含义分流；只读检查未处理手工修改。'
+                if not result['manual_edits']['baseline_available']:
+                    message += '旧稿缺少可核验正文基准，须显式补充 hash 匹配的旧正文。'
+                diagnostics.append(_validator._issue(4, '$', body_path, message, 'warning'))
             gaps = _validator._read(root / 'prd/gap-requests.json', diagnostics, 12)
             manifest = _validator._read(root / 'analysis/source-manifest.json', diagnostics, 3, optional=True)
             if gaps is not None and _validator._structure(gaps, 'gap-request', diagnostics, 12, 'gap-requests.json'):

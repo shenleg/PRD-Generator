@@ -1,0 +1,141 @@
+{
+  "stage": 5,
+  "date": "2026-11-17",
+  "state": "completed_pass",
+  "completed_at": "2026-11-18",
+  "branch": "feat/prd-generator-stage-5",
+  "base_commit": "480768e940d214bbbba74a25b484ab0d57f08d97",
+  "program_status": "pass",
+  "baseline": {
+    "tests": 421,
+    "failures": 0,
+    "seconds": 137.69,
+    "log": "tests/results/prd-generator/stage-5-baseline-test-run.txt"
+  },
+  "final_regression": {
+    "tests": 463,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 155.751,
+    "log": "tests/results/prd-generator/stage-5-final-test-run-02.txt"
+  },
+  "public_cli": {
+    "cases": 10,
+    "passed": 10,
+    "manifest": "workspace-sandbox/prd-generator/stage-5-cli/attempt-03/manifest.json",
+    "source_files": 41,
+    "current_source_byte_match": true
+  },
+  "model": {
+    "actual_configured_runs": 4,
+    "groups": 2,
+    "configs": [
+      "with_skill",
+      "old_skill"
+    ],
+    "synthetic_followup_after_question": true,
+    "real_business_confirmation": false,
+    "original_scores": [
+      {
+        "task": "request-routing",
+        "config": "with_skill",
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "pass_rate": 1.0
+      },
+      {
+        "task": "request-routing",
+        "config": "old_skill",
+        "passed": 3,
+        "failed": 3,
+        "total": 6,
+        "pass_rate": 0.5
+      },
+      {
+        "task": "manual-content",
+        "config": "with_skill",
+        "passed": 6,
+        "failed": 1,
+        "total": 7,
+        "pass_rate": 0.8571428571428571
+      },
+      {
+        "task": "manual-content",
+        "config": "old_skill",
+        "passed": 2,
+        "failed": 5,
+        "total": 7,
+        "pass_rate": 0.2857142857142857
+      }
+    ],
+    "quality_issue": "原写入器拒绝删除失效空集合提示；原实际最终稿保留该质量失败，修复后重放原首候选。"
+  },
+  "current_source_replay": {
+    "cases": 4,
+    "passed": 4,
+    "new_model_invocation": false,
+    "manifest": "workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/manifest.json",
+    "source_files": 41,
+    "current_source_byte_match": true
+  },
+  "scenarios": [
+    {
+      "id": "PG-17",
+      "stage": 5,
+      "result": "pass",
+      "program": "pass",
+      "model_execution": "completed",
+      "human_semantic_review": "approved"
+    },
+    {
+      "id": "PG-18",
+      "stage": 5,
+      "result": "pass",
+      "program": "pass",
+      "model_execution": "completed",
+      "human_semantic_review": "approved"
+    },
+    {
+      "id": "PG-19",
+      "full_acceptance_stage": 6,
+      "stage_5": "local_detection_and_retention_checks_only",
+      "full_scene": "not_executed"
+    }
+  ],
+  "metrics": {
+    "routing_samples": {
+      "content_requests": 2,
+      "layout_cases": 2,
+      "human_confirmed_correct": 4
+    },
+    "manual_content_samples": 2,
+    "new_skill_existing_ids_preserved": {
+      "count": 6,
+      "total": 6,
+      "scope": "六个相互独立的合成工作区；不是全文追溯完整率"
+    },
+    "quality_empty_notice": {
+      "original_final_documents_affected": 2,
+      "corrected_replay_documents_affected": 0
+    },
+    "thresholds": "未设新阈值；其余指标不把无样本记满分"
+  },
+  "review": {
+    "status": "approved",
+    "date": "2026-11-18",
+    "approval": "tests/results/prd-generator/stage-5-final-approval.json",
+    "page": "tests/results/prd-generator/stage-5-model-review/final-03/review.html",
+    "guide": "tests/results/prd-generator/stage-5-review-guide.md",
+    "analysis": "tests/results/prd-generator/stage-5-model-analysis.md"
+  },
+  "git_operations": {
+    "committed": false,
+    "merged": false,
+    "tagged": false,
+    "pushed": false
+  },
+  "business_release": false,
+  "installation_changed": false
+}

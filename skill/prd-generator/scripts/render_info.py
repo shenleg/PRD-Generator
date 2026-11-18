@@ -1,6 +1,7 @@
 """根据权威元数据渲染草稿提示、文档信息和生成记录，并计算正文原始字节摘要。"""
 
 import argparse
+import difflib
 from datetime import datetime, timezone
 from functools import lru_cache
 import hashlib
@@ -23,6 +24,38 @@ def _validator():
 def content_hash(content: bytes) -> str:
     """返回正文原始 content 字节的 SHA-256 摘要；不归一化换行，无预期业务异常。"""
     return "sha256:" + hashlib.sha256(content).hexdigest()
+
+
+def compare_content(content: bytes, trace: dict, *, previous_content: bytes | None = None) -> dict:
+    """比较实际正文与追溯基准，返回原始摘要、完整差异和受影响定位；不判断含义或写文件。
+
+    content 为当前 Markdown 原始字节；trace 提供 content_hash 和兼容选填的 content_baseline。
+    previous_content 可显式补充 hash 匹配的旧稿；旧稿不足时返回 baseline_available=False，
+    不猜测旧正文。非法 UTF-8、基准类型或摘要不匹配抛出 ValueError/UnicodeError/KeyError。
+    """
+    expected = trace['meta']['content_hash']
+    actual = content_hash(content)
+    baseline = trace['meta'].get('content_baseline')
+    if baseline is not None:
+        if not isinstance(baseline, str) or content_hash(baseline.encode('utf-8')) != expected:
+            raise ValueError('正文比较基准与 content_hash 不符，不能用于判断手工修改')
+    if previous_content is not None:
+        if content_hash(previous_content) != expected:
+            raise ValueError('显式旧正文摘要不匹配 content_hash，不猜测或替换比较基准')
+        baseline = previous_content.decode('utf-8')
+    if baseline is None and actual == expected:
+        baseline = content.decode('utf-8')
+    current = content.decode('utf-8')
+    result = {'changed': actual != expected, 'content_hash': actual, 'expected_content_hash': expected,
+              'baseline_available': baseline is not None, 'diff': None, 'affected_prd_ids': [], 'affected_sections': []}
+    if baseline is not None:
+        result['diff'] = ''.join(difflib.unified_diff(baseline.splitlines(keepends=True), current.splitlines(keepends=True),
+                                                   fromfile='last-saved/prd.md', tofile='current/prd.md'))
+        old, new = _validator()._blocks(baseline, []), _validator()._blocks(current, [])
+        for kind, target in (('item', 'affected_prd_ids'), ('section', 'affected_sections')):
+            result[target] = sorted(key for key in old[kind].keys() | new[kind].keys()
+                                    if old[kind].get(key, {}).get('text') != new[kind].get(key, {}).get('text'))
+    return result
 
 
 def _cell(value):

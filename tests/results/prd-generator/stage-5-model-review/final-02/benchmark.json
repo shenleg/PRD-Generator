@@ -1,0 +1,288 @@
+{
+  "metadata": {
+    "skill_name": "prd-generator",
+    "skill_path": "skill/prd-generator",
+    "executor_model": "tool-selected model; see raw task notifications",
+    "analyzer_model": "deterministic artifact grading",
+    "timestamp": "2026-11-17T20:17:44Z",
+    "evals_run": [
+      1,
+      2
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 6,
+        "failed": 0,
+        "total": 6,
+        "time_seconds": 298.818,
+        "tokens": 40274,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "内容修改请求未直接改稿",
+          "passed": true,
+          "evidence": "content-request：初始与实际最终目录全部原始文件摘要比较；交接表述及理由另由人工阅读。"
+        },
+        {
+          "text": "含义变化措辞未按排版保存",
+          "passed": true,
+          "evidence": "ambiguous-request：初始与实际最终目录全部原始文件摘要比较；交接表述及理由另由人工阅读。"
+        },
+        {
+          "text": "纯措辞润色实际保存为0.2并记录layout_edit",
+          "passed": true,
+          "evidence": "layout-request/requirement.json、prd-events.jsonl及当前源码校验。"
+        },
+        {
+          "text": "手工排版经实际比较后保存为0.2",
+          "passed": true,
+          "evidence": "manual-layout/requirement.json、prd-events.jsonl及当前源码校验。"
+        },
+        {
+          "text": "所有需求的编号引用、分析与其他元数据保持",
+          "passed": true,
+          "evidence": "逐需求比较分析全目录、requirement.json除prd块、trace.items及counters。"
+        },
+        {
+          "text": "两份排版处理后正文摘要和基准一致",
+          "passed": true,
+          "evidence": "需要实际排版保存；旧版保持未处理的手工排版不能因未写文件算完成。"
+        }
+      ],
+      "notes": [
+        "前两项只证明未越权写入，具体范围/触发条件分流理由仍须人工评审；旧Skill正确拒绝不算程序故障。",
+        "语义分流、措辞不改含义、保留手改及遗留说明充分性",
+        "模型运行于私有worktree，完成后归档；原共享输入保持原样。"
+      ]
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8571428571428571,
+        "passed": 6,
+        "failed": 1,
+        "total": 7,
+        "time_seconds": 207.281,
+        "tokens": 45377,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "两份手改首轮均记录实际检测事件",
+          "passed": true,
+          "evidence": "首轮事件中manual_edit_detected/handling=detect；原始检测响应和diff保存在artifacts。"
+        },
+        {
+          "text": "首轮未提前保留或撤回用户手改",
+          "passed": true,
+          "evidence": "首轮与输入除追加事件外的全部文件原字节比较；模拟回答在实际提问后才提供。"
+        },
+        {
+          "text": "模拟用户坚持后两份均保存不一致标注",
+          "passed": true,
+          "evidence": "检查真实最终0.2版本、事件、原内容标注及结构化配对；模拟回答不是真实业务签核。"
+        },
+        {
+          "text": "对应遗留项及校验明确不得发布",
+          "passed": true,
+          "evidence": "当前校验器逐目标检查配对并输出warning，不声称执行阶段6发布API。"
+        },
+        {
+          "text": "新增遗留项后不再声称无遗留项",
+          "passed": false,
+          "evidence": "真实模型发现的附加质量断言：原最终稿仍有空集合提示；修复后原首候选另行当前源码重放，不改写原模型产物。"
+        },
+        {
+          "text": "编号引用、分析与其他元数据保持",
+          "passed": true,
+          "evidence": "比较分析目录、非prd元数据、trace.items与counters。"
+        },
+        {
+          "text": "处理后正文摘要一致且保留检测事件",
+          "passed": true,
+          "evidence": "比较当前正文原字节、content_hash和content_baseline，并核对首轮及最终事件。"
+        }
+      ],
+      "notes": [
+        "遗留说明是否充分、保留是否忠于用户手改仍须人工阅读；PG-19完整发布拒绝未执行。",
+        "语义分流、措辞不改含义、保留手改及遗留说明充分性",
+        "模型运行于私有worktree，完成后归档；原共享输入保持原样。"
+      ]
+    },
+    {
+      "eval_id": 1,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 3,
+        "failed": 3,
+        "total": 6,
+        "time_seconds": 162.409,
+        "tokens": 25038,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "内容修改请求未直接改稿",
+          "passed": true,
+          "evidence": "content-request：初始与实际最终目录全部原始文件摘要比较；交接表述及理由另由人工阅读。"
+        },
+        {
+          "text": "含义变化措辞未按排版保存",
+          "passed": true,
+          "evidence": "ambiguous-request：初始与实际最终目录全部原始文件摘要比较；交接表述及理由另由人工阅读。"
+        },
+        {
+          "text": "纯措辞润色实际保存为0.2并记录layout_edit",
+          "passed": false,
+          "evidence": "layout-request/requirement.json、prd-events.jsonl及当前源码校验。"
+        },
+        {
+          "text": "手工排版经实际比较后保存为0.2",
+          "passed": false,
+          "evidence": "manual-layout/requirement.json、prd-events.jsonl及当前源码校验。"
+        },
+        {
+          "text": "所有需求的编号引用、分析与其他元数据保持",
+          "passed": true,
+          "evidence": "逐需求比较分析全目录、requirement.json除prd块、trace.items及counters。"
+        },
+        {
+          "text": "两份排版处理后正文摘要和基准一致",
+          "passed": false,
+          "evidence": "需要实际排版保存；旧版保持未处理的手工排版不能因未写文件算完成。"
+        }
+      ],
+      "notes": [
+        "前两项只证明未越权写入，具体范围/触发条件分流理由仍须人工评审；旧Skill正确拒绝不算程序故障。",
+        "语义分流、措辞不改含义、保留手改及遗留说明充分性",
+        "模型运行于私有worktree，完成后归档；原共享输入保持原样。"
+      ]
+    },
+    {
+      "eval_id": 2,
+      "configuration": "old_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.2857142857142857,
+        "passed": 2,
+        "failed": 5,
+        "total": 7,
+        "time_seconds": 218.719,
+        "tokens": 53140,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "两份手改首轮均记录实际检测事件",
+          "passed": false,
+          "evidence": "首轮事件中manual_edit_detected/handling=detect；原始检测响应和diff保存在artifacts。"
+        },
+        {
+          "text": "首轮未提前保留或撤回用户手改",
+          "passed": true,
+          "evidence": "首轮与输入除追加事件外的全部文件原字节比较；模拟回答在实际提问后才提供。"
+        },
+        {
+          "text": "模拟用户坚持后两份均保存不一致标注",
+          "passed": false,
+          "evidence": "检查真实最终0.2版本、事件、原内容标注及结构化配对；模拟回答不是真实业务签核。"
+        },
+        {
+          "text": "对应遗留项及校验明确不得发布",
+          "passed": false,
+          "evidence": "当前校验器逐目标检查配对并输出warning，不声称执行阶段6发布API。"
+        },
+        {
+          "text": "新增遗留项后不再声称无遗留项",
+          "passed": false,
+          "evidence": "真实模型发现的附加质量断言：原最终稿仍有空集合提示；修复后原首候选另行当前源码重放，不改写原模型产物。"
+        },
+        {
+          "text": "编号引用、分析与其他元数据保持",
+          "passed": true,
+          "evidence": "比较分析目录、非prd元数据、trace.items与counters。"
+        },
+        {
+          "text": "处理后正文摘要一致且保留检测事件",
+          "passed": false,
+          "evidence": "比较当前正文原字节、content_hash和content_baseline，并核对首轮及最终事件。"
+        }
+      ],
+      "notes": [
+        "遗留说明是否充分、保留是否忠于用户手改仍须人工阅读；PG-19完整发布拒绝未执行。",
+        "语义分流、措辞不改含义、保留手改及遗留说明充分性",
+        "模型运行于私有worktree，完成后归档；原共享输入保持原样。"
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0.9286,
+        "stddev": 0.101,
+        "min": 0.8571,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 253.0495,
+        "stddev": 64.7264,
+        "min": 207.281,
+        "max": 298.818
+      },
+      "tokens": {
+        "mean": 42825.5,
+        "stddev": 3608.3659,
+        "min": 40274,
+        "max": 45377
+      }
+    },
+    "old_skill": {
+      "pass_rate": {
+        "mean": 0.3929,
+        "stddev": 0.1515,
+        "min": 0.2857,
+        "max": 0.5
+      },
+      "time_seconds": {
+        "mean": 190.564,
+        "stddev": 39.8172,
+        "min": 162.409,
+        "max": 218.719
+      },
+      "tokens": {
+        "mean": 39089.0,
+        "stddev": 19871.1148,
+        "min": 25038,
+        "max": 53140
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.54",
+      "time_seconds": "+62.5",
+      "tokens": "+3736"
+    }
+  },
+  "notes": [
+    "每配置每组仅一次，共四份模型执行，不是稳定通过率估计。",
+    "保护断言通过不证明语义分流正确，人工仍需看实际差异。",
+    "旧Skill按已声明边界拒绝不是程序故障，但不计编辑完成。",
+    "时间与token保留通知原值；部分run有后续轮及调度暂停，不据此作效率结论。",
+    "用户坚持保留的回答来自已批准合成剧本，不是真实业务签核。"
+  ]
+}

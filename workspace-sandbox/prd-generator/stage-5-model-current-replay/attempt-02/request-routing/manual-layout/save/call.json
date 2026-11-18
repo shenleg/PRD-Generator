@@ -1,0 +1,53 @@
+{
+  "command": [
+    "/home/collin/.cache/uv/builds-v0/.tmp0bzCPC/bin/python",
+    "-I",
+    "-B",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/source-snapshot/prd-generator/scripts/write_draft.py",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/manual-layout/requirement",
+    "--edit",
+    "layout",
+    "--body",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/manual-layout/model-candidate.md",
+    "--base-prd-version",
+    "0.1",
+    "--base-analysis-revision",
+    "1",
+    "--base-content-hash",
+    "sha256:5ee10ebe8d797fc6e7e6269edbd3d244b7aae8b88e90912f3d22b9e38e97dde6",
+    "--edit-summary",
+    "保留功能需求中“用户可以”的加粗排版。",
+    "--meaning-reviewed",
+    "--candidate-dir",
+    "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/manual-layout/candidate"
+  ],
+  "returncode": 0,
+  "response": {
+    "status": "pass",
+    "diagnostics": [],
+    "version": "0.2",
+    "edited": true,
+    "detected": false,
+    "generated": false,
+    "manual_edits": {
+      "changed": true,
+      "content_hash": "sha256:5ee10ebe8d797fc6e7e6269edbd3d244b7aae8b88e90912f3d22b9e38e97dde6",
+      "expected_content_hash": "sha256:f5583bd14e6dd564bf304ffd86be9dfa94af1b35739fef03cd4e1460808c2263",
+      "baseline_available": true,
+      "diff": "--- last-saved/prd.md\n+++ current/prd.md\n@@ -32,7 +32,7 @@\n <!-- prd:section functional_requirements -->\n | 正式编号与功能需求 | 分析来源 |\n | --- | --- |\n-| <!-- prd:item PRD-FR-001 -->PRD-FR-001：用户可以导出当前筛选结果；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\n+| <!-- prd:item PRD-FR-001 -->PRD-FR-001：**用户可以**导出当前筛选结果；分析来源 SYNTHETIC-PRD/FR-1<!-- /prd:item --> | SYNTHETIC-PRD/FR-1 |\n <!-- /prd:section -->\n \n <!-- prd:section business_rules -->\n",
+      "affected_prd_ids": [
+        "PRD-FR-001"
+      ],
+      "affected_sections": [
+        "functional_requirements"
+      ]
+    },
+    "candidate_dir": "/home/collin/orca/PRD-Generator/workspace-sandbox/prd-generator/stage-5-model-current-replay/attempt-02/request-routing/manual-layout/candidate",
+    "written": [
+      "prd/prd.md",
+      "prd/prd-trace.json",
+      "requirement.json",
+      "prd/prd-events.jsonl"
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+{"status": "fail", "diagnostics": [{"rule": 0, "level": "fail", "item_id": "$", "path": "$", "message": "编辑读时 PRD 版本或分析修订已变化，须重新读取差异"}], "candidate_dir": null, "written": [], "edited": false, "transaction_complete": false, "recovery_required": false}

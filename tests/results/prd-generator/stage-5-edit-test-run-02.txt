@@ -1,0 +1,59 @@
+test_candidate_failure_retains_raw_materials (test_prd_edits.PrdEditTests.test_candidate_failure_retains_raw_materials)
+编辑候选定位损坏时保留输入和差异，不改正式业务文件。 ... ok
+test_cli_layout_and_inspection_use_public_entry (test_prd_edits.PrdEditTests.test_cli_layout_and_inspection_use_public_entry)
+真实公开 CLI 能只读比较并保存排版，参数不依赖测试私有接口。 ... ok
+test_concurrent_metadata_change_after_validation_refused (test_prd_edits.PrdEditTests.test_concurrent_metadata_change_after_validation_refused)
+候选校验后他人修改其他元数据块时仍拒绝覆盖，不只比较版本。 ... ok
+test_detection_does_not_invent_manual_changes (test_prd_edits.PrdEditTests.test_detection_does_not_invent_manual_changes)
+未变化正文没有手改事件，也不会因检测而增加版本。 ... ok
+test_detection_only_appends_event_and_is_idempotent (test_prd_edits.PrdEditTests.test_detection_only_appends_event_and_is_idempotent)
+显式检测保留手改和旧摘要，不升版本；重试同一手改不重复事件。 ... ok
+test_edit_interruption_recovers_without_duplicate_event (test_prd_edits.PrdEditTests.test_edit_interruption_recovers_without_duplicate_event)
+编辑跨文件中断复用既有恢复，正文与基准一致且事件只追加一次。 ... ok
+test_edit_rejects_read_time_conflicts (test_prd_edits.PrdEditTests.test_edit_rejects_read_time_conflicts)
+版本、分析修订或当前实际正文摘要任一与读时不符即拒写。 ... ok
+test_full_diff_includes_non_numbered_scope (test_prd_edits.PrdEditTests.test_full_diff_includes_non_numbered_scope)
+实际差异比较覆盖非编号范围，不只发现正式条目变化。 ... ok
+test_generation_establishes_exact_baseline (test_prd_edits.PrdEditTests.test_generation_establishes_exact_baseline)
+首稿正文、比较基准和原始字节摘要在同一事务中一致。 ... ok
+test_keep_cannot_skip_marker_or_change_more_business_text (test_prd_edits.PrdEditTests.test_keep_cannot_skip_marker_or_change_more_business_text)
+坚持保留不能漏标，也不能在保存标注时夹带另一项内容改写。 ... ok
+test_keep_pairs_item_marker_and_residual_and_blocks_release (test_prd_edits.PrdEditTests.test_keep_pairs_item_marker_and_residual_and_blocks_release)
+用户坚持后保留真实手改，成对标注、升一次次版本，摘要更新但仍不得发布。 ... ok
+test_keep_rejects_unlocated_business_changes (test_prd_edits.PrdEditTests.test_keep_rejects_unlocated_business_changes)
+章节外新规则可被检测，但不能伪装成已有条目的合法保留。 ... ok
+test_keep_requires_all_changed_targets (test_prd_edits.PrdEditTests.test_keep_requires_all_changed_targets)
+同时改条目及范围时，仅给条目标注仍拒写。 ... ok
+test_keep_requires_real_user_confirmation (test_prd_edits.PrdEditTests.test_keep_requires_real_user_confirmation)
+未收到坚持保留的回答时不提前执行标注保存分支。 ... ok
+test_keep_supports_non_numbered_section (test_prd_edits.PrdEditTests.test_keep_supports_non_numbered_section)
+非编号范围变化也必须有稳定目标和对应遗留项，不能漏检。 ... ok
+test_layout_cannot_clear_existing_inconsistency (test_prd_edits.PrdEditTests.test_layout_cannot_clear_existing_inconsistency)
+一次后续排版不能把已保留的不一致状态洗成可发布。 ... ok
+test_layout_increments_version_and_preserves_identity (test_prd_edits.PrdEditTests.test_layout_increments_version_and_preserves_identity)
+排版后次版本递增、摘要一致，编号来源及分析和其他元数据块保持。 ... ok
+test_layout_keeps_stable_ids_and_references (test_prd_edits.PrdEditTests.test_layout_keeps_stable_ids_and_references)
+即使声明已语义核对，改编号或删引用仍拒写。 ... ok
+test_layout_requires_explicit_semantic_review (test_prd_edits.PrdEditTests.test_layout_requires_explicit_semantic_review)
+未经逐差异核对不能仅以“排版”名义刷新摘要。 ... ok
+test_legacy_unchanged_body_can_establish_baseline (test_prd_edits.PrdEditTests.test_legacy_unchanged_body_can_establish_baseline)
+旧追溯无基准但正文未改时保持兼容，下一次合法编辑建立基准。 ... ok
+test_manual_layout_only_after_comparison (test_prd_edits.PrdEditTests.test_manual_layout_only_after_comparison)
+用户先改排版后，仍需取得真实差异及语义核对才保存并刷新摘要。 ... ok
+test_missing_baseline_is_not_silently_reconstructed (test_prd_edits.PrdEditTests.test_missing_baseline_is_not_silently_reconstructed)
+旧稿已改但无基准时明确证据不足；匹配的显式旧正文才可恢复比较。 ... ok
+test_pending_layout_cannot_advance_analysis_baseline (test_prd_edits.PrdEditTests.test_pending_layout_cannot_advance_analysis_baseline)
+待同步时不借排版消除修订差或假称已同步。 ... ok
+test_raw_crlf_difference_is_not_normalized_away (test_prd_edits.PrdEditTests.test_raw_crlf_difference_is_not_normalized_away)
+原始字节摘要保留换行变化，CRLF 差异仍能被比较检出。 ... ok
+test_same_input_and_sync_do_not_clear_inconsistency (test_prd_edits.PrdEditTests.test_same_input_and_sync_do_not_clear_inconsistency)
+重新生成与未变分析同步都不能无依据清除手工不一致。 ... ok
+test_unchanged_inspection_is_read_only (test_prd_edits.PrdEditTests.test_unchanged_inspection_is_read_only)
+只读查看不会写事件、版本或其他文件，不误报未改稿。 ... ok
+test_wrong_explicit_old_body_rejected (test_prd_edits.PrdEditTests.test_wrong_explicit_old_body_rejected)
+显式旧稿摘要不符时不覆盖已存有效基准，不输出伪造差异。 ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 7.977s
+
+OK

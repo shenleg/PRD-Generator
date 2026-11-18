@@ -223,6 +223,87 @@ def _blocks(text, diagnostics):
     return blocks
 
 
+INCONSISTENCY = "【与分析不一致】"
+CONTENT_SECTIONS = set(SECTION_KEYS) - {"info", "changes", "residuals"}
+
+
+def manual_inconsistencies(text: str, requirement_id: str) -> dict[str, str]:
+    """提取正文中手工不一致的目标及其原始内容，不返回遗留项。
+
+    text 是完整 Markdown，requirement_id 是本需求编号；返回完整目标引用到原文的映射。
+    定位块非法或正文标注无法归属有效条目、内容章节时抛出 ValueError。
+    条目内标注只属于条目，不传播到所在章节；此函数不判断差异的语义。
+    """
+    diagnostics = []
+    blocks = _blocks(text, diagnostics)
+    if diagnostics:
+        raise ValueError("；".join(issue["message"] for issue in diagnostics))
+    result = {}
+    comments = [(match.start(), match.end()) for match in re.finditer(r"<!--[\s\S]*?-->", text)]
+    for match in re.finditer(re.escape(INCONSISTENCY), text):
+        pos = match.start()
+        if any(start <= pos < end for start, end in comments):
+            raise ValueError("不一致标注必须位于可见正文，不得藏在注释中")
+        containing = [(kind, key, block) for kind in ("item", "gap", "residual")
+                      for key, block in blocks[kind].items() if block["start"] <= pos < block["end"]]
+        section = next((key for key, block in blocks["section"].items()
+                        if block["start"] <= pos < block["end"]), None)
+        if containing:
+            kind, key, block = containing[0]
+            if kind == "residual":
+                continue
+            if kind != "item" or section not in CONTENT_SECTIONS or not PRD_ID.fullmatch(key):
+                raise ValueError(f"不一致标注不能定位有效正文条目：{key}")
+            result[f"{requirement_id}/{key}"] = block["text"]
+        elif section in CONTENT_SECTIONS:
+            result[f"{requirement_id}/prd/sections/{section}"] = blocks["section"][section]["text"]
+        else:
+            raise ValueError("不一致标注不在可定位的正文内容中")
+    return result
+
+
+def _manual_checks(text, rid, blocks, diagnostics, released):
+    """核对手工不一致的目标及遗留项配对；仅检查可见字符串，不代替语义评审。"""
+    try:
+        targets = manual_inconsistencies(text, rid)
+    except ValueError as error:
+        diagnostics.append(_issue(8, "$", "prd.md", str(error)))
+        targets = {}
+    prefix = rid + "/"
+    residuals = {}
+    for ref, block in blocks["residual"].items():
+        # PRD 命名空间的引用即使拼错或指向外部需求也不能落入旧分析遗留项分支。
+        manual_ref = bool(re.search(r"/(?:PRD-|prd/)", ref))
+        if not manual_ref:
+            if INCONSISTENCY in block["text"]:
+                diagnostics.append(_issue(8, ref, "prd.md/residuals", "不一致遗留项必须引用本需求的 PRD 正文目标。"))
+            continue
+        residuals[ref] = block
+        suffix = ref[len(prefix):] if ref.startswith(prefix) else ""
+        valid = bool(PRD_ID.fullmatch(suffix)) or (suffix.startswith("prd/sections/") and suffix[len("prd/sections/"):] in CONTENT_SECTIONS)
+        if not valid or ref not in targets:
+            diagnostics.append(_issue(8, ref, "prd.md/residuals", "手工不一致引用无有效且已标注的本需求正文目标。"))
+        visible = re.sub(r"<!--.*?-->", "", block["text"], flags=re.S)
+        # 要求有实际说明和回交分析措辞；字符串检查不能证明说明的业务充分性。
+        remainder = visible.replace(INCONSISTENCY, "")
+        # 短距离只用于识别交接说明，避免跨多段拼出措辞；20字不是语义充分性阈值。
+        handover = re.search(r"(?:回交|转回|交回|反馈|提交).{0,20}分析|分析.{0,20}(?:回交|转回|交回|反馈|提交)", remainder, re.S)
+        if handover:
+            remainder = remainder[:handover.start()] + remainder[handover.end():]
+        remainder = re.sub(r"差异|说明|建议|处理|事项|确认|[:：\s|，,。；;、*#\-]", "", remainder)
+        if block["section"] != "residuals" or INCONSISTENCY not in visible or not handover or not remainder:
+            diagnostics.append(_issue(8, ref, "prd.md/residuals", "不一致遗留项须位于遗留章节，含标注、非空差异和回交分析说明。"))
+    for ref in targets:
+        if ref not in residuals:
+            diagnostics.append(_issue(8, ref, "prd.md", "不一致正文缺少对应遗留项。"))
+        elif released:
+            diagnostics.append(_issue(8, ref, "prd.md", "已发布正文含与分析不一致标注，不得发布。"))
+        else:
+            diagnostics.append(_issue(8, ref, "prd.md", "存在与分析不一致的内容，不得发布。", "warning"))
+    if released and INCONSISTENCY in text and not targets:
+        diagnostics.append(_issue(8, "$", "prd.md", "已发布正文含与分析不一致标注，不得发布。"))
+
+
 def _events(path, diagnostics):
     """读取追加日志并检查公共字段；单行坏 JSON 不覆盖其他可诊断事件。"""
     try:
@@ -432,6 +513,8 @@ def _residuals(analysis, registry, blocks, diagnostics):
         if not block or block["section"] != "residuals" or not block["text"].strip():
             diagnostics.append(_issue(8, ref, "prd.md/residuals", "缺少应列遗留项或该项未在遗留章节中定位。"))
     for ref, content in blocks["residual"].items():
+        if re.search(r"/(?:PRD-|prd/)", ref):
+            continue  # 手工不一致引用由配对检查处理，不冒充分析条目。
         if ref.startswith("/ux_assessment/design_pending_items/"):
             tail = ref.rsplit("/", 1)[-1]
             values = analysis["ux_assessment"].get("design_pending_items", [])
@@ -659,9 +742,21 @@ def validate_prd(requirement_dir: Path, *, related_analyses: Sequence[Path] = ()
         diagnostics.append(_issue(10, "$", "requirement.json/prd/based_on_analysis_revision", "PRD 待同步；当前差异不作为结构失败。", "warning"))
     elif metadata["prd"]["based_on_analysis_revision"] > analysis["meta"]["analysis_revision"]:
         diagnostics.append(_issue(10, "$", "requirement.json/prd/based_on_analysis_revision", "PRD 所依据的分析修订来自未来。"))
+    baseline = trace["meta"].get("content_baseline")
+    if baseline is not None:
+        try:
+            baseline_valid = _sha(baseline.encode("utf-8")) == trace["meta"]["content_hash"]
+        except UnicodeEncodeError:
+            baseline_valid = False
+        if not baseline_valid:
+            diagnostics.append(_issue(1, "$", "prd-trace.json/meta/content_baseline", "正文基准无法编码为 UTF-8 或摘要与 content_hash 不符。"))
     if trace["meta"]["content_hash"] != _sha(data):
-        diagnostics.append(_issue(4, "$", "prd.md", "正文摘要变化，检测到未处理手工修改；须比较含义后处理。", "warning"))
+        message = "正文摘要变化，检测到未处理手工修改；须比较含义后处理。"
+        if baseline is None:
+            message += "旧稿缺少正文基准，比较证据不足。"
+        diagnostics.append(_issue(4, "$", "prd.md", message, "warning"))
     blocks = _blocks(text, diagnostics)
+    _manual_checks(text, rid, blocks, diagnostics, metadata["prd"]["status"] == "released")
     saved_sections = trace['meta'].get('section_source_digests')
     if saved_sections is not None and not pending:
         current_sections = section_source_digests(analysis, gaps, trace=trace, source_manifest=documents[0][1], related_analyses=[doc for doc, _ in documents[1:]])

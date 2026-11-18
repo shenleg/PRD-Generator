@@ -1,0 +1,647 @@
+test_analysis_save_failure_never_marks_gap (test_gap_handoff.GapHandoffTests.test_analysis_save_failure_never_marks_gap)
+分析实际替换失败时缺口仍 open，沿原 journal 恢复后重读重试不会重复登记。 ... ok
+test_candidate_refs_must_match_each_gap_ref (test_gap_handoff.GapHandoffTests.test_candidate_refs_must_match_each_gap_ref)
+候选关联不能遗漏、替换、增添或重排缺口关联，失败不写入。 ... ok
+test_closed_gap_is_not_reopened_or_rewritten (test_gap_handoff.GapHandoffTests.test_closed_gap_is_not_reopened_or_rewritten)
+重复接收 closed 缺口保留状态和生成侧 resolution，不自行关闭或重开。 ... ok
+test_concurrent_gap_rewrite_is_not_overwritten (test_gap_handoff.GapHandoffTests.test_concurrent_gap_rewrite_is_not_overwritten)
+分析保存期间生成侧改写缺口时拒绝标记，保留并发内容和已保存接收问题。 ... ok
+test_concurrent_gap_whitespace_change_also_conflicts (test_gap_handoff.GapHandoffTests.test_concurrent_gap_whitespace_change_also_conflicts)
+即使并发只改序列化空白，读时与标记前字节不等也必须拒绝覆盖。 ... ok
+test_cross_requirement_api_tuple_is_supported (test_gap_handoff.GapHandoffTests.test_cross_requirement_api_tuple_is_supported)
+显式分析与来源二元组也能验证跨需求引用，不隐式依赖路径。 ... ok
+test_cross_requirement_requires_explicit_documents (test_gap_handoff.GapHandoffTests.test_cross_requirement_requires_explicit_documents)
+即使外部资料存在于工作区，未显式提供也拒绝，显式路径只读且保留完整引用。 ... ok
+test_dry_run_previews_without_writing (test_gap_handoff.GapHandoffTests.test_dry_run_previews_without_writing)
+无 pending 事务时 dry-run 只校验和预分配，不保存问题或标记缺口。 ... ok
+test_dry_run_still_recovers_pending_analysis_transaction (test_gap_handoff.GapHandoffTests.test_dry_run_still_recovers_pending_analysis_transaction)
+dry-run 不豁免原有 journal 恢复，但不提前完成本次缺口标记。 ... ok
+test_duplicate_candidates_preserve_answer_priority_and_status (test_gap_handoff.GapHandoffTests.test_duplicate_candidates_preserve_answer_priority_and_status)
+候选问题字段被忽略，已保存答案、优先级和处理状态不被重复接收覆盖。 ... ok
+test_duplicate_handoff_is_bytewise_noop (test_gap_handoff.GapHandoffTests.test_duplicate_handoff_is_bytewise_noop)
+纯重复交接复用问题编号，不推进修订、不追加事件、不改任何业务字节。 ... ok
+test_duplicate_with_changed_set_is_not_noop (test_gap_handoff.GapHandoffTests.test_duplicate_with_changed_set_is_not_noop)
+只有分析内容不变才算纯重复，set 引入真实变化仍保存新修订。 ... ok
+test_duplicate_with_other_changes_commits_once (test_gap_handoff.GapHandoffTests.test_duplicate_with_other_changes_commits_once)
+重复接收不阻止同补丁中的真实增量，也不额外消耗问题编号。 ... ok
+test_empty_refs_remain_empty (test_gap_handoff.GapHandoffTests.test_empty_refs_remain_empty)
+无关联缺口接收后仍是空数组，不臆造 GOAL、FR 或问题关联。 ... ok
+test_gap_reference_cannot_be_transferred_by_update (test_gap_handoff.GapHandoffTests.test_gap_reference_cannot_be_transferred_by_update)
+已有接收关联不能通过 update 转移、清除或伪装成另一个缺口。 ... ok
+test_handoff_only_changes_owned_files_and_target_status (test_gap_handoff.GapHandoffTests.test_handoff_only_changes_owned_files_and_target_status)
+只改分析归属文件及对应缺口状态，其他需求、正文、追溯、版本和元数据不动。 ... ok
+test_history_reader_passes_current_gap_context (test_gap_handoff.GapHandoffTests.test_history_reader_passes_current_gap_context)
+接收问题后历史对照与来源复核仍传当前缺口，不因遗漏新校验上下文误拒合法分析。 ... ok
+test_invalid_gap_references_do_not_write (test_gap_handoff.GapHandoffTests.test_invalid_gap_references_do_not_write)
+缺口引用格式错误或条目不存在时拒绝，分析和缺口均逐字节不变。 ... ok
+test_local_full_and_short_refs_are_normalized (test_gap_handoff.GapHandoffTests.test_local_full_and_short_refs_are_normalized)
+本需求完整引用和本地引用均转存为 FR-1，输入补丁不被修改。 ... ok
+test_mark_failure_reports_saved_revision_and_retry_preserves_progress (test_gap_handoff.GapHandoffTests.test_mark_failure_reports_saved_revision_and_retry_preserves_progress)
+保存后标记中断返回 fail/written=true，重读重试只补标记并保留其间回答。 ... ok
+test_null_gap_file_is_not_treated_as_missing (test_gap_handoff.GapHandoffTests.test_null_gap_file_is_not_treated_as_missing)
+存在但为 null 的缺口文件是格式错误，不能按旧格式无缺口降级后继续写分析。 ... ok
+test_old_questions_without_gap_ref_remain_compatible (test_gap_handoff.GapHandoffTests.test_old_questions_without_gap_ref_remain_compatible)
+旧问题无 gap_request_ref 仍可读取和更新，新增接收不污染原问题或旧关联。 ... ok
+test_stale_revision_is_rejected_even_for_duplicate (test_gap_handoff.GapHandoffTests.test_stale_revision_is_rejected_even_for_duplicate)
+旧补丁即使只是重复接收仍拒绝，调用方必须重读当前修订。 ... ok
+test_two_adds_for_one_gap_are_rejected_without_write (test_gap_handoff.GapHandoffTests.test_two_adds_for_one_gap_are_rejected_without_write)
+同一补丁含同缺口的冲突候选时拒绝保存，不猜测优先级，也不建立重复问题。 ... ok
+test_unknown_gap_and_wrong_change_type_are_rejected (test_gap_handoff.GapHandoffTests.test_unknown_gap_and_wrong_change_type_are_rejected)
+未知缺口或非 supplement 接收不能绕过协议。 ... ok
+test_analysis_change_after_validation_rejected (test_prd_draft.PrdDraftTests.test_analysis_change_after_validation_rejected)
+候选校验完成后分析被并发修改，正式PRD不得落盘。 ... ok
+test_candidate_failure_preserves_business_files (test_prd_draft.PrdDraftTests.test_candidate_failure_preserves_business_files)
+缺少需求块的失败候选保留供修正，正式目录原始字节不变。 ... ok
+test_cli_works_from_unrelated_directory (test_prd_draft.PrdDraftTests.test_cli_works_from_unrelated_directory)
+公开保存CLI在隔离模式和其他cwd运行，退出码与单JSON响应一致。 ... ok
+test_dotdot_candidate_cannot_enter_analysis (test_prd_draft.PrdDraftTests.test_dotdot_candidate_cannot_enter_analysis)
+带..的候选路径先规范化，不能绕过生成侧禁止写analysis的边界。 ... ok
+test_first_generation_and_repeat_preserve_identity (test_prd_draft.PrdDraftTests.test_first_generation_and_repeat_preserve_identity)
+首次0.1、重复0.2；分析与其他块不变，编号和需求正文稳定。 ... ok
+test_interruption_recovery_is_idempotent (test_prd_draft.PrdDraftTests.test_interruption_recovery_is_idempotent)
+多文件写入中断保留journal，显式恢复不重复事件也不改分析。 ... ok
+test_metadata_change_after_validation_preserved (test_prd_draft.PrdDraftTests.test_metadata_change_after_validation_preserved)
+即使PRD版本未变，common或其他块的并发修改也不得被旧副本覆盖。 ... ok
+test_new_gap_cannot_reuse_old_counter_range (test_prd_draft.PrdDraftTests.test_new_gap_cannot_reuse_old_counter_range)
+缺口列表有历史高水位时，新请求也不能补用低编号空洞。 ... ok
+test_new_gap_warns_and_has_single_placeholder (test_prd_draft.PrdDraftTests.test_new_gap_warns_and_has_single_placeholder)
+模板确缺内容时保存open缺口与唯一占位，warning不是结构失败或发布批准。 ... ok
+test_recovery_refuses_concurrent_content (test_prd_draft.PrdDraftTests.test_recovery_refuses_concurrent_content)
+恢复期间遇到他人改写正文时保留双方候选，不覆盖新字节。 ... ok
+test_render_failure_preserves_raw_candidate (test_prd_draft.PrdDraftTests.test_render_failure_preserves_raw_candidate)
+编号或信息渲染失败也保留模型原文和补丁供三次修正，不只保留后置校验失败。 ... ok
+test_render_info_is_authoritative_and_readonly (test_prd_draft.PrdDraftTests.test_render_info_is_authoritative_and_readonly)
+渲染使用权威信息并保持需求块原文，正文摘要包含空白差异。 ... ok
+test_repeat_cannot_add_business_rules_outside_sections (test_prd_draft.PrdDraftTests.test_repeat_cannot_add_business_rules_outside_sections)
+完整正文比较覆盖章节外文本，不能借未标记的附加段落偷加新规则。 ... ok
+test_same_input_cannot_rewrite_requirement_content (test_prd_draft.PrdDraftTests.test_same_input_cannot_rewrite_requirement_content)
+重复生成不能借合法结构把查询偷换成删除，拒绝后正式草稿字节不变。 ... ok
+test_unreadable_optional_manifest_degrades_without_bypassing_checks (test_prd_draft.PrdDraftTests.test_unreadable_optional_manifest_degrades_without_bypassing_checks)
+可选来源清单不可读时统一保存仍可降级，保留warning而不伪造来源。 ... ok
+test_version_conflict_rejected (test_prd_draft.PrdDraftTests.test_version_conflict_rejected)
+补丁读时版本不符时拒写，而不是盲改版本自动重试。 ... ok
+test_visible_title_handles_table_characters (test_prd_draft.PrdDraftTests.test_visible_title_handles_table_characters)
+标题含竖线、实体和换行时展示转义与权威元数据仍一致，不篡改common。 ... ok
+test_forbidden_and_unknown_targets (test_prd_edit_validation.EditValidationTests.test_forbidden_and_unknown_targets)
+禁止信息、变更、遗留章节及未知手工目标伪装合法引用。 ... ok
+test_invalid_or_unlocated_mark_raises (test_prd_edit_validation.EditValidationTests.test_invalid_or_unlocated_mark_raises)
+非法定位块、信息章节及游离标注不能交给写入器作为合法目标。 ... ok
+test_item_pair_warning_and_helper_scope (test_prd_edit_validation.EditValidationTests.test_item_pair_warning_and_helper_scope)
+条目标注仅定位条目，不向所属章节传播，合法配对阻止发布。 ... ok
+test_missing_marks_or_target_fail (test_prd_edit_validation.EditValidationTests.test_missing_marks_or_target_fail)
+正文、遗留项丢标或目标不存在均不能构成配对。 ... ok
+test_old_and_baseline_hash (test_prd_edit_validation.EditValidationTests.test_old_and_baseline_hash)
+旧稿无基准兼容，基准按 UTF-8 原始换行计算且损坏失败。 ... ok
+test_released_fails (test_prd_edit_validation.EditValidationTests.test_released_fails)
+已发布状态包含不一致标注必须失败。 ... ok
+test_residual_in_wrong_section (test_prd_edit_validation.EditValidationTests.test_residual_in_wrong_section)
+标注完整但遗留块位于正文其他章节仍失败。 ... ok
+test_section_pair (test_prd_edit_validation.EditValidationTests.test_section_pair)
+非编号章节可按稳定章节引用配对。 ... ok
+test_unprocessed_edit_is_warning_and_read_only (test_prd_edit_validation.EditValidationTests.test_unprocessed_edit_is_warning_and_read_only)
+旧稿手改只告警且不更改任何文件，也不臆造基准。 ... ok
+test_historical_sources_match_saved_checks (test_prd_format_runs.PrdFormatEvidenceTests.test_historical_sources_match_saved_checks)
+封存校验绑定阶段1原提交；当前代码由下方新目录重放，不改旧指纹。 ... ok
+test_public_driver_replays_and_refuses_existing_output (test_prd_format_runs.PrdFormatEvidenceTests.test_public_driver_replays_and_refuses_existing_output)
+公开测试驱动在新目录重跑真实校验器，并拒绝覆盖已有证据。 ... ok
+test_saved_diagnostics_and_readonly_hashes (test_prd_format_runs.PrdFormatEvidenceTests.test_saved_diagnostics_and_readonly_hashes)
+保存的十五次 CLI 调用均符合预期，覆盖十二条规则且业务指纹未变。 ... ok
+test_common_version_and_missing_manifest (test_prd_gate.GateTests.test_common_version_and_missing_manifest)
+首次没有 prd 块可通过，旧整数版本和缺 common 拒绝。 ... ok
+test_missing_invalid_and_installation_failure (test_prd_gate.GateTests.test_missing_invalid_and_installation_failure)
+PG01/02 缺失、无效 JSON、上游必填错误及安装故障均拒绝。 ... ok
+test_missing_manifest_keeps_history_state_consistency (test_prd_gate.GateTests.test_missing_manifest_keeps_history_state_consistency)
+历史依据声明stale不能因清单缺省继续冒充ready的正式草稿。 ... ok
+test_missing_manifest_keeps_source_requirement (test_prd_gate.GateTests.test_missing_manifest_keeps_source_requirement)
+来源清单降级仅跳过清单依赖项，不能让无来源的有效条目变合法。 ... ok
+test_parallel_install (test_prd_gate.GateTests.test_parallel_install)
+技能并列安装时从工作目录之外读取自己的脚本与 schema。 ... ok
+test_readiness_mappings (test_prd_gate.GateTests.test_readiness_mappings)
+三种就绪度映射对应草稿等级，不跳过上游校验。 ... ok
+test_ready_and_readonly_cli (test_prd_gate.GateTests.test_ready_and_readonly_cli)
+正式就绪通过，任意 cwd 执行 CLI 不改变任何文件。 ... ok
+test_stale_priority_and_explicit_override (test_prd_gate.GateTests.test_stale_priority_and_explicit_override)
+PG03 过期优先且必须显式允许，即使缺可选来源仍告警。 ... ok
+test_evidence_and_replay (test_prd_generation_runs.GenerationRunsTests.test_evidence_and_replay)
+每次使用新目录，保留真实命令、指纹及未完成人工审核标志。 ... ok
+test_help_from_other_directory (test_prd_generation_runs.GenerationRunsTests.test_help_from_other_directory)
+隔离模式下任意 cwd 的帮助可用。 ... ok
+test_concurrent_original_bytes_guard (test_prd_numbering.NumberingTests.test_concurrent_original_bytes_guard)
+写入前源文件原字节变化时拒绝覆盖已有追溯。 ... ok
+test_empty_patch_still_checks_version_and_draft_kind (test_prd_numbering.NumberingTests.test_empty_patch_still_checks_version_and_draft_kind)
+没有正式条目的候选也不能绕过版本和过期优先级检查。 ... ok
+test_independent_write_cannot_add_ids_without_body (test_prd_numbering.NumberingTests.test_independent_write_cannot_add_ids_without_body)
+既有正文时新增拆分编号必须走统一写入，不能把合法草稿改成缺正文的追溯。 ... ok
+test_independent_write_cannot_bypass_analysis_gate (test_prd_numbering.NumberingTests.test_independent_write_cannot_bypass_analysis_gate)
+无来源的有效分析在编号维护入口也拒写，不只依赖Skill先运行门禁。 ... ok
+test_independent_write_does_not_modify_review_or_release (test_prd_numbering.NumberingTests.test_independent_write_does_not_modify_review_or_release)
+首稿编号工具不能绕过当前阶段边界修改评审或已发布版本。 ... ok
+test_independent_write_keeps_manual_edit_evidence (test_prd_numbering.NumberingTests.test_independent_write_keeps_manual_edit_evidence)
+未判定含义的手工改动不能通过编号维护重置摘要而被静默认可。 ... ok
+test_independent_write_preserves_pending_source_digests (test_prd_numbering.NumberingTests.test_independent_write_preserves_pending_source_digests)
+分析修订变化后独立编号维护不得提前刷新摘要并掩盖条目级同步差异。 ... ok
+test_initial_retry_split_and_high_water (test_prd_numbering.NumberingTests.test_initial_retry_split_and_high_water)
+首次分配、幂等重试及拆分严格递增且不修改输入。 ... ok
+test_legacy_requires_explicit_id (test_prd_numbering.NumberingTests.test_legacy_requires_explicit_id)
+旧追溯匹配相同来源时必须显式绑定旧编号。 ... ok
+test_multiple_refs_digest_and_status (test_prd_numbering.NumberingTests.test_multiple_refs_digest_and_status)
+多来源取最不确定标签、待重评状态，摘要覆盖完整对象且引用排序稳定。 ... ok
+test_reject_invalid_inputs (test_prd_numbering.NumberingTests.test_reject_invalid_inputs)
+拒绝伪造编号、版本冲突、非法字段和落后高水位。 ... ok
+test_withdrawn_never_reuses_id (test_prd_numbering.NumberingTests.test_withdrawn_never_reuses_id)
+撤销已有条目保留编号；首次撤销不消耗编号。 ... ok
+test_write_and_transaction_guard (test_prd_numbering.NumberingTests.test_write_and_transaction_guard)
+默认只读；事务存在时拒绝写入，显式写入只改追溯。 ... ok
+test_write_preserves_body_hash (test_prd_numbering.NumberingTests.test_write_preserves_body_hash)
+独立维护既有追溯时使用实际正文摘要，不写入候选空正文摘要。 ... ok
+test_gap_envelope_and_closed_resolution (test_prd_schemas.PrdSchemaTests.test_gap_envelope_and_closed_resolution)
+裸数组不是封装，closed 必须有非空结构化依据，扩展字段兼容。 ... ok
+test_patch_forbids_model_assigned_data (test_prd_schemas.PrdSchemaTests.test_patch_forbids_model_assigned_data)
+编号补丁拒绝正文、摘要和计数器，不接受模型自行分配新数据。 ... ok
+test_trace_accepts_compatible_extensions (test_prd_schemas.PrdSchemaTests.test_trace_accepts_compatible_extensions)
+旧追溯没有映射键仍可读取，未知兼容字段不被丢弃。 ... ok
+test_trace_reference_and_id_formats (test_prd_schemas.PrdSchemaTests.test_trace_reference_and_id_formats)
+引用必须完整，编号至少三位且可增长，零序号非法。 ... ok
+test_trace_rejects_required_types_and_unknown_version (test_prd_schemas.PrdSchemaTests.test_trace_rejects_required_types_and_unknown_version)
+缺必填、错误枚举、坏摘要和未知格式版本均被格式拒绝。 ... ok
+test_all_allocatable_prefixes_use_canonical_kinds (test_prd_sync_check.SyncCheckTests.test_all_allocatable_prefixes_use_canonical_kinds)
+新增类别统一复用 KINDS，不遗漏业务流程、状态及边界等可分配条目。 ... ok
+test_array_order_is_preserved (test_prd_sync_check.SyncCheckTests.test_array_order_is_preserved)
+PG-34 条目内来源、关联和扩展数组顺序改变均不能被稳定摘要排序掉。 ... ok
+test_authoritative_gate_cannot_be_bypassed_by_missing_auxiliary (test_prd_sync_check.SyncCheckTests.test_authoritative_gate_cannot_be_bypassed_by_missing_auxiliary)
+缺辅助文件也不能跳过有效分析的来源检查，拒绝结果保持只读。 ... ok
+test_changed_content_is_reported_even_at_same_revision (test_prd_sync_check.SyncCheckTests.test_changed_content_is_reported_even_at_same_revision)
+实际差异独立于修订门禁，同修订来源被改动仍报告 modified。 ... ok
+test_complete_extension_fields_change_digest (test_prd_sync_check.SyncCheckTests.test_complete_extension_fields_change_digest)
+PG-32 只改实际生成的完整扩展字段也必须判定为修改。 ... ok
+test_digest_unchanged_takes_priority_over_source_status (test_prd_sync_check.SyncCheckTests.test_digest_unchanged_takes_priority_over_source_status)
+已同步的撤销和待重评来源不应每次被重复报告为变化。 ... ok
+test_directory_and_cli_are_readonly_with_real_differences (test_prd_sync_check.SyncCheckTests.test_directory_and_cli_are_readonly_with_real_differences)
+PG-13 API 和任意 cwd 的公开 CLI 报告差异，目录指纹前后完全不变。 ... ok
+test_directory_does_not_validate_old_status_against_new_withdrawal (test_prd_sync_check.SyncCheckTests.test_directory_does_not_validate_old_status_against_new_withdrawal)
+新分析撤销或待重评不应因旧稿仍有效而被完整 PRD 校验错误拦截。 ... ok
+test_directory_failure_and_cli_fail_exit (test_prd_sync_check.SyncCheckTests.test_directory_failure_and_cli_fail_exit)
+未来基准、无效 JSON 和追溯不存在时输出 JSON fail，拒绝但不保存。 ... ok
+test_explicit_related_analysis_is_compared_without_mutation (test_prd_sync_check.SyncCheckTests.test_explicit_related_analysis_is_compared_without_mutation)
+跨需求引用参与摘要，但不把关联资料的未引用功能当成本需求新增条目。 ... ok
+test_future_baseline_and_invalid_revision_rejected (test_prd_sync_check.SyncCheckTests.test_future_baseline_and_invalid_revision_rejected)
+分析基准来自未来或修订不是正整数时拒绝，不静默当作无需同步。 ... ok
+test_identity_conflicts_rejected (test_prd_sync_check.SyncCheckTests.test_identity_conflicts_rejected)
+主分析、需求、追溯身份及显式关联分析的重复身份均不能混用。 ... ok
+test_invalid_structure_number_and_nonfinite_digest_rejected (test_prd_sync_check.SyncCheckTests.test_invalid_structure_number_and_nonfinite_digest_rejected)
+无效结构、编号类别、高水位、映射键重复和非有限摘要输入均拒绝。 ... ok
+test_label_source_and_relationship_changes (test_prd_sync_check.SyncCheckTests.test_label_source_and_relationship_changes)
+PG-32 单独修改标签、来源或关联均改变摘要而保留旧编号。 ... ok
+test_meta_and_non_numbered_changes_do_not_rewrite_items (test_prd_sync_check.SyncCheckTests.test_meta_and_non_numbered_changes_do_not_rewrite_items)
+meta 和未编号遗留项更新只留给 writer 重汇总，不制造正式条目差异。 ... ok
+test_missing_auxiliary_events_and_manifest_degrade (test_prd_sync_check.SyncCheckTests.test_missing_auxiliary_events_and_manifest_degrade)
+辅助事件与清单缺失仅降级，按实际来源比较且诊断不臆造变更原因。 ... ok
+test_missing_references_are_not_treated_as_withdrawn (test_prd_sync_check.SyncCheckTests.test_missing_references_are_not_treated_as_withdrawn)
+缺失条目或未显式提供的跨需求引用必须报错，不能猜测为撤销。 ... ok
+test_multiple_sources_order_and_status_priority (test_prd_sync_check.SyncCheckTests.test_multiple_sources_order_and_status_priority)
+多来源完整覆盖依据，外层引用排序稳定，撤销优先于待重评。 ... ok
+test_new_active_and_reassessment_but_not_withdrawn_sources (test_prd_sync_check.SyncCheckTests.test_new_active_and_reassessment_but_not_withdrawn_sources)
+新增可分配的有效与待重评条目被发现，撤销新条目不进入 added。 ... ok
+test_object_keys_and_json_whitespace_do_not_change_digest (test_prd_sync_check.SyncCheckTests.test_object_keys_and_json_whitespace_do_not_change_digest)
+PG-34 递归键顺序及外部 JSON 排版不同不产生正式条目差异。 ... ok
+test_related_analysis_cli_and_missing_related_reference (test_prd_sync_check.SyncCheckTests.test_related_analysis_cli_and_missing_related_reference)
+公开 CLI 只接收显式关联路径，跨需求引用缺失不能隐式扫描工作区。 ... ok
+test_revision_only_is_pending_without_item_change (test_prd_sync_check.SyncCheckTests.test_revision_only_is_pending_without_item_change)
+PG-13 只增加分析修订会待同步，不把正式条目误判成修改。 ... ok
+test_split_mapping_is_not_reported_as_new_source (test_prd_sync_check.SyncCheckTests.test_split_mapping_is_not_reported_as_new_source)
+旧来源一对多时所有映射均受影响，且不误报来源为新增。 ... ok
+test_stale_without_insistence_is_denied_but_still_compared (test_prd_sync_check.SyncCheckTests.test_stale_without_insistence_is_denied_but_still_compared)
+过期未坚持时 allowed 为假，仍报告 pending/差异，明确允许后仅为过期草稿。 ... ok
+test_symlink_and_installation_failure_are_failures (test_prd_sync_check.SyncCheckTests.test_symlink_and_installation_failure_are_failures)
+拒绝跟随用户追溯链接，依赖安装故障也必须明确报告 fail。 ... ok
+test_unchanged_baseline_and_pure_inputs (test_prd_sync_check.SyncCheckTests.test_unchanged_baseline_and_pure_inputs)
+PG-13 同修订和相同摘要为未变，比较结果也不与输入共享可变引用列表。 ... ok
+test_withdrawn_and_to_reassess_classification (test_prd_sync_check.SyncCheckTests.test_withdrawn_and_to_reassess_classification)
+撤销和待重评来源变化输出专门分类，不要求旧追溯预先采用新状态。 ... ok
+test_acceptance_can_attach_only_to_explicit_function (test_prd_sync_regressions.PrdSyncRegressionTests.test_acceptance_can_attach_only_to_explicit_function)
+章节归属保护保留规格4.4允许的显式AC挂靠功能，不误拦截合法模板组织。 ... ok
+test_explicit_new_source_can_enrich_stable_mapping (test_prd_sync_regressions.PrdSyncRegressionTests.test_explicit_new_source_can_enrich_stable_mapping)
+多来源补丁并入新增依据仍保留旧编号，并记为修改而非误判未变拒绝合法定向更新。 ... ok
+test_explicit_old_analysis_must_match_baseline (test_prd_sync_regressions.PrdSyncRegressionTests.test_explicit_old_analysis_must_match_baseline)
+旧分析须匹配旧基准修订，不能拿当前分析补成“旧证据”。 ... ok
+test_generated_legacy_key_avoids_real_mapping_keys (test_prd_sync_regressions.PrdSyncRegressionTests.test_generated_legacy_key_avoids_real_mapping_keys)
+回归：合法既有键legacy:PRD-FR-001不能与旧无键条目的自动补键碰撞。 ... ok
+test_legacy_missing_section_evidence_is_explicit_warning (test_prd_sync_regressions.PrdSyncRegressionTests.test_legacy_missing_section_evidence_is_explicit_warning)
+兼容旧trace时不伪造旧章节摘要；明确警告须人工核对，成功后建立新依据。 ... ok
+test_new_function_in_wrong_section_refused (test_prd_sync_regressions.PrdSyncRegressionTests.test_new_function_in_wrong_section_refused)
+回归：新增功能不能以合法编号藏到业务规则章节并被宣布同步完成。 ... ok
+test_optional_section_digest_validation_and_handover_compatibility (test_prd_sync_regressions.PrdSyncRegressionTests.test_optional_section_digest_validation_and_handover_compatibility)
+选填字段结构及已同步依据失配会失败，单独open到handed_over标记不制造失配。 ... ok
+test_real_process_handover_serializes_with_generator (test_prd_sync_regressions.PrdSyncRegressionTests.test_real_process_handover_serializes_with_generator)
+真实子进程在生成侧替换前竞争同一目录锁；等待后发现快照冲突，不覆盖任一方。 ... ok
+test_unchanged_scope_cannot_be_rewritten (test_prd_sync_regressions.PrdSyncRegressionTests.test_unchanged_scope_cannot_be_rewritten)
+回归：仅改查询时不得顺带把“本期不含支付”偷换成“本期包含支付”。 ... ok
+test_help_from_other_directory (test_prd_sync_runs.PrdSyncRunsTests.test_help_from_other_directory)
+隔离解释器从任意目录仍能定位测试辅助和生产代码。 ... ok
+test_public_evidence_and_no_overwrite (test_prd_sync_runs.PrdSyncRunsTests.test_public_evidence_and_no_overwrite)
+十四分支保存输入、真实响应及前后文件，源码可核对且重复路径拒绝覆盖。 ... FAIL
+test_concurrent_gap_handover_cannot_be_overwritten (test_prd_sync_write.PrdSyncWriteTests.test_concurrent_gap_handover_cannot_be_overwritten)
+分析侧在读取后标记handed_over时，生成侧拒绝覆盖而非把其重置成open。 ... ok
+test_conflict_and_manual_change_do_not_overwrite (test_prd_sync_write.PrdSyncWriteTests.test_conflict_and_manual_change_do_not_overwrite)
+写前版本冲突或未处理手改拒写；不靠重算摘要接纳未知正文。 ... ok
+test_default_entry_or_no_pending_or_deprecated_refused (test_prd_sync_write.PrdSyncWriteTests.test_default_entry_or_no_pending_or_deprecated_refused)
+默认首稿入口不绕过同步，无待同步变化及废弃状态不能用同步编辑。 ... ok
+test_directed_content_update_and_ownership (test_prd_sync_write.PrdSyncWriteTests.test_directed_content_update_and_ownership)
+PG-14修改指定内容并保留未变原字节、编号、common、其他块和整个分析目录。 ... FAIL
+test_gap_supplied_closes_and_preserves_extensions (test_prd_sync_write.PrdSyncWriteTests.test_gap_supplied_closes_and_preserves_extensions)
+PG-31实际AC补足且唯一问题已答后才关闭，并替换占位、保留历史与扩展。 ... ok
+test_handed_over_or_answer_without_content_stays_open (test_prd_sync_write.PrdSyncWriteTests.test_handed_over_or_answer_without_content_stays_open)
+PG-31保留分支：已交接或只有问题回答不自动关闭缺口，原占位继续可追踪。 ... FAIL
+test_interruption_recovers_once_without_duplicate_sync_event (test_prd_sync_write.PrdSyncWriteTests.test_interruption_recovers_once_without_duplicate_sync_event)
+复用事务恢复同步中断，恢复不重复追加sync事件，也不产生新的版本。 ... ok
+test_invalid_gap_closures_and_identity_edits_refused (test_prd_sync_write.PrdSyncWriteTests.test_invalid_gap_closures_and_identity_edits_refused)
+接收仍open、无效依据、失效依据、非范围的不再需要及改写原缺口均不能保存。 ... ok
+test_missing_or_ambiguous_receiver_cannot_close (test_prd_sync_write.PrdSyncWriteTests.test_missing_or_ambiguous_receiver_cannot_close)
+缺失或重复接收对应关系时上游拒绝并保留原缺口，不猜配对、不修改分析。 ... ok
+test_not_needed_closes_with_real_scope_basis (test_prd_sync_write.PrdSyncWriteTests.test_not_needed_closes_with_real_scope_basis)
+PG-31不再需要必须引用有效范围依据，不能只写生成器解释。 ... ok
+test_omitted_new_analysis_mapping_rejected (test_prd_sync_write.PrdSyncWriteTests.test_omitted_new_analysis_mapping_rejected)
+新增有效分析项不能被空补丁静默忽略。 ... ok
+test_only_tag_change_updates_marks_and_residuals (test_prd_sync_write.PrdSyncWriteTests.test_only_tag_change_updates_marks_and_residuals)
+PG-32正文不变而标签变成推断时，更新适用标注及遗留项，不重编号。 ... FAIL
+test_provisional_supply_keeps_assumption_and_residuals (test_prd_sync_write.PrdSyncWriteTests.test_provisional_supply_keeps_assumption_and_residuals)
+PG-31暂定内容补足后可关闭，但AC标注、问题、假设依据和验证方式不能消失。 ... ok
+test_public_cli_uses_explicit_sync_mode (test_prd_sync_write.PrdSyncWriteTests.test_public_cli_uses_explicit_sync_mode)
+公开CLI在隔离调用目录下保存同步，并返回单个JSON及真实三态退出码。 ... FAIL
+test_revision_only_sync_does_not_rewrite_items (test_prd_sync_write.PrdSyncWriteTests.test_revision_only_sync_does_not_rewrite_items)
+PG-13/34只有修订递增或JSON重排时更新信息事件，所有正式条目原字节保持。 ... FAIL
+test_stale_requires_actual_opt_in (test_prd_sync_write.PrdSyncWriteTests.test_stale_requires_actual_opt_in)
+过期优先于就绪度，未坚持拒写，坚持后只保存stale_draft。 ... FAIL
+test_to_reassess_keeps_uncertainty (test_prd_sync_write.PrdSyncWriteTests.test_to_reassess_keeps_uncertainty)
+PG-14待重评来源同步为to_confirm，不能保留确定语气或丢掉待确认标注。 ... FAIL
+test_unaffected_rewrite_or_remapping_rejected (test_prd_sync_write.PrdSyncWriteTests.test_unaffected_rewrite_or_remapping_rejected)
+未变条目的润色、定位标记变化和映射篡改均拒绝，不被新版本掩盖。 ... ok
+test_unreadable_auxiliaries_degrade_without_writing_analysis (test_prd_sync_write.PrdSyncWriteTests.test_unreadable_auxiliaries_degrade_without_writing_analysis)
+辅助清单和事件缺失仍可按权威分析同步，信息记录降级并显示全部警告。 ... FAIL
+test_withdrawal_then_addition_keeps_high_water (test_prd_sync_write.PrdSyncWriteTests.test_withdrawal_then_addition_keeps_high_water)
+PG-15/16废止不删除身份，后续新增递增且不复用旧号或改引入版本。 ... FAIL
+test_bad_metadata_root_and_event_json (test_prd_validation.PrdValidationTests.test_bad_metadata_root_and_event_json)
+坏元数据和事件 JSON 返回结构化诊断，不引发未处理异常。 ... ok
+test_cross_requirement_references_need_explicit_input (test_prd_validation.PrdValidationTests.test_cross_requirement_references_need_explicit_input)
+跨需求引用只接受显式提供的资料，不隐式检索相邻工作区。 ... ok
+test_damaged_event_and_missing_required_inputs (test_prd_validation.PrdValidationTests.test_damaged_event_and_missing_required_inputs)
+坏事件与缺必需文件返回具体失败，不能变成可选资料降级。 ... ok
+test_duplicate_receiver_and_invalid_gap_reference (test_prd_validation.PrdValidationTests.test_duplicate_receiver_and_invalid_gap_reference)
+重复接收问题及不完整缺口引用均为规则12错误。 ... ok
+test_hidden_label_cannot_replace_visible_annotation (test_prd_validation.PrdValidationTests.test_hidden_label_cannot_replace_visible_annotation)
+标注也必须对读者可见，普通隐藏注释中的推断字样不充数。 ... ok
+test_legacy_trace_can_gain_mapping_key_without_renumbering (test_prd_validation.PrdValidationTests.test_legacy_trace_can_gain_mapping_key_without_renumbering)
+旧1.0追溯显式按编号补键不算身份重置，已有映射键仍禁止改写。 ... ok
+test_malformed_blocks_and_untracked_number (test_prd_validation.PrdValidationTests.test_malformed_blocks_and_untracked_number)
+交叉定位块或游离正式编号不能被解析器忽略。 ... ok
+test_manual_hash_change_warning (test_prd_validation.PrdValidationTests.test_manual_hash_change_warning)
+未处理的手工改动是 warning，校验器不自行修正文档或摘要。 ... ok
+test_not_needed_scope_basis_is_valid (test_prd_validation.PrdValidationTests.test_not_needed_scope_basis_is_valid)
+不再需要的关闭依据可来自有效范围条目，不强制伪造新验收内容。 ... ok
+test_null_input_and_bad_status_type_are_diagnostics (test_prd_validation.PrdValidationTests.test_null_input_and_bad_status_type_are_diagnostics)
+JSON null 和非标量状态不能静默通过或抛出容器类型异常。 ... ok
+test_numbering_patch_cannot_bind_two_keys_to_one_legacy_id (test_prd_validation.PrdValidationTests.test_numbering_patch_cannot_bind_two_keys_to_one_legacy_id)
+只读补丁检查与实际分配一致，拒绝多个键指向同一旧无键编号。 ... ok
+test_numbering_patch_readonly_structure_and_conflict (test_prd_validation.PrdValidationTests.test_numbering_patch_readonly_structure_and_conflict)
+编号补丁只读检查映射身份和读时版本，禁止模型指定新正式编号。 ... ok
+test_open_gap_with_saved_question_is_valid_retry_state (test_prd_validation.PrdValidationTests.test_open_gap_with_saved_question_is_valid_retry_state)
+保存问题后标记中断时 open 加唯一接收问题仍合法，不要求再建问题。 ... ok
+test_optional_source_manifest_missing_downgrades (test_prd_validation.PrdValidationTests.test_optional_source_manifest_missing_downgrades)
+可选来源名称清单无法读取时保留 source_id，不阻断合法分析内容。 ... ok
+test_real_stage_zero_samples_can_be_read_without_writing (test_prd_validation.PrdValidationTests.test_real_stage_zero_samples_can_be_read_without_writing)
+现有首轮样例仍由唯一分析校验器读取；本测试不声称已生成 PRD。 ... ok
+test_review_hidden_id_does_not_replace_visible_id (test_prd_validation.PrdValidationTests.test_review_hidden_id_does_not_replace_visible_id)
+独立评审回归：隐藏定位标记不能替代读者可见的正式编号。 ... ok
+test_review_legacy_mapping_cannot_change_kind (test_prd_validation.PrdValidationTests.test_review_legacy_mapping_cannot_change_kind)
+独立评审回归：旧条目无映射键时仍须按正式编号保护既有类别。 ... ok
+test_review_numeric_sequence_cannot_be_reused_with_zero_padding (test_prd_validation.PrdValidationTests.test_review_numeric_sequence_cannot_be_reused_with_zero_padding)
+独立评审回归：不同补零字符串不能分配同一个类别数值序号。 ... ok
+test_review_sync_warning_lists_changed_references (test_prd_validation.PrdValidationTests.test_review_sync_warning_lists_changed_references)
+独立评审回归：待同步不误判失败，同时明确指出变更的分析引用。 ... ok
+test_rule_10_visible_metadata_mismatch (test_prd_validation.PrdValidationTests.test_rule_10_visible_metadata_mismatch)
+规则10核对可见文档信息，而不是仅信任隐藏字段。 ... ok
+test_rule_11_snapshot_integrity_and_symlink (test_prd_validation.PrdValidationTests.test_rule_11_snapshot_integrity_and_symlink)
+规则11校验两份快照原始字节，拒绝篡改及符号链接。 ... ok
+test_rule_11_unrecorded_and_duplicate_release (test_prd_validation.PrdValidationTests.test_rule_11_unrecorded_and_duplicate_release)
+规则11拒绝快照无登记和重复发布记录。 ... ok
+test_rule_12_closed_requires_effective_content (test_prd_validation.PrdValidationTests.test_rule_12_closed_requires_effective_content)
+关闭不能只靠问题状态，撤销依据及缺依据都被拒绝。 ... ok
+test_rule_12_handed_over_requires_unique_receiver (test_prd_validation.PrdValidationTests.test_rule_12_handed_over_requires_unique_receiver)
+handed_over 必须有唯一接收问题，不能假装接收成功。 ... ok
+test_rule_12_open_without_receiver_is_warning (test_prd_validation.PrdValidationTests.test_rule_12_open_without_receiver_is_warning)
+未接收或保存后未标状态的 open 缺口都合法，输出 warning 而非结构失败。 ... ok
+test_rule_12_valid_closed_and_not_needed (test_prd_validation.PrdValidationTests.test_rule_12_valid_closed_and_not_needed)
+有接收问题和有效内容才结构上允许关闭，充分性仍不冒充自动证明。 ... ok
+test_rule_1_missing_field_and_bad_json (test_prd_validation.PrdValidationTests.test_rule_1_missing_field_and_bad_json)
+规则1拒绝缺失必填和重复键，不吞掉损坏输入。 ... ok
+test_rule_2_duplicate_id_counter_and_mapping_key (test_prd_validation.PrdValidationTests.test_rule_2_duplicate_id_counter_and_mapping_key)
+规则2拒绝重复正式编号及映射键，并检出编号计数器落后。 ... ok
+test_rule_2_history_cannot_reset_identity (test_prd_validation.PrdValidationTests.test_rule_2_history_cannot_reset_identity)
+历史对照阻止删除旧编号及改写引入版本，单份文件不伪称有完整历史。 ... ok
+test_rule_3_dangling_or_withdrawn_reference (test_prd_validation.PrdValidationTests.test_rule_3_dangling_or_withdrawn_reference)
+规则3检出不存在及已撤销却仍有效的来源引用。 ... ok
+test_rule_3_withdrawn_source_and_rule_5_pending_label (test_prd_validation.PrdValidationTests.test_rule_3_withdrawn_source_and_rule_5_pending_label)
+撤销来源不能保持有效，待重评状态必须落实到对应条目的待确认标注。 ... ok
+test_rule_4_missing_and_untracked_ids (test_prd_validation.PrdValidationTests.test_rule_4_missing_and_untracked_ids)
+规则4要求正文有效条目与追溯双向对应。 ... ok
+test_rule_5_labels_must_be_inside_item (test_prd_validation.PrdValidationTests.test_rule_5_labels_must_be_inside_item)
+规则5不接受其他章节的推断标注为目标条目充数。 ... ok
+test_rule_6_abolished_not_in_effective_section (test_prd_validation.PrdValidationTests.test_rule_6_abolished_not_in_effective_section)
+规则6拒绝将已废止条目保留在功能正文。 ... ok
+test_rule_7_stale_overrides_readiness (test_prd_validation.PrdValidationTests.test_rule_7_stale_overrides_readiness)
+规则7优先过期状态，不能以正式草稿提示掩盖过期。 ... ok
+test_rule_8_required_residual_missing (test_prd_validation.PrdValidationTests.test_rule_8_required_residual_missing)
+规则8检出缺少适用推断遗留项，不只搜索正文编号。 ... ok
+test_rule_9_orphan_placeholder (test_prd_validation.PrdValidationTests.test_rule_9_orphan_placeholder)
+规则9拒绝未登记或无法对应的占位。 ... ok
+test_snapshot_symlink_and_missing_record_rejected (test_prd_validation.PrdValidationTests.test_snapshot_symlink_and_missing_record_rejected)
+快照符号链接和无记录文件不被当作不可变发布依据。 ... ok
+test_source_digest_changes_and_key_order_stability (test_prd_validation.PrdValidationTests.test_source_digest_changes_and_key_order_stability)
+生成依据摘要覆盖来源和关联，JSON 键顺序不影响算法。 ... ok
+test_sync_warning_and_failure_priority (test_prd_validation.PrdValidationTests.test_sync_warning_and_failure_priority)
+待同步是 warning，结构错误仍优先为 fail；不把未同步摘要差异判失败。 ... ok
+test_valid_fixture_and_readonly_cli (test_prd_validation.PrdValidationTests.test_valid_fixture_and_readonly_cli)
+合法夹具 pass，实际 CLI 从任意目录运行不改变业务字节。 ... ok
+
+======================================================================
+FAIL: test_public_evidence_and_no_overwrite (test_prd_sync_runs.PrdSyncRunsTests.test_public_evidence_and_no_overwrite)
+十四分支保存输入、真实响应及前后文件，源码可核对且重复路径拒绝覆盖。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_runs.py", line 31, in test_public_evidence_and_no_overwrite
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 != 0 : {
+  "stage": 4,
+  "execution": "synthetic_public_cli",
+  "model_invocation": false,
+  "human_review": "pending",
+  "source_commit": "480768e940d214bbbba74a25b484ab0d57f08d97",
+  "source_fingerprints": {
+    "prd-generator/SKILL.md": "sha256:61e9943f5a82726790c3c1ffb2a6de5caf7c878a3bb636a638d195a84f9fdfd1",
+    "prd-generator/references/gating-rules.md": "sha256:1d7d5e810c3f6af8405e2ba0bdab783b0aa14646d084429926c7aefea0b0c46f",
+    "prd-generator/references/generation-rules.md": "sha256:c7c4deb1be05f2258e158d7b24d1b038c38d8932bf50282a4c00faa9804d5738",
+    "prd-generator/references/numbering-and-trace.md": "sha256:94dea98e96e0af15ca0da4639dfbdb562036f5357cfdf5be072997a521b7c205",
+    "prd-generator/references/prd-structure.md": "sha256:6c31e0d5d60fcf15883ab8c254c14887c7ab05c26aa22d2047b832e1e8e27d12",
+    "prd-generator/references/sync-rules.md": "sha256:dce1db58995333bd1fadd0b19d125ae64db4e2b3f6b518aff31c931f975e3695",
+    "prd-generator/schemas/gap-request.schema.json": "sha256:c2da60cd90768f5d70555df2c08b90337d0897c51b30b9ffbb76505ce523bc8c",
+    "prd-generator/schemas/numbering-patch.schema.json": "sha256:b566c3470f7781a60da94c0a915bcebfdf84e1a2c6282c91d4716d0a75b648a9",
+    "prd-generator/schemas/prd-trace.schema.json": "sha256:5ec066eaf532cdc750f48f94facf26a2db6e13ba6d9a15ae932d6744c85ad855",
+    "prd-generator/scripts/README.md": "sha256:9038f4e8b7d34f70e5ccd2834ead24116d9dc51c957f890067672d833ccac8ae",
+    "prd-generator/scripts/assign_ids.py": "sha256:395049f068f6f91ad1841d5b993d0ceea77c28299eafee79019aa35232f644d7",
+    "prd-generator/scripts/check_gate.py": "sha256:61a56aa337ee4707555b3d8ef9b0ee8e753128e73d9dc0cc7305367dd5346408",
+    "prd-generator/scripts/check_sync.py": "sha256:bfd556533fb71d4a25f908b6c079512fc4a53b3f18007747e9257fb6f7acd95b",
+    "prd-generator/scripts/render_info.py": "sha256:d76ed433dd72b28471f6d397c64df660b63b4d8a641cd23a727f56773e5ce344",
+    "prd-generator/scripts/validate_prd.py": "sha256:7c69647413ece045ba4fd1f172ce6a33c24e08f8c3e4041a29a934fe4122b714",
+    "prd-generator/scripts/write_draft.py": "sha256:0165aab73f4a6538ddfac45a43de472c08b582f7978b1e14dc1daea914726c83",
+    "prd-generator/templates/change-summary.md": "sha256:8f0761882027b2d05248c7e2c9374266fd4ef4ea9202c234e354c0893f6c4650",
+    "prd-generator/templates/prd.md": "sha256:0fa4528d3de68c1c8fadd4ceb36dc4c4dae046dd9526b639f9e27d6ebaa45cda",
+    "requirement-analyst/SKILL.md": "sha256:fae51a73fdc2db5b26c26125a3c055163bbb833a1d21e6f03775f3fdcf0fbd5c",
+    "requirement-analyst/references/analysis-framework.md": "sha256:2fe0a6f5be4f9b9bf6be41f58bfa570c96f1a6c30370e6f4c79a65d5a8d128fa",
+    "requirement-analyst/references/domain-knowledge.md": "sha256:8a51c9dbb328336e591d289cc1334acba0c04435dfa0d8ed695ffadb8f509485",
+    "requirement-analyst/references/feasibility-assessment.md": "sha256:37a38bd4f4d7de2d6f6ac83ea39f4e871fde7d46fa63e1f9c4eed6e342bf191f",
+    "requirement-analyst/references/historical-retrieval.md": "sha256:3fe053590cbc837c6f7f7117afe86447943d926949ade49b035aefa915fc469c",
+    "requirement-analyst/references/incremental-update.md": "sha256:a195c2ebe8635f5782f8d41a7b9cff2cc75d646467d2a59b2bb616fade943edd",
+    "requirement-analyst/references/question-strategy.md": "sha256:8ad577721b9cb34da02166a2699b6ec9d867281e2a3138b72374c64aabf8f8cb",
+    "requirement-analyst/references/readiness-rules.md": "sha256:e1358252f8a8c23eff91d3cbd68ede5582554c8525931d7037c228f57ab0ce8b",
+    "requirement-analyst/references/ux-visual-assessment.md": "sha256:57352215d119d398d40b42c15f67c76432bc4a16c8966bd05bd47643fbcdba88",
+    "requirement-analyst/schemas/analysis-result.schema.json": "sha256:5e437cba8f8703858aa90cc758ca3a1c77701afd40b6a548460e5aeb35af9cd5",
+    "requirement-analyst/schemas/question.schema.json": "sha256:fa554b754aa3a11c39aed44902a1fa16c38ebfeaad5979930ea4e239f3d25687",
+    "requirement-analyst/schemas/requirement-item.schema.json": "sha256:63f145dd6c75a4384caf0f5df11564c7f07133cdf0ede3bbbba838e2d52ba0d6",
+    "requirement-analyst/schemas/source.schema.json": "sha256:0a72b71a2826f06756851fb156e301ef510ccff949363e6dd925552704be60c9",
+    "requirement-analyst/scripts/README.md": "sha256:a7ca70bc447d1201767c9b6064789d00bf51ea09b2ff7642319526ad1bc6e932",
+    "requirement-analyst/scripts/compare_baseline.py": "sha256:4a30ac13ce07135de58c1269c73d1b046df266ac4e4fac3eb57f5f42dd1a8cfe",
+    "requirement-analyst/scripts/index_sources.py": "sha256:abc14cbc874b6652bc211fd51b685dcbd26d8822490f6f5c4990f8a794535714",
+    "requirement-analyst/scripts/project_sources.py": "sha256:1c497637a51ba4ae5a7a48f4aa28979d94d4ea9371ddbcc0bb1b00df0dc005a4",
+    "requirement-analyst/scripts/requirements.txt": "sha256:856ef1365f90bcd46a30193bd45c49642e6efc4cff86b5146d4a9a0ef61e0412",
+    "requirement-analyst/scripts/save_knowledge.py": "sha256:7b2deff684d0acb1aeb44106b3c50ef9e31c101adefe5314b0aba9c7f3f54de6",
+    "requirement-analyst/scripts/search_project.py": "sha256:58c435c540bbfdc1f83b19fa8c2ee9d85da6cf66c3bf526fbed890010dd62e1d",
+    "requirement-analyst/scripts/update_analysis.py": "sha256:59c9a5752b8d6d5df9f903543e7a0e3c8740feea2d6a55f89160e9dd0e285d8a",
+    "requirement-analyst/scripts/validate_analysis.py": "sha256:d13f0be502f3ca7b1977a768984e27dc0b77dd93c41665b5f405b7cd9ad683de",
+    "requirement-analyst/templates/analysis-report.md": "sha256:6a56777f4db9e3ca34c35c455732bf3533959c5bc673d09ef7acc02f53636657"
+  },
+  "cases": [
+    {
+      "scenario": "PG-13",
+      "status": "fail",
+      "error": "AssertionError: 同步未完成：{'status': 'pass', 'diagnostics': [], 'version': '0.2', 'draft_kind': 'formal_draft', 'candidate_dir': '/tmp/tmpob8zxs0w/new-sync-run/PG-13/candidate', 'generated': True, 'synced': True, 'comparison': {'pending': True, 'based_on_analysis_revision': 1, 'analysis_revision': 2, 'items': [{'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1'], 'category': 'unchanged', 'source_digest': 'sha256:edfa9dcfb9626ce801955d9448b283e8fa6ad971aff520c64d4a741a56a2b3ae'}, {'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2'], 'category': 'unchanged', 'source_digest': 'sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6'}], 'added': []}, 'change_summary': '新增：无；修改：无；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：未变；分析事件说明：合成指定分析变化，仅用于验证同步', 'mapping': [{'mapping_key': 'synthetic-query', 'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1']}, {'mapping_key': 'synthetic-export', 'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2']}], 'written': ['prd/prd.md', 'prd/prd-trace.json', 'requirement.json', 'prd/prd-events.jsonl']}",
+      "evidence": "/tmp/tmpob8zxs0w/new-sync-run/PG-13"
+    },
+    {
+      "scenario": "PG-14",
+      "status": "fail",
+      "error": "AssertionError: 同步未完成：{'status': 'pass', 'diagnostics': [], 'version': '0.2', 'draft_kind': 'formal_draft', 'candidate_dir': '/tmp/tmpob8zxs0w/new-sync-run/PG-14/candidate', 'generated': True, 'synced': True, 'comparison': {'pending': True, 'based_on_analysis_revision': 1, 'analysis_revision': 2, 'items': [{'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1'], 'category': 'modified', 'source_digest': 'sha256:4f34d916156d4899da01e7edcb0933ff71f4f62de90a08f56dfd5c8cab56e3dd'}, {'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2'], 'category': 'unchanged', 'source_digest': 'sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6'}], 'added': []}, 'change_summary': '新增：无；修改：PRD-FR-001；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：未变；分析事件说明：合成指定分析变化，仅用于验证同步', 'mapping': [{'mapping_key': 'synthetic-query', 'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1']}, {'mapping_key': 'synthetic-export', 'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2']}], 'written': ['prd/prd.md', 'prd/prd-trace.json', 'requirement.json', 'prd/prd-events.jsonl']}",
+      "evidence": "/tmp/tmpob8zxs0w/new-sync-run/PG-14"
+    },
+    {
+      "scenario": "PG-15",
+      "status": "fail",
+      "error": "AssertionError: 同步未完成：{'status': 'pass', 'diagnostics': [], 'version': '0.2', 'draft_kind': 'formal_draft', 'candidate_dir': '/tmp/tmpob8zxs0w/new-sync-run/PG-15/candidate', 'generated': True, 'synced': True, 'comparison': {'pending': True, 'based_on_analysis_revision': 1, 'analysis_revision': 2, 'items': [{'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1'], 'category': 'withdrawn', 'source_digest': 'sha256:091f0a2811e968d7d218282affead382f3fe0c63cc48157c9f1771c910a80631'}, {'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2'], 'category': 'unchanged', 'source_digest': 'sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6'}], 'added': []}, 'change_summary': '新增：无；修改：无；废止：PRD-FR-001；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：未变；分析事件说明：合成指定分析变化，仅用于验证同步', 'mapping': [{'mapping_key': 'synthetic-query', 'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1']}, {'mapping_key': 'synthetic-export', 'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2']}], 'written': ['prd/prd.md', 'prd/prd-trace.json', 'requirement.json', 'prd/prd-events.jsonl']}",
+      "evidence": "/tmp/tmpob8zxs0w/new-sync-run/PG-15"
+    },
+    {
+      "scenario": "PG-16",
+      "status": "fail",
+      "error": "AssertionError: 同步未完成：{'status': 'pass', 'diagnostics': [], 'version': '0.2', 'draft_kind': 'formal_draft', 'candidate_dir': '/tmp/tmpob8zxs0w/new-sync-run/PG-16/candidate', 'generated': True, 'synced': True, 'comparison': {'pending': True, 'based_on_analysis_revision': 1, 'analysis_revision': 2, 'items': [{'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1'], 'category': 'unchanged', 'source_digest': 'sha256:091f0a2811e968d7d218282affead382f3fe0c63cc48157c9f1771c910a80631'}, {'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2'], 'category': 'unchanged', 'source_digest': 'sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6'}], 'added': [{'analysis_ref': 'SYNTHETIC-PRD/FR-3', 'kind': 'functional_requirement'}]}, 'change_summary': '新增：PRD-FR-003；修改：无；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：未变；分析事件说明：合成指定分析变化，仅用于验证同步', 'mapping': [{'mapping_key': 'synthetic-query', 'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1']}, {'mapping_key': 'synthetic-export', 'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2']}, {'mapping_key': 'new-statistics', 'prd_id': 'PRD-FR-003', 'analysis_refs': ['SYNTHETIC-PRD/FR-3']}], 'written': ['prd/prd.md', 'prd/prd-trace.json', 'requirement.json', 'prd/prd-events.jsonl']}",
+      "evidence": "/tmp/tmpob8zxs0w/new-sync-run/PG-16"
+    },
+    {
+      "scenario": "PG-31-supplied",
+      "status": "pass",
+      "program_status": "pass",
+      "version": "0.2",
+      "existing_ids": 2,
+      "stable_ids": 2,
+      "unchanged_items": 2,
+      "out_of_scope_item_changes": 0,
+      "analysis_unchanged": true,
+      "evidence": "/tmp/tmpob8zxs0w/new-sync-run/PG-31-supplied"
+    },
+    {
+      "scenario": "PG-31-not-needed",
+      "status": "pass",
+      "program_status": "pass",
+      "version": "0.2",
+      "existing_ids": 2,
+      "stable_ids": 2,
+      "unchanged_items": 2,
+      "out_of_scope_item_changes": 0,
+      "analysis_unchanged": true,
+      "evidence": "/tmp/tmpob8zxs0w/new-sync-run/PG-31-not-needed"
+    },
+    {
+      "scenario": "PG-31-provisional",
+      "status": "pass",
+      "program_status": "pass",
+      "version": "0.2",
+      "existing_ids": 2,
+      "stable_ids": 2,
+      "unchanged_items": 2,
+      "out_of_scope_item_changes": 0,
+      "analysis_unchanged": true,
+      "evidence": "/tmp/tmpob8zxs0w/new-sync-run/PG-31-provisional"
+    },
+    {
+      "scenario": "PG-31-retain-open",
+      "status": "fail",
+      "error": "AssertionError: 同步未完成：{'status': 'pass', 'diagnostics': [], 'version': '0.2', 'draft_kind': 'formal_draft', 'candidate_dir': '/tmp/tmpob8zxs0w/new-sync-run/PG-31-retain-open/candidate', 'generated': True, 'synced': True, 'comparison': {'pending': True, 'based_on_analysis_revision': 1, 'analysis_revision': 2, 'items': [{'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1'], 'category': 'unchanged', 'source_digest': 'sha256:edfa9dcfb9626ce801955d9448b283e8fa6ad971aff520c64d4a741a56a2b3ae'}, {'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2'], 'category': 'unchanged', 'source_digest': 'sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6'}], 'added': []}, 'change_summary': '新增：无；修改：无；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：未变；保留缺口及占位（尚未提交经内容核实的关闭依据）：GAPREQ-1；分析事件说明：合成指定分析变化，仅用于验证同步', 'mapping': [{'mapping_key': 'synthetic-query', 'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1']}, {'mapping_key': 'synthetic-export', 'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2']}], 'written': ['prd/prd.md', 'prd/prd-trace.json', 'requirement.json', 'prd/prd-events.jsonl']}",
+      "evidence": "/tmp/tmpob8zxs0w/new-sync-run/PG-31-retain-open"
+    },
+    {
+      "scenario": "PG-31-retain-answer",
+      "status": "fail",
+      "error": "AssertionError: 同步未完成：{'status': 'pass', 'diagnostics': [], 'version': '0.2', 'draft_kind': 'formal_draft', 'candidate_dir': '/tmp/tmpob8zxs0w/new-sync-run/PG-31-retain-answer/candidate', 'generated': True, 'synced': True, 'comparison': {'pending': True, 'based_on_analysis_revision': 1, 'analysis_revision': 2, 'items': [{'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1'], 'category': 'unchanged', 'source_digest': 'sha256:edfa9dcfb9626ce801955d9448b283e8fa6ad971aff520c64d4a741a56a2b3ae'}, {'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2'], 'category': 'unchanged', 'source_digest': 'sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6'}], 'added': []}, 'change_summary': '新增：无；修改：无；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：未变；保留缺口及占位（尚未提交经内容核实的关闭依据）：GAPREQ-1；分析事件说明：合成指定分析变化，仅用于验证同步', 'mapping': [{'mapping_key': 'synthetic-query', 'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1']}, {'mapping_key': 'synthetic-export', 'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2']}], 'written': ['prd/prd.md', 'prd/prd-trace.json', 'requirement.json', 'prd/prd-events.jsonl']}",
+      "evidence": "/tmp/tmpob8zxs0w/new-sync-run/PG-31-retain-answer"
+    },
+    {
+      "scenario": "PG-32-tag",
+      "status": "fail",
+      "error": "AssertionError: 同步未完成：{'status': 'pass', 'diagnostics': [], 'version': '0.2', 'draft_kind': 'formal_draft', 'candidate_dir': '/tmp/tmpob8zxs0w/new-sync-run/PG-32-tag/candidate', 'generated': True, 'synced': True, 'comparison': {'pending': True, 'based_on_analysis_revision': 1, 'analysis_revision': 2, 'items': [{'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1'], 'category': 'modified', 'source_digest': 'sha256:c2af4232742b293c20b082474f60f73afdc9d3eeefa921365fe086e80204a171'}, {'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2'], 'category': 'unchanged', 'source_digest': 'sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6'}], 'added': []}, 'change_summary': '新增：无；修改：PRD-FR-001；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：已按当前分析更新；分析事件说明：合成指定分析变化，仅用于验证同步', 'mapping': [{'mapping_key': 'synthetic-query', 'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1']}, {'mapping_key': 'synthetic-export', 'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2']}], 'written': ['prd/prd.md', 'prd/prd-trace.json', 'requirement.json', 'prd/prd-events.jsonl']}",
+      "evidence": "/tmp/tmpob8zxs0w/new-sync-run/PG-32-tag"
+    },
+    {
+      "scenario": "PG-32-sources",
+      "status": "fail",
+      "error": "AssertionError: 同步未完成：{'status': 'pass', 'diagnostics': [], 'version': '0.2', 'draft_kind': 'formal_draft', 'candidate_dir': '/tmp/tmpob8zxs0w/new-sync-run/PG-32-sources/candidate', 'generated': True, 'synced': True, 'comparison': {'pending': True, 'based_on_analysis_revision': 1, 'analysis_revision': 2, 'items': [{'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1'], 'category': 'modified', 'source_digest': 'sha256:538c2fd18f67d346f32900a3676a4050e8f15fabb67b7802cb05c6dc70fbd740'}, {'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2'], 'category': 'unchanged', 'source_digest': 'sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6'}], 'added': []}, 'change_summary': '新增：无；修改：PRD-FR-001；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：未变；分析事件说明：合成指定分析变化，仅用于验证同步', 'mapping': [{'mapping_key': 'synthetic-query', 'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1']}, {'mapping_key': 'synthetic-export', 'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2']}], 'written': ['prd/prd.md', 'prd/prd-trace.json', 'requirement.json', 'prd/prd-events.jsonl']}",
+      "evidence": "/tmp/tmpob8zxs0w/new-sync-run/PG-32-sources"
+    },
+    {
+      "scenario": "PG-32-related",
+      "status": "fail",
+      "error": "AssertionError: 同步未完成：{'status': 'pass', 'diagnostics': [], 'version': '0.2', 'draft_kind': 'formal_draft', 'candidate_dir': '/tmp/tmpob8zxs0w/new-sync-run/PG-32-related/candidate', 'generated': True, 'synced': True, 'comparison': {'pending': True, 'based_on_analysis_revision': 1, 'analysis_revision': 2, 'items': [{'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1'], 'category': 'modified', 'source_digest': 'sha256:25a35d92aa4cb29f9dd2d3fc5df6b63c33c1b5a4b4f820a392a8ef5523776567'}, {'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2'], 'category': 'unchanged', 'source_digest': 'sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6'}], 'added': []}, 'change_summary': '新增：无；修改：PRD-FR-001；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：未变；分析事件说明：合成指定分析变化，仅用于验证同步', 'mapping': [{'mapping_key': 'synthetic-query', 'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1']}, {'mapping_key': 'synthetic-export', 'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2']}], 'written': ['prd/prd.md', 'prd/prd-trace.json', 'requirement.json', 'prd/prd-events.jsonl']}",
+      "evidence": "/tmp/tmpob8zxs0w/new-sync-run/PG-32-related"
+    },
+    {
+      "scenario": "PG-34",
+      "status": "fail",
+      "error": "AssertionError: 同步未完成：{'status': 'pass', 'diagnostics': [], 'version': '0.2', 'draft_kind': 'formal_draft', 'candidate_dir': '/tmp/tmpob8zxs0w/new-sync-run/PG-34/candidate', 'generated': True, 'synced': True, 'comparison': {'pending': True, 'based_on_analysis_revision': 1, 'analysis_revision': 2, 'items': [{'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1'], 'category': 'unchanged', 'source_digest': 'sha256:edfa9dcfb9626ce801955d9448b283e8fa6ad971aff520c64d4a741a56a2b3ae'}, {'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2'], 'category': 'unchanged', 'source_digest': 'sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6'}], 'added': []}, 'change_summary': '新增：无；修改：无；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：未变；分析事件说明：合成指定分析变化，仅用于验证同步', 'mapping': [{'mapping_key': 'synthetic-query', 'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1']}, {'mapping_key': 'synthetic-export', 'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2']}], 'written': ['prd/prd.md', 'prd/prd-trace.json', 'requirement.json', 'prd/prd-events.jsonl']}",
+      "evidence": "/tmp/tmpob8zxs0w/new-sync-run/PG-34"
+    },
+    {
+      "scenario": "auxiliary-fallback",
+      "status": "fail",
+      "error": "AssertionError: 同步未完成：{'status': 'warning', 'diagnostics': [{'rule': 3, 'level': 'warning', 'item_id': '$', 'path': '/tmp/tmpob8zxs0w/new-sync-run/auxiliary-fallback/requirement/analysis/source-manifest.json', 'message': '辅助来源清单不可用，仅显示 source_id；来源和历史权威性未核验。'}, {'rule': 0, 'level': 'warning', 'item_id': '$', 'path': 'analysis/analysis-events.jsonl', 'message': '分析事件不可用，仅按条目生成变更摘要：未提供分析事件'}, {'rule': 3, 'level': 'warning', 'item_id': '$', 'path': '/tmp/tmpob8zxs0w/new-sync-run/auxiliary-fallback/candidate/analysis/source-manifest.json', 'message': '辅助来源清单不可用，仅显示 source_id；来源和历史权威性未核验。'}], 'version': '0.2', 'draft_kind': 'formal_draft', 'candidate_dir': '/tmp/tmpob8zxs0w/new-sync-run/auxiliary-fallback/candidate', 'generated': True, 'synced': True, 'comparison': {'pending': True, 'based_on_analysis_revision': 1, 'analysis_revision': 2, 'items': [{'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1'], 'category': 'unchanged', 'source_digest': 'sha256:edfa9dcfb9626ce801955d9448b283e8fa6ad971aff520c64d4a741a56a2b3ae'}, {'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2'], 'category': 'unchanged', 'source_digest': 'sha256:e70d343b67252310651b523ee4ae8af2ec4a7103d744f4258cc82ad15474daf6'}], 'added': []}, 'change_summary': '新增：无；修改：无；废止：无；待确认：无；就绪度：ready_for_document → ready_for_document；遗留事项：未变', 'mapping': [{'mapping_key': 'synthetic-query', 'prd_id': 'PRD-FR-001', 'analysis_refs': ['SYNTHETIC-PRD/FR-1']}, {'mapping_key': 'synthetic-export', 'prd_id': 'PRD-FR-002', 'analysis_refs': ['SYNTHETIC-PRD/FR-2']}], 'written': ['prd/prd.md', 'prd/prd-trace.json', 'requirement.json', 'prd/prd-events.jsonl']}",
+      "evidence": "/tmp/tmpob8zxs0w/new-sync-run/auxiliary-fallback"
+    }
+  ],
+  "status": "fail"
+}
+
+
+======================================================================
+FAIL: test_directed_content_update_and_ownership (test_prd_sync_write.PrdSyncWriteTests.test_directed_content_update_and_ownership)
+PG-14修改指定内容并保留未变原字节、编号、common、其他块和整个分析目录。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 52, in test_directed_content_update_and_ownership
+    trace = self.assert_saved(result)
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 41, in assert_saved
+    self.assertEqual(len(result['written']), 5)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4 != 5
+
+======================================================================
+FAIL: test_handed_over_or_answer_without_content_stays_open (test_prd_sync_write.PrdSyncWriteTests.test_handed_over_or_answer_without_content_stays_open)
+PG-31保留分支：已交接或只有问题回答不自动关闭缺口，原占位继续可追踪。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 177, in test_handed_over_or_answer_without_content_stays_open
+    self.assert_saved(self.save(body=body))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 41, in assert_saved
+    self.assertEqual(len(result['written']), 5)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4 != 5
+
+======================================================================
+FAIL: test_only_tag_change_updates_marks_and_residuals (test_prd_sync_write.PrdSyncWriteTests.test_only_tag_change_updates_marks_and_residuals)
+PG-32正文不变而标签变成推断时，更新适用标注及遗留项，不重编号。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 137, in test_only_tag_change_updates_marks_and_residuals
+    trace = self.assert_saved(self.save(body=body))
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 41, in assert_saved
+    self.assertEqual(len(result['written']), 5)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4 != 5
+
+======================================================================
+FAIL: test_public_cli_uses_explicit_sync_mode (test_prd_sync_write.PrdSyncWriteTests.test_public_cli_uses_explicit_sync_mode)
+公开CLI在隔离调用目录下保存同步，并返回单个JSON及真实三态退出码。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 341, in test_public_cli_uses_explicit_sync_mode
+    self.assert_saved(result)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 41, in assert_saved
+    self.assertEqual(len(result['written']), 5)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4 != 5
+
+======================================================================
+FAIL: test_revision_only_sync_does_not_rewrite_items (test_prd_sync_write.PrdSyncWriteTests.test_revision_only_sync_does_not_rewrite_items)
+PG-13/34只有修订递增或JSON重排时更新信息事件，所有正式条目原字节保持。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 79, in test_revision_only_sync_does_not_rewrite_items
+    self.assert_saved(self.save())
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 41, in assert_saved
+    self.assertEqual(len(result['written']), 5)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4 != 5
+
+======================================================================
+FAIL: test_stale_requires_actual_opt_in (test_prd_sync_write.PrdSyncWriteTests.test_stale_requires_actual_opt_in)
+过期优先于就绪度，未坚持拒写，坚持后只保存stale_draft。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 317, in test_stale_requires_actual_opt_in
+    self.assert_saved(result)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 41, in assert_saved
+    self.assertEqual(len(result['written']), 5)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4 != 5
+
+======================================================================
+FAIL: test_to_reassess_keeps_uncertainty (test_prd_sync_write.PrdSyncWriteTests.test_to_reassess_keeps_uncertainty)
+PG-14待重评来源同步为to_confirm，不能保留确定语气或丢掉待确认标注。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 129, in test_to_reassess_keeps_uncertainty
+    trace = self.assert_saved(self.save(body=body))
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 41, in assert_saved
+    self.assertEqual(len(result['written']), 5)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4 != 5
+
+======================================================================
+FAIL: test_unreadable_auxiliaries_degrade_without_writing_analysis (test_prd_sync_write.PrdSyncWriteTests.test_unreadable_auxiliaries_degrade_without_writing_analysis)
+辅助清单和事件缺失仍可按权威分析同步，信息记录降级并显示全部警告。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 249, in test_unreadable_auxiliaries_degrade_without_writing_analysis
+    self.assert_saved(result)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 41, in assert_saved
+    self.assertEqual(len(result['written']), 5)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4 != 5
+
+======================================================================
+FAIL: test_withdrawal_then_addition_keeps_high_water (test_prd_sync_write.PrdSyncWriteTests.test_withdrawal_then_addition_keeps_high_water)
+PG-15/16废止不删除身份，后续新增递增且不复用旧号或改引入版本。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 103, in test_withdrawal_then_addition_keeps_high_water
+    trace = self.assert_saved(self.save(body=body))
+  File "/home/collin/orca/PRD-Generator/tests/prd-generator/test_prd_sync_write.py", line 41, in assert_saved
+    self.assertEqual(len(result['written']), 5)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4 != 5
+
+----------------------------------------------------------------------
+Ran 182 tests in 71.698s
+
+FAILED (failures=10)
