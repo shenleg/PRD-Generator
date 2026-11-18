@@ -1,6 +1,6 @@
 # 双 Skill 安装与使用
 
-需求分析和 PRD 生成共享需求工作区，不共享写入职责。使用同一版本的两个完整生产目录，目录名分别为 `requirement-analyst` 和 `prd-generator`，并放在目标项目的 `.claude/skills/` 下。
+需求分析和 PRD 生成共享需求工作区，不共享写入职责。使用同一版本的两个完整生产目录，目录名分别为 `requirement-analyst` 和 `prd-generator`，并放在目标项目的 `.claude/skills/` 下。安装后请在目标项目打开新的 Claude Code 会话，按[快速上手](../shared/quickstart.md#2-动手示例撤销会议室预约)跑第一项需求。
 
 ## 安装到新项目或隔离试用项目
 

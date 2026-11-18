@@ -49,6 +49,6 @@
 
 ## 安装与运行
 
-`.claude/skills/requirement-analyst` 仍指向 `../../skill/requirement-analyst`。`prd-generator` 仍是阶段 1 部分载荷，没有 `SKILL.md`；目录整理不安装新 Skill、不启用生成或发布，也不启动阶段 2。
+仓库内的 `.claude/skills/requirement-analyst` 指向 `../../skill/requirement-analyst`；现行 `prd-generator` 生产入口位于 [`skill/prd-generator/SKILL.md`](../../skill/prd-generator/SKILL.md)。在其他项目使用时按[双 Skill 安装说明](../prd-generator/installation.md)并列安装。历史目录整理的记录只说明当时的安装状态。
 
 统一及分组测试命令见 [测试说明](../../tests/README.md)。直接重放命令使用新的 `tests/<skill>/run_*.py` 路径；旧脚本和旧资料路径不保留包装副本或兼容符号链接。

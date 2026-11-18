@@ -2,6 +2,8 @@
 
 先分析需求，再生成可追溯的 PRD。两个 Skill 分工独立，通过共享工作区交接。
 
+**第一次使用？** 从[快速上手](docs/shared/quickstart.md)开始：安装后，用会议室预约示例练习[分析、生成和变更同步](docs/shared/quickstart.md#2-动手示例撤销会议室预约)，或直接看[一次真实试用的结果](docs/shared/quickstart.md#3-去哪里看结果)。
+
 | Skill | 能做什么 | 从这里开始 |
 | --- | --- | --- |
 | `requirement-analyst` | 分析、追问和增量更新需求；接收 PRD 缺口，保留结论依据。 | [能力状态、验收证据与未验证范围](docs/requirement-analyst/README.md#能力与验收) · [生产目录](skill/requirement-analyst/) |
