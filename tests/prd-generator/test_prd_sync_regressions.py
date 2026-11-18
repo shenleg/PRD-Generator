@@ -50,6 +50,35 @@ class PrdSyncRegressionTests(unittest.TestCase):
         self.assertTrue(any('scope' in issue['message'] for issue in result['diagnostics']))
         self.assertEqual(before, snapshot(self.root))
 
+    def test_only_glossary_changes_when_terms_are_added_updated_or_removed(self):
+        """新增、更新和移除可选术语章不开放附录改写，也不放行未标记正文。"""
+        trace_path = self.root / 'prd/prd-trace.json'
+        scenario_marker = '<!-- prd:section scenarios -->'
+        current = ''
+        for terms in (['查询窗口：查询可用时段。'], ['查询窗口：仅工作日的查询时段。'], []):
+            with self.subTest(terms=terms):
+                advance_analysis(self.root, lambda a: a.setdefault('context', {}).update(domain_terms=terms))
+                before = read_json(trace_path)
+                comparison = load_script('check_sync').check_sync(self.root)
+                self.assertEqual(comparison['status'], 'pass', comparison)
+                self.assertEqual({s['section'] for s in comparison['sections'] if s['category'] == 'modified'}, {'glossary'})
+                next_block = block('section', 'glossary', '# 术语\n- ' + terms[0]) + '\n\n' if terms else ''
+                candidate = self.body.replace(current + scenario_marker, next_block + scenario_marker, 1)
+                guarded = snapshot(self.root)
+                for invalid in (replace_section(candidate, 'appendix', '无关改写'), candidate + '\n游离的新规则\n'):
+                    refused = self.save(body=invalid)
+                    self.assertEqual(refused['status'], 'fail', refused)
+                    self.assertEqual(snapshot(self.root), guarded)
+                saved = self.save(body=candidate)
+                self.assertEqual(saved['status'], 'pass', saved)
+                self.body = (self.root / 'prd/prd.md').read_text(encoding='utf-8')
+                self.assertEqual('<!-- prd:section glossary -->' in self.body, bool(terms))
+                self.assertEqual(section_text(self.body, 'appendix').strip(), 'SRC-1')
+                after = read_json(trace_path)
+                self.assertEqual(before['items'], after['items'])
+                self.assertEqual(before['meta']['section_source_digests']['appendix'], after['meta']['section_source_digests']['appendix'])
+                current = next_block
+
     def test_new_function_in_wrong_section_refused(self):
         """回归：新增功能不能以合法编号藏到业务规则章节并被宣布同步完成。"""
         advance_analysis(self.root, lambda a: a['requirements']['functional_requirements'].append({**deepcopy(a['requirements']['functional_requirements'][0]), 'id': 'FR-3', 'content': '新增统计功能'}))

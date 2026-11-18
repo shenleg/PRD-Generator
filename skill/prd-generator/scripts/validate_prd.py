@@ -25,7 +25,7 @@ PROMPTS = {
     "stale_draft": "本文档基于已过期的分析结果生成，内容可能与最新需求不符。",
     "formal_draft": "草稿，待产品经理确认后发布。",
 }
-SECTION_KEYS = ("info", "changes", "background", "scope", "scenarios", "functional_requirements", "business_rules", "flows_states", "boundaries_exceptions", "constraints", "acceptance_criteria", "ux", "technical", "impact", "residuals", "appendix")
+SECTION_KEYS = ("info", "changes", "background", "scope", "glossary", "scenarios", "functional_requirements", "business_rules", "flows_states", "boundaries_exceptions", "constraints", "acceptance_criteria", "ux", "technical", "impact", "residuals", "appendix")
 REQUIRED_SECTIONS = ("info", "changes", "scope", "scenarios", "functional_requirements", "business_rules", "boundaries_exceptions", "acceptance_criteria", "residuals", "appendix")
 PRD_ID = re.compile(r"\bPRD-(?:GOAL|SCN|FR|BR|CON|NFR|AC|FLOW|STATE|BND|EXC)-\d{3,}\b")
 MARKER = re.compile(r"<!--\s*(/?)prd:(section|item|gap|residual)(?:\s+([^<>]*?))?\s*-->")
@@ -81,22 +81,25 @@ def source_digest(analysis_refs: Sequence[str], registry: dict) -> str:
 
 
 def section_source_digests(analysis: dict, gaps: dict, *, trace: dict | None = None,
-                           source_manifest=None, related_analyses=()) -> dict:
+                           source_manifest=None, related_analyses=(), legacy_layout: bool = False) -> dict:
     """返回各业务章节生成时完整依据的稳定摘要，不读取或修改文件。
 
     analysis/gaps为当前权威分析及缺口候选；trace仅用于定位实际跨来源映射，
     source_manifest为可用来源名称清单，related_analyses仅为显式关联分析。
+    legacy_layout用于比较术语仍归附录的旧稿，复现旧附录摘要且不创建术语摘要。
     信息及事件章节由脚本渲染，不参与比较；缺数据、引用或非法JSON值抛出KeyError/TypeError/ValueError。
     摘要相等只证明所记录依据未变，不证明自然语言表达充分或忠实。
     """
     req, business = analysis['requirements'], analysis['business_assessment']
     questions = analysis['questions']
+    context = analysis.get('context', {})
     inferred = [item for _, item in _analyst()._entries(analysis) if item.get('tag') == 'inferred' and item.get('status') != 'withdrawn']
     # 上游允许省略可选集合；缺省与空集合不提供生成依据，也不应换掉已有空章节摘要。
     data = {
         'background': analysis.get('value_assessment'),
         'scope': {'goals': req['goals'], 'scope': req.get('scope', {'in_scope': [], 'out_of_scope': []}),
                   'excluded': [q for q in questions if q['status'] == 'excluded'], 'decisions': analysis['decisions']},
+        'glossary': context.get('domain_terms', []),
         'scenarios': req['scenarios'], 'functional_requirements': req['functional_requirements'],
         'business_rules': req['business_rules'], 'flows_states': {key: business.get(key, []) for key in ('flows', 'states')},
         'boundaries_exceptions': {key: business[key] for key in ('boundaries', 'exceptions')},
@@ -107,9 +110,14 @@ def section_source_digests(analysis: dict, gaps: dict, *, trace: dict | None = N
         'residuals': {'questions': questions, 'assumptions': analysis['assumptions'], 'decisions': analysis['decisions'],
                       'gaps': business['gaps'], 'conflicts': business['conflicts'], 'inferred': inferred,
                       'design_pending_items': analysis.get('ux_assessment', {}).get('design_pending_items', [])},
-        'appendix': {'context': analysis.get('context'), 'sources': [item.get('sources', []) for _, item in _analyst()._entries(analysis)], 'manifest': source_manifest},
+        'appendix': {'source_ids': context.get('source_ids', []), 'sources': [item.get('sources', []) for _, item in _analyst()._entries(analysis)], 'manifest': source_manifest},
     }
-    labels = dict(zip(SECTION_KEYS[2:], ('背景与价值', '目标与范围', '用户与场景', '功能需求', '业务规则', '流程与状态', '边界与异常', '约束与非功能需求', '验收条件', '界面与交互', '技术说明与研发确认项', '关联与影响', '遗留事项', '附录')))
+    if legacy_layout:
+        # 用原载荷核验旧摘要，而不是重写旧稿或跳过旧附录的来源校验。
+        del data['glossary']
+        del data['appendix']['source_ids']
+        data['appendix']['context'] = analysis.get('context')
+    labels = dict(zip(SECTION_KEYS[2:], ('背景与价值', '目标与范围', '术语', '用户与场景', '功能需求', '业务规则', '流程与状态', '边界与异常', '约束与非功能需求', '验收条件', '界面与交互', '技术说明与研发确认项', '关联与影响', '遗留事项', '附录')))
     registry, _ = _registry((analysis, *related_analyses))
     # open与handed_over的占位语义相同；分析侧允许单独标记接收，不让它造成已同步正文依据失配。
     requests = [{**gap, 'status': 'closed' if gap['status'] == 'closed' else 'unresolved'} for gap in gaps['requests']]
@@ -774,7 +782,8 @@ def validate_prd(requirement_dir: Path, *, related_analyses: Sequence[Path] = ()
     _manual_checks(text, rid, blocks, diagnostics, metadata["prd"]["status"] == "released")
     saved_sections = trace['meta'].get('section_source_digests')
     if saved_sections is not None and not pending:
-        current_sections = section_source_digests(analysis, gaps, trace=trace, source_manifest=documents[0][1], related_analyses=[doc for doc, _ in documents[1:]])
+        current_sections = section_source_digests(analysis, gaps, trace=trace, source_manifest=documents[0][1],
+                related_analyses=[doc for doc, _ in documents[1:]], legacy_layout='glossary' not in saved_sections)
         for key, digest in saved_sections.items():
             if key == 'appendix' and any('source-manifest.json' in issue['path'] and issue['level'] == 'warning' for issue in diagnostics):
                 continue  # 缺来源名称时仍校验权威条目，不把辅助清单降级伪装成章节依据失败。

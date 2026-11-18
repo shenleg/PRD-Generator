@@ -15,7 +15,22 @@
 <实际生成事件>
 <!-- /prd:section -->
 
-<按默认顺序插入适用章节；每节使用稳定 section 键>
+<插入适用的背景与价值章节>
+
+<!-- prd:section scope -->
+# 目标与范围
+<目标与范围，遵循正式条目定位规则>
+<!-- /prd:section -->
+
+<!-- prd:section glossary -->
+# 术语
+- <分析结果 context.domain_terms 中的一条术语说明>
+<!-- /prd:section -->
+
+<!-- prd:section scenarios -->
+# 用户与场景
+<用户与场景，遵循正式条目定位规则>
+<!-- /prd:section -->
 
 <!-- prd:section functional_requirements -->
 # 功能需求
@@ -24,9 +39,16 @@
 | <!-- prd:item <脚本分配的编号> --><编号> | <带适用标注的内容> | <完整分析引用><!-- /prd:item --> |
 <!-- /prd:section -->
 
+<按结构参考插入遗留事项之前的其余章节>
+
 <!-- prd:section residuals -->
 # 遗留事项
 <!-- prd:residual <完整分析引用或设计事项指针> --><可追溯的遗留项><!-- /prd:residual -->
+<!-- /prd:section -->
+
+<!-- prd:section appendix -->
+# 附录
+<来源索引>
 <!-- /prd:section -->
 ```
 

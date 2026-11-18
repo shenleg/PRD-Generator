@@ -305,6 +305,50 @@ class PrdReleaseTests(unittest.TestCase):
         self.assertEqual(result['version'], '2.0-draft', result)
         self.assertEqual(self.check_action('submit-review')['baseline_version'], '1.0')
 
+    def test_legacy_appendix_and_release_remain_readable_after_glossary_split(self):
+        """旧附录摘要仍可校验；同步迁移术语时已发布快照的字节保持不变。"""
+        self.generate()
+        term = '查询窗口：允许发起查询的时间段。'
+        analysis_path = self.root / 'analysis/analysis-result.json'
+        analysis = read_json(analysis_path)
+        analysis['context'] = {'source_ids': ['SRC-1'], 'domain_terms': [term]}
+        write_json(analysis_path, analysis)
+        prd_path = self.root / 'prd/prd.md'
+        legacy_body = replace_section(self.body(), 'appendix', f'SRC-1\n\n- {term}').replace('、context.domain_terms', '')
+        prd_path.write_text(legacy_body, encoding='utf-8')
+        trace_path = self.root / 'prd/prd-trace.json'
+        trace = read_json(trace_path)
+        meta = trace['meta']
+        meta.update(content_baseline=legacy_body, content_hash=digest(legacy_body.encode('utf-8')))
+        del meta['section_source_digests']['glossary']
+        # 用旧协议的实际摘要载荷构造夹具，不调用新版的兼容分支生成预期。
+        meta['section_source_digests']['appendix'] = digest({'analysis': {'context': analysis['context'],
+            'sources': [item['sources'] for item in analysis['requirements']['functional_requirements']],
+            'manifest': read_json(self.root / 'analysis/source-manifest.json')}, 'mapped_sources': [], 'gap_requests': []})
+        write_json(trace_path, trace)
+        old = snapshot(self.root)
+        self.assertEqual(self.cli('validate_prd.py')['status'], 'pass')
+        self.assertEqual({s['category'] for s in self.cli('check_sync.py')['sections']}, {'unchanged'})
+        self.assertEqual(old, snapshot(self.root))
+        repeated = self.write(self.body())
+        self.assertEqual(repeated['status'], 'pass', repeated)
+        self.assertEqual(read_json(trace_path)['meta']['section_source_digests'], meta['section_source_digests'])
+        self.transition('submit-review')
+        self.transition('release')
+        history = {name: data for name, data in snapshot(self.root).items() if name.startswith('prd/versions/')}
+        self.assertEqual(self.cli('validate_prd.py')['status'], 'pass')
+        advance_analysis(self.root)
+        glossary = block('section', 'glossary', f'# 术语\n- {term}')
+        candidate = replace_section(self.body(), 'appendix', 'SRC-1')
+        candidate = candidate.replace('<!-- prd:section scenarios -->', glossary + '\n\n<!-- prd:section scenarios -->', 1)
+        synced = self.write(candidate, '--sync')
+        self.assertTrue(synced['generated'], synced)
+        self.assertEqual(synced['status'], 'warning', synced)
+        self.assertTrue(any('glossary' in issue['message'] for issue in synced['diagnostics']), synced)
+        self.assertEqual(self.body().count(term), 1)
+        self.assertEqual(self.cli('validate_prd.py')['status'], 'pass')
+        self.assertEqual({name: (self.root / name).read_bytes() for name in history}, history)
+
     def test_pg25_both_snapshot_digests_detect_tampering(self):
         """真实发布后各取独立副本篡改一份，校验失败且不回写摘要。"""
         self.generate()

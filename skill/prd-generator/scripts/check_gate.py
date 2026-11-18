@@ -51,6 +51,8 @@ def check_gate(requirement_dir: Path, *, allow_stale: bool = False, related_anal
                 meta = analysis["meta"]
                 result["analysis_revision"] = meta["analysis_revision"]
                 result["uncovered_analysis"] = [key for key in ("value_assessment", "technical_feasibility", "impact_analysis") if not analysis.get(key)]
+                if not analysis.get("context", {}).get("domain_terms"):
+                    result["uncovered_analysis"].append("context.domain_terms")
                 if isinstance(metadata, dict) and isinstance(metadata.get("common"), dict) and metadata["common"].get("requirement_id") != analysis["requirement_id"]:
                     diagnostics.append(validator._issue(10, "$", root / "requirement.json/common/requirement_id", "需求编号与分析结果不一致。"))
                 stale = meta["analysis_status"] == "stale"

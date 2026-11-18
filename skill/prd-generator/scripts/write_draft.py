@@ -476,7 +476,7 @@ def _optional_manifest(path):
         return []
 
 
-def _section_baseline(root, requirement, previous, existing_gaps, related, previous_analysis):
+def _section_baseline(old_text, requirement, previous, existing_gaps, related, previous_analysis):
     """读取已存章节依据或匹配旧分析；缺证据返回None，不用当前分析伪造旧快照。"""
     if previous_analysis is not None:
         old = _read_json(Path(previous_analysis))
@@ -489,8 +489,11 @@ def _section_baseline(root, requirement, previous, existing_gaps, related, previ
         return stored
     if previous_analysis is None:
         return None
+    # 旧分析有术语、旧稿没有独立术语块时，术语原来归附录，不能将新版摘要当作旧稿依据。
+    legacy_layout = bool(old.get('context', {}).get('domain_terms')) and 'glossary' not in _parsed(old_text)['section']
     digests = _module('validate_prd').section_source_digests(old, existing_gaps, trace=previous,
-            source_manifest=_optional_manifest(Path(previous_analysis).with_name('source-manifest.json')), related_analyses=related)
+            source_manifest=_optional_manifest(Path(previous_analysis).with_name('source-manifest.json')),
+            related_analyses=related, legacy_layout=legacy_layout)
     # 没有旧关联分析快照，不能把本次传入的关联资料当作旧依据；这些章节仍须明确降级。
     for item in previous['items']:
         if any(not ref.startswith(old['requirement_id'] + '/') for ref in item['analysis_refs']):
@@ -518,12 +521,13 @@ def _check_section_sync(old_text, text, baseline, current, diagnostics, uncovere
             begin, end = _raw_span(value, block)
             pieces.append(value[cursor:begin])
             cursor = end
-        value = ''.join([*pieces, value[cursor:]])
+        pieces.append(value[cursor:])
         for prompt in _module('validate_prd').PROMPTS.values():
-            if value.startswith(prompt):
-                value = value[len(prompt):]
+            if pieces[0].startswith(prompt):
+                pieces[0] = pieces[0][len(prompt):]
                 break
-        return value.strip('\r\n')
+        # 新增或省略可选章会增减章间空行，不能把这些分隔符误判为未追溯正文。
+        return ''.join(piece for piece in pieces if piece.strip()).strip('\r\n')
     if frame(old_text, old_blocks) != frame(text, blocks):
         raise ValueError('同步不得改写章节外的未追溯文本')
 
@@ -645,15 +649,21 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
                         change.update(category=category, analysis_refs=proposed['analysis_refs'], source_digest=proposed['source_digest'])
             existing_gaps = _read_json(root / "prd/gap-requests.json") if before["prd/gap-requests.json"] is not None else None
             gap_document = _gap_document(root, gaps, analysis["requirement_id"], version, existing_gaps, sync=sync)
+            # 重复生成要求正文不变，不能给仍在附录中的旧术语保存新版章节依据。
+            legacy_layout = previous is not None and not sync and (
+                'glossary' not in previous['meta'].get('section_source_digests', {})
+                and 'glossary' not in _parsed(before['prd/prd.md'].decode('utf-8'))['section']
+            )
             trace['meta']['section_source_digests'] = validator.section_source_digests(analysis, gap_document, trace=trace,
-                    source_manifest=_optional_manifest(root / 'analysis/source-manifest.json'), related_analyses=related)
+                    source_manifest=_optional_manifest(root / 'analysis/source-manifest.json'), related_analyses=related,
+                    legacy_layout=legacy_layout)
             uncovered = list(gate.get("uncovered_analysis", ()))
             if sync and any("source-manifest" in str(issue["path"]) and issue["level"] == "warning" for issue in diagnostics):
                 uncovered.append("source-manifest.json（来源名称降级为source_id）")
             summary, affected = None, None
             if sync:
                 old_text = before['prd/prd.md'].decode('utf-8')
-                baseline_sections = _section_baseline(root, requirement, previous, existing_gaps, related, previous_analysis)
+                baseline_sections = _section_baseline(old_text, requirement, previous, existing_gaps, related, previous_analysis)
                 _check_section_sync(old_text, body, baseline_sections, trace['meta']['section_source_digests'], diagnostics, uncovered)
                 old_blocks, new_blocks = _check_minimal_sync(old_text, body, comparison, previous, trace)
                 summary, affected = _sync_summary(root, comparison, previous, trace, old_blocks, new_blocks,

@@ -125,8 +125,11 @@ def check_sync(requirement_dir, *, related_analyses=(), allow_stale=False) -> di
             gaps = _validator._read(root / 'prd/gap-requests.json', diagnostics, 12)
             manifest = _validator._read(root / 'analysis/source-manifest.json', diagnostics, 3, optional=True)
             if gaps is not None and _validator._structure(gaps, 'gap-request', diagnostics, 12, 'gap-requests.json'):
-                current = _validator.section_source_digests(analysis, gaps, trace=trace, source_manifest=manifest if manifest is not None else [], related_analyses=related)
                 previous = trace['meta'].get('section_source_digests', {})
+                # 尚无需同步的旧稿沿用原映射比较；下一次同步才采用独立术语章节。
+                legacy_layout = not result['pending'] and 'appendix' in previous and 'glossary' not in previous
+                current = _validator.section_source_digests(analysis, gaps, trace=trace,
+                        source_manifest=manifest if manifest is not None else [], related_analyses=related, legacy_layout=legacy_layout)
                 result['sections'] = [{'section': key, 'category': 'unknown' if key not in previous else 'unchanged' if previous[key] == digest else 'modified', 'source_digest': digest} for key, digest in current.items()]
                 result['section_basis_available'] = all(key in previous for key in current)
         result.update(_validator._result(diagnostics))

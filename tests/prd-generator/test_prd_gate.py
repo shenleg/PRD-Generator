@@ -44,7 +44,7 @@ class GateTests(unittest.TestCase):
         before = {str(p.relative_to(self.root)): p.read_bytes() for p in self.root.rglob('*') if p.is_file()}
         result = self.gate.check_gate(self.root)
         self.assertEqual((result['status'], result['allowed'], result['draft_kind']), ('pass', True, 'formal_draft'))
-        self.assertEqual(set(result['uncovered_analysis']), {'value_assessment', 'technical_feasibility', 'impact_analysis'})
+        self.assertEqual(set(result['uncovered_analysis']), {'value_assessment', 'technical_feasibility', 'impact_analysis', 'context.domain_terms'})
         cli = subprocess.run([sys.executable, '-I', '-B', str(SCRIPT), str(self.root)], cwd=self.tmp.name, capture_output=True, text=True)
         self.assertEqual(cli.returncode, 0, cli.stderr + cli.stdout)
         self.assertEqual(json.loads(cli.stdout), result)

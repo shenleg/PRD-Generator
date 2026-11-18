@@ -65,6 +65,9 @@ def make_input(folder, missing=False, invalid=False, readiness='ready_for_docume
             items.append(item)
         if scenario == 'PG-07':
             items.append(dict(items[0], id='FR-3', content='合成假设条目', tag='assumption', related_ids=['ASM-1']))
+        if scenario in ('PG-10-with-terms', 'PG-10-empty-terms'):
+            terms = ['查询窗口：允许发起查询的时间段。', '有效结果：满足当前查询条件的记录。']
+            analysis['context'] = {'source_ids': ['SRC-1'], 'domain_terms': terms if scenario == 'PG-10-with-terms' else []}
         if scenario == 'PG-20-ui':
             analysis['ux_assessment'] = {'ui_dependent': True, 'design_pending_items': ['合成待设计状态']}
         if invalid:
@@ -78,6 +81,23 @@ def check(condition, message):
     """断言 condition 成立；失败时抛出带 message 的 AssertionError，成功返回 None。"""
     if not condition:
         raise AssertionError(message)
+
+
+def check_glossary(root, text, terms):
+    """检查已落盘 PRD 的术语位置、缺省信息和缺口；不符时抛出 AssertionError。"""
+    marker = '<!-- prd:section glossary -->'
+    if terms:
+        keys = re.findall(r'<!-- prd:section ([a-z_]+) -->', text)
+        index = keys.index('scope')
+        check(keys[index:index + 3] == ['scope', 'glossary', 'scenarios'], '术语章节不在范围与场景之间')
+        glossary = text.split(marker, 1)[1].split('<!-- /prd:section -->', 1)[0]
+        check(all(term in glossary and text.count(term) == 1 for term in terms), '术语丢失或重复')
+    else:
+        check(marker not in text, '无术语却生成章节')
+    info = text.split('<!-- prd:section info -->', 1)[1].split('<!-- /prd:section -->', 1)[0]
+    check(('context.domain_terms' in info) == (not terms), '术语未覆盖信息不符')
+    gaps = fixture.read_json(root / 'prd/gap-requests.json')
+    check(not gaps['requests'] and '待分析补充' not in text, '可选术语不应自动登记缺口')
 
 
 def generate(folder, root, body, kind, stale=False, repeat=False, scenario=''):
@@ -111,6 +131,9 @@ def generate(folder, root, body, kind, stale=False, repeat=False, scenario=''):
         residuals.append(fixture.block('residual', f'/ux_assessment/design_pending_items/{i}', item))
     if residuals:
         body = body.replace('无适用遗留项', '\n'.join(residuals))
+    if scenario == 'PG-10-with-terms':
+        glossary = fixture.block('section', 'glossary', '# 术语\n- 查询窗口：允许发起查询的时间段。\n- 有效结果：满足当前查询条件的记录。')
+        body = body.replace('<!-- prd:section scenarios -->', glossary + '\n\n<!-- prd:section scenarios -->', 1)
     if scenario == 'PG-20-ui':
         body += '\n' + fixture.block('section', 'ux', '合成待设计状态，尚无视觉资料') + '\n'
     gap_args = []
@@ -166,7 +189,7 @@ def main(argv=None):
     for name, options in cases:
         folder = out / name
         folder.mkdir()
-        scope = {'PG-01': '缺失分析拒绝及只读', 'PG-02': '必填字段缺失拒绝及只读', 'PG-03': '过期门禁、显式允许与提示', 'PG-04': '就绪度映射及提示', 'PG-05': '就绪度映射及提示', 'PG-06': '正式草稿、研发问题及假设', 'PG-10': '空章节与未覆盖字段', 'PG-20': '有无界面两分支', 'PG-21': '技术评估缺省及研发问题', 'PG-26': '重复生成的条目正文、追溯和版本'}
+        scope = {'PG-01': '缺失分析拒绝及只读', 'PG-02': '必填字段缺失拒绝及只读', 'PG-03': '过期门禁、显式允许与提示', 'PG-04': '就绪度映射及提示', 'PG-05': '就绪度映射及提示', 'PG-06': '正式草稿、研发问题及假设', 'PG-10': '空章节、未覆盖字段与术语有值/空数组/缺省', 'PG-20': '有无界面两分支', 'PG-21': '技术评估缺省及研发问题', 'PG-26': '重复生成的条目正文、追溯和版本'}
         entry = {'status': 'partial', 'programmatic': 'pending', 'programmatic_scope': scope.get(name, '合成场景程序检查'), 'human_review': 'pending'}
         manifest['scenarios'][name] = entry
         try:
@@ -192,6 +215,18 @@ def main(argv=None):
                 check(snapshot(root / 'analysis') == snapshot(folder / 'before/analysis'), '分析文件改变')
                 if name == 'PG-10':
                     check('分析结果中无此项' in text and 'value_assessment' in text and 'impact_analysis' in text, '空节或缺省信息不符')
+                    check_glossary(root, text, [])
+                    for variant in ('with-terms', 'empty-terms'):
+                        branch = folder / variant
+                        branch.mkdir()
+                        scenario = f'PG-10-{variant}'
+                        term_root, term_body = make_input(branch, scenario=scenario)
+                        shutil.copytree(term_root, branch / 'before')
+                        terms = fixture.read_json(term_root / 'analysis/analysis-result.json')['context']['domain_terms']
+                        _, term_text = generate(branch, term_root, term_body, kind, scenario=scenario)
+                        check_glossary(term_root, term_text, terms)
+                        check(snapshot(term_root / 'analysis') == snapshot(branch / 'before/analysis'), '分析文件改变')
+                        shutil.copytree(term_root, branch / 'after')
                 if name == 'PG-20':
                     check('<!-- prd:section ui' not in text, '无界面依赖却生成界面章节')
                 if name == 'PG-21':

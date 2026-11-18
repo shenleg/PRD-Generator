@@ -8,6 +8,7 @@
 | changes | 变更记录 | `prd-events.jsonl` | 是 |
 | background | 背景与价值 | `value_assessment` | 否 |
 | scope | 目标与范围 | `requirements.goals`、`scope` | 是 |
+| glossary | 术语 | `context.domain_terms` | 否 |
 | scenarios | 用户与场景 | `requirements.scenarios` | 是 |
 | functional_requirements | 功能需求 | `requirements.functional_requirements` | 是 |
 | business_rules | 业务规则 | `requirements.business_rules` | 是 |
@@ -19,7 +20,9 @@
 | technical | 技术说明与研发确认项 | `technical_feasibility`、`questions` 中 `ask_dev` | 否 |
 | impact | 关联与影响 | `impact_analysis` | 否 |
 | residuals | 遗留事项 | `questions`、`assumptions`、`gaps`、`conflicts`、`decisions` | 是 |
-| appendix | 附录 | `context.domain_terms`、来源 `source_id` | 是 |
+| appendix | 附录 | `context.source_ids`、条目来源 `source_id` | 是 |
+
+术语在场景和规则之前统一口径。把 `context.domain_terms` 中已有的术语说明列在「术语」，不分配正式条目编号，也不在附录重复；附录保留来源索引。字段缺省或为空时省略术语章节并记入未覆盖分析项，不因此自动登记缺口。确实缺少理解业务或验收所必需的定义时，按[缺口规则](generation-rules.md)回交，不自行补写定义或新规则。
 
 文档信息由脚本渲染，包含需求编号、标题、PRD 版本、状态、草稿类型、基于的分析修订号、生成时间和未覆盖分析项。功能需求及验收条件用带“分析来源”列的表格。分析未给出的功能关联不自行补上。
 

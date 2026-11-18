@@ -18,6 +18,14 @@ class GenerationRunsTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn('--output', result.stdout)
 
+    def test_default_template_positions_glossary_before_scenarios(self):
+        """默认模板在范围和场景之间展示稳定术语章标记。"""
+        template = SCRIPT.parents[2] / 'skill/prd-generator/templates/prd.md'
+        text = template.read_text(encoding='utf-8')
+        self.assertLess(text.index('<!-- prd:section scope -->'), text.index('<!-- prd:section glossary -->'))
+        self.assertLess(text.index('<!-- prd:section glossary -->'), text.index('<!-- prd:section scenarios -->'))
+        self.assertEqual(text.count('<!-- prd:section glossary -->'), 1)
+
     def test_evidence_and_replay(self):
         """每次使用新目录，保留真实命令、指纹及未完成人工审核标志。"""
         with tempfile.TemporaryDirectory() as tmp:
@@ -42,6 +50,8 @@ class GenerationRunsTests(unittest.TestCase):
                     self.assertTrue(call['command'])
                     self.assertIn('before', call)
                     self.assertIn('after', call)
+                for branch in ('with-terms', 'empty-terms'):
+                    self.assertTrue((output / 'PG-10' / branch / 'validate.json').is_file())
                 self.assertTrue((output / 'PG-20/ui/write.json').is_file())
                 self.assertTrue((output / 'PG-08/assign-legacy.json').is_file())
                 step = json.loads((output / 'PG-26/write.json').read_text())
