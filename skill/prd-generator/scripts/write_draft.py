@@ -274,14 +274,6 @@ def _commit_payload(root, before, payload, guards, result):
     return {**result, 'written': written}
 
 
-def _changes_text(events):
-    """渲染追加日志的阅读视图，不修改事件或把说明中的标注名称误判为正文状态。"""
-    marker = _module('validate_prd').INCONSISTENCY
-    format_time = _module('render_info').format_display_time
-    return '\n'.join(f"- {format_time(item['time'])} · {item['prd_version']} · {item['summary'].replace(marker, '与分析不一致')}"
-                     + ('（' + '、'.join(item['affected_prd_ids']) + '）' if item['affected_prd_ids'] else '') for item in events)
-
-
 def _preserve_manual_marks(before, after, requirement_id):
     """拒绝以排版、重复生成或未经核实的同步清除既有不一致；不替代分析内容核实。"""
     validator = _module('validate_prd')
@@ -688,7 +680,7 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
                 new_events.append({**event, "change_type": "gap_request", "summary": "登记生成中发现的分析缺口，保留占位并建议交回需求分析"})
             events_raw += b"".join(_encode(item).replace(b"\n", b" ").rstrip() + b"\n" for item in new_events)
             events = [json.loads(line) for line in events_raw.decode("utf-8").splitlines() if line.strip()]
-            changes = _changes_text(events)
+            changes = renderer.render_changes(events)
             text = renderer.render_info(body, next_requirement, trace, generated_at=timestamp,
                         uncovered_analysis=uncovered, changes=changes)
             trace["meta"]["content_hash"] = renderer.content_hash(text.encode("utf-8"))
@@ -965,7 +957,7 @@ def edit_draft(requirement_dir: Path, *, mode: str, base_prd_version: str, base_
             payload = dict(before)
             payload['prd/prd-events.jsonl'] = events_raw
             if mode != 'detect':
-                changes = _changes_text([*events, event])
+                changes = renderer.render_changes([*events, event])
                 text = renderer.render_info(body, new_requirement, new_trace, generated_at=timestamp,
                             uncovered_analysis=gate.get('uncovered_analysis', ()), changes=changes)
                 new_trace['meta']['content_hash'] = renderer.content_hash(text.encode('utf-8'))

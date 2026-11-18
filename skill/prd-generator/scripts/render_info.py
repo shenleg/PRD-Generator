@@ -1,4 +1,4 @@
-"""根据权威元数据渲染草稿提示、文档信息和生成记录，并计算正文原始字节摘要。"""
+"""根据权威元数据和事件渲染 PRD 文首，并计算正文原始字节摘要。"""
 
 import argparse
 import difflib
@@ -14,6 +14,14 @@ import re
 
 # 固定使用北京时间（UTC+8），使显示结果不受运行机器的时区影响。
 BEIJING_TIMEZONE = timezone(timedelta(hours=8))
+# 限制概览中单段自由文本的长度，避免窄屏下单行记录占据过多高度。
+_CHANGE_PREVIEW_LIMIT = 90
+_SYNC_ITEMS = ("新增", "修改", "废止", "待确认")
+_SYNC_GAPS = ("核实关闭缺口", "保留缺口及占位（尚未提交经内容核实的关闭依据）")
+_READINESS_LABELS = {"not_ready": "未就绪", "conditionally_ready": "有条件可生成文档", "ready_for_document": "可生成文档"}
+_EVENT_LABELS = {"initial_generation": "生成工作稿", "layout_edit": "调整排版", "manual_edit_detected": "记录手工修改",
+                 "gap_request": "登记分析缺口", "submit_review": "提交评审", "return_review": "退回评审",
+                 "release_confirmed": "确认发布", "release": "发布定稿", "deprecate": "废弃 PRD"}
 
 
 @lru_cache(maxsize=1)
@@ -99,6 +107,95 @@ def format_display_time(value: str) -> str:
     if stamp.tzinfo is not None:
         stamp = stamp.astimezone(BEIJING_TIMEZONE)
     return stamp.replace(tzinfo=None).isoformat(sep=" ", timespec="seconds")
+
+
+def _sync_change(event, summary):
+    """从已知的同步日志格式提取概览和明细；无法识别的旧摘要交由调用方原样展示。"""
+    # 自由文本中的分号属于分析说明，不是可拆分的同步字段。
+    fields, _, reason = summary.partition("；分析事件说明：")
+    pairs = [part.partition("：") for part in fields.split("；")]
+    labels = tuple(label for label, _, _ in pairs)
+    if (labels[:6] != (*_SYNC_ITEMS, "就绪度", "遗留事项")
+            or len(labels) != len(set(labels))
+            or any(label not in _SYNC_GAPS for label in labels[6:])
+            or any(not sep or not value for _, sep, value in pairs)):
+        return None
+    values = {label: value for label, _, value in pairs}
+    previous, arrow, current = values["就绪度"].partition(" → ")
+    if not arrow or not previous or not current:
+        return None
+
+    details, counts, classified = [], [], set()
+    for label in _SYNC_ITEMS:
+        if values[label] != "无":
+            ids = list(dict.fromkeys(values[label].split("、")))
+            classified.update(ids)
+            details.append((label, "、".join(ids)))
+            counts.append(f"{label} {len(ids)} 项")
+    if values["遗留事项"] != "未变":
+        details.append(("遗留事项", values["遗留事项"]))
+        counts.append("更新遗留事项")
+    for label in _SYNC_GAPS:
+        if label in values and values[label] != "无":
+            details.append((label, values[label]))
+    closed = values.get("核实关闭缺口", "无")
+    if closed != "无":
+        counts.append(f"关闭 {len(closed.split('、'))} 个缺口")
+    if not reason or len(reason) > _CHANGE_PREVIEW_LIMIT:
+        overview = f"同步分析：{'、'.join(counts)}。" if counts else f"同步至分析修订 {event['based_on_analysis_revision']}。"
+        if reason:
+            details.append(("分析事件说明", reason))
+    else:
+        overview = reason
+    if previous != current:
+        overview += f" 就绪度：{_READINESS_LABELS.get(previous, previous)} → {_READINESS_LABELS.get(current, current)}。"
+    return overview, details, classified
+
+
+def render_changes(events: list[dict]) -> str:
+    """将按追加顺序读取的 events 渲染成倒序概览和分版本明细，不修改事件。
+
+    返回不含章节标记的 Markdown。必要的事件字段缺失或类型错误时抛出 KeyError/TypeError。
+    无法识别的历史摘要保留说明原文，不猜测编号分类或变更原因。
+    """
+    table = ["| 版本 / 时间 | 本次变更 |", "| --- | --- |"]
+    groups = {}
+    marker = _validator().INCONSISTENCY
+    for index in range(len(events) - 1, -1, -1):
+        event = events[index]
+        version = _cell(event["prd_version"])
+        timestamp = _cell(format_display_time(event["time"]))
+        summary = event["summary"].replace(marker, "与分析不一致")
+        kind = event["change_type"]
+        sync = _sync_change(event, summary) if kind == "sync" else None
+        if sync is not None:
+            overview, details, classified = sync
+        elif len(summary) > _CHANGE_PREVIEW_LIMIT:
+            overview = "同步分析" if kind == "sync" else _EVENT_LABELS.get(kind, "更新 PRD 记录")
+            details, classified = [("说明", summary)], set()
+        else:
+            overview, details, classified = summary, [], set()
+        ids = [pid for pid in dict.fromkeys(event["affected_prd_ids"]) if pid not in classified]
+        if kind == "gap_request" and index > 0:
+            # 同批缺口事件沿用主事件的编号；不为同一次保存重复展示整组编号。
+            parent = events[index - 1]
+            if (parent["change_type"] in {"initial_generation", "sync"}
+                    and all(event[key] == parent[key] for key in ("prd_version", "time", "affected_prd_ids"))):
+                ids = []
+        if ids:
+            details.append(("受影响编号", "、".join(ids)))
+        table.append(f"| **{version}**<br>{timestamp} | {_cell(overview)} |")
+        if details:
+            groups.setdefault(version, []).append((timestamp, details))
+
+    for version, entries in groups.items():
+        table.extend(["", f"### {version} 明细"])
+        for timestamp, details in entries:
+            table.append("")
+            if len(entries) > 1:
+                table.extend([f"**{timestamp}**", ""])
+            table.extend(f"- **{label}**：{_cell(value)}" for label, value in details)
+    return "\n".join(table)
 
 
 def render_info(body: str, requirement: dict, trace: dict, *, generated_at: str, uncovered_analysis=(), changes: str | None = None) -> str:

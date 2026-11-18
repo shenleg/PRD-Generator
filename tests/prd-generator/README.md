@@ -16,6 +16,7 @@
 | `test_prd_gate.py` | 唯一上游校验、四种草稿门禁、可选资料降级和只读边界 |
 | `test_prd_numbering.py` | 正式编号、映射身份、来源摘要、高水位及并发拒绝 |
 | `test_prd_draft.py` | 信息视图、统一首稿、重复稳定性、候选保留及故障恢复 |
+| `test_prd_change_history.py` | 两列变更概览、分版本明细、长说明与旧事件兼容 |
 | `run_prd_generation.py`、`test_prd_generation_runs.py` | 合成场景的真实公开 CLI 留证与新目录重放，不冒充模型输出 |
 | `run_model_draft_replay.py` | 用当前冻结源码重放已保存的真实模型候选，不称为新模型调用 |
 | `test_prd_sync_check.py` | 只读修订与完整来源比较、五类变化、只改标签/来源/关联和JSON稳定性 |

@@ -91,7 +91,7 @@ PY skill/prd-generator/scripts/write_draft.py REQUIREMENT_DIR --sync \
 
 统一保存记录兼容选填的 `meta.section_source_digests`，依据未变的整章也须保持原字节，补足对范围等非编号内容的保护。旧追溯缺字段时可用 `--previous-analysis OLD_ANALYSIS.json` 指定与旧基准身份/修订匹配的分析；缺可信旧依据时输出明确警告，须人工逐章核对，不能冒称已自动证明全篇最小化。成功后建立当前章节依据。功能、规则等保持对应稳定键，验收仅按显式 `related_ids` 挂靠功能。
 
-同步共用上述候选、并发及恢复机制，事件类型为 `sync`；变更记录包含四类受影响编号、就绪度和遗留事项变化。辅助事件缺失只按条目汇总，来源清单缺失只显示 `source_id`，降级写入信息且完整输出警告。`check_sync.py` 始终只读。
+同步共用上述候选、并发及恢复机制，事件类型为 `sync`；`render_info.py` 从日志生成[变更概览和分版本明细](../templates/change-summary.md)。辅助事件缺失不补猜原因，来源清单缺失只显示 `source_id`，降级写入信息且完整输出警告。`check_sync.py` 始终只读。
 
 ## 显式编辑与手改检测
 

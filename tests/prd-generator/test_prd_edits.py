@@ -482,3 +482,5 @@ class PrdEditTests(unittest.TestCase):
         self.assertIn(result.returncode, (0, 1), response)
         self.assertEqual(response['version'], '0.2')
         self.assertTrue(response['edited'])
+        self.assertRegex(self.text(), r'\| \*\*0\.2\*\*<br>[^|]+ \| 标题加粗，语义保持 \|')
+        self.assertIn('### 0.2 明细\n\n- **受影响编号**：PRD-FR-001', self.text())

@@ -70,6 +70,13 @@ class PrdSyncWriteTests(unittest.TestCase):
         self.assertEqual(event['affected_prd_ids'], ['PRD-FR-001'])
         self.assertIn('就绪度', event['summary'])
         self.assertIn('遗留事项', event['summary'])
+        changes = section_text(text, 'changes')
+        overview, details = changes.split('### 0.2 明细', 1)
+        latest = '| **0.2**<br>2026-11-17 12:00:00 | 合成指定分析变化，仅用于验证同步 |'
+        self.assertLess(overview.index(latest), overview.index('| **0.1**'))
+        self.assertNotIn('PRD-FR-001', overview)
+        self.assertEqual(details.split('### 0.1 明细')[0].strip(), '- **修改**：PRD-FR-001')
+        self.assertIn('- **受影响编号**：PRD-FR-001', details.split('### 0.1 明细')[1])
 
     def test_revision_only_sync_does_not_rewrite_items(self):
         """PG-13/34只有修订递增或JSON重排时更新信息事件，所有正式条目原字节保持。"""
@@ -113,7 +120,9 @@ class PrdSyncWriteTests(unittest.TestCase):
         self.assertEqual(pid, 'PRD-FR-003')
         self.assertEqual([i['introduced_in'] for i in trace['items']], ['0.1', '0.1', '0.3'])
         self.assertEqual(trace['items'][0]['status'], 'abolished')
-        self.assertIn('PRD-FR-001', section_text((self.root / 'prd/prd.md').read_text(), 'changes'))
+        changes = section_text((self.root / 'prd/prd.md').read_text(), 'changes')
+        self.assertIn('### 0.3 明细\n\n- **新增**：PRD-FR-003', changes)
+        self.assertIn('### 0.2 明细\n\n- **废止**：PRD-FR-001', changes)
 
     def test_omitted_new_analysis_mapping_rejected(self):
         """新增有效分析项不能被空补丁静默忽略。"""
@@ -128,6 +137,8 @@ class PrdSyncWriteTests(unittest.TestCase):
         body = self.old_text.replace('合成查询功能，不代表真实业务；', '合成查询功能，不代表真实业务【待确认】；')
         trace = self.assert_saved(self.save(body=body))
         self.assertEqual(trace['items'][0]['status'], 'to_confirm')
+        changes = section_text((self.root / 'prd/prd.md').read_text(), 'changes')
+        self.assertIn('- **待确认**：PRD-FR-001', changes)
 
     def test_only_tag_change_updates_marks_and_residuals(self):
         """PG-32正文不变而标签变成推断时，更新适用标注及遗留项，不重编号。"""
@@ -158,7 +169,9 @@ class PrdSyncWriteTests(unittest.TestCase):
         self.assertEqual(final['requests'][0]['status'], 'closed')
         self.assertEqual(final['extension'], '封装扩展')
         self.assertEqual(final['requests'][0]['extension'], {'keep': '缺口扩展'})
-        self.assertNotIn('待分析补充', (self.root / 'prd/prd.md').read_text())
+        text = (self.root / 'prd/prd.md').read_text()
+        self.assertNotIn('待分析补充', text)
+        self.assertIn('- **核实关闭缺口**：GAPREQ-1', section_text(text, 'changes'))
 
     def test_not_needed_closes_with_real_scope_basis(self):
         """PG-31不再需要必须引用有效范围依据，不能只写生成器解释。"""

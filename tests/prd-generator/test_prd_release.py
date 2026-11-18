@@ -196,6 +196,10 @@ class PrdReleaseTests(unittest.TestCase):
         """合法占位及结构不成对的占位均阻断，不能只报未评审。"""
         result = self.generate(gap=True)
         self.assertEqual(result['draft_kind'], 'formal_draft')
+        changes = self.body().split('<!-- prd:section changes -->', 1)[1].split('<!-- /prd:section -->', 1)[0]
+        self.assertIn('登记生成中发现的分析缺口', changes)
+        self.assertIn('首次生成工作稿', changes)
+        self.assertEqual(changes.count('PRD-FR-001'), 1)
         self.refuse('release', contains=('GAPREQ-1', '占位'))
         path = self.root / 'prd/prd.md'
         path.write_text(self.body().replace('<!-- prd:gap GAPREQ-1 -->', '<!-- prd:gap GAPREQ-2 -->'), encoding='utf-8')
@@ -249,6 +253,10 @@ class PrdReleaseTests(unittest.TestCase):
         confirmation, release = self.events()[-2:]
         self.assertEqual((confirmation['change_type'], confirmation['confirmed_by'], confirmation['prd_version']), ('release_confirmed', TEST_PM, '1.0'))
         self.assertIsNotNone(datetime.fromisoformat(confirmation['time']).utcoffset())
+        overview = [line for line in self.body().splitlines() if line.startswith('| **')]
+        self.assertEqual([line.split('**')[1] for line in overview], ['1.0', '1.0', '0.1', '0.1'])
+        self.assertIn(release['summary'], overview[0])
+        self.assertIn(confirmation['summary'], overview[1])
         for key, original in (('prd', 'prd.md'), ('trace', 'prd-trace.json')):
             metadata = release['snapshots'][key]
             path = self.root / 'prd' / metadata['path']

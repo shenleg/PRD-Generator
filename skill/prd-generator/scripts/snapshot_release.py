@@ -149,7 +149,7 @@ def _payload(before, view, action, target, confirmed_by, confirmed_at, timestamp
         added = [event]
     rendered = _renderer.render_info(body, requirement, trace, generated_at=info['生成时间'],
         uncovered_analysis=() if info['未覆盖的分析项'] == '无' else (info['未覆盖的分析项'],),
-        changes=_writer._changes_text([*events, *added]))
+        changes=_renderer.render_changes([*events, *added]))
     raw = rendered.encode('utf-8')
     trace['meta'].update(content_baseline=rendered, content_hash=_writer._hash(raw))
     trace_bytes = _writer._encode(trace)
