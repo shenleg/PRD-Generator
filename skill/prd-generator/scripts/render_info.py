@@ -2,7 +2,7 @@
 
 import argparse
 import difflib
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from functools import lru_cache
 import hashlib
 import html
@@ -10,6 +10,10 @@ import importlib.util
 import json
 from pathlib import Path
 import re
+
+
+# 固定使用北京时间（UTC+8），使显示结果不受运行机器的时区影响。
+BEIJING_TIMEZONE = timezone(timedelta(hours=8))
 
 
 @lru_cache(maxsize=1)
@@ -82,6 +86,21 @@ def _take_section(body, key):
     return body[:begin.start()] + body[end:]
 
 
+def format_display_time(value: str) -> str:
+    """将 PRD 中的 value 时间显示为北京时间的年月日和时分秒，不改动日志。
+
+    支持 ISO 8601 时间戳及已渲染的时间；无法解析的历史文本原样返回，不抛出解析异常。
+    """
+    try:
+        stamp = datetime.fromisoformat(value[:-1] + "+00:00" if value.endswith("Z") else value)
+    except ValueError:
+        return value
+    # 评审和发布会重读生成时间；已渲染的无偏移时间是北京时间，不能再加八小时。
+    if stamp.tzinfo is not None:
+        stamp = stamp.astimezone(BEIJING_TIMEZONE)
+    return stamp.replace(tzinfo=None).isoformat(sep=" ", timespec="seconds")
+
+
 def render_info(body: str, requirement: dict, trace: dict, *, generated_at: str, uncovered_analysis=(), changes: str | None = None) -> str:
     """返回带权威文档信息的 Markdown，不写文件。
 
@@ -107,10 +126,10 @@ def render_info(body: str, requirement: dict, trace: dict, *, generated_at: str,
         value = _take_section(value, "changes")
     pairs = [("需求编号", common["requirement_id"]), ("标题", common["title"]), ("PRD 版本", prd["version"]),
              ("状态", prd["status"]), ("草稿类型", kind), ("基于的分析修订号", prd["based_on_analysis_revision"]),
-             ("生成时间", generated_at), ("未覆盖的分析项", "、".join(uncovered_analysis) if uncovered_analysis else "无")]
+             ("生成时间", format_display_time(generated_at)), ("未覆盖的分析项", "、".join(uncovered_analysis) if uncovered_analysis else "无")]
     table = "\n".join(["| 字段 | 值 |", "| --- | --- |", *(f"| {name} | {_cell(item)} |" for name, item in pairs)])
-    info = "<!-- prd:section info -->\n## 文档信息\n\n" + table + "\n<!-- /prd:section -->"
-    record = "" if changes is None else "\n\n<!-- prd:section changes -->\n## 变更记录\n\n" + changes + "\n<!-- /prd:section -->"
+    info = "<!-- prd:section info -->\n# 文档信息\n\n" + table + "\n<!-- /prd:section -->"
+    record = "" if changes is None else "\n\n<!-- prd:section changes -->\n# 变更记录\n\n" + changes + "\n<!-- /prd:section -->"
     prompt = "" if prd["status"] in {"released", "deprecated"} else validator.PROMPTS[kind] + "\n\n"
     return prompt + info + record + "\n\n" + value.strip("\r\n") + "\n"
 

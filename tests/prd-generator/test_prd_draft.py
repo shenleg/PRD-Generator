@@ -2,6 +2,7 @@
 
 from copy import deepcopy
 import importlib.util
+import json
 from pathlib import Path
 import subprocess
 import sys
@@ -55,7 +56,8 @@ class PrdDraftTests(unittest.TestCase):
         """用固定测试时间保存候选，返回真实生产响应；默认候选位于独立新目录。"""
         self.counter += 1
         return self.writer.write_draft(self.root, patch=kwargs.pop("patch", self.patch), body=kwargs.pop("body", self.body),
-                    generated_at="2026-11-17T00:00:00Z", candidate_dir=self.base / f"candidate-{self.counter}", **kwargs)
+                    generated_at=kwargs.pop("generated_at", "2026-11-17T00:00:00Z"),
+                    candidate_dir=self.base / f"candidate-{self.counter}", **kwargs)
 
     def fingerprint(self):
         """返回当前业务字节映射，验证拒绝和生成侧文件归属；读取错误使测试失败。"""
@@ -265,6 +267,25 @@ class PrdDraftTests(unittest.TestCase):
         self.assertEqual(read_json(self.root / "requirement.json")["common"], metadata["common"])
         text = (self.root / "prd/prd.md").read_text()
         self.assertIn("查询 &#124; A&amp;B<br>&lt;br&gt;第二行", text)
+
+    def test_saved_prd_displays_beijing_seconds_without_rewriting_event_time(self):
+        """生成时间和变更记录按北京时间显示到秒，事件仍保留原始 UTC 时间戳。"""
+        timestamp = "2026-11-18T07:12:32.964707+00:00"
+        result = self.save(generated_at=timestamp)
+        self.assertTrue(result.get("generated"), result)
+        text = (self.root / "prd/prd.md").read_text(encoding="utf-8")
+        self.assertIn("| 生成时间 | 2026-11-18 15:12:32 |", text)
+        self.assertIn("- 2026-11-18 15:12:32 ·", text)
+        self.assertNotIn(timestamp, text)
+        event = json.loads((self.root / "prd/prd-events.jsonl").read_text(encoding="utf-8"))
+        self.assertEqual(event["time"], timestamp)
+
+    def test_display_time_rolls_over_and_does_not_shift_twice(self):
+        """UTC 夜间正确跨到北京时间次日，评审重渲染已展示的时间不会再次加八小时。"""
+        displayed = self.renderer.format_display_time("2026-11-18T20:12:32Z")
+        self.assertEqual(displayed, "2026-11-19 04:12:32")
+        self.assertEqual(self.renderer.format_display_time(displayed), displayed)
+        self.assertEqual(self.renderer.format_display_time("2026-11-19T04:12:32+08:00"), displayed)
 
     def test_render_info_is_authoritative_and_readonly(self):
         """渲染使用权威信息并保持需求块原文，正文摘要包含空白差异。"""

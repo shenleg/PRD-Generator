@@ -275,9 +275,10 @@ def _commit_payload(root, before, payload, guards, result):
 
 
 def _changes_text(events):
-    """渲染追加日志，不把说明里提及的标注名称误判为正文状态；保留编号和真实历史。"""
+    """渲染追加日志的阅读视图，不修改事件或把说明中的标注名称误判为正文状态。"""
     marker = _module('validate_prd').INCONSISTENCY
-    return '\n'.join(f"- {item['time']} · {item['prd_version']} · {item['summary'].replace(marker, '与分析不一致')}"
+    format_time = _module('render_info').format_display_time
+    return '\n'.join(f"- {format_time(item['time'])} · {item['prd_version']} · {item['summary'].replace(marker, '与分析不一致')}"
                      + ('（' + '、'.join(item['affected_prd_ids']) + '）' if item['affected_prd_ids'] else '') for item in events)
 
 

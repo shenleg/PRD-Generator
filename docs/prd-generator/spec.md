@@ -418,6 +418,7 @@ requirement-workspace/projects/<project-id>/requirements/REQ-2026-001/
 
 - 文首依次为：草稿提示（如有）、文档信息、变更记录。
 - 文档信息包含：需求编号、标题、PRD 版本、状态、草稿类型、基于的分析修订号、生成时间、未覆盖的分析项。
+- 生成时间和变更记录中的时间按北京时间（UTC+8）显示为 `YYYY-MM-DD HH:MM:SS`；`prd-events.jsonl` 保留原始时间戳。
 - 每个正式条目带正式编号；功能需求和验收条件用表格，含“分析来源”列。
 - 标注格式见 5.3。
 - 正文使用不可见 HTML 注释定位机器检查范围，不增加可见次要标签。块标记为 `<!-- prd:section <key> -->` / `<!-- /prd:section -->`、`<!-- prd:item <prd_id> -->` / `<!-- /prd:item -->`、`<!-- prd:gap <gap_id> -->` / `<!-- /prd:gap -->`、`<!-- prd:residual <reference> -->` / `<!-- /prd:residual -->`。章节可以包含其他块，其他块不得嵌套，重复、交叉和不成对标记均拒绝。
