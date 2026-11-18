@@ -1,16 +1,28 @@
 # Requirement Analyst 文档
 
-本目录收纳需求分析 Skill 的现行维护文档；生产源码仍在 `skill/requirement-analyst/`，路径均以仓库根目录为基准，Markdown 链接按文件位置解析。
+本页维护需求分析 Skill 的现行能力状态、验收证据和使用入口。生产源码位于 [`skill/requirement-analyst/`](../../skill/requirement-analyst/)。
+
+## 能力与验收
+
+**分析侧阶段 1～8 已按批准范围验收。** 这里的分析侧阶段 7 是体验与图像验证，不是生成侧的阶段 7 双 Skill 联调；正式 PRD 交接有独立的联调证据。
+
+| 已实现的能力 | 程序或 CLI 验证 | 实际模型证据与人工验收范围 |
+| --- | --- | --- |
+| 结构化分析、分轮追问、增量更新与只读校验 | [分析侧历史验收](../../tests/results/final-acceptance.md)：分析侧当时的 `216` 项回归通过，五轮本地 CLI 重放验证修订推进及旧补丁拒绝。 | [分析追问试跑](../../tests/results/stage-2.md)保留实际模型输出；[安装记录](installation.md)验证自动调用与同会话承接。分析侧阶段验收不等同于业务答复或签核。 |
+| 历史基线对照、变更影响与技术可行性判断 | [历史对照](../../tests/results/stage-5.md)与[技术评估](../../tests/results/stage-6.md)分别覆盖对应的 CLI 样例。 | 安装态模型使用合成资料，能区分已证实和待核实内容；不替代真实项目技术验收。 |
+| 体验分析与视觉资料读取 | [分析侧阶段 7](../../tests/results/stage-7.md)记录体验场景和 CLI 验证。 | 实际模型读取合成静态图；未验证真实系统的点击、权限和隐藏状态，也不代表设计签核。 |
+| 经确认保存项目知识 | [分析侧阶段 8](../../tests/results/stage-8.md)验证写入、原样保留、不覆盖和显式索引。 | 用户实际批准了隔离试用条目 `DK-001`；本阶段未重新做独立模型调用或安装触发测试，不将试用批准扩称为真实组织授权。 |
+| 接收 PRD 缺口、补充分析并交还生成侧同步 | [双 Skill 最终报告](../../tests/results/prd-generator/final-acceptance.md)记录安装态 CLI、缺口闭环、文件归属和最终双侧回归。 | [同会话联调](../../tests/results/prd-generator/stage-7-installed-model-handoff.json)由模型拟候选、操作者运行正式脚本。生成侧阶段 7 的联调和真实工作稿试用已获人工认可。 |
+
+**未验证的范围**：独立的下游测试 Skill 仍未集成。分析侧八项评价指标尚无统一样本基线和最终阈值。以上证据不等同于真实业务、技术或设计签核。
+
+## 使用与维护
 
 | 内容 | 入口 |
 | --- | --- |
 | 能力、数据格式和交接规则 | [规格](spec.md) |
 | 阶段目标、步骤及退出条件 | [执行计划](execution-plan.md) |
-| 安装、自动触发及既有验证范围 | [安装与调用](installation.md) |
-| 第二组样例的设计说明 | [仿真任务管理样例](sample-task-management.md) |
-| 测试代码、重放入口和历史证据 | [测试导航](../../tests/requirement-analyst/README.md) |
-| 最终验收及未完成事项 | [历史验收报告](../../tests/results/final-acceptance.md) |
+| 安装、自动触发及历次验证范围 | [安装与调用](installation.md) |
+| 样例、测试及历史证据 | [仿真任务管理样例](sample-task-management.md) · [测试导航](../../tests/requirement-analyst/README.md) |
 
-阶段 1～8及最终收口已经提交到 `main`。历史报告中“尚未提交”等文字是当时状态，当前提交以 Git 为准；本次只归类，不重写历史报告。
-
-真实下游 Skill 联调原获批准延期；生成 Skill 具备后按双侧接口补验。八项量化指标的统一基线与阈值、真实业务签核仍不能由现有程序回归代替。
+每次分析侧阶段通过人工验收后，由分析 Skill 维护者更新本页详细状态及证据入口，仓库入口维护者核对[根 README](../../README.md) 摘要。封存报告中的分支、提交和依赖状态是当时记录；当前提交以 Git 为准。
