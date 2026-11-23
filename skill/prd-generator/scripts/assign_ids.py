@@ -2,18 +2,19 @@
 
 import argparse
 from collections.abc import Sequence
+from contextlib import nullcontext
 from copy import deepcopy
-import fcntl
 import importlib.util
 import json
 import os
 from pathlib import Path
+import sys
 import tempfile
 
 
 def _load_validator():
     """加载同目录的追溯校验器，复用唯一摘要与分析索引实现。"""
-    spec = importlib.util.spec_from_file_location("prd_numbering_validator", Path(__file__).with_name("validate_prd.py"))
+    spec = importlib.util.spec_from_file_location("prd_numbering_validator", Path(__file__).resolve().with_name("validate_prd.py"))
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
@@ -159,10 +160,8 @@ def allocate_ids(patch: dict, analysis: dict, requirement: dict, *, previous_tra
 
 def _snapshot(path, optional=False):
     """读取原字节并拒绝符号链接；可选缺失以 None 表示。"""
-    if path.is_symlink() or any(parent.is_symlink() for parent in path.parents):
-        raise ValueError(f"{path}: 不允许符号链接")
     try:
-        return path.read_bytes()
+        return _validator._read_bytes(path, link_message=f"{path}: 不允许符号链接")
     except FileNotFoundError:
         if optional:
             return None
@@ -185,12 +184,10 @@ def assign_ids(requirement_dir: Path, patch: dict, *, related_analyses: Sequence
     文件、协议、过期状态、未完成事务或并发冲突异常以 ValueError/OSError 报告。
     """
     root = Path(requirement_dir).absolute()
-    if root.is_symlink() or any(parent.is_symlink() for parent in root.parents):
+    if _validator._has_link(root):
         raise ValueError(f"{root}: 不允许符号链接")
-    fd = os.open(root, os.O_RDONLY | os.O_DIRECTORY)
-    try:
-        if write:
-            fcntl.flock(fd, fcntl.LOCK_EX)
+    fs = _validator._fs()
+    with fs.requirement_lock(root) if write else nullcontext():
         paths = [root / "requirement.json", root / "analysis/analysis-result.json", *(Path(p).absolute() for p in related_analyses), root / "prd/prd-trace.json"]
         originals = [_snapshot(p, optional=(i == len(paths) - 1)) for i, p in enumerate(paths)]
         requirement, analysis = (_decode(originals[i], paths[i]) for i in (0, 1))
@@ -204,9 +201,12 @@ def assign_ids(requirement_dir: Path, patch: dict, *, related_analyses: Sequence
             prd = requirement.get('prd')
             if prd is not None and (prd.get('status') != 'draft' or not str(prd.get('version', '')).startswith('0.')):
                 raise ValueError('独立编号写入仅支持未发布首稿，不修改评审、发布或废弃状态的版本')
-            if (root / 'prd/versions').exists() and any((root / 'prd/versions').iterdir()):
+            versions = root / 'prd/versions'
+            if _validator._has_link(versions):
+                raise ValueError(f"{versions}: 不允许符号链接")
+            if versions.exists() and any(versions.iterdir()):
                 raise ValueError('存在已发布快照，阶段3编号入口不修改发布后的工作稿')
-            spec = importlib.util.spec_from_file_location("prd_numbering_gate", Path(__file__).with_name("check_gate.py"))
+            spec = importlib.util.spec_from_file_location("prd_numbering_gate", Path(__file__).resolve().with_name("check_gate.py"))
             gate_module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(gate_module)
             gate = gate_module.check_gate(root, allow_stale=allow_stale, related_analyses=related_analyses)
@@ -237,7 +237,7 @@ def assign_ids(requirement_dir: Path, patch: dict, *, related_analyses: Sequence
                 if baseline != proposed:
                     raise ValueError('追溯变化需要与正文统一保存；请使用write_draft，不独立改写有效工作稿')
             journal = root / "prd/.prd-transaction.json"
-            if journal.exists() or journal.is_symlink():
+            if fs.is_link(journal) or journal.exists():
                 raise ValueError(f"{journal}: 存在未完成草稿事务，须先恢复")
             for i, path in enumerate(paths):
                 if _snapshot(path, optional=(i == len(paths) - 1)) != originals[i]:
@@ -246,19 +246,23 @@ def assign_ids(requirement_dir: Path, patch: dict, *, related_analyses: Sequence
                 raise ValueError("来源清单或缺口上下文并发变化，须重新读取")
             target = paths[-1]
             target.parent.mkdir(parents=True, exist_ok=True)
-            with tempfile.NamedTemporaryFile(dir=target.parent, prefix=".prd-trace-", delete=False) as temp:
-                temp.write((json.dumps(trace, ensure_ascii=False, indent=2, allow_nan=False) + "\n").encode("utf-8"))
-                temp.flush()
-                os.fsync(temp.fileno())
-                temp_name = temp.name
-            if (any(_snapshot(path, optional=(i == len(paths) - 1)) != originals[i] for i, path in enumerate(paths))
-                    or any(_snapshot(path, optional=True) != original for path, original in zip(auxiliary, auxiliary_before))
-                    or _snapshot(body_path, optional=True) != body or journal.exists() or journal.is_symlink()):
-                raise ValueError("写入前文件或事务状态发生并发变化")
-            os.replace(temp_name, target)
+            temp = tempfile.NamedTemporaryFile(dir=target.parent, prefix=".prd-trace-", delete=False)
+            temp_path = Path(temp.name)
+            try:
+                with temp:
+                    temp.write((json.dumps(trace, ensure_ascii=False, indent=2, allow_nan=False) + "\n").encode("utf-8"))
+                    temp.flush()
+                    os.fsync(temp.fileno())
+                # Windows 替换前须关闭临时文件句柄，同时尽可能晚地重查读时状态。
+                if (any(_snapshot(path, optional=(i == len(paths) - 1)) != originals[i] for i, path in enumerate(paths))
+                        or any(_snapshot(path, optional=True) != original for path, original in zip(auxiliary, auxiliary_before))
+                        or _snapshot(body_path, optional=True) != body or fs.is_link(journal) or journal.exists()):
+                    raise ValueError("写入前文件或事务状态发生并发变化")
+                os.replace(temp_path, target)
+                fs.sync_directory(target.parent)
+            finally:
+                temp_path.unlink(missing_ok=True)
         return trace
-    finally:
-        os.close(fd)
 
 
 def main():
@@ -281,4 +285,5 @@ def main():
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     raise SystemExit(main())

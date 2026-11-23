@@ -45,6 +45,8 @@ description: 用于理解需求、分析需求、检查完整性、识别矛盾�
 
 ## 产物与校验
 
+用 Skill 所属项目的虚拟环境运行脚本：Windows PowerShell 用本机 `.claude/.prd-skills-venv/Scripts/python.exe`（无需 WSL），macOS/Linux 用 `.claude/.prd-skills-venv/bin/python`。加 `-I -B`，传入脚本绝对路径；自备环境须已安装本 Skill 的 `scripts/requirements.txt`。使用本地工作区，同一工作区只在一个系统下写入。
+
 - 明确工作区和项目；用户提供需求编号则沿用，否则由脚本分配。新增条目用 `$别名`，后续引用脚本返回的正式编号。
 - 每个独立需求产出补丁；用 `scripts/update_analysis.py --workspace WORKSPACE --project PROJECT --patch PATCH.json` 保存，不直接改正式 JSON、来源清单或事件。跨需求资料用 `--related-analysis PATH` 显式提供。
 - 补丁携带读取时的 base_revision、变更类型、影响内容及十一项 completion_checks；更正/撤销附用户实际原话，新版文档先逐项比对、保存 stale，再重评变化部分。

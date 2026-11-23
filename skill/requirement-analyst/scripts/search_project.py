@@ -38,7 +38,8 @@ def main(argv=None):
                 return _p.output({"status": "warning", "diagnostics": [{"level": "warning", "message": "缺少索引，请先重新索引；未找到不代表无冲突。"}], "results": [], "stale_sources": []})
             if not project_path.exists() or not source_path.exists():
                 raise _p.InputError("索引不一致，请重新索引")
-            project, index = _p.strict_json(project_path), _p.strict_json(source_path)
+            project = _p.strict_json(project_path, managed=True)
+            index = _p.strict_json(source_path, managed=True)
             if not isinstance(project, dict) or not isinstance(index, dict) or not isinstance(index.get("sources"), list):
                 raise _p.InputError("索引结构非法，请重新索引")
             sources = index["sources"]
@@ -127,4 +128,5 @@ def main(argv=None):
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     sys.exit(main())

@@ -10,20 +10,36 @@
 
 ## 安装到其他项目
 
-在目标项目 `.claude/skills/` 下放置 `requirement-analyst/` 完整生产目录，或将该**单个 Skill 目录入口**链接到本仓库的生产目录。先检查同名目标；存在时先比较，不覆盖、不删除其他版本。不要将整个 `.claude/skills` 目录改为链接。
+优先用 `install.py` [一键安装两个 Skill 和共用依赖](../prd-generator/installation.md#安装到新项目或隔离试用项目)。只需需求分析时，可手动安装 `requirement-analyst`：
 
-本 Skill 的参考文件、Schema、模板和脚本需要一起保留。Python 3.10+，脚本依赖见生产目录的 `scripts/requirements.txt`；例如使用已有 uv 环境：
+1. 将本仓库的 `skill/requirement-analyst/` 完整复制到目标项目的 `.claude/skills/requirement-analyst/`。macOS 和 Linux 也可链接整个生产目录。先核对同名目标，不覆盖现有安装；Windows 按复制路径安装，不依赖仓库的符号链接。
+2. 确认 `.claude/.prd-skills-venv/` 不存在后，从目标项目目录用 Python 3.10+ 执行对应命令。已有环境时，先核对其用途和依赖，不另行覆盖。
 
-```bash
-uv run --no-project --python /usr/bin/python3 \
-  --with-requirements skill/requirement-analyst/scripts/requirements.txt \
-  python -I -B .claude/skills/requirement-analyst/scripts/validate_analysis.py \
-  /path/to/analysis-result.json
-```
+   **Windows（PowerShell，本机 Python）**：
 
-安装 Skill 不等于在系统 Python 中自动安装依赖。实际保存仍须使用已具备该依赖的解释器或上述隔离运行方式。
+   ```powershell
+   $bundle = 'C:\path\to\offline'  # 随安装包提供的 offline 目录
+   py -3 -m venv .claude/.prd-skills-venv
+   $env:PIP_CONFIG_FILE = 'NUL'
+   & ".\.claude\.prd-skills-venv\Scripts\python.exe" -m pip --isolated --disable-pip-version-check install --no-index --only-binary=:all: --require-hashes --find-links "$bundle\wheels" -r "$bundle\requirements.lock"
+   ```
 
-## 本次实际验证
+   没有 `py` 启动器时改用指向本机 Python 3.10+ 的 `python`。
+
+   **macOS / Linux**：
+
+   ```bash
+   bundle='/path/to/offline'  # 随安装包提供的 offline 目录
+   python3 -m venv .claude/.prd-skills-venv
+   PIP_CONFIG_FILE=/dev/null .claude/.prd-skills-venv/bin/python -m pip --isolated --disable-pip-version-check install \
+     --no-index --only-binary=:all: --require-hashes --find-links "$bundle/wheels" -r "$bundle/requirements.lock"
+   ```
+
+3. 在目标项目打开新会话，通过自然语言触发分析。运行脚本直接用上述虚拟环境的解释器，无需激活。
+
+虚拟环境不随项目提交；若 Python 未自动生成环境内的 `.gitignore`，请将 `.claude/.prd-skills-venv/` 加入目标项目的忽略规则。只装分析侧也遵守同样的[本地工作区边界](../prd-generator/installation.md#工作区边界)。
+
+## 阶段 4 安装验证（历史）
 
 使用已安装的本地 Claude Code 2.1.325，通过普通“内部报修撤回需求”提示启动真实 CLI：
 

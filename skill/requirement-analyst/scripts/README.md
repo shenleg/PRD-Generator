@@ -4,12 +4,12 @@
 
 ## 安装与运行
 
-需要 Python 3.10 或更新版本。在仓库根目录执行：
+需要 Python 3.10+。一键安装或单独手动安装后，直接用目标项目的虚拟环境解释器加 `-I -B`：Windows 为 `.claude/.prd-skills-venv/Scripts/python.exe`（PowerShell、无需 WSL），macOS/Linux 为 `.claude/.prd-skills-venv/bin/python`。脚本位于 `.claude/skills/requirement-analyst/scripts/`。下列 `uv` 命令用于从仓库源码运行开发验证，不是安装步骤：
 
 ```bash
 uv run --with-requirements skill/requirement-analyst/scripts/requirements.txt \
   python -I skill/requirement-analyst/scripts/validate_analysis.py \
-  tests/fixtures/high-low-voltage/analysis-result.json
+  tests/fixtures/requirement-analyst/high-low-voltage/analysis-result.json
 ```
 
 默认读取结果旁边的 `source-manifest.json`，以及当前需求存在的 `../prd/gap-requests.json`。来源清单不在同一目录时，用 `--source-manifest PATH` 指定；独立缺口夹具可用 `--gap-requests PATH` 显式提供。校验器只读，问题接收关联须在本需求缺口中存在且唯一；旧问题没有 `gap_request_ref` 仍合法。
@@ -37,13 +37,17 @@ python -I skill/requirement-analyst/scripts/validate_analysis.py analysis-result
 
 ## 应用补丁
 
-更新器使用标准库 fcntl 和目录 fsync，当前支持 Linux/Unix 本地工作区；未验证 Windows 或网络文件系统的锁与持久化语义。运行锁、恢复记录和中断残留留在本地，不作为业务产物交付。
+更新器支持本地 NTFS、APFS 和 Linux 文件系统。同一工作区只在一个系统下写入；锁和中断恢复详见[本地工作区与锁](../references/incremental-update.md#本地工作区与锁)。运行文件不作为业务产物交付。
+
+从目标项目运行，`patch.json` 为已准备好的补丁：
+
+```powershell
+& ".\.claude\.prd-skills-venv\Scripts\python.exe" -I -B ".\.claude\skills\requirement-analyst\scripts\update_analysis.py" --workspace workspace --project demo --patch patch.json
+```
 
 ```bash
-uv run --no-project --python /usr/bin/python3 \
-  --with-requirements skill/requirement-analyst/scripts/requirements.txt \
-  python -I -B skill/requirement-analyst/scripts/update_analysis.py \
-  --workspace workspace-sandbox/my-workspace --project demo --patch patch.json
+.claude/.prd-skills-venv/bin/python -I -B .claude/skills/requirement-analyst/scripts/update_analysis.py \
+  --workspace workspace --project demo --patch patch.json
 ```
 
 可先加 `--dry-run` 预检；`--related-analysis PATH` 可重复指定关联分析。补丁使用 `patch_version: "1.0"`、读取时的 `base_revision` 和临时别名；详见补丁协议，不接受整份 analysis-result 替换。正式结果、来源、事件由脚本维护；报告由分析者根据保存后的 JSON 整理。

@@ -4,8 +4,8 @@
 
 ## 1. 安装并打开项目
 
-1. 准备 Claude Code、Python 3.10+ 和 `uv`。本指南以已经验证的本地 Linux 环境为例。`uv` 用于给脚本准备依赖，不是 Skill 安装器。
-2. 获取本仓库，按[双 Skill 安装说明](../prd-generator/installation.md#安装到新项目或隔离试用项目)把两个完整生产目录放进**要使用的项目**的 `.claude/skills/`。第一次试用可以另选一个空目录，不用把测试、沙盒或最小消费者一起复制过去。
+1. 准备 Claude Code 和 Python 3.10+。Windows 用户用 PowerShell 和本机 Python，无需 WSL。
+2. 准备完整仓库，或把 `install.py`、`skill/`、`offline/` 一起拷进内网，按[双 Skill 安装说明](../prd-generator/installation.md#安装到新项目或隔离试用项目)运行 `install.py`，把两个 Skill 和共用依赖装到**要使用的项目**。第一次试用可另选本地空目录；同一工作区只在一个系统下写入。
 3. 在**目标项目目录**开启新的 Claude Code 会话。需求分析用自然语言触发，没有 `/requirement-analyst`；生成可以直接用 `/prd-generator`，也可以说“根据已保存的分析生成 PRD”。
 
 先用下面的合成场景练习。换成团队的真实需求时，只提供获准交给当前模型和环境处理的资料。

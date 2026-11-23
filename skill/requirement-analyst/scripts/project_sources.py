@@ -3,8 +3,8 @@
 import argparse
 from contextlib import contextmanager
 from datetime import date
-import fcntl
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -12,6 +12,11 @@ import stat
 import tempfile
 
 from jsonschema import Draft202012Validator
+
+_fs_spec = importlib.util.spec_from_file_location("_requirement_fs_loader", Path(__file__).resolve().with_name("_load_fs.py"))
+_fs_loader = importlib.util.module_from_spec(_fs_spec)
+_fs_spec.loader.exec_module(_fs_loader)
+fs = _fs_loader.fs
 
 # 单份资料上限和单次检索预算，防止误读大型或过多文件。
 MAX_FILE = 1024 * 1024
@@ -32,8 +37,17 @@ class Parser(argparse.ArgumentParser):
         raise InputError(message)
 
 
-def strict_json(path):
-    """读取严格 JSON；path 为文件，返回对象，非法内容或读取失败时抛异常。"""
+@contextmanager
+def open_regular(path):
+    """打开受管普通文件 path 并交出二进制流；链接、特殊文件或打开失败时抛异常。"""
+    with os.fdopen(fs.open_readonly(path), "rb") as stream:
+        if not stat.S_ISREG(os.fstat(stream.fileno()).st_mode):
+            raise InputError(f"路径不是普通文件：{path}")
+        yield stream
+
+
+def strict_json(path, *, managed=False):
+    """读取严格 JSON；managed 指工作区内部文件。返回对象，非法内容或读取失败时抛异常。"""
     def pairs(items):
         result = {}
         for key, value in items:
@@ -45,21 +59,27 @@ def strict_json(path):
     def invalid(value):
         raise InputError(f"JSON 非法数值：{value}")
 
-    return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=pairs, parse_constant=invalid)
+    if managed:
+        with open_regular(path) as stream:
+            text = stream.read().decode("utf-8")
+    else:
+        text = path.read_text(encoding="utf-8")
+    return json.loads(text, object_pairs_hook=pairs, parse_constant=invalid)
 
 
 def safe_path(root, value):
-    """验证项目内相对路径并拒绝符号链接；失败时抛 InputError。"""
+    """验证项目根 root 内的 POSIX 相对路径 value，返回本机路径；越界、链接或非法名称抛 InputError。"""
     if not isinstance(value, str) or not value or "\\" in value or value.startswith("/"):
         raise InputError("路径必须是项目内相对路径")
     parts = value.split("/")
-    if any(not p or p in (".", "..") or any(ord(c) < 32 for c in p) for p in parts):
+    # 不让保存在清单中的文本在 Windows 上变成驱动器、设备或另一文件的别名。
+    if not all(fs.is_portable_segment(part) for part in parts):
         raise InputError("路径含非法路径段")
     current = root
     for part in parts:
         current = current / part
-        if current.is_symlink():
-            raise InputError(f"路径不能包含符号链接：{value}")
+        if fs.is_link(current):
+            raise InputError(f"路径不能包含符号链接或目录联接：{value}")
     if not current.resolve().is_relative_to(root):
         raise InputError("路径越过项目根")
     return current
@@ -68,11 +88,9 @@ def safe_path(root, value):
 def read_source(root, value, budget=MAX_FILE):
     """读取受限普通 UTF-8 文本；value 为相对路径，返回字节和文本，非法时抛异常。"""
     path = safe_path(root, value)
-    # O_NOFOLLOW 防止最后路径段在检查后被替换为符号链接。
-    fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
-    with os.fdopen(fd, "rb") as stream:
+    with open_regular(path) as stream:
         info = os.fstat(stream.fileno())
-        if not stat.S_ISREG(info.st_mode) or info.st_size > min(MAX_FILE, budget):
+        if info.st_size > min(MAX_FILE, budget):
             raise InputError("资料不是普通文件或超过读取预算")
         data = stream.read(min(MAX_FILE, budget) + 1)
     if len(data) > min(MAX_FILE, budget) or b"\0" in data:
@@ -99,11 +117,7 @@ def atomic_write(path, data):
             stream.flush()
             os.fsync(stream.fileno())
         os.replace(temporary, path)
-        directory = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
-        try:
-            os.fsync(directory)
-        finally:
-            os.close(directory)
+        fs.sync_directory(path.parent)
     finally:
         if os.path.exists(temporary):
             os.unlink(temporary)
@@ -112,25 +126,30 @@ def atomic_write(path, data):
 @contextmanager
 def locked(root):
     """取得工作区分析锁并拒绝未完成事务；root 为项目根，失败抛异常。"""
-    workspace = next((p for p in (root, *root.parents) if (p / "workspace.json").is_file()), root)
+    workspace = root
+    for parent in (root, *root.parents):
+        registry = parent / "workspace.json"
+        if fs.is_link(registry):
+            raise InputError("工作区注册表不能是符号链接或目录联接")
+        if registry.is_file():
+            workspace = parent
+            break
     lock = workspace / ".analysis.lock"
-    if lock.is_symlink():
-        raise InputError("分析锁不能是符号链接")
-    fd = os.open(lock, os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
-    with os.fdopen(fd, "r+") as stream:
-        fcntl.flock(stream.fileno(), fcntl.LOCK_EX)
+    if fs.is_link(lock):
+        raise InputError("分析锁不能是符号链接或目录联接")
+    with fs.workspace_lock(lock):
         for journal in {workspace / ".analysis-transaction.json", root / ".analysis-transaction.json"}:
-            if journal.is_symlink():
-                raise InputError("事务日志不能是符号链接")
-            if journal.exists() and strict_json(journal) is not None:
+            if fs.is_link(journal):
+                raise InputError("事务日志不能是符号链接或目录联接")
+            if journal.exists() and strict_json(journal, managed=True) is not None:
                 raise InputError("存在未完成 analysis 事务，请先恢复")
         yield
 
 
 def root_path(value):
-    """检查项目根目录，返回规范绝对路径；不存在或为符号链接时抛异常。"""
+    """返回 value 所指项目的规范绝对路径；不存在或含非系统链接时抛异常。"""
     path = Path(value).expanduser().absolute()
-    if any(p.is_symlink() for p in (path, *path.parents)) or not path.is_dir():
+    if any(fs.is_link(part) for part in (path, *path.parents)) or not path.is_dir():
         raise InputError("project-root 必须是实际目录")
     return path.resolve()
 

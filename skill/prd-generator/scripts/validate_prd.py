@@ -8,8 +8,10 @@ import hashlib
 import html
 import importlib.util
 import json
+import os
 from pathlib import Path
 import re
+import sys
 
 from jsonschema import Draft202012Validator
 
@@ -59,9 +61,38 @@ def _constant(value):
     raise ValueError(f"JSON 包含非法数值：{value}")
 
 
+@lru_cache(maxsize=1)
+def _fs():
+    """从本 Skill 的固定路径加载文件系统适配器，不依赖 cwd 或模块搜索路径。"""
+    path = Path(__file__).resolve().with_name("_load_fs.py")
+    spec = importlib.util.spec_from_file_location("prd_validation_fs_loader", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.fs
+
+
+def _has_link(path):
+    """检查文件及祖先是否经由链接，包括相对路径的工作目录。"""
+    path = path.absolute()
+    return any(_fs().is_link(part) for part in (path, *path.parents))
+
+
+def _read_bytes(path, *, link_message="不读取符号链接路径"):
+    """拒绝通过链接读取路径，返回不转换换行的文件原字节。"""
+    if _has_link(path):
+        raise ValueError(link_message)
+    with os.fdopen(_fs().open_readonly(path), "rb") as stream:
+        return stream.read()
+
+
+def _decode_json(raw):
+    """解析 UTF-8 JSON，拒绝重复键与非法数值。"""
+    return json.loads(raw.decode("utf-8"), object_pairs_hook=_unique, parse_constant=_constant)
+
+
 def _json(path):
     """严格读取 UTF-8 JSON，解析异常由调用边界处理。"""
-    return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_unique, parse_constant=_constant)
+    return _decode_json(_read_bytes(path))
 
 
 def _sha(data):
@@ -170,9 +201,6 @@ def _structure(data, name, diagnostics, rule=1, path=""):
 def _read(path, diagnostics, rule, *, optional=False):
     """将用户文件读取失败转为诊断；缺省的可选资料由上层按 source_id 降级。"""
     try:
-        # 不跟随用户提供的工作区符号链接，避免把边界外内容当成本需求文件。
-        if path.is_symlink() or any(p.is_symlink() for p in path.parents):
-            raise ValueError("不读取符号链接路径")
         value = _json(path)
         if value is None:
             raise ValueError("必需 JSON 文档不能为 null")
@@ -317,9 +345,7 @@ def _manual_checks(text, rid, blocks, diagnostics, released):
 def _events(path, diagnostics):
     """读取追加日志并检查公共字段；单行坏 JSON 不覆盖其他可诊断事件。"""
     try:
-        if path.is_symlink() or any(p.is_symlink() for p in path.parents):
-            raise ValueError("事件文件不允许符号链接")
-        lines = path.read_text(encoding="utf-8").splitlines()
+        lines = _read_bytes(path, link_message="事件文件不允许符号链接").decode("utf-8").splitlines()
     except (OSError, ValueError, UnicodeError) as error:
         diagnostics.append(_issue(1, "$", path, f"无法读取事件日志：{error}"))
         return []
@@ -401,27 +427,28 @@ def _snapshots(prd, trace, events, diagnostics):
             registered.add(filename)
             path = prd / filename
             try:
-                if path.is_symlink() or any(p.is_symlink() for p in path.parents):
-                    raise ValueError("快照不得为符号链接")
-                content = path.read_bytes()
+                content = _read_bytes(path, link_message="快照不得为符号链接")
                 if _sha(content) != record["sha256"]:
                     raise ValueError("快照摘要不符")
                 if kind == "trace":
-                    historical = _json(path)
+                    historical = _decode_json(content)
                     history.append((historical, filename))
             except (OSError, ValueError, UnicodeError) as error:
                 diagnostics.append(_issue(11, "$", filename, str(error)))
     versions = prd / "versions"
-    if versions.is_symlink():
-        diagnostics.append(_issue(11, "$", versions, "快照目录不得为符号链接。"))
-    elif versions.exists():
-        if not versions.is_dir():
-            diagnostics.append(_issue(11, "$", versions, "快照位置必须是目录。"))
-        else:
-            for path in versions.iterdir():
-                relative = "versions/" + path.name
-                if relative not in registered or not path.is_file() or path.is_symlink():
-                    diagnostics.append(_issue(11, "$", relative, "快照无对应发布记录或类型不合法。"))
+    try:
+        if _has_link(versions):
+            diagnostics.append(_issue(11, "$", versions, "快照目录不得为符号链接。"))
+        elif versions.exists():
+            if not versions.is_dir():
+                diagnostics.append(_issue(11, "$", versions, "快照位置必须是目录。"))
+            else:
+                for path in versions.iterdir():
+                    relative = "versions/" + path.name
+                    if relative not in registered or _fs().is_link(path) or not path.is_file():
+                        diagnostics.append(_issue(11, "$", relative, "快照无对应发布记录或类型不合法。"))
+    except OSError as error:
+        diagnostics.append(_issue(11, "$", versions, f"无法检查快照目录：{error}"))
     if trace is not None:
         for previous, label in history:
             _history(trace, previous, diagnostics, label)
@@ -723,17 +750,18 @@ def validate_prd(requirement_dir: Path, *, related_analyses: Sequence[Path] = ()
     prd = root / "prd"
     diagnostics = []
     transaction = prd / '.prd-transaction.json'
-    if transaction.exists() or transaction.is_symlink():
-        return _result([_issue(1, '$', transaction, 'PRD 保存尚未完成，请先恢复，不能据部分落盘声明有效。')])
+    try:
+        if _fs().is_link(transaction) or transaction.exists():
+            return _result([_issue(1, '$', transaction, 'PRD 保存尚未完成，请先恢复，不能据部分落盘声明有效。')])
+    except OSError as error:
+        return _result([_issue(1, '$', transaction, f'无法检查 PRD 保存状态：{error}')])
     analysis = _read(root / "analysis/analysis-result.json", diagnostics, 1)
     metadata = _read(root / "requirement.json", diagnostics, 10)
     trace = _read(prd / "prd-trace.json", diagnostics, 1)
     gaps = _read(prd / "gap-requests.json", diagnostics, 12)
     try:
         path = prd / "prd.md"
-        if path.is_symlink() or any(p.is_symlink() for p in path.parents):
-            raise ValueError("正文不得为符号链接")
-        data = path.read_bytes()
+        data = _read_bytes(path, link_message="正文不得为符号链接")
         text = data.decode("utf-8")
     except (OSError, ValueError, UnicodeError) as error:
         diagnostics.append(_issue(1, "$", path, f"无法读取正文：{error}"))
@@ -824,4 +852,5 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     raise SystemExit(main())

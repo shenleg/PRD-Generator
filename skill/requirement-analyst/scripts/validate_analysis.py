@@ -2,8 +2,10 @@
 
 import argparse
 from collections.abc import Sequence
+import importlib.util
 import json
 from pathlib import Path
+import sys
 
 from jsonschema import Draft202012Validator, FormatChecker
 from referencing import Registry, Resource
@@ -42,7 +44,8 @@ def _validators() -> tuple[Draft202012Validator, Draft202012Validator]:
         Draft202012Validator.check_schema(schema)
         resources.append((path.as_uri(), Resource.from_contents(schema)))
     registry = Registry().with_resources(resources)
-    checker = FormatChecker()
+    # 显式启用实际使用的格式，缺少 RFC 3339 插件时不能把无效日期默认为合法。
+    checker = FormatChecker(formats=("date-time",))
     return tuple(
         Draft202012Validator({"$ref": uri}, registry=registry, format_checker=checker)
         for uri in (
@@ -421,6 +424,14 @@ def _load_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_unique_object, parse_constant=_invalid_constant)
 
 
+def _project_sources():
+    """只在 CLI 加载受管文件辅助模块，内存校验不依赖文件事务。"""
+    spec = importlib.util.spec_from_file_location("project_sources", Path(__file__).resolve().with_name("project_sources.py"))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     """读取 argv 指定的分析及来源，输出 JSON，返回 pass=0、warning=1、fail=2。
 
@@ -438,14 +449,18 @@ def main(argv: Sequence[str] | None = None) -> int:
     documents = []
     diagnostics = []
     gap_requests = None
-    gap_path = args.gap_requests if args.gap_requests is not None else args.analysis.parent.parent / "prd/gap-requests.json"
-    if args.gap_requests is not None or gap_path.exists():
-        try:
-            gap_requests = _load_json(gap_path)
+    sources = _project_sources()
+    gap_root = args.analysis.parent.parent.absolute()
+    gap_path = args.gap_requests if args.gap_requests is not None else gap_root / "prd/gap-requests.json"
+    try:
+        if args.gap_requests is None and (gap_root.exists() or sources.fs.is_link(gap_root)):
+            gap_path = sources.safe_path(sources.root_path(gap_root), "prd/gap-requests.json")
+        if args.gap_requests is not None or gap_path.exists():
+            gap_requests = (sources.strict_json(gap_path, managed=True) if args.gap_requests is None else _load_json(gap_path))
             if gap_requests is None:
                 raise ValueError("缺口文件必须为版本化对象，不能为 null")
-        except (OSError, ValueError) as error:
-            diagnostics.append(_issue(12, "$", str(gap_path), f"无法读取缺口 JSON：{error}"))
+    except (OSError, ValueError, sources.InputError) as error:
+        diagnostics.append(_issue(12, "$", str(gap_path), f"无法读取缺口 JSON：{error}"))
     for path in [args.analysis, *args.related_analysis]:
         manifest_path = args.source_manifest if path == args.analysis and args.source_manifest is not None else path.with_name("source-manifest.json")
         try:
@@ -469,4 +484,5 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     raise SystemExit(main())

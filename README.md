@@ -2,7 +2,9 @@
 
 先分析需求，再生成可追溯的 PRD。两个 Skill 分工独立，通过共享工作区交接。
 
-**第一次使用？** 从[快速上手](docs/shared/quickstart.md)开始：安装后，用会议室预约示例练习[分析、生成和变更同步](docs/shared/quickstart.md#2-动手示例撤销会议室预约)，或直接看[一次真实试用的结果](docs/shared/quickstart.md#3-去哪里看结果)。
+**第一次使用？** 把 `install.py`、`skill/` 和 `offline/` 一起拷到目标机器，用已有 Python [离线安装两个 Skill](docs/prd-generator/installation.md)。无需访问 PyPI；对话使用客户端已有的模型配置。Windows 无需 WSL，也支持 macOS 和 Linux。然后用[快速上手](docs/shared/quickstart.md)的会议室预约示例练习分析、生成和变更同步，或直接看[一次真实试用的结果](docs/shared/quickstart.md#3-去哪里看结果)。
+
+使用本地 NTFS、APFS 或 Linux 文件系统。同一工作区只在一个系统下写入，不与 WSL 或其他系统混写；详见[工作区边界](docs/prd-generator/installation.md#工作区边界)。
 
 | Skill | 能做什么 | 从这里开始 |
 | --- | --- | --- |
@@ -13,8 +15,8 @@
 
 ## 安装与开发
 
-- [双 Skill 安装与调用](docs/prd-generator/installation.md)：并列安装两个生产目录，不安装测试、沙盒或最小消费者。只使用需求分析时，见[分析侧安装说明](docs/requirement-analyst/installation.md)。
-- [运行全部测试](tests/README.md)：统一入口运行两套程序回归，不调用模型；模型和人工验收以各自证据为准。
+- 只使用需求分析时，见[单独安装分析 Skill](docs/requirement-analyst/installation.md#安装到其他项目)。
+- [运行测试](tests/README.md)：源码回归和安装态冒烟测试（smoke）均不调用模型；模型和人工验收以各自证据为准。
 - [仓库目录与历史证据约定](docs/shared/repository-layout.md) · [分阶段执行文档写作规范](docs/shared/staged-execution-guide.md) · [最小交接消费者](tools/README.md)（不是正式生成器）。
 
 ## 维护状态

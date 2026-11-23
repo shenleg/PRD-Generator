@@ -5,7 +5,17 @@ from collections import deque
 import hashlib
 import importlib.util
 import json
-from pathlib import Path
+import os
+from pathlib import Path, PurePosixPath
+import sys
+
+
+_sources_spec = importlib.util.spec_from_file_location("project_sources", Path(__file__).resolve().with_name("project_sources.py"))
+_p = importlib.util.module_from_spec(_sources_spec)
+_sources_spec.loader.exec_module(_p)
+
+# 核验支持比索引预览更大的资料，但仍限制真实读取量。
+_MAX_ADOPTED_SOURCE = 8 * 1024 * 1024
 
 
 _COLLECTIONS = (
@@ -37,8 +47,9 @@ def _load(path):
 
 def _gaps(analysis_path):
     """读取显式分析路径所属需求的缺口，不扫描其他需求或将当前缺口冒作历史快照。"""
-    path = analysis_path.parent.parent / "prd" / "gap-requests.json"
-    return _load(path) if path.exists() else None
+    root = _p.root_path(analysis_path.parent.parent.absolute())
+    path = _p.safe_path(root, "prd/gap-requests.json")
+    return _p.strict_json(path, managed=True) if path.exists() else None
 
 
 def _validator():
@@ -134,9 +145,7 @@ def _check_adopted(path, root, related):
         return {"status": "warning", "needs_reassessment": False, "message": "未做历史对照；没有已采用的历史指纹可检查，不表示无冲突。", "changed_sources": [], "baseline_modified": False}
     if root is None:
         raise ValueError("检查采用来源须显式提供--project-root；不猜测来源路径基准。")
-    root = root.absolute()
-    if any(p.is_symlink() for p in (root, *root.parents)) or not root.is_dir():
-        raise ValueError("项目根必须为无符号链接的目录。")
+    root = _p.root_path(root)
     selected = set(review["source_ids"])
     changed = []
     for source in manifest:
@@ -147,21 +156,16 @@ def _check_adopted(path, root, related):
         archived = source.get("archived_path")
         newer_adopted = any(s["source_id"] in selected and s["path"] == source["path"] and s["revision"] > source["revision"] for s in manifest)
         source_path = archived if archived and newer_adopted else source["path"]
-        relative = Path(source_path)
-        if relative.is_absolute() or ".." in relative.parts or "\\" in source_path:
-            raise ValueError("采用来源须为显式项目根内的相对路径。")
-        current = root
-        for part in relative.parts:
-            current /= part
-            if current.is_symlink():
-                raise ValueError("采用来源路径不能含符号链接。")
+        # 保存的路径按 POSIX 格式解释；旧的冗余 ./ 不应使已采用来源失效。
+        current = _p.safe_path(root, PurePosixPath(source_path).as_posix())
         if not current.is_file():
             changed.append({"source_id": source["source_id"], "path": source["path"], "reason": "missing"})
         else:
-            if current.stat().st_size > 8 * 1024 * 1024:
-                raise ValueError("采用来源单文件不得超过8MiB；需按章节拆分。")
-            raw = current.read_bytes()
-            if len(raw) > 8 * 1024 * 1024:
+            with _p.open_regular(current) as stream:
+                if os.fstat(stream.fileno()).st_size > _MAX_ADOPTED_SOURCE:
+                    raise ValueError("采用来源单文件不得超过8MiB；需按章节拆分。")
+                raw = stream.read(_MAX_ADOPTED_SOURCE + 1)
+            if len(raw) > _MAX_ADOPTED_SOURCE:
                 raise ValueError("采用来源读取超出8MiB边界。")
             digest = hashlib.sha256(raw).hexdigest()
             if digest != source["adopted_sha256"]:
@@ -223,11 +227,12 @@ def main(argv=None) -> int:
                 result["validations"] = validations
                 if any(v["status"] == "warning" for v in validations.values()):
                     result["status"] = "warning"
-    except (OSError, ValueError, UnicodeError) as error:
+    except (OSError, ValueError, UnicodeError, _p.InputError) as error:
         result = {"status": "fail", "message": str(error), "baseline_modified": False}
     print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
     return {"pass": 0, "warning": 1, "fail": 2}[result["status"]]
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     raise SystemExit(main())

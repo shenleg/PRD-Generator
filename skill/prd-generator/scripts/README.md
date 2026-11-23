@@ -6,10 +6,10 @@
 
 - Python 3.10+，使用并列 `requirement-analyst/scripts/requirements.txt` 的依赖；两个 Skill 必须一起安装。
 - 分析校验器从相邻生产目录加载，不复制分析规则，不依赖仓库测试和最小消费者。脚本支持隔离模式及任意调用目录。
-- 当前针对可信 Linux/Unix 本地工作区。共享需求目录锁串行化同一需求的生成侧写入、分析提交和恢复、缺口接收标记；不承诺不遵守此锁的写入方、不同需求间引用或网络文件系统的跨文件原子性。
+- 共享需求锁串行化同一需求的 PRD 写入、分析提交与恢复、缺口接收标记。支持可信的本地 NTFS、APFS、Linux 工作区；[锁文件与本地存储边界](../../requirement-analyst/references/incremental-update.md#本地工作区与锁)对双方通用。不同需求间的显式引用不享有跨文件原子快照。
 - 工作区必须由分析侧已有的 `requirement.json/common` 和 `analysis/analysis-result.json` 开始；生成侧不创建需求，不读取 `analysis-report.md`，不写 `analysis/`。
 
-以下命令中的 `PY` 表示：
+一键安装后，`PY` 表示目标项目的虚拟环境解释器加 `-I -B`：Windows 为 `.claude/.prd-skills-venv/Scripts/python.exe`，macOS/Linux 为 `.claude/.prd-skills-venv/bin/python`。下文的 `skill/prd-generator/` 对应已安装的 `.claude/skills/prd-generator/`。在 PowerShell 用 `&` 执行加引号的解释器路径，跨行示例合为一行，去掉行末的 `\`。Linux 源码回归也可用：
 
 ```bash
 uv run --offline --no-project --python /usr/bin/python3 \
@@ -36,7 +36,7 @@ PY skill/prd-generator/scripts/assign_ids.py REQUIREMENT_DIR --patch PATCH.json
 
 默认只输出追溯候选，不写任何文件。候选 `meta.content_hash` 暂为空正文摘要，**不能把它当作最终追溯直接保存**。模型用返回编号写候选正文，正式编号和完整引用放入稳定条目块；功能和验收表格带分析来源列。
 
-`--write` 是仅限未发布首稿的独立追溯维护接口，复用分析门禁及目录锁、读时版本和原字节检查；发现正文摘要变化则拒写，不把尚未判断的手工改动重置成合法摘要。已有正文时只允许幂等维护或给旧追溯身份补键；待同步、增拆编号、来源摘要或标签变化必须走相应的完整保存流程，不能先独立刷新追溯。不负责正文、事件或元数据；完整草稿使用下一步统一保存，不先独立写正式追溯。未完成统一事务、评审/发布/废弃状态或已有发布快照均拒绝独立写入。
+`--write` 是仅限未发布首稿的独立追溯维护接口，复用分析门禁及需求锁、读时版本和原字节检查；发现正文摘要变化则拒写，不把尚未判断的手工改动重置成合法摘要。已有正文时只允许幂等维护或给旧追溯身份补键；待同步、增拆编号、来源摘要或标签变化必须走相应的完整保存流程，不能先独立刷新追溯。不负责正文、事件或元数据；完整草稿使用下一步统一保存，不先独立写正式追溯。未完成统一事务、评审/发布/废弃状态或已有发布快照均拒绝独立写入。
 
 ### 3. 统一校验与保存
 

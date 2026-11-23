@@ -67,5 +67,5 @@ write_draft.py REQUIREMENT_DIR --sync --patch PATCH.json --body CANDIDATE.md --c
 
 - 并发冲突：重读并重新定位，不仅修改补丁数字重试。
 - 校验失败：保留候选和具体诊断，不宣布成功；连续修正三次仍失败即停止。
-- 写中断：报告实际已写范围及未完成事务，显式使用 `write_draft.py REQUIREMENT_DIR --recover` 恢复；不重复同步或假称原子完成。
+- 写中断：报告已确认的写入范围及未完成事务，在原系统的本地工作区用 `write_draft.py REQUIREMENT_DIR --recover` 恢复（包括 Windows 进程中断）。若诊断为冲突，保留锁、事务和候选，先重读现状；不重复同步。
 - 成功：展示草稿类型、实际变更、保留及关闭缺口的依据、仍有的遗留事项和所有警告。生成或同步成功不表示获准评审或发布。

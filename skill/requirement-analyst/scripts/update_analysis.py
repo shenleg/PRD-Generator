@@ -5,13 +5,21 @@ import base64
 import copy
 from contextlib import contextmanager
 from datetime import datetime, timezone
-import fcntl
 import importlib.util
 import json
 import os
 from pathlib import Path
 import re
+import stat
+import sys
 import tempfile
+import unicodedata
+
+
+_fs_spec = importlib.util.spec_from_file_location("_requirement_analyst_fs", Path(__file__).resolve().with_name("_load_fs.py"))
+_fs_module = importlib.util.module_from_spec(_fs_spec)
+_fs_spec.loader.exec_module(_fs_module)
+_fs = _fs_module.fs
 
 
 _COLLECTIONS = {
@@ -79,11 +87,11 @@ def _invalid_constant(value):
     raise ValueError(f"JSON 包含非法数值：{value}")
 
 
-def _load_json(path):
-    """读取严格 JSON；路径、编码与解析错误由公共边界转成诊断。"""
+def _load_json(path, *, managed=False):
+    """读取严格 UTF-8 JSON；显式外部输入不适用受管路径限制。"""
     try:
-        return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_unique_object,
-                          parse_constant=_invalid_constant)
+        text = _read_managed(path).decode("utf-8") if managed else path.read_text(encoding="utf-8")
+        return json.loads(text, object_pairs_hook=_unique_object, parse_constant=_invalid_constant)
     except (OSError, ValueError, UnicodeError) as error:
         raise _InputError(f"无法读取 JSON：{error}", str(path)) from error
 
@@ -95,40 +103,42 @@ def _json_bytes(value):
 
 def _segment(value, label):
     """限定单一路径段，阻断路径穿越与跨平台分隔符。"""
-    _require(isinstance(value, str) and bool(value) and value not in {".", ".."}
-             and "/" not in value and "\\" not in value and not Path(value).is_absolute()
-             and not any(c.isspace() or ord(c) < 32 for c in value),
-             f"{label} 必须是无空白的单一路径段。")
+    _require(isinstance(value, str) and _fs.is_portable_segment(value)
+             and not any(c.isspace() for c in value),
+             f"{label} 必须是无空白的跨平台单一路径段。")
     return value
 
 
 def _safe(root, relative):
-    """拒绝受管路径上的符号链接，避免校验与替换操作指向不同位置。"""
+    """拒绝受管路径上的链接或越界，避免校验与替换指向不同位置。"""
     relative = Path(relative)
-    _require(not relative.is_absolute() and ".." not in relative.parts, "受管路径逃逸工作区。", str(relative))
+    _require(not relative.anchor and ".." not in relative.parts, "受管路径逃逸工作区。", relative.as_posix())
     current = root
     for part in relative.parts:
         current = current / part
-        _require(not current.is_symlink(), "受管路径不能包含符号链接。", str(current))
+        _require(not _fs.is_link(current), "受管路径不能包含符号链接或重解析点。", str(current))
     _require(current.resolve().is_relative_to(root), "受管路径逃逸工作区。", str(current))
     return current
+
+
+def _read_managed(path):
+    """以二进制读取受管普通文件，不经过换行转换。"""
+    with os.fdopen(_fs.open_readonly(path), "rb") as stream:
+        _require(stat.S_ISREG(os.fstat(stream.fileno()).st_mode), "受管路径必须是普通文件。", str(path))
+        return stream.read()
 
 
 def _read_optional(path):
     """读取原始字节，缺失与空文件保持可区分，供事务恢复比较。"""
     try:
-        return path.read_bytes()
+        return _read_managed(path)
     except FileNotFoundError:
         return None
 
 
 def _sync_directory(path):
-    """同步目录项，保证事务记录与原子替换在崩溃后的顺序。"""
-    descriptor = os.open(path, os.O_RDONLY | os.O_DIRECTORY)
-    try:
-        os.fsync(descriptor)
-    finally:
-        os.close(descriptor)
+    """在平台支持时同步目录项；保留事务阶段及其故障注入入口。"""
+    _fs.sync_directory(path)
 
 
 def _ensure_directory(path):
@@ -145,12 +155,8 @@ def _ensure_directory(path):
 @contextmanager
 def _requirement_lock(directory):
     """与生成侧共用需求目录锁；分析侧始终先取得工作区锁。"""
-    descriptor = os.open(directory, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
-    try:
-        fcntl.flock(descriptor, fcntl.LOCK_EX)
+    with _fs.requirement_lock(directory):
         yield
-    finally:
-        os.close(descriptor)
 
 
 def _atomic_write(path, content):
@@ -184,22 +190,24 @@ def _recover(root):
     journal = _safe(root, _JOURNAL)
     if not journal.exists():
         return
-    record = _load_json(journal)
+    record = _load_json(journal, managed=True)
     if record is None:
         return
     _require(isinstance(record, dict) and record.get("version") == 1, "无法识别待恢复事务。", str(journal))
     project = _segment(record.get("project_id"), "事务项目编号")
     requirement = _segment(record.get("requirement_id"), "事务需求编号")
     base = Path("projects") / project / "requirements" / requirement
-    allowed = {str(base / "analysis" / name) for name in ("analysis-result.json", "source-manifest.json", "analysis-events.jsonl")}
-    allowed.update({"workspace.json", str(base / "requirement.json")})
+    allowed = {(base / "analysis" / name).as_posix() for name in
+               ("analysis-result.json", "source-manifest.json", "analysis-events.jsonl")}
+    allowed.update({"workspace.json", (base / "requirement.json").as_posix()})
     writes = record.get("writes")
     _require(isinstance(writes, list) and bool(writes), "待恢复事务缺少写入清单。", str(journal))
     decoded = []
     seen = set()
     for entry in writes:
         _require(isinstance(entry, dict) and isinstance(entry.get("path"), str), "事务写入项格式非法。", str(journal))
-        name = entry["path"]
+        # 旧 Windows 日志使用反斜杠；白名单、重复检查及追加规则都必须看同一规范路径。
+        name = entry["path"].replace("\\", "/")
         _require(name in allowed and name not in seen, "事务含未授权或重复写入路径。", name)
         seen.add(name)
         path = _safe(root, name)
@@ -217,6 +225,7 @@ def _recover(root):
     with _requirement_lock(directory):
         pending = []
         for path, before, after, append in decoded:
+            _safe(root, path.relative_to(root))
             current = _read_optional(path)
             # append 的单次 write 也可能被中断；只接受位于已记录前缀与完整新值之间的字节。
             partial_append = append and current is not None and len(current) >= len(before or b"") and after.startswith(current)
@@ -392,7 +401,7 @@ def _resolve_fields(value, id_map):
 def _workspace_state(root):
     """读取工作区注册表并验证写入所需容器，未知字段保持原值。"""
     path = _safe(root, "workspace.json")
-    state = _load_json(path) if path.exists() else {"projects": [], "requirement_counters": {}}
+    state = _load_json(path, managed=True) if path.exists() else {"projects": [], "requirement_counters": {}}
     _require(isinstance(state, dict), "workspace.json 必须是对象。", str(path))
     projects = state.setdefault("projects", [])
     counters = state.setdefault("requirement_counters", {})
@@ -401,17 +410,34 @@ def _workspace_state(root):
     return state
 
 
-def _scan_requirements(root):
-    """扫描整个工作区的目录与标准编号，防止旧计数器导致重号。"""
+def _scan_requirements(root, project_id, registered):
+    """扫描工作区防止重号，并拒绝将同一项目目录登记为不同编号。"""
     found = {}
     maxima = {}
     projects = _safe(root, "projects")
+    requested = _safe(root, Path("projects") / project_id)
+    requested_key = _fs.path_key(requested.resolve())
+    normalized_id = unicodedata.normalize("NFC", project_id)
+
+    def check_spelling(path, matches):
+        _require(matches or _fs.path_key(path) != requested_key,
+                 f"项目编号与既有路径拼写不一致：请使用 {path.name}。", str(projects / project_id))
+
+    for entry in registered:
+        name = entry["project_id"]
+        if _fs.is_portable_segment(name):
+            # 注册表保留业务编号，不能用大小写或规范化别名重复登记。
+            check_spelling(projects / name, name == project_id)
     if not projects.exists():
         return found, maxima
     for project in sorted(projects.iterdir()):
         _safe(root, project.relative_to(root))
         if not project.is_dir():
             continue
+        # macOS 可按 Unicode 分解存储文件名，但在 Linux 等区分规范化形式的卷上不能新建一份别名。
+        same_spelling = project.name == project_id or (unicodedata.normalize("NFC", project.name) == normalized_id
+                                                      and requested.exists() and requested.samefile(project))
+        check_spelling(project, same_spelling)
         requirements = _safe(root, project.relative_to(root) / "requirements")
         if not requirements.exists():
             continue
@@ -420,7 +446,8 @@ def _scan_requirements(root):
             if not directory.is_dir():
                 continue
             found.setdefault(directory.name, []).append(directory)
-            match = re.fullmatch(r"REQ-([0-9]{4})-([0-9]{3,})", directory.name)
+            # 文件系统可能把 req-… 与 REQ-… 指向同一目录；两种拼写都占用自动编号。
+            match = re.fullmatch(r"REQ-([0-9]{4})-([0-9]{3,})", directory.name, re.ASCII | re.IGNORECASE)
             if match:
                 year, number = match.groups()
                 maxima[year] = max(maxima.get(year, 0), int(number))
@@ -483,7 +510,7 @@ def _mark_handoffs(root, gap_path, snapshot, selected):
     # 接收标记与分析提交分开加锁：恢复分析事务不应重放生成侧文件。
     with _requirement_lock(gap_path.parent.parent):
         _require(_read_optional(gap_path) == snapshot, "缺口文件在接收期间发生变化；分析已保存，请重读缺口后重试标记。", str(gap_path))
-        gaps = _load_json(gap_path)
+        gaps = _load_json(gap_path, managed=True)
         changed = False
         for gap in gaps["requests"]:
             if gap["id"] in selected and gap["status"] == "open":
@@ -657,7 +684,7 @@ def _apply(analysis, manifest, patch, project, reused=None):
 def _update_locked(root, project, patch, related, dry_run, validate):
     """在已持锁且完成恢复的工作区内执行预检及事务提交。"""
     state = _workspace_state(root)
-    found, maxima = _scan_requirements(root)
+    found, maxima = _scan_requirements(root, project, state["projects"])
     counters = state["requirement_counters"]
     for year, maximum in maxima.items():
         counters[year] = max(counters.get(year, 0), maximum)
@@ -673,13 +700,15 @@ def _update_locked(root, project, patch, related, dry_run, validate):
     common_path = _safe(root, base / "requirement.json")
     event_path = _safe(root, base / "analysis" / "analysis-events.jsonl")
     if initial:
-        _require(requirement not in found and not analysis_path.exists() and not common_path.exists(), "需求编号或目录已存在，不能再次首次创建。", str(analysis_path), requirement)
+        _require(requirement not in found and not (root / base).exists(),
+                 "需求编号或目录已存在，不能再次首次创建。", str(analysis_path), requirement)
         analysis = _blank(requirement, project)
         manifest = []
         revision = 0
     else:
         _require(analysis_path.exists(), "需求不存在，请先首次分析。", str(analysis_path), requirement)
-        analysis, manifest = _load_json(analysis_path), _load_json(manifest_path)
+        analysis = _load_json(analysis_path, managed=True)
+        manifest = _load_json(manifest_path, managed=True)
         _require(isinstance(analysis, dict) and isinstance(analysis.get("meta"), dict), "既有分析缺少 meta。", str(analysis_path))
         _require(analysis.get("requirement_id") == requirement, "目录与结果需求编号不一致。", str(analysis_path))
         revision = analysis["meta"].get("analysis_revision")
@@ -688,7 +717,7 @@ def _update_locked(root, project, patch, related, dry_run, validate):
         _require(type(analysis["meta"].get("source_revision")) is int and analysis["meta"]["source_revision"] >= 1, "既有 source_revision 非法。", str(analysis_path))
     gap_path = _safe(root, base / "prd" / "gap-requests.json")
     gap_snapshot = _read_optional(gap_path)
-    gaps = _load_json(gap_path) if gap_snapshot is not None else None
+    gaps = _load_json(gap_path, managed=True) if gap_snapshot is not None else None
     _require(gap_snapshot is None or gaps is not None, "缺口文件必须为版本化对象，不能为 null。", str(gap_path))
     if not initial:
         existing = validate(analysis, manifest, related_analyses=related, gap_requests=gaps)
@@ -753,7 +782,7 @@ def _update_locked(root, project, patch, related, dry_run, validate):
     targets.extend([(_safe(root, "workspace.json"), _json_bytes(state)), (event_path, (event_bytes or b"") + addition)])
     record = {"version": 1, "project_id": project, "requirement_id": requirement,
               "patch": copy.deepcopy(patch),
-              "writes": [{"path": str(path.relative_to(root)), "before": _pack(_read_optional(path)), "after": _pack(content)} for path, content in targets]}
+              "writes": [{"path": path.relative_to(root).as_posix(), "before": _pack(_read_optional(path)), "after": _pack(content)} for path, content in targets]}
     if dry_run:
         return outcome
     _atomic_write(_safe(root, _JOURNAL), _json_bytes(record))
@@ -782,12 +811,13 @@ def update_analysis(workspace: Path, project_id: str, patch: dict, *, related_an
         _protocol(patch)
         # API 边界也检查 JSON 可表示性；不接受 NaN、自定义对象或循环容器。
         _json_bytes(patch)
-        root = Path(workspace).expanduser().resolve()
+        root = Path(workspace).expanduser().absolute()
+        _require(not any(_fs.is_link(path) for path in (root, *root.parents)),
+                 "工作区路径不能包含符号链接或重解析点。", str(root))
+        root = root.resolve()
         root.mkdir(parents=True, exist_ok=True)
         lock_path = _safe(root, _LOCK)
-        descriptor = os.open(lock_path, os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600)
-        with os.fdopen(descriptor, "a+b") as lock:
-            fcntl.flock(lock.fileno(), fcntl.LOCK_EX)
+        with _fs.workspace_lock(lock_path):
             recovered = _recover(root)
             if (recovered is not None and recovered.get("project_id") == project_id
                     and recovered.get("patch") == patch and patch["requirement_id"] is None):
@@ -833,4 +863,5 @@ def main(argv=None) -> int:
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     raise SystemExit(main())

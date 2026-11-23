@@ -7,6 +7,8 @@ __pycache__/
 
 # 更新器的运行互斥与恢复文件留在本地；业务结果、补丁和验证证据仍纳入版本管理。
 .analysis.lock
+# Windows 需求互斥使用持久锁文件，不能在其他进程运行期间清理。
+.requirement.lock
 .analysis-transaction.json
 .analysis-write-*
 

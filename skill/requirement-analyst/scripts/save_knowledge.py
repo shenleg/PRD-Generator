@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import re
 import sys
+import unicodedata
 
 
 _spec = importlib.util.spec_from_file_location("project_sources", Path(__file__).with_name("project_sources.py"))
@@ -22,7 +23,8 @@ def _validate_proposal(proposal, root):
     for key in ("project_id", "knowledge_id", "category", "kind", "content", "scope"):
         if not isinstance(proposal[key], str) or not proposal[key].strip():
             raise _p.InputError(f"{key}须为非空文本")
-    if proposal["project_id"] != root.name:
+    # 目录名在 macOS 可能以分解形式存储；项目编号仍区分大小写。
+    if unicodedata.normalize("NFC", proposal["project_id"]) != unicodedata.normalize("NFC", root.name):
         raise _p.InputError("project_id与指定项目目录不一致")
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,79}", proposal["knowledge_id"]):
         raise _p.InputError("knowledge_id须为不超过80字符的单一路径标识")
@@ -87,18 +89,14 @@ def main(argv=None):
             target = _p.safe_path(root, relative)
             target.parent.mkdir(parents=True, exist_ok=True)
             # 排他新建，失败保留现场；未经成功响应的文件不得纳入正式索引。
-            descriptor = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+            descriptor = _p.fs.open_exclusive(target)
             created = True
             with os.fdopen(descriptor, "wb") as stream:
                 stream.write(data)
                 stream.flush()
                 os.fsync(stream.fileno())
             for directory in (target.parent, target.parent.parent, root):
-                descriptor = os.open(directory, os.O_RDONLY | os.O_DIRECTORY)
-                try:
-                    os.fsync(descriptor)
-                finally:
-                    os.close(descriptor)
+                _p.fs.sync_directory(directory)
         return _p.output({"status": "pass", "written": True, "file_created": True, "path": relative,
                           "proposal_sha256": fingerprint, "diagnostics": []})
     except (OSError, ValueError, UnicodeError, TypeError, _p.InputError) as error:
@@ -106,4 +104,5 @@ def main(argv=None):
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     sys.exit(main())

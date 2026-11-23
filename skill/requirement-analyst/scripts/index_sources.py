@@ -1,7 +1,6 @@
 """根据显式清单创建项目资料元数据索引，不修改资料正文。"""
 
 import importlib.util
-import os
 from pathlib import Path
 import sys
 
@@ -19,15 +18,17 @@ def main(argv=None):
         args = parser.parse_args(argv)
         root = _p.root_path(args.project_root)
         catalog_path = Path(args.catalog)
-        outputs = {_p.safe_path(root, "index/" + name).resolve() for name in ("source-index.json", "project-index.json")}
-        if catalog_path.resolve() in outputs:
+        outputs = {_p.fs.path_key(_p.safe_path(root, "index/" + name).resolve())
+                   for name in ("source-index.json", "project-index.json")}
+        if _p.fs.path_key(catalog_path.resolve()) in outputs:
             raise _p.InputError("显式catalog不能同时作为索引输出目标；输入清单保持只读")
         catalog = _p.strict_json(catalog_path)
         _p.validate_catalog(catalog)
         with _p.locked(root):
+            reserved = outputs | {_p.fs.path_key(root / ".analysis.lock")}
             sources = []
             for item in catalog:
-                if item["path"] in {"index/source-index.json", "index/project-index.json", ".analysis.lock"}:
+                if _p.fs.path_key(_p.safe_path(root, item["path"]).resolve()) in reserved:
                     raise _p.InputError("索引目标或分析锁不能作为原始资料")
                 data, _ = _p.read_source(root, item["path"])
                 source = dict(item)
@@ -41,11 +42,7 @@ def main(argv=None):
             project_index = {"version": 1, "fingerprint": fingerprint, "source_count": len(sources)}
             directory = _p.safe_path(root, "index")
             directory.mkdir(exist_ok=True)
-            root_fd = os.open(root, os.O_RDONLY | os.O_DIRECTORY)
-            try:
-                os.fsync(root_fd)
-            finally:
-                os.close(root_fd)
+            _p.fs.sync_directory(root)
             for name, content in (("source-index.json", source_index), ("project-index.json", project_index)):
                 target = _p.safe_path(root, "index/" + name)
                 _p.atomic_write(target, _p.encoded(content) + b"\n")
@@ -56,4 +53,5 @@ def main(argv=None):
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     sys.exit(main())

@@ -1,0 +1,3 @@
+# 按原字节保留上游通知；RST 标题线和 LICENSE 末尾空行均来自原始 wheel。
+python/rfc3339-validator-0.1.4-AUTHORS.rst conflict-marker-size=32 -text
+python/rfc3339-validator-0.1.4-LICENSE.txt whitespace=-blank-at-eof -text

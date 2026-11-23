@@ -5,11 +5,12 @@ from collections.abc import Sequence
 import importlib.util
 import json
 from pathlib import Path
+import sys
 
 
 def _load(name, filename):
     """从安装目录加载依赖，避免依赖调用方的工作目录或 Python 搜索路径。"""
-    spec = importlib.util.spec_from_file_location(name, Path(__file__).with_name(filename))
+    spec = importlib.util.spec_from_file_location(name, Path(__file__).resolve().with_name(filename))
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
@@ -101,9 +102,7 @@ def check_sync(requirement_dir, *, related_analyses=(), allow_stale=False) -> di
         diagnostics = result["diagnostics"]
         events = root / "analysis/analysis-events.jsonl"
         try:
-            if events.is_symlink() or any(parent.is_symlink() for parent in events.parents):
-                raise ValueError("不读取符号链接事件文件")
-            events.read_text(encoding="utf-8")
+            _validator._read_bytes(events, link_message="不读取符号链接事件文件").decode("utf-8")
         except (OSError, ValueError, UnicodeError):
             diagnostics.append(_validator._issue(3, "$", events, "辅助分析事件不可用，仅按条目比较生成变更摘要，不推断变更原因。", "warning"))
         # 不调用完整 PRD 校验：待同步旧稿仍保留旧标签、状态和摘要，这是比较的基准。
@@ -114,9 +113,8 @@ def check_sync(requirement_dir, *, related_analyses=(), allow_stale=False) -> di
         if all(document is not None for document in (requirement, analysis, trace, *related)):
             result.update(compare_sources(analysis, requirement, trace, related_analyses=related))
             body_path = root / 'prd/prd.md'
-            if body_path.is_symlink() or any(parent.is_symlink() for parent in body_path.parents):
-                raise ValueError('正文比较不使用符号链接路径')
-            result['manual_edits'] = _renderer.compare_content(body_path.read_bytes(), trace)
+            body = _validator._read_bytes(body_path, link_message='正文比较不使用符号链接路径')
+            result['manual_edits'] = _renderer.compare_content(body, trace)
             if result['manual_edits']['changed']:
                 message = '正文摘要变化，需比较实际差异并按含义分流；只读检查未处理手工修改。'
                 if not result['manual_edits']['baseline_available']:
@@ -158,4 +156,5 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     raise SystemExit(main())

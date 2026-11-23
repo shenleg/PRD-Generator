@@ -83,7 +83,7 @@ python -I -B scripts/save_knowledge.py \
 
 脚本沿用`.analysis.lock`，未完成分析事务时拒绝写入，正常null事务允许；锁和路径检查复用`project_sources.py`。只排他新建一份知识文件，保留建议、批准、指纹与保存时间；不覆盖、删除或合并现有知识，不改源资料、analysis、prd或索引。已有知识要变更时先提出变更建议并请负责人决定；本阶段未实现替换/废止工作流。
 
-CLI输出单一JSON：pass=0、fail=2；仅`status=pass`且`written=true`才表示保存完成。失败可能留下新建但未完整落盘的文件，`file_created=true`如实提示；保留现场、不自动清理、不重试覆盖。该文件不得纳入正式索引，须人工检查。支持Linux/Unix本地遵锁工作区，不保证恶意并发换链防护、跨系统事务或身份认证。
+CLI 输出单一 JSON：`pass=0`、`fail=2`；仅 `status=pass` 且 `written=true` 才表示保存完成。失败可能留下新建但未完整落盘的文件，`file_created=true` 如实提示；保留现场，不自动清理或重试覆盖。该文件须人工检查，不纳入正式索引。遵循[本地工作区与锁](incremental-update.md#本地工作区与锁)；脚本不保证恶意并发换链防护，不做身份认证。
 
 完成标准：实际命令成功、读取输出文件核对正文/范围/来源/批准原样保留，原分析和已有知识字节未被修改。
 

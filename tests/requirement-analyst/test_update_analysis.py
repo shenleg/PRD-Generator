@@ -1,7 +1,7 @@
 """阶段 3 补丁写入契约回归；仅在临时工作区写入，不用合成数据冒充模型行为。"""
 
+from contextlib import contextmanager
 from copy import deepcopy
-import fcntl
 import importlib.util
 import json
 import os
@@ -69,7 +69,8 @@ def read_json(path: Path):
 
 def business_bytes(workspace: Path) -> dict:
     """返回工作区业务文件原始字节；排除仅作互斥的锁文件，其他错误直接抛出。"""
-    return {str(p.relative_to(workspace)): p.read_bytes() for p in workspace.rglob("*") if p.is_file() and p.name != ".analysis.lock"}
+    return {p.relative_to(workspace).as_posix(): p.read_bytes() for p in workspace.rglob("*")
+            if p.is_file() and p.name not in {".analysis.lock", ".requirement.lock"}}
 
 
 class UpdateAnalysisTests(unittest.TestCase):
@@ -511,14 +512,17 @@ class UpdateAnalysisTests(unittest.TestCase):
         reached = Event()
         waits_for_directory = Event()
         responses = []
-        real_flock = fcntl.flock
+        real_lock = self.updater._fs.requirement_lock
+        prd_fs = load_module(ROOT / 'skill/prd-generator/scripts/_load_fs.py', 'lock_test_prd').fs
 
-        def observe_directory_lock(descriptor, operation):
-            """通知测试真实锁调用已到达，让后台线程继续在内核等待。"""
-            if operation == fcntl.LOCK_EX and os.path.samestat(os.fstat(descriptor), requirement.stat()):
+        @contextmanager
+        def observe_directory_lock(directory):
+            """记录分析提交请求的目录，随后进入真实系统锁；打开失败保留原异常。"""
+            if directory == requirement:
                 waits_for_directory.set()
                 reached.set()
-            return real_flock(descriptor, operation)
+            with real_lock(directory):
+                yield
 
         def apply_patch():
             """提交真实补丁；未经过共同锁而提前退出时也通知测试。"""
@@ -527,17 +531,15 @@ class UpdateAnalysisTests(unittest.TestCase):
             finally:
                 reached.set()
 
-        descriptor = os.open(requirement, os.O_RDONLY | os.O_DIRECTORY)
-        with mock.patch.object(fcntl, "flock", side_effect=observe_directory_lock):
+        with mock.patch.object(self.updater._fs, 'requirement_lock', observe_directory_lock):
             worker = Thread(target=apply_patch, daemon=True)
             try:
-                real_flock(descriptor, fcntl.LOCK_EX)
-                worker.start()
-                self.assertTrue(reached.wait(10), "分析既未等待目录锁也未返回")
-                self.assertTrue(waits_for_directory.is_set(), f"分析未等待 PRD 目录锁：{responses}")
-                self.assertEqual(business_bytes(requirement), before)
+                with prd_fs.requirement_lock(requirement):
+                    worker.start()
+                    self.assertTrue(reached.wait(10), "分析既未等待目录锁也未返回")
+                    self.assertTrue(waits_for_directory.is_set(), f"分析未等待 PRD 目录锁：{responses}")
+                    self.assertEqual(business_bytes(requirement), before)
             finally:
-                os.close(descriptor)
                 if worker.ident is not None:
                     worker.join(10)
             self.assertFalse(worker.is_alive(), "目录解锁后分析仍未返回")

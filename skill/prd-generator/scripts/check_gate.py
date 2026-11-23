@@ -5,6 +5,7 @@ from collections.abc import Sequence
 import importlib.util
 import json
 from pathlib import Path
+import sys
 
 
 def _validator():
@@ -32,7 +33,7 @@ def check_gate(requirement_dir: Path, *, allow_stale: bool = False, related_anal
         analysis = validator._read(analysis_path, diagnostics, 1)
         metadata = validator._read(root / "requirement.json", diagnostics, 10)
         gaps_path = root / "prd/gap-requests.json"
-        gaps = validator._read(gaps_path, diagnostics, 12) if gaps_path.exists() or gaps_path.is_symlink() else None
+        gaps = validator._read(gaps_path, diagnostics, 12) if validator._has_link(gaps_path) or gaps_path.exists() else None
         if metadata is not None:
             common = metadata.get("common") if isinstance(metadata, dict) else None
             if not isinstance(common, dict) or any(not isinstance(common.get(k), str) or not common[k].strip() for k in ("requirement_id", "title", "project_id", "created_at")):
@@ -88,4 +89,5 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     raise SystemExit(main())

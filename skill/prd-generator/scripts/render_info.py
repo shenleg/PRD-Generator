@@ -10,6 +10,7 @@ import importlib.util
 import json
 from pathlib import Path
 import re
+import sys
 
 
 # 固定使用北京时间（UTC+8），使显示结果不受运行机器的时区影响。
@@ -27,7 +28,7 @@ _EVENT_LABELS = {"initial_generation": "生成工作稿", "layout_edit": "调整
 @lru_cache(maxsize=1)
 def _validator():
     """从本 Skill 加载既有格式定义，避免渲染与校验各自维护提示和版本规则。"""
-    spec = importlib.util.spec_from_file_location("prd_render_validator", Path(__file__).with_name("validate_prd.py"))
+    spec = importlib.util.spec_from_file_location("prd_render_validator", Path(__file__).resolve().with_name("validate_prd.py"))
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
@@ -245,7 +246,7 @@ def main(argv=None) -> int:
     args = parser.parse_args(argv)
     validator = _validator()
     try:
-        text = render_info(args.body.read_text(encoding="utf-8"), validator._json(args.requirement_dir / "requirement.json"),
+        text = render_info(validator._read_bytes(args.body).decode("utf-8"), validator._json(args.requirement_dir / "requirement.json"),
                            validator._json(args.trace), generated_at=args.generated_at or datetime.now(timezone.utc).isoformat(),
                            uncovered_analysis=args.uncovered)
     except (OSError, ValueError, KeyError, TypeError) as error:
@@ -256,4 +257,5 @@ def main(argv=None) -> int:
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     raise SystemExit(main())

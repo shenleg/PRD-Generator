@@ -1,2 +1,3 @@
-# 安装校验器所需的 JSON Schema 与 RFC 3339 格式检查依赖。
-jsonschema[format]==4.26.0
+# 生产 Schema 只使用 date-time 格式；明确安装其 RFC 3339 检查器，而非所有可选格式插件。
+jsonschema==4.26.0
+rfc3339-validator==0.1.4

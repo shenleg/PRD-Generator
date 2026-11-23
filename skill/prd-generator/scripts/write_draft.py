@@ -6,7 +6,6 @@ from collections.abc import Sequence
 from contextlib import contextmanager
 from copy import deepcopy
 from datetime import datetime, timezone
-import fcntl
 from functools import lru_cache
 import importlib.util
 import json
@@ -14,6 +13,7 @@ import os
 import re
 from collections import Counter
 from pathlib import Path
+import sys
 import tempfile
 
 
@@ -25,7 +25,7 @@ EXIT_CODES = {"pass": 0, "warning": 1, "fail": 2}
 @lru_cache(maxsize=None)
 def _module(name):
     """从可信的相邻生产文件加载模块，兼容 python -I 和任意调用目录。"""
-    spec = importlib.util.spec_from_file_location("prd_writer_" + name, Path(__file__).with_name(name + ".py"))
+    spec = importlib.util.spec_from_file_location("prd_writer_" + name, Path(__file__).resolve().with_name(name + ".py"))
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
@@ -38,14 +38,21 @@ def _encode(value):
 
 def _safe(path):
     """拒绝符号链接，防止工作区写入越过用户指定的需求边界。"""
-    if path.is_symlink() or any(parent.is_symlink() for parent in path.parents):
+    if _module("validate_prd")._has_link(path):
         raise ValueError(f"不使用符号链接路径：{path}")
 
 
 def _raw(path):
     """读取文件原始字节；不存在返回 None，其他路径与读取错误原样抛出。"""
-    _safe(path)
-    return path.read_bytes() if path.exists() else None
+    try:
+        return _module("validate_prd")._read_bytes(path, link_message=f"不使用符号链接路径：{path}")
+    except FileNotFoundError:
+        return None
+
+
+def _has_journal(root):
+    """识别正常或链接形式的事务记录，不把悬空链接当作可写的空位。"""
+    return os.path.lexists(root / JOURNAL)
 
 
 def _hash(raw):
@@ -57,41 +64,43 @@ def _hash(raw):
 def _lock(root):
     """锁定现有需求目录，与分析侧串行化同一需求的写入；不在 analysis/ 创建锁。"""
     _safe(root)
-    descriptor = os.open(root, os.O_RDONLY | os.O_DIRECTORY)
-    try:
-        fcntl.flock(descriptor, fcntl.LOCK_EX)
+    with _module("validate_prd")._fs().requirement_lock(root):
         yield
-    finally:
-        fcntl.flock(descriptor, fcntl.LOCK_UN)
-        os.close(descriptor)
 
 
 def _atomic_write(path, raw, *, new_readonly=False):
-    """同目录准备后原子替换；定稿快照改用只读、不可替换的新建。"""
+    """准备后原子替换；定稿快照改用只读、不可替换的新建。"""
     _safe(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    descriptor, name = tempfile.mkstemp(prefix=".prd-write-", dir=path.parent)
+    # 快照临时名不进入 versions/，避免进程中断后未完成写入被误认成无发布记录的历史快照。
+    temporary_dir = path.parent.parent if new_readonly else path.parent
+    descriptor, name = tempfile.mkstemp(prefix=".prd-write-", dir=temporary_dir)
     temporary = Path(name)
+    windows_snapshot = new_readonly and os.name == "nt"
     try:
         with os.fdopen(descriptor, "wb") as stream:
             stream.write(raw)
             stream.flush()
-            if new_readonly:
+            if new_readonly and not windows_snapshot:
                 os.fchmod(stream.fileno(), 0o444)
             os.fsync(stream.fileno())
-        # 独占发布路径，避免检查后出现同名快照时被 rename 覆盖。
-        if new_readonly:
+        if windows_snapshot:
+            # Windows rename 不覆盖同名目标。先关闭句柄并设只读，避免留下难以删除的只读硬链接。
+            _module('validate_prd')._fs().set_snapshot_readonly(temporary, True)
+            os.rename(temporary, path)
+            temporary = None
+        elif new_readonly:
+            # POSIX rename 会替换同名目标，硬链接才可原子拒绝碰撞。
             os.link(temporary, path)
         else:
             os.replace(temporary, path)
-        directory = os.open(path.parent, os.O_RDONLY | os.O_DIRECTORY)
-        try:
-            os.fsync(directory)
-        finally:
-            os.close(directory)
+            temporary = None
+        _module("validate_prd")._fs().sync_directory(path.parent)
     finally:
-        # 仅清理本调用创建的临时文件，不清理业务文件、候选或他人的事务。
-        if temporary.exists():
+        # 失败时仅还原本调用的临时文件属性，不改目标或他人的事务。
+        if temporary is not None and temporary.exists():
+            if windows_snapshot:
+                _module('validate_prd')._fs().set_snapshot_readonly(temporary, False)
             temporary.unlink()
 
 
@@ -130,7 +139,6 @@ def _check_guards(guards):
 
 def _read_json(path):
     """严格读取生产 JSON，不接受重复键或非有限值。"""
-    _safe(path)
     return _module("validate_prd")._json(path)
 
 
@@ -146,13 +154,15 @@ def _snapshot_inputs(root, guards):
     directory = root / 'prd/versions'
     _safe(directory)
     snapshots = {}
+    fs = _module('validate_prd')._fs()
     for path in sorted(directory.iterdir()) if directory.exists() else ():
-        if not path.is_file() or path.is_symlink():
+        if fs.is_link(path) or not path.is_file():
             raise ValueError(f'快照必须是普通文件：{path}')
         raw = _raw(path)
         if raw is None:
             raise ValueError(f'快照读取期间已变化：{path}')
-        snapshots[str(path.relative_to(root))] = raw
+        # 版本谱系比对的是跨平台协议键，不是操作系统的本地路径表示。
+        snapshots[path.relative_to(root).as_posix()] = raw
         guards.append({'path': str(path), 'sha256': _hash(raw)})
     return snapshots
 
@@ -217,7 +227,7 @@ def recover_draft(requirement_dir: Path) -> dict:
             written = list(TARGETS) if journal['result'].get('generated') else [entry['path'] for entry in journal['entries'] if entry['before'] != entry['after']]
             return {**journal['result'], 'recovered': True, 'written': written}
     except (OSError, ValueError, KeyError, TypeError) as error:
-        return {"status": "fail", "diagnostics": [_diagnostic(error, JOURNAL)], "written": [], "recovery_required": (root / JOURNAL).exists()}
+        return {"status": "fail", "diagnostics": [_diagnostic(error, JOURNAL)], "written": [], "recovery_required": _has_journal(root)}
 
 
 def _new_candidate(root, supplied, protected=()):
@@ -227,7 +237,11 @@ def _new_candidate(root, supplied, protected=()):
     _safe(Path(supplied))
     path = Path(os.path.abspath(supplied))
     parents = [root, *(Path(os.path.abspath(item)).parent for item in protected)]
-    if any(path == parent or parent in path.parents for parent in parents):
+    # 系统临时目录别名和大小写不敏感文件系统可能让不同拼写落到同一目录。
+    fs = _module('validate_prd')._fs()
+    resolved = path.resolve()
+    ancestor_keys = {fs.path_key(part) for part in (resolved, *resolved.parents)}
+    if any(fs.path_key(parent.resolve()) in ancestor_keys for parent in parents):
         raise ValueError('候选目录必须在正式需求和关联分析目录之外')
     path.mkdir(parents=True, exist_ok=False)
     return path
@@ -584,7 +598,7 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
     try:
         _safe(Path(requirement_dir))
         with _lock(root):
-            if (root / JOURNAL).exists():
+            if _has_journal(root):
                 raise ValueError("存在未完成草稿事务，请先使用 --recover；不覆盖部分写入")
             before = {name: _raw(root / name) for name in TARGETS}
             if previous_analysis is not None and not sync:
@@ -601,7 +615,7 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
             # 先保留模型原始材料；即使编号或渲染阶段失败，也能按真实候选修正而不是丢失现场。
             inputs = candidate / "inputs"
             inputs.mkdir()
-            (inputs / "body.md").write_text(body, encoding="utf-8")
+            (inputs / "body.md").write_bytes(body.encode("utf-8"))
             (inputs / "numbering-patch.json").write_bytes(_encode(patch))
             if gaps is not None:
                 (inputs / "gap-requests.json").write_bytes(_encode(gaps))
@@ -704,7 +718,7 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
             return _commit_payload(root, before, payload, guards, result)
     except (OSError, ValueError, KeyError, TypeError) as error:
         written = []
-        if (root / JOURNAL).exists():
+        if _has_journal(root):
             for name, raw in payload.items():
                 try:
                     if raw != before.get(name) and _raw(root / name) == raw:
@@ -712,7 +726,7 @@ def write_draft(requirement_dir: Path, *, patch: dict, body: str, gaps: dict | N
                 except (OSError, ValueError):
                     pass
         return {"status": "fail", "diagnostics": diagnostics + [_diagnostic(error)], "candidate_dir": str(candidate) if candidate else None,
-                "written": written, "generated": False, "transaction_complete": False, "recovery_required": (root / JOURNAL).exists()}
+                "written": written, "generated": False, "transaction_complete": False, "recovery_required": _has_journal(root)}
 
 
 def _without_empty_residual_notice(text):
@@ -813,7 +827,7 @@ def inspect_edits(requirement_dir: Path, *, previous_body: Path | None = None,
     try:
         _safe(Path(requirement_dir))
         with _lock(root):
-            if (root / JOURNAL).exists():
+            if _has_journal(root):
                 raise ValueError('存在未完成事务，请先 --recover，再检查实际正文')
             before = {name: _raw(root / name) for name in TARGETS}
             guards = _guards(root, related_analyses)
@@ -865,7 +879,7 @@ def edit_draft(requirement_dir: Path, *, mode: str, base_prd_version: str, base_
         if mode == 'keep' and (not keep_confirmed or meaning_reviewed):
             raise ValueError('坚持保留须有用户实际确认，不能冒充语义未变')
         with _lock(root):
-            if (root / JOURNAL).exists():
+            if _has_journal(root):
                 raise ValueError('存在未完成草稿事务，请先 --recover')
             before = {name: _raw(root / name) for name in TARGETS}
             if any(raw is None for raw in before.values()):
@@ -971,9 +985,9 @@ def edit_draft(requirement_dir: Path, *, mode: str, base_prd_version: str, base_
                       'manual_edits': comparison, 'candidate_dir': str(candidate)}
             return _commit_payload(root, before, payload, guards, result)
     except (OSError, ValueError, KeyError, TypeError) as error:
-        written = [name for name, raw in payload.items() if before.get(name) != raw and _raw(root / name) == raw] if (root / JOURNAL).exists() else []
+        written = [name for name, raw in payload.items() if before.get(name) != raw and _raw(root / name) == raw] if _has_journal(root) else []
         return {'status': 'fail', 'diagnostics': diagnostics + [_diagnostic(error)], 'candidate_dir': str(candidate) if candidate else None,
-                'written': written, 'edited': False, 'transaction_complete': False, 'recovery_required': (root / JOURNAL).exists()}
+                'written': written, 'edited': False, 'transaction_complete': False, 'recovery_required': _has_journal(root)}
 
 
 def main(argv=None) -> int:
@@ -1027,7 +1041,7 @@ def main(argv=None) -> int:
         try:
             result = edit_draft(args.requirement_dir, mode=args.edit, base_prd_version=args.base_prd_version,
                     base_analysis_revision=args.base_analysis_revision, base_content_hash=args.base_content_hash,
-                    summary=args.edit_summary, body=args.body.read_bytes().decode('utf-8') if args.body else None,
+                    summary=args.edit_summary, body=_module('validate_prd')._read_bytes(args.body).decode('utf-8') if args.body else None,
                     meaning_reviewed=args.meaning_reviewed, keep_confirmed=args.keep_confirmed,
                     previous_body=args.previous_body, related_analyses=args.related_analysis,
                     allow_stale=args.allow_stale, candidate_dir=args.candidate_dir)
@@ -1037,7 +1051,7 @@ def main(argv=None) -> int:
         if not args.patch or not args.body:
             parser.error('保存草稿需要 --patch 和 --body')
         try:
-            result = write_draft(args.requirement_dir, patch=_read_json(args.patch), body=args.body.read_bytes().decode('utf-8'),
+            result = write_draft(args.requirement_dir, patch=_read_json(args.patch), body=_module('validate_prd')._read_bytes(args.body).decode('utf-8'),
                                 gaps=_read_json(args.gaps) if args.gaps else None, candidate_dir=args.candidate_dir,
                                 related_analyses=args.related_analysis, allow_stale=args.allow_stale, sync=args.sync, previous_analysis=args.previous_analysis)
         except (OSError, ValueError, KeyError, TypeError) as error:
@@ -1047,4 +1061,5 @@ def main(argv=None) -> int:
 
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     raise SystemExit(main())

@@ -8,9 +8,10 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import sys
 
 
-_spec = importlib.util.spec_from_file_location('prd_lifecycle_writer', Path(__file__).with_name('write_draft.py'))
+_spec = importlib.util.spec_from_file_location('prd_lifecycle_writer', Path(__file__).resolve().with_name('write_draft.py'))
 _writer = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_writer)
 _validator = _writer._module('validate_prd')
@@ -195,7 +196,7 @@ def manage_release(requirement_dir: Path, *, action: str, check_for: str = 'rele
         if action == 'check' and (binding is not None or candidate_dir is not None):
             raise ValueError('只读检查不接受绑定值或候选写入目录')
         with _writer._lock(root):
-            if (root / _writer.JOURNAL).exists():
+            if _writer._has_journal(root):
                 raise ValueError('存在未完成 PRD 事务，先用 write_draft.py --recover')
             before = {name: _writer._raw(root / name) for name in _writer.TARGETS}
             if any(raw is None for raw in before.values()):
@@ -248,7 +249,7 @@ def manage_release(requirement_dir: Path, *, action: str, check_for: str = 'rele
                      'baseline_version': target or latest, 'baseline_verified': bool(target) or baseline_verified, 'applied': True}
             return _writer._commit_payload(root, before, payload, guards, saved)
     except (OSError, ValueError, KeyError, AttributeError, TypeError) as error:
-        if (root / _writer.JOURNAL).exists():
+        if _writer._has_journal(root):
             for name, raw in payload.items():
                 try:
                     if raw != before[name] and _writer._raw(root / name) == raw:
@@ -256,7 +257,7 @@ def manage_release(requirement_dir: Path, *, action: str, check_for: str = 'rele
                 except (OSError, ValueError):
                     pass
         return {**result, 'status': 'fail', 'diagnostics': result['diagnostics'] + [_writer._diagnostic(error)],
-                'recovery_required': (root / _writer.JOURNAL).exists()}
+                'recovery_required': _writer._has_journal(root)}
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -279,4 +280,5 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 
 if __name__ == '__main__':
+    sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     raise SystemExit(main())

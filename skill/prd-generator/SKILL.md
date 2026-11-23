@@ -7,6 +7,8 @@ description: 根据需求分析生成、同步或编辑可追溯 PRD，查看遗
 
 以需求分析为权威生成、维护和定稿 PRD。需求内容修改或含义不明的改动交回 Requirement Analyst；生成侧不调用分析写入器。
 
+用 Skill 所属项目的虚拟环境运行脚本：Windows PowerShell 用本机 `.claude/.prd-skills-venv/Scripts/python.exe`（无需 WSL），macOS/Linux 用 `.claude/.prd-skills-venv/bin/python`。加 `-I -B`，传入脚本绝对路径；自备环境须已安装分析侧 `scripts/requirements.txt`。使用本地工作区，同一工作区只在一个系统下写入。
+
 ## 流程
 
 1. 确定已有需求目录和可选项目模板。没有需求目录或分析结果时建议先做需求分析，不创建需求。仅以 `analysis/analysis-result.json` 为业务权威；不读人用分析报告，不写 `analysis/`。跨需求分析只接受用户显式提供的路径。
